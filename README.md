@@ -8,4 +8,4 @@ This guide tries to cover Clover Bootloader and its options using Clover Configu
 
 ## TABLE OF CONTENTS
 
-01. ACPI Section
+01. [**ACPI Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/01_ACPI)
