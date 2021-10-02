@@ -1,6 +1,5 @@
-# Clover-Crate 
-
-Clover and Clover Configurator explained
+# CLOVER CRATE
+> Clover and Clover Configurator explained
 
 This guide tries to cover Clover Bootloader and its options using Clover Configurator. The structure of this repo loosely follows the hierarchy of the `config.plist` and sections inside of Clover Configurator.
 
