@@ -1,9 +1,10 @@
 ## I. ACPI Section
-![](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/ACPI_FULL.png)
+
+![ACPI_FULL](https://user-images.githubusercontent.com/76865553/135732525-5ad50aa8-6bfe-47b4-82b7-3bc3df8c6f62.png)
 
 ### Patch APIC
 
-![](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/Bildschirmfoto.png)
+![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135732535-ca43869b-4e97-47b2-a490-9c8aa5488fa8.png)
 
 Some computers can only be booted with `cpus=1` or with a patched kernel (Lapic NMI patch). A simple analysis showed that their `MADT` table is wrong, missing NMI partitions. `Patch APIC` patches such tables on the fly. For a healthy computer, nothing bad will happen if enabled. However, I haven't seen any reports that helped anyone with anything either. 
 
@@ -54,7 +55,7 @@ The default value is already present in `FACP` but if there's nothing in it, the
 
 ## DSDT
 
-![](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/Bildschirmfoto 2021-05-16 um 08.16.49.png)
+![Bildschirmfoto 2021-05-16 um 08 16 49](https://user-images.githubusercontent.com/76865553/135732560-dd0763b8-a4c7-463d-9d3c-c0a08e929fc6.png)
 
 ### Debug
 Enabables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps resolving issues.
@@ -91,6 +92,7 @@ Here you can specify the name of your **patched** custom DSDT if it is called so
 ## DSDT Patches
 
 <details>
+
 <summary><strong>Renaming Devices (Basics)</strong></summary>
 
 ### I. About binary renames
@@ -123,7 +125,7 @@ Names like `_DSM` with and underscor in front of them define a method. These are
 | # | Rename | Description |
 |:-:| :----: | ----------- |
 |01|_DSM to XDSM|Other Patch Requirements|
-|02|LPC to LPCB|In `DSDT`, search for `0x001F0000`. </br> 1: If the device name is already `LPCB`, there is no need to change the name.</br> 2: If there are multiple matches for `0x001F0000`, carefully determine whether this name change is needed or not </br>3:If ACPI includes an `ECDT.aml`, check "About ECDT`correction method".|
+|02|LPC to LPCB|In `DSDT`, search for `0x001F0000`. </br> 1: If the device name is already `LPCB`, there is no need to change the name.</br> 2: If there are multiple matches for `0x001F0000`, carefully determine whether this name change is needed or not </br>3:If ACPI includes an `ECDT.aml`, check "About ECDT correction method|
 |03|EC to EC0| Changes name of Embedded Controller. In DSDT, check the device belonging to `PNP0C09`.</br>1:If the device name is already `EC0`, no renaming is required </br>2:If there are multiple matches for `0PNP0C09`, confirm the real `EC` name </br>3:If ACPI package includes `ECDT.aml`, see "About ECDT and how to fix it"|.|
 |04|H_EC to EC0|Same as EC|
 |05|ECDV to EC0(dell)|Same as EC|
@@ -144,7 +146,7 @@ To convert any text to a hex you can use the Hex Converter inside of Clover Conf
 
 In this section, you can add renaming rules (binary renames) to replace text inside your system's `DSDT` dynamically as binary code, represented by hex values. In other words, you replace text, digits and symbols with other text either to avoid conflicts with macOS or to make certain devices work within macOS by renaming them to something it knows. 
 
-![](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/Bildschirmfoto 2021-05-16 um 07.27.17.png)
+![Bildschirmfoto 2021-05-16 um 07 27 17](https://user-images.githubusercontent.com/76865553/135732656-82fe792e-7225-4255-beb9-d1074eb1522b.png)
 
 If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a `Find` value of `45484331` and a `Replace` value of `45483031` which literally translates to `EHC1` and `EH01` if you decode the hex values back to text with the Hex Converter in the "Tools" section of Clover Configurator. Which renames to use when depends on your system, used macOS version, etc. and is not part of this overview.
 
@@ -154,11 +156,11 @@ If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a 
 
 To use this section properly you need a dump the unmodified `DSDT` and examine it with maciASL. In this case, we search for `ECH1`:
 
-![](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/Rename Devices.jpg)
+![Rename Devices](https://user-images.githubusercontent.com/76865553/135732661-ba636a72-9490-4c6f-a018-bdede3752fa6.jpg)
 
 As you can see, the device exists and is lodated in `\SB_PCI0_EHC1` of the `DSDT`. Next, we tell Clover Configurtor to replace the actual device name witj `EH01` by adding it in the `Rename Device` field. After the patch is applied on the fly during boot, the device name and it's dependencies have been changed:
 
-![](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/DSDT_patched.png)
+![DSDT_patched](https://user-images.githubusercontent.com/76865553/135732669-9ac77cf7-5c5f-41a0-b98f-0ae1453411dc.png)
 
 ### TgtBridge Explained
 
@@ -166,7 +168,7 @@ As you can see, the device exists and is lodated in `\SB_PCI0_EHC1` of the `DSDT
 
 For example: renaming the method `_STA`to `_XSTA` in device `GPI0`:
 
-![](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/TGTBridgeExample.png)
+![TGTBridgeExample](https://user-images.githubusercontent.com/76865553/135732680-641af3ba-8140-477a-9c9e-69345d8e9b8f.png)
 
 As shown in the example, the name of the original Method `_STA` (pink) is converted to  hex (`5F535441`), so Clover can find it in the `DSDT`. If it finds this value it is then replaced by `58535441` (blue), which is the hex equivalent of the term `XSTA` (blue). If set like this, this patch would change *any* appearance ot the term `_STA` in the whole of the `DSDT` to `XSTA` which probalby would break the system. To avoid this, you can use `TgtBridge` to specify and limit the matches of this patch to a specified name/device/method/area, in this case to the device `GPI0` (Cyan). Basically, you tell Clover: "look in `GPI0`and and if the method `_STA` is present, rename it to `XSTA` but leave the reste of the `DSDT` alone!"
 
@@ -180,7 +182,7 @@ Prior to revision 5123.1, Clover's `TgtBridge` had a bug, where it would not onl
 
 ## Fixes [1]
 
-![](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/Bildschirmfoto 2021-05-16 um 07.28.34.png)
+![Bildschirmfoto 2021-05-16 um 07 28 34](https://user-images.githubusercontent.com/76865553/135732689-dd1271db-f11d-468b-a57e-576bcf7f7d76.png)
 
 ### AddDTGP
 
@@ -255,7 +257,7 @@ Attempts to solve numerous USB problems. For the `XHCI` controller, when using t
 
 ## Fixes [2]
 
-![](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/Bildschirmfoto 2021-05-16 um 08.04.15.png)
+![Bildschirmfoto 2021-05-16 um 08 04 15](https://user-images.githubusercontent.com/76865553/135732698-6ead0af4-304c-4570-a407-aaafb70506f2.png)
 
 ### FixDarwin7
 
@@ -333,7 +335,7 @@ Patch for Intel integrated graphics is separated from the rest of the graphics c
 
 ### FixWAK
 
-Adds Return to the `_WAK` method. It has to be, but for some reason often the DSDT does not contain it. Apparently the authors adhered to some other standards. In any case, this fix is ​​completely safe.
+Adds Return to the `_WAK` method. It has to be, but for some reason often the DSDT does not contain it. Apparently the authors adhered to some other standards. In any case, this fix is completely safe.
 
 ### FixADP1
 
@@ -364,13 +366,13 @@ As a result, a completely implicit conflict with very unclear behavior can occur
 
 ## Drop Tables
 
-![Bildschirmfoto 2021-05-16 um 08.28.35](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/Bildschirmfoto 2021-05-16 um 08.28.35.png)
+![Bildschirmfoto 2021-05-16 um 08 28 35](https://user-images.githubusercontent.com/76865553/135732583-c8d61605-03af-4b78-a4db-4df9d1e68d56.png)
 
 In this array, you can list tables which should be discarded from loading. These include various table signatures, such as `DMAR`, which is often dropped because macOS does not like `VT-d` technology. Other tables to drop would would be `MATS` (fixes issues with High Sierra) or `MCFG` because by specifying a MacBookPro or MacMini model, we get severe brakes. A better method has already been developed.
 
 ## SSDT
 
-![](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/Bildschirmfoto 2021-05-16 um 19.14.17.png)
+![Bildschirmfoto 2021-05-16 um 19 14 17](https://user-images.githubusercontent.com/76865553/135732594-1b3cf4b8-9b3e-48e2-9cda-6f0b7d95e7cc.png)
 
 ### Double First State
 
@@ -446,7 +448,7 @@ Specify which C-States you want to enable/generate.
 
 ### DisableAML
 
-![](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/Bildschirmfoto 2021-05-16 um 08.31.09.png)
+![Bildschirmfoto 2021-05-16 um 08 31 09](https://user-images.githubusercontent.com/76865553/135732710-df439b95-b7b9-4e88-bd47-0bc082ec63a6.png)
 
 **Note**: No info present in the manual. I guess you can add SSDTs from the `ACPI/patched` folder which should be omitted from loading.
 
