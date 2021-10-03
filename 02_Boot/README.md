@@ -1,7 +1,7 @@
 # Boot
 ![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135759685-91855b87-4aa0-4cfa-9917-9b3406ed1750.png)
 
-## Arguments
+### Arguments
 
 These are the arguments that are passed to `boot.efi`, which in turn passes some of them to the system kernel. See Apple's documentation for a list n the `com.apple.Boot.plist` manual. Some commonly used ones are:
 
@@ -13,15 +13,22 @@ Boot-args can also use features of Kexts like Lilu and Whatevergreen to handle d
 
 - -`wegnoegpu` 
  
+### Custom Logo
 
-## Debug
+- `YES/NO:` – Default or no Logo
+- `Apple` – Apple grey on grey
+- `Alternate` – Apple white on black
+- `Theme` – 
+- `None` – No Logo, but a Background
+
+### Debug
 If set to `true`, a log will be created on next boot. This will seriously slow down the boot time but allows you figure out what the problem was because each step will be accompanied by writing a debug.log to disk/flash drive. Boottime is about 10 minutes just to get into the GUI. But if everything hangs, you can press Reset, and then look for the file `/EFI/CLOVER/misc/debug.log`, which collectively records all logs for all loads, as long as this parameter is set.
 
-## Default Volume
+### Default Volume
 
-## DisableCloverHotkeys
-## HibernationFixup
-## Legacy Boot
+### DisableCloverHotkeys
+### HibernationFixup
+### Legacy Boot
 
 Legacy Boot. Necessary for runnning older versions of Windows and Linux. Depends on the hardware and the construction of the BIOS, so several algorithms have been implemented. 
 
@@ -32,12 +39,12 @@ The options are:
 
 In general, it has not been possible to achieve unconditional legacy boot operation. It is easier and better to forget about legacy systems and use UEFI versions of OSes. The oldest of them is Windows 7-64, and I personally see no reason to stick with WindowsXP. Does anyone still use a 32 bit only processor? Well, good luck then!
 
-## NeverDoRecovery
-## NeverHibernate
-## NoEarlyProgress
-## RtcHibernateAware
-## SignatureFixup
-## SkipHibernateTimeout
-## StrictHibernate
-## Timeout
-## XMPDetection
+### NeverDoRecovery
+### NeverHibernate
+### NoEarlyProgress
+### RtcHibernateAware
+### SignatureFixup
+### SkipHibernateTimeout
+### StrictHibernate
+### Timeout
+### XMPDetection
