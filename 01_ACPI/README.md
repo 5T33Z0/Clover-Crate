@@ -6,7 +6,7 @@
 
 ![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135732535-ca43869b-4e97-47b2-a490-9c8aa5488fa8.png)
 
-Some computers can only be booted with `cpus=1` or with a patched kernel (Lapic NMI patch). A simple analysis showed that their `MADT` table is wrong, missing NMI partitions. `Patch APIC` patches such tables on the fly. For a healthy computer, nothing bad will happen if enabled. However, I haven't seen any reports that helped anyone with anything either. 
+Some computers can only be booted with `cpus=1` or with a patched kernel (Lapic NMI patch). A simple analysis showed that their `MADT` table is wrong, missing NMI partitions. ` APIC` patches such tables on the fly. For a healthy computer, nothing bad will happen if enabled. However, I haven't seen any reports that helped anyone with anything either. 
 
 ### Smart UPS
 
@@ -30,7 +30,7 @@ If set to `true`, it changes the way files in `ACPI/patched` are handled: Instea
 
 With this function – as with `DSDT`– you can fix individual SSDTs (or other tables) simply by putting the corrected file into `ACPI/patched`. No need to fumble with `DropOem` or `DropTables`. The original order is preserved. The mapping for SSDT is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the SSDT position in DSDT. 
 
-For example, if your `ACPI/origin` had `SSDT-6-SaSsdt.aml` and you wanted to fix it, you could just fix the file as needed and put it in ACPI/patched. Same if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in XDST. If you stick to the names provided in ACPI/origin, you should be fine. Added by Rehabman in r4265 to 4346.
+For example, if your `ACPI/origin` had `SSDT-6-SaSsdt.aml` and you wanted to fix it, you could just fix the file as needed and put it in ACPI/patched. Same if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. If you stick to the names provided in ACPI/origin, you should be fine. Added by Rehabman in r4265 to 4346.
 
 ### FixHeaders
 
@@ -51,14 +51,14 @@ This affects the settings of the ACPI system itself, such as the fact that Apple
 
 These two parameters serve one common purpose - to fix restart. These values should be in `FADT` table, but for some reason they are not always present, moreover, sometimes the table itself is shorter than necessary, so much shorter that these values are discarded. 
 
-The default value is already present in `FACP` but if there's nothing in it, then the pair `0x64/0xFE`is used, which means restart via PS2 Controller. Practice showed that this does not always work for everyone. Another possible value pair is `0x0CF9/0x06`, which means restart via PCI Bus. This pair is also used on native Macs, but does not always work on Hackintoshes. The difference is clear, on hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Another option is `0x92/0x01`, I don't know if that helps anyone.
+The default value is already present in `FACP` but if there's nothing in it, then the pair `0x64/0xFE`is used, which means restart via PS2 Controller. Practice showed that this does not always work for everyone. Another possible value pair is `0x0CF9/0x06`, which means restart via PCI Bus. This pair is also used on native Macs, but does not always work on Hackintoshes. The difference is clear, on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Another option is `0x92/0x01`, I don't know if that helps anyone.
 
 ## DSDT
 
 ![Bildschirmfoto 2021-05-16 um 08 16 49](https://user-images.githubusercontent.com/76865553/135732560-dd0763b8-a4c7-463d-9d3c-c0a08e929fc6.png)
 
 ### Debug
-Enabables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps resolving issues.
+Enables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps resolving issues.
 
 ### RTC8Allowed
 see "Fixes [2]" Section → "FixRTC".
@@ -170,7 +170,7 @@ For example: renaming the method `_STA`to `_XSTA` in device `GPI0`:
 
 ![TGTBridgeExample](https://user-images.githubusercontent.com/76865553/135732680-641af3ba-8140-477a-9c9e-69345d8e9b8f.png)
 
-As shown in the example, the name of the original Method `_STA` (pink) is converted to  hex (`5F535441`), so Clover can find it in the `DSDT`. If it finds this value it is then replaced by `58535441` (blue), which is the hex equivalent of the term `XSTA` (blue). If set like this, this patch would change *any* appearance ot the term `_STA` in the whole of the `DSDT` to `XSTA` which probalby would break the system. To avoid this, you can use `TgtBridge` to specify and limit the matches of this patch to a specified name/device/method/area, in this case to the device `GPI0` (Cyan). Basically, you tell Clover: "look in `GPI0`and and if the method `_STA` is present, rename it to `XSTA` but leave the reste of the `DSDT` alone!"
+As shown in the example, the name of the original Method `_STA` (pink) is converted to  hex (`5F535441`), so Clover can find it in the `DSDT`. If it finds this value it is then replaced by `58535441` (blue), which is the hex equivalent of the term `XSTA` (blue). If set like this, this patch would change *any* appearance ot the term `_STA` in the whole of the `DSDT` to `XSTA` which probably would break the system. To avoid this, you can use `TgtBridge` to specify and limit the matches of this patch to a specified name/device/method/area, in this case to the device `GPI0` (Cyan). Basically, you tell Clover: "look in `GPI0`and and if the method `_STA` is present, rename it to `XSTA` but leave the rest of the `DSDT` alone!"
 
 Which values to use in `TgtBridge` is up to you, if you know what to do. If string lengths do not match, Clover will correctly account for the length change, with one exception: make sure it doesn't happen inside an "If" or "Else" statement. If you need such a change, replace the entire operator. 
 
@@ -228,11 +228,11 @@ Produces a number of patches for the video non-Intel video cards. Injects proper
 
 ### FixIDE
 
-In the 10.6.1 system, there was a panic on the AppleIntelPIIXATA.kext. Two solutions to the problem: use the corrected kext, or fix the device in the DSDT. And for more modern systems? Use it, if there is such a controller (which is highly unlikely since IDE is no longer used).
+In the 10.6.1 system, there was a panic on the `AppleIntelPIIXATA.kext`. Two solutions to the problem: use the corrected kext, or fix the device in the DSDT. And for more modern systems? Use it, if there is such a controller (which is highly unlikely since IDE is no longer used).
 
 ### FixSATA
 
-Fixes some problems with SATA, and removes the yellowness of disk icons in the system by mimicry under ICH6. Actually a controversial method, however, without this fix, my DVDs will not play, and for a DVD the drive should not be removable. Those. just replacing the icon is not an option! There is an alternative, solved by adding a fix with the AppleAHCIport.kext. See the chapter on patching kexts. And, accordingly, this bit can be omitted! One of the few bits I recommend not to use.
+Fixes some problems with SATA, and removes the yellowness of disk icons in the system by mimicry under ICH6. Actually a controversial method, however, without this fix, my DVDs will not play, and for a DVD the drive should not be removable. Those. just replacing the icon is not an option! There is an alternative, solved by adding a fix with the `AppleAHCIport.kext`. See the chapter on patching kexts. And, accordingly, this bit can be omitted! One of the few bits I recommend not to use.
 
 ### FixFirewire
 
@@ -313,7 +313,7 @@ The DSDT has regions that have their own addresses, such as:
 	<true/>
 </dict>
 ```
-is sufficient if you have a well-made custom DSDT with all your needed fixes. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it in the ACPI Sectiuon is inappropriate.
+is sufficient if you have a well-made custom DSDT with all your needed fixes. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it in the ACPI Section is inappropriate.
 
 ### FixMutex
 
@@ -376,7 +376,7 @@ In this array, you can list tables which should be discarded from loading. These
 
 ### Double First State
 
-In order for [Speedstep](https://en.wikipedia.org/wiki/SpeedStep) to work correctlly, it is necessary to duplicate the first state of the P-states table. Although the necessity of this fix has become doubtful for newer CPUs, it is still relevant to Intel CPUs of the `Ivy Bridge` family.
+In order for [Speedstep](https://en.wikipedia.org/wiki/SpeedStep) to work correctly, it is necessary to duplicate the first state of the P-states table. Although the necessity of this fix has become doubtful for newer CPUs, it is still relevant to Intel CPUs of the `Ivy Bridge` family.
 
 ### NoDynamicExtract
 
