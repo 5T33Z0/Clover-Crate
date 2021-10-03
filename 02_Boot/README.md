@@ -1,5 +1,5 @@
 ## Boot
-![](/Users/kl45u5/Desktop/Docs/Guides/Clover_Configurator_Settings_Explained.assets/boot.png)
+![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135759685-91855b87-4aa0-4cfa-9917-9b3406ed1750.png)
 ### Debug
 If set to `true`, a log will be created on next boot. This will seriously slow down the boot time but allows you figure out what the problem was because each step will be accompanied by writing a debug.log to disk/flash drive. Boottime is about 10 minutes just to get into the GUI. But if everything hangs, you can press Reset, and then look for the file `/EFI/CLOVER/misc/debug.log`, which collectively records all logs for all loads, as long as this parameter is set.
 
