@@ -1,101 +1,25 @@
-## I. ACPI Section
+[TOC]
+# I. ACPI
+
+The ACPI section houses many options to affect ACPI Tables of a system in order to assist users to make it compatible with macOS: from replacing characters in the `DSDT`, over renaming devices to applying patches and fixes, etc. Since this section is the centerpiece of your `config.plist`, every available option is explained here. This is how it looks like in Clover Configurator:
 
 ![ACPI_FULL](https://user-images.githubusercontent.com/76865553/135732525-5ad50aa8-6bfe-47b4-82b7-3bc3df8c6f62.png)
 
-### Patch APIC
-
-![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135732535-ca43869b-4e97-47b2-a490-9c8aa5488fa8.png)
-
-Some computers can only be booted with `cpus=1` or with a patched kernel (Lapic NMI patch). A simple analysis showed that their `MADT` table is wrong, missing NMI partitions. ` APIC` patches such tables on the fly. For a healthy computer, nothing bad will happen if enabled. However, I haven't seen any reports that helped anyone with anything either. 
-
-### Smart UPS
-
-This changes the power profile to `3` in the `FADT` table. The logic is as follows:
-
-`PM=1` - Desktop , mains power </br>
-`PM=2` - Notebook, mains or battery power </br>
-`PM=3` - Server, powered by SmartUPS, which macOS also supports
-
-Clover will choose between `1` and `2` based on an analysis of the mobility bit, but there is also a Mobile parameter in the SMBIOS section. You can say, for example, that we have a MacMini and that it is mobile. A value of `3` will be substituted if `smartUPS=Yes`.
-
-### Halt Enabler
-
-This Patch is for fixing the shutdown/sleep problem during UEFI boot. The fix is only injected once, before calling `boot.efi`, so 100% efficiency is not guaranteed. Nevertheless it is quite safe, at least on Intel systems.
-
-### AutoMerge
-
-Combines/merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI files.
-
-If set to `true`, it changes the way files in `ACPI/patched` are handled: Instead of adding these files at the end of the DSDT it will replace that table, if the signature, index and OemTableId match an existing OEM table.
-
-With this function – as with `DSDT`– you can fix individual SSDTs (or other tables) simply by putting the corrected file into `ACPI/patched`. No need to fumble with `DropOem` or `DropTables`. The original order is preserved. The mapping for SSDT is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the SSDT position in DSDT. 
-
-For example, if your `ACPI/origin` had `SSDT-6-SaSsdt.aml` and you wanted to fix it, you could just fix the file as needed and put it in ACPI/patched. Same if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. If you stick to the names provided in ACPI/origin, you should be fine. Added by Rehabman in r4265 to 4346.
-
-### FixHeaders
-
-`FixHeaders` will check the headers of not only the `DSDT` but all ACPI tables in general, removing Chinese characters from table headers since macOS can not handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you still need it. 
-
-Whether you have a problem with tables or not, it's safe to enable this fix. It is recommended to all users, even if you are not having to fix your DSDT. Old setting inside DSDT fixes remains for backward compatibility but I recommend to exclude it from those section.
-
-### FixMCFG
-
-If enabled, the table is not discarded, but corrected. The author of the patch is vit9696. However, the method of discarding this table is still in stock.
-
-### Disable ASPM
-
-This affects the settings of the ACPI system itself, such as the fact that Apple's ASPM management does not work as expected. For example when using non-native chipsets. In which cases it is necessary to enable, and what it affects, I do not remember. 
-> Annotation from 5T33Z0: I am still quoting the manual here, these are not my words!
-
-### Reset Address / Reset Value
-
-These two parameters serve one common purpose - to fix restart. These values should be in `FADT` table, but for some reason they are not always present, moreover, sometimes the table itself is shorter than necessary, so much shorter that these values are discarded. 
-
-The default value is already present in `FACP` but if there's nothing in it, then the pair `0x64/0xFE`is used, which means restart via PS2 Controller. Practice showed that this does not always work for everyone. Another possible value pair is `0x0CF9/0x06`, which means restart via PCI Bus. This pair is also used on native Macs, but does not always work on Hackintoshes. The difference is clear, on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Another option is `0x92/0x01`, I don't know if that helps anyone.
+Throughout this chapter, this section is broken down further into smaller chunks to make it more digestible.
 
 ## DSDT
+### Patches
+![Bildschirmfoto 2021-05-16 um 07 27 17](https://user-images.githubusercontent.com/76865553/135732656-82fe792e-7225-4255-beb9-d1074eb1522b.png)
 
-![Bildschirmfoto 2021-05-16 um 08 16 49](https://user-images.githubusercontent.com/76865553/135732560-dd0763b8-a4c7-463d-9d3c-c0a08e929fc6.png)
+In this sub-section, you can add renaming rules (binary renames) to replace text inside your system's `DSDT` dynamically as binary code, represented by hex values. In other words, you replace text (characters, digits and symbols) with other text to either avoid conflicts with macOS or to make certain devices/features work within macOS by renaming them to something it knows.
 
-### Debug
-Enables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps resolving issues.
+If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a `Find` value of `45484331` and a `Replace` value of `45483031` which literally translates to `EHC1` and `EH01` if you decode the hex values back to text with the Hex Converter in the "Tools" section of Clover Configurator. Which renames to use when depends on your system, used macOS version, etc. and is not part of this overview.
 
-### RTC8Allowed
-see "Fixes [2]" Section → "FixRTC".
-
-### ReuseFFFF
-In some cases, the attempt to patch the GPU is hindered by the presence of:
-
-```swift 
-Device (PEGP) type of device
-	{
-	Name (_ADR, 0xFFFFFF)
-	Name (_SUN, One)
-	}
-```
-You can change its address to `0`, but that doesn't always work. **NOTE**: This fix is deprecated an has been removed from Clover since r5116!
-
-### SlpSmiAtWake
-
-Adds `SLP_SMI_EN=0` at every wake. This may help to solve sleep and shutdown issues on UEFI boot. **NOTE**: This fix is deprecated and has been removed from Clover since r5134!
-
-### SuspendOverride
-
-The shutdown patch only works on power state `5` (shutdown). However, we may want to extend this patch to states `3` and `4` by enabling `SuspendOverride`.
-
-This helps when going to sleep during a UEFI boot. Symptoms: the screen will turn off but the lights and fans would continue running.
-Advanced Hackers can use a binary rename to fix it (not covered here).
-
-### DSDT name: 
-Here you can specify the name of your **patched** custom DSDT if it is called something other than `DSDT.aml`, so that Clover picks it up and applies it.
-
-## DSDT Patches
-
+### Rename Devices
 <details>
+<summary><strong>Excursion: Renaming Devices Basics</strong></summary>
 
-<summary><strong>Renaming Devices (Basics)</strong></summary>
-
-### I. About binary renames
+**I. About binary renames**
 
 - The following device renames are standardized in order to match device names used in real Macs and to facilitate the creation of part patches.
 - Renaming devices and methods (including `_DSM`) are applied globally to a system's `DSDT`.
@@ -116,7 +40,7 @@ Following are examples of commonly renamed devices:
 | PowerButton|PWRB| To add Power Button Device
 | Sleep Button| SLPB | To add Sleep Button Device
 
-### II. Binary Renames in Detail 
+**II. Binary Renames in Detail**
 
 **Prerequisites**: In order to apply these renames correctly, you need a dump of your System's `DSDT`! 
 
@@ -144,14 +68,6 @@ Names like `_DSM` with and underscor in front of them define a method. These are
 To convert any text to a hex you can use the Hex Converter inside of Clover Configurator
 </details>
 
-In this section, you can add renaming rules (binary renames) to replace text inside your system's `DSDT` dynamically as binary code, represented by hex values. In other words, you replace text, digits and symbols with other text either to avoid conflicts with macOS or to make certain devices work within macOS by renaming them to something it knows. 
-
-![Bildschirmfoto 2021-05-16 um 07 27 17](https://user-images.githubusercontent.com/76865553/135732656-82fe792e-7225-4255-beb9-d1074eb1522b.png)
-
-If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a `Find` value of `45484331` and a `Replace` value of `45483031` which literally translates to `EHC1` and `EH01` if you decode the hex values back to text with the Hex Converter in the "Tools" section of Clover Configurator. Which renames to use when depends on your system, used macOS version, etc. and is not part of this overview.
-
-### Rename Devices
-
 `RenameDevices` serves as a more refined method for renaming rules which is less brute force than using a simple binary rename which replaces *every* occurrence of a word/value throughout the *whole* `DSDT`, which can be problematic. The rules create here only apply to the ACPI path specified in the `Find Device` field, so these patches are much cleaner, less invasive and more efficient way of patching devices defined in the `DSDT`. 
 
 To use this section properly you need a dump the unmodified `DSDT` and examine it with maciASL. In this case, we search for `ECH1`:
@@ -162,9 +78,9 @@ As you can see, the device exists and is lodated in `\SB_PCI0_EHC1` of the `DSDT
 
 ![DSDT_patched](https://user-images.githubusercontent.com/76865553/135732669-9ac77cf7-5c5f-41a0-b98f-0ae1453411dc.png)
 
-### TgtBridge Explained
+### TgtBridge
 
-`TgtBridge` is a field/function inside the `ACPI > DSDT > Patches` section of the Clover `config.plist`. It's purpose is to limit the scope of binary DSDT patches to only work within a pre-defined section/area of the `DSDT`.
+The `TgtBridge` is a field/function inside the `ACPI > DSDT > Patches` section of the Clover `config.plist`. It's purpose is to limit the scope of binary DSDT patches to only work within a pre-defined section/area of the `DSDT`.
 
 For example: renaming the method `_STA`to `_XSTA` in device `GPI0`:
 
@@ -178,7 +94,7 @@ Some clarification: the Comment Field not only serves as a reminder what the pat
 
 **NOTE**: TgtBridge Bug (fixed since Clover r5123.1) 
 
-Prior to revision 5123.1, Clover's `TgtBridge` had a bug, where it would not only rename matches specified by `TgtBridge` but also replaces matches in OEM's SSDTs, resulting in many devices being enabled that should not have been started. TgtBridge has been fixed since Clover r5123.1, so no more workarounds are required.
+Prior to revision 5123.1, Clover's `TgtBridge` had a bug, where it would not only rename matches specified by `TgtBridge` but also replaced matches in OEM's SSDTs, resulting in many devices being enabled that should not have been started.
 
 ## Fixes [1]
 
@@ -364,12 +280,6 @@ Some DSDTs can have a device, method or variable named `ACST`, but this name is 
 
 As a result, a completely implicit conflict with very unclear behavior can occur. This fix renames all occurrences of `ACST` to `OCST` which is safe. But check your DSDT first: search for `ACST` and check if it refers to Device `AC` and Method `_PSR`(_PSR: PowerSource) in some kind of way.
 
-## Drop Tables
-
-![Bildschirmfoto 2021-05-16 um 08 28 35](https://user-images.githubusercontent.com/76865553/135732583-c8d61605-03af-4b78-a4db-4df9d1e68d56.png)
-
-In this array, you can list tables which should be discarded from loading. These include various table signatures, such as `DMAR`, which is often dropped because macOS does not like `VT-d` technology. Other tables to drop would would be `MATS` (fixes issues with High Sierra) or `MCFG` because by specifying a MacBookPro or MacMini model, we get severe brakes. A better method has already been developed.
-
 ## SSDT
 
 ![Bildschirmfoto 2021-05-16 um 19 14 17](https://user-images.githubusercontent.com/76865553/135732594-1b3cf4b8-9b3e-48e2-9cda-6f0b7d95e7cc.png)
@@ -400,11 +310,11 @@ Register (SystemIO,
 
 If set to `true`, the OEM table identifier is *NOT* added to the end of file name in ACPI tables dump by pressing `F4` in the Clover Boot Menu. If set to `false`, end spaces are removed from SSDT names when the OEM table ID is added as a suffix. Added by Rehabman in revisions 4265 to 4346.
 
-### Generate Options
+### Generate
 
 In the new Clover, this group of parameters is combined into a sub-section:
 
-- Generate `PStates 
+- Generate `PStates`
 - Generate `CStates`
 - `ASPN`
 - `APLF`</br>
@@ -445,6 +355,98 @@ This value appears in real Macs, for iMacs it's about 200, for MacPro it's about
 ### Enable C2, C4, C6 and C7
 
 Specify which C-States you want to enable/generate.
+
+### Patch APIC
+
+![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135732535-ca43869b-4e97-47b2-a490-9c8aa5488fa8.png)
+
+Some computers can only be booted with `cpus=1` or with a patched kernel (Lapic NMI patch). A simple analysis showed that their `MADT` table is wrong, missing NMI partitions. ` APIC` patches such tables on the fly. For a healthy computer, nothing bad will happen if enabled. However, I haven't seen any reports that helped anyone with anything either. 
+
+### Smart UPS
+
+This changes the power profile to `3` in the `FADT` table. The logic is as follows:
+
+`PM=1` - Desktop , mains power </br>
+`PM=2` - Notebook, mains or battery power </br>
+`PM=3` - Server, powered by SmartUPS, which macOS also supports
+
+Clover will choose between `1` and `2` based on an analysis of the mobility bit, but there is also a Mobile parameter in the SMBIOS section. You can say, for example, that we have a MacMini and that it is mobile. A value of `3` will be substituted if `smartUPS=Yes`.
+
+### Halt Enabler
+
+This Patch is for fixing the shutdown/sleep problem during UEFI boot. The fix is only injected once, before calling `boot.efi`, so 100% efficiency is not guaranteed. Nevertheless it is quite safe, at least on Intel systems.
+
+### AutoMerge
+
+Combines/merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI files.
+
+If set to `true`, it changes the way files in `ACPI/patched` are handled: Instead of adding these files at the end of the DSDT it will replace that table, if the signature, index and OemTableId match an existing OEM table.
+
+With this function – as with `DSDT`– you can fix individual SSDTs (or other tables) simply by putting the corrected file into `ACPI/patched`. No need to fumble with `DropOem` or `DropTables`. The original order is preserved. The mapping for SSDT is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the SSDT position in DSDT. 
+
+For example, if your `ACPI/origin` had `SSDT-6-SaSsdt.aml` and you wanted to fix it, you could just fix the file as needed and put it in ACPI/patched. Same if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. If you stick to the names provided in ACPI/origin, you should be fine. Added by Rehabman in r4265 to 4346.
+
+### FixHeaders
+
+`FixHeaders` will check the headers of not only the `DSDT` but all ACPI tables in general, removing Chinese characters from table headers since macOS can not handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you still need it. 
+
+Whether you have a problem with tables or not, it's safe to enable this fix. It is recommended to all users, even if you are not having to fix your DSDT. Old setting inside DSDT fixes remains for backward compatibility but I recommend to exclude it from those section.
+
+### FixMCFG
+
+If enabled, the table is not discarded, but corrected. The author of the patch is vit9696. However, the method of discarding this table is still in stock.
+
+### Disable ASPM
+
+This affects the settings of the ACPI system itself, such as the fact that Apple's ASPM management does not work as expected. For example when using non-native chipsets. In which cases it is necessary to enable, and what it affects, I do not remember. 
+> Annotation from 5T33Z0: I am still quoting the manual here, these are not my words!
+
+### Reset Address / Reset Value
+
+These two parameters serve one common purpose - to fix restart. These values should be in `FADT` table, but for some reason they are not always present, moreover, sometimes the table itself is shorter than necessary, so much shorter that these values are discarded. 
+
+The default value is already present in `FACP` but if there's nothing in it, then the pair `0x64/0xFE`is used, which means restart via PS2 Controller. Practice showed that this does not always work for everyone. Another possible value pair is `0x0CF9/0x06`, which means restart via PCI Bus. This pair is also used on native Macs, but does not always work on Hackintoshes. The difference is clear, on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Another option is `0x92/0x01`, I don't know if that helps anyone.
+
+### Debug
+
+![Bildschirmfoto 2021-05-16 um 08 16 49](https://user-images.githubusercontent.com/76865553/135732560-dd0763b8-a4c7-463d-9d3c-c0a08e929fc6.png)
+
+Enables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps resolving issues.
+
+### RTC8Allowed
+see "Fixes [2]" Section → "FixRTC".
+
+### ReuseFFFF
+In some cases, the attempt to patch the GPU is hindered by the presence of:
+
+```swift 
+Device (PEGP) type of device
+	{
+	Name (_ADR, 0xFFFFFF)
+	Name (_SUN, One)
+	}
+```
+You can change its address to `0`, but that doesn't always work. **NOTE**: This fix is deprecated an has been removed from Clover since r5116!
+
+### SlpSmiAtWake
+
+Adds `SLP_SMI_EN=0` at every wake. This may help to solve sleep and shutdown issues on UEFI boot. **NOTE**: This fix is deprecated and has been removed from Clover since r5134!
+
+### SuspendOverride
+
+The shutdown patch only works on power state `5` (shutdown). However, we may want to extend this patch to states `3` and `4` by enabling `SuspendOverride`.
+
+This helps when going to sleep during a UEFI boot. Symptoms: the screen will turn off but the lights and fans would continue running.
+Advanced Hackers can use a binary rename to fix it (not covered here).
+
+### DSDT name: 
+Here you can specify the name of your **patched** custom DSDT if it is called something other than `DSDT.aml`, so that Clover picks it up and applies it.
+
+## Drop Tables
+
+![Bildschirmfoto 2021-05-16 um 08 28 35](https://user-images.githubusercontent.com/76865553/135732583-c8d61605-03af-4b78-a4db-4df9d1e68d56.png)
+
+In this array, you can list tables which should be discarded from loading. These include various table signatures, such as `DMAR`, which is often dropped because macOS does not like `VT-d` technology. Other tables to drop would would be `MATS` (fixes issues with High Sierra) or `MCFG` because by specifying a MacBookPro or MacMini model, we get severe brakes. A better method has already been developed.
 
 ### DisableAML
 
