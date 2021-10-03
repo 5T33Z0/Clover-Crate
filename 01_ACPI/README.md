@@ -1,4 +1,3 @@
-[TOC]
 # I. ACPI
 
 The ACPI section houses many options to affect ACPI Tables of a system in order to assist users to make it compatible with macOS: from replacing characters in the `DSDT`, over renaming devices to applying patches and fixes, etc. Since this section is the centerpiece of your `config.plist`, every available option is explained here. This is how it looks like in Clover Configurator:
