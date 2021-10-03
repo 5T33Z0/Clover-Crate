@@ -18,8 +18,10 @@ Boot-args can also use features of Kexts like Lilu and Whatevergreen to handle d
 - `YES/NO:` – Default or no Logo
 - `Apple` – Apple grey on grey
 - `Alternate` – Apple white on black
-- `Theme` – 
+- `Theme` – ?
 - `None` – No Logo, but a Background
+
+**NOTE**: As of r5140 this doesn't really work well. "Apple" and "Alternate" don't show a progress bar. Feels like this is just a wallpaper coveriing the screen. 
 
 ### Debug
 If set to `true`, a log will be created on next boot. This will seriously slow down the boot time but allows you figure out what the problem was because each step will be accompanied by writing a debug.log to disk/flash drive. Boottime is about 10 minutes just to get into the GUI. But if everything hangs, you can press Reset, and then look for the file `/EFI/CLOVER/misc/debug.log`, which collectively records all logs for all loads, as long as this parameter is set.
