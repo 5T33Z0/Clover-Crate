@@ -3,24 +3,18 @@
 
 ### Arguments
 
-These are boot arguments that are passed over to `boot.efi`, which in turn passes them down to the system kernel. See Apple's documentation for a list n the `com.apple.Boot.plist` manual.
+These are boot arguments that are passed over to `boot.efi`, which in turn passes them down to the system kernel. See Apple's documentation for a list n the `com.apple.Boot.plist` manual. Some commonly used ones are:
 
-| Argument        | Description                      |
-| --------------- | -------------------------------- |
-| -v              | Verbose Mode                     |
-| -x              | Safe Mode                        |
-| -s              | Single User Mode                 |
-| cpus=1          | Single Core CPU Mode             |
-| nvda_drv=1      | Enable NVIDIA Web Drivers        |
-| nv_disable=1    | Disable NVIDIA graphics cards    |
-| kext-dev-mode=1 | Kext Dev Mode                    |
-| rootless=0      | Rootless Mode (Yosemite Only)    |
-
-Some commonly used ones are:
-- `-v` &rarr;  enables Verbose Mode. Shows the boot log instead of the Apple Logo.
-- `debug=0x100` &rarr; Disables the watchdog which helps to prevent a reboot after a kernel panic. Helpful for debugging
-- `keepsyms=1` &rarr; This is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. Helpfull for debugging as well
-- `wegnoegpu` &rarr; Disables discrete GPUs, which is a requirement if it is not supported by macOS (provided by `Whatevergreen.kext`).
+| Flag           | Description                                                 |
+| :------------: | :---------------------------------------------------------- |
+| `-v`           | Verbose Mode Shows the boot log instead of the Apple Logo.  |
+| `-x`           | Safe Mode                        |
+| `-s`           | Single User Mode                 |
+| `debug=0x100`  | Disables the watchdog which helps to prevent a reboot after a kernel panic. Helpful for debugging |
+| `keepsyms=1`   | This is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. Helpfull for debugging as well |
+| `nvda_drv=1`   | Enable NVIDIA Web Drivers        |
+| `nv_disable=1` | Disable NVIDIA graphics cards    |
+| `wegnoegpu`    | Disables discrete GPUs, which is a requirement if it is not supported by macOS (provided by `Whatevergreen.kext`). |
 
 On top of that, installed Kexts like Lilu, Whatevergreen and others provide boot-arg as well. If you righ-click anywhere in this list you wili find many more boot-args not covererd here: 
 
