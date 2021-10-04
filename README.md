@@ -7,16 +7,6 @@ This guide tries to cover Clover Bootloader and its options using Clover Configu
 
 ## TABLE OF CONTENTS
 
-1. [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI)
-2. [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
-3. Boot Graphics
-4. CPU
-5. Devices
-6. Disable Drivers
-7. GUI
-8. Graphics
-9. Kernel and Kext Patches
-10. Rt Variables
-11. SMBIOS
-12. System Parameters
-13. Quirks
+[**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI)
+[**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
+[**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
