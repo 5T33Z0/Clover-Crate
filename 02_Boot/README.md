@@ -12,6 +12,7 @@ These are the arguments that are passed to `boot.efi`, which in turn passes some
 Boot-args can also use features of Kexts like Lilu and Whatevergreen to handle discrete features of discrete GPUs:
 
 - -`wegnoegpu` 
+- If you righ-click anywhere in this list you wild find all sorts of boot-args:
  
 ### Custom Logo
 
@@ -21,7 +22,7 @@ Boot-args can also use features of Kexts like Lilu and Whatevergreen to handle d
 - `Theme` – ?
 - `None` – No Logo, but a Background
 
-**NOTE**: As of r5140.1 this doesn't really work for mw. "Apple" and "Alternate" don't show a progress bar. Feels like this is just a wallpaper covering the bootscreen. 
+**NOTE**: As of r5140.1 "Apple" and "Alternate" don't show a progress bar. Feels like these are just a wallpaper covering the bootscreen. 
 
 ### Debug
 If set to `true`, a log will be created on next boot. This will seriously slow down the boot time but allows you figure out what the problem was because each step will be accompanied by writing a debug.log to disk/flash drive. Boottime is about 10 minutes just to get into the GUI. But if everything hangs, you can press Reset, and then look for the file `/EFI/CLOVER/misc/debug.log`, which collectively records all logs for all loads, as long as this parameter is set.
