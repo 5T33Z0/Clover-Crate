@@ -3,13 +3,14 @@
 
 ### Arguments
 
-These are the arguments that are passed to `boot.efi`, which in turn passes some of them to the system kernel. See Apple's documentation for a list n the `com.apple.Boot.plist` manual. Some commonly used ones are:
+These are boot arguments that are passed to `boot.efi`, which in turn passes them to the system kernel. See Apple's documentation for a list n the `com.apple.Boot.plist` manual. Some commonly used ones are:
 
 - `-v` &rarr;  enables "verbose" mode. Shows the boot log instead of the Apple Logo.
--  `debug=0x100` &rarr; Disables the watchdog which helps to prevent a reboot after a kernel panic. Helpful for debugging
--  `keepsyms=1` &rarr; This is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. Helpfull for debugging as well
+- `debug=0x100` &rarr; Disables the watchdog which helps to prevent a reboot after a kernel panic. Helpful for debugging
+- `keepsyms=1` &rarr; This is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. Helpfull for debugging as well
+- `wegnoegpu` &rarr; Disables discrete GPUs, which is a requirement if it is not supported by macOS (provided by `Whatevergreen.kext`).
 
-Boot-args can also use be provided by installed Kexts like Lilu, Whatevergreen and others. A inportant one is `wegnoegpu` &rarr; Disables discrety GPUs which is a requirement, if it is not supported by macOS (like GeForece 8xx and later NVIDIA Cards). If you righ-click anywhere in this list you wild find much more boot-args: 
+On top of that, installed Kexts like Lilu, Whatevergreen and others provide boot-arg as well. If you righ-click anywhere in this list you wili find many more boot-args not covererd here: 
 
 ![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135818786-923330d4-564a-41c6-acbf-ae16b4ac0d55.png)
 
