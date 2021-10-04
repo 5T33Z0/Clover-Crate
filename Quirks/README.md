@@ -8,7 +8,7 @@ The following Screenshot shows, which Quirk does what:
 
 Unfortunately, some of the Kernel Quirks are not located in the `Quirks` section but in the "Kext and Kernel Patches" section instead and – to add even more confusion – have different names than in OpenCore:
 
-![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135844882-30393066-79ac-4f97-9f87-96d93ea14315.png)
+![quirks2](https://user-images.githubusercontent.com/76865553/135859628-34f6be51-7a20-4461-900e-0c72fbdcba51.png)
 
 In oder to set these Quirks up correctly, you need a documentation. Therefore check the following sections of the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) for your CPU family:
 
