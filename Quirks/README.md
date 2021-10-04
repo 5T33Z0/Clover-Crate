@@ -4,11 +4,11 @@
 
 The following Screenshot shows, which Quirk does what:
 
-![](/Users/kl45u5/Desktop/Quirks1.png)
+![Quirks1](https://user-images.githubusercontent.com/76865553/135844035-1689a11a-6512-4008-80ea-e89f07a55367.png)
 
 Unfortunately, some of the Kernel Quirks are not located in the `Quirks` section but in the "Kext and Kernel Patches" section instead and – to add even more confusion – have different names than in OpenCore:
 
-![](/Users/kl45u5/Desktop/Quirks2.png)
+![Quirks2](https://user-images.githubusercontent.com/76865553/135844067-29e9879c-1d70-431e-ae91-a87d9aae4682.png)
 
 In oder to set these Quirks up correctly, you need a documentation. Therefore check the following sections of the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) for your CPU family:
 
