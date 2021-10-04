@@ -12,6 +12,8 @@ Unfortunately, some of the Kernel Quirks are not located in the `Quirks` section
 
 In oder to set these Quirks up correctly, you need a documentation. Therefore check the following sections of the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) for your CPU family:
 
-**Booter > Quirks**</br>
-**Kernel > Quirks**</br>
-**Kernel > Scheme**</br>
+- **Booter > Quirks**
+- **Kernel > Quirks**
+- **Kernel > Scheme**
+
+Users of Clover < r5126 can follow my [**Clover Update Guide**](https://www.insanelymac.com/forum/topic/345789-guide-how-to-update-clover-for-bigsur-compatibility-and-beyond-using-openruntime-and-quirks-r5123) on insanelymac.com to replace the outdated `AptioMemoryFixes` by `OpenRuntime.efi`.
