@@ -9,4 +9,3 @@ This guide tries to cover Clover Bootloader and its options using Clover Configu
 - [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI)
 - [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
 - [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
-- [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
