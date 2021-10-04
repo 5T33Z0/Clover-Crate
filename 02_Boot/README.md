@@ -9,11 +9,10 @@ These are the arguments that are passed to `boot.efi`, which in turn passes some
 -  `debug=0x100` &rarr; Disables the watchdog which helps to prevent a reboot after a kernel panic. Helpful for debugging
 -  `keepsyms=1` &rarr; This is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. Helpfull for debugging as well
 
-Boot-args can also use features of Kexts like Lilu and Whatevergreen to handle discrete features of discrete GPUs:
+Boot-args can also use be provided by installed Kexts like Lilu, Whatevergreen and others. A inportant one is `wegnoegpu` &rarr; Disables discrety GPUs which is a requirement, if it is not supported by macOS (like GeForece 8xx and later NVIDIA Cards). If you righ-click anywhere in this list you wild find much more boot-args: 
 
-- -`wegnoegpu` 
-- If you righ-click anywhere in this list you wild find all sorts of boot-args:
- 
+![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135818786-923330d4-564a-41c6-acbf-ae16b4ac0d55.png)
+
 ### Custom Logo
 
 - `YES/NO:` – Default or no Logo
