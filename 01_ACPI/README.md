@@ -25,19 +25,19 @@ If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a 
 
 Following are examples of commonly renamed devices:
 
-| Original Device | Renamed for macOS | Description|
-|:---------------:| :----------------:| -----------|
-| EC | EC0 | Embedded Controller
-| EHC1 | EH01 | USB Controller
-| EHC2 | EH02 | USB COntroller
-| LPC | LPCB | LPC Bus. Connects low-bandwidth devices to CPU
-| SAT1| SATA | SATA Drive
-| XHCI | XHC | USB Controller
-| Keyboard|PS2K| Keyboard
-| System Bus|SBUS| System Management Bus
-| Cover|LID0 | Relevant for Laptops only. Controls what happens when opening/closing the Lid.
-| PowerButton|PWRB| To add Power Button Device
-| Sleep Button| SLPB | To add Sleep Button Device
+| Original Device | Renamed for macOS | Description            |
+|:----------------| :----------------:| -----------------------|
+| EC              | EC0               | Embedded Controller
+| EHC1            | EH01              | USB Controller
+| EHC2            | EH02              | USB COntroller
+| LPC             | LPCB              | LPC Bus
+| SAT1            | SATA              | SATA Drive
+| XHCI            | XHC               | USB Controller
+| Keyboard        | PS2K              | Keyboard
+| System Bus      | SBUS              | System Management Bus
+| Cover           | LID0              | Lid device (on Laptops)
+| PowerButton     | PWRB              | Power Button Device
+| Sleep Button    | SLPB              | Sleep Button Device
 
 **II. Binary Renames in Detail**
 
@@ -45,11 +45,11 @@ Following are examples of commonly renamed devices:
 
 Names like `_DSM` with and underscor in front of them define a method. These are usually renamed by replacing the `_` with an `X` (like `XDSM`) which basically disables the method (`XDSM`), so a differnet or custom method can be applied.
 
-| # | Rename | Description |
-|:-:| :----: | ----------- |
-|01|_DSM to XDSM|Other Patch Requirements|
-|02|LPC to LPCB|In `DSDT`, search for `0x001F0000`. </br> 1: If the device name is already `LPCB`, there is no need to change the name.</br> 2: If there are multiple matches for `0x001F0000`, carefully determine whether this name change is needed or not </br>3:If ACPI includes an `ECDT.aml`, check "About ECDT correction method|
-|03|EC to EC0| Changes name of Embedded Controller. In DSDT, check the device belonging to `PNP0C09`.</br>1:If the device name is already `EC0`, no renaming is required </br>2:If there are multiple matches for `0PNP0C09`, confirm the real `EC` name </br>3:If ACPI package includes `ECDT.aml`, see "About ECDT and how to fix it"|.|
+| #  | Rename      | Description                      |
+|:--:| :---------: | -------------------------------- |
+| 01 | _DSM to XDSM| Other Patch Requirements         |
+| 02 | LPC to LPCB |In `DSDT`, search for `0x001F0000`.</br> 1: If the device name is already `LPCB`, there is no need to change the name.</br> 2: If there are multiple matches for `0x001F0000`, carefully determine whether this name change is needed or not </br>3:If ACPI includes an `ECDT.aml`, check "About ECDT correction method|
+| 03 | EC to EC0   | Changes name of Embedded Controller. In DSDT, check the device belonging to `PNP0C09`.</br>1:If the device name is already `EC0`, no renaming is required </br>2:If there are multiple matches for `0PNP0C09`, confirm the real `EC` name </br>3:If ACPI package includes `ECDT.aml`, see "About ECDT and how to fix it"|.|
 |04|H_EC to EC0|Same as EC|
 |05|ECDV to EC0(dell)|Same as EC|
 |06|EHC1 to EH01| Renames USB Controller. For machines with USB2.0, query the device name of `0x001D0000`.
