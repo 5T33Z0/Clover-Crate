@@ -45,7 +45,7 @@ Here are some examples of Kexts I've experienced issues with when updating:
 6. Move the following drivers from "divers/Off" to "/drivers/UEFI":</br>
 	- ApfsDriverLoader.efi, 
 	- VBoxHfs.efi (or HfsPlus.efi, which is faster) and 
-	- OpenRuntime.efi
+	- OpenRuntime.efi</br>
 Now we have a minimal set of Drivers: ![Bildschirmfoto 2021-10-05 um 14 55 58](https://user-images.githubusercontent.com/76865553/136026914-af63dce9-a505-4b61-8ad4-0d14348fac37.png)</br>
 Files tagged gray are in there by default and are most likely unnecessary for UEFI-based systems. I would move them to the "off" folder one by one to disable them and check if the system still boots from the USB flash drive without them. `AudioDXE.efi` is only needed for playing back audio files like boot chimes - so if you don't use any, you can delete/disable it. As mentioned earlier, `SMCHelper.efi` MUST be deleted when using `VirualSMC.kext`!
 7. Next, copy over the following files/folders from youre existing EFI folder:</br>
