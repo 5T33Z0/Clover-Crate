@@ -12,17 +12,24 @@ This guide is for everyone trying to upgrade to the latest revision of Clover, s
 ## Problem Description
 If you just update your existing "old" Clover EFI by installing the latest `Clover.pkg` like you used to, this will most likely result in an inoperable bootloader due to missing boot parameters in the `config.plist` as well as residual files from the "old" Clover version which need to be removed first.
 
-## Prerequisites
-In order to avoid the dilemma of your system not booting, you have to know that the following drivers are no longer necessary and have to either be removed when updating Clover or omitted when building a new EFI folder:
+<details>
+<summary><strong>Backgound: Obsolete Drivers and Kext issues </strong></summary>
 
-- **AptioMemoryFixes** – `AptioMemoryFix.efi`, `OsxAptioFix3Drv.efi`, `OsxAptioFixDrv.efi` and everything else containing "memoryfix".
-- **OcQuirks.efi** and **OcQuirks.plist** – delete if present. OcQuirks is a relic from arlier attempts to include OpenCore Booter Quirks into Clover (≤r5122).
-- **DataHubDxe.efi** – DataHub protocol which provides parameters like OEM Model, FSBFrequency, ARTFrequency, Clover's boot-log and many other things to macOS which it cannot obtain otherwise. It has been fully integrated into Clover since r5129, so delete it. Newer versions of the Clover Package don't contain this driver anyway.
-- **EmuVariableUefi.efi** – necessary for emulating NVRAM, if it is not available (legacy systems) or working incorrectly.
-- **FSInject.efi** – For Kext injection. Necessary only for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of prelinkedkernel. Fully integrated in Clover nowadays, so delete it.
-- **SMCHelper.efi** – Necessary only when using `FakeSMC.kext`. If you use it in combination with `VirtualSMC.efi`, it can cause instant Kernel Panics. In other words: VirtualSMC + VirtualSMC.efi = good; FakeSMC + SMCHelper.efi = good; any other combination = bad. Nowadays, using `VirtualSMC.kext` alone is sufficient and recommended.
+## Obsolete drivers and avoiding kext conflicts
+In order to avoid the dilemma of your system not booting, you have to clean up your old EFI folder before upgrading to macOS 11+.
 
-**Kexts**: Outdated, incompatible and/or duplicate Kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use Kext-Updater to download the latest kexts and other Bootloader-related files.
+### Prerequisites: Removing obsolete Drivers
+The following drivers are no longer necessary and have to either be removed when updating Clover or omitted when building a new EFI folder:
+
+- Aptio Memory Fixes: **`AptioMemoryFix.efi`**, **`OsxAptioFix3Drv.efi`** and **`OsxAptioFixDrv.efi`**
+- **`OcQuirks.efi`** and **OcQuirks.plist** – delete if present. OcQuirks is a relic from arlier attempts to include OpenCore Booter Quirks into Clover (≤r5122).
+- **`DataHubDxe.efi`** – DataHub protocol which provides parameters like OEM Model, FSBFrequency, ARTFrequency, Clover's boot-log and many other things to macOS which it cannot obtain otherwise. It has been fully integrated into Clover since r5129, so delete it. Newer versions of the Clover Package don't contain this driver anyway.
+- **`EmuVariableUefi.efi`** – necessary for emulating NVRAM, if it is not available (legacy systems) or working incorrectly.
+- **`FSInject.efi`** – For Kext injection. Necessary only for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of prelinkedkernel. Fully integrated in Clover nowadays, so delete it.
+- **`SMCHelper.efi`** – Necessary only when using **`FakeSMC.kext`**. If you use it in combination with **`VirtualSMC.efi`**, it can cause instant Kernel Panics. In other words: VirtualSMC + VirtualSMC.efi = good; FakeSMC + SMCHelper.efi = good; any other combination = bad. Nowadays, using **`VirtualSMC.kext`** alone is sufficient and recommended.
+
+### Checking and Updating Kexts
+Outdated, incompatible and/or duplicate Kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use Kext-Updater to download the latest kexts and other Bootloader-related files.
 
 If you are using a lot of Kexts (usually on Notebooks), have a look inside of them (right-click and select "Show package contents") to check if they include additional kexts (as "Plugins") and make sure that no duplicates exist in the "kexts" folder – Kexts for HID, WiFi and Bluetooth come to mind.
 
@@ -33,15 +40,16 @@ Here are some examples of Kexts I've experienced issues with when updating:
 - **VoodooPS2Controller.kext**: can cause Kernel Panic if one of it's Plugins (VoodooInput.lext, VoodooPS2Mouse.kext, VoodooPS2Trackpad.kext and VoodooPS2Keyboard.kext) is also present at the root level of the "kexts" Folder.
 - **AirportBrcmFixup.kext**: this Kext contains 2 Plugins, `AirPortBrcm4360_Injector` and `AirPortBrcmNIC_Injector.kext`. When using AirPortBrcmFixup, you are supposed to use only one of these plugins, not both! Using both can cause the boot process to stall indefinitely. On top of that, `AirPortBrcm4360_Injector` is not supported by macOS Big Sur and has to be disabled anyway. In OpenCore, you can just disable a Kext in the config. Since the Clover config does not support to take control of the kext loading sequence, you have to delete it from the Kext itself (right click on AirportBrcmFixup, select "Show package contents" > "Plugins").
 - **BrcmPatchRAM** and a bad combination of it's accompanying kexts can cause issues as well. Don't use BlueToolFixup.kext and BrcmBluetoothInjector.kext together. Former is needed for enabling Bluetooth in macOS Monterey where the latter is used in earlier versions of macOS.
+</details>
 
-## Building your new EFI folder
+## Building a new EFI folder
 
 1. Prepare a USB flash drive. Format it to FAT32 (MBR). We'll use it for testing our updated EFI Folder first, before copying it to the ESP on the HDD.
 2. Download the [latest Clover Release](https://github.com/CloverHackyColor/CloverBootloader/releases) as a .zip archive for a manual update.
 3. Download `CloverConfigPlistValidator.zip` as well.
 4. Extract both zip archives.
 5. Have a look at `CloverV2/EFI/CLOVER/drivers/off/UEFI` and its sub-folders. Inside, you will find these Drivers: </br>
-![Bildschirmfoto 2021-10-05 um 10 32 30](https://user-images.githubusercontent.com/76865553/136025337-d12b41ac-b3f6-4c3f-9a31-e61294daf01a.png)
+![Bildschirmfoto 2021-10-05 um 10 32 30](https://user-images.githubusercontent.com/76865553/136025337-d12b41ac-b3f6-4c3f-9a31-e61294daf01a.png)</br>
 6. Move the following drivers from "divers/Off" to "/drivers/UEFI":</br>
 	- ApfsDriverLoader.efi, 
 	- VBoxHfs.efi (or HfsPlus.efi, which is faster) and 
