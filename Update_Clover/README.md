@@ -13,7 +13,7 @@ This guide is for everyone trying to upgrade to the latest revision of Clover, s
 If you just update your existing "old" Clover EFI by installing the latest `Clover.pkg` like you used to, this will most likely result in an inoperable bootloader due to missing boot parameters in the `config.plist` as well as residual files from the "old" Clover version which need to be removed first.
 
 ## Prerequisites
-In order to avoid the dilemma of your system not booting, you have to know that the following drivers are no longer necessary:
+In order to avoid the dilemma of your system not booting, you have to know that the following drivers are no longer necessary and have to either be removed when updating Clover or omitted when building a new EFI folder:
 
 - **AptioMemoryFixes** – `AptioMemoryFix.efi`, `OsxAptioFix3Drv.efi`, `OsxAptioFixDrv.efi` and everything else containing "memoryfix".
 - **OcQuirks.efi** and **OcQuirks.plist** – delete if present. OcQuirks is a relic from arlier attempts to include OpenCore Booter Quirks into Clover (≤r5122).
