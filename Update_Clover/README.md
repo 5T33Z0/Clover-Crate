@@ -37,10 +37,11 @@ Here are some examples of Kexts I've experienced issues with when updating:
 ## Building your new EFI folder
 
 1. Prepare a USB flash drive. Format it to FAT32 (MBR). We'll use it for testing our updated EFI Folder first, before copying it to the ESP on the HDD.
-- Download the [latest Clover Release](https://github.com/CloverHackyColor/CloverBootloader/releases) as a .zip archive for a manual update.
-- Download `CloverConfigPlistValidator.zip` as well.
-- Extract both zip archives.
-- Have a look at `CloverV2/EFI/CLOVER/drivers/off/UEFI` and its sub-folders. Inside, you will find these Drivers: ![](/Users/stunner/Desktop/Bildschirmfoto 2021-10-05 um 10.32.30.png)
+2. Download the [latest Clover Release](https://github.com/CloverHackyColor/CloverBootloader/releases) as a .zip archive for a manual update.
+3. Download `CloverConfigPlistValidator.zip` as well.
+4. Extract both zip archives.
+5. Have a look at `CloverV2/EFI/CLOVER/drivers/off/UEFI` and its sub-folders. Inside, you will find these Drivers:
+![Bildschirmfoto 2021-10-05 um 10 32 30](https://user-images.githubusercontent.com/76865553/136025337-d12b41ac-b3f6-4c3f-9a31-e61294daf01a.png)
 
 Move the following drivers from "divers/Off" to "/drivers/UEFI":</br>
 
@@ -48,22 +49,22 @@ Move the following drivers from "divers/Off" to "/drivers/UEFI":</br>
 - VBoxHfs.efi (or HfsPlus.efi, which is faster) and 
 - OpenRuntime.efi
 
-Now we have a minimal set of Drivers: ![](/Users/stunner/Desktop/UsedDrivers.png)
+Now we have a minimal set of Drivers: ![UsedDrivers](https://user-images.githubusercontent.com/76865553/136025540-14b5aec5-e1e4-4573-be48-70233d962e93.png)
 
 Files tagged gray are in there by default and are most likely unnecessary for UEFI-based systems. I would move them to the "off" folder one by one to disable them and check if the system still boots from the USB flash drive without them. `AudioDXE.efi` is only needed for playing back audio files like boot chimes - so if you don't use any, you can delete/disable it. As mentioned earlier, `SMCHelper.efi` MUST be deleted when using `VirualSMC.kext`!
 
-1. Next, copy over the following files/folders from youre existing EFI folder:</br>
+6. Next, copy over the following files/folders from youre existing EFI folder:</br>
 	- **Kexts** (updated to the latest available version, of course), 
 	- **.aml** Files from "ACPI/patched" folder 
 	- **config.plist**
-- Run Clover Configurator and update it to the latest Version. It should now include a new section at the bottom called `Quirks`.
-- Open your `config.plist`
-- Click on "Quirks". It should look like this (without descriptions of course):
+7. Run Clover Configurator and update it to the latest Version. It should now include a new section at the bottom called `Quirks`.
+8. Open your `config.plist`
+9. Click on "Quirks". It should look like this (without descriptions of course):
 ![](https://user-images.githubusercontent.com/76865553/135844035-1689a11a-6512-4008-80ea-e89f07a55367.png)
-- Head over to the OpenCore Install Guide and pick the guide for your CPU Family and Platform.
-- Jump to the "Booter" Section. It contains all required Booter Quirks tinted green in the screenshot. Make sure to unfold the "more in-depth info" box to see what they do. Find the options for your system and tick them away in Clover Configurator.
-- Next, jump to the "Kernel" section of Dortania's guide and copy over the settings from "Quirks" and "Scheme". Again, make sure to unfold the "more in-depth" section to find all necessary settings. **NOTE**: some of the OpenCore "Kernel Quirks" have different names and are located in the "Kernel and Kext Patches" section of Clover Configurator. In most cases you have the correct settings enabled already, otherwise your system wouldn't have started before. But it's good to double check if you have settings enabled which may be unnecessary. These include: ![](https://user-images.githubusercontent.com/76865553/135859628-34f6be51-7a20-4461-900e-0c72fbdcba51.png)</br>
-- Once you've ticked all the necessary quirks, save your configuration.
+10. Head over to the OpenCore Install Guide and pick the guide for your CPU Family and Platform.
+11. Jump to the "Booter" Section. It contains all required Booter Quirks tinted green in the screenshot. Make sure to unfold the "more in-depth info" box to see what they do. Find the options for your system and tick them away in Clover Configurator.
+12. Next, jump to the "Kernel" section of Dortania's guide and copy over the settings from "Quirks" and "Scheme". Again, make sure to unfold the "more in-depth" section to find all necessary settings. **NOTE**: some of the OpenCore "Kernel Quirks" have different names and are located in the "Kernel and Kext Patches" section of Clover Configurator. In most cases you have the correct settings enabled already, otherwise your system wouldn't have started before. But it's good to double check if you have settings enabled which may be unnecessary. These include: ![](https://user-images.githubusercontent.com/76865553/135859628-34f6be51-7a20-4461-900e-0c72fbdcba51.png)</br>
+13. Once you've ticked all the necessary quirks, save your configuration.
 
 ### Validating config.plist and fixing errors
 
