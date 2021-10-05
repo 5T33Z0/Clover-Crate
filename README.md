@@ -1,5 +1,7 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover-r5140.1-green.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
+[![Clover Version](https://img.shields.io/badge/Clover-r5140.1-brightgreen.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
+[![Clover Configurator](https://img.shields.io/badge/CloverConfigurator-15.8.30-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/)
+
 > Clover and Clover Configurator explained
 > **Latest Update**: October 05th, 2021. </br>
 > **Applicable to**: Clover r5123 to r5140+ (UEFI only)
