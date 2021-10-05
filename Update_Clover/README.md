@@ -7,7 +7,7 @@
 Clover's previous `AptioMemoryFixes` are incapable of booting/installiung macOS 11 and newer. Therefore, OpenCore's Memory Fixes (`OpenRuntime.efi`) have been integrated to keep Clover relevant. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is mandatory in order to be able to install and boot macOS 11 and newer.
 
 ## Who is this Guide for?
-This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. When updating Clover, there are several obstactles along the way, such as removing old memory fixes, drivers and picking the correct settings for newly added "Quirks" section of the `config.plist`. Users who don't want to run macOS Big Sur or newer on there systems don't need to update clover but they should not update past Clover r5123.1 either.
+This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. When updating Clover, there are several obstactles along the way, such as removing old memory fixes, drivers and picking the correct settings for newly added "Quirks" section of the `config.plist`. Users who don't want to run macOS Big Sur or newer on there systems don't need to update Clover – although you could, according to the [documnetation](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2751618): "New Clover will understand old config.plist. You may not change it."
 
 ## Problem Description
 If you just update your existing "old" Clover EFI by installing the latest `Clover.pkg` like you used to, this will most likely result in an inoperable bootloader due to missing boot parameters in the `config.plist` as well as residual files from the "old" Clover version which need to be removed first.
@@ -78,8 +78,8 @@ Starting from version r5134, Clover now includes error reporting similar to Open
 3. Next, drag and drop your clover config.plist into the terminal window. Make sure there is a blank space between the 2 file paths
 4. Hit "Enter"
 5. Check the results. If it says: "Your plist looks so wonderful. Well done!", then you don't have to do anything else.
-6. If there are errors shown in the log, open both your config.plist and the config-sample.plist included in the Clover download – preferably in a plist editor. Look for any differences (like formatting, deleted features, etc.) and fix them.
-7. Save your config
+6. If there are errors shown in the log, open both your `config.plist` and the `config-sample.plist` included in the Clover package in a plist editor and compare them. Look for any differences (like formatting, deleted features, etc.) and fix them. **NOTE**:
+7. Save your config.
 8. Re-check for errors
 9. Repeat comparison, fixing, saving and re-checking until all issues are resolved
 
