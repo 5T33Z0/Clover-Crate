@@ -1,11 +1,8 @@
 # CLOVER CRATE
+[![Clover Version](https://img.shields.io/badge/Clover-r5140.1-green.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
 > Clover and Clover Configurator explained
 > **Latest Update**: October 05th, 2021. </br>
 > **Applicable to**: Clover r5123 to r5140+ (UEFI only)
-
-[![Clover Version](https://img.shields.io/badge/Clover-r5140.1-green.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
-
-![Bildschirmfoto 1](https://user-images.githubusercontent.com/76865553/136084911-ded32f70-c4cf-420a-a077-c94449a68ac3.png)
 
 This guide tries to cover Clover Bootloader and its options using Clover Configurator. The structure of this repo loosely follows the hierarchy of the `config.plist` and sections inside of Clover Configurator.
 
