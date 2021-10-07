@@ -1,5 +1,5 @@
 ## Devices
-![](/Users/kl45u5/Desktop/Devices.png)
+![Devices](https://user-images.githubusercontent.com/76865553/136476505-cd164f1a-7ae1-4015-b902-4ed17d92ebb0.png)
 In this Section, you can:
 
 - Add Audio Layout IDs
@@ -11,7 +11,7 @@ In this Section, you can:
 ### FakeID
 A group of parameters for masking your devices as natively supported ones by macOS.
 
-![](/Users/kl45u5/Desktop/Fake_ID.png)
+![Fake_ID](https://user-images.githubusercontent.com/76865553/136476522-a502bb4d-a183-4ef0-9516-956bb9926f99.png)
 
 **Examples**:
 
@@ -28,7 +28,7 @@ A group of parameters for masking your devices as natively supported ones by mac
 This masking works in two cases: when injecting, or with the DSDT patch. However, if we don't want a full inject in the way Clover intended, we can set the following property:
 
 ### USB
-![](/Users/kl45u5/Desktop/USB.png)
+![USB](https://user-images.githubusercontent.com/76865553/136476548-3c37da88-f0ad-43e2-a431-1cec1a9ec1af.png)
 
 #### Inject
 Injects USB properties if enabled. Leave unticked if you want to inject them yourself via `Properties`.
@@ -46,7 +46,7 @@ Increases current on this USB controller to charge Devices – disabled by defau
 
 
 ### Audio
-![](/Users/kl45u5/Desktop/audio.png)
+![audio](https://user-images.githubusercontent.com/76865553/136476581-c7714448-69f9-4c3b-bfa6-13aef9483a79.png)
 
 #### Inject
 Injects Layout-ID. Combine with `AppleALC.kext`. See the documentation for this codec to pick the correct one. Not necessary if `VoodooHDA.kext` is used.
