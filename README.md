@@ -14,6 +14,7 @@ This guide covers Clover Bootloader and its optionsr. The structure of this repo
 - [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI)
 - [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
 - [**Boot Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics)
+- [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices)
 - [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
 - [**Update Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
 
