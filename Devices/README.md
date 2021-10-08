@@ -71,7 +71,8 @@ The key was introduced in r3298. In previous systems, the screen brightness was 
 **NOTE**: This doesn't work with current macOS versions. Use a `SSDT-PNLF.aml` instead
 
 ### Arbitrary
-![](/Users/kl45u5/Desktop/Arbitrary.png)
+![Arbitrary](https://user-images.githubusercontent.com/76865553/136480147-879718e6-81eb-474d-a443-a13e0b56988a.png)
+
 The `Arbitrary` section is an array of dictionaries, each corresponding to one device with a given PCI address. To describe each device, a `CustomProperties` array consisting of `Key`/`Value` pairs is used. These Properties can be disabled by ticking the `Disabled` checkbox. You can enable or disable a property dynamically in the Clover menu. 
 
 - `Key` **must** be a `<string>`. 
