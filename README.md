@@ -1,8 +1,9 @@
 # CLOVER CRATE
 [![Clover Version](https://img.shields.io/badge/Clover-r5140.1-brightgreen.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
 [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-15.8.30-orange.svg)](https://mackie100projects.altervista.org/download-clover-configurator/)
+![Last Update](https://img.shields.io/badge/Last_Update_(mm/dd/yy):-10.08.21-informational.svg)
 
->**Latest Update**: October 08th, 2021. | **Applicable to**: Clover r5123 to r5140+
+![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/136565569-f5254cfd-4e29-462c-a8d7-1c96c49fe4f1.png)
 
 ## ABOUT
 Clover Crate is an unofficial documnentation of the Clover Bootloader and its features so you know what each or the features do and hwo to use them. Its structure follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator. Each available setting/parameter (besides obvious ones) is explained. In each section, you can click on the list menu on the top left to select a feature you are interested in to jump to the corresponding entry so you don't have to scroll all the way through a document. I am talking about this one: 
