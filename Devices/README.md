@@ -1,4 +1,4 @@
-## Devices
+# Devices
 ![Devices](https://user-images.githubusercontent.com/76865553/136476505-cd164f1a-7ae1-4015-b902-4ed17d92ebb0.png)
 In this Section, you can:
 
@@ -8,7 +8,7 @@ In this Section, you can:
 - Add or modify Devices (via `Devices` > `Properties`)
 - Add Framebuffer-Patches (via `Devices` > `Properties`)
 
-### FakeID
+## FakeID
 A group of parameters for masking your devices as natively supported ones by macOS.
 
 ![Fake_ID](https://user-images.githubusercontent.com/76865553/136476522-a502bb4d-a183-4ef0-9516-956bb9926f99.png)
@@ -25,27 +25,26 @@ A group of parameters for masking your devices as natively supported ones by mac
 	- IvyBridge = `0x1E3A8086`
 	- Haswell = `0x8C3A8086`
 
-This masking works in two cases: when injecting, or with the DSDT patch. However, if we don't want a full inject in the way Clover intended, we can set the following property:
+	This masking works in two cases: when injecting, or with the `DSDT` patch. However, if you don't want a full inject in the way Clover does it, youn can use the `NoDefaultProperties` option.
 
-### USB
+## USB
 ![USB](https://user-images.githubusercontent.com/76865553/136476548-3c37da88-f0ad-43e2-a431-1cec1a9ec1af.png)
 
-#### Inject
+### Inject
 Injects USB properties if enabled. Leave unticked if you want to inject them yourself via `Properties`.
 
-#### Add ClockID
+### Add ClockID
 Enable to prevent the USB controller from waking the system involuntarily. If you want to wake to wake the system via USB mouse, disble it. But be prepared that your computer will wake up spontaneously, e.g. from built-in camera, etc.
 
-#### FixOwnership
+### FixOwnership
 In order for the USB controller to work in macOS, it has to be disconnected from the BIOS first, before the Darwin kernel is started. Since this is only required for legacy boot, this option is disabled by default – it is not required for UEFI boot.
 
-#### HighCurrent
+### HighCurrent
 Increases current on this USB controller to charge Devices – disabled by default.
 
-#### NameEH00
+### NameEH00
 
-
-### Audio
+## Audio
 ![audio](https://user-images.githubusercontent.com/76865553/136476581-c7714448-69f9-4c3b-bfa6-13aef9483a79.png)
 
 #### Inject
@@ -62,15 +61,44 @@ Affects the `AppleHDA` driver and seems to solve the problem with clicks and pop
 #### ResetHDA
 Initialize the audio codec, if enabled. This behavior can be observed after rebooting from Windows to Mac.
 
-#### ForceHPET
+## Properties
+This is where Clover and especially Clover Configuration get really confusing! Because the term `Properties` is used 3 times in 3 different contexts.
+
+### AddProperties
+![](/Users/kl45u5/Desktop/AddProperties1.png)
+
+Adding entries in this sub-section of Clover Configurator creates an `<Array>` `AddProperties` and a `<Dictionary>` for the device specified in the AddProperties List, in this case for 
+
+clover config. This is how the actual structure of the array looks like when viewed with a plist editor:
+
+![](/Users/kl45u5/Desktop/AddProperties2.png)
+
+The Value can be <data> or a hex string. Just a string is not allowed. That is, instead of <string> ABC.... you must write <string> 0x414243....
+Convert via PlistEditor or Xcode.
+The first Device key determines which device this property will be added to. Device list:
+
+### NoDefaultProperties
+In this case, the line for the injection is created, but does not contain any new properties yet. For example this property will be `FakeID`. Again, this way of using `FakeID` is outdated, it's better to do it through Properties as follows.
+
+### Properties (Hex)
+![](/Users/kl45u5/Desktop/Bildschirmfoto.png)
+This field creates a simple string in the config in the `Devices` Section if a hex value is entered:
+
+![](/Users/kl45u5/Desktop/Bildschirmfoto 1.png)
+
+But as soon as you add a Device via the Properties Tab (the one next to `Arbitrary`), this key is deleted. 
+
+### Inject
+If enabled, all internal injection is replaced by entering a single string Properties, which corresponds to the Apple's APPLE_GETVAR_PROTOCOL injection with GUID={0x91BD12FE, 0xF6C3, 0x44FB, {0xA5, 0xB7, 0x51, 0x22, 0xAB, 0x30, 0x3A, 0xE0}}; which is used on real Macs. The old hackers called it `EFIstrings`.
+
+### ForceHPET
 Force enables HPET on systems where there isn't an option in teh BIOS to enable it.
 
 ### SetIntelBacklight
-
 The key was introduced in r3298. In previous systems, the screen brightness was controlled by `IntelBacklight.kext` or `ACPIBacklight.kext`, but they didn't work in El Capitan. But it turned out to be very easy to do this in Clover at the stage of system startup, so no additional cakes were needed.</br>
 **NOTE**: This doesn't work with current macOS versions. Use a `SSDT-PNLF.aml` instead
 
-### Arbitrary
+## Arbitrary
 ![Arbitrary](https://user-images.githubusercontent.com/76865553/136480147-879718e6-81eb-474d-a443-a13e0b56988a.png)
 
 The `Arbitrary` section is an array of dictionaries, each corresponding to one device with a given PCI address. To describe each device, a `CustomProperties` array consisting of `Key`/`Value` pairs is used. These Properties can be disabled by ticking the `Disabled` checkbox. You can enable or disable a property dynamically in the Clover menu. 

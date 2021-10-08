@@ -4,6 +4,7 @@
 ![Last Update](https://img.shields.io/badge/Last_Update_(mm/dd/yy):-10.08.21-informational.svg)
 
 ![Bildschirmfoto 3](https://user-images.githubusercontent.com/76865553/136567445-fc271f7d-48be-42ff-9fcf-b46deb8dcb91.png)
+
 ## ABOUT
 Clover Crate is an unofficial documnentation of the Clover Bootloader and its features so you know what each or the features do and hwo to use them. Its structure follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator. Each available setting/parameter (besides obvious ones) is explained. In each section, you can click on the list menu on the top left to select a feature you are interested in to jump to the corresponding entry so you don't have to scroll all the way through a document. I am talking about this one: 
 
