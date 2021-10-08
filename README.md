@@ -6,7 +6,9 @@
 > **Latest Update**: October 05th, 2021. </br>
 > **Applicable to**: Clover r5123 to r5140+ (UEFI only)
 
-This guide covers Clover Bootloader and its optionsr. The structure of this repo loosely follows the hierarchy of the `config.plist` and the correspondings sections inside of Clover Configurator.
+This repo covers Clover Bootloader and its options. The structure of it follows the hierarchy of the `config.plist` and the correspondings sections inside of Clover Configurator. Each available setting/paramter (besides obvious ones) is explained. In each section, you can click on the list menu to select a feature you are interested in to jump to the corresponding entry so you don't have to scroll all the way through the document: 
+
+![TOC](https://user-images.githubusercontent.com/76865553/136510478-2bccd5ae-6cc6-4a98-8f8d-63c41de2d3b3.png) 
 
 **DISCLAIMER**: The information provided here is based on excerpts from the russian Clover Manual for r5129 translated as well as additional information from daliansky's P-Little repo translated from chinese to english by 5T33Z0 using deepL, yandex and google translate.
 
