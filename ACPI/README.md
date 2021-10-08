@@ -73,7 +73,7 @@ To use this section properly you need a dump the unmodified `DSDT` and examine i
 
 ![Rename Devices](https://user-images.githubusercontent.com/76865553/135732661-ba636a72-9490-4c6f-a018-bdede3752fa6.jpg)
 
-As you can see, the device exists and is lodated in `\SB_PCI0_EHC1` of the `DSDT`. Next, we tell Clover Configurtor to replace the actual device name witj `EH01` by adding it in the `Rename Device` field. After the patch is applied on the fly during boot, the device name and it's dependencies have been changed:
+As you can see, the device exists and is located in `\SB_PCI0_EHC1` of the `DSDT`. Next, we tell Clover Configurator to replace the actual device name witj `EH01` by adding it in the `Rename Device` field. After the patch is applied on the fly during boot, the device name and it's dependencies have been changed:
 
 ![DSDT_patched](https://user-images.githubusercontent.com/76865553/135732669-9ac77cf7-5c5f-41a0-b98f-0ae1453411dc.png)
 

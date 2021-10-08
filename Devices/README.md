@@ -18,23 +18,23 @@ A group of parameters for masking your devices as natively supported ones by mac
 - **AMD RadeonHD 7850** has the DeviceID=`0x6819`, which is not supported by OSX 10.8, but it supports DeviceID=`0x6818` instead. So add `0x6818` to the `ATI` field to change it's ID. Next, it's necessary to inject this fake somehow. For video cards there are two ways: under "Graphics", enable `Inject ATI` or  under "ACPI" enable `FixDisplay`.
 - **NVidia GTX 660**: DeviceID=`0x1183`. The card works but there is no `AGPM` (Apple Graphics Power Management) for it. Add ID `0x0FE0` in the `NVidia` field and enabled the `FixDisplay` patch to inject it into the `DSDT`.
 - **WiFi** – the Dell Wireless 1595 card, has the DeviceID=`0x4315`, but the real one is by Broadcom, which supports chips 4312, 4331 and some others. So enter the device ID for a supported one the enable the `FixAirport` patch in the `ACPI` section to inject it in the `DSDT`.
-- The common **Marvell 80E8056** Network Card (DeviceID=`0x4353`) just doesn't work, but it works with the AppleYukon2 driver if you change the ID swap to `0x4363`. Combine woith `FixLan` DSDT Patch.
+- The common **Marvell 80E8056** Network Card (DeviceID=`0x4353`) just doesn't work, but it works with the AppleYukon2 driver if you change the ID swap to `0x4363`. Combine with `FixLan` DSDT Patch.
 - **`IMEI`** – This device works with **Intel** **HD3000** and **HD4000**. However, it is not certain that your chipset has the correct ID. The substitutions are as follows (enable Fix `AddIMEI`):
 
 	- SandyBridge = `0x1C3A8086`
 	- IvyBridge = `0x1E3A8086`
 	- Haswell = `0x8C3A8086`
 
-	This masking works in two cases: when injecting, or with the `DSDT` patch. However, if you don't want a full inject in the way Clover does it, youn can use the `NoDefaultProperties` option.
+	This masking works in two cases: when injecting, or with the `DSDT` patch. However, if you don't want a full inject in the way Clover does it, you can use the `NoDefaultProperties` option.
 
 ## USB
 ![USB](https://user-images.githubusercontent.com/76865553/136476548-3c37da88-f0ad-43e2-a431-1cec1a9ec1af.png)
 
 ### Inject
-Injects USB properties if enabled. Leave unticked if you want to inject them yourself via `Properties`.
+Injects USB properties if enabled. Leave disabled if you want to inject them yourself via `Properties`.
 
 ### Add ClockID
-Enable to prevent the USB controller from waking the system involuntarily. If you want to wake to wake the system via USB mouse, disble it. But be prepared that your computer will wake up spontaneously, e.g. from built-in camera, etc.
+Enable to prevent the USB controller from waking the system involuntarily. If you want to wake to wake the system via USB mouse, disable it. But be prepared that your computer will wake up spontaneously, e.g. from built-in camera, etc.
 
 ### FixOwnership
 In order for the USB controller to work in macOS, it has to be disconnected from the BIOS first, before the Darwin kernel is started. Since this is only required for legacy boot, this option is disabled by default – it is not required for UEFI boot.
@@ -106,4 +106,3 @@ The `Arbitrary` section is an array of dictionaries, each corresponding to one d
 
 - `Key` **must** be a `<string>`. 
 - `Value` **can** be `<string>`, `<integer>` or `<data>`.
-

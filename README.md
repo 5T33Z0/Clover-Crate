@@ -6,13 +6,13 @@
 ![Bildschirmfoto 3](https://user-images.githubusercontent.com/76865553/136567445-fc271f7d-48be-42ff-9fcf-b46deb8dcb91.png)
 
 ## ABOUT
-Clover Crate is an unofficial documnentation of the Clover Bootloader and its features so you know what each or the features do and hwo to use them. Its structure follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator. Each available setting/parameter (besides obvious ones) is explained. In each section, you can click on the list menu on the top left to select a feature you are interested in to jump to the corresponding entry so you don't have to scroll all the way through a document. I am talking about this one: 
+Clover Crate is an unofficial documentation of the Clover Bootloader and its features so you know what each or the features do and hwo to use them. Its structure follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator. Each available setting/parameter (besides obvious ones) is explained. In each section, you can click on the list menu on the top left to select a feature you are interested in to jump to the corresponding entry so you don't have to scroll all the way through a document. I am talking about this one: 
 
 ![TOC](https://user-images.githubusercontent.com/76865553/136510478-2bccd5ae-6cc6-4a98-8f8d-63c41de2d3b3.png)
 
 I created this repo for several reasons:
 
-1. **Overcoming** language barriers: Clover's official documentation (PDF, 171 pages) is only availabe in russian.
+1. **Overcoming** language barriers: Clover's official documentation (PDF, 171 pages) is only available in russian.
 2. **Condensing** available information in one place, presenting it in a more current fashion, using Markdown and github.
 3. **Consolidating and Unifying** sources which are scattered all over the net: the manual is only available in russian on github, the changelog is only available at insanelymac and only updated sporadically. The Clover Wiki at Source Forge hasn't been updated in a decade at least.
 4. **Exemplifying** Clover's features using Clover Configurator.
@@ -20,7 +20,7 @@ I created this repo for several reasons:
 <details>
 <summary><strong>DISCLAIMER</strong></summary>
 
-The information provided in this repository is based on excperpts of the official russian documentation for Clover r5129 using AI-based translation tools (deepl, google and yandex translate). The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their actual meaning. Nevertheless, some facts may have been lost during the process of translation.
+The information provided in this repository is based on excerpts of the official russian documentation for Clover r5129 using AI-based translation tools (deepl, google and yandex translate). The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their actual meaning. Nevertheless, some facts may have been lost during the process of translation.
 </details>
 
 ## TABLE of CONTENTS

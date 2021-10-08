@@ -4,16 +4,16 @@
 >**Applicable to**: Clover r5123 to r5140+ (UEFI only)
 
 ## Why Upgrade?
-Clover's previous `AptioMemoryFixes` are incapable of booting/installiung macOS 11 and newer. Therefore, OpenCore's Memory Fixes (`OpenRuntime.efi`) have been integrated to keep Clover relevant. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is mandatory in order to be able to install and boot macOS 11 and newer.
+Clover's previous `AptioMemoryFixes` are incapable of booting/installing macOS 11 and newer. Therefore, OpenCore's Memory Fixes (`OpenRuntime.efi`) have been integrated to keep Clover relevant. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is mandatory in order to be able to install and boot macOS 11 and newer.
 
 ## Who is this Guide for?
-This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. When updating Clover, there are several obstactles along the way, such as removing old memory fixes, drivers and picking the correct settings for newly added "Quirks" section of the `config.plist`. Users who don't want to run macOS Big Sur or newer on there systems don't need to update Clover – although you could, according to the [documnetation](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2751618): "New Clover will understand old config.plist. You may not change it."
+This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. When updating Clover, there are several obstacles along the way, such as removing old memory fixes, drivers and picking the correct settings for newly added "Quirks" section of the `config.plist`. Users who don't want to run macOS Big Sur or newer on there systems don't need to update Clover – although you could, according to the [documnetation](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2751618): "New Clover will understand old config.plist. You may not change it."
 
 ## Problem Description
 If you just update your existing "old" Clover EFI by installing the latest `Clover.pkg` like you used to, this will most likely result in an inoperable bootloader due to missing boot parameters in the `config.plist` as well as residual files from the "old" Clover version which need to be removed first.
 
 <details>
-<summary><strong>Backgound: Obsolete Drivers and Kext issues </strong></summary>
+<summary><strong>Background: Obsolete Drivers and Kext issues </strong></summary>
 
 ## Obsolete drivers and avoiding kext conflicts
 In order to avoid the dilemma of your system not booting, you have to clean up your old EFI folder before upgrading to macOS 11+.
@@ -22,10 +22,10 @@ In order to avoid the dilemma of your system not booting, you have to clean up y
 The following drivers are no longer necessary and have to either be removed when updating Clover or omitted when building a new EFI folder:
 
 - Aptio Memory Fixes: **`AptioMemoryFix.efi`**, **`OsxAptioFix3Drv.efi`** and **`OsxAptioFixDrv.efi`**
-- **`OcQuirks.efi`** and **OcQuirks.plist** – delete if present. OcQuirks is a relic from arlier attempts to include OpenCore Booter Quirks into Clover (≤r5122).
+- **`OcQuirks.efi`** and **OcQuirks.plist** – delete if present. OcQuirks is a relic from earlier attempts to include OpenCore Booter Quirks into Clover (≤r5122).
 - **`DataHubDxe.efi`** – DataHub protocol which provides parameters like OEM Model, FSBFrequency, ARTFrequency, Clover's boot-log and many other things to macOS which it cannot obtain otherwise. It has been fully integrated into Clover since r5129, so delete it. Newer versions of the Clover Package don't contain this driver anyway.
 - **`EmuVariableUefi.efi`** – necessary for emulating NVRAM, if it is not available (legacy systems) or working incorrectly.
-- **`FSInject.efi`** – For Kext injection. Necessary only for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of prelinkedkernel. Fully integrated in Clover nowadays, so delete it.
+- **`FSInject.efi`** – For Kext injection. Necessary only for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of Prelinkedkernel. Fully integrated in Clover nowadays, so delete it.
 - **`SMCHelper.efi`** – Necessary only when using **`FakeSMC.kext`**. If you use it in combination with **`VirtualSMC.efi`**, it can cause instant Kernel Panics. In other words: VirtualSMC + VirtualSMC.efi = good; FakeSMC + SMCHelper.efi = good; any other combination = bad. Nowadays, using **`VirtualSMC.kext`** alone is sufficient and recommended.
 
 ### Checking and Updating Kexts
@@ -56,7 +56,7 @@ Here are some examples of Kexts I've experienced issues with when updating:
 	- OpenRuntime.efi</br>
 Now we have a minimal set of Drivers: ![Bildschirmfoto 2021-10-05 um 14 55 58](https://user-images.githubusercontent.com/76865553/136026914-af63dce9-a505-4b61-8ad4-0d14348fac37.png)</br>
 Files tagged gray are in there by default and are most likely unnecessary for UEFI-based systems. I would move them to the "off" folder one by one to disable them and check if the system still boots from the USB flash drive without them. `AudioDXE.efi` is only needed for playing back audio files like boot chimes - so if you don't use any, you can delete/disable it. As mentioned earlier, `SMCHelper.efi` MUST be deleted when using `VirualSMC.kext`!
-7. Next, copy over the following files/folders from youre existing EFI folder:</br>
+7. Next, copy over the following files/folders from your existing EFI folder:</br>
 	- **Kexts** (updated to the latest available version, of course), 
 	- **.aml** Files from "ACPI/patched" folder 
 	- **config.plist**

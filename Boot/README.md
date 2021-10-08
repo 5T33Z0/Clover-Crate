@@ -7,16 +7,16 @@ These are boot arguments that are passed over to `boot.efi`, which in turn passe
 
 | Flag           | Description                                                 |
 | :------------: | :---------------------------------------------------------- |
-| `-v`           | Verbose Mode. Shows the boot log instead of the Apple Logo.  |
-| `-x`           | Safe Mode                        |
-| `-s`           | Single User Mode                 |
+| `-v`           | Verbose Mode. Shows the boot log instead of the Apple Logo. |
+| `-x`           | Safe Mode                                                   |
+| `-s`           | Single User Mode                                            |
 | `debug=0x100`  | Disables the watchdog which helps to prevent a reboot after a kernel panic. Helpful for debugging |
-| `keepsyms=1`   | This is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. Helpfull for debugging as well |
+| `keepsyms=1`   | This is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. Helpful for debugging as well |
 | `nvda_drv=1`   | Enable NVIDIA Web Drivers        |
 | `nv_disable=1` | Disable NVIDIA graphics cards    |
 | `wegnoegpu`    | Disables discrete GPUs, which is a requirement if it is not supported by macOS (provided by `Whatevergreen.kext`). |
 
-On top of that, installed Kexts like Lilu, Whatevergreen and others provide boot-arg as well. If you righ-click anywhere in this list you wili find many more boot-args not covererd here:
+On top of that, installed Kexts like Lilu, Whatevergreen and others provide boot-arg as well. If you right-click anywhere in this list you will find many more boot-args not covered here:
 
 <details><summary><strong>Screenshot</strong></summary>
 ![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135818786-923330d4-564a-41c6-acbf-ae16b4ac0d55.png)
@@ -33,7 +33,7 @@ Default Boot Volume is used to specify which entry is the default boot entry in 
 OS X Startup Disk can be used to reboot into another volume, but for the following reboot DefaultVolume will be used again.
 
 ### Legacy
-Legacy Boot. Necessary for runnning older versions of Windows and Linux. Depends on the hardware and the construction of the BIOS, so several algorithms have been implemented. 
+Legacy Boot. Necessary for running older versions of Windows and Linux. Depends on the hardware and the construction of the BIOS, so several algorithms have been implemented. 
 
 The options are:
 
@@ -91,7 +91,7 @@ Sets the timeout in seconds (0-30 s), before the boot process continues loading 
 - `Fast`: Skips the GUI and boots from the default volume instantly, so no user interaction is possible – so no chance to correct something in case of an error.
 
 ### SignatureFixup
- When hibernating, the system leaves a signature in the image, which is then checked by `boot.efi`. We wanted to fix it with this key. Probably for nothing. It's recommended to leave it diabled.
+ When hibernating, the system leaves a signature in the image, which is then checked by `boot.efi`. We wanted to fix it with this key. Probably for nothing. It's recommended to leave it disabled.
  
 ### Debug
-If set to `true`, a log will be created on next boot. This will seriously slow down the boot time but allows you figure out what the problem was because each step will be accompanied by writing a debug.log to disk/flash drive. Boottime is about 10 minutes just to get into the GUI. But if everything hangs, you can press Reset, and then look for the file `/EFI/CLOVER/misc/debug.log`, which collectively records all logs for all loads, as long as this parameter is set.
+If set to `true`, a log will be created on next boot. This will seriously slow down the boot time but allows you figure out what the problem was because each step will be accompanied by writing a debug.log to disk/flash drive. The boot time is about 10 minutes just to get into the GUI. But if everything hangs, you can press Reset, and then look for the file `/EFI/CLOVER/misc/debug.log`, which collectively records all logs for all loads, as long as this parameter is set.
