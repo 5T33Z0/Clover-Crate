@@ -1,17 +1,27 @@
 # CLOVER CRATE
 [![Clover Version](https://img.shields.io/badge/Clover-r5140.1-brightgreen.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
-[![Clover Configurator](https://img.shields.io/badge/CloverConfigurator-15.8.30-orange.svg)](https://mackie100projects.altervista.org/download-clover-configurator/)
+[![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-15.8.30-orange.svg)](https://mackie100projects.altervista.org/download-clover-configurator/)
 
-> Clover and Clover Configurator explained
 > **Latest Update**: October 05th, 2021. </br>
-> **Applicable to**: Clover r5123 to r5140+ (UEFI only)
+> **Applicable to**: Clover r5123 to r5140+
 
 ## ABOUT
-This repo covers Clover Bootloader and its options. The structure of it follows the hierarchy of the `config.plist` and the correspondings sections inside of Clover Configurator. Each available setting/paramter (besides obvious ones) is explained. In each section, you can click on the list menu to select a feature you are interested in to jump to the corresponding entry so you don't have to scroll all the way through the document: 
+This repo is an unofficial documnentation of the Clover Bootloader and its features. Its structure the hierarchy of the `config.plist` and the correspondings sections inside of Clover Configurator. Each available setting/paramter (besides obvious ones) is explained. In each section, you can click on the list menu to select a feature you are interested in to jump to the corresponding entry so you don't have to scroll all the way through a document: 
 
-![TOC](https://user-images.githubusercontent.com/76865553/136510478-2bccd5ae-6cc6-4a98-8f8d-63c41de2d3b3.png) 
+![TOC](https://user-images.githubusercontent.com/76865553/136510478-2bccd5ae-6cc6-4a98-8f8d-63c41de2d3b3.png)
 
-**DISCLAIMER**: The information provided here is based on excerpts from the russian Clover Manual for r5129 translated as well as additional information from daliansky's P-Little repo translated from chinese to english by 5T33Z0 using deepL, yandex and google translate.
+I created this repo for several reasons: 
+
+1. **Overcoming** language barriers: Clover's official documentation (PDF, 171 pages) is only availabe in russian, containing a lot of unnecessary anecdotes and odd personal statements.
+3. **Condensing** available information in one place, presenting it in a more modern manner, using markup and github
+2. **Consolidating and Unifying** sources which are scattered all over the net: the manual is only available in russian on github, the changelog is only available at insanelymac and only updated sporadically. The Clover Wiki at Source Forge hasn't been updated in a decade at least.
+4. **Exemplifying** Clover's features using Clover Configurator.
+
+<details>
+<summary><strong>DISCLAIMER</strong></summary>
+
+The information provided in this repository is based on excperpts of the official russian documentation for Clover r5129 using AI-based translation tools (deepl, google and yandex translate). The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their actual meaning. Nevertheless, some facts may have been lost during the process of translation.
+</details>
 
 ## TABLE of CONTENTS
 - [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI)
@@ -24,7 +34,7 @@ This repo covers Clover Bootloader and its options. The structure of it follows 
 ## CREDITS
 
 - SergeySlice for [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader)
-- daliansky for [**P-Little Repo**](https://github.com/daliansky/P-little)
 - Macki100Projects for [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/)
+- daliansky for [**P-Little Repo**](https://github.com/daliansky/P-little)
 - ic005k for [**PlistEDPlus**](https://github.com/ic005k/PlistEDPlus)
 - uranusjr for [**MacDown**](https://macdown.uranusjr.com/)
