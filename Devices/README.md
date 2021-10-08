@@ -65,13 +65,12 @@ Initialize the audio codec, if enabled. This behavior can be observed after rebo
 This is where Clover and especially Clover Configuration get really confusing! Because the term `Properties` is used 3 times in 3 different contexts.
 
 ### AddProperties
-![](/Users/kl45u5/Desktop/AddProperties1.png)
+![AddProperties1](https://user-images.githubusercontent.com/76865553/136595982-7a5af1ab-bd37-489c-864b-4a7d9d41be29.png)
 
-Adding entries in this sub-section of Clover Configurator creates an `<Array>` `AddProperties` and a `<Dictionary>` for the device specified in the AddProperties List, in this case for 
 
-clover config. This is how the actual structure of the array looks like when viewed with a plist editor:
+Adding entries in this sub-section of Clover Configurator creates an `<Array>` `AddProperties` and a `<Dictionary>` for the device specified in the AddProperties List, in this case for clover config. This is how the actual structure of the array looks like when viewed with a plist editor:
 
-![](/Users/kl45u5/Desktop/AddProperties2.png)
+![AddProperties2](https://user-images.githubusercontent.com/76865553/136596168-ef38a5a9-e768-4ccd-805f-c5c4297435fb.png)
 
 The Value can be <data> or a hex string. Just a string is not allowed. That is, instead of <string> ABC.... you must write <string> 0x414243....
 Convert via PlistEditor or Xcode.
@@ -81,10 +80,12 @@ The first Device key determines which device this property will be added to. Dev
 In this case, the line for the injection is created, but does not contain any new properties yet. For example this property will be `FakeID`. Again, this way of using `FakeID` is outdated, it's better to do it through Properties as follows.
 
 ### Properties (Hex)
-![](/Users/kl45u5/Desktop/Bildschirmfoto.png)
+
+![Properties_Hex](https://user-images.githubusercontent.com/76865553/136596456-88ad496b-8a38-44e9-b4ed-7f2c50573303.png)
+
 This field creates a simple string in the config in the `Devices` Section if a hex value is entered:
 
-![](/Users/kl45u5/Desktop/Bildschirmfoto 1.png)
+![PropertiesHex2](https://user-images.githubusercontent.com/76865553/136596474-e3ce6d35-3f93-4194-b9e0-02a0231d470b.png)
 
 But as soon as you add a Device via the Properties Tab (the one next to `Arbitrary`), this key is deleted. 
 
