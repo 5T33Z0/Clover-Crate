@@ -12,7 +12,7 @@ Clover Crate is an unofficial documnentation of the Clover Bootloader and its fe
 
 I created this repo for several reasons:
 
-1. **Overcoming** language barriers: Clover's official documentation (PDF, 171 pages) is only availabe in russian and contain a lot of superfluous anecdotal content.
+1. **Overcoming** language barriers: Clover's official documentation (PDF, 171 pages) is only availabe in russian.
 2. **Condensing** available information in one place, presenting it in a more current fashion, using Markdown and github.
 3. **Consolidating and Unifying** sources which are scattered all over the net: the manual is only available in russian on github, the changelog is only available at insanelymac and only updated sporadically. The Clover Wiki at Source Forge hasn't been updated in a decade at least.
 4. **Exemplifying** Clover's features using Clover Configurator.
@@ -28,7 +28,11 @@ The information provided in this repository is based on excperpts of the officia
 - [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
 - [**Boot Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics)
 - [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices)
+- [**KernelAndKextPatches**] To do
 - [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
+- [**RtVariables**] To do
+- [**SMBIOS**] To do
+- [**SystemParameters**] To do
 - [**Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
 
 ## CREDITS
