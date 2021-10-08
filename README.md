@@ -6,7 +6,7 @@
 > **Applicable to**: Clover r5123 to r5140+
 
 ## ABOUT
-This repo is an unofficial documnentation of the Clover Bootloader and its features. Its structure the hierarchy of the `config.plist` and the correspondings sections inside of Clover Configurator. Each available setting/paramter (besides obvious ones) is explained. In each section, you can click on the list menu to select a feature you are interested in to jump to the corresponding entry so you don't have to scroll all the way through a document: 
+Clover Crat is an unofficial documnentation of the Clover Bootloader and its features so you know what each or the features do and hwo to use them Its structure follow the hierarchy of the `config.plist` and the corresponding sections inside of Clover Configurator. Each available setting/paramter (besides obvious ones) is explained. In each section, you can click on the list menu to select a feature you are interested in to jump to the corresponding entry so you don't have to scroll all the way through a document: 
 
 ![TOC](https://user-images.githubusercontent.com/76865553/136510478-2bccd5ae-6cc6-4a98-8f8d-63c41de2d3b3.png)
 
@@ -29,10 +29,9 @@ The information provided in this repository is based on excperpts of the officia
 - [**Boot Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics)
 - [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices)
 - [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
-- [**Update Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
+- [**Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
 
 ## CREDITS
-
 - SergeySlice for [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader)
 - Macki100Projects for [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/)
 - daliansky for [**P-Little Repo**](https://github.com/daliansky/P-little)
