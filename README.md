@@ -30,7 +30,7 @@ The information provided in this repository is primarily based on excerpts of th
 - [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices)
 - [**KernelAndKextPatches**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kernel_And_Kext_Patches)
 - [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
-- [**RtVariables**] To do
+- [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables)
 - [**SMBIOS**] To do
 - [**SystemParameters**] To do
 - [**Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
