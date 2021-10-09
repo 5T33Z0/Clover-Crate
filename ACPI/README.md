@@ -334,9 +334,10 @@ Removes the interrupt from the _TMR timer in the same way. It is deprecated and 
 Adds Return to the `_WAK` method. It has to be, but for some reason often the `DSDT` does not contain it. Apparently the authors adhered to some other standards. In any case, this fix is completely safe.
 
 ## SSDT
+![SSDT](https://user-images.githubusercontent.com/76865553/136655891-edd9c38d-852f-476e-9ca7-4295cdb4ec38.png)
+
 This section is primarily aimes at enableing/fixing CPU Power Management.
 
-![Bildschirmfoto 2021-05-16 um 19 14 17](/Users/kl45u5/Desktop/SSDT.png)
 ### C3 Latency
 
 This value appears in real Macs, for iMacs it's about 200, for MacPro it's about 10. In my opinion, iMacs are regulated by P-stats, MacPros are regulated by C-stats. And it also depends on the chipset, whether your chipset will adequately respond to D-state commands from the MacOS. The safest and easiest option is *not to set this parameter*, everything will work fine as it is.
@@ -390,7 +391,6 @@ Minimum CPU multiplier. It itself reports 16, and prefers to run at 1600, but yo
 
 Introduced in conjunction to Min Multiplier, but it seems to be doing nothing and should not be used. However, it somehow affects the number of P-states, so you can experiment with it, but you shouldn't do it without a special need.
 
-
 ### NoDynamicExtract
 
 If set to `true`, this flag will disable the extraction of dynamic SSDTs when using `F4` in the bootloader menu. Dynamic SSDTs are rarely needed and usually cause confusion (erroneously putting them in the `ACPI/patched` Folder). Added by Rehabman in revision 4359.
@@ -411,7 +411,6 @@ If set to `true`, the SSDT section will be used to select in the generated `_CST
 Register (FFixedHW,
 Register (SystemIO,
 ```
-
 ### UnderVolt Step
 
 Optional parameter to reduce the temperature of the processor by reducing its operating voltage. Possible values are 0 to 9. The higher the value, the lower the voltage, resulting in lower temperatures – until the computer hangs. This is where foolproof protection comes in: Clover won't let you set any value outside the specified range. However, even allowed values can result in unstable operation. The effect of undervolting is really noticeable. However, this parameter is only only applicable to Intel CPUs of the `Penryn` family.
@@ -427,7 +426,6 @@ In this array, you can list tables which should be discarded from loading. These
 ![Bildschirmfoto 2021-05-16 um 08 31 09](https://user-images.githubusercontent.com/76865553/135732710-df439b95-b7b9-4e88-bd47-0bc082ec63a6.png)
 
 **Note**: No info present in the manual. I guess you can add SSDTs from the `ACPI/patched` folder which should be omitted from loading.
-
 
 ### Debug
 
