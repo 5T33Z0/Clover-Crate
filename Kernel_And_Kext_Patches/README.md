@@ -9,7 +9,7 @@
 Kernel patches are necessary for making macOS compatible with your CPU. Check the Quirks section to see how they ralate to OpenCore and the have a look in the OpenCore Install Guide to find out, which ones you need for your syste. 
 
 ### AppleIntelCPUPM
-&rarr; See [**Quirks**]([https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)) Section
+&rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### AppleRTC
 Obsolete! vit9696 investigated the problem, and corrected RTC operations in Clover, now the recommended key value is `false` because it affects hibernation.
@@ -18,7 +18,7 @@ Obsolete! vit9696 investigated the problem, and corrected RTC operations in Clov
 If you want to observe how the Kexts are patched &rarr; For developers.
 
 ### DellSMBIOSPatch
-&rarr; See [**Quirks**]([https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)) Section
+&rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### FakeCPUID
 Assigns a different device-ID to the used CPU. Useful when trying to run an older version of macOS with a newer CPU which isn't supported. For example, if you are trying to run macOS High Sierra or Mojave with an 10th Gen Intel Cometlake i5/i7/i9 CPU which is not supported. Instead, you just fake a Coffeelake CPU, to make macOS go: "Hey, I know you, step right in!".
@@ -27,13 +27,13 @@ Assigns a different device-ID to the used CPU. Useful when trying to run an olde
 On some systems, the progress bar break down into 8 apples during boot. No confirmation yet if the patch works. Added in r5119.
 
 ### KernelLapic
-&rarr; See [**Quirks**]([https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)) Section
+&rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### KernelPm
-&rarr; See [**Quirks**]([https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)) Section
+&rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### KernelXCPM
-&rarr; See [**Quirks**]([https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)) Section
+&rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### KernelToPatch
 This list is for patching Kernels for debugging primarily. But in raree cases it's used for making features work that wouldn't work otherwise, like enabling XCPM on IvyBridge CPUs or enabling macOS Catalina to use the Intel I-225 Ethernet Controller. Rarely used by mere mortals.
