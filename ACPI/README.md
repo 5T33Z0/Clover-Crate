@@ -342,7 +342,6 @@ This section is primarily aimes at enableing/fixing CPU Power Management.
 
 This value appears in real Macs, for iMacs it's about 200, for MacPro it's about 10. In my opinion, iMacs are regulated by P-stats, MacPros are regulated by C-stats. And it also depends on the chipset, whether your chipset will adequately respond to D-state commands from the MacOS. The safest and easiest option is *not to set this parameter*, everything will work fine as it is.
 
-
 ### Double First State
 
 In order for [Speedstep](https://en.wikipedia.org/wiki/SpeedStep) to work correctly, it is necessary to duplicate the first state of the P-states table. Although the necessity of this fix has become doubtful for newer CPUs, it is still relevant to Intel CPUs of the `Ivy Bridge` family.
@@ -429,7 +428,7 @@ In this array, you can list tables which should be discarded from loading. These
 
 ### Debug
 
-![Bildschirmfoto 2021-05-16 um 08 16 49](https://user-images.githubusercontent.com/76865553/135732560-dd0763b8-a4c7-463d-9d3c-c0a08e929fc6.png)
+![Debug](https://user-images.githubusercontent.com/76865553/136655999-a2c369e4-14d3-4410-87ad-7473da46c749.png)
 
 Enables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps resolving issues.
 
