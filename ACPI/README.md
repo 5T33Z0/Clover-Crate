@@ -1,4 +1,3 @@
-[TOC]
 # I. ACPI
 
 The ACPI section offers many options to affect the ACPI Tables of a system in order to assist users to make it compatible with macOS: from replacing characters in the `DSDT`, over renaming devices, enabling features to applying patches. Since this section is the centerpiece of your `config.plist`, every available option is explained here. This is how it looks like in Clover Configurator:
@@ -424,7 +423,13 @@ In this array, you can list tables which should be discarded from loading. These
 
 ![Bildschirmfoto 2021-05-16 um 08 31 09](https://user-images.githubusercontent.com/76865553/135732710-df439b95-b7b9-4e88-bd47-0bc082ec63a6.png)
 
-**Note**: No info present in the manual. I guess you can add SSDTs from the `ACPI/patched` folder which should be omitted from loading.
+Yo can add SSDTs from the `ACPI/patched` folder which should be omitted from loading when booting the system.
+
+## Sorted Order
+
+Creates an array to load SSDTs in the `ACPI/patched` folder in the order specified in this list once you add an SSDT to this list. Only SSDTs present in this array will be loaded, namely in the specified order.
+
+In General, a problem with tables is their name. While it is not unusual for OEM Tabkes to use the national alphabet, or just no name, for Apple, it is inacceptable. The name has to be 4 characters of the Roman alphabet. Use "FixHeaders" to fix this issue.
 
 ### Debug
 
@@ -460,9 +465,3 @@ Advanced Hackers can use a binary rename to fix it (not covered here).
 
 ### DSDT name: 
 Here you can specify the name of your **patched** custom DSDT if it is called something other than `DSDT.aml`, so that Clover picks it up and applies it.
-
-### Sorted Order
-
-Creates an array to load SSDTs in the `ACPI/patched` folder in the order specified in this list once you add an SSDT to this list. Only SSDTs present in this array will be loaded, namely in the specified order.
-
-In General, a problem with tables is their name. While it is not unusual for OEM Tabkes to use the national alphabet, or just no name, for Apple, it is inacceptable. The name has to be 4 characters of the Roman alphabet. Use "FixHeaders" to fix this issue.
