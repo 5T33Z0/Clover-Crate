@@ -335,19 +335,19 @@ Adds Return to the `_WAK` method. It has to be, but for some reason often the `D
 ## SSDT
 ![SSDT](https://user-images.githubusercontent.com/76865553/136655891-edd9c38d-852f-476e-9ca7-4295cdb4ec38.png)
 
-This section is primarily aimes at enableing/fixing CPU Power Management.
+This section is for enabling/fixing/optimizing CPU Power Management. It's rarely used nowadays, since tools like [**ssdtPRGen**](https://github.com/Piker-Alpha/ssdtPRGen.sh) or [**SSDTTime**](https://github.com/corpnewt/SSDTTime) can generate a dedicated `SSDT` for it instaead.
 
 ### C3 Latency
 
-This value appears in real Macs, for iMacs it's about 200, for MacPro it's about 10. In my opinion, iMacs are regulated by P-stats, MacPros are regulated by C-stats. And it also depends on the chipset, whether your chipset will adequately respond to D-state commands from the MacOS. The safest and easiest option is *not to set this parameter*, everything will work fine as it is.
+This value appears in real Macs, for iMacs it's about 200, for MacPro it's about 10. In my opinion, iMacs are regulated by P-stats, MacPros are regulated by C-stats. And it also depends on the chipset, whether your it will adequately respond to D-state commands from the MacOS. The safest and easiest option is to ***not set this parameter*** and everything will work fine as is.
 
 ### Double First State
 
-In order for [Speedstep](https://en.wikipedia.org/wiki/SpeedStep) to work correctly, it is necessary to duplicate the first state of the P-states table. Although the necessity of this fix has become doubtful for newer CPUs, it is still relevant to Intel CPUs of the `Ivy Bridge` family.
+In order for [Speedstep](https://en.wikipedia.org/wiki/SpeedStep) to work correctly, it is necessary to duplicate the first state of the P-states table. Although the necessity of this fix has become doubtful for newer CPUs, it is still relevant when using 3rd Gen Intel CPUs (Codename `IvyBridge`).
 
 ### Drop OEM
 
-Since we are going to dynamically load our own SSDT tables, we need to avoid unnecessary overlaps code to avoid conflicts. This option allows you to discard all native tables in favor of new ones. 
+Since we are going to dynamically load our own SSDT tables, we need to avoid unnecessary code overlaps to avoid conflicts. This option allows you to discard all native tables in favor of new ones. 
 
 If you want to avoid patching SSDT tables altogether, there is another option: put the native tables with minor edits in the `EFI/OEM/xxx/ACPI/patched/` Folder, and discard the unpatched tables. However, it is recommended to use the selective Drop method mentioned above.
 
@@ -356,14 +356,11 @@ If you want to avoid patching SSDT tables altogether, there is another option: p
 Specify which C-States you want to enable/generate.
 
 ### Generate
+![](/Users/kl45u5/Desktop/Generate_Options.png)
 
-In the new Clover, this group of parameters is combined into a sub-section:
+In the new Clover, this group of parameters is combined into one section, and `PluginType` is now just `true` or `false`. The other `PluginType` key (the one with the dropdown menu) is obsolete and only kept for ackward compatibility!
 
-- Generate `CStates`
-- Generate `PStates`
-- `APLF`
-- `ASPN`
-- `PluginType` either `true` or `false`.
+The APLF and APSN parameters seem to affect speedstep, but for those who know what they are for. Note: Because APSN/APLF are part of Generate→PStates, they act if Generate→PStates=true, whereas PluginType is independent and acts independently of the Generate→PStates choice.
 
 #### APLF
 
