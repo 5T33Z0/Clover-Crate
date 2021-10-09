@@ -65,7 +65,7 @@ Clover will choose between `1` and `2` based on an analysis of the mobility bit,
 
 ## DSDT
 ### Patches
-In this sub-section, you can add renaming rules (binary renames) to replace text inside your system's `DSDT` dynamically in binary code, represented by hex values. In other words, you replace text (characters, digits and symbols) with other text to either avoid conflicts with macOS or to make certain devices/features work within macOS by renaming them to something it knows.
+In this sub-section of `ACPI`, you can add renaming rules (binary renames) to replace text inside your system's `DSDT` dynamically in binary code, represented by hex values. In other words, you replace text (characters, digits and symbols) with other text to either avoid conflicts with macOS or to make certain devices/features work within macOS by renaming them to something it knows.
 
 ![Bildschirmfoto 2021-05-16 um 07 27 17](https://user-images.githubusercontent.com/76865553/135732656-82fe792e-7225-4255-beb9-d1074eb1522b.png)
 
@@ -300,7 +300,7 @@ The DSDT has regions that have their own addresses, such as:
 ```
 is sufficient if you have a well-made custom DSDT with all your needed fixes. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it in the ACPI Section is inappropriate.
 
-### FixRTC and Rtc8Allowed
+### FixRTC
 
 Removes interrupt from device `_RTC`. It's a required fix and it is very strange that someone would not enable it. If there is no interrupt in the original, then this patch won't cause any harm. However, the question arose about the need to edit the length of the region. To avoid clearing `CMOS`, you need to set the length to `2`, but at the same time a phrase like `"…only single bank…"` appears in the Kernel Log.
 
@@ -319,7 +319,7 @@ I do not know what is wrong with this message, but it can be excluded if the len
 * `true` - the length of the region will remain 8 bytes, if there was one,
 * `false` - will be corrected by 2 bytes, which more reliably prevents the CMOS from being reset.
 
-As researched by vit9696 the region length should still be 8, because you need it to save the hibernation key. So the fix itself is useful. Sinc on desktops, hibernation is not needed, you may think about resetting the CMOS.
+As researched by vit9696, the region length should still be `8`, because you need it to save the hibernation key. So the fix itself is useful. Sinc on desktops, hibernation is not needed, you may think about resetting the CMOS.
 
 ### FixS3D
 
@@ -416,7 +416,7 @@ Specify which C-States you want to enable/generate.
 Enables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps resolving issues.
 
 ### RTC8Allowed
-see "Fixes [2]" Section → "FixRTC".
+Aee "Fixes [2]" Section → "[**FixRTC**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#fixrtc)".
 
 ### ReuseFFFF
 In some cases, the attempt to patch the GPU is hindered by the presence of:
