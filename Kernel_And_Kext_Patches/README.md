@@ -1,5 +1,5 @@
 # Kernel and Kext Patches
-![](/Users/kl45u5/Desktop/KernelQuirks.png)
+![KernelQuirks](https://user-images.githubusercontent.com/76865553/136670474-678b7ae1-b5ec-4791-963a-7af091a833ca.png)
 
  This is a group of parameters for creating binary patches on the fly. Note that this can only be done if the kernelcache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 sub-sections: one with Kernel Patches which you can click on. Theses are primarily to make your CPU work with macOS.
 
@@ -39,5 +39,6 @@ On some systems, the progress bar break down into 8 apples during boot. No confi
 This list is for patching Kernels for debugging primarily. But in raree cases it's used for making features work that wouldn't work otherwise, like enabling XCPM on IvyBridge CPUs or enabling macOS Catalina to use the Intel I-225 Ethernet Controller. Rarely used by mere mortals.
 
 ## Kext Patches
-![](/Users/kl45u5/Desktop/KnKPatches.png)
+![KnKPatches](https://user-images.githubusercontent.com/76865553/136670510-106715c6-884d-4e6a-b151-34d45d9b231a.png)
+
 This is a commonly used section to patch kexts in order to enable certain features like enabling Trim or to disable the USB Portlimition of macOS to use more than 15 ports per Controller. 
