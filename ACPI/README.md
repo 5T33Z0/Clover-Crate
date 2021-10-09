@@ -334,16 +334,17 @@ Removes the interrupt from the _TMR timer in the same way. It is deprecated and 
 Adds Return to the `_WAK` method. It has to be, but for some reason often the `DSDT` does not contain it. Apparently the authors adhered to some other standards. In any case, this fix is completely safe.
 
 ## SSDT
+This section is primarily aimes at enableing/fixing CPU Power Management.
 
-![Bildschirmfoto 2021-05-16 um 19 14 17](https://user-images.githubusercontent.com/76865553/135732594-1b3cf4b8-9b3e-48e2-9cda-6f0b7d95e7cc.png)
+![Bildschirmfoto 2021-05-16 um 19 14 17](/Users/kl45u5/Desktop/SSDT.png)
+### C3 Latency
+
+This value appears in real Macs, for iMacs it's about 200, for MacPro it's about 10. In my opinion, iMacs are regulated by P-stats, MacPros are regulated by C-stats. And it also depends on the chipset, whether your chipset will adequately respond to D-state commands from the MacOS. The safest and easiest option is *not to set this parameter*, everything will work fine as it is.
+
 
 ### Double First State
 
 In order for [Speedstep](https://en.wikipedia.org/wiki/SpeedStep) to work correctly, it is necessary to duplicate the first state of the P-states table. Although the necessity of this fix has become doubtful for newer CPUs, it is still relevant to Intel CPUs of the `Ivy Bridge` family.
-
-### NoDynamicExtract
-
-If set to `true`, this flag will disable the extraction of dynamic SSDTs when using `F4` in the bootloader menu. Dynamic SSDTs are rarely needed and usually cause confusion (erroneously putting them in the `ACPI/patched` Folder). Added by Rehabman in revision 4359.
 
 ### Drop OEM
 
@@ -351,47 +352,35 @@ Since we are going to dynamically load our own SSDT tables, we need to avoid unn
 
 If you want to avoid patching SSDT tables altogether, there is another option: put the native tables with minor edits in the `EFI/OEM/xxx/ACPI/patched/` Folder, and discard the unpatched tables. However, it is recommended to use the selective Drop method mentioned above.
 
-### Use SystemIO
+### Enable C2, C4, C6 and C7
 
-If set to `true`, the SSDT section will be used to select in the generated `_CST` tables between:
-
-```swift
-Register (FFixedHW,
-Register (SystemIO,
-```
-### NoOEMTableID
-
-If set to `true`, the OEM table identifier is *NOT* added to the end of file name in ACPI tables dump by pressing `F4` in the Clover Boot Menu. If set to `false`, end spaces are removed from SSDT names when the OEM table ID is added as a suffix. Added by Rehabman in revisions 4265 to 4346.
+Specify which C-States you want to enable/generate.
 
 ### Generate
 
 In the new Clover, this group of parameters is combined into a sub-section:
 
-- Generate `PStates`
 - Generate `CStates`
+- Generate `PStates`
+- `APLF`
 - `ASPN`
-- `APLF`</br>
 - `PluginType` either `true` or `false`.
+
+#### APLF
+
+#### APSN
 
 **NOTE**: Since APSN/APLF are components of `PStates`, they are *only* active *if* `PStates` are enabled (`true`), whereas `PluginType` works independently of `PStates`.
 
 **IMPORTANT**: None of the `Generate` options are needed if a custom SSDT-PM has been generated with ssdtPRGen or SSDTTime!
 
-#### Generate PStates/CStates
+#### CStates/PStates
 
 Here we specify that two additional tables are generated for C-States and for P-States, according to the rules developed by the hackintosh community. For C-States the table with parameters C2, C4, C6, Latency mentioned in the CPU section. It is also possible to specify the ones in the SSDT section.
 
 #### PluginType
 
 For Haswell and newer CPUs you should set the key to `1`, for older ones to `0`. This key, together with the Generate → `PluginType` key, makes it possible to generate an SSDT table containing only `PluginType`, but no P-States if their generation is disabled. This key is not needed; it has been saved for backward compatibility.
-
-### PLimit Dict
-
-`PLimitDict` limits the maximum speed of the processor. If set to `0` - the speed is maximal, `1` - one step below maximal. If this key is missing here, the processor will be stuck at the minimum frequency.
-
-### UnderVolt Step
-
-Optional parameter to reduce the temperature of the processor by reducing its operating voltage. Possible values are 0 to 9. The higher the value, the lower the voltage, resulting in lower temperatures – until the computer hangs. This is where foolproof protection comes in: Clover won't let you set any value outside the specified range. However, even allowed values can result in unstable operation. The effect of undervolting is really noticeable. However, this parameter is only only applicable to Intel CPUs of the `Penryn` family.
 
 ### Min Multiplier
 
@@ -401,13 +390,44 @@ Minimum CPU multiplier. It itself reports 16, and prefers to run at 1600, but yo
 
 Introduced in conjunction to Min Multiplier, but it seems to be doing nothing and should not be used. However, it somehow affects the number of P-states, so you can experiment with it, but you shouldn't do it without a special need.
 
-### C3 Latency
 
-This value appears in real Macs, for iMacs it's about 200, for MacPro it's about 10. In my opinion, iMacs are regulated by P-stats, MacPros are regulated by C-stats. And it also depends on the chipset, whether your chipset will adequately respond to D-state commands from the MacOS. The safest and easiest option is *not to set this parameter*, everything will work fine as it is.
+### NoDynamicExtract
 
-### Enable C2, C4, C6 and C7
+If set to `true`, this flag will disable the extraction of dynamic SSDTs when using `F4` in the bootloader menu. Dynamic SSDTs are rarely needed and usually cause confusion (erroneously putting them in the `ACPI/patched` Folder). Added by Rehabman in revision 4359.
 
-Specify which C-States you want to enable/generate.
+### NoOEMTableID
+
+If set to `true`, the OEM table identifier is *NOT* added to the end of file name in ACPI tables dump by pressing `F4` in the Clover Boot Menu. If set to `false`, end spaces are removed from SSDT names when the OEM table ID is added as a suffix. Added by Rehabman in revisions 4265 to 4346.
+
+### PLimit Dict
+
+`PLimitDict` limits the maximum speed of the processor. If set to `0` - the speed is maximal, `1` - one step below maximal. If this key is missing here, the processor will be stuck at the minimum frequency.
+
+### Use SystemIO
+
+If set to `true`, the SSDT section will be used to select in the generated `_CST` tables between:
+
+```swift
+Register (FFixedHW,
+Register (SystemIO,
+```
+
+### UnderVolt Step
+
+Optional parameter to reduce the temperature of the processor by reducing its operating voltage. Possible values are 0 to 9. The higher the value, the lower the voltage, resulting in lower temperatures – until the computer hangs. This is where foolproof protection comes in: Clover won't let you set any value outside the specified range. However, even allowed values can result in unstable operation. The effect of undervolting is really noticeable. However, this parameter is only only applicable to Intel CPUs of the `Penryn` family.
+
+## Drop Tables
+
+![Bildschirmfoto 2021-05-16 um 08 28 35](https://user-images.githubusercontent.com/76865553/135732583-c8d61605-03af-4b78-a4db-4df9d1e68d56.png)
+
+In this array, you can list tables which should be discarded from loading. These include various table signatures, such as `DMAR`, which is often dropped because macOS does not like `VT-d` technology. Other tables to drop would would be `MATS` (fixes issues with High Sierra) or `MCFG` because by specifying a MacBookPro or MacMini model, we get severe brakes. A better method has already been developed.
+
+## DisableAML
+
+![Bildschirmfoto 2021-05-16 um 08 31 09](https://user-images.githubusercontent.com/76865553/135732710-df439b95-b7b9-4e88-bd47-0bc082ec63a6.png)
+
+**Note**: No info present in the manual. I guess you can add SSDTs from the `ACPI/patched` folder which should be omitted from loading.
+
 
 ### Debug
 
@@ -443,18 +463,6 @@ Advanced Hackers can use a binary rename to fix it (not covered here).
 
 ### DSDT name: 
 Here you can specify the name of your **patched** custom DSDT if it is called something other than `DSDT.aml`, so that Clover picks it up and applies it.
-
-## Drop Tables
-
-![Bildschirmfoto 2021-05-16 um 08 28 35](https://user-images.githubusercontent.com/76865553/135732583-c8d61605-03af-4b78-a4db-4df9d1e68d56.png)
-
-In this array, you can list tables which should be discarded from loading. These include various table signatures, such as `DMAR`, which is often dropped because macOS does not like `VT-d` technology. Other tables to drop would would be `MATS` (fixes issues with High Sierra) or `MCFG` because by specifying a MacBookPro or MacMini model, we get severe brakes. A better method has already been developed.
-
-### DisableAML
-
-![Bildschirmfoto 2021-05-16 um 08 31 09](https://user-images.githubusercontent.com/76865553/135732710-df439b95-b7b9-4e88-bd47-0bc082ec63a6.png)
-
-**Note**: No info present in the manual. I guess you can add SSDTs from the `ACPI/patched` folder which should be omitted from loading.
 
 ### Sorted Order
 
