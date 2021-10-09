@@ -319,7 +319,7 @@ I do not know what is wrong with this message, but it can be excluded if the len
 * `true` - the length of the region will remain 8 bytes, if there was one,
 * `false` - will be corrected by 2 bytes, which more reliably prevents the CMOS from being reset.
 
-As researched by vit9696, the region length should still be `8`, because you need it to save the hibernation key. So the fix itself is useful. Sinc on desktops, hibernation is not needed, you may think about resetting the CMOS.
+As researched by vit9696, the region length should still be `8`, because you need it to save the hibernation key. So the fix itself is useful. Since hibernation is not needed on Desktops, you may consider resetting the CMOS.
 
 ### FixS3D
 
