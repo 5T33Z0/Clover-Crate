@@ -28,7 +28,7 @@ The information provided in this repository is primarily based on excerpts of th
 - [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
 - [**Boot Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics)
 - [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices)
-- [**KernelAndKextPatches**] To do
+- [**KernelAndKextPatches**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kernel_And_Kext_Patches)
 - [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
 - [**RtVariables**] To do
 - [**SMBIOS**] To do
