@@ -1,16 +1,73 @@
+[TOC]
 # I. ACPI
 
-The ACPI section houses many options to affect ACPI Tables of a system in order to assist users to make it compatible with macOS: from replacing characters in the `DSDT`, over renaming devices to applying patches and fixes, etc. Since this section is the centerpiece of your `config.plist`, every available option is explained here. This is how it looks like in Clover Configurator:
+The ACPI section offers many options to affect the ACPI Tables of a system in order to assist users to make it compatible with macOS: from replacing characters in the `DSDT`, over renaming devices, enabling features to applying patches. Since this section is the centerpiece of your `config.plist`, every available option is explained here. This is how it looks like in Clover Configurator:
 
 ![ACPI_FULL](https://user-images.githubusercontent.com/76865553/135732525-5ad50aa8-6bfe-47b4-82b7-3bc3df8c6f62.png)
 
-Throughout this chapter, this section is broken down further into smaller chunks to make it more digestible.
+Throughout this chapter, this section is broken down into smaller chunks to make it more digestible.
+
+## AutoMerge
+
+![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135732535-ca43869b-4e97-47b2-a490-9c8aa5488fa8.png)
+
+Merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI tables.
+
+If set to `true`, it changes the way files in `ACPI/patched` are handled: Instead of adding these files at the end of the `DSDT` it will replace that table, if the signature, index and `OemTableId` match an existing OEM table.
+
+With this function – as with `DSDT` – you can fix individual SSDTs (or other tables) simply by addind the corrected file(s) into `ACPI/patched`. No need to fiddle with `DropOem` or `DropTables`. The original order is preserved. The mapping for `SSDT` is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the `SSDT` position in `DSDT`. 
+
+For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you could just fix it nd put it back in `ACPI/patched`, replacing the original table. This also works if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. If you stick to the names provided in `ACPI/origin`, you should be fine.
+
+## Disable ASPM
+
+Active-state power management (ASPM) is a power management mechanism for PCI Express devices to garner power savings while otherwise in a fully active state. It is normally used on laptops and other mobile Internet devices to extend battery life.
+
+This patch affects the settings of the ACPI system itself, such as the fact that Apple's ASPM management does not work as expected. For example when using non-native chipsets.
+
+## FixHeaders
+
+`FixHeaders` will check the headers of not only the `DSDT` but all ACPI tables in general, removing Chinese characters from table headers since macOS can not handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you still need it. 
+
+Whether you have a problem with tables or not, it's safe to enable this fix. It is recommended to all users, even if you are not having to fix your DSDT. Old setting inside DSDT fixes remains for backward compatibility but I recommend to exclude it from those section.
+
+## FixMCFG
+
+The `MCFG` table describes the location of the PCI Express configuration space, and this table will be present in a firmware implementation compliant to this specification version 3.0 (or later).
+
+If `FixMCFG` is enabled, the table will corrected. The author of the patch is vit9696. However, the method of discarding this table is still in stock.
+
+## Halt Enabler
+
+This Patch is for fixing the shutdown/sleep problem during UEFI boot. The fix is injected before calling `boot.efi`, clearing `SLP_SMI_EN` before the start of macOS. Nevertheless it is quite safe, at least on Intel systems.
+
+## Patch APIC
+
+Some systems can only be started using kernel parameter `cpus=1` or with a patched kernel (Lapic NMI). A simple analysis showed that their `MADT` table is missing the NMI section.`Patch APIC` fixes such tables on the fly. If the table is complete already, nothing will be changed.
+
+## Reset Address / Reset Value
+
+These two parameters serve a common purpose - to fix restart. They be present in the `FADT` table, but that's not always the case. Sometimes the table is shorter than necessary, so these values are missing. 
+
+The variables are present in the `FACP` table but if they are empty, then `0x64`/`0xFE`are used, which means restart via PS2 Controller. This does not always work for everyone. Alternatively use `0x0CF9`/`0x06`, which means restart via PCI Bus. This pair is also used on native Macs, but does not always work on Hackintoshes. The difference is clear: on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Anoter combinations is `0x92`/`0x01`.
+
+Last but not least you can set them to `0x0`/`0x0` to allow the use of default `FACP` values. If not present, the default values states above will be used instead.
+
+## Smart UPS
+
+This parameter affects the selected power profile, which will be written into the `FADT` table and changes it to profile `3`. The logic is as follows:
+
+`PM=1` - Desktop , mains power </br>
+`PM=2` - Notebook, mains or battery power </br>
+`PM=3` - Server, powered by SmartUPS, which macOS also supports
+
+Clover will choose between `1` and `2` based on an analysis of the mobility bit, but there is also a Mobile parameter in the SMBIOS section. You can say, for example, that we have a MacMini and that it is mobile. A value of `3` will be substituted if `smartUPS=Yes`.
 
 ## DSDT
 ### Patches
-![Bildschirmfoto 2021-05-16 um 07 27 17](https://user-images.githubusercontent.com/76865553/135732656-82fe792e-7225-4255-beb9-d1074eb1522b.png)
+In this sub-section, you can add renaming rules (binary renames) to replace text inside your system's `DSDT` dynamically in binary code, represented by hex values. In other words, you replace text (characters, digits and symbols) with other text to either avoid conflicts with macOS or to make certain devices/features work within macOS by renaming them to something it knows.
 
-In this sub-section, you can add renaming rules (binary renames) to replace text inside your system's `DSDT` dynamically as binary code, represented by hex values. In other words, you replace text (characters, digits and symbols) with other text to either avoid conflicts with macOS or to make certain devices/features work within macOS by renaming them to something it knows.
+![Bildschirmfoto 2021-05-16 um 07 27 17](https://user-images.githubusercontent.com/76865553/135732656-82fe792e-7225-4255-beb9-d1074eb1522b.png)
 
 If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a `Find` value of `45484331` and a `Replace` value of `45483031` which literally translates to `EHC1` and `EH01` if you decode the hex values back to text with the Hex Converter in the "Tools" section of Clover Configurator. Which renames to use when depends on your system, used macOS version, etc. and is not part of this overview.
 
@@ -21,7 +78,7 @@ If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a 
 **I. About binary renames**
 
 - The following device renames are standardized in order to match device names used in real Macs and to facilitate the creation of part patches.
-- Renaming devices and methods (including `_DSM`) are applied globally to a system's `DSDT`.
+- Renaming devices and methods (including [`_DSM`](https://patchwork.kernel.org/project/spi-devel-general/patch/8ce38be1389dfb0527961ccd0dedb609802b59c1.1498044532.git.lukas@wunner.de/)) are applied globally to a system's `DSDT`.
 
 Following are examples of commonly renamed devices:
 
@@ -67,9 +124,9 @@ Names like `_DSM` with and underscor in front of them define a method. These are
 To convert any text to a hex you can use the Hex Converter inside of Clover Configurator
 </details>
 
-`RenameDevices` serves as a more refined method for renaming rules which is less brute force than using a simple binary rename which replaces *every* occurrence of a word/value throughout the *whole* `DSDT`, which can be problematic. The rules create here only apply to the ACPI path specified in the `Find Device` field, so these patches are much cleaner, less invasive and more efficient way of patching devices defined in the `DSDT`. 
+`RenameDevices` serves as a more refined method for renaming devices which is less brute force than using a simple binary rename which replaces *every* occurrence of a word/value throughout the *whole* `DSDT`, which can be problematic. The rules created here only apply to the ACPI path specified in the `Find Device` field, so these patches are more precise, less invasive and more efficient than renaming them via `DSDT` > `Patches`.
 
-To use this section properly you need a dump the unmodified `DSDT` and examine it with maciASL. In this case, we search for `ECH1`:
+To use this section properly, you need a dump the unmodified `DSDT` and examine it with maciASL. In this case, we search for `ECH1`:
 
 ![Rename Devices](https://user-images.githubusercontent.com/76865553/135732661-ba636a72-9490-4c6f-a018-bdede3752fa6.jpg)
 
@@ -103,68 +160,58 @@ Prior to revision 5123.1, Clover's `TgtBridge` had a bug, where it would not onl
 
 In addition to the `DeviceProperties`, there is also a Device Specific Method (`_DSM`) specified in the `DSDT` called `DTGP` to inject custom parameters into some devices. 
 
-`_DSM` ia a well-known method, which is included in macOS since version 10.5. It contains an array with a device description and a call to the universal DTGP method, which is the same for all devices. Without the DTGP method, modified `DSDTs` would not work well. This fix simply adds this method so that it can then be applied to other fixes. It does not work on its own alone.
-
-### FixDarwin
-
-Mimics Windows XP under Darwin OS. Many sleep and brightness problems stem from misidentification of the system.
-
-### FixShutdown
-
-A condition is added to the `_PTS` method: if argument = 5 (shutdown), then no other action is required. Strange, why? Nevertheless, there is repeated confirmation of the effectiveness of this patch for ASUS boards, maybe for others, too. Some `DSDT` already have such a check, in which case such a fix should be disabled. If `SuspendOverride` = `true` is set in the config, then this fix will be extended by arguments 3 and 4. That is, going to sleep (Suspend). On the other hand, if `HaltEnabler` = `true`, then this patch is probably no longer needed.
+`_DSM` ia a well-known method, which is included in macOS since version 10.5. It contains an array with a device description and a call to the universal `DTGP` method, which is the same for all devices. Without the `DTGP` method, modified `DSDTs` would not work well. This fix simply adds this method so that it can then be applied to other fixes. It does not work on its own alone.
 
 ### AddMCHC
 
 Such a device of class `0x060000` is, as a rule, absent in the DSDT, but for some chipsets this device is serviceable, and therefore it must be prescribed in order to properly wire the power management of the PCI bus. The question of the need for a patch is solved experimentally. Another experience, this device was needed on a mother with a Z77 chipset, otherwise the kernel panic at the initial stage of launch. Conversely, on the G41M (ICH7) chipset, this fix causes panic. Unfortunately, there is no general rule in sight.
 
-### FixHPET
+### FixAirport
 
-As already mentioned, this is the main fix needed. Thus, the minimum required `DSDT` patch mask looks like `0x0010`.
+Similar to LAN, the device itself is created, if not already registered in `DSDT`. For some well-known models, the `DeviceID` is replaced with a supported one. And the Airport turns on without other patches.
 
-### FakeLPC
+### FixDarwin
 
-Replaces the DeviceID of the LPC controller so that the AppleLPC kext is attached to it. It is necessary for those cases when the chipset is not provided for macOS (for example ICH9). However, the native list of Intel and nForce chipsets is so large that the need for such a patch is very rare. It checks in the system whether the AppleLPC kext is loaded, if not, the patch is needed.
-
-### FixIPIC
-
-Removes the interrupt from the `IPIC` device. This fix affects the operation of the Power Button (a pop-up window with the Reset, Sleep, Shutdown options).
-
-### FixSBus
-
-Adds the SMBusController to the device tree, thereby removing the warning about its absence from the system log. And it also creates the correct bus power management layout, which also affects sleep.
+Mimics Windows XP under Darwin OS. Many sleep and brightness problems stem from misidentification of the system.
 
 ### FixDisplay
 
-Produces a number of video card patches. Injects properties, and the devices themselves, if they are not present. Injects FakeID if ordered. Adds custom properties. The same fix adds an HDAU device for audio output via HDMI. If the FakeID parameter is specified, then it will be injected through the _DSM method. Patches for all video cards, only for non-Intel. For built-in intel another bit is used.
-
-### FixDisplay
-
-Produces a number of patches for the video non-Intel video cards. Injects properties, and the devices themselves, if they are not present. Injects the FakeID if ordered. Adds custom properties. The same fix adds also adds an HDAU device for audio output via HDMI. If the FakeID parameter is set, it will be injected via the _DSM method. Intel on-board graphics require other fixes.
-
-### FixIDE
-
-In the 10.6.1 system, there was a panic on the `AppleIntelPIIXATA.kext`. Two solutions to the problem: use the corrected kext, or fix the device in the DSDT. And for more modern systems? Use it, if there is such a controller (which is highly unlikely since IDE is no longer used).
-
-### FixSATA
-
-Fixes some problems with SATA, and removes the yellowness of disk icons in the system by mimicry under ICH6. Actually a controversial method, however, without this fix, my DVDs will not play, and for a DVD the drive should not be removable. Those. just replacing the icon is not an option! There is an alternative, solved by adding a fix with the `AppleAHCIport.kext`. See the chapter on patching kexts. And, accordingly, this bit can be omitted! One of the few bits I recommend not to use.
+Produces a number of video card patches non-Intel video cards. Injects properties, and the devices themselves, if they are not present. Injects FakeID if ordered. Adds custom properties. The same fix adds an HDAU device for audio output via HDMI. If the FakeID parameter is specified, then it will be injected through the _DSM method. Patches for all video cards, only for non-Intel. Intel on-board graphics require other fixes.
 
 ### FixFirewire
 
 Adds the "fwhub" property to the Firewire controller, if present. If not, then nothing will happen. You can bet if you don't know if you need to or not.
 
-### FixAirport
-
-Similar to LAN, the device itself is created, if not already registered in `DSDT`. For some well-known models, the `DeviceID` is replaced with a supported one. And the Airport turns on without other patches.
-
-### FixLAN
-Injection of the "built-in" property for the network card is necessary for correct operation. Also a card model is injected - for cosmetics.FixSBUS
-
-Adds SMBus Controller to the device tree, thereby removing the warning about its absence from the system log. And also creates the correct bus power management routung. Also affects sleep.
-
 ### FixHDA
 
-Correction of the description of the sound card in the DSDT so that the native AppleHDA driver works. Renaming AZAL -> HDEF is performed, layout-id and PinConfiguration are injected.
+Correction of the description of the sound card in the `DSDT` so that the native AppleHDA driver works. Renaming `AZAL` to `HDEF` is performed, `layout-id` and `PinConfiguration` are injected. Obsolete nowadays, since `AppleALC.kext` handles this (in combination with the correct `layout-id` entered in the `Devices` section).
+
+### FixHPET
+
+As already mentioned, this is the main fix needed. Thus, the minimum required `DSDT` patch mask looks like `0x0010`.
+
+### FixIDE
+
+In macOS 10.6.1, there was a panic on the `AppleIntelPIIXATA.kext`. Two solutions to the problem are known: use a corrected kext, or fix the device in the `DSDT`. And for more modern systems? Use it, if there is such a controller (which is highly unlikely since IDE is obsolete).
+
+### FixIPIC
+
+Removes the interrupt from the `IPIC` device. This fix affects the operation of the Power Button (a pop-up window with the Reset, Sleep, Shutdown options).
+
+### FixLAN
+Injection of the "built-in" property for the network card is necessary for correct operation. Also a card model is injected - for cosmetics.
+
+### FixSATA
+
+Fixes some problems with SATA, and removes the yellowness of disk icons in the system by mimicry under ICH6. Actually a controversial method, however, without this fix, my DVDs will not play, and for a DVD the drive should not be removable. Those. just replacing the icon is not an option! There is an alternative, solved by adding a fix with the `AppleAHCIport.kext`. See the chapter on patching kexts. And, accordingly, this bit can be omitted! One of the few bits I recommend not to use.
+
+### FixSBus
+
+Adds the System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep.
+
+### FixShutdown
+
+A condition is added to the `_PTS` (prepare to slwwp) method: if argument = 5 (shutdown), then no other action is required. Strange, why? Nevertheless, there is repeated confirmation of the effectiveness of this patch for ASUS boards, maybe for others, too. Some `DSDT` already have such a check, in which case such a fix should be disabled. If `SuspendOverride` = `true` is set in the config, then this fix will be extended by arguments 3 and 4. That is, going to sleep (Suspend). On the other hand, if `HaltEnabler` = `true`, then this patch is probably no longer needed.
 
 ### FixUSB
 
@@ -174,9 +221,84 @@ Attempts to solve numerous USB problems. For the `XHCI` controller, when using t
 
 ![Bildschirmfoto 2021-05-16 um 08 04 15](https://user-images.githubusercontent.com/76865553/135732698-6ead0af4-304c-4570-a407-aaafb70506f2.png)
 
+### AddHDMI
+
+Adds an `HDAU` device to `DSDT` that matches the HDMI output on an ATI or Nvidia video card. It is clear that since the card was bought separately from the motherboard, there is simply no such device in the native DSDT. In addition, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device as appropriate:
+
+* `1` if UseIntelHDMI = false
+* `2` if there is an Intel port that occupied port 1.
+
+### AddIMEI
+
+Required primarily for Sandy Bridge CPUs, which adds the `IMEI` device to the device tree, if it does not exist already.
+
+When mixing Ivy Bridge CPUs with 6 series motherboards, the IMEI device becomes incompatible with macOS. The device-id won't be recognized and this is a very important issue as macOS relies on the `IMEI` device for iGPU drivers. The same applies when mixing Sandy Bridge CPUs with 7 series motherboards.
+
+### AddPNLF
+
+Inserts a PNLF (Backlight) device, which is necessary to properly control the screen brightness, and, oddly enough, helps to solve the problem with sleep, including for the desktop.
+
+### PNLF_UID
+
+There are several sample brightness curves/graphs in the system and they have different UIDs. If some realtor used that curve, that doesn't mean that you will have the same brightness with the same processor. It depends on the panel – not the processor.
+
+Generally speaking, It would be better to build a `PNLF` calibration system, but that's acrobatics. For now, all we're suggesting is to experiment with different values, and see if it gets better. Added in revision r5103.
+
+### DeleteUnused
+
+Removes unused floppy, CRT and DVI devicese - an absolute prerequisite for running IntelX3100 on Dell laptops. Otherwise black screen, tested by hundreds of users.
+
+### FakeLPC
+
+Replaces the DeviceID of the LPC controller so that the AppleLPC kext is attached to it. It is necessary for those cases when the chipset is not provided for macOS (for example ICH9). However, the native list of Intel and nForce chipsets is so large that the need for such a patch is very rare. It checks in the system whether the AppleLPC kext is loaded and if is not, the patch is needed.
+
+### FixACST
+
+Some DSDTs can have a device, method or variable named `ACST`, but this name is also used by macOS 10.8+ to control C-States! 
+
+As a result, a completely implicit conflict with very unclear behavior can occur. This fix renames all occurrences of `ACST` to `OCST` which is safe. But check your DSDT first: search for `ACST` and check if it refers to Device `AC` and Method `_PSR`(_PSR: PowerSource) in some kind of way.
+
+### FixADP1
+
+Corrects the `ADP1` device (power supply), which is necessary for laptops to sleep correctly - plugged in or unplugged.
+
 ### FixDarwin7
 
 Same as `FixDarwin`, but for Windows 7. Old `DSDTs` may not have a check for such a system. Now you have the option to.
+
+### FixIntelGfx
+
+Patch for Intel integrated graphics is separated from the rest of the graphics cards, that is, you can put the injection for Intel and not put for Nvidia.
+
+### FixMutex
+
+This patch finds all Mutex objects and replaces `SyncLevel` with `0`. We use this patch because macOS does not support proper Mutex debugging and will break on any inquiry with Mutex that has a nonzero SyncLevel. Nonzero SyncLevel Mutex objects are one of the common causes of ACPI battery method failure. Added by Rehabman in revisions r4265 to r4346.
+
+For example, in Lenovo u430 mutexes are declared like this:
+
+`Mutex (MSMI, 0x07)`
+
+To make it compatible with macOS you need to change it to:
+
+`Mutex (MSMI, 0)`
+
+This is a very controversial patch. Use it only if you are fully aware of what you are doing.
+
+### FixRegions
+
+This is a very special patch. While other patches in this section are designed to fix `BIOS.aml` in order to create a good custom DSDT from scratch, this fix is designed for tuning an existing custom `DSDT.aml`.
+
+The DSDT has regions that have their own addresses, such as:
+`OperationRegion` (GNVS, SystemMemory, 0xDE6A5E18, 0x01CD). The problem is that this region address is created *dynamically* by the BIOS and it can be different from boot to boot. This was first noticed when changing the total amount of memory, then when changing BIOS settings, and on my computer it even depends on the pre-boot history, such as the amount of occupied NVRAM. Clearly, in the custom `DSDT.aml` this number is fixed, and therefore may not be true. The simplest observation is the lack of sleep. After fixing a region, sleep appears, but only until the next offset. This fix fixes all regions in the custom DSDT to values in the BIOS DSDT, and thus the mask
+
+```swift 
+<key>Fixes</key>
+<dict>
+	<key>FixRegions</key>
+	<true/>
+</dict>
+```
+is sufficient if you have a well-made custom DSDT with all your needed fixes. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it in the ACPI Section is inappropriate.
 
 ### FixRTC and Rtc8Allowed
 
@@ -199,85 +321,17 @@ I do not know what is wrong with this message, but it can be excluded if the len
 
 As researched by vit9696 the region length should still be 8, because you need it to save the hibernation key. So the fix itself is useful. Sinc on desktops, hibernation is not needed, you may think about resetting the CMOS.
 
-### FixTMR
-
-Removes the interrupt from the _TMR timer in the same way. It is deprecated and not used by Mac.
-
-### AddIMEI
-
-Required patch for Sandy Bridge CPUs and above, which adds the `IMEI` device to the device tree, if it does not exist already.
-
-### AddHDMI
-
-Adds an `HDAU` device to `DSDT` that matches the HDMI output on an ATI or Nvidia video card. It is clear that since the card was bought separately from the motherboard, there is simply no such device in the native DSDT. In addition, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device as appropriate:
-
-* `1` if UseIntelHDMI = false
-* `2` if there is an Intel port that occupied port 1.
-
-### FixRegions
-
-This is a very special patch. While other patches in this section are designed to fix `BIOS.aml` in order to create a good custom DSDT from scratch, this fix is designed for tuning an existing custom `DSDT.aml`.
-
-The DSDT has regions that have their own addresses, such as:
-`OperationRegion` (GNVS, SystemMemory, 0xDE6A5E18, 0x01CD). The problem is that this region address is created *dynamically* by the BIOS and it can be different from boot to boot. This was first noticed when changing the total amount of memory, then when changing BIOS settings, and on my computer it even depends on the pre-boot history, such as the amount of occupied NVRAM. Clearly, in the custom `DSDT.aml` this number is fixed, and therefore may not be true. The simplest observation is the lack of sleep. After fixing a region, sleep appears, but only until the next offset. This fix fixes all regions in the custom DSDT to values in the BIOS DSDT, and thus the mask
-
-```swift 
-<key>Fixes</key>
-<dict>
-	<key>FixRegions</key>
-	<true/>
-</dict>
-```
-is sufficient if you have a well-made custom DSDT with all your needed fixes. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it in the ACPI Section is inappropriate.
-
-### FixMutex
-
-This patch finds all Mutex objects and replaces `SyncLevel` with `0`. We use this patch because macOS does not support proper Mutex debugging and will break on any inquiry with Mutex that has a nonzero SyncLevel. Nonzero SyncLevel Mutex objects are one of the common causes of ACPI battery method failure. Added by Rehabman in revisions r4265 to r4346.
-
-For example, in Lenovo u430 mutexes are declared like this:
-
-`Mutex (MSMI, 0x07)`
-
-To make it compatible with macOS you need to change it to:
-
-`Mutex (MSMI, 0)`
-
-This is a very controversial patch. Use it only if you are fully aware of what you are doing. 
-
-### FixIntelGfx
-
-Patch for Intel integrated graphics is separated from the rest of the graphics cards, that is, you can put the injection for Intel and not put for Nvidia.
-
-### FixWAK
-
-Adds Return to the `_WAK` method. It has to be, but for some reason often the DSDT does not contain it. Apparently the authors adhered to some other standards. In any case, this fix is completely safe.
-
-### FixADP1
-
-Corrects the `ADP1` device (power supply), which is necessary for laptops to sleep correctly - plugged in or unplugged.
-
-### DeleteUnused
-
-Removes unused floppy, CRT and DVI devicese - an absolute prerequisite for running IntelX3100 on Dell laptops. Otherwise black screen, tested by hundreds of users.
-
-### AddPNLF
-
-Inserts a PNLF (Backlight) device, which is necessary to properly control the screen brightness, and, oddly enough, helps to solve the problem with sleep, including for the desktop.
-
-### PNLF_UID
-
-There are several sample brightness curves/graphs in the system and they have different UIDs. If some realtor used that curve, that doesn't mean that you will have the same brightness with the same processor. It depends on the panel – not the processor.</br>
-Generally speaking, It would be better to build a `PNLF` calibration system, but that's aerobatics. For now, all we're suggesting is to experiment with different values, and see if it gets better. Added in revision r5103.
-
 ### FixS3D
 
 Likewise, this patch solves the problem with sleep.
 
-### FixACST
+### FixTMR
 
-Some DSDTs can have a device, method or variable named `ACST`, but this name is also used by macOS 10.8+ to control C-States! 
+Removes the interrupt from the _TMR timer in the same way. It is deprecated and not used by Mac.
 
-As a result, a completely implicit conflict with very unclear behavior can occur. This fix renames all occurrences of `ACST` to `OCST` which is safe. But check your DSDT first: search for `ACST` and check if it refers to Device `AC` and Method `_PSR`(_PSR: PowerSource) in some kind of way.
+### FixWAK
+
+Adds Return to the `_WAK` method. It has to be, but for some reason often the `DSDT` does not contain it. Apparently the authors adhered to some other standards. In any case, this fix is completely safe.
 
 ## SSDT
 
@@ -354,57 +408,6 @@ This value appears in real Macs, for iMacs it's about 200, for MacPro it's about
 ### Enable C2, C4, C6 and C7
 
 Specify which C-States you want to enable/generate.
-
-### Patch APIC
-
-![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135732535-ca43869b-4e97-47b2-a490-9c8aa5488fa8.png)
-
-Some computers can only be booted with `cpus=1` or with a patched kernel (Lapic NMI patch). A simple analysis showed that their `MADT` table is wrong, missing NMI partitions. ` APIC` patches such tables on the fly. For a healthy computer, nothing bad will happen if enabled. However, I haven't seen any reports that helped anyone with anything either. 
-
-### Smart UPS
-
-This changes the power profile to `3` in the `FADT` table. The logic is as follows:
-
-`PM=1` - Desktop , mains power </br>
-`PM=2` - Notebook, mains or battery power </br>
-`PM=3` - Server, powered by SmartUPS, which macOS also supports
-
-Clover will choose between `1` and `2` based on an analysis of the mobility bit, but there is also a Mobile parameter in the SMBIOS section. You can say, for example, that we have a MacMini and that it is mobile. A value of `3` will be substituted if `smartUPS=Yes`.
-
-### Halt Enabler
-
-This Patch is for fixing the shutdown/sleep problem during UEFI boot. The fix is only injected once, before calling `boot.efi`, so 100% efficiency is not guaranteed. Nevertheless it is quite safe, at least on Intel systems.
-
-### AutoMerge
-
-Combines/merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI files.
-
-If set to `true`, it changes the way files in `ACPI/patched` are handled: Instead of adding these files at the end of the DSDT it will replace that table, if the signature, index and OemTableId match an existing OEM table.
-
-With this function – as with `DSDT`– you can fix individual SSDTs (or other tables) simply by putting the corrected file into `ACPI/patched`. No need to fumble with `DropOem` or `DropTables`. The original order is preserved. The mapping for SSDT is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the SSDT position in DSDT. 
-
-For example, if your `ACPI/origin` had `SSDT-6-SaSsdt.aml` and you wanted to fix it, you could just fix the file as needed and put it in ACPI/patched. Same if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. If you stick to the names provided in ACPI/origin, you should be fine. Added by Rehabman in r4265 to 4346.
-
-### FixHeaders
-
-`FixHeaders` will check the headers of not only the `DSDT` but all ACPI tables in general, removing Chinese characters from table headers since macOS can not handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you still need it. 
-
-Whether you have a problem with tables or not, it's safe to enable this fix. It is recommended to all users, even if you are not having to fix your DSDT. Old setting inside DSDT fixes remains for backward compatibility but I recommend to exclude it from those section.
-
-### FixMCFG
-
-If enabled, the table is not discarded, but corrected. The author of the patch is vit9696. However, the method of discarding this table is still in stock.
-
-### Disable ASPM
-
-This affects the settings of the ACPI system itself, such as the fact that Apple's ASPM management does not work as expected. For example when using non-native chipsets. In which cases it is necessary to enable, and what it affects, I do not remember. 
-> Annotation from 5T33Z0: I am still quoting the manual here, these are not my words!
-
-### Reset Address / Reset Value
-
-These two parameters serve one common purpose - to fix restart. These values should be in `FADT` table, but for some reason they are not always present, moreover, sometimes the table itself is shorter than necessary, so much shorter that these values are discarded. 
-
-The default value is already present in `FACP` but if there's nothing in it, then the pair `0x64/0xFE`is used, which means restart via PS2 Controller. Practice showed that this does not always work for everyone. Another possible value pair is `0x0CF9/0x06`, which means restart via PCI Bus. This pair is also used on native Macs, but does not always work on Hackintoshes. The difference is clear, on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Another option is `0x92/0x01`, I don't know if that helps anyone.
 
 ### Debug
 

@@ -76,9 +76,6 @@ The Value can be <data> or a hex string. Just a string is not allowed. That is, 
 Convert via PlistEditor or Xcode.
 The first Device key determines which device this property will be added to. Device list:
 
-### NoDefaultProperties
-In this case, the line for the injection is created, but does not contain any new properties yet. For example this property will be `FakeID`. Again, this way of using `FakeID` is outdated, it's better to do it through Properties as follows.
-
 ### Properties (Hex)
 
 ![Properties_Hex](https://user-images.githubusercontent.com/76865553/136596456-88ad496b-8a38-44e9-b4ed-7f2c50573303.png)
@@ -89,15 +86,7 @@ This field creates a simple string in the config in the `Devices` Section if a h
 
 But as soon as you add a Device via the Properties Tab (the one next to `Arbitrary`), this key is deleted. 
 
-### Inject
-If enabled, all internal injection is replaced by entering a single string Properties, which corresponds to the Apple's APPLE_GETVAR_PROTOCOL injection with GUID={0x91BD12FE, 0xF6C3, 0x44FB, {0xA5, 0xB7, 0x51, 0x22, 0xAB, 0x30, 0x3A, 0xE0}}; which is used on real Macs. The old hackers called it `EFIstrings`.
-
-### ForceHPET
-Force enables HPET on systems where there isn't an option in teh BIOS to enable it.
-
-### SetIntelBacklight
-The key was introduced in r3298. In previous systems, the screen brightness was controlled by `IntelBacklight.kext` or `ACPIBacklight.kext`, but they didn't work in El Capitan. But it turned out to be very easy to do this in Clover at the stage of system startup, so no additional cakes were needed.</br>
-**NOTE**: This doesn't work with current macOS versions. Use a `SSDT-PNLF.aml` instead
+T-PNLF.aml` instead
 
 ## Arbitrary
 ![Arbitrary](https://user-images.githubusercontent.com/76865553/136480147-879718e6-81eb-474d-a443-a13e0b56988a.png)
@@ -105,4 +94,26 @@ The key was introduced in r3298. In previous systems, the screen brightness was 
 The `Arbitrary` section is an array of dictionaries, each corresponding to one device with a given PCI address. To describe each device, a `CustomProperties` array consisting of `Key`/`Value` pairs is used. These Properties can be disabled by ticking the `Disabled` checkbox. You can enable or disable a property dynamically in the Clover menu. 
 
 - `Key` **must** be a `<string>`. 
-- `Value` **can** be `<string>`, `<integer>` or `<data>`.
+- `Value` **can** be a `<string>`, `<integer>` or `<data>`.
+
+### Inject
+If enabled, all internal injection is replaced by entering a single string Properties, which corresponds to the Apple's APPLE_GETVAR_PROTOCOL injection with GUID={0x91BD12FE, 0xF6C3, 0x44FB, {0xA5, 0xB7, 0x51, 0x22, 0xAB, 0x30, 0x3A, 0xE0}}; which is used on real Macs. The old hackers called it `EFIstrings`.
+
+### NoDefaultProperties
+In this case, the line for the injection is created, but does not contain any new properties yet. For example this property will be `FakeID`. Again, this way of using `FakeID` is outdated, it's better to do it through Properties as follows.
+
+### UseIntelHDMI
+
+### HDMIInjection
+
+### ForceHPET
+Force enables HPET on systems where there isn't an option in teh BIOS to enable it.
+
+### SetIntelBacklight
+The key was introduced in r3298. In previous systems, the screen brightness was controlled by `IntelBacklight.kext` or `ACPIBacklight.kext`, but they didn't work in El Capitan. But it turned out to be very easy to do this in Clover at the stage of system startup, so no additional cakes were needed.</br>
+**NOTE**: This doesn't work with current macOS versions. Use a `SSD
+
+### SetIntelMaxBacklight
+
+### LANInjection
+
