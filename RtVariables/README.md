@@ -1,4 +1,6 @@
 # RtVariables
+![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/136670696-06e204ac-7eb5-4798-94f0-daf05805d1f6.png)
+
 The following two parameters are intended to allow registration in iMessage service.
 Starting from Clover r1129 the parameters are taken from SMBiOS and are not needed to be entered here.
 
