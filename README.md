@@ -37,7 +37,7 @@ I created this repo for several reasons:
 - [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables)
 - [**SMBIOS**] To do
 - [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters)
-- [**Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
+- [**[GUIDE] Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
 
 ## CREDITS
 - SergeySlice for [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader)
