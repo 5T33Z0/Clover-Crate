@@ -1,5 +1,5 @@
 # GUI
-![GUI](https://user-images.githubusercontent.com/76865553/136699874-f3d49b90-90fe-4e40-8d38-4e189d4b2c98.png)
+![GUI](https://user-images.githubusercontent.com/76865553/136703745-7ec35d11-5458-482c-a8c8-ccaf48d9650d.jpeg)
 
 This section is for configuring the look and behavior of Clover's Bootmenu GUI as well as defining which Volumes are displayed.
 
