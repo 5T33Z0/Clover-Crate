@@ -31,11 +31,11 @@ I created this repo for several reasons:
 - [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
 - [**Boot Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics)
 - [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices)
-- [**KernelAndKextPatches**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kernel_And_Kext_Patches)
+- [**Kernel and Kext Patches**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kernel_And_Kext_Patches)
 - [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
 - [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables)
 - [**SMBIOS**] To do
-- [**SystemParameters**] To do
+- [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters)
 - [**Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
 
 ## CREDITS
