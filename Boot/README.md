@@ -1,6 +1,5 @@
 # Boot
-![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135759685-91855b87-4aa0-4cfa-9917-9b3406ed1750.png)
-
+![Boot](https://user-images.githubusercontent.com/76865553/136703418-a28fed86-1f46-4519-80ad-671e96b89141.jpeg)
 ### Arguments
 
 These are boot arguments that are passed over to `boot.efi`, which in turn passes them down to the system kernel. See Apple's documentation for a list n the `com.apple.Boot.plist` manual. Some commonly used ones are:
