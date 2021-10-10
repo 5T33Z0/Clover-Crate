@@ -1,5 +1,5 @@
 # Graphics
-![](/Users/kl45u5/Desktop/Neuer Ordner/Graphics.jpeg)
+![Graphics](https://user-images.githubusercontent.com/76865553/136713622-7300a5e5-de05-413a-b748-579b95a36d58.jpeg)
 
 This group of parameters serves to inject Properties for various graphics cards, on-board and discrete. There are many parameters that are actually injected, but they are mostly constants, some are calculated, some are defined in the internal table and only very few parameters are entered via config.
 
