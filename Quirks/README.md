@@ -15,3 +15,6 @@ Unfortunately, some of the Kernel Quirks are not located in the `Quirks` section
 
 ![quirks2](https://user-images.githubusercontent.com/76865553/135859628-34f6be51-7a20-4461-900e-0c72fbdcba51.png)
 Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover) to replace the outdated `AptioMemoryFixes` by `OpenRuntime.efi` and add necessary Quirks.
+
+#### ProvideConsoleGop 
+`ProvideConsoleGop` is the final OpenCore feature which has been implemented into Clover. Until Clover r5128 it in `Quirks` (as `ProvideConsoleGopEnable`). Since then it has been been relocated to the "GUI" Section. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI > Output` section.
