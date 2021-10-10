@@ -1,5 +1,6 @@
 # Devices
-![Devices](https://user-images.githubusercontent.com/76865553/136476505-cd164f1a-7ae1-4015-b902-4ed17d92ebb0.png)
+![Devices](https://user-images.githubusercontent.com/76865553/136703701-40771976-3d25-4fd7-8c63-d51d5b498224.jpeg)
+
 In this Section, you can:
 
 - Add Audio Layout IDs
