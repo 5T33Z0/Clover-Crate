@@ -1,7 +1,7 @@
 # CLOVER CRATE
 [![Clover Version](https://img.shields.io/badge/Clover-r5140.1-brightgreen.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
 [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-15.8.30-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/)
-![Last Update](https://img.shields.io/badge/Last_Update_(yy/mm/dd):_21.10.10-informational.svg)
+![Last Update](https://img.shields.io/badge/Last_Update_(yy/mm/dd):-21.10.10-informational.svg)
 
 ![Bildschirmfoto 3](https://user-images.githubusercontent.com/76865553/136567445-fc271f7d-48be-42ff-9fcf-b46deb8dcb91.png)
 
