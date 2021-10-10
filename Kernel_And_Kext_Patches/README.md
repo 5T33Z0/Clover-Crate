@@ -41,4 +41,4 @@ This list is for patching Kernels for debugging primarily. But in raree cases it
 ## Kext Patches
 ![KnKPatches](https://user-images.githubusercontent.com/76865553/136670510-106715c6-884d-4e6a-b151-34d45d9b231a.png)
 
-This is a commonly used section to patch kexts in order to enable certain features like enabling Trim or to disable the USB Portlimition of macOS to use more than 15 ports per Controller. 
+This is a commonly used section to patch kexts in order to enable certain features like enabling Trim or to disable the USB Portlimition of macOS to use more than 15 ports per Controller. The patching principle is similar to the one used for patching the DSDT but that you patch things inside kexts instead. You enter the name of the Kext you wnat to patch and then you enter the value clover should find and reeplace. Chek the dropdown menu to find a lot of patches which may be helpful.

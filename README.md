@@ -14,13 +14,16 @@ I created this repo for several reasons:
 
 1. **Overcoming** language barriers: Clover's official documentation (PDF, 171 pages) is only available in russian.
 2. **Condensing** available information in one place, presenting it in a more current fashion, using Markdown and github.
-3. **Consolidating and Unifying** sources which are scattered all over the net: the manual is only available in russian on github, the changelog is only available at insanelymac and only updated sporadically. The Clover Wiki at Source Forge hasn't been updated in a decade at least.
-4. **Exemplifying** Clover's features using Clover Configurator.
+3. **Consolidating and Unifying** sources which are scattered all over the net: the manual is only available in russian on github, the changelog is only available at insanelymac and only updated sporadically. The Clover Wiki at Source Forge hasn't been updated in years.
+4. **Exemplifying** Clover's features using Clover Configurator. 
 
 <details>
 <summary><strong>DISCLAIMER</strong></summary>
 
-The information provided in this repository is primarily based on excerpts of the official russian documentation for Clover r5129 using AI-based translation tools (deepl, google and yandex translate). The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their meaning. Nevertheless, some facts may have been lost during the process of translation.
+| :warning: | THIS is NOT a Hackintosh Guide! |
+|-----------|:--------------------------------|
+
+  The information provided in this repository is primarily based on excerpts of the official russian documentation for Clover r5129 using AI-based translation tools (deepl, google and yandex translate). The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their meaning. Nevertheless, some facts may have been lost during the process of translation.
 </details>
 
 ## TABLE of CONTENTS
@@ -30,7 +33,7 @@ The information provided in this repository is primarily based on excerpts of th
 - [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices)
 - [**KernelAndKextPatches**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kernel_And_Kext_Patches)
 - [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
-- [**RtVariables**] To do
+- [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables)
 - [**SMBIOS**] To do
 - [**SystemParameters**] To do
 - [**Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
