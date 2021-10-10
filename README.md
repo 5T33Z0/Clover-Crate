@@ -35,7 +35,7 @@ I created this repo for several reasons:
 - [**Kernel and Kext Patches**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kernel_And_Kext_Patches)
 - [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
 - [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables)
-- [**SMBIOS**] To do
+- [**SMBIOS**](https://github.com/5T33Z0/Clover-Crate/tree/main/SMBIOS)
 - [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters)
 - [**[GUIDE] Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
 
