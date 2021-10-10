@@ -25,7 +25,7 @@ The following drivers are no longer necessary and have to either be removed when
 - **`OcQuirks.efi`** and **OcQuirks.plist** – delete if present. OcQuirks is a relic from earlier attempts to include OpenCore Booter Quirks into Clover (≤r5122).
 - **`DataHubDxe.efi`** – DataHub protocol which provides parameters like OEM Model, FSBFrequency, ARTFrequency, Clover's boot-log and many other things to macOS which it cannot obtain otherwise. It has been fully integrated into Clover since r5129, so delete it. Newer versions of the Clover Package don't contain this driver anyway.
 - **`EmuVariableUefi.efi`** – necessary for emulating NVRAM, if it is not available (legacy systems) or working incorrectly.
-- **`FSInject.efi`** – For Kext injection. Necessary only for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of Prelinkedkernel. Fully integrated in Clover nowadays, so delete it.
+- **`FSInject.efi`** – For Kext injection. Necessary only for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of Prelinkedkernel. Since r5125, OpenCore handles Kext injection, so FSInject has become obsolete and should be deleted!
 - **`SMCHelper.efi`** – Necessary only when using **`FakeSMC.kext`**. If you use it in combination with **`VirtualSMC.efi`**, it can cause instant Kernel Panics. In other words: VirtualSMC + VirtualSMC.efi = good; FakeSMC + SMCHelper.efi = good; any other combination = bad. Nowadays, using **`VirtualSMC.kext`** alone is sufficient and recommended.
 
 ### Checking and Updating Kexts
