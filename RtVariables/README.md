@@ -26,7 +26,7 @@ With the release of macOS ElCapitan in 2015, a new security feature was introduc
 | macOS 10.11       | 8 bit        |          `0x067` |
 
 ### HWTarget
-This is a brand new Setting in Clover r5140. It will be written into NVRAM as variable `BridgeOSHardwareModel` which will be requested by macOS Monterey and is needed for system updates. Basically, it identifies at Apple servers a MacPro7,1 and say, "Can I have update, bruh?! Give me update, plzzz, bruh!" ;)
+`HWTarget`is the latest feature added to Clover r5140. It enables System Updates for macOS Monterey. It writes the variabe  `BridgeOSHardwareModel` to the NVRAM, which is requested by macOS Monterey. Basically, it identifies your Hackintosh at Apple servers as MacPro7,1 asking, "Can I have update, bruh?! Plzzz give me update, BRUH!" ;)
 
 This is how the key looks:
 
@@ -36,5 +36,5 @@ This is how the key looks:
 	<key>HWTarget</key>
 	<string>j160</string>
 ```
-To confirm that the parameter is set, check in Terminal: `sysctl hw.target`</br>
+To confirm that the parameter is set, enter in Terminal: `sysctl hw.target`</br>
 Output should be `j160`
