@@ -24,3 +24,17 @@ With the release of macOS ElCapitan in 2015, a new security feature was introduc
 | macOS 10.13       | 10 bit       |          `0x3FF` |
 | macOS 10.12       | 9 bit        |          `0x067` |
 | macOS 10.11       | 8 bit        |          `0x067` |
+
+### HWTarget
+This is a brand new Setting in Clover r5140. It will be written into NVRAM as variable `BridgeOSHardwareModel` which will be requested by macOS Monterey and is needed for system updates. Basically, it identifies at Apple servers a MacPro7,1 and say, "Can I have update, bruh?! Give me update, plzzz, bruh!" ;)
+
+This is how the key looks:
+
+```swift
+<key>RtVariables</key>
+<dict>
+	<key>HWTarget</key>
+	<string>j160</string>
+```
+To confirm that the parameter is set, check in Terminal: `sysctl hw.target`</br>
+Output should be `j160`
