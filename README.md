@@ -3,7 +3,7 @@
 [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-15.8.30-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/)
 ![Last Update](https://img.shields.io/badge/Last_Update_(yy/mm/dd):-21.10.10-informational.svg)
 
-![Bildschirmfoto 3](https://user-images.githubusercontent.com/76865553/136567445-fc271f7d-48be-42ff-9fcf-b46deb8dcb91.png)
+![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 ## ABOUT
 Clover Crate is an unofficial documentation of the Clover Bootloader and its features to help you figuring out what each option does. Its structure follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator. Almost each available setting/parameter (besides obvious ones) is explained. 
