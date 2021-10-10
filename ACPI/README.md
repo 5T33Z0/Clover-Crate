@@ -12,7 +12,7 @@ Throughout this chapter, this section is broken down into smaller chunks to make
 
 Merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI tables.
 
-If set to `true`, it changes the way files in `ACPI/patched` are handled: Instead of adding these files at the end of the `DSDT` it will replace that table, if the signature, index and `OemTableId` match an existing OEM table.
+If set to `true`, it changes the way files in `ACPI/patched` are handled: Instead of adding these files at the end of the `DSDT` they will replace existings tables, if their signature, index and `OemTableIds` match existing OEM tables.
 
 With this function – as with `DSDT` – you can fix individual SSDTs (or other tables) simply by addind the corrected file(s) into `ACPI/patched`. No need to fiddle with `DropOem` or `DropTables`. The original order is preserved. The mapping for `SSDT` is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the `SSDT` position in `DSDT`. 
 
