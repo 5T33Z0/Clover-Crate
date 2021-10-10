@@ -23,7 +23,7 @@ As you can see, the `ProductName` is set to `MacBookPro11,4` (which is the minim
 	![models](https://user-images.githubusercontent.com/76865553/136689980-3d8739d2-5d22-4535-9c99-355b33191344.png)
 
 3. Select a Mac model based on the family of Intel CPU you are using. In this example, the actual MacBookPro model uses an Intel i7 `4770HQ`. In Intel's nomenclature, the first digit of the CPU model name describes the generation (or family) it belongs to. In this case it's a `4` for 4th Gen Intel "i" CPU (first gen models only use 3 digits). So pick a Mac Model which is close to yours in terms of CPU (dektop/mobile, generation, max clock speed).
-4. After you've picked a model, Clover Configurator will automatically generate a valid SMBIOS for you (don't copy this values, generate your own!):
+4. After you've picked a model, Clover Configurator will automatically generate a valid SMBIOS for you (don't copy theese values, generate your own!):
 
 	![Generated](https://user-images.githubusercontent.com/76865553/136690011-f97b769e-9802-4ccd-9a47-850542711587.png)
 	
