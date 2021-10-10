@@ -1,5 +1,5 @@
 # GUI
-![](/Users/kl45u5/Desktop/GUI.png)
+![GUI](https://user-images.githubusercontent.com/76865553/136699874-f3d49b90-90fe-4e40-8d38-4e189d4b2c98.png)
 
 This section is for configuring the look and behavior of Clover's Bootmenu GUI as well as defining which Volumes are displayed.
 
@@ -14,13 +14,12 @@ This section is for configuring the look and behavior of Clover's Bootmenu GUI a
 Inverts the mouse speed to correct inverted mouse movement.
 
 ## Scan
-![](/Users/kl45u5/Desktop/GUI_Scan.png)
+![GUI_Scan](https://user-images.githubusercontent.com/76865553/136699885-281deddd-0151-4e06-a489-4299669fe4d3.png)
 
-### Entries
-### Kernel
-### Legacy
-### Tool
-
+### Entries (To do)
+### Kernel (To do)
+### Legacy (To do)
+### Tool (To do)
 
 ### CustomIcons
 Enabling this key will load the icon from the of the partition itself, instead of using the icon defined by the theme. It has to be located in the root of the volume and has to be this file: `VolumeIcon.icns`. You can assign your own icons to each volume, and you can use different icons for different volumes.
@@ -60,9 +59,8 @@ Text-only menu mode for a minimal GUI and faster loading times (like it was 1984
 ## Custom Entries
 In this section you can add your own entries to the Bootmenu GUI. This is useful if an entry is missing or if you want to customize it. Click on the "+" sybol to add an entry to the list. After double Clicking the entry, a sub-menu is opened: 
 
-![](/Users/kl45u5/Desktop/CustomEntries.png)
+![CustomEntries](https://user-images.githubusercontent.com/76865553/136699902-97579045-ba7f-48e0-a95f-31019613f524.png)
 
 Here you can change a lot of things. The most important one being the dropdown menu for selecting the "Volume" the custom entry should represent:
 
-![](/Users/kl45u5/Desktop/GUID.png)
-
+![GUID](https://user-images.githubusercontent.com/76865553/136699942-79efe2a9-2995-48fe-a6fd-aad342ae259a.png)
