@@ -239,13 +239,11 @@ Inserts a PNLF (Backlight) device, which is necessary to properly control the sc
 
 ### PNLF_UID
 
-There are several sample brightness curves/graphs in the system and they have different UIDs. If some realtor used that curve, that doesn't mean that you will have the same brightness with the same processor. It depends on the panel – not the processor.
-
-Generally speaking, It would be better to build a `PNLF` calibration system, but that's acrobatics. For now, all we're suggesting is to experiment with different values, and see if it gets better. Added in revision r5103.
+There are several sample brightness curves/graphs in the system and they have different UIDs. If some realtor used that curve, that doesn't mean that you will have the same brightness with the same processor. It depends on the panel – not the processor. Generally speaking, using an `SSDT-PNLF.aml` is suggested. You can find one in the Samples Folder of the OpenCore Package.
 
 ### DeleteUnused
 
-Removes unused floppy, CRT and DVI devicese - an absolute prerequisite for running IntelX3100 on Dell laptops. Otherwise black screen, tested by hundreds of users.
+Removes unused floppy, CRT and DVI devices - an absolute prerequisite for running IntelX3100 on Dell laptops. Otherwise black screen, tested by hundreds of users.
 
 ### FakeLPC
 

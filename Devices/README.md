@@ -87,8 +87,6 @@ This field creates a simple string in the config in the `Devices` Section if a h
 
 But as soon as you add a Device via the Properties Tab (the one next to `Arbitrary`), this key is deleted. 
 
-T-PNLF.aml` instead
-
 ## Arbitrary
 ![Arbitrary](https://user-images.githubusercontent.com/76865553/136480147-879718e6-81eb-474d-a443-a13e0b56988a.png)
 
@@ -108,7 +106,7 @@ In this case, the line for the injection is created, but does not contain any ne
 ### HDMIInjection
 
 ### ForceHPET
-Force enables HPET on systems where there isn't an option in teh BIOS to enable it.
+Force enables High Precision Event Timer on systems where there isn't an option in teh BIOS to enable it.
 
 ### SetIntelBacklight
 The key was introduced in r3298. In previous systems, the screen brightness was controlled by `IntelBacklight.kext` or `ACPIBacklight.kext`, but they didn't work in El Capitan. But it turned out to be very easy to do this in Clover at the stage of system startup, so no additional cakes were needed.</br>
