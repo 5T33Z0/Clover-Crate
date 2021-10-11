@@ -31,6 +31,7 @@ I created this repo for several reasons:
 - [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI)
 - [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
 - [**Boot Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics)
+- [**CPU**](https://github.com/5T33Z0/Clover-Crate/tree/main/CPU)
 - [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices)
 - [**Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Graphics)
 - [**GUI**](https://github.com/5T33Z0/Clover-Crate/tree/main/GUI)
