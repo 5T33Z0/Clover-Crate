@@ -1,5 +1,5 @@
 # CPU
-This group of parameters helps with determining the CPU when the internal algorithms fail. This section is only covered here for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable!** 
+This group of parameters helps with determining the CPU when the internal algorithms fail. This section is only covered here for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable and you know what you are doing!** 
 
 ![](/Users/kl45u5/Desktop/Neuer Ordner/CPU.jpeg)
 
@@ -21,18 +21,38 @@ Parameters related to C-state. **ATTENTION!** This section is deprecated and has
 - `C4`: According to the specification, either use C3 or C4. We choose C4. For IvyBridge, set it to false. 
 - `C6`: only for mobile computers. However, you can try to enable it on desktops as well. Set to true on IvyBridge and Haswell.
 
-Note that with these C-States, people often complain about poor sound/graphics and sleep issues. So be careful, or exclude them altogether. 
+Note that with these C-States, people often complain about issues with sound/graphics and sleep. So be careful, or exclude them altogether. 
+
+### QEMU
+When testing Clover in the QEMU virtual machine, devs discovered that it did not correctly emulate the Intel CPU. As a temporary measure, this key was created.
 
 ### QPI
+In the System Profiler, this value is called "Processor Bus Speed" ​​or simply "Bus Speed". For Clover, an algorithm has been developed to calculate the correct value based on datasheets from Intel. In the source code of the `AppleSmbios` kernel, two methods of setting this value are available: the value either exists in SMBIOS already, prescribed by the manufacturer, or BusSpeed * 4 is simply calculated. After much debate, this value has been added to the config - write what you like (in MHz). 
+
+This does not affect work in any way - it's pure cosmetics. **According to the latest information, QPI makes sense only for CPUs of the Nehalems family**. For everyone else here you need to have BusSpeed ​​* 4. Or nothing at all. If you force 0, then DMI table 132 will not be generated at all.
 
 ### Type
+This parameter was invented by Apple and is used in the "About this Mac" window to display information about the used CPU, which internally translates into a processor designation. Otherwise, "Unknown processor" will be displayed. 
+
+Basically, Clover knows all the ciphers, but since progress does not stand still, it is possible to manually change this value. Correcting this this changes what's displayed in the  "About this Mac" window - purely cosmetic. There is information from vit9696: [AppleSmBIOS](https://github.com/acidanthera/OpenCorePkg/blob/master/Include/Apple/IndustryStandard/AppleSmBios.h)
 
 ### TDP
+Describes the Thermal Design Power (in Watts), taken into account in the P-States when generating the Processor Power Management tables. You can find the TDP for your CPU on [Intels Product Specifications Webside](https://ark.intel.com/content/www/us/en/ark.html#@Processors)
 
 ### SavingMode
+Another interesting parameter for controlling [Speedstep](https://en.wikipedia.org/wiki/SpeedStep). It affects the MSR `0x1B0` register and determines the behavior of the processor:
+
+- `0`: Maximum Performance
+- `15` - maximum energy saving.
 
 ### HWPEnable
+Starting with Clover r3879, Intel Speed ​​Shift technology has been introduced in Skylake CPUs. If enabled, then `1` is written to the MSR `0x770` register. Unfortunately, if the computer enters sleep and then wakes up, the MSR value `0x770` will be reset to `0` and Clover cannot re-enable it. But with a help of the [**HWPEnable.kext**](https://github.com/headkaze/HWPEnable) this can be fixed.  
 
 ### HWPValue
+This value turned out to be the most appropriate. It value will be written to MSR register `0x774`, but only if MSR `0x770` is set to `1`. Otherwise, this register is unavailable. 
 
+### UseARTFrequency
+SkyLake processors have a new base frequency parameter which changes in smaller increments than the bus frequency, the so-called ARTFrequency. Its value is usually `24 MHz`. Clover can calculate it and commit it to the core. In practice, the calculated frequency leads to inaccurate operation, so it can simply be disabled. In this case the system core will act in its own way. In newer versions of Clover, this figure is rounded, as vit9696 believes there can be only three values, and they are round, up to `1 MHz`.
 
+### TurboDisable
+Disable Intel Turbo Boost Technology. Useful for Notebooks so they don't overheat.
