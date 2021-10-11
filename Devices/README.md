@@ -102,17 +102,17 @@ If enabled, all internal injection is replaced by entering a single string Prope
 In this case, the line for the injection is created, but does not contain any new properties yet. For example this property will be `FakeID`. Again, this way of using `FakeID` is outdated, it's better to do it through Properties as follows.
 
 ### UseIntelHDMI
+This parameter affects the injection properties of the sound transmitted over HDMI, as well as the `DSDT` patch. However, both VoodooHDA and AppleHDA sound drivers, do not fully work with HDMI Output. According to new information, VoodooHDA only works with NVIDIA's HDMI output, and as for AMD, Apple has created a new `AppleGFXHDA.kext` driver in 10.13+ systems.
 
 ### HDMIInjection
+Disable the injection of HDMI device properties altogether. Starting with r3262, there is a new way of injecting device properties not by name, but by their location on the PCI Bus. 
 
 ### ForceHPET
 Force enables High Precision Event Timer on systems where there isn't an option in teh BIOS to enable it.
 
 ### SetIntelBacklight
 The key was introduced in r3298. In previous systems, the screen brightness was controlled by `IntelBacklight.kext` or `ACPIBacklight.kext`, but they didn't work in El Capitan. But it turned out to be very easy to do this in Clover at the stage of system startup, so no additional cakes were needed.</br>
-**NOTE**: This doesn't work with current macOS versions. Use a `SSD
-
-### SetIntelMaxBacklight
+**NOTE**: This doesn't work with current macOS versions. Use a `SSDT-PNLF.aml`instead. You can find one in the Samples Folder of the OpenCore Package.
 
 ### LANInjection
-
+By default, the built-in property is injected for the NIC. This parameter can be used to disable the injection.
