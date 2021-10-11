@@ -15,13 +15,13 @@ Starting with Clover r1060, there the bus frequency is detected automatically ba
 Describes the delay for turning on the C3 state. The critical value is **0x3E8** = **1000**. Less and speedstep turns on, more and it does not turn on. On real Macs, it is always set to **0x03E9** (1001) which disables speedstep. On Hacks, we can choose if we want to behave it like a Mac or if we want to turn on power management. A reasonable value for the latter is **0x00FA** (250), which is found on some laptops (MacPro5.1 = 17, MacPro6.1 = 67, iMac13.2 = 250).
 
 ### C2, C4, C6
-Parameters related to C-state. **ATTENTION!** This section is deprecated and has since been move to &rarr; ACPI Section!
+Parameters related to C-state. **ATTENTION!** This section is deprecated and has since been moved to &rarr; [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#generate)
 
 - `C2`: Set to false on modern computers
 - `C4`: According to the specification, either use C3 or C4. We choose C4. For IvyBridge, set it to false. 
-- `C6` is known only on mobile computers. However, you can try to enable it on desktops as well. Set to true on IvyBridge and Haswell.
+- `C6`: only for mobile computers. However, you can try to enable it on desktops as well. Set to true on IvyBridge and Haswell.
 
-Note that with these C-States, people often complain about poor sound/graphics/sleep. So be careful, or exclude them altogether. 
+Note that with these C-States, people often complain about poor sound/graphics and sleep issues. So be careful, or exclude them altogether. 
 
 ### QPI
 
