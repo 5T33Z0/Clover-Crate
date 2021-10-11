@@ -356,7 +356,7 @@ If you want to avoid patching SSDT tables altogether, there is another option: p
 Specify which C-States you want to enable/generate.
 
 ### Generate
-![](/Users/kl45u5/Desktop/Generate_Options.png)
+![Generate_Options](https://user-images.githubusercontent.com/76865553/136794188-a2fac646-48bb-469d-87f9-ca47afe00622.png)
 
 In the new Clover, this group of parameters is combined into one section, and `PluginType` is now just `true` or `false`. The other `PluginType` key (the one with the dropdown menu) is obsolete and only kept for ackward compatibility!
 
