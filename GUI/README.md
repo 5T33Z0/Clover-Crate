@@ -64,10 +64,10 @@ Text-only menu mode for a minimal GUI and faster loading times (like it was 1984
 ## Custom Entries
 In this section you can add your own entries to the Bootmenu GUI. This is useful if an entry is missing or if you want to customize it. Click on the "+" sybol to add an entry to the list. After double Clicking the entry, a sub-menu is opened: 
 
-![CustomEntries](https://user-images.githubusercontent.com/76865553/136699902-97579045-ba7f-48e0-a95f-31019613f524.png)
+![Custom_Entry](https://user-images.githubusercontent.com/76865553/136745225-5c06bd82-b7a8-4459-b29d-52870742941e.png)
 
 Here you can change a lot of things. The most important one being the dropdown menu for selecting the "Volume" the custom entry should represent:
 
 ![GUID](https://user-images.githubusercontent.com/76865553/136699942-79efe2a9-2995-48fe-a6fd-aad342ae259a.png)
 
-Enter a custom name in the "Title" field
+Enter a custom name in the `Title` field, set `Type` and `Volume Type` and it should work.
