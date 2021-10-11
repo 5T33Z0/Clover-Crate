@@ -22,7 +22,13 @@ Inverts the mouse speed to correct inverted mouse movement.
 ### Tool (To do)
 
 ### CustomIcons
-Enabling this key will load the icon from the of the partition itself, instead of using the icon defined by the theme. It has to be located in the root of the volume and has to be this file: `VolumeIcon.icns`. You can assign your own icons to each volume, and you can use different icons for different volumes.
+Enabling this key will use custom disk icons stored in in the root folder of the volumes  themselved, instead of using the disk icon from a theme. It is this file: `.VolumeIcon.icns` which is a hidden file. To show all files in Finder, use:
+
+`defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder`
+
+After you're done with your changes, set it to `FALSE` again:
+
+`defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder`
 
 ### EmbeddedThemeType
 Select between `Dark` and `Light` variant of the embedded themee. If left unset, the variants are picked based by the real time clock – light during the day, dark at night. Introduced in r4773.
@@ -36,9 +42,8 @@ In combination with `Language`, this can used to fix an issue when installing be
 At of now moment, setting the language makes sense only for the "Help" menu called by the F1 Key. However, this value is sent to the system and can affect the default language.
 
 ### PlayAsync
-Clover r4833 added audio-support for the Bootmenu via the `AudioDxe.efi` driver. `PlayAsync` determines whether the sound plays synchronously or asynchronously. With synchronous playback (default), nothing happens boot-wise until the sound playback ends. 
-
-If `PlayAsync` is enabled, the boot process will run parallel to the audio playback. if the `sound.wav` file is too long it will be cut at some stage during the boot process, when macOS takes over control of the audio driver.
+Clover r4833 added audio support for the Bootmenu via the `AudioDxe.efi` driver. `PlayAsync` determines the playback mode of the boot chime: either sequential or simultaneously. With synchronous playback (default), the boot process is sequential: chime first, then the bootloader kicks in. If `PlayAsync` is enabled, the boot process will run parallel or simultaneously to the audio playback. The chime has to called `sound.wav` and need to be placed in the root folder of the used theme.
+</br>**NOTE**: If the file is too long it will be cut at some stage during boot, when macOS takes over control of the audio driver. In my (5T33ZO) opinion, they should have called this feature "PlaySimult" instead, because that what it does. Using the term `asynchronous` in the context of audio always ewokes a feeling an issue rather than a feature.
 
 ### ProvideConsoleGop
 Creates a GOP protocol for console mode, i.e. for text output not in text mode, as you are used to doing in PC BIOS, but in graphical mode, as Apple does.
@@ -64,3 +69,5 @@ In this section you can add your own entries to the Bootmenu GUI. This is useful
 Here you can change a lot of things. The most important one being the dropdown menu for selecting the "Volume" the custom entry should represent:
 
 ![GUID](https://user-images.githubusercontent.com/76865553/136699942-79efe2a9-2995-48fe-a6fd-aad342ae259a.png)
+
+Enter a custom name in the "Title" field
