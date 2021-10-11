@@ -1,7 +1,7 @@
 # CPU
 This group of parameters helps with determining the CPU when the internal algorithms fail. This section is only covered here for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable and you know what you are doing!** 
 
-![](/Users/kl45u5/Desktop/Neuer Ordner/CPU.jpeg)
+![CPU](https://user-images.githubusercontent.com/76865553/136802820-de658522-dad5-494c-b8a0-1362202f94ad.jpeg)
 
 ### Frequency MHz
 Describes the base frequency in MHz displayed in the System-Profiler. In other words: its effects are purely cosmetic. Usually, Clover automatically calculates this value based on the ACPI timer, but if it gets it wrong, you can correct it through this key. 
