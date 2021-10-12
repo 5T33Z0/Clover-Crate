@@ -45,7 +45,7 @@ Besides the usual `Find`/`Replace` masks there are additional modifiers:
 
 - `MaskFind`(HEX): If some bit=1, we look for an exact match, if=0, we ignore the difference.
 - `MaskReplace` (HEX): if a bit=1, we make a replacement. If a bit=0, we leave it as is.
-- `Disabled`: Disbales the renaming rule.
+- `Disabled`: Disables the renaming rule.
 - `Procedure`: Name of the procedure we are looking for. The real name may be longer, but the comparison is done by a substring. Make sure the substring occurs only in this procedure. In OpenCore, this is called `Base`.
 - `RangeFind`: Length of codes to search. In general, just the size of this procedure, or less. This way we speed up the search without going through all the millions of strings. 
 - `StartPattern` was existed before the character patch. It is the starting point from which to look for our pattern. If we know the name of the procedure, `StartPattern` is hardly needed anymore.
@@ -55,7 +55,7 @@ Besides the usual `Find`/`Replace` masks there are additional modifiers:
 - `InfoPlistPatch`: no explanation available (5T33Z0)
 
 ### KextsToPatch
-This is a commonly used section to patch kexts in order to enable certain features like enabling Trim or to disable the USB Portlimition of macOS to use more than 15 ports per Controller. The patching principle is similar to the one used for patching the `DSDT`, but you patch things inside kexts instead. You enter the name of the Kext you wnat to patch and then you enter the value clover should find and reeplace. Chek the dropdown menu to find a lot of patches which may be helpful.
+This is a commonly used section to patch kexts in order to enable certain features like enabling Trim or to disable the USB port limitations of macOS to use more than 15 ports per Controller. The patching principle is similar to the one used for patching the `DSDT`, but you patch things inside kexts instead. You enter the name of the Kext you want to patch and then you enter the value clover should find and replace. Check the dropdown menu to find a lot of patches which may be helpful.
 
 ### KernelToPatch
 For applying binary patches to the Darwin kernel of macOS. This is used by developers primarily for patching Kernels or debugging. But in rare cases it's used for enabling features which wouldn't work otherwise, like enabling XCPM on IvyBridge CPUs or enabling macOS Catalina to use the Intel I-225 Ethernet Controller. 

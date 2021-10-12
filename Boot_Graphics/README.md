@@ -10,4 +10,4 @@ Set to `1` to enable HiDPI output for the macOS boot menu.
 >No entry in manual
 
 ### UIScale
-Set the scaling factor for the size of the macOS bootmenu. Set to `2` for 4k displays.
+Set the scaling factor for the size of the macOS boot menu. Set to `2` for 4k displays.

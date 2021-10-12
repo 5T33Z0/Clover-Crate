@@ -7,7 +7,7 @@
 Clover's previous `AptioMemoryFixes` are incapable of booting/installing macOS 11 and newer. Therefore, OpenCore's Memory Fixes (`OpenRuntime.efi`) have been integrated to keep Clover relevant. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is mandatory in order to be able to install and boot macOS 11 and newer.
 
 ## Who is this Guide for?
-This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. When updating Clover, there are several obstacles along the way, such as removing old memory fixes, drivers and picking the correct settings for newly added "Quirks" section of the `config.plist`. Users who don't want to run macOS Big Sur or newer on there systems don't need to update Clover – although you could, according to the [documnetation](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2751618): "New Clover will understand old config.plist. You may not change it."
+This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. When updating Clover, there are several obstacles along the way, such as removing old memory fixes, drivers and picking the correct settings for newly added "Quirks" section of the `config.plist`. Users who don't want to run macOS Big Sur or newer on there systems don't need to update Clover – although you could, according to the [documentation](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2751618): "New Clover will understand old config.plist. You may not change it."
 
 ## Problem Description
 If you just update your existing "old" Clover EFI by installing the latest `Clover.pkg` like you used to, this will most likely result in an inoperable bootloader due to missing boot parameters in the `config.plist` as well as residual files from the "old" Clover version which need to be removed first.
@@ -37,7 +37,7 @@ If you get panics you can not isolate, move all non-essential kexts to the "Off"
 
 Here are some examples of Kexts I've experienced issues with when updating:
 
-- **VoodooPS2Controller.kext**: can cause Kernel Panic if one of it's Plugins (VoodooInput.lext, VoodooPS2Mouse.kext, VoodooPS2Trackpad.kext and VoodooPS2Keyboard.kext) is also present at the root level of the "kexts" Folder.
+- **VoodooPS2Controller.kext**: can cause Kernel Panic if one of it's Plugins (VoodooInput.kext, VoodooPS2Mouse.kext, VoodooPS2Trackpad.kext and VoodooPS2Keyboard.kext) is also present at the root level of the "kexts" Folder.
 - **AirportBrcmFixup.kext**: this Kext contains 2 Plugins, `AirPortBrcm4360_Injector` and `AirPortBrcmNIC_Injector.kext`. When using AirPortBrcmFixup, you are supposed to use only one of these plugins, not both! Using both can cause the boot process to stall indefinitely. On top of that, `AirPortBrcm4360_Injector` is not supported by macOS Big Sur and has to be disabled anyway. In OpenCore, you can just disable a Kext in the config. Since the Clover config does not support to take control of the kext loading sequence, you have to delete it from the Kext itself (right click on AirportBrcmFixup, select "Show package contents" > "Plugins").
 - **BrcmPatchRAM** and a bad combination of it's accompanying kexts can cause issues as well. Don't use BlueToolFixup.kext and BrcmBluetoothInjector.kext together. Former is needed for enabling Bluetooth in macOS Monterey where the latter is used in earlier versions of macOS.
 </details>
@@ -54,8 +54,8 @@ Here are some examples of Kexts I've experienced issues with when updating:
 	- ApfsDriverLoader.efi, 
 	- VBoxHfs.efi (or HfsPlus.efi, which is faster) and 
 	- OpenRuntime.efi</br>
-Now we have a minimal set of Drivers: ![Bildschirmfoto 2021-10-05 um 14 55 58](https://user-images.githubusercontent.com/76865553/136026914-af63dce9-a505-4b61-8ad4-0d14348fac37.png)</br>
-Files tagged gray are in there by default and are most likely unnecessary for UEFI-based systems. I would move them to the "off" folder one by one to disable them and check if the system still boots from the USB flash drive without them. `AudioDXE.efi` is only needed for playing back audio files like boot chimes - so if you don't use any, you can delete/disable it. As mentioned earlier, `SMCHelper.efi` MUST be deleted when using `VirualSMC.kext`!
+Now we have a minimal set of Drivers: ![Drivers](https://user-images.githubusercontent.com/76865553/136026914-af63dce9-a505-4b61-8ad4-0d14348fac37.png)</br>
+Files tagged gray are in there by default and are most likely unnecessary for UEFI-based systems. I would move them to the "off" folder one by one to disable them and check if the system still boots from the USB flash drive without them. `AudioDXE.efi` is only needed for playing back audio files like boot chimes - so if you don't use any, you can delete/disable it. As mentioned earlier, `SMCHelper.efi` MUST be deleted when using `VirtualSMC.kext`!
 7. Next, copy over the following files/folders from your existing EFI folder:</br>
 	- **Kexts** (updated to the latest available version, of course), 
 	- **.aml** Files from "ACPI/patched" folder 

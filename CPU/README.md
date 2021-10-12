@@ -29,7 +29,7 @@ When testing Clover in the QEMU virtual machine, developers discovered that it d
 ### QPI
 In the System Profiler, this value is called "Processor Bus Speed" ​​or simply "Bus Speed". For Clover, an algorithm has been developed to calculate the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods of setting this value are available: the value either exists in SMBIOS already, prescribed by the manufacturer, or BusSpeed * 4 is simply calculated. After much debate, this value has been added to the config - write what you like (in MHz). 
 
-This does not affect work in any way - it's pure cosmetics. **According to the latest information, QPI makes sense only for CPUs of the Nehalems family**. For everyone else here you need to have BusSpeed ​​* 4. Or nothing at all. If you force 0, then DMI table 132 will not be generated at all.
+This does not affect work in any way - it's pure cosmetics. **According to the latest information, QPI makes sense only for CPUs of the Nehalem family**. For everyone else here you need to have BusSpeed ​​* 4. Or nothing at all. If you force 0, then DMI table 132 will not be generated at all.
 
 ### Type
 This parameter was invented by Apple and is used in the "About this Mac" window to display information about the used CPU, which internally translates into a processor designation. Otherwise, "Unknown processor" will be displayed. 

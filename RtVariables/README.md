@@ -19,16 +19,16 @@ With the release of macOS ElCapitan in 2015, a new security feature was introduc
 
 | macOS Version     | Bitmask Size | CsrActive Config |
 |------------------:|:------------:|:----------------:|
-| macOS 11/12			  | 12 bit       |          `0xFEF` |
+| macOS 11/12		| 12 bit       |          `0xFEF` |
 | macOS 10.14/10.15 | 11 bit       |          `0x7FF` |
 | macOS 10.13       | 10 bit       |          `0x3FF` |
 | macOS 10.12       | 9 bit        |          `0x067` |
 | macOS 10.11       | 8 bit        |          `0x067` |
 
 ### HWTarget
-`HWTarget`is the latest feature added to Clover r5140. It enables System Updates for macOS Monterey. It writes the variabe  `BridgeOSHardwareModel` to the NVRAM, which is requested by macOS Monterey. Basically, it identifies your Hackintosh at Apple servers as MacPro7,1 asking, "Can I have update, bruh?! Plzzz give me update, BRUH!" ;)
+`HWTarget`is the latest feature added to Clover r5140. It enables System Updates for macOS Monterey. It writes the variable  `BridgeOSHardwareModel` to the NVRAM, which is requested by macOS Monterey. Basically, it identifies your Hackintosh at Apple servers as MacPro7,1 asking, "Can I have update, bruh?! Plzzz give me update, BRUH!" ;)
 
-This is how the key looks:
+This is how the key looks in the config.plist:
 
 ```swift
 <key>RtVariables</key>
