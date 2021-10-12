@@ -433,7 +433,7 @@ In General, a problem with tables is their name. While it is not unusual for OEM
 Enables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps resolving issues.
 
 ### RTC8Allowed
-Aee "Fixes [2]" Section → "[**FixRTC**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#fixrtc)".
+See "Fixes [2]" Section → "[**FixRTC**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#fixrtc)".
 
 ### ReuseFFFF
 In some cases, the attempt to patch the GPU is hindered by the presence of:
