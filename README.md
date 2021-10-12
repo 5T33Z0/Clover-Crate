@@ -45,6 +45,7 @@ I created this repo for several reasons:
 
 ## CREDITS
 - SergeySlice for [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader)
+- Acidanthera for [**OpenCore**](https://github.com/acidanthera/OpenCorePkg)
 - Macki100Projects for [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/)
 - daliansky for [**P-Little Repo**](https://github.com/daliansky/P-little)
 - ic005k for [**PlistEDPlus**](https://github.com/ic005k/PlistEDPlus)
