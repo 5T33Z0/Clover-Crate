@@ -26,9 +26,7 @@ With the release of macOS ElCapitan in 2015, a new security feature was introduc
 | macOS 10.11       | 8 bit        |          `0x067` |
 
 ### HWTarget
-`HWTarget`is the latest feature added to Clover r5140. It enables System Updates for macOS Monterey. It writes the variable  `BridgeOSHardwareModel` to the NVRAM, which is requested by macOS Monterey. Basically, it identifies your Hackintosh at Apple servers as MacPro7,1 asking, "Can I have update, bruh?! Plzzz give me update, BRUH!" ;)
-
-This is how the key looks in the config.plist:
+`HWTarget`is the latest feature added to Clover r5140. It enables System Updates for macOS Monterey. It writes the variable `BridgeOSHardwareModel` to NVRAM, which is requested by macOS Monterey. Basically, it identifies your Hackintosh at Apple servers as MacPro7,1 asking, "Can I have update, bruh?! Plzzz give me update, BRUH!" ;) Just in case you are wondering, why there is noch checkbox in Clover Configurator – the feature is not implemented yet. Use a plist Editor in the meantime to add the key to your config.plist.  This is how the key has to look:
 
 ```swift
 <key>RtVariables</key>
