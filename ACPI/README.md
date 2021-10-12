@@ -17,6 +17,7 @@ If set to `true`, it changes the way files in `ACPI/patched` are handled: Instea
 With this function – as with `DSDT` – you can fix individual SSDTs (or other tables) simply by addind the corrected file(s) into `ACPI/patched`. No need to fiddle with `DropOem` or `DropTables`. The original order is preserved. The mapping for `SSDT` is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the `SSDT` position in `DSDT`. 
 
 For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you could just fix it nd put it back in `ACPI/patched`, replacing the original table. This also works if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. If you stick to the names provided in `ACPI/origin`, you should be fine.
+This way, you could find the SSDT containing all the 26 Ports for your board in the dumped ACPI, fix it, put it back in the `ACPI/patched` folder and boom: no more `USBports.kext` required.
 
 ## Disable ASPM
 
