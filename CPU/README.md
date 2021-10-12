@@ -43,7 +43,7 @@ Describes the Thermal Design Power (in Watts), taken into account in the P-State
 Another interesting parameter for controlling [Speedstep](https://en.wikipedia.org/wiki/SpeedStep). It affects the MSR `0x1B0` register and determines the behavior of the processor:
 
 - `0`: Maximum Performance
-- `15` - maximum energy saving.
+- `15`: Maximum Energy Saving
 
 ### HWPEnable
 Starting with Clover r3879, Intel Speed ​​Shift technology has been introduced in Skylake CPUs. If enabled, then `1` is written to the MSR `0x770` register. Unfortunately, if the computer enters sleep and then wakes up, the MSR value `0x770` will be reset to `0` and Clover cannot re-enable it. But with a help of the [**HWPEnable.kext**](https://github.com/headkaze/HWPEnable) this can be fixed.  
