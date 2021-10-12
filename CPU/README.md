@@ -52,7 +52,7 @@ Starting with Clover r3879, Intel Speed ​​Shift technology has been introduc
 This value turned out to be the most appropriate. It value will be written to MSR register `0x774`, but only if MSR `0x770` is set to `1`. Otherwise, this register is unavailable. 
 
 ### UseARTFrequency
-SkyLake processors have a new base frequency parameter which changes in smaller increments than the bus frequency, the so-called ARTFrequency. Its value is usually `24 MHz`. Clover can calculate it and commit it to the core. In practice, the calculated frequency leads to inaccurate operation, so it can simply be disabled. In this case the system core will act in its own way. In newer versions of Clover, this figure is rounded, as vit9696 believes there can be only three values, and they are round, up to `1 MHz`.
+Processors of the Intel Skylake family have a new base frequency parameter which changes in smaller increments than the bus frequency, the so-called `ARTFrequency`. Its value is usually `24 MHz`. Clover can calculate it and commit it to the core. In practice, the calculated frequency leads to inaccurate operation, so it can simply be disabled. In this case the system core will act in its own way. In newer versions of Clover, this figure is rounded, as vit9696 believes there can be only three values, and they are round, up to `1 MHz`.
 
 ### TurboDisable
 Disable Intel Turbo Boost Technology. Useful for Notebooks so they don't overheat.
