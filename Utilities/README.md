@@ -9,5 +9,6 @@ Incomplete list of useful freeware Apps and Tools to accompany Clover.
 - [**Kext Updater**](https://www.sl-soft.de/kext-updater/) (great tool for keeping kexts and other files up to date): 
 - **ACPI Samples**:
 	- **General**: included in OpenCore Package (under "Docs"): https://github.com/acidanthera/OpenCorePkg/releases 
-	- **For Laptops** (dated, includes Clover configs as well): https://github.com/RehabMan/OS-X-Clover-Laptop-Config 
+	- **For Laptops** (dated, includes Clover configs as well): https://github.com/RehabMan/OS-X-Clover-Laptop-Config
+	- **Clover-specific** (in chinese): https://github.com/daliansky/P-little
 
