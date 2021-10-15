@@ -33,9 +33,9 @@ Whether you have a problem with tables or not, it's safe to enable this fix. It 
 
 ## FixMCFG
 
-The `MCFG` table describes the location of the PCI Express configuration space, and this table will be present in a firmware implementation compliant to this specification version 3.0 (or later).
+The `MCFG` (Memory Mapped Configuration table) describes the location of the PCI Express configuration space, and this table will be present in a firmware implementation compliant to this specification version 3.0 (or later).
 
-If `FixMCFG` is enabled, the table will corrected. The author of the patch is vit9696. However, the method of discarding this table is still in stock.
+If `FixMCFG` is enabled, the table will be corrected. The author of the patch is vit9696. However, the method of discarding this table is still in stock.
 
 ## Halt Enabler
 
@@ -43,7 +43,7 @@ This Patch is for fixing the shutdown/sleep problem during UEFI boot. The fix is
 
 ## Patch APIC
 
-Some systems can only be started using kernel parameter `cpus=1` or with a patched kernel (Lapic NMI). A simple analysis showed that their `MADT` table is missing the NMI section.`Patch APIC` fixes such tables on the fly. If the table is complete already, nothing will be changed.
+Some systems can only be started using kernel parameter `cpus=1` or with a patched kernel (Lapic NMI). A simple analysis showed that their `MADT` (Multiple APIC Description Table) is missing the NMI section.`Patch APIC` fixes such tables on the fly. If the table is complete already, nothing will be changed.
 
 ## Reset Address / Reset Value
 
