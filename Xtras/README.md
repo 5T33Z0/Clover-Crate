@@ -7,3 +7,9 @@ If you are looking for an actual tool to calculate these things (and more), you 
 There's also an online [**ScanPolicy Calculator**](https://oc-scanpolicy.vercel.app/)
 
 **Screenshots**:
+
+![CSR_Clover](https://user-images.githubusercontent.com/76865553/137451603-733fec89-7e37-411d-beff-844af404f1a9.png)
+
+![BooterCfg](https://user-images.githubusercontent.com/76865553/137451683-befe8dbd-a1fd-44f1-8a1e-e851685ca92a.png)
+
+![Darkwake_Clover](https://user-images.githubusercontent.com/76865553/137451694-226b1051-bf68-4277-915d-115c279c7d16.png)
