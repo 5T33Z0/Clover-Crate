@@ -62,3 +62,24 @@ For applying binary patches to the Darwin kernel of macOS. This is used by devel
 
 ### BootPatches
 For applying binary patches to `boot.efi`
+
+### Patching Mask name differences (OpenCore | Clover)
+For users who want "convert" their Kext and Kernel Patches from OpenCore to Clover or vice versa
+
+| OpenCore    | Clover         |
+|:------------|:---------------|
+| Base        | Procedure      |
+| Comment     | Comment        |
+| Count       | Count          |
+| Enabled     | Disabled       |
+| Skip        | Skip           |
+| Identifier  | Name           |
+| Find		    | Find           |
+| Mask        | MaskFind       |
+| Replace     | Replace        |
+| ReplaceMask | MaskReplace    |
+| MaxKernel   | N/A            |
+| MinKernel   | N/A            |
+| N/A         | MatchOS     	 |
+| N/A         | InfoPlistPatch |
+| N/A         | RangeFind      |
