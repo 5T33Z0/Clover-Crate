@@ -28,21 +28,23 @@ I created this repo for several reasons:
 </details>
 
 ## TABLE of CONTENTS
-- [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI)
-- [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
-- [**Boot Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics)
-- [**CPU**](https://github.com/5T33Z0/Clover-Crate/tree/main/CPU)
-- [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices)
-- [**Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Graphics)
-- [**GUI**](https://github.com/5T33Z0/Clover-Crate/tree/main/GUI)
-- [**Kernel and Kext Patches**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kernel_And_Kext_Patches)
-- [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
-- [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables)
-- [**SMBIOS**](https://github.com/5T33Z0/Clover-Crate/tree/main/SMBIOS)
-- [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters)
-- [**[GUIDE] Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
-- [**Utilities and Resources**](https://github.com/5T33Z0/Clover-Crate/tree/main/Utilities)
-- [**Clover Calcs**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras)
+- Clover Configuration
+  - [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI)
+  - [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
+  - [**Boot Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics)
+  - [**CPU**](https://github.com/5T33Z0/Clover-Crate/tree/main/CPU)
+  - [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices)
+  - [**Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Graphics)
+  - [**GUI**](https://github.com/5T33Z0/Clover-Crate/tree/main/GUI)
+  - [**Kernel and Kext Patches**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kernel_And_Kext_Patches)
+  - [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
+  - [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables)
+  - [**SMBIOS**](https://github.com/5T33Z0/Clover-Crate/tree/main/SMBIOS)
+  - [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters)
+- Extras
+  - [**[GUIDE] Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
+  - [**Clover Calculators**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras)
+  - [**Utilities and Resources**](https://github.com/5T33Z0/Clover-Crate/tree/main/Utilities)
 
 ## CREDITS
 - SergeySlice for [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader)
