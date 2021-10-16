@@ -1,7 +1,7 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover-r5140.1-brightgreen.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
+[![Clover Version](https://img.shields.io/badge/Clover-r5141-brightgreen.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
 [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-15.8.30-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/)
-![Last Update](https://img.shields.io/badge/Last_Update_(yy/mm/dd):-21.10.16-informational.svg)
+![Last Update](https://img.shields.io/badge/Last_Update_(yy/mm/dd):-21.10.16-orange.svg)
 ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 ## ABOUT
@@ -27,7 +27,7 @@ I created this repo for several reasons:
 </details>
 
 ## TABLE of CONTENTS
-- Clover Configuration
+- **Clover Configuration**
   - [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI)
   - [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
   - [**Boot Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics)
@@ -40,7 +40,7 @@ I created this repo for several reasons:
   - [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables)
   - [**SMBIOS**](https://github.com/5T33Z0/Clover-Crate/tree/main/SMBIOS)
   - [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters)
-- Extras
+- **Extras**
   - [**[GUIDE] Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
   - [**Clover Calculators**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras)
   - [**Utilities and Resources**](https://github.com/5T33Z0/Clover-Crate/tree/main/Utilities)
