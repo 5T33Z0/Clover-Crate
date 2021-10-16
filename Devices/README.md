@@ -60,7 +60,7 @@ Other options available from the dropdown menu:
 Affects the `AppleHDA` driver and seems to solve the problem with clicks and pops after waking up. There is little evidence of the effectiveness of the patch, though.
 
 #### ResetHDA
-Initialize the audio codec, if enabled. This behavior can be observed after rebooting from Windows to Mac.
+Initialize the audio codec, if enabled. This behavior can be observed after rebooting from Windows to Mac. In OpenCore this feature called `ResetTrafficClass` (UEFI > Audio)
 
 ## Properties
 This is where Clover and especially Clover Configuration get really confusing! Because the term `Properties` is used 3 times in 3 different contexts.

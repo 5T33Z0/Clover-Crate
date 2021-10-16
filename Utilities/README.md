@@ -11,4 +11,4 @@ Incomplete list of useful freeware Apps and Tools to accompany Clover.
 	- **General**: included in OpenCore Package (under "Docs"): https://github.com/acidanthera/OpenCorePkg/releases 
 	- **For Laptops** (dated, includes Clover configs as well): https://github.com/RehabMan/OS-X-Clover-Laptop-Config
 	- **Clover-specific** (in chinese): https://github.com/daliansky/P-little
-
+- [**Clover vs OpenCore nomenclature**](https://github.com/dortania/OpenCore-Install-Guide/blob/master/clover-conversion/Clover-config.md)
