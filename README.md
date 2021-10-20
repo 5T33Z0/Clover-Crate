@@ -40,8 +40,8 @@ I created this repo for several reasons:
   - [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables)
   - [**SMBIOS**](https://github.com/5T33Z0/Clover-Crate/tree/main/SMBIOS)
   - [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters)
-- **Extras**
-  - [**[GUIDE] Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
+- **Appendix**
+  - [**Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
   - [**Clover Calculators**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras)
   - [**Utilities and Resources**](https://github.com/5T33Z0/Clover-Crate/tree/main/Utilities)
 
