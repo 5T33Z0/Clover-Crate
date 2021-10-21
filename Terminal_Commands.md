@@ -119,3 +119,6 @@ or
 `sudo /System/Library/PrivateFrameworks/Seeding.framework/Resources/seedutil unenroll`</br>
 `sudo /System/Library/PrivateFrameworks/Seeding.framework/Resources/seedutil enroll DeveloperSeed`
 
+**Removing Network .plists (for troubleshooting**</br>
+`sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist`</br>
+`sudo rm /Library/Preferences/SystemConfiguration/preferences.plist`</br>
