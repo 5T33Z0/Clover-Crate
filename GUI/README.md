@@ -3,6 +3,31 @@
 
 This section is for configuring the look and behavior of Clover's Boot menu GUI as well as defining which Volumes are displayed.
 
+## Custom Entries
+In this section you can add your own entries to the Boot menu GUI. This is useful if an entry is missing or if you want to customize it. Click on the "+" symbol to add an entry to the list. After double Clicking the entry, a sub-menu is opened: 
+
+![Custom_Entry](https://user-images.githubusercontent.com/76865553/136745225-5c06bd82-b7a8-4459-b29d-52870742941e.png)
+
+Here you can change a lot of things. The most important one being the dropdown menu for selecting the "Volume" the custom entry should represent:
+
+![GUID](https://user-images.githubusercontent.com/76865553/136699942-79efe2a9-2995-48fe-a6fd-aad342ae259a.png)
+
+Enter a custom name in the `Title` field, set `Type` and `Volume Type` and it should work.
+## Hide Volume
+Here you can use enter names of partitions/volumes which shall be a hidden from the Bootloader GUI by default. For certain Windows volumes you need to enter the correct UUID to hide them. Open Terminal and enter:
+
+1. `diskutil list` and hit enter
+2. Find the partition you want to hide
+3. Copy its Identifier ("diskXsY") into a textfile or somethere
+4. Next, enter `diskutil info diskXsY | grep -i "Partition UUID" | rev | cut -d' ' -f 1 | rev`. Replace diskXsY with your actual identifier and hit enter
+5. Copy the `UUID`
+6. In the "Hide Volume" section, click on `+` 
+7. Enter the UUID
+
+On next reboot, this volume should be hidden.
+
+**Tip**: An easier method to find out the UUID is to using the custom entries section, since it displays the UUIDs of all volumes.
+
 ## Mouse
 ### Enabled
 `Enabled` - self explanatory. Disable the mouse if it causes issues in the Boot menu
@@ -60,14 +85,3 @@ Enables an on-screen notification in the Boot menu which about which GPUs are en
 
 ### TextOnly
 Text-only menu mode for a minimal GUI and faster loading times (like it was 1984 all over again).
-
-## Custom Entries
-In this section you can add your own entries to the Boot menu GUI. This is useful if an entry is missing or if you want to customize it. Click on the "+" symbol to add an entry to the list. After double Clicking the entry, a sub-menu is opened: 
-
-![Custom_Entry](https://user-images.githubusercontent.com/76865553/136745225-5c06bd82-b7a8-4459-b29d-52870742941e.png)
-
-Here you can change a lot of things. The most important one being the dropdown menu for selecting the "Volume" the custom entry should represent:
-
-![GUID](https://user-images.githubusercontent.com/76865553/136699942-79efe2a9-2995-48fe-a6fd-aad342ae259a.png)
-
-Enter a custom name in the `Title` field, set `Type` and `Volume Type` and it should work.
