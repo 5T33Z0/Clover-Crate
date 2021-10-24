@@ -50,7 +50,7 @@ For users who want to "convert" their ACPI Renames from OpenCore to Clover or vi
 
 ## DeviceProperties vs Devices > Properties
 In OpenCore, devices are added or modified in th straight forward "DeviceProperties" section, whereas in Clover Configurator these are hidden bedind a button in a weird convoluted sub-section which itself is split into two:
-![](/Users/kl45u5/Desktop/Devices.png)
+![Devices](https://user-images.githubusercontent.com/76865553/138610651-c9d42248-d1b8-4e54-b16a-2819556ae60f.png)
 Besides that they work the same and the data is interchangeable.
 
 ## Kernel and Kext Patches
