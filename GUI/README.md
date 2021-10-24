@@ -69,7 +69,7 @@ Inverts the mouse speed to correct inverted mouse movement.
 ## Scan
 ![GUI_Scan](https://user-images.githubusercontent.com/76865553/136699885-281deddd-0151-4e06-a489-4299669fe4d3.png)
 
-In this sub-section, you can modify clover's scan features for diks. In general, the less options you choose, the faster the startuptime is. When set to `Auto`, Clover decided what to do. If you set it to `Custom` you have control over the following features:
+In this sub-section, you can modify Clover's scan features for disk. In general, the less options you choose, the faster the UI appears. When set to `Auto`, Clover decided what to do. If you set it to `Custom` you have control over the following features:
 
 ### Entries
 This option enables or disables scanning for UEFI records on each disk on Boot. It also applies the rules set in the "Hide Volume" and "Custom Entries" sections.
@@ -104,7 +104,7 @@ Here you can use enter names of partitions/volumes which shall be a hidden from 
 
 1. `diskutil list` and hit enter
 2. Find the partition you want to hide
-3. Copy its Identifier ("diskXsY") to clipboard or store it in a textfile temporarily.
+3. Copy its Identifier ("diskXsY") to clipboard or store it in a text file temporarily.
 4. Next, enter `diskutil info diskXsY | grep -i "Partition UUID" | rev | cut -d' ' -f 1 | rev`. Replace diskXsY with your actual identifier and hit enter
 5. Copy the `UUID`
 6. In the "Hide Volume" section, click on `+` 
@@ -113,4 +113,3 @@ Here you can use enter names of partitions/volumes which shall be a hidden from 
 On next reboot, this volume should be hidden.
 
 **Tip**: An easier method to find out the UUID is to using the custom entries section, since it displays the UUIDs of all volumes.
-
