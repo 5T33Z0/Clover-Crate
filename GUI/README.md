@@ -72,7 +72,7 @@ This parameter enables or disables the search for legacy bootloaders launched fr
 This setting enables or disables the search for UEFI tools on each partition when Clover boots.
 
 ### Linux
-This option enables or disables the search for Linux bootloaders on each partition when Clover boots. Use in conjunction with "Kernel" options.
+This option enables or disables the search for Linux bootloaders on each partition when Clover boots. Use in conjunction with "Kernel" options. Do not scan for Linux bootloaders on each partition, it takes a lot of time!
 
 ### Kernel
 This parameter enables or disables the search for Linux kernels on each partition. This can be refined by selecting additional criteria from a dropdown menu (see screenshot): "First" places legacy sections at the beginning of the list, "Last" places legacy sections at the end of the list and so on. No one ever uses this, so lets move on.

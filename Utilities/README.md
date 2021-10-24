@@ -8,6 +8,7 @@ Incomplete list of useful freeware Apps and Tools to accompany Clover.
 - [**BitmaskDecode**](https://github.com/corpnewt/BitmaskDecode/) (for calculation CsrActiveConfig) 
 - [**Kext Updater**](https://www.sl-soft.de/kext-updater/) (great tool for keeping kexts and other files up to date)
 - [**Clover vs OpenCore nomenclature**](https://github.com/dortania/OpenCore-Install-Guide/blob/master/clover-conversion/Clover-config.md)
+- [**English Clover Manual**](https://drovosek01.github.io/CloverHackyColor-WebVersion/english/from%20Cloudconvert/Clover_Of_Khaki_Color_eng_5129.html) (automated translation) 
 - **ACPI Samples**:
 	- **General**: included in OpenCore Package (under "Docs"): https://github.com/acidanthera/OpenCorePkg/releases 
 	- **For Laptops** (dated, includes Clover configs as well): https://github.com/RehabMan/OS-X-Clover-Laptop-Config
