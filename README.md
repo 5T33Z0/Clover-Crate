@@ -50,7 +50,7 @@ I created this repo for several reasons:
 - SergeySlice for [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader)
 - Acidanthera for [**OpenCore**](https://github.com/acidanthera/OpenCorePkg)
 - Dortania for the excellent Documentation on [**Fixing Post-Install issues**](https://dortania.github.io/OpenCore-Post-Install/) in particular 
-- RehabMan for [Clover Laptop Configs](https://github.com/RehabMan/OS-X-Clover-Laptop-Config)
+- RehabMan for [**Clover Laptop Configs**](https://github.com/RehabMan/OS-X-Clover-Laptop-Config)
 - Macki100Projects for [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/)
 - daliansky for [**P-Little Repo**](https://github.com/daliansky/P-little)
 - ic005k for [**PlistEDPlus**](https://github.com/ic005k/PlistEDPlus)
