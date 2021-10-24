@@ -12,9 +12,9 @@ Throughout this chapter, this section is broken down into smaller chunks to make
 
 Merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI tables.
 
-If set to `true`, it changes the way files in `ACPI/patched` are handled: Instead of adding these files at the end of the `DSDT` they will replace existings tables, if their signature, index and `OemTableIds` match existing OEM tables.
+If set to `true`, it changes the way files in `ACPI/patched` are handled: Instead of adding these files at the end of the `DSDT` they will replace existing tables, if their signature, index and `OemTableIds` match existing OEM tables.
 
-With this function – as with `DSDT` – you can fix individual SSDTs (or other tables) simply by addind the corrected file(s) into `ACPI/patched`. No need to fiddle with `DropOem` or `DropTables`. The original order is preserved. The mapping for `SSDT` is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the `SSDT` position in `DSDT`. 
+With this function – as with `DSDT` – you can fix individual SSDTs (or other tables) simply by adding the corrected file(s) into `ACPI/patched`. No need to fiddle with `DropOem` or `DropTables`. The original order is preserved. The mapping for `SSDT` is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the `SSDT` position in `DSDT`. 
 
 For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you could just fix it nd put it back in `ACPI/patched`, replacing the original table. This also works if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. If you stick to the names provided in `ACPI/origin`, you should be fine.
 This way, you could find the SSDT containing all the 26 Ports for your board in the dumped ACPI, fix it, put it back in the `ACPI/patched` folder and boom: no more `USBports.kext` required.
@@ -100,7 +100,7 @@ Following are examples of commonly renamed devices:
 
 **Prerequisites**: In order to apply these renames correctly, you need a dump of your System's `DSDT`! 
 
-Names like `_DSM` with and underscor in front of them define a method. These are usually renamed by replacing the `_` with an `X` (like `XDSM`) which basically disables the method (`XDSM`), so a differnet or custom method can be applied.
+Names like `_DSM` with and underscore in front of them define a method. These are usually renamed by replacing the `_` with an `X` (like `XDSM`) which basically disables the method (`XDSM`), so a different or custom method can be applied.
 
 | #  | Rename      | Description                      |
 |:--:| :---------: | -------------------------------- |
@@ -196,7 +196,7 @@ In macOS 10.6.1, there was a panic on the `AppleIntelPIIXATA.kext`. Two solution
 
 ### FixIPIC
 
-Removes the interrupt from the `IPIC` device. This fix affects the operation of the Power Button (a pop-up window with the Reset, Sleep, Shutdown options).
+Removes the interrupt from the `IPIC` device. Fixed the operation of the Power Button (a pop-up window with the Reset, Sleep, Shutdown options).
 
 ### FixLAN
 Injection of the "built-in" property for the network card is necessary for correct operation. Also a card model is injected - for cosmetics.
@@ -211,7 +211,7 @@ Adds the System Management Bus Controller to the device tree, thereby removing t
 
 ### FixShutdown
 
-A condition is added to the `_PTS` (prepare to slwwp) method: if argument = 5 (shutdown), then no other action is required. Strange, why? Nevertheless, there is repeated confirmation of the effectiveness of this patch for ASUS boards, maybe for others, too. Some `DSDT` already have such a check, in which case such a fix should be disabled. If `SuspendOverride` = `true` is set in the config, then this fix will be extended by arguments 3 and 4. That is, going to sleep (Suspend). On the other hand, if `HaltEnabler` = `true`, then this patch is probably no longer needed.
+A condition is added to the `_PTS` (prepare to sleep) method: if argument = 5 (shutdown), then no other action is required. Strange, why? Nevertheless, there is repeated confirmation of the effectiveness of this patch for ASUS boards, maybe for others, too. Some `DSDT` already have such a check, in which case such a fix should be disabled. If `SuspendOverride` = `true` is set in the config, then this fix will be extended by arguments 3 and 4. That is, going to sleep (Suspend). On the other hand, if `HaltEnabler` = `true`, then this patch is probably no longer needed.
 
 ### FixUSB
 
@@ -334,7 +334,7 @@ Adds Return to the `_WAK` method. It has to be, but for some reason often the `D
 ## SSDT
 ![SSDT](https://user-images.githubusercontent.com/76865553/136655891-edd9c38d-852f-476e-9ca7-4295cdb4ec38.png)
 
-This section is for enabling/fixing/optimizing CPU Power Management. It's rarely used nowadays, since tools like [**ssdtPRGen**](https://github.com/Piker-Alpha/ssdtPRGen.sh) or [**SSDTTime**](https://github.com/corpnewt/SSDTTime) can generate a dedicated `SSDT` for it instaead.
+This section is for enabling/fixing/optimizing CPU Power Management. It's rarely used nowadays, since tools like [**ssdtPRGen**](https://github.com/Piker-Alpha/ssdtPRGen.sh) or [**SSDTTime**](https://github.com/corpnewt/SSDTTime) can generate a dedicated `SSDT` for it instead.
 
 ### C3 Latency
 
@@ -357,7 +357,7 @@ Specify which C-States you want to enable/generate.
 ### Generate
 ![Generate_Options](https://user-images.githubusercontent.com/76865553/136794188-a2fac646-48bb-469d-87f9-ca47afe00622.png)
 
-In the new Clover, this group of parameters is combined into one section, and `PluginType` is now just `true` or `false`. The other `PluginType` key (the one with the dropdown menu) is obsolete and only kept for ackward compatibility!
+In the new Clover, this group of parameters is combined into one section, and `PluginType` is now just `true` or `false`. The other `PluginType` key (the one with the dropdown menu) is obsolete and only kept for backwards compatibility!
 
 The APLF and APSN parameters seem to affect speedstep, but for those who know what they are for. Note: Because APSN/APLF are part of Generate→PStates, they act if Generate→PStates=true, whereas PluginType is independent and acts independently of the Generate→PStates choice.
 
