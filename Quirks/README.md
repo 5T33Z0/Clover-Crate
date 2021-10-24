@@ -5,14 +5,14 @@
 <details>
 <summary><strong>Background: From Aptio Memory Fixes to Quirks</strong></summary>
 
-The development of a driver for adjusting the memory that UEFI BIOS Aptio (American Megatrend) reserves by Dmazar marked the beginning of the UEFI Boot era for Clover.
+The development of a driver for adjusting the memory that UEFI BIOS Aptio (by AMI) by Dmazar marked the beginning of the UEFI Boot era for Clover.
 The Allocate function in this BIOS allocates memory in the lower registers, but to boot macOS, the lower memory has to be free. This issue not only affected memory but also `boot.efi`, address virtualization, pointers, functions, etc. It was Dmazar who figured out how to resolve them. This became the `OsxAptioFixDrv.efi` driver.
 
 For a long time after Dmazar left, no one touched this driver until vit9696 undertook to overhaul it. First of all, he made changes to the driver so that it could utilize native NVRAM on many chipsets (BIOS), which was not possible before. Next, he broke the new driver (`OpenRuntime.efi`) down into **semantic expressions (quirks), which could be turned on and off by the user if the OpenCore loader was used**. 
 
 ReddestDream, a programmer who decided to make `OpenRuntime.efi` work with Clover somehow, created a separate driver (`OcQuirks.efi`), which worked in conjunction with `OpenRuntime.efi` and an additional `OcQuirks.plist` to store all the settings. This combination could then be utilized by Clover.
 
-Next, I (Slice) integrated the `OpemRuntime.efi` source code into my repo since it is Open Source, so I could do bisectioning. Finally, I copied and modernized them so that instead of a separate .plist file, the same Clover `config.plist` can be used, and Quirks can also be changef from within the bootloader GUI. 
+Next, I (Slice) integrated the `OpenRuntime.efi` source code into my repo since it is Open Source, so I could do bisectioning. Finally, I copied and modernized them so that instead of a separate .plist file, the same Clover `config.plist` can be used, and Quirks can also be changed from within the bootloader GUI. 
 </details>
 
 In oder to set up these Quirks correctly, you need to follow the instruction for your CPU family in the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/). Specifically, these sections:
