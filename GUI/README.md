@@ -63,7 +63,7 @@ Inverts the mouse speed to correct inverted mouse movement.
 In this sub-section, you can modify clover's scan features for diks. In general, the less options you choose, the faster the startuptime is. When set to `Auto`, Clover decided what to do. If you set it to `Custom` you have control over the following features:
 
 ### Entries
-This option enables or disables scanning for UEFI records on each disk on Boot.
+This option enables or disables scanning for UEFI records on each disk on Boot. It also applies the rules set in the "Hide Volume" and "Custom Entries" sections.
 
 ### Legacy
 This parameter enables or disables the search for legacy bootloaders launched from PBR. This can be refined by selecting additional criteria from a dropdown menu: "First" places legacy sections at the beginning of the list, "Last" places them at the end of the list. No one ever uses this, so lets move on.
