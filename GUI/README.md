@@ -1,7 +1,7 @@
 # GUI
-![GUI](https://user-images.githubusercontent.com/76865553/136703745-7ec35d11-5458-482c-a8c8-ccaf48d9650d.jpeg)
-
 This section is for configuring the look and behavior of Clover's Boot menu GUI as well as defining which Volumes are displayed.
+
+![GUI](https://user-images.githubusercontent.com/76865553/136703745-7ec35d11-5458-482c-a8c8-ccaf48d9650d.jpeg)
 
 ### CustomIcons
 Enabling this key will use custom disk icons stored in in the root folder of the volumes themselves, instead of using the disk icon from a theme. It is this file: `.VolumeIcon.icns` which is a hidden file. To show all files in Finder, use:
@@ -12,8 +12,14 @@ After you're done with your changes, set it to `FALSE` again:
 
 `defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder`
 
+### Theme
+Enter the name of a theme installed in `EFI\Clover\themes\ThemeXYZ` for example. Use the folder name for reference. In this example, enter "ThemeXYZ".
+
 ### EmbeddedThemeType
-Select between `Dark` and `Light` variant of the embedded theme. If left unset, the variants are picked based by the real time clock – light during the day, dark at night. Introduced in r4773.
+Select between `Dark` and `Light` variant of an embedded theme. If left unset, the variants are picked based by the real time clock – light during the day, dark at night (if it's supported by the theme). Introduced in r4773.
+
+### Timezone
+Clover r4773 introduced the concept of changing theme styles of embedded themes depending on the time of day. From 8:00 AM to 8:00 PM a light variant will be used and from 8:00 PM to 8:00 AM the dark variant will be used. It's based on GMT timing, so add or subtract the number of hours for your location.
 
 ### KbdPrevLang
 Select your preferred Keyboard Layout for macOS if you want to save the system language when upgrading macOS with native NVRAM.
@@ -23,8 +29,14 @@ In combination with `Language`, this can used to fix an issue when installing be
 ### Language
 At of now moment, setting the language makes sense only for the "Help" menu called by the F1 Key. However, this value is sent to the system and can affect the default language.
 
+### ScreenResolution
+Here you can change the default Screen Resolution of the Boot menu GUI. The default is 1024x768 px. Clover detects the highest possible resolution, but it can be wrong, so you can pick the correct or desired value from the dropdown menu.
+
+### Console Mode
+The correct value can be found in your `boot.log`, or set it to `Max` and the maximum possible resolution will be used for console mode.
+
 ### PlayAsync
-Clover r4833 added audio support for the Boot menu via the `AudioDxe.efi` driver. `PlayAsync` determines the playback mode of the boot chime: either sequential or simultaneously. With synchronous playback (default), the boot process is sequential: chime first, then the bootloader kicks in. If `PlayAsync` is enabled, the boot process will run parallel or simultaneously to the audio playback. The chime has to be named `sound.wav` and needs to be placed in the root folder of the used theme.
+Clover r4833 added audio support for the Boot menu via the `AudioDxe.efi` driver. `PlayAsync` determines the playback mode of the boot chime: either sequential or simultaneously. With synchronous playback (default), the boot process is sequential: chime first, then the bootloader kicks in. If `PlayAsync` is enabled, the boot process will run parallel or simultaneously to the audio playback. The chime has to be named `sound.wav` for day themes and `sound_night.wav` for night mode and needs to be placed in the root folder of the used theme.
 
 **NOTES**: 
 
@@ -37,9 +49,6 @@ Creates a GOP protocol for console mode, i.e. for text output not in text mode, 
 In revisions prior to r5128, this setting was also present in Quirks as `ProvideConsoleGopEnable` but has since been removed to avoid duplicate parameters.
 
 `ProvideConsoleGop` from GUI will override `ProvideConsoleGopEnable` from the `Quirks` section  – just in case you forgot to remove this parameter from the config when updating the Clover.
-
-### ScreenResolution
-Here you can change the default Screen Resolution of the Boot menu GUI. The default is 1024x768 px. Clover detects the highest possible resolution, but it can be wrong, so you can pick the correct or desired value from the dropdown menu.
 
 ### ShowOptimus
 Enables an on-screen notification in the Boot menu which about which GPUs are enabled, so you can disabled discrete Optimus GPUs on the fly since they are not supported by macOS. If on-board and discrete GPU are enabled, the notification `Intel Discrete` is displayed.
@@ -95,7 +104,7 @@ Here you can use enter names of partitions/volumes which shall be a hidden from 
 
 1. `diskutil list` and hit enter
 2. Find the partition you want to hide
-3. Copy its Identifier ("diskXsY") into a textfile or somethere
+3. Copy its Identifier ("diskXsY") to clipboard or store it in a textfile temporarily.
 4. Next, enter `diskutil info diskXsY | grep -i "Partition UUID" | rev | cut -d' ' -f 1 | rev`. Replace diskXsY with your actual identifier and hit enter
 5. Copy the `UUID`
 6. In the "Hide Volume" section, click on `+` 
