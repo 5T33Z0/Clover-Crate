@@ -4,8 +4,6 @@ This section includes a spreadsheet for Apple Numbers and MS Excel for calculati
 
 If you are looking for an actual tool to calculate these things (and more), you should check out CorpNewt's [**BitmaskDecode**](https://github.com/corpnewt/BitmaskDecode)
 
-There's also an online [**ScanPolicy Calculator**](https://oc-scanpolicy.vercel.app/)
-
 **Screenshots**:
 
 ![CSR_Clover](https://user-images.githubusercontent.com/76865553/137451603-733fec89-7e37-411d-beff-844af404f1a9.png)
