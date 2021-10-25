@@ -80,7 +80,7 @@ In OCAT you enter the path to a device in the `base` field (don't forget to enab
 | Reset HwSig			  | ?           |
 | SyncTableIDs      | ?           |
 
-## DeviceProperties vs Devices > Properties
+## DeviceProperties
 In OCAT, devices are added or modified in a straight forward "DeviceProperties" section:</br>
 ![OCAT_Devprops](https://user-images.githubusercontent.com/76865553/138651900-29810b55-324d-48e8-8e97-fcdda6038612.png)
 
