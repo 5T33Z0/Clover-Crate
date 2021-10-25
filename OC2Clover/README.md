@@ -63,9 +63,9 @@ While Binary Renames work the same in OpenCore and Clover, you have a lot more o
 
 In Clover you also have the option "RenameDevices" which works the same as the `Base` Parameter in OpenCore with the difference that it is limited to devices:</br>
 ![Ren_Dev](https://user-images.githubusercontent.com/76865553/138651675-a51e51df-8249-4a79-8d75-c9de401e268c.png)
-In OCAT:</br>
-![OCAT_base](https://user-images.githubusercontent.com/76865553/138651795-7c29b7c4-5073-4cb3-ab7e-1ae4cd4055ed.png)
 
+In OCAT you enter the path to a device in the `base` field (don't forget to enable them):</br>
+![Dev_base](https://user-images.githubusercontent.com/76865553/138652948-fc403674-e434-4980-8062-a1ae1e787ab6.png)
 
 ### ACPI > Quirks 
 
@@ -75,7 +75,7 @@ In OCAT:</br>
 | Normalize Headers | FixHeaders  |
 | Reset Logo Status | ?           |
 | Rebase Regions    | ?           |
-| Reset HwSig			| ?           |
+| Reset HwSig			  | ?           |
 | SyncTableIDs      | ?           |
 
 ## DeviceProperties vs Devices > Properties
