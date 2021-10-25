@@ -137,6 +137,7 @@ From this UUID, you probably want to transfer:
 
 - `boot-args`: Add these to "Boot" > "Arguments" in Clover
 - `csr-active-config`: Needs to be added in "RtVariables" > "CsrActiveConfig". BUT you can't use this as is, since it's Endianness (or whatever it's called) differs from the form Clover uses. For example: `FF070000` is `0x7FF` in Clover. You have to convert it: 
+	
 	1. Drop the last four digits (zeros); you get `FF07`
 	2. Split the 4 remaining digts into pairs of two: `FF` `07`
 	3. Swap the positions of the 1st and 2nd pair; you get: `07` `FF`
