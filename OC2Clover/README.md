@@ -3,7 +3,7 @@
 
 This is for users planning to convert their working OpenCore Config to Clover. It’s an adaptation of the [**Clover Conversion Guide**](https://github.com/dortania/OpenCore-Install-Guide/tree/master/clover-conversion) – just the other way around (and a bit more in-depth). 
 
-The most relevant sections for converting a OpenCore config to Clover and vice versa are: "ACPI", "Kernel and Kext Patches" and "Quirks".
+The most relevant sections for converting a OpenCore config to Clover and vice versa are: "ACPI", "Device Properties", "Kernel and Kext Patches" and "Quirks", which will be covered here.
 
 ## ACPI
 In general, you can use the same SSDTs (.aml) in Clover as in OpenCore. But since Clover has a lot of built-in DSDT Patches, some of then (and accompanying renames required to make them work in OC) are unnecessary.
@@ -96,14 +96,14 @@ In Clover, you don't have to add Kexts to a list and you don't have to worry abo
 
 Whereas in OpenCore you need to define which kext loads for which macOS version via `Min/MaxKernel` parameters, Clover determines this much more hands-on by using the EFI folder structure inside of `EFI\CLOVER\kexts\`:
 
-- Kexts which should be loaded for every macOS version go into `kexts\other`
-- Kexts which should be loaded for specific macOS versions only, are placed in a corresponding folder with the macOS version, for example `kexts\10.15` for macOS Catalina, `kexts\11` for Big Sur, or `kexts\12` for macOS Monterey
-- To disable a Kext, move it to `kexts\OFF`
+- Kexts which should load for *any* macOS version must be placed in `kexts\other`. This is the main kexts folder (although the name doesn't imply that at all).
+- Kexts which should load for specific macOS versions only, must be placed in folders corresponding to the use macOS version. For example `kexts\10.15` for Catalina, `kexts\11` for Big Sur, or `kexts\12` for macOS Monterey, etc.
+- To disable a Kext, move it to `kexts\Off`.
 
-This is a lot less cumbersome then having to set a `MinKernel` and `MaxKernel` values for Kexts. On the other hand it makes updating kexts a bit more complicated and can lead to having some duplicate kexts so the overall size of the EFI grows.
+This is a lot less cumbersome then having to set `MinKernel` and `MaxKernel` values for Kexts. On the other hand it makes updating kexts a bit more complicated since you have to look in any sub-folder. Plus, can lead to having some duplicate kexts so the overall size of the EFI grows unncessarily.
 
 ### Kernel > Patch
-In Clover Configurator, you have enter the values in Kernel and Kext Patches Section. In the table below you find the availabe options and differences in nomenclature:
+In Clover Configurator, you have to enter rules for patching kexts and Kernes in the "Kernel and Kext Patches" section. In the table below, you find the availabe options and differences in nomenclature:
 
 | OpenCore    | Clover         |
 |:-----------:|:--------------:|
@@ -148,3 +148,26 @@ While most of OpenCore's Kernel Patches are located in Clover's Quirks section, 
 |LapicKernelPanic            | Kernel LAPIC
 |PanicNoKextDump             | PanicNoKextDump
 
+## PlatformInfo > Generic
+If you want to use your SMBIOS data from "PlatformInfo > Generic" in Clover, you have to use different fields and section to do so. This can be a bit confusing due to naming differences as well as the number of fields available in both configs.
+
+In order to use the SMBIOS data in OpenCore and Clover, do the following:
+
+1. Copy the Data from the following fields to Clover Configurator's "SMBIOS" and "RtVariables" sections:</br> 
+
+	| OpenCore (PlatformInfo > Generic) | Clover (SMBIOS)      |
+	|-----------------------------------|----------------------|
+	| SystemProductName                 | ProductName          |
+	| SystemUUID                        | SmUUID               |
+	| ROM                               | ROM (in RtVariables) |
+	| N/A in "Generic"                  | Board-ID             |
+	| SystemSerialNumber                | Serial Number        |
+	| MLB                               | Board Serial Number and MLB (in RtVariables)|
+2. Next, tick the "Update Firmware Only" box.
+3. From the Dropdown Menu next to it to, select same Model you used for   "ProductName". This updates other fields like BIOS and Firmware.
+4. Save config and boot via Clover.
+
+**IMPORTANT**
+
+- If you did everything correct, you won't have to enter your AppleID Password after switching bootloaders and macOS will let you know, that "This AppleID is now used with this device" or something like that.
+- But if macOS asks for your AppleID Password and Mail passwords etc. after switching bootloades, you did something wrong. In this casem you should reboot into OpenCore instead and check again. Otherwise you are registering your computer as a new/different Mac.
