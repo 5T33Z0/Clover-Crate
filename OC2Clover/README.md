@@ -1,7 +1,9 @@
 # Converting OpenCore Properties to Clover
 >Work In Progress!
 
-This is for users planning to convert their working OpenCore Config to Clover. It’s an adaptation of the [**Clover Conversion Guide**](https://github.com/dortania/OpenCore-Install-Guide/tree/master/clover-conversion) – just the other way around.
+This is for users planning to convert their working OpenCore Config to Clover. It’s an adaptation of the [**Clover Conversion Guide**](https://github.com/dortania/OpenCore-Install-Guide/tree/master/clover-conversion) – just the other way around (and a bit more in-depth). 
+
+The most relevant sections for converting a OpenCore config to Clover and vice versa are: "ACPI", "Kernel and Kext Patches" and "Quirks".
 
 ## ACPI
 In general, you can use the same SSDTs (.aml) in Clover as in OpenCore. But since Clover has a lot of built-in DSDT Patches, some of then (and accompanying renames required to make them work in OC) are unnecessary.
@@ -117,8 +119,13 @@ In Clover Configurator, you have enter the values in Kernel and Kext Patches Sec
 
 `°` Although there are no equivalents to `MinKernel` and `MaxKernel` parameters in Clover, you could use `MatcOS`. Instead of a range of kernel versions you just use the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks in between).
 
+## Quirks
+This is one of the most important aspects of your config. In OpenCore there are ACPI Quirks, Booter Quirks, Kernel Quirks and UEFI Quirks. A lot of them are combined in Clover's "Quirks" section. 
+
+For more details on how OpenCore's Quirks are implemented into Clover, please refer to the Chapters [**"Quirks"**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) and [**Upgrading Clover for macOS 11+ compatibility**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover).
+
 ### Kernel > Quirks
-Most of OpenCore's Kernel Patches are located in Clover's Quirks Section, but the following are located under Kernel and Kext Patches:
+While most of OpenCore's Kernel Patches are located in Clover's Quirks section, the following are located under Kernel and Kext Patches instead:
 
 | OpenCore (Kernel > Quirks) | Clover (Kernel and Kext Patches)|
 |:---------------------------|:--------------------------------|
