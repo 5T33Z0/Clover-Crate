@@ -196,7 +196,7 @@ In macOS 10.6.1, there was a panic on the `AppleIntelPIIXATA.kext`. Two solution
 
 ### FixIPIC
 
-Removes the interrupt from the `IPIC` device. Fixed the operation of the Power Button (a pop-up window with the Reset, Sleep, Shutdown options).
+Removes the interrupt from the `IPIC` device. Fixes the Power Button functionality, so holding the it for a few seconds opens up a dialog window with option to Reset, Sleep, or Shutdown the computer.
 
 ### FixLAN
 Injection of the "built-in" property for the network card is necessary for correct operation. Also a card model is injected - for cosmetics.
