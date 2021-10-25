@@ -77,7 +77,7 @@ In OCAT you enter the path to a device in the `base` field (don't forget to enab
 | Normalize Headers | FixHeaders  |
 | Reset Logo Status | ?           |
 | Rebase Regions    | ?           |
-| Reset HwSig			  | ?           |
+| Reset HwSig			| ?           |
 | SyncTableIDs      | ?           |
 
 ## DeviceProperties
@@ -129,6 +129,22 @@ In Clover Configurator, you have to enter rules for patching kexts and Kernes in
 | –           | RangeFind      |
 
 `°` Although there are no equivalents to `MinKernel` and `MaxKernel` parameters in Clover, you could use `MatcOS`. Instead of a range of kernel versions you just use the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks in between).
+
+## NVRAM > Add
+
+### 7C436110-AB2A-4BBB-A880-FE41995C9F82
+From this UUID, you probably want to transfer:
+
+- `boot-args`: Add these to "Boot" > "Arguments" in Clover
+- `csr-active-config`: Needs to be added in "RtVariables" > "CsrActiveConfig". BUT you can't use this as is, since it's Endianness (or whatever it's called) differs from the form Clover uses. For example: `FF070000` is `0x7FF` in Clover. You have to convert it: 
+	1. Drop the last four digits (zeros); you get `FF07`
+	2. Split the 4 remaining digts into pairs of two: `FF` `07`
+	3. Swap the positions of the 1st and 2nd pair; you get: `07` `FF`
+	4. Drop the `0`; you get: `7FF`
+	6. Enter this value in "RtVariables" > `CsrActiveConfig`
+	7. The resulting HEX value should look like this: `0x7FF` 
+
+**NOTE**: To calculate your own csr bitmask, you can use my [**Clover Calculators**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) spreadsheet, which also helps understanding the whole choncept a lot better.
 
 ## Quirks
 This is one of the most important aspects of your config. In OpenCore there are ACPI Quirks, Booter Quirks, Kernel Quirks and UEFI Quirks. A lot of them are combined in Clover's "Quirks" section. 
