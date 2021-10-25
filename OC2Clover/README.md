@@ -31,9 +31,10 @@ In Clover Configurator, this section is located under ACPI > Drop Tables. These 
 **Example**: Dropping CPU Power Management tables
 
 - In OCAT:</br>
-![](/Users/kl45u5/Desktop/OCAT_del.png)
+![OCAT_del](https://user-images.githubusercontent.com/76865553/138651510-a9d179a5-b8e3-43a4-9aff-3b536fffbbd7.png)
+
 - In Clover Configurator:</br>
-![](/Users/kl45u5/Desktop/Clover_drop.png)
+![Clover_drop](https://user-images.githubusercontent.com/76865553/138651565-3998b445-6df6-49b7-aad1-6a8914f169ef.png)
 
 **NOTES**:
 
@@ -60,10 +61,11 @@ While Binary Renames work the same in OpenCore and Clover, you have a lot more o
 | Skip            | –       |
 | BaseSkip        | –       |
 
-In Clover you also have the option "RenameDevices" which works the same as the `Base` Parameter in OpenCore with the difference that it is limited to devices:
-![](/Users/kl45u5/Desktop/FindDev.png)
-In OCAT:
-![](/Users/kl45u5/Desktop/OCAT_base.png)
+In Clover you also have the option "RenameDevices" which works the same as the `Base` Parameter in OpenCore with the difference that it is limited to devices:</br>
+![Ren_Dev](https://user-images.githubusercontent.com/76865553/138651675-a51e51df-8249-4a79-8d75-c9de401e268c.png)
+In OCAT:</br>
+![OCAT_base](https://user-images.githubusercontent.com/76865553/138651795-7c29b7c4-5073-4cb3-ab7e-1ae4cd4055ed.png)
+
 
 ### ACPI > Quirks 
 
@@ -77,9 +79,10 @@ In OCAT:
 | SyncTableIDs      | ?           |
 
 ## DeviceProperties vs Devices > Properties
-In OCAT, devices are added or modified in a straight forward "DeviceProperties" section:
-![](/Users/kl45u5/Desktop/OCAT_Devprops.png)
-In Clover Configurator these are hidden bedind a button in a sub-section:
+In OCAT, devices are added or modified in a straight forward "DeviceProperties" section:</br>
+![OCAT_Devprops](https://user-images.githubusercontent.com/76865553/138651900-29810b55-324d-48e8-8e97-fcdda6038612.png)
+
+In Clover Configurator these are hidden bedind a button in a sub-section:</br>
 ![Devices](https://user-images.githubusercontent.com/76865553/138610651-c9d42248-d1b8-4e54-b16a-2819556ae60f.png)
 Besides that they work the same and the data is interchangeable.
 
@@ -90,7 +93,7 @@ For users who want to convert their Kext and Kernel Patches from OpenCore to Clo
 In Clover Configurator, you have enter the values in Kernel and Kext Patches Section. In the table below you find the availabe options and differences in nomenclature:
 
 | OpenCore    | Clover         |
-|:------------:|:---------------:|
+|:-----------:|:--------------:|
 | Identifier  | Name           |
 | Base        | Procedure      |
 | Comment     | Comment        |
@@ -101,16 +104,16 @@ In Clover Configurator, you have enter the values in Kernel and Kext Patches Sec
 | –           | MaskStart      |
 | –           | StartPattern   |
 | –           | RangeFind      |
-| MinKernel  | –°           |
-| MaxKernel  | –°           |
+| MinKernel   | –°             |
+| MaxKernel   | –°             |
 | Count       | Count          |
-| Limit       | –            |
+| Limit       | –              |
 | Skip        | Skip           |
 | Enabled     | Disabled       |
-| Arch        | –            |
-| –         | MatchOS°       |
-| –         | InfoPlistPatch |
-| –         | RangeFind      |
+| Arch        | –              |
+| –           | MatchOS°       |
+| –           | InfoPlistPatch |
+| –           | RangeFind      |
 
 `°` Although there are no equivalents to `MinKernel` and `MaxKernel` parameters in Clover, you could use `MatcOS`. Instead of a range of kernel versions you just use the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks in between).
 
