@@ -89,7 +89,18 @@ In Clover Configurator these are hidden bedind a button in a sub-section:</br>
 Besides that they work the same and the data is interchangeable.
 
 ## Kernel
-For users who want to convert their Kext and Kernel Patches from OpenCore to Clover. Note that Clover uses two different sections for patching: one for patching Kexts ("KextsToPatch") and one for Patching the Kernel (KernelToPatch), whereas in OpenCore this is handled in the same section ("Kernel > Patch"). 
+For users who want to convert their Kext and Kernel Patches from OpenCore to Clover. Note that Clover uses two different sections for patching: one for patching Kexts ("KextsToPatch") and one for Patching the Kernel (KernelToPatch), whereas in OpenCore this is handled in the same section ("Kernel > Patch").
+
+### Kernel > Add
+In Clover, you don't have to add Kexts to a list and you don't have to worry about the kext loading sequence either. Kext dependencies are hard-coded into Clover, so Lilu and VirtualSMC will always load first. 
+
+Whereas in OpenCore you need to define which kext loads for which macOS version via `Min/MaxKernel` parameters, Clover determines this much more hands-on by using the EFI folder structure inside of `EFI\CLOVER\kexts\`:
+
+- Kexts which should be loaded for every macOS version go into `kexts\other`
+- Kexts which should be loaded for specific macOS versions only, are placed in a corresponding folder with the macOS version, for example `kexts\10.15` for macOS Catalina, `kexts\11` for Big Sur, or `kexts\12` for macOS Monterey
+- To disable a Kext, move it to `kexts\OFF`
+
+This is a lot less cumbersome then having to set a `MinKernel` and `MaxKernel` values for Kexts. On the other hand it makes updating kexts a bit more complicated and can lead to having some duplicate kexts so the overall size of the EFI grows.
 
 ### Kernel > Patch
 In Clover Configurator, you have enter the values in Kernel and Kext Patches Section. In the table below you find the availabe options and differences in nomenclature:
