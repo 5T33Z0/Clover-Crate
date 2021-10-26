@@ -19,7 +19,7 @@ With the release of macOS ElCapitan in 2015, a new security feature was introduc
 
 | macOS Version     | Bitmask Size | CsrActive Config |
 |------------------:|:------------:|:----------------:|
-| macOS 11/12		| 12 bit       |          `0xFEF` |
+| macOS 11/12       | 12 bit       |          `0xFEF` |
 | macOS 10.14/10.15 | 11 bit       |          `0x7FF` |
 | macOS 10.13       | 10 bit       |          `0x3FF` |
 | macOS 10.12       | 9 bit        |          `0x067` |
