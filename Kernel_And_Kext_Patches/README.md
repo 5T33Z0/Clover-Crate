@@ -41,18 +41,30 @@ Starting with r5095, the ability to create binary patches following renaming rul
 - `KernelPatches` 
 - `BootPatches`
 
-Besides the usual `Find`/`Replace` masks there are additional modifiers: 
+Besides the basic `Find`/`Replace` masks, there are several additional modifiers you can utilize for applying Kernels and Kext patches. In the table below, you find the availabe options and differences in nomenclature between OpenCore and Clover:
 
-- `MaskFind`(HEX): If some bit=1, we look for an exact match, if=0, we ignore the difference.
-- `MaskReplace` (HEX): if a bit=1, we make a replacement. If a bit=0, we leave it as is.
-- `Disabled`: Disables the renaming rule.
-- `Procedure`: Name of the procedure we are looking for. The real name may be longer, but the comparison is done by a substring. Make sure the substring occurs only in this procedure. In OpenCore, this is called `Base`.
-- `RangeFind`: Length of codes to search. In general, just the size of this procedure, or less. This way we speed up the search without going through all the millions of strings. 
-- `StartPattern` was existed before the character patch. It is the starting point from which to look for our pattern. If we know the name of the procedure, `StartPattern` is hardly needed anymore.
-- `MaskStart`: Mask for the starting point, i.e. for the `StartPattern`. And then there are Find/MaskFind and Replace/MaskReplace pairs.
-- `MatchOS` is set to All, since we consider this method of patching independent of the system version.
-- `MatchBuild`: no explanation available (5T33Z0)
-- `InfoPlistPatch`: no explanation available (5T33Z0)
+| OpenCore    | Clover         | Description (where applicable) |
+|:------------|:---------------|--------------------------------|
+| Identifier  | Name           | 
+| Base        | Procedure      | Name of the procedure we are looking for. The real name may be longer, but the comparison is done by a substring. Make sure the substring occurs only in "Procedure".
+| Comment     | Comment        | Besides using it as a reminder what a patch does, this field is also used for listing the available patches in Clover's bootmenu.
+| Find		    | Find           | value to find
+| Replace     | Replace        | value to replace the found value by
+| Mask        | MaskFind       |If some bit=1, we look for an exact match, if=0, we ignore the difference.
+| ReplaceMask | MaskReplace    |If a bit=1, we make a replacement. If a bit=0, we leave it as is.
+| –           | MaskStart      | Mask for the starting point, i.e. for the `StartPattern`. And then there are Find/MaskFind and Replace/MaskReplace pairs.
+| –           | StartPattern   | Rement of the era before character patching was implemented. It marks the starting point from which to look for a replacement pattern. If we know the name of the procedure, `StartPattern` is hardly needed anymore.
+| –           | RangeFind      | Length of codes to search. In general, just the size of this procedure, or less. This way we speed up the search without going through all the millions of strings.
+| MinKernel   | –              | see "MatchOS"
+| MaxKernel   | –              | see "MatchOS"
+| Count       | Count          | number of time a replacement is made
+| Limit       | –              | 
+| Skip        | Skip           | nummber of time a match is skipped
+| Enabled     | Disabled       | Disables the renaming rule (obviously)
+| Arch        | –              | 
+| –           | MatchOS        |Although there are no equivalents to `MinKernel` and `MaxKernel` parameters in Clover, you can use `MatcOS`. Instead of a range of kernel versions you just use the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks in between).
+| –           | MatchBuild     | no explanation available
+| –           | InfoPlistPatch | no explanation available
 
 ### KextsToPatch
 This is a commonly used section to patch kexts in order to enable certain features like enabling Trim or to disable the USB port limitations of macOS to use more than 15 ports per Controller. The patching principle is similar to the one used for patching the `DSDT`, but you patch things inside kexts instead. You enter the name of the Kext you want to patch and then you enter the value clover should find and replace. Check the dropdown menu to find a lot of patches which may be helpful.
@@ -62,24 +74,3 @@ For applying binary patches to the Darwin kernel of macOS. This is used by devel
 
 ### BootPatches
 For applying binary patches to `boot.efi`
-
-### Patching Mask name differences (OpenCore | Clover)
-For users who want "convert" their Kext and Kernel Patches from OpenCore to Clover or vice versa
-
-| OpenCore    | Clover         |
-|:------------|:---------------|
-| Base        | Procedure      |
-| Comment     | Comment        |
-| Count       | Count          |
-| Enabled     | Disabled       |
-| Skip        | Skip           |
-| Identifier  | Name           |
-| Find		    | Find           |
-| Mask        | MaskFind       |
-| Replace     | Replace        |
-| ReplaceMask | MaskReplace    |
-| MaxKernel   | N/A            |
-| MinKernel   | N/A            |
-| N/A         | MatchOS     	 |
-| N/A         | InfoPlistPatch |
-| N/A         | RangeFind      |
