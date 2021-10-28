@@ -103,35 +103,32 @@ Whereas in OpenCore you need to define which kext loads for which macOS version 
 This is a lot less cumbersome then having to set `MinKernel` and `MaxKernel` values for Kexts. On the other hand it makes updating kexts a bit more complicated since you have to look in any sub-folder. Plus, can lead to having some duplicate kexts so the overall size of the EFI grows unncessarily.
 
 ### Kernel > Patch
-In Clover Configurator, you have to enter rules for patching kexts and Kernes in the "Kernel and Kext Patches" section. In the table below, you find the availabe options and differences in nomenclature:
+Besides the basic `Find`/`Replace` masks, there are several additional modifiers you can utilize for applying Kernels and Kext patches. In the table below, you find the availabe options and differences in nomenclature between OpenCore and Clover:
 
-| OpenCore    | Clover         |
-|:-----------:|:--------------:|
-| Identifier  | Name           |
-| Base        | Procedure      |
-| Comment     | Comment        |
-| Find		    | Find           |
-| Replace     | Replace        |
-| Mask        | MaskFind       |
-| ReplaceMask | MaskReplace    |
-| –           | MaskStart      |
-| –           | StartPattern   |
-| –           | RangeFind      |
-| MinKernel   | –°             |
-| MaxKernel   | –°             |
-| Count       | Count          |
-| Limit       | –              |
-| Skip        | Skip           |
-| Enabled     | Disabled       |
-| Arch        | –              |
-| –           | MatchOS°       |
-| –           | InfoPlistPatch |
-| –           | RangeFind      |
-
-`°` Although there are no equivalents to `MinKernel` and `MaxKernel` parameters in Clover, you could use `MatcOS`. Instead of a range of kernel versions you just use the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks in between).
+| OpenCore    | Clover         | Description (where applicable) |
+|:------------|:---------------|--------------------------------|
+| Identifier  | Name           | 
+| Base        | Procedure      | Name of the procedure we are looking for. The real name may be longer, but the comparison is done by a substring. Make sure the substring occurs only in "Procedure".
+| Comment     | Comment        | Besides using it as a reminder what a patch does, this field is also used for listing the available patches in Clover's bootmenu.
+| Find		    | Find           | value to find
+| Replace     | Replace        | value to replace the found value by
+| Mask        | MaskFind       |If some bit=1, we look for an exact match, if=0, we ignore the difference.
+| ReplaceMask | MaskReplace    |If a bit=1, we make a replacement. If a bit=0, we leave it as is.
+| –           | MaskStart      | Mask for the starting point, i.e. for the `StartPattern`. And then there are Find/MaskFind and Replace/MaskReplace pairs.
+| –           | StartPattern   | Rement of the era before character patching was implemented. It marks the starting point from which to look for a replacement pattern. If we know the name of the procedure, `StartPattern` is hardly needed anymore.
+| –           | RangeFind      | Length of codes to search. In general, just the size of this procedure, or less. This way we speed up the search without going through all the millions of strings.
+| MinKernel   | –              | see "MatchOS"
+| MaxKernel   | –              | see "MatchOS"
+| Count       | Count          | number of time a replacement is made
+| Limit       | –              | 
+| Skip        | Skip           | nummber of time a match is skipped
+| Enabled     | Disabled       | Disables the renaming rule (obviously)
+| Arch        | –              | 
+| –           | MatchOS        |Although there are no equivalents to `MinKernel` and `MaxKernel` parameters in Clover, you can use `MatcOS`. Instead of a range of kernel versions you just use the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks in between).
+| –           | MatchBuild     | no explanation available
+| –           | InfoPlistPatch | no explanation available
 
 ## NVRAM > Add
-
 ### 7C436110-AB2A-4BBB-A880-FE41995C9F82
 From this UUID, you probably want to transfer:
 
