@@ -33,7 +33,18 @@ As you can see, the `ProductName` is set to `MacBookPro11,4` (which is the minim
 
 DONE.
 
-## NOTES: 
+## About "Update Firmware Only"
+Use this feature if macOS installation fails due to firmware issues. macOS checks of the BIOS and Firmware requirement of real Macs are met to ensure that the OS will be working fine. If the firmware is out of date, installation will quit with a notification.
+
+By setting the latest BIOS and Firmwareversion in the SMBIOS section this hurdle is overcome. It will only update the BIOS and Firmware sections of the SMBIOS without generating a new serial:
+
+- Select "Update Firmware Only"
+- From the dropdown menu right to it, select your Mac model (the one located under "Procut Name") and click on the entry
+- Save
+
+This updates your BIOS and Firmware Data and now you can continue your macOS installation.
+
+## NOTES
 Unlike real Macs which are limited to a certain range of supported macOS versions, you can trick macOS into running on CPU models it doesn't support officially – at least, if the used SMBIOS are not too far off from the specs of your hardware. 
 
 For example, you can use an SMBIOS intended for a Haswell CPU (4th Gen) with an IvyBridge CPU (3rd Gen), thereby expanding the range of macOS versions you can run. But since this SMBIOS is designed for a different CPU, it actually does not perform as good, especially on Notebooks. 
