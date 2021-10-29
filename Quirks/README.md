@@ -40,4 +40,4 @@ You will find the corresponding settings for your CPU in the "Kernel" section of
 Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover) to replace the outdated `AptioMemoryFixes` by `OpenRuntime.efi` and add necessary Quirks.
 
 ### Note about ProvideConsoleGop 
-`ProvideConsoleGop` is the final OpenCore feature which has been implemented into Clover. Until Clover r5128 it resided in `Quirks` (as `ProvideConsoleGopEnable`). Since then, it has been been relocated to the "GUI" Section. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI > Output` section.
+ProvideConsoleGop is the final OpenCore feature which has been implemented into Clover. Until Clover r5128 it resided in `Quirks` (as `ProvideConsoleGopEnable`). Since then, it has been been relocated to the "GUI" Section. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI > Output` section.
