@@ -21,13 +21,22 @@ In oder to set up these Quirks correctly, you need to follow the instruction for
 - **Kernel > Quirks**
 - **Kernel > Scheme**
 
-The following screenshot shows, which Quirks relate to which category of the OC Install Guide:
+## Booter Quirks
+The following screenshot shows the Booter Quirks sub-section which is new in Clover Configurator 5.19.0, which makes it a lot easier to handle than in earlier versions:
 
-![Quirks1](https://user-images.githubusercontent.com/76865553/135844035-1689a11a-6512-4008-80ea-e89f07a55367.png)
-Unfortunately, some of the Kernel Quirks are not located in the `Quirks` section but in the "Kext and Kernel Patches" section instead and – to add even more confusion – have different names than in OpenCore:
+![](/Users/5t33z0/Desktop/Booter_Qs.png)
+
+The example above shows Booter Quirks for a 10th Gen Intel Cometlake Desktop CPU taken from [this section](https://dortania.github.io/OpenCore-Install-Guide/config.plist/comet-lake.html#booter) of the OpenCore Install Guide.
+
+## Kernel Quirks, Emulate and Scheme
+If you click on "Kernel" you will see these Quirks (also for 10 Gen Cometlake):
+
+![](/Users/5t33z0/Desktop/KernelQ.png)
+
+You will find the corresponding settings for your CPU in the "Kernel" section of the Dortania Guide as mentioned earlier. Unfortunately, some of the Kernel Quirks are not located in the `Quirks` section but in the "Kext and Kernel Patches" section instead and – to add even more confusion – have different names than in OpenCore:
 
 ![quirks2](https://user-images.githubusercontent.com/76865553/135859628-34f6be51-7a20-4461-900e-0c72fbdcba51.png)
 Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover) to replace the outdated `AptioMemoryFixes` by `OpenRuntime.efi` and add necessary Quirks.
 
-#### ProvideConsoleGop 
-`ProvideConsoleGop` is the final OpenCore feature which has been implemented into Clover. Until Clover r5128 it in `Quirks` (as `ProvideConsoleGopEnable`). Since then it has been been relocated to the "GUI" Section. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI > Output` section.
+### Note about `ProvideConsoleGop` 
+`ProvideConsoleGop` is the final OpenCore feature which has been implemented into Clover. Until Clover r5128 it resided in `Quirks` (as `ProvideConsoleGopEnable`). Since then, it has been been relocated to the "GUI" Section. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI > Output` section.
