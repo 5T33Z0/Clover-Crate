@@ -2,6 +2,7 @@
 Incomplete list of useful freeware Apps and Tools to accompany Clover.
 
 - [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader/releases) (releases)
+- [**Clover Changelog and Explanations**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/)
 - [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/)
 - [**Clover Suite Builder**](https://www.insanelymac.com/forum/topic/347872-introducing-clover-suite-builder/) (Tool for compiling Clover)
 - [**PlistEDPlus**](https://github.com/ic005k/PlistEDPlus) (cross-platform plist editor)
