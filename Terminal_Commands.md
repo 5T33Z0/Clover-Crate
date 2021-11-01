@@ -122,3 +122,8 @@ or
 **Removing Network .plists (for troubleshooting**</br>
 `sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist`</br>
 `sudo rm /Library/Preferences/SystemConfiguration/preferences.plist`</br>
+
+**Listing ACPI Errors**
+
+`sudo dmesg | grep "ACPI"` </br>
+`sudo dmesg | grep "ACPI" > $HOME/Desktop/acpi.txt` (creates a Log on Desktop)
