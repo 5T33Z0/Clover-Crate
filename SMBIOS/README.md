@@ -10,7 +10,7 @@ I won't be covering each individual field of the SMBIOS section here, since it i
 
 If you find an EFI folder for your System on a Forum or on Github this section might look like this:
 
-![SMBIOS_empty](https://user-images.githubusercontent.com/76865553/136689932-d9bc6f36-7c57-433a-bef6-523f070a43d7.png)
+![SMBIOS](https://user-images.githubusercontent.com/76865553/139639731-4eeb5cd4-9484-4477-ad0c-593c743293e0.png)
 
 As you can see, the `ProductName` is set to `MacBookPro11,4` (which is the minimum System Requirement for running macOS Monterey on a Laptop, btw). Now, do the following to generate your own SMBIOS Section:
 
@@ -25,8 +25,8 @@ As you can see, the `ProductName` is set to `MacBookPro11,4` (which is the minim
 3. Select a Mac model based on the family of Intel CPU you are using. In this example, the actual MacBookPro model uses an Intel i7 `4770HQ`. In Intel's nomenclature, the first digit of the CPU model name describes the generation (or family) it belongs to. In this case it's a `4` for 4th Gen Intel "i" CPU (first gen models only use 3 digits). So pick a Mac Model which is close to yours in terms of CPU (desktop/mobile, generation, max clock speed).
 4. After you've picked a model, Clover Configurator will automatically generate a valid SMBIOS for you (don't copy these values, generate your own!):
 
-	![Generated](https://user-images.githubusercontent.com/76865553/136690011-f97b769e-9802-4ccd-9a47-850542711587.png)
-	
+	![SMBIOS_11,4](https://user-images.githubusercontent.com/76865553/139640510-0140ff1e-759b-4d75-846d-205db078197a.png)
+
 	**IMPORTANT**: Fields highlighted in cyan *should always be deleted before sharing your `config.plist`*. Also, if you get an error message about outdated firmware during macOS installation, click on "Update Firmware only" and then select the same Mac Model from the dropdown menu again. This keeps your Serial, etc. and will only update the firmware information, so you can install macOS successfully.
 5. Once you have generated your `SMBIOS`, head over to the `RTVariables` section. 
 6. Copy the number for `MLB` (=Board Serial Number) shown in the "Info" windows to the `MLB` field and select "UseMacAddr0" from the dropdown menu. This is a must for enabling FaceTime.
