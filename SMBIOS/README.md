@@ -44,6 +44,10 @@ By setting the latest BIOS and Firmwareversion in the SMBIOS section this hurdle
 
 This updates your BIOS and Firmware Data and now you can continue your macOS installation.
 
+## About "Extended Firmware Features"
+![ExtFF](https://user-images.githubusercontent.com/76865553/139642095-73a2352b-c5e3-481b-8fc2-cdd6702a4dc1.png)
+Expands the old Firmware Features mask from 32 bits to up to 64 bits which is required for newest Macs and macOS Monterey. 
+
 ## NOTES
 Unlike real Macs which are limited to a certain range of supported macOS versions, you can trick macOS into running on CPU models it doesn't support officially – at least, if the used SMBIOS are not too far off from the specs of your hardware. 
 
