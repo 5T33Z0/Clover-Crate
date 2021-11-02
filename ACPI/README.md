@@ -33,7 +33,7 @@ Whether you have a problem with tables or not, it's safe to enable this fix. It 
 
 ## FixMCFG
 
-The `MCFG` (Memory Mapped Configuration table) describes the location of the PCI Express configuration space, and this table will be present in a firmware implementation compliant to this specification version 3.0 (or later). Helpful when using MacBook and MacBookPro SMBIOSes.
+The `MCFG` (Memory Mapped Configuration Table) describes the location of the PCI Express configuration space, and this table will be present in a firmware implementation compliant to this specification version 3.0 (or later). Helpful when using MacBook and MacBookPro SMBIOSes.
 
 If `FixMCFG` is enabled, the table will be corrected. The author of the patch is vit9696. However, the method of discarding this table is still in stock.
 
@@ -49,7 +49,7 @@ Some systems can only be started using kernel parameter `cpus=1` or with a patch
 
 These two parameters serve a common purpose - to fix restart. They be present in the `FADT` table, but that's not always the case. Sometimes the table is shorter than necessary, so these values are missing. 
 
-The variables are present in the `FACP` table but if they are empty, then `0x64`/`0xFE`are used, which means restart via PS2 Controller. This does not always work for everyone. Alternatively use `0x0CF9`/`0x06`, which means restart via PCI Bus. This pair is also used on native Macs, but does not always work on Hackintoshes. The difference is clear: on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Anoter combinations is `0x92`/`0x01`.
+The variables are present in the `FACP` table but if they are empty, then `0x64`/`0xFE`are used, which means restart via PS2 Controller. This does not always work for everyone. Alternatively use `0x0CF9`/`0x06`, which means restart via PCI Bus. This pair is also used on native Macs, but does not always work on Hackintoshes. The difference is clear: on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Another combinations is `0x92`/`0x01`.
 
 Last but not least you can set them to `0x0`/`0x0` to allow the use of default `FACP` values. If not present, the default values states above will be used instead.
 
@@ -116,7 +116,7 @@ Names like `_DSM` with and underscore in front of them define a method. These ar
 |10|KBD to PS2K|Rename for Keyboard. Check the device name of `PNP0303`, `PNP030B`, `PNP0320`. If the keyboard name cannot be determined in `DSDT`, check the "BIOS name" of the keyboard in Windows Device Manager. If keyboard is named `PS2K` already, no rename is required|
 |11|KBC0 to PS2K|same|
 |12|KBD0 to PS2K|same|
-|13|SMBU to SBUS|Renames System Management Bus. Most ThinkPads require this. </br>Before 6th gen, seach the device name belonging to "0x001F0003" </br>6th gen and later machines: search "0x001F0004" belonging to the device name </br>If the device name `SBUS` aready, a rename is not required|
+|13|SMBU to SBUS|Renames System Management Bus. Most ThinkPads require this. </br>Before 6th gen, search the device name belonging to "0x001F0003" </br>6th gen and later machines: search "0x001F0004" belonging to the device name </br>If the device name `SBUS` aready, a rename is not required|
 |14|LID to LID0| Search the device name belonging to `PNP0C0D` and rename it to `LID0`
 |15|PBTN to PWRB(dell)| Search device belonging to `PNP0C0**C**` and rename it to `PWRB`
 |16|SBTN to SLPB(dell)| Sleep Button rename. Search device belonging to `PNP0C0**E**`. If the name is `SLPB` already, no need for a rename.
@@ -130,7 +130,7 @@ To use this section properly, you need a dump the unmodified `DSDT` and examine 
 
 ![Rename Devices](https://user-images.githubusercontent.com/76865553/135732661-ba636a72-9490-4c6f-a018-bdede3752fa6.jpg)
 
-As you can see, the device exists and is located in `\SB_PCI0_EHC1` of the `DSDT`. Next, we tell Clover Configurator to replace the actual device name witj `EH01` by adding it in the `Rename Device` field. After the patch is applied on the fly during boot, the device name and it's dependencies have been changed:
+As you can see, the device exists and is located in `\SB_PCI0_EHC1` of the `DSDT`. Next, we tell Clover Configurator to replace the actual device name with `EH01` by adding it in the `Rename Device` field. After the patch is applied on the fly during boot, the device name and it's dependencies have been changed:
 
 ![DSDT_patched](https://user-images.githubusercontent.com/76865553/135732669-9ac77cf7-5c5f-41a0-b98f-0ae1453411dc.png)
 
@@ -296,7 +296,7 @@ The DSDT has regions that have their own addresses, such as:
 	<true/>
 </dict>
 ```
-is sufficient if you have a well-made custom DSDT with all your needed fixes. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it in the ACPI Section is inappropriate.
+is sufficient if you have a well-made custom `DSDT` with all the fixes. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it to the ACPI Section was inappropriate.
 
 ### FixRTC
 
@@ -407,13 +407,13 @@ Register (SystemIO,
 ```
 ### UnderVolt Step
 
-Optional parameter to reduce the temperature of the processor by reducing its operating voltage. Possible values are 0 to 9. The higher the value, the lower the voltage, resulting in lower temperatures – until the computer hangs. This is where foolproof protection comes in: Clover won't let you set any value outside the specified range. However, even allowed values can result in unstable operation. The effect of undervolting is really noticeable. However, this parameter is only only applicable to Intel CPUs of the `Penryn` family.
+Optional parameter to lower the CPU temperature by reducing its operating voltage. Possible values are 0 to 9. The higher the value, the lower the voltage, resulting in lower temperatures – until the computer hangs. This is where foolproof protection comes in: Clover won't let you set any value outside the specified range. However, even allowed values can result in unstable operation. The effect of undervolting is really noticeable. However, this parameter is only only applicable to Intel CPUs of the `Penryn` family.
 
 ## Drop Tables
 
 ![Bildschirmfoto 2021-05-16 um 08 28 35](https://user-images.githubusercontent.com/76865553/135732583-c8d61605-03af-4b78-a4db-4df9d1e68d56.png)
 
-In this array, you can list tables which should be discarded from loading. These include various table signatures, such as `DMAR`, which is often dropped because macOS does not like `VT-d` technology. Other tables to drop would would be `MATS` (fixes issues with High Sierra) or `MCFG` because by specifying a MacBookPro or MacMini model, we get severe brakes. A better method has already been developed.
+In this array, you can list tables which should be discarded from loading. These include various table signatures, such as `DMAR`, which is often dropped because macOS does not like `VT-d` technology. Other tables to drop would would be `MATS` (fixes issues with High Sierra) or `MCFG` because by specifying a MacBookPro or MacMini model, we get severe brakes. A better method has already been developed (see `FixMCFG`)
 
 ## DisableAML
 
