@@ -30,6 +30,8 @@ These are bit masks to set various boot flags. There's no further info in the ma
 With the release of macOS ElCapitan in 2015, a new security feature was introduced: System Integrity Protection (SIP). By default, SIP is enabled (`0x000`) and does not allow you to load your kexts or install your system utilities. To disable it, Clover gives you the option of setting new in NVRAM.
 
 ### Flags for Security Settings
+The default value for `CsrActiveConfig` in Clover r5142 currently: `0xA87`, which consists of the following enabled flags:
+
 |Bit| Flag Name | HEX Value | Default in r5142
 |---|-----------|----------:|:---------------:|
 |0|CSR_ALLOW_UNTRUSTED_KEXTS|0x1|x
