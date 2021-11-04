@@ -26,13 +26,22 @@ With the release of macOS ElCapitan in 2015, a new security feature was introduc
 | macOS 10.11       | 8 bit        |          `0x067` |
 
 ### HWTarget
-`HWTarget`is the latest feature added to Clover r5140. It enables System Updates for macOS Monterey. It writes the variable `BridgeOSHardwareModel` to NVRAM, which is requested by macOS Monterey. Basically, it identifies your Hackintosh at Apple servers as MacPro7,1 asking, "Can I have update, bruh?! Plzzz give me update, BRUH!" ;) Just in case you are wondering, why there is noch checkbox in Clover Configurator – the feature is not implemented yet. Use a plist Editor in the meantime to add the key to your config.plist.  This is how the key has to look:
+`HWTarget`is the latest feature added to Clover r5140. It enables System Updates for macOS Monterey which use SMBIOSes of Macs with a T2 Chip. It writes the variable `BridgeOSHardwareModel` to NVRAM, which is requested by macOS Monterey. 
 
-```swift
-<key>RtVariables</key>
-<dict>
-	<key>HWTarget</key>
-	<string>j160</string>
-```
+Basically, it identifies your Hackintosh at Apple servers as MacPro7,1 asking, "Can I have update, bruh?! Plzzz give me update, BRUH!" ;).
+
+#### Valid values for `HWTarget`
+If you use a SMBIOS of one of the Mac models listed below, copy the corresponding value and paste it in the `HWTarget` field of your `config.plist`.
+
+- MacBookPro15,1 (`J680AP`), 15,2 (`J132AP`), 15,3 (`J780AP`), & 15,4 (`J213AP`)
+- MacBookPro16,1 (`J152FAP`), 16,3 (`J223AP`), & 16,4 (`J215AP`)
+- MacBookPro16,2 (`J214KAP`)
+- MacBookAir8,1 (`J140KAP`) & 8,2 (`J140AAP`) 
+- MacBookAir9,1 (`J230KAP`) 
+- Macmini8,1 (`J174AP`)
+- iMac20,1 (`J185AP`) & 20,2 (`J185FAP`) 
+- iMacPro1,1 (`J137AP`)
+- MacPro7,1 (`J160AP`)
+
 To confirm that the parameter is set, enter in Terminal: `sysctl hw.target`</br>
 Output should be `j160`
