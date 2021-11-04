@@ -1,5 +1,5 @@
 # RtVariables
-![RTVars](https://user-images.githubusercontent.com/76865553/136703846-afb63687-ddd4-4e35-b544-9d7c2ff6d260.jpeg)
+![RTvarsnu](https://user-images.githubusercontent.com/76865553/140332564-944c61eb-6168-4a12-b580-0f0744fd4fdf.png)
 
 The following two parameters are intended to allow registration in iMessage service.
 Starting from Clover r1129 the parameters are taken from SMBiOS and are not needed to be entered here.
@@ -44,4 +44,4 @@ If you use a SMBIOS of one of the Mac models listed below, copy the correspondin
 - MacPro7,1 (`J160AP`)
 
 To confirm that the parameter is set, enter in Terminal: `sysctl hw.target`</br>
-Output should be `j160`
+It should return the same value for HWTarget you entered in the config.
