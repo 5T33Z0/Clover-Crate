@@ -28,8 +28,6 @@ With the release of macOS ElCapitan in 2015, a new security feature was introduc
 ### HWTarget
 `HWTarget`is the latest feature added to Clover r5140. It enables System Updates for macOS Monterey which use SMBIOSes of Macs with a T2 Chip. It writes the variable `BridgeOSHardwareModel` to NVRAM, which is requested by macOS Monterey. 
 
-Basically, it identifies your Hackintosh at Apple servers as MacPro7,1 asking, "Can I have update, bruh?! Plzzz give me update, BRUH!" ;).
-
 #### Valid values for `HWTarget`
 If you use a SMBIOS of one of the Mac models listed below, copy the corresponding value and paste it in the `HWTarget` field of your `config.plist`.
 
