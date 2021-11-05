@@ -57,7 +57,7 @@ The default value for `CsrActiveConfig` in Clover r5142 currently: `0xA87`, whic
 | macOS 10.12       | 9 bits        |          `0x067` |
 | macOS 10.11       | 8 bits        |          `0x067` |
 
-In cases, where you have to patch in removed drivers in post-install (like NVIDIA Kepler or Intel HD4000 graphics under macOS 12), it's *mandatory* to disable SIP to 1) be able to install the drivers and 2) to boot the system afterwards!
+In cases, where you have to patch in removed drivers in post-install (like NVIDIA Kepler or Intel HD4000 graphics under macOS 12), it's absolutely *mandatory* to disable SIP to 1) be able to install the drivers and 2) to boot the system afterwards!
 
 Check the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to find out more about Booter- and CsrActiveConfig and how to calculate your own.
 
