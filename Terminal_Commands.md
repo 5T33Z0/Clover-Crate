@@ -123,7 +123,9 @@ or
 `sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist`</br>
 `sudo rm /Library/Preferences/SystemConfiguration/preferences.plist`</br>
 
-**Listing ACPI Errors**
-
+**Listing ACPI Errors**</br>
 `sudo dmesg | grep "ACPI"` </br>
 `sudo dmesg | grep "ACPI" > $HOME/Desktop/acpi.txt` (creates a Log on Desktop)
+
+**Show ACPI Errors for last boot**</br>
+`log show --predicate "processID == 0" --debug --last boot | grep ACPI`

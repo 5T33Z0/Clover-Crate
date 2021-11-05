@@ -5,13 +5,13 @@ The following two parameters are intended to allow registration in iMessage serv
 Starting from Clover r1129 the parameters are taken from SMBiOS and are not needed to be entered here.
 
 ## ROM
-Last digits of `SmUUID` or MAC Address. Clover can detect the MAC Address of your Ethernet Adapter if `<string>UseMacAddr0</string>` is selected. The procedure does not work for everyone, so test it.
+Last digits of `SmUUID` or `MAC Address`. Clover can detect the MAC Address of your Ethernet Adapter if `UseMacAddr0` is selected. This does not work for everyone, so test it.
 
 ## MLB
 **MLB** = BoardSerialNumber
 
 ## BooterConfig
-These are bit masks to set various boot flags. There's no further info in the manual about them. But if you ever wanted to know, what the value `0x28` for `BooterConfig` means, see the next table.
+These are bit masks to set various boot flags. There's no further info in the manual about them. But if you ever wanted to know, where the value `0x28` for `BooterConfig` comes from, check the next table.
 
 ### Bitfields for boot-arg flags
 |Bit| Flag Name | HEX Value  | Default in r5142
@@ -24,7 +24,6 @@ These are bit masks to set various boot flags. There's no further info in the ma
 |5|define kBootArgsFlagCSRBoot          | 0x20| x|
 |6|define kBootArgsFlagBlackBg          | 0x40|
 |7|define kBootArgsFlagLoginUI          | 0x80|
-
 
 ## CsrActiveConfig
 With the release of macOS ElCapitan in 2015, a new security feature was introduced: System Integrity Protection (SIP). By default, SIP is enabled (`0x000`) and does not allow you to load your kexts or install your system utilities. To disable it, Clover gives you the option of setting new in NVRAM.
@@ -47,7 +46,7 @@ The default value for `CsrActiveConfig` in Clover r5142 currently: `0xA87`, whic
 |10|CSR_ALLOW_EXECUTABLE_POLICY_OVERRIDE|0x400|
 |11|CSR_ALLOW_UNAUTHETICATED_ROOT|0x800|x
 
-### Recommended values for disabling SIP
+### Values for completely disabling System Integrity Protection
 :warning: Disbaling SIP is not recommended!
 
 | macOS Version     | Bitmask Size  | CsrActive Config |
@@ -57,6 +56,8 @@ The default value for `CsrActiveConfig` in Clover r5142 currently: `0xA87`, whic
 | macOS 10.13       | 10 bits       |          `0x3FF` |
 | macOS 10.12       | 9 bits        |          `0x067` |
 | macOS 10.11       | 8 bits        |          `0x067` |
+
+In cases, where you have to patch in removed drivers in post-install (like NVIDIA Kepler or Intel HD4000 graphics under macOS 12), it's *mandatory* to disable SIP to 1) be able to install the drivers and 2) to boot the system afterwards!
 
 Check the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to find out more about Booter- and CsrActiveConfig and how to calculate your own.
 
