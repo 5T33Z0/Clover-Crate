@@ -50,11 +50,11 @@ The default value for `CsrActiveConfig` in Clover r5142 currently is: `0xA87`, w
 
 **NOTE**: `0xA87` is a 12 bit bitmask and as such, is only valid for macOS 11 and 12. So if you are using an older Version of macOS, use the **CloverCalcs** Spreadsheed which can be found in the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to calculate your own.
 
-### Values for completely disabling System Integrity Protection
+### Recommended values for disabling System Integrity Protection
 :warning: Disbaling SIP is not recommended!
 
 | macOS Version     | Bitmask Size  | CsrActiveConfig |
-|------------------:|:-------------:|:----------------:|
+|------------------:|:-------------:|:---------------:|
 | macOS 11/12       | 12 bits       |`0xFEF`
 | macOS 10.14/10.15 | 11 bits       |`0x7FF`
 | macOS 10.13       | 10 bits       |`0x3FF`
