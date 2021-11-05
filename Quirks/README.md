@@ -20,7 +20,7 @@ In oder to set up these Quirks correctly, you need to follow the instruction for
 - **Booter > Quirks**
 - **Kernel > Quirks**
 - **Kernel > Scheme**
-- **UEFI > Output** (Check for `ProvideConsoleGop`. Enable it in the "GUI" Section in Clover Configurator)
+- **UEFI > Output: `ProvideConsoleGop`**: Located under "GUI" in Clover config.
 
 ## Booter Quirks
 The following screenshot shows the Booter Quirks sub-section which is new in Clover Configurator 5.19.0, which makes it a lot easier to handle than in earlier versions:
@@ -40,8 +40,9 @@ You will find the corresponding settings for your CPU in the "Kernel" section of
 
 Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover) to replace the outdated `AptioMemoryFixes` by `OpenRuntime.efi` and add necessary Quirks.
 
+## Additional Quirks
 ### Provide Console Gop
-`ProvideConsoleGop` is another a OpenCore Quirk which has been implemented into Clover recently. Until r5128, it resided in the `Quirks` section as `ProvideConsoleGopEnable`. Since then, it has been been moved to the `GUI` Section. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI > Output` section.
+`ProvideConsoleGop` is another a OpenCore Quirk which has been implemented into Clover. Until r5128, it resided in the `Quirks` section as `ProvideConsoleGopEnable`. Since then it has been been relocated to the `GUI` section because it's related to the User Interface. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI > Output` section. **Hint**: it's always enabled.
 
 ### ResizeAppleGPUBars
 `ResizeAppleGpuBars` Quirk is the latest Quirk added to Clover in r5142. You need to manually copy it from the sample-config.plist to your config since it's not implemeted in Clover Configurator yet.
