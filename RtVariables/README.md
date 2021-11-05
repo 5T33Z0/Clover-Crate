@@ -49,13 +49,13 @@ The default value for `CsrActiveConfig` in Clover r5142 currently: `0xA87`, whic
 ### Values for completely disabling System Integrity Protection
 :warning: Disbaling SIP is not recommended!
 
-| macOS Version     | Bitmask Size  | CsrActive Config |
-|------------------:|:-------------:|:----------------:|
-| macOS 11/12       | 12 bits       |          `0xFEF` |
-| macOS 10.14/10.15 | 11 bits       |          `0x7FF` |
-| macOS 10.13       | 10 bits       |          `0x3FF` |
-| macOS 10.12       | 9 bits        |          `0x067` |
-| macOS 10.11       | 8 bits        |          `0x067` |
+| macOS Version     | Bitmask Size  | CsrActiveConfig |
+|------------------:|:-------------:|:---------------:|
+| macOS 11/12       | 12 bits       |         `0xFEF` |
+| macOS 10.14/10.15 | 11 bits       |         `0x7FF` |
+| macOS 10.13       | 10 bits       |         `0x3FF` |
+| macOS 10.12       | 9 bits        |         `0x1FF` |
+| macOS 10.11       | 8 bits        |         `0x0FF` |
 
 In cases, where you have to patch in removed drivers in post-install (like NVIDIA Kepler or Intel HD4000 graphics under macOS 12), it's absolutely *mandatory* to disable SIP to 1) be able to install the drivers and 2) to boot the system afterwards!
 
