@@ -45,9 +45,7 @@ Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.
 `ProvideConsoleGop` is another a OpenCore Quirk which has been implemented into Clover. Until r5128, it resided in the `Quirks` section as `ProvideConsoleGopEnable`. Since then it has been been relocated to the `GUI` section because it's related to the User Interface. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI > Output` section. **Hint**: it's always enabled.
 
 ### ResizeAppleGPUBars
-`ResizeAppleGpuBars` Quirk is the latest Quirk added to Clover in r5142. You need to manually copy it from the sample-config.plist to your config since it's not implemeted in Clover Configurator yet.
-
-This quirk limits the GPU PCI BAR sizes for macOS up to the specified value or lower if it is unsupported. When the bit of Capabilities Set, it indicates that the Function supports operating with the BAR sized to (2^Bit) MB.
+`ResizeAppleGpuBars` Quirk is the latest Quirk added to Clover in r5142. You need to manually copy it from the sample-config.plist to your config since it's not implemeted in Clover Configurator yet. It limits the GPU PCI BAR sizes for macOS up to the specified value or lower if it is unsupported. When the bit of Capabilities Set, it indicates that the Function supports operating with the BAR sized to (2^Bit) MB. `ResizeGpuBars` must be an integer value between `-1` to `19`.
 
 :warning: **WARNING**:
 > Do not set `ResizeAppleGpuBars` to anything but `0` if you have resize bar enabled in BIOS. `9` and `10` will cause sleep wake crashes, and 8 will cause excessive memory usage on some GPUs without any useful benefit. It shall always be `0`. It does not matter which GPU you have, they all support this feature since early 2010s, just give no performance gain.
