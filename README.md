@@ -48,6 +48,9 @@ I created this repo for several reasons:
   - [**Clover Calculators**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras)
   - [**Utilities and Resources**](https://github.com/5T33Z0/Clover-Crate/tree/main/Utilities)
 
+## CONTRIBUTIONS
+If you would like to contribute to the information provided in this repo in order to improve/expand it, feel free to create an issue with a meaningful title, link to the chapter/section and describe what you like to add, change, correct or expand upon.
+
 ## CREDITS
 - SergeySlice for [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader)
 - Acidanthera for [**OpenCore**](https://github.com/acidanthera/OpenCorePkg)
