@@ -41,6 +41,13 @@ You will find the corresponding settings for your CPU in the "Kernel" section of
 Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover) to replace the outdated `AptioMemoryFixes` by `OpenRuntime.efi` and add necessary Quirks.
 
 ## Additional Quirks
+This section lists Quirks which are new or not documented or not available in Clover Configurator yet or otherwise noteworthy.
+
+### ForceOcWriteFlash
+Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Copy the key from the `Quirks` section of config-sample.plist to your config.plist since Clover Config. From the OpenCore Documentation:
+
+> Enables writing to flash memory for all OpenCore-managed NVRAM system variables. This value should be disabled on most types of firmware but is left configurable to account for firmware that may have issues with volatile variable storage overflows or similar. Boot issues across multiple OSes can be observed on e.g. Lenovo Thinkpad T430 and T530 without this quirk. Apple variables related to Secure Boot and hibernation are exempt from this for security reasons. Furthermore, some OpenCore variables are exempt for different reasons, such as the boot log due to an available user option, and the TSC frequency due to timing issues. When toggling this option, a NVRAM reset may be required to ensure full functionality.
+
 ### Provide Console Gop
 `ProvideConsoleGop` is another a OpenCore Quirk which has been implemented into Clover. Until r5128, it resided in the `Quirks` section as `ProvideConsoleGopEnable`. Since then it has been been relocated to the `GUI` section because it's related to the User Interface. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI > Output` section. **Hint**: it's always enabled.
 
