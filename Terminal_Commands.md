@@ -129,3 +129,6 @@ or
 
 **Show ACPI Errors for last boot**</br>
 `log show --predicate "processID == 0" --debug --last boot | grep ACPI`
+
+**Finding out Wake Reasons**
+`log show | grep -i "wake reason"`
