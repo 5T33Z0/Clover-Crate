@@ -15,15 +15,16 @@ These are bit masks to set various boot flags. There's no further info in the ma
 
 ### Bitfields for boot-arg flags
 |Bit| Flag Name | HEX Value  | Default in r5142
-|---|-----------|-----------:|:-------------------:|
-|0|define kBootArgsFlagRebootOnPanic    | 0x1|
-|1|define kBootArgsFlagHiDPI            | 0x2|
-|2|define kBootArgsFlagBlack            | 0x4|
-|3|define kBootArgsFlagCSRActiveConfig  | 0x8|  x|
-|4|define kBootArgsFlagCSRPendingConfig | 0x10|
-|5|define kBootArgsFlagCSRBoot          | 0x20| x|
-|6|define kBootArgsFlagBlackBg          | 0x40|
-|7|define kBootArgsFlagLoginUI          | 0x80|
+|---|-----------|-----------:|:---------------:|
+|0|Reboot On Panic    | 0x1|
+|1|Hi DPI             | 0x2|
+|2|Black Screen       | 0x4|
+|3|CSR Active Config  | 0x8|  x|
+|4|CSR Pending Config | 0x10|
+|5|CSR Boot           | 0x20| x|
+|6|Black Background   | 0x40|
+|7|Login UI           | 0x80|
+|8|Install UI         | 0x100|
 
 **NOTE**: In most cases you don't have to change anything here. But if you do, you should exactly knwow what and why you are doing it! You can also change this value from the Options menu in the Bootloader GUI. But in this case the applied settings are only applied temporary for the next boot. 
 
