@@ -23,16 +23,14 @@ These are bit masks to set various boot flags. There's no further info in the ma
 |4|CSR Pending Config | 0x10|
 |5|CSR Boot           | 0x20| x|
 |6|Black Background   | 0x40|
-|7|Login UI           | 0x80|
-|8|Install UI         | 0x100|
 
-**NOTE**: In most cases you don't have to change anything here. But if you do, you should exactly knwow what and why you are doing it! You can also change this value from the Options menu in the Bootloader GUI. But in this case the applied settings are only applied temporary for the next boot. 
+**NOTE**: In most cases you don't have to change anything here. But if you do, you should exactly knwow what you are doing and why! You can also change these flags from the Options menu in the Bootloader GUI (Options > System Parameters > bootargs->Flags). But in this case the applied settings are only applied temporary for the next boot. 
 
 ## CsrActiveConfig
 With the release of macOS ElCapitan in 2015, a new security feature was introduced: System Integrity Protection (SIP). By default, SIP is enabled (`0x000`) and does not allow you to load your kexts or install your system utilities. To disable it, Clover gives you the option of setting new in NVRAM.
 
 ### Flags for Security Settings
-The default value for `CsrActiveConfig` in Clover r5142 currently is: `0xA87`, which consists of the following enabled flags:
+The default value for `CsrActiveConfig` in Clover r5142 currently is `0xA87`, which consists of the following enabled flags:
 
 |Bit| Flag Name | HEX Value | Default in r5142
 |---|-----------|----------:|:---------------:|
@@ -49,7 +47,9 @@ The default value for `CsrActiveConfig` in Clover r5142 currently is: `0xA87`, w
 |10|CSR_ALLOW_EXECUTABLE_POLICY_OVERRIDE|0x400|
 |11|CSR_ALLOW_UNAUTHENTICATED_ROOT|0x800|x
 
-**NOTE**: `0xA87` is a 12 bit bitmask and as such, is only valid for macOS 11 and 12. So if you are using an older Version of macOS, use the **CloverCalcs** Spreadsheed which can be found in the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to calculate your own.
+**NOTES**: `0xA87` is a 12 bit bitmask and as such, is only valid for macOS 11 and 12. So if you are using an older Version of macOS, use the **CloverCalcs** Spreadsheed which can be found in the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to calculate your own.
+
+You can also change these flags from the Options menu in the Bootloader GUI (Options > System Parameters > System Integrity Protection). But in this case the applied settings are only applied temporary for the next boot. 
 
 ### Recommended values for disabling System Integrity Protection
 :warning: Disbaling SIP is not recommended!
