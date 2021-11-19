@@ -25,7 +25,7 @@ These are bit masks to set various boot flags. There's no further info in the ma
 |6|define kBootArgsFlagBlackBg          | 0x40|
 |7|define kBootArgsFlagLoginUI          | 0x80|
 
-**NOTE**: In most cases you don't have to change anything here. But if you do, you should exactly knwow what and why you are doing it!
+**NOTE**: In most cases you don't have to change anything here. But if you do, you should exactly knwow what and why you are doing it! You can also change this value from the Options menu in the Bootloader GUI. But in this case the applied settings are only temporary - the only apply for the next boot. 
 
 ## CsrActiveConfig
 With the release of macOS ElCapitan in 2015, a new security feature was introduced: System Integrity Protection (SIP). By default, SIP is enabled (`0x000`) and does not allow you to load your kexts or install your system utilities. To disable it, Clover gives you the option of setting new in NVRAM.
