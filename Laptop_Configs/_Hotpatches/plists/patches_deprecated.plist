@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Comment</key>
+	<string>Some patches we usually do not use anymore</string>
+	<key>KernelAndKextPatches</key>
+	<dict>
+		<key>KextsToPatch-glitchFix</key>
+		<array>
+			<dict>
+				<key>Comment</key>
+				<string>Boot graphics glitch, 10.10.2/10.10.3</string>
+				<key>MatchOS</key>
+				<string>10.10.2,10.10.3</string>
+				<key>Name</key>
+				<string>com.apple.iokit.IOGraphicsFamily</string>
+				<key>Find</key>
+				<data>QYjE6xE=</data>
+				<key>Replace</key>
+				<data>QYjE6zE=</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Boot graphics glitch, 10.10.x/10.11.x (credit lisai9093, cecekpawon)</string>
+				<key>MatchOS</key>
+				<string>10.10.x,10.11.x</string>
+				<key>Name</key>
+				<string>com.apple.iokit.IOGraphicsFamily</string>
+				<key>Find</key>
+				<data>AQAAdRc=</data>
+				<key>Replace</key>
+				<data>AQAA6xc=</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Boot graphics glitch, 10.12.dp1 (credit denskop)</string>
+				<key>MatchOS</key>
+				<string>10.12.x</string>
+				<key>Name</key>
+				<string>com.apple.iokit.IOGraphicsFamily</string>
+				<key>Find</key>
+				<data>AQAAdSU=</data>
+				<key>Replace</key>
+				<data>AQAA6yU=</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Boot graphics glitch, 10.13 beta (based on denskop patch)</string>
+				<key>MatchOS</key>
+				<string>10.13.x</string>
+				<key>Name</key>
+				<string>com.apple.iokit.IOGraphicsFamily</string>
+				<key>Find</key>
+				<data>AQAAdSI=</data>
+				<key>Replace</key>
+				<data>AQAA6yI=</data>
+			</dict>
+		</array>
+		<key>KextsToPatch-minStolenSize</key>
+		<array>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.10.x (based on Austere.J patch)</string>
+				<key>MatchOS</key>
+				<string>10.10.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelBDWGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>Oc92PA==</data>
+				<key>Replace</key>
+				<data>Oc/rPA==</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.11.beta (based on Austere.J patch)</string>
+				<key>MatchOS</key>
+				<string>10.11.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelBDWGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>QTnEdj4=</data>
+				<key>Replace</key>
+				<data>QTnE6z4=</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.12.0 (based on Austere.J patch)</string>
+				<key>MatchOS</key>
+				<string>10.12.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelBDWGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>iUXIOcd2Tw==</data>
+				<key>Replace</key>
+				<data>iUXIOcfrTw==</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.13.0/1 (credit PMHeart)</string>
+				<key>MatchOS</key>
+				<string>10.13.0,10.13.1</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelBDWGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>TIlduHZE</data>
+				<key>Replace</key>
+				<data>TIlduOtE</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.13.2/3/4 (credit RehabMan)</string>
+				<key>MatchOS</key>
+				<string>10.13.2,10.13.3,10.13.4</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelBDWGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>TIlFwHZE</data>
+				<key>Replace</key>
+				<data>TIlFwOtE</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.14 (credit Austere.J/Sniki)</string>
+				<key>MatchOS</key>
+				<string>10.14.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelBDWGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>dkBI/wU=</data>
+				<key>Replace</key>
+				<data>60BI/wU=</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.11.4 (based on Austere.J patch)</string>
+				<key>MatchOS</key>
+				<string>10.11.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelSKLGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>QTnEdio=</data>
+				<key>Replace</key>
+				<data>QTnE6yo=</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.12.0 (based on Austere.J patch)</string>
+				<key>MatchOS</key>
+				<string>10.12.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelSKLGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>iUXIOcZ2UQ==</data>
+				<key>Replace</key>
+				<data>iUXIOcbrUQ==</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.13.0/1 (credit PMHeart)</string>
+				<key>MatchOS</key>
+				<string>10.13.0,10.13.1</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelSKLGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>TIlVuHZA</data>
+				<key>Replace</key>
+				<data>TIlVuOtA</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.13.2/3 (credit PMHeart, , shdkpr2008)</string>
+				<key>MatchOS</key>
+				<string>10.13.2,10.13.3,10.13.4</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelSKLGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>TIlduHZA</data>
+				<key>Replace</key>
+				<data>TIlduOtA</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.14 (credit Austere.J/Sniki)</string>
+				<key>MatchOS</key>
+				<string>10.14.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelSKLGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>dkBI/wU=</data>
+				<key>Replace</key>
+				<data>60BI/wU=</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.13.0/1 (credit PMHeart)</string>
+				<key>MatchOS</key>
+				<string>10.13.0,10.13.1</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelKBLGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>TIldwHZG</data>
+				<key>Replace</key>
+				<data>TIldwOtG</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.13.2-5 (credit RehabMan)</string>
+				<key>MatchOS</key>
+				<string>10.13.2,10.13.3,10.13.4,10.13.5</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelKBLGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>TIltuHZG</data>
+				<key>Replace</key>
+				<data>TIltuOtG</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable minStolenSize less or equal fStolenMemorySize assertion, 10.14 (credit Austere.J/Sniki)</string>
+				<key>MatchOS</key>
+				<string>10.14.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelKBLGraphicsFramebuffer</string>
+				<key>Find</key>
+				<data>dkZI/wU=</data>
+				<key>Replace</key>
+				<data>60ZI/wU=</data>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>
