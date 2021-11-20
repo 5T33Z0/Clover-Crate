@@ -1,6 +1,5 @@
 # Clover Laptop Configs and Hotpatches 2.0
 >Based on [**Clover Laptop Config Repo**](https://github.com/RehabMan/OS-X-Clover-Laptop-Config) by Rehabman. All credits go to him!</br>
-
 >**DISCLAIMER**: This is an attempt to build upon the work Rehabman created but to transform it into the new era of Clover. I can't guarentee that all the configs work immediately since I do not posess a Laptop of every generation to test it.  
 
 ## About
