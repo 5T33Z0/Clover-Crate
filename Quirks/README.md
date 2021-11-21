@@ -27,7 +27,7 @@ The following screenshot shows the Booter Quirks sub-section which is new in Clo
 
 ![Booter_Qs](https://user-images.githubusercontent.com/76865553/139507534-9ee16773-9319-4b10-8437-c76bdb644c0d.png)
 
-The example above shows Booter Quirks for a 10th Gen Intel Cometlake Desktop CPU taken from [this section](https://dortania.github.io/OpenCore-Install-Guide/config.plist/comet-lake.html#booter) of the OpenCore Install Guide.
+The example above shows Booter Quirks for a 10th Gen Intel Cometlake Desktop CPU taken from [this section](https://dortania.github.io/OpenCore-Install-Guide/config.plist/comet-lake.html#booter) of the OpenCore Install Guide. Don't just copy these – use the correct ones required for your CPU!
 
 ## Kernel Quirks, Emulate and Scheme
 If you click on "Kernel" you will see these Quirks (also for 10 Gen Cometlake):
