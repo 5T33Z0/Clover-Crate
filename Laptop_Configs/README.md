@@ -1,9 +1,10 @@
 # Clover Laptop Configs and Hotpatches 2.0
->Based on [**Clover Laptop Config Repo**](https://github.com/RehabMan/OS-X-Clover-Laptop-Config) by Rehabman. All credits go to him!</br>
->**DISCLAIMER**: This is an attempt to build upon the work Rehabman created but to transform it into the new era of Clover. I can't guarentee that all the configs work immediately since I do not posess a Laptop of every generation to test it.  
+>Based on [**Clover Laptop Config Repo**](https://github.com/RehabMan/OS-X-Clover-Laptop-Config) by Rehabman. All credits go to him!
+>
+>**DISCLAIMER**: This is my attempt to update Rehabman's existing Laptop configs for the new Clover version. I can't guarentee that all the configs work immediately since I do not possess a Laptop of every generation to test it.  
 
 ## About
-This project contains `config.plist` files for common Laptops with Intel CPUs and Graphics. It's an updated version of Clover Laptop Config plists by Rehabman. All configs have been updated and conform to the new Clover with OpenCore's OpenRuntime integration in the form of Quirks (Clover r5123+).
+This project contains `config.plist` files for common Laptops with Intel CPUs and Graphics. It's an updated version of Clover Laptop Config plists by Rehabman. All configs have been updated and conform to the new Clover with OpenCore's OpenRuntime integration in the form of Quirks (for Clover r5123 and newer).
 
 To understand and modify the included config.plists, please refer to these accompanying Guides by Rehabman:
 
@@ -19,7 +20,7 @@ In order to make these configs compatible with the latest Clover release (r5141)
 - Commented-out `#DropTables`. Enable if needed
 - Deleted `ACPI` > `DropTables` > `DMAR` → covered by `DisableIoMapper` Quirk
 - Deleted `ACPI` > `DropTables` > `MCFG` → covered by `FixMCFG` 
-- Added Quirks for 2nd to 8th Gen Intel CPUs
+- Added Quirks for 2nd to 9th Gen Intel CPUs
 
 ## Brief description of included SSDT Hotpatches
 
