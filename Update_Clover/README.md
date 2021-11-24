@@ -1,7 +1,7 @@
 # Upgrading Clover for macOS 11+ compatibility
 
 >**Latest Update**: October 05th, 2021. </br>
->**Applicable to**: Clover r5123 to r5140+ (UEFI only)
+>**Applicable to**: Clover r5123 and newer (UEFI only)
 
 ## Why Upgrade?
 Clover's previous `AptioMemoryFixes` are incapable of booting/installing macOS 11 and newer. Therefore, OpenCore's Memory Fixes (`OpenRuntime.efi`) have been integrated to keep Clover relevant. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is mandatory in order to be able to install and boot macOS 11 and newer.
