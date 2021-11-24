@@ -15,11 +15,11 @@ If you just update your existing "old" Clover EFI by installing the latest `Clov
 ## Prerequisites: removing obsolete drivers and avoiding kext conflicts
 In order to avoid the dilemma of your system not booting, you have to clean up your old EFI folder before upgrading to macOS 11+.
 
-### Prerequisites: Removing obsolete Drivers
-The following drivers are no longer necessary and have to either be removed when updating Clover or omitted when building a new EFI folder:
+### Removing obsolete/unnecessary Drivers
+The following drivers are no longer necessary and have to either be deleted when updating Clover or omitted when building a new EFI folder:
 
-- Aptio Memory Fixes: **`AptioMemoryFix.efi`**, **`OsxAptioFix3Drv.efi`** and **`OsxAptioFixDrv.efi`**
-- **`OcQuirks.efi`** and **OcQuirks.plist** – delete if present. OcQuirks is a relic from earlier attempts to include OpenCore Booter Quirks into Clover (≤r5122).
+- **Aptio Memory Fixes**: `AptioMemoryFix.efi`, `OsxAptioFix3Drv.efi`,  `OsxAptioFixDrv.efi`
+- **`OcQuirks.efi`** and **`OcQuirks.plist`** – delete if present. OcQuirks is a relic from earlier attempts to include OpenCore Booter Quirks into Clover (≤r5122).
 - **`DataHubDxe.efi`** – DataHub protocol which provides parameters like OEM Model, FSBFrequency, ARTFrequency, Clover's boot-log and many other things to macOS which it cannot obtain otherwise. It has been fully integrated into Clover since r5129, so delete it. Newer versions of the Clover Package don't contain this driver anyway.
 - **`EmuVariableUefi.efi`** – necessary for emulating NVRAM, if it is not available (legacy systems) or working incorrectly.
 - **`FSInject.efi`** – For Kext injection. Necessary only for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of Prelinkedkernel. Since r5125, OpenCore handles Kext injection, so FSInject has become obsolete and should be deleted!
