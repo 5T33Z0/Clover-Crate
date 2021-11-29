@@ -2,7 +2,7 @@
 [![Clover Version](https://img.shields.io/badge/Clover-r5141-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
 [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.19.0-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/)
 [![macOS](https://img.shields.io/badge/Supported_macOS-≤12.1-white.svg)](https://www.apple.com/macos/monterey/)
-![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-21.11.24-blueviolet.svg)
+![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-21.11.29-blueviolet.svg)
 ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 ## ABOUT
@@ -46,6 +46,7 @@ I created this repo for several reasons:
   - [**Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
   - [**Converting OpenCore Properties to Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/OC2Clover)
   - [**Clover Laptop Configs and Hotpatches 2.0**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs)
+  - [**Clover Dektop Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs)
   - [**Clover Calculators**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras)
   - [**Utilities and Resources**](https://github.com/5T33Z0/Clover-Crate/tree/main/Utilities)
 
