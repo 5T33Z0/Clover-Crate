@@ -62,6 +62,13 @@ ___
 - Add additional Kexts necessary for your Hardware and peripherals to `EFI\CLOVER\kexts\other`
 - Copy the EFI Folder to a FAT32 formatted flash drive and try booting from it
 
+#### Required ACPI Hotpatches
+- SSDT-AWAC-DISABLE.aml
+- SSDT-DMAC.aml
+- SSDT-EC-USBX.aml
+- SSDT-PLUG.aml
+- SSDT-PMC.aml
+
 #### Included Configs
 |Config.plist         |SMBIOS|supported macOS|Notes|
 |---------------------|------|---------------|-----|
