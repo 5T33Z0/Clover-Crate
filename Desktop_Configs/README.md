@@ -5,10 +5,10 @@ They are not an all-in-all solution since I donn't know which additional hardwar
 
 ## Building your EFI Folder
 - Download or update [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/)
-- Download the prepared Clover EFI Package and unpack it
-- Copy the config for the CPU family of your Choice to `EFI\CLOVER`
+- Download the [**Clover EFI Package**](https://github.com/5T33Z0/Clover-Crate/blob/main/Desktop_Configs/EFI_Clover_r5142.zip?raw=true) and unpack it
+- Copy the config for the CPU family of your choice to `EFI\CLOVER`
 - Copy the included SSDT files for the chosen CPU to `EFI\CLOVER\ACPI\patched` 
-- Continue reading the "About the configs" section for your CPU…
+- Continue reading the [**"About the configs"**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs#about-the-configs) section for your CPU…
  
 ## About the configs
 This chapter lists all the included Configs and their variations, covering multiple setups, like using the integrated graphics (iGPU) for driving a monitor or using it for computing tasks only when a discrete graphics card (dGPU) is connected to a monitor instead. That's why the included Device Properties (mostly Framebuffer Patches) and what they do are listed as well. It also lists the required SSDT Hotpatches for each CPU family.
