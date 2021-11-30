@@ -262,6 +262,9 @@ Haswell_iMac15,1|iMac15,1|10.8 - 11.6.x|For Haswell CPUs using a dGPU for displa
 |PciRoot(0x0)/Pci(0x2,0x0)|HD4000|0A006601|iGPU is used to drive a display (default)|
 |#PciRoot(0x0)/Pci(0x2,0x0)|HD4000|07006201|iGPU is used for computational tasks only (disabled)|
 |#PciRoot(0x0)/Pci(0x16,0x0)|||IMEI device (disabled). Only required when using Sandy Bridge CPUs with a 7 Series Mainboard. Remove `#` to enable.
+
+#### Quirks Deviations
+- `XhciPortLimit` &rarr; Disable for macOS 11.3 and newer – create a USB Port Map 
 </details>
 
 ### 2nd Gen Intel Core i5/i7 Sandy Bridge
@@ -285,8 +288,8 @@ Haswell_iMac15,1|iMac15,1|10.8 - 11.6.x|For Haswell CPUs using a dGPU for displa
 #### Included Configs
 |Config.plist|SMBIOS|supported macOS|Notes|
 |---------------------|------|---------------|-----|
-|Sandy_Bridge_iMac12,2|iMac12,2|≤ 10.13|Most Sandy Bridge Boards don't support UEFI boot. So if your board does use a traditional BIOS, this guide is not for you.
-|Sandy_Bridge_MacPro6,1|MacPro6,1|10.14 and newer|iGPU must be disabled in BIOS
+|Sandy_Bridge_iMac12,2|iMac12,2|10.6.7 to 10.13|Most Sandy Bridge Boards don't support UEFI boot. So if your board does use a traditional BIOS, this guide is not for you.
+|Sandy_Bridge_MacPro6,1|MacPro6,1|10.14 and newer|iGPU must be disabled in BIOS since it is only natively supported to macOS High Sierra (10.13)
 
 #### Included Device Properties
 |Devices > Properties entry|iGPU|AAPL,snb-platform-id|Description|
@@ -294,6 +297,9 @@ Haswell_iMac15,1|iMac15,1|10.8 - 11.6.x|For Haswell CPUs using a dGPU for displa
 |PciRoot(0x0)/Pci(0x2,0x0)|HD3000|10000300|iGPU is used to drive a display (default)|
 |#PciRoot(0x0)/Pci(0x2,0x0)|HD3000|00000500|iGPU is used for computational tasks only (disabled)|
 |#PciRoot(0x0)/Pci(0x16,0x0)|-|-|IMEI device (disabled). Only required when using Sandy Bridge CPUs with a 7 Series Mainboard (B75, Q75, Z75, H77, Q77 or Z77)|
+
+#### Quirks Deviations
+- `XhciPortLimit` &rarr; Disable for macOS 11.3 and newer – create a USB Port Map 
 </details>
 
 ## Credits
