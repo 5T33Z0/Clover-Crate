@@ -13,7 +13,7 @@ They are not an all-in-all solution since I donn't know which additional hardwar
 ## About the configs
 This chapter lists all the included Configs and their variations, covering multiple setups, like using the integrated graphics (iGPU) for driving a monitor or using it for computing tasks only when a discrete graphics card (dGPU) is connected to a monitor instead. That's why the included Device Properties (mostly Framebuffer Patches) and what they do are listed as well. It also lists the required SSDT Hotpatches for each CPU family.
 
-Depending on your setup you might need to disable (add a `#` in front of the PCI patch or ley) or enable certain entries (delete the `#`).
+Depending on your setup you might need to disable (add a `#` in front of the PCI patch or key) or enable certain entries (delete the `#`).
 
 ### About Audio
 Since I don't know which Board you are using, you need to find out which Audio CODEC is used on your board and then change the injected Layout ID in `Devices > Audio` accordingly. Here's a list of audio codecs supported by AppleACL and the corresponding layout IDs: https://github.com/acidanthera/AppleALC/wiki/Supported-codecs.
@@ -81,6 +81,11 @@ ___
 |PciRoot(0x0)/Pci(0x2,0x0)|Intel UHD 630|0300C89B|iGPU is used for computational tasks only.
 |#PciRoot(0x0)/Pci(0x2,0x0)|Intel UHD 630|07009B3E|iGPU is used for driving a display.
 |#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)|||For Intel I225-V Network Controller. Only required for macOS 10.15 to macOS 11.3. Enable the included Kext Patch to make the whole construct work.|
+
+#### Quirks and Kernel Patches Deviations
+
+- `KernelPM` &rarr; Not needed if you can disable CFGLock in BIOS.
+- `XhciPortLimit` &rarr; Uncheck for macOS 11.3 and newer. Create a USB Port Map instead.
 </details>
 
 ### 8th and 9th Gen Intel Core i5/i7/i9 Coffee Lake
@@ -113,6 +118,11 @@ ___
 |--------------------------|:----:|:---------------:|-----------|
 |PciRoot(0x0)/Pci(0x2,0x0)|Intel UHD 630|07009B3E| Uses iGPU for driving a display. Use AAPL,ig-platform-id `00009B3E`, if you get a black screen after booting.
 |#PciRoot(0x0)/Pci(0x2,0x0)|Intel UHD 630|0300913E|When the iGPU is used for computational tasks only. Disabled by default.
+
+#### Quirks and Kernel Patches Deviations
+- `KernelPM` &rarr; Not needed if you can disable CFGLock in BIOS.
+- `ProtectUefiServices` &rarr; Only required for Z390 Boards. Disable if you use a board with a different chipset.
+- `XhciPortLimit` &rarr; Disable for macOS 11.3 and newer – create a USB Port Map instead!
 </details>
 
 ### 7th Gen Intel Core i5/i7 Kaby Lake
@@ -278,7 +288,3 @@ Haswell_iMac15,1|iMac15,1| 10.8 - 11.6.x|For Haswell CPUs using a dGPU for displ
 - Slice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
 - Corpnewt for original [Vanilla Desktop Guide and Configs](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
 - Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
-
-
-
-
