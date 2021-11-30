@@ -53,7 +53,8 @@ In order to delete (or drop) the original table during boot and replace it with 
 1. Open your `config.plist` in Clover Configurator
 2. Go to ACPI > Drop Tables and add a new Rule (click on "+")
 3. In `Signature`, select `SSDT` from the Dopdown menu
-4. In `String/Tableid`, enter the name of the "OEM Table ID" (See first screenshot) stored in YOUR SSDT-Whatever.aml without `""`:</br>
+4. In Type/Key, select `TableID`
+5. In `String/Tableid`, enter the name of the "OEM Table ID" stored in YOUR SSDT-Whatever.aml (as show in the first screenshot) without quotation marks:</br>
 	![Drop_Clvoer](https://user-images.githubusercontent.com/76865553/144123138-a33ad32e-95e0-4a32-b618-f2978734233c.png)
 6. Save the config.
 
