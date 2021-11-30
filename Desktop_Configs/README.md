@@ -153,6 +153,10 @@ ___
 |--------------------------|:----:|:-----------------:|-----------|
 |PciRoot(0x0)/Pci(0x2,0x0)|Intel HD 630|00001259|For using the iGPU for driving a display.
 |PciRoot(0x0)/Pci(0x2,0x0)|Intel HD 630|03001259|For using the iGPU for computational taks only.
+
+#### Quirks and Kernel Patches Deviations
+- `KernelPM` &rarr; Not needed if you can disable CFGLock in BIOS.
+- `XhciPortLimit` &rarr; Disable for macOS 11.3 and newer – create a USB Port Map instead!
 </details>
 
 ### 6th Gen Intel Core i5/i7 Skylake
@@ -182,6 +186,10 @@ ___
 |--------------------------|:----:|:-----------------:|-----------|
 |PciRoot(0x0)/Pci(0x2,0x0)|Intel HD 530|00001219|iGPU is used to drive a display. For CPUs using Intel HD P530 graphics instead, un-comment the `device-id`.
 |#PciRoot(0x0)/Pci(0x2,0x0)|Intel HD 530|01001219|iGPU is used for computational tasks only. Entry Disabled by default.
+
+#### Quirks and Kernel Patches Deviations
+- `KernelPM` &rarr; Not needed if you can disable CFGLock in BIOS.
+- `XhciPortLimit` &rarr; Disable for macOS 11.3 and newer – create a USB Port Map 
 </details>
 
 ### 4th and 5th Gen Intel Core i5/i7 Haswell and Broadwell
@@ -214,7 +222,11 @@ Haswell_iMac15,1|iMac15,1|10.8 - 11.6.x|For Haswell CPUs using a dGPU for displa
 |--------------------------|:----:|:---------------:|-----------|
 |PciRoot(0x0)/Pci(0x2,0x0)|Intel HD 4400/4600|0300220D|Haswell iGPU is used for driving a display.
 |PciRoot(0x0)/Pci(0x2,0x0)|Intel HD 4400/4600|04001204|Haswell iGPU is used for computing tasks only.
-|PciRoot(0x0)/Pci(0x2,0x0)|Intel Iris Pro 6200|07002216|Broadwell iGPU is used for driving a display. Disable entry when using SMBIOS iMac17,1
+|PciRoot(0x0)/Pci(0x2,0x0)|Intel Iris Pro 6200|07002216|Broadwell iGPU is used for driving a display. Disable entry when using SMBIOS iMac17,1|
+
+#### Quirks and Kernel Patches Deviations
+- `KernelPM` &rarr; Not needed if you can disable CFGLock in BIOS.
+- `XhciPortLimit` &rarr; Disable for macOS 11.3 and newer – create a USB Port Map 
 </details>
 
 ### 3rd Gen Intel Core i5/i7 Ivy Bridge
