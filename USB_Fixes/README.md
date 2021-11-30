@@ -28,7 +28,7 @@ Since the `XhciPortLimit` Quirk required for mapping the USB ports is no longer 
 
 Enjoy your properly working USB ports!
 
-##### Mapping USB Ports in macOS 11.3:
+##### Mapping USB Ports in macOS 11.3 and newer:
 - Download the macOS version of [**USBToolBox**](https://github.com/USBToolBox/tool/releases)
 - Download this additional [package](https://github.com/USBToolBox/kext/releases)
 - Unpack the zip package and add the 2 included kexts to your kext folder.
