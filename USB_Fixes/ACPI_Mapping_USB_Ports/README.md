@@ -19,10 +19,9 @@ I broke it down in smaller sections so you won't be overwhelmed by a seemingly e
 ## Preparations
 
 ### Required Tools
-- [**Clover Bootmanager**](https://github.com/CloverHackyColor/CloverBootloader/releases) for dumping your System's ACPI tables.
+- [**Clover Bootmanager**](https://github.com/CloverHackyColor/CloverBootloader/releases) for dumping your System's ACPI tables and editing your config.plist.
 - [**maciASL**](https://github.com/acidanthera/MaciASL) or [**QtiASL**](https://github.com/ic005k/QtiASL) for editing `.aml` files.
 - [**IOResgistryExplorer**](https://github.com/utopia-team/IORegistryExplorer/releases) for gathering infos about I/O on macOS. Used for probing USB Ports.
-- [**OpenCore Auxiliary Tools**](https://github.com/ic005k/QtOpenCoreConfig) or a Plist Editor for editing the `config.plist`.
 - [**Example Files**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/13_Mapping_USB_in_ACPI/Example_Files) (for following along)
 - FAT32 formatted USB 3.0 flash drive (USB 3.0) for dumping ACPI tables and probing ports.
 - USB 2.0 Flash Drive (optional, also for probing Ports).
@@ -30,11 +29,8 @@ I broke it down in smaller sections so you won't be overwhelmed by a seemingly e
 - Spreadsheet for taking notes about Port names, Types and physical Location (optional)
 - Patience and time (mandatory). Seriously, this is not for beginners! 
 
-### Dumping ACPI Tables
-There are various ways to dump ACPI Tables from your BIOS: 
-
-- Using **Clover** (easiest method): Hit `F4` in the Boot Menu. You don't even need a working configuration to do this. Just download the latest [**Release**](https://github.com/CloverHackyColor/CloverBootloader/releases) as a `.zip` file, extract it, put it on a FAT32 formatted USB flash drive and boot from it. The dumped ACPI Tables will be located in: `EFI\CLOVER\ACPI\origin`
-- Using **OpenCore** (requires the Debug version and a working config): enable Misc > Debug > `SysReport` Quirk. The ACPI Tables will be dumped during next boot.
+### Dumping ACPI Tables with Clover
+- Hit `F4` in the Boot Menu. You don't even need a working configuration to do this. Just download the latest [**Release**](https://github.com/CloverHackyColor/CloverBootloader/releases) as a `.zip` file, extract it, put it on a FAT32 formatted USB flash drive and boot from it. The dumped ACPI Tables will be located in: `EFI\CLOVER\ACPI\origin`
 
 ## Finding the correct table
 Have a look inside the "origin" Folder. In there you will find a lot of tables. We are interested in the **SSDT-xxxx.aml** files. Find the one which looks similar to this:
@@ -45,21 +41,19 @@ We can see the following:
 
 - There are entries for `XHC` (eXtensible Host Controller) and for `XHC.RHUB` (USB Root Hub Device)
 - There's should also be a list of Ports, 26 in my case: `HS01` to `HS14`, `USR1` and `USR2`, and `SS01` to `SS10`. We will come back to the meaning of these names later. 
-- Take note of the "Table Signature" and the "OEM Table ID" – we will use them to create a delete rule in the OpenCore config.
+- Take note of the "Table Signature" and the "OEM Table ID" – we will use them to create a delete rule in the Clover config.
 
 **NOTE**: Just because this SSDT includes 26 port entries, it doesn't meant that they are all connected to physical devices on the mainboard. Look at it more as a template used by Devs.
 
 ### Adding a delete rule to config.plist
-In order to delete (or drop) the original table during boot and replace it with our own, we need to tell OpenCore to look for the Signature ("SSDT") and the OEM Table ID (in my case "xh_cmsd4") to drop.</br>
+In order to delete (or drop) the original table during boot and replace it with our own, we need to tell Clover to look for the Signature ("SSDT") and the OEM Table ID (in my case "xh_cmsd4") to drop.</br>
 **CAUTION**: Don't use my value for the OEM Table ID, since yours probably has a different name!
 
-1. Open your `config.plist` (I am using OpenCore Auxiliary Tools)
-2. Go to ACPI > Delete and add a new Rule (click on "+")
-3. In `TableSignature`, enter `53534454` which is HEX for `SSDT`:
-	![TableSig](https://user-images.githubusercontent.com/76865553/137520564-10b44f45-778b-47ad-a3ae-318ce9334aac.png)
-4. In `OemTableID`, enter the name of the "OEM Table ID" (See first screenshot) stored in YOUR (NOT mine, YOUR!) SSDT-Whatever.aml without `""` as a HEX value. In OCAT, you can use ASCI to Hex converter at the bottom of the app:
-	![OEMTableID](https://user-images.githubusercontent.com/76865553/137520641-97a42e24-175b-4e3a-badb-23b57fa31ac8.png)
-5. Enable the rule and a comment so you know what it does.
+1. Open your `config.plist` in Clover Configurator
+2. Go to ACPI > Drop Tables and add a new Rule (click on "+")
+3. In `Signature`, select `SSDT` from the Dopdown menu
+4. In `String/Tableid`, enter the name of the "OEM Table ID" (See first screenshot) stored in YOUR SSDT-Whatever.aml without `""`:</br>
+	![Drop_Clvoer](https://user-images.githubusercontent.com/76865553/144123138-a33ad32e-95e0-4a32-b618-f2978734233c.png)
 6. Save the config.
 
 You should have the correct rule for replacing the ACPI Table containing the USB Port declarations. Let's move on to the hard part…
@@ -343,13 +337,10 @@ Once you are done with your port mapping activities, do the following:
 - Save the SSDT as something plausible like `SSDT-XHCI.aml` or `SSDT-PORTS.aml` (keep it short!)
 - Mount your EFI partition
 - Copy the EFI folder to a FAT32 formatted USB flash drive (for testing)
-- Open your OpenCore `config.plist` (the one on the flash drive)
-- Add the .aml file to the `EFI\OC\ACPI` folder on your flash driver.
-- Add the file to the `ACPI > Add` Section and enable it.
-- Save your `config.plist`
+- Add the .aml file to the `EFI\CLOVER\ACPI\patched` folder on your flash driver.
 - Reboot from USB flash drive. 
 - Test the ports with macOS and your other Operating systems.
 - If it works, Congrats! 
 - Copy the .aml and your config.plist back to the EFI folder on the hard disk.
 
-**Good Luck!**
+Enjoy your properly working USB ports!
