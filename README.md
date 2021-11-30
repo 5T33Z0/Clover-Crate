@@ -44,9 +44,10 @@ I created this repo for several reasons:
   - [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters)
 - **Appendix**
   - [**Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
-  - [**Converting OpenCore Properties to Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/OC2Clover)
+  - [**Mapping USB Ports**](https://github.com/5T33Z0/Clover-Crate/tree/main/USB_Fixes)
   - [**Clover Laptop Configs and Hotpatches 2.0**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs)
   - [**Clover Dektop Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs)
+  - [**Converting OpenCore Properties to Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/OC2Clover)
   - [**Clover Calculators**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras)
   - [**Utilities and Resources**](https://github.com/5T33Z0/Clover-Crate/tree/main/Utilities)
 
