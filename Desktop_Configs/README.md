@@ -180,7 +180,7 @@ ___
 #### Included Device Properties
 |Framebuffer Patches|iGPU|AAPL,ig-platform-id|Description|
 |--------------------------|:----:|:-----------------:|-----------|
-|PciRoot(0x0)/Pci(0x2,0x0)| Intel HD 530|00001219|iGPU is used to drive a display. For CPUs using Intel HD P530 graphics instead, un-comment the `device-id`.
+|PciRoot(0x0)/Pci(0x2,0x0)|Intel HD 530|00001219|iGPU is used to drive a display. For CPUs using Intel HD P530 graphics instead, un-comment the `device-id`.
 |#PciRoot(0x0)/Pci(0x2,0x0)|Intel HD 530|01001219|iGPU is used for computational tasks only. Entry Disabled by default.
 </details>
 
@@ -205,9 +205,9 @@ ___
 |Config.plist|SMBIOS|supported macOS|Notes|
 |---------------------|------|---------------|-----|
 |Haswell_iMac14,4|iMac14,4|10.8 - 11.6.x|For Haswell CPUs using the iGPU for driving a display|
-Haswell_iMac15,1|iMac15,1| 10.8 - 11.6.x|For Haswell CPUs using a dGPU for displaying and the iGPU for computing tasks.
-|Haswell_iMac16,2|iMac16,2| 10.8 - 12.x|For Broadwell CPUs Broadwell with iGPU only.
-|Haswell_iMac17,1|iMac17,1| 10.8 - 12.x|For Broadwell CPUs Broadwell with dGPU only-
+Haswell_iMac15,1|iMac15,1|10.8 - 11.6.x|For Haswell CPUs using a dGPU for displaying and the iGPU for computing tasks.
+|Haswell_iMac16,2|iMac16,2|10.8 - 12.x|For Broadwell CPUs Broadwell with iGPU only.
+|Haswell_iMac17,1|iMac17,1|10.8 - 12.x|For Broadwell CPUs Broadwell with dGPU only-
 
 #### Included Device Properties
 |Framebuffer Patches|iGPU|AAPL,ig-platform-id|Description|
