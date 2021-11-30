@@ -30,7 +30,8 @@ I broke it down in smaller sections so you won't be overwhelmed by a seemingly e
 - Patience and time (mandatory). Seriously, this is not for beginners! 
 
 ### Dumping ACPI Tables with Clover
-- Hit `F4` in the Boot Menu. You don't even need a working configuration to do this. Just download the latest [**Release**](https://github.com/CloverHackyColor/CloverBootloader/releases) as a `.zip` file, extract it, put it on a FAT32 formatted USB flash drive and boot from it. The dumped ACPI Tables will be located in: `EFI\CLOVER\ACPI\origin`
+- Hit `F4` in the Clover Boot Menu. The dumped ACPI Tables will be located in: `EFI\CLOVER\ACPI\origin`
+- You don't even need a working configuration to do this.
 
 ## Finding the correct table
 Have a look inside the "origin" Folder. In there you will find a lot of tables. We are interested in the **SSDT-xxxx.aml** files. Find the one which looks similar to this:
