@@ -9,7 +9,165 @@ They are not an all-in-all solution since I donn't know which additional hardwar
 - Copy the config for the CPU family of your choice to `EFI\CLOVER`
 - Copy the included SSDT files for the chosen CPU to `EFI\CLOVER\ACPI\patched` 
 - Continue reading the [**"About the configs"**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs#about-the-configs) section for your CPU…
- 
+
+<details>
+<summary><strong>Base EFI Folder Content</strong></summary>
+
+### Base EFI Folder Content
+```
+EFI
+├── BOOT
+│   └── BOOTX64.efi
+├── CCPV_r5142
+├── CLOVER
+│   ├── ACPI
+│   │   ├── WINDOWS
+│   │   ├── origin
+│   │   └── patched
+│   ├── CLOVERX64.efi
+│   ├── OEM
+│   │   └── SystemProductName
+│   │       ├── UEFI
+│   │       │   └── config-sample.plist
+│   │       └── config-sample.plist
+│   ├── ROM
+│   ├── drivers
+│   │   ├── UEFI
+│   │   │   ├── ApfsDriverLoader.efi
+│   │   │   ├── AudioDxe.efi
+│   │   │   ├── OpenRuntime.efi
+│   │   │   └── VBoxHfs.efi
+│   │   └── off
+│   │       └── UEFI
+│   │           ├── FSInject.efi
+│   │           ├── FileSystem
+│   │           │   ├── ApfsDriverLoader.efi
+│   │           │   ├── Fat.efi
+│   │           │   ├── VBoxExt2.efi
+│   │           │   ├── VBoxExt4.efi
+│   │           │   ├── VBoxHfs.efi
+│   │           │   └── VBoxIso9600.efi
+│   │           ├── FileVault2
+│   │           │   ├── AppleImageCodec.efi
+│   │           │   ├── AppleKeyAggregator.efi
+│   │           │   ├── AppleKeyFeeder.efi
+│   │           │   ├── AppleUITheme.efi
+│   │           │   ├── FirmwareVolume.efi
+│   │           │   └── HashServiceFix.efi
+│   │           ├── HID
+│   │           │   ├── AptioInputFix.efi
+│   │           │   ├── Ps2MouseDxe.efi
+│   │           │   ├── UsbKbDxe.efi
+│   │           │   └── UsbMouseDxe.efi
+│   │           ├── MemoryFix
+│   │           │   └── OpenRuntime.efi
+│   │           └── Other
+│   │               ├── CsmVideoDxe.efi
+│   │               ├── EmuVariableUefi.efi
+│   │               ├── EnglishDxe.efi
+│   │               ├── NvmExpressDxe.efi
+│   │               ├── OsxFatBinaryDrv.efi
+│   │               └── PartitionDxe.efi
+│   ├── kexts
+│   │   ├── Off
+│   │   │   ├── Ethernet
+│   │   │   │   ├── AtherosE2200Ethernet.kext
+│   │   │   │   │   └── Contents
+│   │   │   │   │       ├── Info.plist
+│   │   │   │   │       ├── MacOS
+│   │   │   │   │       │   └── AtherosE2200Ethernet
+│   │   │   │   │       ├── Resources
+│   │   │   │   │       │   └── en.lproj
+│   │   │   │   │       │       └── InfoPlist.strings
+│   │   │   │   │       └── _CodeSignature
+│   │   │   │   │           └── CodeResources
+│   │   │   │   ├── LucyRTL8125Ethernet.kext
+│   │   │   │   │   └── Contents
+│   │   │   │   │       ├── Info.plist
+│   │   │   │   │       └── MacOS
+│   │   │   │   │           └── LucyRTL8125Ethernet
+│   │   │   │   ├── RealtekRTL8111.kext
+│   │   │   │   │   └── Contents
+│   │   │   │   │       ├── Info.plist
+│   │   │   │   │       ├── MacOS
+│   │   │   │   │       │   └── RealtekRTL8111
+│   │   │   │   │       └── Resources
+│   │   │   │   │           └── en.lproj
+│   │   │   │   │               └── InfoPlist.strings
+│   │   │   │   └── SmallTreeIntel82576.kext
+│   │   │   │       └── Contents
+│   │   │   │           ├── Info.plist
+│   │   │   │           ├── MacOS
+│   │   │   │           │   └── SmallTreeIntel82576
+│   │   │   │           ├── Resources
+│   │   │   │           │   └── English.lproj
+│   │   │   │           │       └── InfoPlist.strings
+│   │   │   │           └── _CodeSignature
+│   │   │   │               └── CodeResources
+│   │   │   ├── NVMeFix.kext
+│   │   │   │   └── Contents
+│   │   │   │       ├── Info.plist
+│   │   │   │       └── MacOS
+│   │   │   │           └── NVMeFix
+│   │   │   └── XHCI-unsupported.kext
+│   │   │       └── Contents
+│   │   │           └── Info.plist
+│   │   └── Other
+│   │       ├── AppleALC.kext
+│   │       │   └── Contents
+│   │       │       ├── Info.plist
+│   │       │       └── MacOS
+│   │       │           └── AppleALC
+│   │       ├── IntelMausi.kext
+│   │       │   └── Contents
+│   │       │       ├── Info.plist
+│   │       │       └── MacOS
+│   │       │           └── IntelMausi
+│   │       ├── Lilu.kext
+│   │       │   └── Contents
+│   │       │       ├── Info.plist
+│   │       │       └── MacOS
+│   │       │           └── Lilu
+│   │       ├── RestrictEvents.kext
+│   │       │   └── Contents
+│   │       │       ├── Info.plist
+│   │       │       └── MacOS
+│   │       │           └── RestrictEvents
+│   │       ├── SMCProcessor.kext
+│   │       │   └── Contents
+│   │       │       ├── Info.plist
+│   │       │       └── MacOS
+│   │       │           └── SMCProcessor
+│   │       ├── SMCSuperIO.kext
+│   │       │   └── Contents
+│   │       │       ├── Info.plist
+│   │       │       └── MacOS
+│   │       │           └── SMCSuperIO
+│   │       ├── VirtualSMC.kext
+│   │       │   └── Contents
+│   │       │       ├── Info.plist
+│   │       │       └── MacOS
+│   │       │           └── VirtualSMC
+│   │       └── WhateverGreen.kext
+│   │           └── Contents
+│   │               ├── Info.plist
+│   │               └── MacOS
+│   │                   └── WhateverGreen
+│   ├── misc
+│   ├── themes
+│   │   └── Clovy
+│   │       ├── sound.wav
+│   │       └── theme.svg
+│   └── tools
+│       ├── ControlMsrE2.efi
+│       ├── Shell32.efi
+│       ├── Shell64.efi
+│       ├── Shell64U.efi
+│       └── bdmesg.efi
+└── EFI_Info.md
+```
+</details>
+
 ## About the configs
 This chapter lists all the included Configs and their variations, covering multiple setups, like using the integrated graphics (iGPU) for driving a monitor or using it for computing tasks only when a discrete graphics card (dGPU) is connected to a monitor instead. That's why the included Device Properties (mostly Framebuffer Patches) and what they do are listed as well. It also lists the required SSDT Hotpatches for each CPU family.
 
