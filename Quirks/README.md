@@ -25,7 +25,7 @@ In oder to set up these Quirks correctly, you need to follow the instruction for
 ## Booter Quirks
 The following screenshot shows the Booter Quirks sub-section which is new in Clover Configurator 5.19.0, which makes it a lot easier to handle than in earlier versions:
 
-![Booter_Qs](https://user-images.githubusercontent.com/76865553/139507534-9ee16773-9319-4b10-8437-c76bdb644c0d.png)
+![booter](https://user-images.githubusercontent.com/76865553/145463363-244f28cc-12d6-437a-9dc5-b6b0d791d080.png)
 
 The example above shows Booter Quirks for a 10th Gen Intel Cometlake Desktop CPU taken from [this section](https://dortania.github.io/OpenCore-Install-Guide/config.plist/comet-lake.html#booter) of the OpenCore Install Guide. Don't just copy these – use the correct ones required for your CPU!
 
