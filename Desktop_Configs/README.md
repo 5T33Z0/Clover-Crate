@@ -72,87 +72,20 @@ EFI
 │   │   ├── Off
 │   │   │   ├── Ethernet
 │   │   │   │   ├── AtherosE2200Ethernet.kext
-│   │   │   │   │   └── Contents
-│   │   │   │   │       ├── Info.plist
-│   │   │   │   │       ├── MacOS
-│   │   │   │   │       │   └── AtherosE2200Ethernet
-│   │   │   │   │       ├── Resources
-│   │   │   │   │       │   └── en.lproj
-│   │   │   │   │       │       └── InfoPlist.strings
-│   │   │   │   │       └── _CodeSignature
-│   │   │   │   │           └── CodeResources
 │   │   │   │   ├── LucyRTL8125Ethernet.kext
-│   │   │   │   │   └── Contents
-│   │   │   │   │       ├── Info.plist
-│   │   │   │   │       └── MacOS
-│   │   │   │   │           └── LucyRTL8125Ethernet
 │   │   │   │   ├── RealtekRTL8111.kext
-│   │   │   │   │   └── Contents
-│   │   │   │   │       ├── Info.plist
-│   │   │   │   │       ├── MacOS
-│   │   │   │   │       │   └── RealtekRTL8111
-│   │   │   │   │       └── Resources
-│   │   │   │   │           └── en.lproj
-│   │   │   │   │               └── InfoPlist.strings
 │   │   │   │   └── SmallTreeIntel82576.kext
-│   │   │   │       └── Contents
-│   │   │   │           ├── Info.plist
-│   │   │   │           ├── MacOS
-│   │   │   │           │   └── SmallTreeIntel82576
-│   │   │   │           ├── Resources
-│   │   │   │           │   └── English.lproj
-│   │   │   │           │       └── InfoPlist.strings
-│   │   │   │           └── _CodeSignature
-│   │   │   │               └── CodeResources
 │   │   │   ├── NVMeFix.kext
-│   │   │   │   └── Contents
-│   │   │   │       ├── Info.plist
-│   │   │   │       └── MacOS
-│   │   │   │           └── NVMeFix
 │   │   │   └── XHCI-unsupported.kext
-│   │   │       └── Contents
-│   │   │           └── Info.plist
 │   │   └── Other
 │   │       ├── AppleALC.kext
-│   │       │   └── Contents
-│   │       │       ├── Info.plist
-│   │       │       └── MacOS
-│   │       │           └── AppleALC
 │   │       ├── IntelMausi.kext
-│   │       │   └── Contents
-│   │       │       ├── Info.plist
-│   │       │       └── MacOS
-│   │       │           └── IntelMausi
 │   │       ├── Lilu.kext
-│   │       │   └── Contents
-│   │       │       ├── Info.plist
-│   │       │       └── MacOS
-│   │       │           └── Lilu
 │   │       ├── RestrictEvents.kext
-│   │       │   └── Contents
-│   │       │       ├── Info.plist
-│   │       │       └── MacOS
-│   │       │           └── RestrictEvents
 │   │       ├── SMCProcessor.kext
-│   │       │   └── Contents
-│   │       │       ├── Info.plist
-│   │       │       └── MacOS
-│   │       │           └── SMCProcessor
 │   │       ├── SMCSuperIO.kext
-│   │       │   └── Contents
-│   │       │       ├── Info.plist
-│   │       │       └── MacOS
-│   │       │           └── SMCSuperIO
 │   │       ├── VirtualSMC.kext
-│   │       │   └── Contents
-│   │       │       ├── Info.plist
-│   │       │       └── MacOS
-│   │       │           └── VirtualSMC
 │   │       └── WhateverGreen.kext
-│   │           └── Contents
-│   │               ├── Info.plist
-│   │               └── MacOS
-│   │                   └── WhateverGreen
 │   ├── misc
 │   ├── themes
 │   │   └── Clovy
