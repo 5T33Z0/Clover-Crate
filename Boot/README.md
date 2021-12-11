@@ -40,9 +40,7 @@ For more iGPU and dGPU-related boot args see the Whatevergreen topic.
 **`alcid=1`**|For selecting a layout-id for AppleALC, whereas the numerical value specifies the layout-id. See [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system.
 **`amfi_get_out_of_my_way=1`**|Combines wit disabled SIP, this disables Apple Mobile File Integrity. AMFI is a macOS kernel module enforcing code-signing validation and library validation which strengthens security. Even after disabling these services, AMFI is still checking the signatures of every app that is run and will cause non-Apple apps to crash when they touch extra-sensitive areas of the system. There's also a [kext](https://github.com/osy/AMFIExemption) which does this on a per-app-basis.
 
-### Boot-args and device properties provided by kexts
-
-#### Lilu.kext
+#### Provided by Lilu.kext
 Assorted Lilu boot-args. Remember that Lilu is a Patch engines providing functionality for almost(?) any other kext in the hackintosh universe, so you got to be aware of that if you use any of these commands!
 
 |Boot-arg|Description|
@@ -54,7 +52,7 @@ Assorted Lilu boot-args. Remember that Lilu is a Patch engines providing functio
 `liludelay=1000` | Adds a 1 second (1000 ms) delay after each print for troubleshooting.
 `lilucpu=N` |to let Lilu and plugins assume Nth CPUInfo::CpuGeneration.
 
-#### Whatevergreen.kext 
+#### Provided by Whatevergreen.kext 
 Listed below you'll find a snall but usefuk assortion of whatevergreen's boot args for everythong graphics-related. Check the [complete list ](https://github.com/acidanthera/WhateverGreen/blob/master/README.md#boot-arguments) to find many, many more.
 
 |Boot-arg|Description|
@@ -82,7 +80,7 @@ Listed below you'll find a snall but usefuk assortion of whatevergreen's boot ar
 `-igfxbls`| boot argument (and `enable-backlight-smoother` property) to make brightness transitions smoother on IVB+ platforms. [Read the manual](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#customize-the-behavior-of-the-backlight-smoother-to-improve-your-experience)
 `applbkl=3` | boot argument (and `applbkl` property) to enable PWM backlight control of AMD Radeon RX 5000 series graphic cards [read here.](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.Radeon.en.md)
 
-#### AppleALC
+#### Provided by AppleALC
 Boot-args for your favorite audio-enabler kext. All the Lilu boot arguments affect AppleALC as well.
 
 |Boot-arg|Description|
@@ -97,6 +95,7 @@ If you right-click anywhere in this list you will find many more boot-args not c
 <details><summary><strong>Screenshot</strong></summary>
 ![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135818786-923330d4-564a-41c6-acbf-ae16b4ac0d55.png)
 </details>
+
 ### Default Boot Volume
 Default Boot Volume is used to specify which entry is the default boot entry in the Clover GUI. It can be set to:
 
