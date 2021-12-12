@@ -67,7 +67,9 @@ Besides the basic `Find`/`Replace` masks, there are several additional modifiers
 | –           | InfoPlistPatch | no explanation available
 
 ### KextsToPatch
-This is a commonly used section to patch kexts in order to enable certain features like enabling Trim or to disable the USB port limitations of macOS to use more than 15 ports per Controller. The patching principle is similar to the one used for patching the `DSDT`, but you patch things inside kexts instead. You enter the name of the Kext you want to patch and then you enter the value clover should find and replace. Check the dropdown menu to find a lot of patches which may be helpful.
+This is a commonly used section to patch kexts in order to enable features like Trim or use USB port patches to use more than 15 ports per Controller (which are no longer required since you can use the `XhciPortlimit` Quirk for that now). 
+
+The patching principle is similar to the one used for patching the `DSDT`, but you patch things inside kexts instead. You enter the name of the Kext you want to patch and then you enter the value clover should find and replace. Check the dropdown menu to find a lot of patches which may be helpful.
 
 ### KernelToPatch
 For applying binary patches to the Darwin kernel of macOS. This is used by developers primarily for patching Kernels or debugging. But in rare cases it's used for enabling features which wouldn't work otherwise, like enabling XCPM on IvyBridge CPUs or enabling macOS Catalina to use the Intel I-225 Ethernet Controller. 
