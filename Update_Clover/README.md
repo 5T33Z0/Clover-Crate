@@ -18,12 +18,13 @@ In order to avoid the dilemma of your system not booting, you have to clean up y
 ### Removing obsolete/unnecessary Drivers
 The following drivers are no longer necessary and have to either be deleted when updating Clover or omitted when building a new EFI folder:
 
-- **Aptio Memory Fixes**: `AptioMemoryFix.efi`, `OsxAptioFix3Drv.efi`,  `OsxAptioFixDrv.efi`
-- **`OcQuirks.efi`** and **`OcQuirks.plist`** – delete if present. OcQuirks is a relic from earlier attempts to include OpenCore Booter Quirks into Clover (≤r5122).
-- **`DataHubDxe.efi`** – DataHub protocol which provides parameters like OEM Model, FSBFrequency, ARTFrequency, Clover's boot-log and many other things to macOS which it cannot obtain otherwise. It has been fully integrated into Clover since r5129, so delete it. Newer versions of the Clover Package don't contain this driver anyway.
-- **`EmuVariableUefi.efi`** – necessary for emulating NVRAM, if it is not available (legacy systems) or working incorrectly.
-- **`FSInject.efi`** – For Kext injection. Necessary only for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of Prelinkedkernel. Since r5125, OpenCore handles Kext injection, so FSInject has become obsolete and should be deleted!
-- **`SMCHelper.efi`** – Necessary only when using **`FakeSMC.kext`**. If you use it in combination with **`VirtualSMC.efi`**, it can cause instant Kernel Panics. In other words: VirtualSMC + VirtualSMC.efi = good; FakeSMC + SMCHelper.efi = good; any other combination = bad. Nowadays, using **`VirtualSMC.kext`** alone is sufficient and recommended.
+|Driver(s)|Description|Action
+|---------|-----------|-----|
+|**`AptioMemoryFix.efi`**,</br>**`OsxAptioFix3Drv.efi`**,</br>**`OsxAptioFixDrv.efi`**,</br>**`OcQuirks.efi`** and **`OcQuirks.plist`**|Obsolete Aptio Memory Fixes and OCQuirks. OcQuirks is a relic from earlier attempts to include OpenCore Booter Quirks into Clover (≤ r5122).|Delete
+**`DataHubDxe.efi`**| DataHub protocol which provides parameters like OEM Model, FSBFrequency, ARTFrequency, Clover's boot-log and many other things to macOS which it cannot obtain otherwise. It has been fully integrated into Clover since r5129. Newer versions of the Clover Package don't contain this driver anyway.|Delete
+**`EmuVariableUefi.efi`** | Necessary for emulating NVRAM, if it is not available (legacy systems) or working incorrectly.|Delete
+**`FSInject.efi`** | For Kext injection. Only necessary for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of Prelinkedkernel. Since r5125, OpenCore handles Kext injection, so FSInject has become obsolete|Delete
+**`SMCHelper.efi`** | Only required when using `FakeSMC.kext`. If you use it in combination with `VirtualSMC.efi`, it can cause instant Kernel Panics. In other words: FakeSMC.kext + SMCHelper.efi = <span style="color:green">good</span>, VirtualSMC.kext + VirtualSMC.efi = <span style="color:green">good</span>; any other combination of the two: <span style="color:red">bad</span>. Nowadays, using VirtualSMC.kext alone is sufficient and recommended.| Delete
 
 ### Checking and Updating Kexts
 Outdated, incompatible and/or duplicate Kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use Kext-Updater to download the latest kexts and other Bootloader-related files.
