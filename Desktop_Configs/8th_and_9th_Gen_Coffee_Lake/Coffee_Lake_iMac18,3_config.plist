@@ -71,7 +71,7 @@
 					<key>Comment</key>
 					<string>Fix 300-series RTC Bug</string>
 					<key>Disabled</key>
-					<false/>
+					<true/>
 					<key>Find</key>
 					<data>
 					oAqTU1RBUwE=
@@ -113,6 +113,10 @@
 		<string>keepsyms=1 dart=0 debug=0x100 -v</string>
 		<key>DefaultVolume</key>
 		<string>LastBootedVolume</string>
+		<key>NeverDoRecovery</key>
+		<false/>
+		<key>NeverHibernate</key>
+		<true/>
 		<key>Timeout</key>
 		<integer>5</integer>
 		<key>XMPDetection</key>
@@ -130,17 +134,6 @@
 		<key>Properties</key>
 		<dict>
 			<key>#PciRoot(0x0)/Pci(0x2,0x0)</key>
-			<dict>
-				<key>AAPL,ig-platform-id</key>
-				<data>
-				AwCRPg==
-				</data>
-				<key>AAPL,slot-name</key>
-				<string>Built-In</string>
-				<key>model</key>
-				<string>Intel UHD 630 (for computing tasks)</string>
-			</dict>
-			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
 				<key>#AAPL,ig-platform-id</key>
 				<data>
@@ -163,6 +156,17 @@
 				<key>model</key>
 				<string>Intel UHD 630</string>
 			</dict>
+			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
+			<dict>
+				<key>AAPL,ig-platform-id</key>
+				<data>
+				AwCRPg==
+				</data>
+				<key>AAPL,slot-name</key>
+				<string>Built-In</string>
+				<key>model</key>
+				<string>Intel UHD 630 (for computing tasks)</string>
+			</dict>
 		</dict>
 		<key>USB</key>
 		<dict>
@@ -172,6 +176,12 @@
 	</dict>
 	<key>GUI</key>
 	<dict>
+		<key>EmbeddedThemeType</key>
+		<string>Dark</string>
+		<key>Language</key>
+		<string>en-US:0</string>
+		<key>ProvideConsoleGop</key>
+		<true/>
 		<key>Scan</key>
 		<dict>
 			<key>Entries</key>
@@ -198,8 +208,6 @@
 		<false/>
 		<key>KernelPm</key>
 		<true/>
-		<key>KextsToPatch</key>
-		<array/>
 		<key>PanicNoKextDump</key>
 		<true/>
 	</dict>
@@ -226,11 +234,13 @@
 		<key>ProvideMaxSlide</key>
 		<integer>0</integer>
 		<key>RebuildAppleMemoryMap</key>
-		<true/>
+		<false/>
+		<key>ResizeAppleGpuBars</key>
+		<integer>-1</integer>
 		<key>SetupVirtualMap</key>
 		<true/>
 		<key>SyncRuntimePermissions</key>
-		<true/>
+		<false/>
 		<key>XhciPortLimit</key>
 		<true/>
 	</dict>
@@ -240,19 +250,23 @@
 		<string>0x28</string>
 		<key>CsrActiveConfig</key>
 		<string>0x3E7</string>
+		<key>MLB</key>
+		<string></string>
 		<key>ROM</key>
 		<string>UseMacAddr0</string>
 	</dict>
 	<key>SMBIOS</key>
 	<dict>
 		<key>ProductName</key>
-		<string>iMac19,1</string>
+		<string>iMac18,3</string>
 	</dict>
 	<key>SystemParameters</key>
 	<dict>
 		<key>InjectKexts</key>
 		<true/>
 		<key>InjectSystemID</key>
+		<true/>
+		<key>NvidiaWeb</key>
 		<true/>
 	</dict>
 </dict>
