@@ -10,7 +10,7 @@ Throughout this chapter, this section is broken down into smaller chunks to make
 
 ![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135732535-ca43869b-4e97-47b2-a490-9c8aa5488fa8.png)
 
-Merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI tables.
+Merges any `DSDT` aand `SSDT` changes from `/ACPI/patched` with existing ACPI tables.
 
 If set to `true`, it changes the way files in `ACPI/patched` are handled: Instead of adding these files at the end of the `DSDT` they will replace existing tables, if their signature, index and `OemTableIds` match existing OEM tables.
 
