@@ -10,13 +10,13 @@ Throughout this chapter, this section is broken down into smaller chunks to make
 
 ![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135732535-ca43869b-4e97-47b2-a490-9c8aa5488fa8.png)
 
-Merges any `DSDT` aand `SSDT` changes from `/ACPI/patched` with existing ACPI tables.
+Merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI tables.
 
 If set to `true`, it changes the way files in `ACPI/patched` are handled: Instead of adding these files at the end of the `DSDT` they will replace existing tables, if their signature, index and `OemTableIds` match existing OEM tables.
 
 With this function – as with `DSDT` – you can fix individual SSDTs (or other tables) simply by adding the corrected file(s) into `ACPI/patched`. No need to fiddle with `DropOem` or `DropTables`. The original order is preserved. The mapping for `SSDT` is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the `SSDT` position in `DSDT`. 
 
-For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you could just fix it nd put it back in `ACPI/patched`, replacing the original table. This also works if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. If you stick to the names provided in `ACPI/origin`, you should be fine.
+For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you could just fix it and put it back in `ACPI/patched`, replacing the original table. This also works if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. If you stick to the names provided in `ACPI/origin`, you should be fine.
 This way, you could find the SSDT containing all the 26 Ports for your board in the dumped ACPI, fix it, put it back in the `ACPI/patched` folder and boom: no more `USBports.kext` required.
 
 ## Disable ASPM
