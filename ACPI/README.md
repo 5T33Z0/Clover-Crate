@@ -164,7 +164,7 @@ In addition to the `DeviceProperties`, there is also a Device Specific Method (`
 
 ### AddMCHC
 
-Such a device of class `0x060000` is, as a rule, absent in the DSDT, but for some chipsets this device is serviceable, and therefore it must be prescribed in order to properly wire the power management of the PCI bus. The question of the need for a patch is solved experimentally. Another experience, this device was needed on a mother with a Z77 chipset, otherwise the kernel panic at the initial stage of launch. Conversely, on the G41M (ICH7) chipset, this fix causes panic. Unfortunately, there is no general rule in sight.
+Adds MCHC device which is related to the Memory Controller and is sually combined with 'FixSBUS' to get the System Management Bus Controller working. In general, a device of the `0x060000` class is absent in the DSDT, but for some chipsets this device is serviceable, and therefore it must be attached to I/O Reg in order to properly wire the power management of the PCI bus. 
 
 ### FixAirport
 
@@ -207,8 +207,7 @@ Fixes some problems with SATA, and removes the yellowness of disk icons in the s
 
 ### FixSBus
 
-Adds the System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep.
-
+Adds the System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep. To check if the SBUS is working correctly, enter 'kextstat | grep -E "AppleSMBusController|AppleSMBusPCI"' in terminal. If the Terminal output contains the following 2 drivers, your SMBus is working correctly. The output should list 2 drivers: 'com.apple.driver.AppleSMBusPCI' and 'com.apple.driver.AppleSMBusController'
 ### FixShutdown
 
 A condition is added to the `_PTS` (prepare to sleep) method: if argument = 5 (shutdown), then no other action is required. Strange, why? Nevertheless, there is repeated confirmation of the effectiveness of this patch for ASUS boards, maybe for others, too. Some `DSDT` already have such a check, in which case such a fix should be disabled. If `SuspendOverride` = `true` is set in the config, then this fix will be extended by arguments 3 and 4. That is, going to sleep (Suspend). On the other hand, if `HaltEnabler` = `true`, then this patch is probably no longer needed.
