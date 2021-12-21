@@ -207,7 +207,7 @@ Fixes some problems with SATA, and removes the yellowness of disk icons in the s
 
 ### FixSBus
 
-Adds the System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep. To check if the SBUS is working correctly, enter 'kextstat | grep -E "AppleSMBusController|AppleSMBusPCI"' in terminal. If the Terminal output contains the following 2 drivers, your SMBus is working correctly. The output should list 2 drivers: 'com.apple.driver.AppleSMBusPCI' and 'com.apple.driver.AppleSMBusController'
+Adds the System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep. To check if the SBUS is working correctly, enter `kextstat | grep -E "AppleSMBusController|AppleSMBusPCI"` in terminal. If the Terminal output contains the following 2 drivers, your SMBus is working correctly. The output should list 2 drivers: `com.apple.driver.AppleSMBusPCI` and `com.apple.driver.AppleSMBusController`
 ### FixShutdown
 
 A condition is added to the `_PTS` (prepare to sleep) method: if argument = 5 (shutdown), then no other action is required. Strange, why? Nevertheless, there is repeated confirmation of the effectiveness of this patch for ASUS boards, maybe for others, too. Some `DSDT` already have such a check, in which case such a fix should be disabled. If `SuspendOverride` = `true` is set in the config, then this fix will be extended by arguments 3 and 4. That is, going to sleep (Suspend). On the other hand, if `HaltEnabler` = `true`, then this patch is probably no longer needed.
