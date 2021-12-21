@@ -164,7 +164,7 @@ In addition to the `DeviceProperties`, there is also a Device Specific Method (`
 
 ### AddMCHC
 
-Adds MCHC device which is related to the Memory Controller and is sually combined with 'FixSBUS' to get the System Management Bus Controller working. In general, a device of the `0x060000` class is absent in the DSDT, but for some chipsets this device is serviceable, and therefore it must be attached to I/O Reg in order to properly wire the power management of the PCI bus. 
+Adds MCHC device which is related to the Memory Controller and is sually combined with `FixSBUS` to get the System Management Bus Controller working. In general, a device of the `0x060000` class is absent in the DSDT, but for some chipsets this device is serviceable, and therefore it must be attached to I/O Reg in order to properly wire the power management of the PCI bus. 
 
 ### FixAirport
 
