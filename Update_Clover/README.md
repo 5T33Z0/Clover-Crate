@@ -77,7 +77,7 @@ Starting from version r5134, Clover now includes error reporting similar to Open
 3. Next, drag and drop your clover config.plist into the terminal window. Make sure there is a blank space between the 2 file paths
 4. Hit "Enter"
 5. Check the results. If it says: "Your plist looks so wonderful. Well done!", then you don't have to do anything else.
-6. If there are errors shown in the log, open both your `config.plist` and the `config-sample.plist` included in the Clover package in a plist editor and compare them. Look for any differences (like formatting, deleted features, etc.) and fix them. **NOTE**:
+6. If there are errors shown in the log, open both your `config.plist` and the `config-sample.plist` included in the Clover package in a plist editor and compare the structure of the section(s) referenced by the validator. Look for any differences (like formatting, deleted features, etc.) and fix them.
 7. Save your config.
 8. Re-check for errors
 9. Repeat comparison, fixing, saving and re-checking until all issues are resolved
