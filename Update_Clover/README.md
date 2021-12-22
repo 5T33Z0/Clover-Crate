@@ -103,5 +103,5 @@ Good luck!
 
 **NOTES**
 
-- For booting Big Sur, you need to remove the PreBoot Volume from the "Hide" Section of the GUI because Big Sur requires booting from it.
-- If your system boots correctly you can upload a screenshot with your quirks with additional Info like your Board and CPU which might be helpful for other users.
+- For Big Sur and newer, remove the PreBoot Volume from the "Hide" Section of the GUI because macOS requires it for booting!
+- Even if you don't want to upgrade macOS past Catalina, an upgrade to the new Clover is recommended since kext injection via Open Runtime is cleaner and you have much more control over the applied memory fixes. The system also boots faster.
