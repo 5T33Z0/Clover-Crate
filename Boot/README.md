@@ -53,7 +53,7 @@ Assorted Lilu boot-args. Remember that Lilu is a Patch engines providing functio
 `lilucpu=N` |to let Lilu and plugins assume Nth CPUInfo::CpuGeneration.
 
 #### Provided by Whatevergreen.kext 
-Listed below you'll find a snall but usefuk assortion of whatevergreen's boot args for everythong graphics-related. Check the [complete list ](https://github.com/acidanthera/WhateverGreen/blob/master/README.md#boot-arguments) to find many, many more.
+Listed below you'll find a snall but useful assortion of Whatevergreen's boot args for everythong graphics-related. Check the [complete list](https://github.com/acidanthera/WhateverGreen/blob/master/README.md#boot-arguments) to find many, many more.
 
 |Boot-arg|Description|
 |:------:|-----------|
