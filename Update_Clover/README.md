@@ -59,7 +59,7 @@ Files tagged gray are in there by default and are most likely unnecessary for UE
 	- **config.plist**
 8. Run Clover Configurator and update it to the latest Version. It should now include a new section at the bottom called `Quirks`.
 9. Open your `config.plist`
-10. Click on "Quirks". It should look like this (without descriptions of course):
+10. Click on "Quirks". It should look like this (in the latest version of Clover Configurator, the Quirks section is devided into "Booter" and "Kernel" sections for better overview):
 ![](https://user-images.githubusercontent.com/76865553/135844035-1689a11a-6512-4008-80ea-e89f07a55367.png)
 11. Head over to the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/prerequisites.html) and pick the guide for your CPU Family and Platform.
 12. Jump to the "Booter" Section. It contains all required Booter Quirks tinted green in the screenshot. Make sure to unfold the "more in-depth info" box to see what they do. Find the options for your system and tick them away in Clover Configurator.
