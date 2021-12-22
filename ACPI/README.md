@@ -223,7 +223,7 @@ Attempts to solve numerous USB problems. For the `XHCI` controller, when using t
 ### AddHDMI
 Adds an `HDAU` audio device to the `DSDT` that matches the HDMI output of ATI and Nvidia video cards to enabke audio over HDMI. Since the GPU was bought separately from the motherboard, there simply is no such device in the native DSDT. Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device:
 
-* `1` if 'UseIntelHDMI' = false
+* `1` if `UseIntelHDMI` = false
 * `2` if there is an Intel port that occupies port 1.
 
 ### AddIMEI
