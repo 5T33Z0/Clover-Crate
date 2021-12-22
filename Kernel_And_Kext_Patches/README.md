@@ -18,7 +18,7 @@ If you want to observe how the Kexts are patched &rarr; For developers.
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### FakeCPUID
-Assigns a different Device-ID to the used CPU. Useful when trying to run an older version of macOS with a newer CPU which isn't supported. For example, if you are trying to run macOS High Sierra or Mojave with a Comet Lake CPU which is not supported before macOS 10.15. Instead, you can used the Device-ID a Coffee Lake CPU, to make macOS accept it.
+Assigns a different Device-ID to the used CPU. Useful when trying to run an older version of macOS with a newer CPU which isn't supported. For example, if you are trying to run macOS High Sierra or Mojave with a Comet Lake CPU which is not supported before macOS 10.15. Instead, you can use the Device-ID a Coffee Lake CPU, to make macOS accept it.
 
 ### EightApple
 On some systems, the progress bar break down into 8 apples during boot. No confirmation yet if the patch works. Added in r5119.
