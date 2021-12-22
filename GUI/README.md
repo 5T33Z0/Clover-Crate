@@ -27,7 +27,7 @@ Select your preferred Keyboard Layout for macOS if you want to save the system l
 In combination with `Language`, this can used to fix an issue when installing beta versions of macOS. These sometimes do not include other languages besides english. In this case you will just see a gray screen where there the install assistant should be. Just set `Language` to `en-US:0` and you will be fine. 
 
 ### Language
-At of now moment, setting the language makes sense only for the "Help" menu called by the F1 Key. However, this value is sent to the system and can affect the default language.
+Currently, setting the language only makes sense for the "Help" menu called by the F1 Key. However, this value is sent to the system and can affect the default language.
 
 ### ScreenResolution
 Here you can change the default Screen Resolution of the Boot menu GUI. The default is 1024x768 px. Clover detects the highest possible resolution, but it can be wrong, so you can pick the correct or desired value from the dropdown menu.
