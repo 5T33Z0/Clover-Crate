@@ -1,10 +1,7 @@
 # Upgrading Clover for macOS 11+ compatibility
 
->**Latest Update**: November 24th, 2021. </br>
->**Applicable to**: Clover r5123 and newer (UEFI only).
-
 ## Why Upgrade?
-Clover's previous `AptioMemoryFixes` are incapable of booting/installing macOS 11 and newer. Therefore, OpenCore's Memory Fixes (`OpenRuntime.efi`) have been integrated to keep Clover relevant. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is mandatory in order to be able to install and boot macOS 11 and newer.
+Clover's previous `AptioMemoryFixes` are incapable of booting/installing macOS 11 and newer. Therefore, OpenCore's Memory Fixes (`OpenRuntime.efi`) have been integrated to keep Clover relevant. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is mandatory in order to be able to install and boot macOS 11 and newer. User who want to stay on macOS Catalina or older should update to [r5123.1](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1) which is the last release with the old aptio memory fixes but contains a fix for `TgtBridge` which had been broken for a long time.
 
 ## Who is this Guide for?
 This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. When updating Clover, there are several obstacles along the way, such as removing old memory fixes, drivers and picking the correct settings for newly added "Quirks" section of the `config.plist`. Users who don't want to run macOS Big Sur or newer on there systems don't need to update Clover – although you could, according to the [documentation](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2751618): "New Clover will understand old config.plist. You may not change it."
