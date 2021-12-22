@@ -26,7 +26,7 @@ In order to make these configs compatible with the latest Clover release (r5141)
 
 | SSDT-…        | DESCRIPTION |
 |:-------------:|-------------|
-|**RMCF**| This file provides configuration data for other SSDTs. Read the comments within the file for more information.|
+|**RMCF**|Rehabman Configuration File. This file provides configuration data for other SSDTs. Read the comments within the file for more information.|
 |**RMDT**|Adds `RMDT` (RehabMan Debug Trace) device. This SSDT is for use with `ACPIDebug.kext`. Instead of patching your `DSDT` to add the `RMDT` device, you can use this SSDT and refer to the methods with External. See `ACPIDebug.kext` documentation for more information regarding the RMDT methods.|
 |**XOSI**|This SSDT provides the `XOSI` method, which is a replacement for the system provided `_OSI` object when the `_OSI to XOSI` patch is being used. This is actually one of the examples in the Clover ACPI hotpatch guide, linked above.|
 |**IGPU**| This SSDT injects Intel GPU properties depending on the configuration data in `SSDT-RMCF` and the device-id that is discovered to be present on the system. It assumes the IGPU is named IGPU (typical it's GFX0, requring GFX0 to IGPU rename). Configured with RMCF.TYPE, RMCF.HIGH, RMCF.IGPI, and SSDT-SKLSPF.aml.
