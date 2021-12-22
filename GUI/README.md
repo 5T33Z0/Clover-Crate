@@ -51,7 +51,7 @@ In revisions prior to r5128, this setting was also present in Quirks as `Provide
 `ProvideConsoleGop` from GUI will override `ProvideConsoleGopEnable` from the `Quirks` section  – just in case you forgot to remove this parameter from the config when updating the Clover.
 
 ### ShowOptimus
-Enables an on-screen notification in the Boot menu which about which GPUs are enabled, so you can disabled discrete Optimus GPUs on the fly since they are not supported by macOS. If on-board and discrete GPU are enabled, the notification `Intel Discrete` is displayed.
+Enables an on-screen notification in the Boot menu about which GPUs are enabled, so you can disabled discrete Optimus GPUs on the fly since they are not supported by macOS. If on-board and discrete GPU are enabled, the notification `Intel Discrete` is displayed.
 
 ### TextOnly
 Text-only menu mode for a minimal GUI and faster loading times (like it was 1984 all over again).
