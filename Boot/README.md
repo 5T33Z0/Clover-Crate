@@ -26,7 +26,7 @@ For more iGPU and dGPU-related boot args see the Whatevergreen topic.
 **`agdpmod=pikera`**|Disables Board-ID checks on AMD Navi GPUs (RX 5000 & 6000 series). Without this you'll get a black screen. Don't use on Polaris and Vega GPUs.
 **`-igfxvesa`**|Disables Intel graphics acceleration in favor of software rendering. Useful if the integrated graphics are incompatible with macOS. 
 **`-wegnoegpu`**|Disables all GPUs but the integrated graphics on Intel CPU. Use if GPU is incompatible with macOS. Doesn't work all the time.
-**`nvda_drv=1`**|Enable Web Drivers for NVIDIA Graphics Cards (supported up to macOS High Sierra only).
+**`nvda_drv=1`**|Enables Web Drivers for NVIDIA Graphics Cards up to macOS 10.11. From macOS 10.12 onward, use the `NvidiaWeb` feature in the System Parameters section instead. 
 **`nv_disable=1`**|Disables hardware acceleration of NVIDIA GPUs (***don't*** combine this with `nvda_drv=1`). Use this if your screen turns off when installing macOS. It enables Vesa mode so you get a picture. After you installed Nvidia WebDrivers (supported up to High Sierra only), you can disable this boot-arg again. 
 
 #### Network-specific boot arguments
