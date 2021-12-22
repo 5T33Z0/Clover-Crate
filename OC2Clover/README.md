@@ -6,7 +6,7 @@ This is for users planning to convert their working OpenCore Config to Clover. I
 The most relevant sections for converting a OpenCore config to Clover and vice versa are: "ACPI", "Device Properties", "Kernel and Kext Patches" and "Quirks", which will be covered here.
 
 ## ACPI
-In general, you can use the same SSDTs (.aml) in Clover as in OpenCore. But since Clover has a lot of built-in DSDT Patches, some of then (and accompanying renames required to make them work in OC) are unnecessary.
+In general, you can use the same SSDTs (.aml) in Clover as in OpenCore. Since Clover does not inject ACPI Tables in Windows, they don't require the if OSI Darwin method. Some SSDTs which are required by OpenCore are not necessary in Clover since they are included as ACPI fixes, which are injected during boot. 
 
 ### ACPI > Add
 Following is an incomplete list of .aml files not needed in Clover, since it provides DSDT `Fixes` for them:
