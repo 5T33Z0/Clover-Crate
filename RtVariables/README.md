@@ -49,7 +49,7 @@ The default value for `CsrActiveConfig` in Clover r5142 currently is `0xA87`, wh
 
 **NOTES**: `0xA87` is a 12 bit bitmask and as such, is only valid for macOS 11 and 12. So if you are using an older Version of macOS, use the **CloverCalcs** Spreadsheed which can be found in the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to calculate your own.
 
-You can also change these flags from the Options menu in the Bootloader GUI (Options > System Parameters > System Integrity Protection). But in this case the applied settings are only applied temporary for the next boot. 
+You can also change these flags from the Options menu in the Bootloader GUI (Options > System Parameters > System Integrity Protection). But in this case the settings are only applied temporarily during the next boot. 
 
 ### Recommended values for disabling System Integrity Protection
 :warning: Disbaling SIP is not recommended!
