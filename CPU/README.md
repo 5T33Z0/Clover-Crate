@@ -1,5 +1,5 @@
 # CPU
-This section contains settings to manually configur the CPU if the internal algorithms fail to detect the correct parameters for the CPU automatically. This section is only covered for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable and you know what you are doing!** 
+This section contains settings to manually set parameters for the CPU if the internal algorithms fail to detect the correct parameters automatically. This section is only covered for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable and you know what you are doing!** 
 
 ![CPU](https://user-images.githubusercontent.com/76865553/136802820-de658522-dad5-494c-b8a0-1362202f94ad.jpeg)
 
