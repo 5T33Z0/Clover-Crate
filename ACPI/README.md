@@ -228,10 +228,7 @@ Adds an `HDAU` device to `DSDT` that matches the HDMI output on an ATI or Nvidia
 * `2` if there is an Intel port that occupied port 1.
 
 ### AddIMEI
-
-Required primarily for Sandy Bridge CPUs, which adds the `IMEI` device to the device tree, if it does not exist already.
-
-When mixing Ivy Bridge CPUs with 6 series motherboards, the IMEI device becomes incompatible with macOS. The device-id won't be recognized and this is a very important issue as macOS relies on the `IMEI` device for iGPU drivers. The same applies when mixing Sandy Bridge CPUs with 7 series motherboards.
+Adds the Intel Management Engine (`IMEI`) device to the device tree, if it does not exist in the DSDT. MacOS relies on it for iGPU drivers to work. Required for Sandy Bridge CPUs running on the newer 7-series mainboards and Ivy Bridge CPUs on 6-series mainboards. When mixing Ivy Bridge CPUs with 6-series motherboards, the IMEI device becomes incompatible with macOS. The device-id won't be recognized. This fix resolves this isuue.
 
 ### AddPNLF
 
@@ -243,7 +240,7 @@ There are several sample brightness curves/graphs in the system and they have di
 
 ### DeleteUnused
 
-Removes unused floppy, CRT and DVI devices - an absolute prerequisite for running IntelX3100 on Dell laptops. Otherwise black screen, tested by hundreds of users.
+Removes unused floppy, CRT and DVI devices - a necessity for getting the Intel GMA X3100 to work on Dell Laptops. Otherwise you'll get a black screen. Tested by hundreds of users.
 
 ### FakeLPC
 
