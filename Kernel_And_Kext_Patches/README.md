@@ -3,7 +3,7 @@
 
 This is a group of parameters for creating binary patches on the fly. Note that this can only be done if the kernelcache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 sub-sections: one with Kernel Patches which you can click on. Theses are primarily to make your CPU work with macOS.
 
-**NOTE**: The ATI section is not covered here, since it's pretty much obsolete, since nobody uses ATI graphics any more and since ATI card are no longer supported by current macOS versions.
+**NOTE**: The ATI section is not covered here, since it's pretty much obsolete, since nobody uses ATI graphics any more and since ATI cards are no longer supported by recent versions of macOS.
 
 ### AppleIntelCPUPM
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
