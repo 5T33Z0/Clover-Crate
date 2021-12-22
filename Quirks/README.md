@@ -74,7 +74,7 @@ Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Copy th
 | 128 MB|7|
 | 256 MB|8|
 | 512 MB|9|
-| 1 GB*|10*|
+| 1 GB°|10°|
 | 2 GB|11|
 | 4 GB|12|
 | 8 GB|13|
@@ -85,6 +85,6 @@ Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Copy th
 | 256 GB|18|
 | 512 GB|19|
 
-`*`Maximum for macOS.
+`°`Maximum for macOS.
 
-Before you change any of these values, research if your GPU supports BAR Resize and check the supportedt size with tools like HWiNFO on PC.
+Before you change any of these values, research if your GPU supports BAR Resize and check the supportedt size with tools like `HWiNFO` on PC.
