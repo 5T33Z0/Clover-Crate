@@ -72,7 +72,7 @@ This is a commonly used section to patch kexts in order to enable features like 
 The patching principle is similar to the one used for patching the `DSDT`, but you patch things inside kexts instead. You enter the name of the Kext you want to patch and then you enter the value clover should find and replace. Check the dropdown menu to find a lot of patches which may be helpful.
 
 ### KernelToPatch
-For applying binary patches to the Darwin kernel of macOS. This is used by developers primarily for patching Kernels or debugging. But in rare cases it's used for enabling features which wouldn't work otherwise, like enabling XCPM on IvyBridge CPUs or enabling macOS Catalina to use the Intel I-225 Ethernet Controller. 
+For applying patches to the Darwin Kernel of macOS. This is primarily used by developers for patching Kernels or for debugging purposes. In rare cases it's used for enabling features which wouldn't work otherwise, like enabling XCPM on IvyBridge CPUs or enabling the Intel I-225 Ethernet Controller in macOS Catalina. 
 
 ### BootPatches
 For applying binary patches to `boot.efi`
