@@ -221,11 +221,10 @@ Attempts to solve numerous USB problems. For the `XHCI` controller, when using t
 ![Bildschirmfoto 2021-05-16 um 08 04 15](https://user-images.githubusercontent.com/76865553/135732698-6ead0af4-304c-4570-a407-aaafb70506f2.png)
 
 ### AddHDMI
+Adds an `HDAU` audio device to the `DSDT` that matches the HDMI output of ATI and Nvidia video cards to enabke audio over HDMI. Since the GPU was bought separately from the motherboard, there simply is no such device in the native DSDT. Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device:
 
-Adds an `HDAU` device to `DSDT` that matches the HDMI output on an ATI or Nvidia video card. It is clear that since the card was bought separately from the motherboard, there is simply no such device in the native DSDT. In addition, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device as appropriate:
-
-* `1` if UseIntelHDMI = false
-* `2` if there is an Intel port that occupied port 1.
+* `1` if 'UseIntelHDMI' = false
+* `2` if there is an Intel port that occupies port 1.
 
 ### AddIMEI
 Adds the Intel Management Engine (`IMEI`) device to the device tree, if it does not exist in the DSDT. MacOS relies on it for iGPU drivers to work. Required for Sandy Bridge CPUs running on the newer 7-series mainboards and Ivy Bridge CPUs on 6-series mainboards. When mixing Ivy Bridge CPUs with 6-series motherboards, the IMEI device becomes incompatible with macOS. The device-id won't be recognized. This fix resolves this isuue.
