@@ -93,6 +93,7 @@ Boot-args for your favorite audio-enabler kext. All the Lilu boot arguments affe
 If you right-click anywhere in this list you will find many more boot-args not covered here:
 
 <details><summary><strong>Screenshot</strong></summary>
+
 ![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135818786-923330d4-564a-41c6-acbf-ae16b4ac0d55.png)
 </details>
 
