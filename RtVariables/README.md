@@ -33,7 +33,7 @@ With the release of macOS ElCapitan in 2015, a new security feature was introduc
 The default value for `CsrActiveConfig` in Clover r5142 currently is `0xA87`, which consists of the following enabled flags:
 
 |Bit| Flag Name | HEX Value | Default in r5142
-|---|-----------|----------:|:---------------:|
+|:-:|-----------|----------:|:---------------:|
 |0|CSR_ALLOW_UNTRUSTED_KEXTS|0x1|x
 |1|CSR_ALLOW_UNRESTRICTED_FS|0x2|x
 |2|CSR_ALLOW_TASK_FOR_PID|0x4|x
