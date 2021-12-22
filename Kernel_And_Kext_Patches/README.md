@@ -1,7 +1,7 @@
 # Kernel and Kext Patches
 ![KernelQuirks](https://user-images.githubusercontent.com/76865553/136670474-678b7ae1-b5ec-4791-963a-7af091a833ca.png)
 
-This is a group of parameters for creating binary patches on the fly. Note that this can only be done if the kernelcache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 sub-sections: one with Kernel Patches which you can click on. Theses are primarily to make your CPU work with macOS.
+This is a group of parameters for creating binary patches on the fly. Note that this can only be done if the kernelcache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 categories: one with Kernel Patches which you can click to enable. Theses are primarily for making your CPU work with macOS.
 
 **NOTE**: The ATI section is not covered here, since it's pretty much obsolete, since nobody uses ATI graphics any more and since ATI cards are no longer supported by recent versions of macOS.
 
