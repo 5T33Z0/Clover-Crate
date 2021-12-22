@@ -46,4 +46,4 @@ In order to make these configs compatible with the latest Clover release (r5141)
 |**SSDT-XCPM**| This SSDT injects "plugin-type"=1 on CPU0. It assumes ACPI Processor objects are in Scope `_PR`. It can be used to enable native CPU power management on Haswell and later CPUs. See [Native Power Management for Laptops](https://www.tonymacx86.com/threads/guide-native-power-management-for-laptops.175801/) 
 |**HDEF/HDAU**| Injects layout-id, hda-gfx, and PinConfiguration properties on HDEF and HDAU in order to implement audio with patched AppleHDA.kext Configured with: RMCF.AUDL
 |**EH01, EH02, XHC**| These SSDTs inject USB power properties and control over FakePCIID_XHCIMux (depending on SSDT-DEH*.dsl).
-|**ALS0**| Injects a fake ALS device (ambient light sensor).  This SSDT is used to fix problems with restoring brightness upon reboot.
+|**ALS0**| Injects a fake Ambient Light Sensor which fixes problems with restoring brightness upon reboot.
