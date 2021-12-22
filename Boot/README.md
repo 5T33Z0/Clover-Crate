@@ -12,7 +12,7 @@ These are boot arguments that are passed over to `boot.efi`, which in turn passe
 **`-s`**| _S_ingle User Mode. This will boot macOS in a terminal-based mode, which can be used to repair your system. If you're concerned with security, set quirk `DisableSingleUser` to true since Single User Mode can be used to bypass the Admin account password.
 **`-x`**|Safe Mode. Boots macOS with a minimal set of system extensions and features. It can also check your startup disk to find and fix errors like running First Aid in Disk Utility. Can be triggered from OC bootmenu by holding a key combination if `PollAppleHotkeys` is enabled.
 **`debug=0x100`**|Disables macOS'es watchdog. Prevents the machine from restarting on a kernel panic. That way you can hopefully glean some useful info and follow the breadcrumbs to get past the issues.
-**`keepsyms=1`**|Companion setting to `debug=0x100` that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what's causing the panic itself.
+**`keepsyms=1`**|Companion flag to `debug=0x100` that tells the OS to also print symbols on a kernel panic. Can provide some helpful insight as to what's causing the panic.
 **`dart=0`**|Disables VT-x/VT-d. Nowadays, `DisableIOMapper` Quirk is used instead.
 **`cpus=1`**|Limits the number of CPU cores to 1. Helpful in cases where macOS won't boot or install otherwise.
 **`npci=0x2000`**/**`npci=0x3000`**|Disables PCI debugging related to `kIOPCIConfiguratorPFM64`. Alternatively, use `npci=0x3000` which also disables debugging of `gIOPCITunnelledKey`. Required when stuck at `PCI Start Configuration` as there are IRQ conflicts related to your PCI lanes. **Not needed if `Above4GDecoding` can be enabled in BIOS**
