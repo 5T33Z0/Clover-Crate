@@ -49,7 +49,7 @@ Some systems can only be started using kernel parameter `cpus=1` or with a patch
 
 These two parameters serve a common purpose - to fix restart. They should be present in the `FADT` table, but that's not always the case. Sometimes the table is shorter than necessary, so these values are missing. 
 
-The variables are present in the `FACP` table but if they are empty, then `0x64`/`0xFE`are used, which means restart via PS2 Controller. This does not always work for everyone. Alternatively use `0x0CF9`/`0x06`, which means restart via PCI Bus. This pair is also used on native Macs, but does not always work on Hackintoshes. The difference is clear: on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Another combinations is `0x92`/`0x01`.
+The variables are present in the `FACP` table but if they are empty, then `0x64`/`0xFE`are used, which means restart via PS2 Controller. This does not always work for everyone. Alternatively, you can use `0x0CF9`/`0x06`, which controls restart via PCI Bus. This method is also used on native Macs, but does not always work on Hackintoshes. The difference is clear: on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Another possible combination is `0x92`/`0x01`.
 
 Last but not least you can set them to `0x0`/`0x0` to allow the use of default `FACP` values. If not present, the default values states above will be used instead.
 
