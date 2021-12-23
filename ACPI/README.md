@@ -27,7 +27,7 @@ This patch affects the settings of the ACPI system itself, such as the fact that
 
 ## FixHeaders
 
-`FixHeaders` will check the headers of not only the `DSDT` but all ACPI tables in general, removing Chinese characters from table headers since macOS can not handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you still need it. 
+`FixHeaders` will check the headers of all ACPI tables in general, removing Chinese characters from the headers since macOS can not handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you may still need it. 
 
 Whether you have a problem with tables or not, it's safe to enable this fix. It is recommended to all users, even if you are not having to fix your DSDT. Old setting inside DSDT fixes remains for backward compatibility but I recommend to exclude it from those section.
 
