@@ -34,7 +34,7 @@ As you can see, the `ProductName` is set to `MacBookPro11,4` (which is the minim
 DONE.
 
 ## About "Update Firmware Only"
-Use this feature if macOS installation fails due to firmware issues. macOS checks of the BIOS and Firmware requirement of real Macs are met to ensure that the OS will be working fine. If the firmware is out of date, installation will quit with a notification.
+Use this feature if macOS installation fails due to firmware issues. macOS checks if the BIOS and Firmware requirement of real Macs are met to ensure that the OS will be working fine. If the firmware is out of date, installation will quit with a notification.
 
 By setting the latest BIOS and Firmwareversion in the SMBIOS section this hurdle is overcome. It will only update the BIOS and Firmware sections of the SMBIOS without generating a new serial:
 
