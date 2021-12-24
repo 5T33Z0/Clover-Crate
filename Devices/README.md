@@ -99,7 +99,7 @@ The `Arbitrary` section is an array of dictionaries, each corresponding to one d
 If enabled, all internal injection is replaced by entering a single string Properties, which corresponds to the Apple's APPLE_GETVAR_PROTOCOL injection with GUID={0x91BD12FE, 0xF6C3, 0x44FB, {0xA5, 0xB7, 0x51, 0x22, 0xAB, 0x30, 0x3A, 0xE0}}; which is used on real Macs. The old hackers called it `EFIstrings`.
 
 ### NoDefaultProperties
-In this case, the line for the injection is created, but does not contain any new properties yet. For example this property will be `FakeID`. Again, this way of using `FakeID` is outdated, it's better to do it through Properties as follows.
+In this case, the line for the injection is created, but does not contain any properties yet. For example this property could be a `FakeID`. This way of injecting a `FakeID` is outdated, so use the `Properties` tab instead .
 
 ### UseIntelHDMI
 This parameter affects the injection properties of the sound transmitted over HDMI, as well as the `DSDT` patch. However, both VoodooHDA and AppleHDA sound drivers, do not fully work with HDMI Output. According to new information, VoodooHDA only works with NVIDIA's HDMI output, and as for AMD, Apple has created a new `AppleGFXHDA.kext` driver in 10.13+ systems.
