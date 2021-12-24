@@ -19,7 +19,7 @@ You can enable the injection of parameters based on vendors:
 **NOTE**: These parameters were used before the advent of `Whatevergreen.kext` (WEG). Now that the WEG does most of the graphics customization work for you, it is recommended to disable all of these injections.
 
 ## Dual Link
-The default value is `1`, but for some older configurations this will cause the screen to flatten. It helps to set it to 0, as in the example above.
+The default value is `1`, but for some older configurations this will cause issues. In this case, set it to `0`.
 
 ## EDID
 Extended Display Identification Data (EDID) is a metadata format for display devices to describe their capabilities to a video source (e.g. graphics card). The data format is defined by a standard published by the Video Electronics Standards Association (VESA). Sometimes this value is necessary to fix issues like graphical glitches, etc.
