@@ -8,15 +8,15 @@ This group of parameters serves to inject Properties for various graphics cards,
 ## Inject
 Can inject two dozens of parameters, which are calculated not only based on the card model, but also on its internal characteristics after analyzing the video bios of a GPU. 
 
-For Nvidia its `NVCAP` is calculated, for Intel dozens of parameters are available, for ATI parameters depending on connectors. To list all of them would take another two hundred pages. Moreover, for modern cards you don't need these any more, since Apple ensured that they work out of the box.
+For Nvidia cards, `NVCAP` is calculated, for Intel on-board graphics, dozens of parameters are applied, for ATI cards parameters for connectors are injected. To list all of them would take another two hundred pages. Moreover, for modern discrete GPUs you don't need these any more, since Apple ensured that they work out of the box.
 
-You can enable the injections based on vendors:
+You can enable the injection of parameters based on vendors:
 
 - `Inject ATI`
 - `Inject Intel`
 - `Inject NVidia` 
 
-**NOTE**: These injections were used before the advent of `Whatevergreen.kext` (WEG). Now that the WEG does all the graphics customization work for you, it is recommended to disable all these injections.
+**NOTE**: These parameters were used before the advent of `Whatevergreen.kext` (WEG). Now that the WEG does most of the graphics customization work for you, it is recommended to disable all of these injections.
 
 ## Dual Link
 The default value is `1`, but for some older configurations this will cause the screen to flatten. It helps to set it to 0, as in the example above.
