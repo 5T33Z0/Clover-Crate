@@ -66,7 +66,7 @@ Initialize the audio codec, if enabled. This behavior can be observed after rebo
 ## Properties
 This is where Clover and especially Clover Configuration get really confusing! Because the term `Properties` is used 3 times in 3 different contexts.
 
-In general, using the `Properties` tab (next to the `Arbitrary`) is the recommended method for injecting device properties like Frame buffer patches and everything else you are familiar with from the `DeviceProperties` section in OpenCore. It works exactly the same.
+In general, using the `Properties` tab (next to the `Arbitrary` tab) is the recommended method for injecting device properties like Frame buffer patches and everything else you are familiar with from the `DeviceProperties` section in OpenCore. It works exactly the same.
 
 ### AddProperties
 ![AddProperties1](https://user-images.githubusercontent.com/76865553/136595982-7a5af1ab-bd37-489c-864b-4a7d9d41be29.png)
