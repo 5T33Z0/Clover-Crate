@@ -69,14 +69,11 @@ This is where Clover and especially Clover Configuration get really confusing! B
 ### AddProperties
 ![AddProperties1](https://user-images.githubusercontent.com/76865553/136595982-7a5af1ab-bd37-489c-864b-4a7d9d41be29.png)
 
-
-Adding entries in this sub-section of Clover Configurator creates an `<Array>` `AddProperties` and a `<Dictionary>` for the device specified in the AddProperties List, in this case for clover config. This is how the actual structure of the array looks like when viewed with a plist editor:
-
+Adding entries to this list creates an `<Array>` `AddProperties` and a `<Dictionary>` for the listed device. This is how the actual structure of the array looks like when viewed with a plist editor:
 ![AddProperties2](https://user-images.githubusercontent.com/76865553/136596168-ef38a5a9-e768-4ccd-805f-c5c4297435fb.png)
 
-The Value can be <data> or a hex string. Just a string is not allowed. That is, instead of <string> ABC.... you must write <string> 0x414243....
-Convert via PlistEditor or Xcode.
-The first Device key determines which device this property will be added to. Device list:
+The value has to be entered either as a `<data>` or a `hex string`. So instead of alphanunercsl values (ABC...) you have to use hex (0x414243). Convert via PlistEditor or Xcode.
+The first Device key determines which device this property will be added to.
 
 ### Properties (Hex)
 
