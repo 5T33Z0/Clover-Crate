@@ -83,7 +83,9 @@ This field creates a simple string in the config in the `Devices` Section if a h
 
 ![PropertiesHex2](https://user-images.githubusercontent.com/76865553/136596474-e3ce6d35-3f93-4194-b9e0-02a0231d470b.png)
 
-But as soon as you add a Device under to the actual `Properties` Tab (next to `Arbitrary`), this key is deleted. Using the `Properties` tab is the preferred method for injecting Frame buffer patches and everything else you are familiar with from the `DeviceProperties` section in OpenCore. 
+But as soon as you add a Device under to the actual `Properties` Tab (next to `Arbitrary`), this key is deleted. 
+
+**NOTE**: Using the `Properties` tab is the preferred method for injecting device properties like Frame buffer patches and everything else you are familiar with from the `DeviceProperties` section in OpenCore. It works exactly the same.
 
 ## Arbitrary
 ![Arbitrary](https://user-images.githubusercontent.com/76865553/136480147-879718e6-81eb-474d-a443-a13e0b56988a.png)
