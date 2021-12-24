@@ -44,6 +44,7 @@ In order for the USB controller to work in macOS, it has to be disconnected from
 Increases current on this USB controller to charge Devices – disabled by default.
 
 ### NameEH00
+No information available in documentation.
 
 ## Audio
 ![audio](https://user-images.githubusercontent.com/76865553/136476581-c7714448-69f9-4c3b-bfa6-13aef9483a79.png)
