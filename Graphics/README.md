@@ -3,7 +3,7 @@
 
 This group of parameters serves to inject Properties for various graphics cards, on-board and discrete. There are many parameters that are actually injected, but they are mostly constants, some are calculated, some are defined in the internal table and only very few parameters are entered via config.
 
-**ATTENTION!** Most of the options available in this section are deprecated and obsolete in 2021. Instead, framebuffer patches are entered via `Devices/Properties`. The only settings which are still useful are the entries in the dropdown menu of `ig-platform-id` for Intel IGPUs (up to Coffeelake).
+**ATTENTION!** Most of the options available in this section are obsolete in 2021. Instead, framebuffer patches are entered via `Devices/Properties`. The only settings which are still useful are the entries in the dropdown menu of `ig-platform-id` for Intel iGPUs (up to Coffeelake).
 
 ## Inject
 Can inject two dozens of parameters, which are calculated not only based on the card model, but also on its internal characteristics after analyzing the video bios of a GPU. 
