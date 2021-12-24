@@ -64,7 +64,7 @@ Affects the `AppleHDA` driver and seems to solve the problem with clicks and pop
 Initialize the audio codec, if enabled. This behavior can be observed after rebooting from Windows to Mac. In OpenCore this feature called `ResetTrafficClass` (UEFI > Audio)
 
 ## Properties
-This is where Clover and especially Clover Configuration get really confusing! Because the term `Properties` is used 3 times in 3 different contexts.
+This is where Clover and especially Clover Configuration get really confusing! Because the term `Properties` is used 3 times in 3 different contexts. In general, using the `Properties` tab (next to the `Arbitrary`) is the recommended method for injecting device properties like Frame buffer patches and everything else you are familiar with from the `DeviceProperties` section in OpenCore. It works exactly the same.
 
 ### AddProperties
 ![AddProperties1](https://user-images.githubusercontent.com/76865553/136595982-7a5af1ab-bd37-489c-864b-4a7d9d41be29.png)
@@ -84,8 +84,6 @@ This field creates a simple string in the config in the `Devices` Section if a h
 ![PropertiesHex2](https://user-images.githubusercontent.com/76865553/136596474-e3ce6d35-3f93-4194-b9e0-02a0231d470b.png)
 
 But as soon as you add a Device under to the actual `Properties` Tab (next to `Arbitrary`), this key is deleted. 
-
-**NOTE**: Using the `Properties` tab is the preferred method for injecting device properties like Frame buffer patches and everything else you are familiar with from the `DeviceProperties` section in OpenCore. It works exactly the same.
 
 ## Arbitrary
 ![Arbitrary](https://user-images.githubusercontent.com/76865553/136480147-879718e6-81eb-474d-a443-a13e0b56988a.png)
