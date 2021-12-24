@@ -108,7 +108,7 @@ This parameter affects the injection properties of the sound transmitted over HD
 Disable the injection of HDMI device properties altogether. Starting with r3262, there is a new way of injecting device properties not by name, but by their location on the PCI Bus. 
 
 ### ForceHPET
-Force enables High Precision Event Timer on systems where there isn't an option in teh BIOS to enable it.
+Force enables High Precision Event Timer on systems where there isn't an option in the BIOS to enable it.
 
 ### SetIntelBacklight
 The key was introduced in r3298. In previous systems, the screen brightness was controlled by `IntelBacklight.kext` or `ACPIBacklight.kext`, but they didn't work in El Capitan. But it turned out to be very easy to do this in Clover at the stage of system startup, so no additional cakes were needed.</br>
