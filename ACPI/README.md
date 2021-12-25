@@ -176,7 +176,12 @@ Mimics Windows XP under Darwin OS. Many sleep and brightness problems stem from 
 
 ### FixDisplay
 
-Produces a number of video card patches non-Intel video cards. Injects properties, and the devices themselves, if they are not present. Injects FakeID if ordered. Adds custom properties. The same fix adds an HDAU device for audio output via HDMI. If the FakeID parameter is specified, then it will be injected through the _DSM method. Patches for all video cards, only for non-Intel. Intel on-board graphics require other fixes.
+Produces a number of video card patches for non-Intel video cards (Intel on-board graphics require different fixes):
+
+- Injects properties and the devices themselves (if not present). 
+- Can inject a FakeID. If a FakeID parameter is specified, then it will be injected through the `_DSM` method.
+- Adds custom properties. 
+- Adds an `HDAU` device for audio output via HDMI. 
 
 ### FixFirewire
 
