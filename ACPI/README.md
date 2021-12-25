@@ -297,7 +297,6 @@ The DSDT has regions that have their own addresses, such as:
 is sufficient if you have a well-made custom `DSDT` with all the fixes. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it to the ACPI Section was inappropriate.
 
 ### FixRTC
-
 Removes interrupt from device `_RTC`. It's a required fix and it is very strange that someone would not enable it. If there is no interrupt in the original, then this patch won't cause any harm. However, the question arose about the need to edit the length of the region. To avoid clearing `CMOS`, you need to set the length to `2`, but at the same time a phrase like `"…only single bank…"` appears in the Kernel Log.
 
 I do not know what is wrong with this message, but it can be excluded if the length is set to 8 bytes by using the Fix `Rtc8Allowed`:
@@ -323,7 +322,7 @@ Likewise, this patch solves the problem with sleep.
 
 ### FixTMR
 
-Removes the interrupt from the _TMR timer in the same way. It is deprecated and not used by Mac.
+Removes the interrupt from the _TMR timer in the same way. It is no longer used on newer Macs but on Ivy Bridge it is still required to resolve IRQ conflicts so sound works (combine with `FixHPET`, `FixIPIC`, and `FixRTC`) 
 
 ### FixWAK
 
