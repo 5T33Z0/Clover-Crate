@@ -227,7 +227,10 @@ Adds an `HDAU` audio device to the `DSDT` that matches the HDMI output of ATI an
 * `2` if there is an Intel port that occupies port 1.
 
 ### AddIMEI
-Adds the Intel Management Engine (`IMEI`) device to the device tree, if it does not exist in the DSDT. Intel IMEI device is required for proper hardware video decoding. Required for Sandy Bridge CPUs running on the newer 7-series mainboards and Ivy Bridge CPUs running on 6-series mainboards. When mixing Ivy Bridge CPUs with 6-series motherboards, the IMEI device becomes incompatible with macOS. The device-id won't be recognized.
+Adds Intel Management Engine (IMEI) device to the device tree, if it does not exist in the `DSDT`. IMEI is required for proper hardware video decoding on Intel iGPUs. Adding IMEI is only required in two cases:
+
+- Sandy Bridge CPUs running on 7-series mainboards or
+- Ivy Bridge CPUs running on 6-series mainboards
 
 ### AddPNLF
 
