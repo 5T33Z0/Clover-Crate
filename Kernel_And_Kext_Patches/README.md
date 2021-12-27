@@ -62,7 +62,7 @@ Besides the basic `Find`/`Replace` masks, there are several additional modifiers
 | Skip        | Skip           | nummber of time a match is skipped
 | Enabled     | Disabled       | Disables the renaming rule (obviously)
 | Arch        | –              | 
-| –           | MatchOS        |Although there are no equivalents to `MinKernel` and `MaxKernel` parameters in Clover, you can use `MatcOS`. Instead of a range of kernel versions you just use the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks in between).
+| –           | MatchOS        |Although there are no equivalents to `MinKernel` and `MaxKernel` parameters in Clover, you can use `MatchOS`. Instead of a range of kernel versions you just use the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks in between).
 | –           | MatchBuild     | no explanation available
 | –           | InfoPlistPatch | no explanation available
 
