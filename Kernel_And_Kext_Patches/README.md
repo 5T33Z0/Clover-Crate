@@ -53,8 +53,8 @@ Besides the basic `Find`/`Replace` masks, there are several additional modifiers
 | Mask        | MaskFind       |If some bit=1, we look for an exact match, if=0, we ignore the difference.
 | ReplaceMask | MaskReplace    |If a bit=1, we make a replacement. If a bit=0, we leave it as is.
 | –           | MaskStart      | Mask for the starting point, i.e. for the `StartPattern`. And then there are Find/MaskFind and Replace/MaskReplace pairs.
-| –           | StartPattern   | Rement of the era before character patching was implemented. It marks the starting point from which to look for a replacement pattern. If we know the name of the procedure, `StartPattern` is hardly needed anymore.
-| –           | RangeFind      | Length of codes to search. In general, just the size of this procedure, or less. This way we speed up the search without going through all the millions of strings.
+| –           | StartPattern   | Remnent of a time before character patching was implemented. It marks the starting point from which to look for a replacement pattern. If we know the name of the procedure, `StartPattern` is hardly needed anymore.
+| –           | RangeFind      | Length of code to search. In general, just the size of this procedure, or less. This speeds up the search query without going through all the millions of strings.
 | MinKernel   | –              | see "MatchOS"
 | MaxKernel   | –              | see "MatchOS"
 | Count       | Count          | number of time a replacement is made
