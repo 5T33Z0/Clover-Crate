@@ -45,26 +45,26 @@ Besides the basic `Find`/`Replace` masks, there are several additional modifiers
 
 | OpenCore    | Clover         | Description (where applicable) |
 |:-----------:|:--------------:|--------------------------------|
-| Identifier  | Name           | 
+| Identifier  | Name           | Name of the Kext/Kernel the patch should be applied to.
 | Base        | Procedure      | Name of the procedure we are looking for. The real name may be longer, but the comparison is done by a substring. Make sure the substring occurs only in "Procedure".
 | Comment     | Comment        | Besides using it as a reminder what a patch does, this field is also used for listing the available patches in Clover's bootmenu.
-| Find		    | Find           | value to find
-| Replace     | Replace        | value to replace the found value by
+| Find		    | Find           | Value to find
+| Replace     | Replace        | Value to replace the found value by
 | Mask        | MaskFind       |If some bit=1, we look for an exact match, if=0, we ignore the difference.
 | ReplaceMask | MaskReplace    |If a bit=1, we make a replacement. If a bit=0, we leave it as is.
 | –           | MaskStart      | Mask for the starting point, i.e. for the `StartPattern`. And then there are Find/MaskFind and Replace/MaskReplace pairs.
 | –           | StartPattern   | Remnent of a time before character patching was implemented. It marks the starting point from which to look for a replacement pattern. If we know the name of the procedure, `StartPattern` is hardly needed anymore.
 | –           | RangeFind      | Length of code to search. In general, just the size of this procedure, or less. This speeds up the search query without going through all the millions of strings.
-| MinKernel   | –              | see "MatchOS"
-| MaxKernel   | –              | see "MatchOS"
-| Count       | Count          | number of time a replacement is made
+| MinKernel   | –              | &rarr; see "MatchOS"
+| MaxKernel   | –              | &rarr; see "MatchOS"
+| Count       | Count          | Number of times a replacement is made
 | Limit       | –              | 
-| Skip        | Skip           | nummber of time a match is skipped
+| Skip        | Skip           | Number of times a match is skipped
 | Enabled     | Disabled       | Disables the renaming rule (obviously)
 | Arch        | –              | 
 | –           | MatchOS        |Although there is no equivalent to `MinKernel` and `MaxKernel` in Clover, you can use `MatchOS` to limit a patch to specific versions of macOS. But instead of setting a range of Darwin kernels, you just set the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks). You can also use masked strings like `11.5.x` (= for all 11.5 and sub-sequent variants, like 11.5.4), `12.x` (= for all variants of macOS 12), etc. 
 | –           | MatchBuild     | Applies/Limits a patch to a specific system build of macOS, such as `21D5025F`, for example. You can list multiple builds separated by commas. If no value for `MatchBuild` is set, the patch applies to all builds. In general, patching kexts or kernels based on the build version is not very common and rarely needed.
-| –           | InfoPlistPatch | no explanation available
+| –           | InfoPlistPatch | Applies patches to parameters inside of `plists` of kexts defined in the `Name` field. The search can include multiple strings, excluding all invisible characters, such as line feeds and tabs. The search should be set as `<data>`, because the service characters such as "<" can not be set in text form. The lengths of the search and replacement strings can be different, but need to have the same length (appended spaces if necessary).
 
 ### KextsToPatch
 This is a commonly used section to patch kexts in order to enable features like Trim or use USB port patches to use more than 15 ports per Controller (which are no longer required since you can use the `XhciPortlimit` Quirk for that now). 
