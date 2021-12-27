@@ -44,7 +44,7 @@ Starting with r5095, the ability to create binary patches following renaming rul
 Besides the basic `Find`/`Replace` masks, there are several additional modifiers you can utilize for applying Kernels and Kext patches. In the table below, you find the availabe options and differences in nomenclature between OpenCore and Clover:
 
 | OpenCore    | Clover         | Description (where applicable) |
-|:------------|:---------------|--------------------------------|
+|:-----------:|:--------------:|--------------------------------|
 | Identifier  | Name           | 
 | Base        | Procedure      | Name of the procedure we are looking for. The real name may be longer, but the comparison is done by a substring. Make sure the substring occurs only in "Procedure".
 | Comment     | Comment        | Besides using it as a reminder what a patch does, this field is also used for listing the available patches in Clover's bootmenu.
@@ -62,8 +62,8 @@ Besides the basic `Find`/`Replace` masks, there are several additional modifiers
 | Skip        | Skip           | nummber of time a match is skipped
 | Enabled     | Disabled       | Disables the renaming rule (obviously)
 | Arch        | –              | 
-| –           | MatchOS        |Although there are no equivalents to `MinKernel` and `MaxKernel` parameters in Clover, you can use `MatchOS`. Instead of a range of kernel versions you just use the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks in between). You can also use masked strings like `11.5.x` or `12.x`, etc. 
-| –           | MatchBuild     | no explanation available
+| –           | MatchOS        |Although there is no equivalent to `MinKernel` and `MaxKernel` in Clover, you can use `MatchOS` to limit a patch to specific versions of macOS. But instead of setting a range of Darwin kernels, you just set the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks). You can also use masked strings like `11.5.x` (= for all 11.5 and sub-sequent variants, like 11.5.4), `12.x` (= for all variants of macOS 12), etc. 
+| –           | MatchBuild     | Applies/Limits a patch to a specific system build of macOS, such as `21D5025F`, for example. You can list multiple builds separated by commas. If no value for `MatchBuild` is set, the patch applies to all builds. In general, patching kexts or kernels based on the build version is not very common and rarely needed.
 | –           | InfoPlistPatch | no explanation available
 
 ### KextsToPatch
