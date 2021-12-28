@@ -26,6 +26,9 @@ The Connectors Patch data has to be provided as `<string>`. In this example for 
 
 **NOTE**: In macOS 10.12, the connectors used in this example will be different, so the data used in this example is not representative, although the method for calculating the correct values for `ATIConnectorsData` and `ATIConnectorsPatch` remains the same. 
 
+## Kernel Patches
+These boxes have to be checked when setting-up the required quirks &rarr; [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) for the used CPU. Usually, you need `AppleIntelCPUPM` for older Intel CPUs (up to Ivy Bridge) or `KernelPM` (Haswell and newer).
+
 ### AppleIntelCPUPM
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
