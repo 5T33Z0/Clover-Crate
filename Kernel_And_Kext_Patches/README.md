@@ -3,7 +3,25 @@
 
 This is a group of parameters for creating binary patches on the fly. Note that this can only be done if the kernelcache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 categories: one with Kernel Patches which you can click to enable. These are primarily for making your CPU work with macOS. The second category is for creating your own patches which can be applied to kexts and kernels themselves. 
 
-**NOTE**: The ATI section is not covered here, since it's pretty much obsolete, since nobody uses ATI graphics any more and since ATI cards are no longer supported by recent versions of macOS.
+## ATI Section
+This section is for ATI/AMD graphics cards. This only applies to macOS 10.7 and newer. There are 3 fields where data has to be entered to get the card and ots connectors fully working in macOS. In this example, we use an AMD Radeon 6000.
+
+To find out how these values are calculated, you can read this [**thread**](https://www.insanelymac.com/forum/topic/249642-editing-custom-personalities-for-ati-radeon-hd45xx/) by bcc9 (english). For current Radeon, RX and Vega cards, you can follow this [**guide**](http://www.applelife.ru/threads/Завод-ati-hd-6xxx-5xxx-4xxx.28890/) by Xmedik (russian).
+
+### ATIConnectorsController
+To fully run ATI/AMD Radeon 5000 and 6000 series cards, injecting device properties is not enough, you must also adjust the connectors in the corresponding controller.
+In this example we patch the controller of an AMD Radeon 6000, so we enter `6000`. Next, values for `ATIConnectorsData` and `ATIConnectorsPatch` must be provided.
+
+### ATIConnectorsData
+The connectors data has to be provided as `<string>`. In this example for a 6000-series card the value is: `00040000040300000001000021030204040000001402000000010000000004031000000010000000
+0001000000000001`
+
+### ATIConnectorsPatch
+The Connectors Patch data has to be provided as `<string>`. In this example for a 6000-series card the value is: 
+`04000000140200000001000000000404000400000403000000010000110201050000000000000000
+0000000000000000`
+
+In macOS 10.12 the connectors used in this example will be different, so the data used in this example is not representative, although the method of calculatting the correct values for `ATIConnectorsData` and `ATIConnectorsPatch` remains the same. 
 
 ### AppleIntelCPUPM
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
