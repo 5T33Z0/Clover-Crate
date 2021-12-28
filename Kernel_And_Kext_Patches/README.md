@@ -71,8 +71,8 @@ Besides the basic `Find`/`Replace` masks, there are several additional modifiers
 | Comment     | Comment        | Besides using it as a reminder what a patch does, this field is also used for listing the available patches in Clover's bootmenu.
 | Find		    | Find           | Value to find
 | Replace     | Replace        | Value to replace the found value by
-| Mask        | MaskFind       |If some bit=1, we look for an exact match, if=0, we ignore the difference.
-| ReplaceMask | MaskReplace    |If a bit=1, we make a replacement. If a bit=0, we leave it as is.
+| Mask        | MaskFind       | If some bit=1, we look for an exact match, if the bit=0, we ignore the difference.
+| ReplaceMask | MaskReplace    | If a bit=1, we make a replacement. If a bit=0, we leave it as is.
 | –           | MaskStart      | Mask for the starting point, i.e. for the `StartPattern`. And then there are Find/MaskFind and Replace/MaskReplace pairs.
 | –           | StartPattern   | Remnent of a time before character patching was implemented. It marks the starting point from which to look for a replacement pattern. If we know the name of the procedure, `StartPattern` is hardly needed anymore.
 | –           | RangeFind      | Length of code to search. In general, just the size of this procedure, or less. This speeds up the search query without going through all the millions of strings.
