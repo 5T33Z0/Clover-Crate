@@ -45,7 +45,7 @@ For computers with UEFI-only BIOS, there is no Vbios on the legacy address. Let'
 
 ## NVCAP
 This parameter is for Nvidia video cards and configures types and usage of video ports.
-This line has 40 hexadecimal digits in capital letters. [Technical Background](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/NVCAP.bt) 
+This line has 40 hexadecimal digits in capital letters. [Technical Background](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/NVCAP.bt). For more info on how to calculate NVCAP value you can follow [**this guide**](https://dortania.github.io/OpenCore-Post-Install/gpu-patching/nvidia-patching/#nvcap) by Dortania.
 
 ## NvidiaGeneric
 If enabled, then instead of the name "Gigabyte Geforce 7300LE", "NVIDIA Geforce 7300LE" will be used.
