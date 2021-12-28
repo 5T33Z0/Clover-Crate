@@ -7,7 +7,7 @@ This is a group of parameters for creating binary patches on the fly. Note that 
 This section applies to macOS 10.7 and newer using ATI/AMD Graphics Cards. There are 3 fields where data has to be entered to get the card and its connectors fully working in macOS:
 
 - `ATIConnectorsController`: here you enter the identifier of the card. In this example, we use an AMD Radeon 6000.
-- `ATIConnectorsData` and `ATIConnectorsPatch` require data which has to be calculated to provide macOS with data about the output(s) and connectors of the GPU.
+- `ATIConnectorsData` and `ATIConnectorsPatch` require data which has to be calculated to provide macOS with info about the output(s) and connector(s) of the GPU.
 
 To find out how these values are calculated, you can read this [**thread**](https://www.insanelymac.com/forum/topic/249642-editing-custom-personalities-for-ati-radeon-hd45xx/) by bcc9 (english). For current Radeon, RX, Vega and other cards, you can follow this [**guide**](http://www.applelife.ru/threads/Завод-ati-hd-6xxx-5xxx-4xxx.28890/) by Xmedik (russian).
 
