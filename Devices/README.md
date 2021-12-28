@@ -44,6 +44,7 @@ In order for the USB controller to work in macOS, it has to be disconnected from
 Increases current on this USB controller to charge Devices – disabled by default.
 
 ### NameEH00
+No information available in documentation.
 
 ## Audio
 ![audio](https://user-images.githubusercontent.com/76865553/136476581-c7714448-69f9-4c3b-bfa6-13aef9483a79.png)
@@ -65,17 +66,16 @@ Initialize the audio codec, if enabled. This behavior can be observed after rebo
 ## Properties
 This is where Clover and especially Clover Configuration get really confusing! Because the term `Properties` is used 3 times in 3 different contexts.
 
+In general, using the `Properties` tab (next to the `Arbitrary` tab) is the recommended method for injecting device properties (based on the PCI path of the device) like Frame buffer patches and everything else you are familiar with from the `DeviceProperties` section in OpenCore. It works exactly the same.
+
 ### AddProperties
 ![AddProperties1](https://user-images.githubusercontent.com/76865553/136595982-7a5af1ab-bd37-489c-864b-4a7d9d41be29.png)
 
-
-Adding entries in this sub-section of Clover Configurator creates an `<Array>` `AddProperties` and a `<Dictionary>` for the device specified in the AddProperties List, in this case for clover config. This is how the actual structure of the array looks like when viewed with a plist editor:
-
+Adding entries to this list creates an `<Array>` `AddProperties` and a `<Dictionary>` for the listed device. This is how the actual structure of the array looks like when viewed with a plist editor:
 ![AddProperties2](https://user-images.githubusercontent.com/76865553/136596168-ef38a5a9-e768-4ccd-805f-c5c4297435fb.png)
 
-The Value can be <data> or a hex string. Just a string is not allowed. That is, instead of <string> ABC.... you must write <string> 0x414243....
-Convert via PlistEditor or Xcode.
-The first Device key determines which device this property will be added to. Device list:
+The value has to be entered either as a `<data>` or a `hex string`. So instead of alphanunercsl values (ABC...) you have to use hex (0x414243). Convert via PlistEditor or Xcode.
+The first Device key determines which device this property will be added to.
 
 ### Properties (Hex)
 
@@ -85,7 +85,7 @@ This field creates a simple string in the config in the `Devices` Section if a h
 
 ![PropertiesHex2](https://user-images.githubusercontent.com/76865553/136596474-e3ce6d35-3f93-4194-b9e0-02a0231d470b.png)
 
-But as soon as you add a Device via the Properties Tab (the one next to `Arbitrary`), this key is deleted. 
+But as soon as you add a Device under to the actual `Properties` Tab (next to `Arbitrary`), this key is deleted. 
 
 ## Arbitrary
 ![Arbitrary](https://user-images.githubusercontent.com/76865553/136480147-879718e6-81eb-474d-a443-a13e0b56988a.png)
@@ -99,7 +99,7 @@ The `Arbitrary` section is an array of dictionaries, each corresponding to one d
 If enabled, all internal injection is replaced by entering a single string Properties, which corresponds to the Apple's APPLE_GETVAR_PROTOCOL injection with GUID={0x91BD12FE, 0xF6C3, 0x44FB, {0xA5, 0xB7, 0x51, 0x22, 0xAB, 0x30, 0x3A, 0xE0}}; which is used on real Macs. The old hackers called it `EFIstrings`.
 
 ### NoDefaultProperties
-In this case, the line for the injection is created, but does not contain any new properties yet. For example this property will be `FakeID`. Again, this way of using `FakeID` is outdated, it's better to do it through Properties as follows.
+In this case, the line for the injection is created, but does not contain any properties yet. For example this property could be a `FakeID`. This way of injecting a `FakeID` is outdated, so use the `Properties` tab instead .
 
 ### UseIntelHDMI
 This parameter affects the injection properties of the sound transmitted over HDMI, as well as the `DSDT` patch. However, both VoodooHDA and AppleHDA sound drivers, do not fully work with HDMI Output. According to new information, VoodooHDA only works with NVIDIA's HDMI output, and as for AMD, Apple has created a new `AppleGFXHDA.kext` driver in 10.13+ systems.
@@ -108,7 +108,7 @@ This parameter affects the injection properties of the sound transmitted over HD
 Disable the injection of HDMI device properties altogether. Starting with r3262, there is a new way of injecting device properties not by name, but by their location on the PCI Bus. 
 
 ### ForceHPET
-Force enables High Precision Event Timer on systems where there isn't an option in teh BIOS to enable it.
+Force enables High Precision Event Timer on systems where there isn't an option in the BIOS to enable it.
 
 ### SetIntelBacklight
 The key was introduced in r3298. In previous systems, the screen brightness was controlled by `IntelBacklight.kext` or `ACPIBacklight.kext`, but they didn't work in El Capitan. But it turned out to be very easy to do this in Clover at the stage of system startup, so no additional cakes were needed.</br>

@@ -1,5 +1,5 @@
 # Clover Desktop Configs (UEFI only)
-This section contains pre-configured config.plists for running macOS on Desktop PCs with  2nd to 10th Gen Intel CPUs. The configs are based on Corpnewt's Vanilla Hackintosh Clover Guide but I created additional configs for 10th Gen Intel, Device Properties and added necessary Quirks so they are compatible with the new Clover and the latest macOS Monterey as well.
+This section contains pre-configured config.plists for running macOS on Desktop PCs with  2nd to 10th Gen Intel CPUs. The configs are based on Corpnewt's Vanilla Hackintosh Clover Guide but I created additional configs for 10th Gen Intel, added Device Properties and necessary Quirks so they are compatible with the new Clover and the latest macOS Monterey as well.
 
 They are not an all-in-all solution since I donn't know which additional hardware and peripherals you are using but they should get you started easily.
 

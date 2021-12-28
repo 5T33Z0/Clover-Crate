@@ -15,7 +15,7 @@ These are bit masks to set various boot flags. There's no further info in the ma
 
 ### Bitfields for boot-arg flags
 |Bit| Flag Name | HEX Value  | Default in r5142
-|---|-----------|-----------:|:---------------:|
+|:---:|-----------|-----------:|:---------------:|
 |0|Reboot On Panic    | 0x1|
 |1|Hi DPI             | 0x2|
 |2|Black Screen       | 0x4|
@@ -24,7 +24,7 @@ These are bit masks to set various boot flags. There's no further info in the ma
 |5|CSR Boot           | 0x20| x|
 |6|Black Background   | 0x40|
 
-**NOTE**: In most cases you don't have to change anything here. But if you do, you should exactly knwow what you are doing and why! You can also change these flags from the Options menu in the Bootloader GUI (Options > System Parameters > bootargs->Flags). But in this case the applied settings are only applied temporary for the next boot. 
+**NOTE**: In most cases you don't have to change anything here. But if you do, you should exactly know what you are doing and why! You can also change these flags from the Options menu in the Bootloader GUI (Options > System Parameters > bootargs > Flags). But in this case the applied settings are only applied temporary for the next boot. 
 
 ## CsrActiveConfig
 With the release of macOS ElCapitan in 2015, a new security feature was introduced: System Integrity Protection (SIP). By default, SIP is enabled (`0x000`) and does not allow you to load your kexts or install your system utilities. To disable it, Clover gives you the option of setting new in NVRAM.
@@ -33,7 +33,7 @@ With the release of macOS ElCapitan in 2015, a new security feature was introduc
 The default value for `CsrActiveConfig` in Clover r5142 currently is `0xA87`, which consists of the following enabled flags:
 
 |Bit| Flag Name | HEX Value | Default in r5142
-|---|-----------|----------:|:---------------:|
+|:-:|-----------|----------:|:---------------:|
 |0|CSR_ALLOW_UNTRUSTED_KEXTS|0x1|x
 |1|CSR_ALLOW_UNRESTRICTED_FS|0x2|x
 |2|CSR_ALLOW_TASK_FOR_PID|0x4|x
@@ -49,7 +49,7 @@ The default value for `CsrActiveConfig` in Clover r5142 currently is `0xA87`, wh
 
 **NOTES**: `0xA87` is a 12 bit bitmask and as such, is only valid for macOS 11 and 12. So if you are using an older Version of macOS, use the **CloverCalcs** Spreadsheed which can be found in the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to calculate your own.
 
-You can also change these flags from the Options menu in the Bootloader GUI (Options > System Parameters > System Integrity Protection). But in this case the applied settings are only applied temporary for the next boot. 
+You can also change these flags from the Options menu in the Bootloader GUI (Options > System Parameters > System Integrity Protection). But in this case the settings are only applied temporarily during the next boot. 
 
 ### Recommended values for disabling System Integrity Protection
 :warning: Disbaling SIP is not recommended!
@@ -68,7 +68,7 @@ Although not recommended, there are special cases, where you need to disable SIP
 Check the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to find out more about Booter- and CsrActiveConfig and how to calculate your own.
 
 ## HWTarget
-`HWTarget`is the latest feature added to Clover r5140. It enables System Updates for macOS Monterey which use SMBIOSes of Macs with a T2 Security Chip. It writes the variable `BridgeOSHardwareModel` to NVRAM, which is requested by macOS Monterey. 
+`HWTarget` is the latest feature added to Clover r5140. It enables System Updates for macOS Monterey which use SMBIOSes of Macs with a T2 Security Chip. It writes the variable `BridgeOSHardwareModel` to NVRAM, which is requested by macOS Monterey. 
 
 ### Valid values for HWTarget
 If you use a SMBIOS of one of the Mac models listed below, copy the corresponding value and paste it in the `HWTarget` field of your `config.plist`.

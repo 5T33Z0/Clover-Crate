@@ -27,7 +27,7 @@ Select your preferred Keyboard Layout for macOS if you want to save the system l
 In combination with `Language`, this can used to fix an issue when installing beta versions of macOS. These sometimes do not include other languages besides english. In this case you will just see a gray screen where there the install assistant should be. Just set `Language` to `en-US:0` and you will be fine. 
 
 ### Language
-At of now moment, setting the language makes sense only for the "Help" menu called by the F1 Key. However, this value is sent to the system and can affect the default language.
+Currently, setting the language only makes sense for the "Help" menu called by the F1 Key. However, this value is sent to the system and can affect the default language.
 
 ### ScreenResolution
 Here you can change the default Screen Resolution of the Boot menu GUI. The default is 1024x768 px. Clover detects the highest possible resolution, but it can be wrong, so you can pick the correct or desired value from the dropdown menu.
@@ -51,7 +51,7 @@ In revisions prior to r5128, this setting was also present in Quirks as `Provide
 `ProvideConsoleGop` from GUI will override `ProvideConsoleGopEnable` from the `Quirks` section  – just in case you forgot to remove this parameter from the config when updating the Clover.
 
 ### ShowOptimus
-Enables an on-screen notification in the Boot menu which about which GPUs are enabled, so you can disabled discrete Optimus GPUs on the fly since they are not supported by macOS. If on-board and discrete GPU are enabled, the notification `Intel Discrete` is displayed.
+Enables an on-screen notification in the Boot menu about which GPUs are enabled, so you can disabled discrete Optimus GPUs on the fly since they are not supported by macOS. If on-board and discrete GPU are enabled, the notification `Intel Discrete` is displayed.
 
 ### TextOnly
 Text-only menu mode for a minimal GUI and faster loading times (like it was 1984 all over again).

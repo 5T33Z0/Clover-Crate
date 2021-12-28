@@ -1,5 +1,5 @@
 # CPU
-This group of parameters helps with determining the CPU when the internal algorithms fail. This section is only covered here for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable and you know what you are doing!** 
+This section contains settings to manually set parameters for the CPU if the internal algorithms fail to detect the correct parameters automatically. This section is only covered for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable and you know what you are doing!** 
 
 ![CPU](https://user-images.githubusercontent.com/76865553/136802820-de658522-dad5-494c-b8a0-1362202f94ad.jpeg)
 
@@ -9,7 +9,7 @@ Describes the base frequency in MHz displayed in the System-Profiler. In other w
 ### Bus Speed in kHz
 Describes the base bus frequency in **kHz**. The bus frequency is critical for stable operation of the system. It's handed over from the bootloader to the kernel. If the frequency is wrong, the kernel won't start at all. If the frequency is slightly off, there can be problems with the clock, resulting in strange system behavior.
 
-Starting with Clover r1060, there the bus frequency is detected automatically based on data from the ADC Timer which calculates these values ​​more precisely than the value which is stored in the DMI (Desktop Management Interface). 
+Starting with Clover r1060, the bus frequency is detected automatically based on data from the ADC Timer which calculates these values ​​more precisely than the value which is stored in the DMI (Desktop Management Interface). 
 
 ### Latency
 Describes the delay for turning on the C3 state. The critical value is **0x3E8** = **1000**. Less and Speedstep turns on, more and it does not turn on. On real Macs, it is always set to **0x03E9** (1001) which disables Speedstep. On Hacks, we can choose if we want to behave it like a Mac or if we want to turn on power management. A reasonable value for the latter is **0x00FA** (250), which is found on some laptops (MacPro5.1 = 17, MacPro6.1 = 67, iMac13.2 = 250).
@@ -27,9 +27,9 @@ Note that with these C-States, people often complain about issues with sound/gra
 When testing Clover in the QEMU virtual machine, developers discovered that it did not correctly emulate the Intel CPU. As a temporary measure, this key was created.
 
 ### QPI
-In the System Profiler, this value is called "Processor Bus Speed" ​​or simply "Bus Speed". For Clover, an algorithm has been developed to calculate the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods of setting this value are available: the value either exists in SMBIOS already, prescribed by the manufacturer, or BusSpeed * 4 is simply calculated. After much debate, this value has been added to the config - write what you like (in MHz). 
+In the System Profiler, this value is called "Processor Bus Speed" ​​or simply "Bus Speed". For Clover, an algorithm has been developed to calculate the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods of setting this value are available: the value either exists in SMBIOS already, prescribed by the manufacturer, or BusSpeed x4 is simply calculated. After much debate, this value has been added to the config - write what you like (in MHz). 
 
-This does not affect work in any way - it's pure cosmetics. **According to the latest information, QPI makes sense only for CPUs of the Nehalem family**. For everyone else here you need to have BusSpeed ​​* 4. Or nothing at all. If you force 0, then DMI table 132 will not be generated at all.
+This does not affect work in any way - it's pure cosmetics. **According to the latest information, QPI makes sense only for CPUs of the Nehalem family**. For everyone else here you need to have BusSpeed ​​x4. Or nothing at all. If you force 0, then DMI table 132 will not be generated at all.
 
 ### Type
 This parameter was invented by Apple and is used in the "About this Mac" window to display information about the used CPU, which internally translates into a processor designation. Otherwise, "Unknown processor" will be displayed. 

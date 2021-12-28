@@ -1,9 +1,33 @@
 # Kernel and Kext Patches
 ![KernelQuirks](https://user-images.githubusercontent.com/76865553/136670474-678b7ae1-b5ec-4791-963a-7af091a833ca.png)
 
-This is a group of parameters for creating binary patches on the fly. Note that this can only be done if the kernelcache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 sub-sections: one with Kernel Patches which you can click on. Theses are primarily to make your CPU work with macOS.
+This is a group of parameters for creating binary patches on the fly. Note that this can only be done if the kernelcache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 categories: one with Kernel Patches which you can click to enable. These are primarily for making your CPU work with macOS. The second category is for creating your own patches which can be applied to kexts and kernels themselves. 
 
-**NOTE**: The ATI section is not covered here, since it's pretty much obsolete, since nobody uses ATI graphics any more and since ATI card are no longer supported by current macOS versions.
+## ATI Section
+This section applies to macOS 10.7 and newer using ATI/AMD Graphics Cards. There are 3 fields where data has to be entered to get the card and its connectors fully working in macOS:
+
+- `ATIConnectorsController`: here you enter the identifier of the card. In this example, we use an AMD Radeon 6000.
+- `ATIConnectorsData` and `ATIConnectorsPatch` require data which has to be calculated to provide macOS with info about the output(s) and connector(s) of the GPU.
+
+To find out how these values are calculated, you can read this [**thread**](https://www.insanelymac.com/forum/topic/249642-editing-custom-personalities-for-ati-radeon-hd45xx/) by bcc9 (english). For current Radeon, RX, Vega and other cards, you can follow this [**guide**](http://www.applelife.ru/threads/Завод-ati-hd-6xxx-5xxx-4xxx.28890/) by Xmedik (russian).
+
+### ATIConnectorsController
+To fully run ATI/AMD Radeon 5000 and 6000 series cards, injecting device properties is not enough, you must also adjust the connectors in the corresponding controller.
+In this example we patch the controller of an AMD Radeon 6000, so we enter `6000`. Next, values for `ATIConnectorsData` and `ATIConnectorsPatch` must be provided.
+
+### ATIConnectorsData
+The Connectors Data has to be provided as `<string>`. In this example for a 6000-series card the value is: `00040000040300000001000021030204040000001402000000010000000004031000000010000000
+0001000000000001`
+
+### ATIConnectorsPatch
+The Connectors Patch data has to be provided as `<string>`. In this example for a 6000-series card the value is: 
+`04000000140200000001000000000404000400000403000000010000110201050000000000000000
+0000000000000000`
+
+**NOTE**: In macOS 10.12, the connectors used in this example will be different, so the data used in this example is not representative, although the method for calculating the correct values for `ATIConnectorsData` and `ATIConnectorsPatch` remains the same. 
+
+## Kernel Patches
+These boxes have to be checked when setting-up the required quirks &rarr; [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) for the used CPU. Usually, you need `AppleIntelCPUPM` for older Intel CPUs (up to Ivy Bridge) or `KernelPM` (Haswell and newer).
 
 ### AppleIntelCPUPM
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
@@ -18,7 +42,7 @@ If you want to observe how the Kexts are patched &rarr; For developers.
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### FakeCPUID
-Assigns a different device-ID to the used CPU. Useful when trying to run an older version of macOS with a newer CPU which isn't supported. For example, if you are trying to run macOS High Sierra or Mojave with an 10th Gen Intel Cometlake i5/i7/i9 CPU which is not supported. Instead, you just fake a Coffeelake CPU, to make macOS go: "Hey, I know you, step right in!".
+Assigns a different Device-ID to the used CPU. Useful when trying to run an older version of macOS with a newer CPU which isn't supported. For example, if you are trying to run macOS High Sierra or Mojave with a Comet Lake CPU which is not supported before macOS 10.15, you can use a Device-ID of the Coffee Lake CPU family, to make macOS accept it.
 
 ### EightApple
 On some systems, the progress bar break down into 8 apples during boot. No confirmation yet if the patch works. Added in r5119.
@@ -44,27 +68,27 @@ Starting with r5095, the ability to create binary patches following renaming rul
 Besides the basic `Find`/`Replace` masks, there are several additional modifiers you can utilize for applying Kernels and Kext patches. In the table below, you find the availabe options and differences in nomenclature between OpenCore and Clover:
 
 | OpenCore    | Clover         | Description (where applicable) |
-|:------------|:---------------|--------------------------------|
-| Identifier  | Name           | 
+|:-----------:|:--------------:|--------------------------------|
+| Identifier  | Name           | Name of the Kext/Kernel the patch should be applied to.
 | Base        | Procedure      | Name of the procedure we are looking for. The real name may be longer, but the comparison is done by a substring. Make sure the substring occurs only in "Procedure".
 | Comment     | Comment        | Besides using it as a reminder what a patch does, this field is also used for listing the available patches in Clover's bootmenu.
-| Find		    | Find           | value to find
-| Replace     | Replace        | value to replace the found value by
-| Mask        | MaskFind       |If some bit=1, we look for an exact match, if=0, we ignore the difference.
-| ReplaceMask | MaskReplace    |If a bit=1, we make a replacement. If a bit=0, we leave it as is.
+| Find		    | Find           | Value to find
+| Replace     | Replace        | Value to replace the found value by
+| Mask        | MaskFind       | If some bit=1, we look for an exact match, if the bit=0, we ignore the difference.
+| ReplaceMask | MaskReplace    | If a bit=1, we make a replacement. If a bit=0, we leave it as is.
 | –           | MaskStart      | Mask for the starting point, i.e. for the `StartPattern`. And then there are Find/MaskFind and Replace/MaskReplace pairs.
-| –           | StartPattern   | Rement of the era before character patching was implemented. It marks the starting point from which to look for a replacement pattern. If we know the name of the procedure, `StartPattern` is hardly needed anymore.
-| –           | RangeFind      | Length of codes to search. In general, just the size of this procedure, or less. This way we speed up the search without going through all the millions of strings.
-| MinKernel   | –              | see "MatchOS"
-| MaxKernel   | –              | see "MatchOS"
-| Count       | Count          | number of time a replacement is made
+| –           | StartPattern   | Remnent of a time before character patching was implemented. It marks the starting point from which to look for a replacement pattern. If we know the name of the procedure, `StartPattern` is hardly needed anymore.
+| –           | RangeFind      | Length of code to search. In general, just the size of this procedure, or less. This speeds up the search query without going through all the millions of strings.
+| MinKernel   | –              | &rarr; see "MatchOS"
+| MaxKernel   | –              | &rarr; see "MatchOS"
+| Count       | Count          | Number of times a replacement is made
 | Limit       | –              | 
-| Skip        | Skip           | nummber of time a match is skipped
+| Skip        | Skip           | Number of times a match is skipped
 | Enabled     | Disabled       | Disables the renaming rule (obviously)
 | Arch        | –              | 
-| –           | MatchOS        |Although there are no equivalents to `MinKernel` and `MaxKernel` parameters in Clover, you can use `MatcOS`. Instead of a range of kernel versions you just use the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks in between).
-| –           | MatchBuild     | no explanation available
-| –           | InfoPlistPatch | no explanation available
+| –           | MatchOS        |Although there is no equivalent to `MinKernel` and `MaxKernel` in Clover, you can use `MatchOS` to limit a patch to specific versions of macOS. But instead of setting a range of Darwin kernels, you just set the macOS version(s) it applies to. For example: `10.13,10.14,10.15` (without blanks). You can also use masked strings like `11.5.x` (= for all 11.5 and sub-sequent variants, like 11.5.4), `12.x` (= for all variants of macOS 12), etc. 
+| –           | MatchBuild     | Applies/Limits a patch to a specific system build of macOS, such as `21D5025F`, for example. You can list multiple builds separated by commas. If no value for `MatchBuild` is set, the patch applies to all builds. In general, patching kexts or kernels based on the build version is not very common and rarely needed.
+| –           | InfoPlistPatch | Applies patches to parameters inside of `plists` of kexts defined in the `Name` field. The search can include multiple strings, excluding all invisible characters, such as line feeds and tabs. The search should be set as `<data>`, because the service characters such as "<" can not be set in text form. The lengths of the search and replacement strings can be different, but need to have the same length (fill one mask with spaces to match the length of the other one if necessary).
 
 ### KextsToPatch
 This is a commonly used section to patch kexts in order to enable features like Trim or use USB port patches to use more than 15 ports per Controller (which are no longer required since you can use the `XhciPortlimit` Quirk for that now). 
@@ -72,7 +96,7 @@ This is a commonly used section to patch kexts in order to enable features like 
 The patching principle is similar to the one used for patching the `DSDT`, but you patch things inside kexts instead. You enter the name of the Kext you want to patch and then you enter the value clover should find and replace. Check the dropdown menu to find a lot of patches which may be helpful.
 
 ### KernelToPatch
-For applying binary patches to the Darwin kernel of macOS. This is used by developers primarily for patching Kernels or debugging. But in rare cases it's used for enabling features which wouldn't work otherwise, like enabling XCPM on IvyBridge CPUs or enabling macOS Catalina to use the Intel I-225 Ethernet Controller. 
+For applying patches to the Darwin Kernel of macOS. This is primarily used by developers for patching Kernels or for debugging purposes. In rare cases it's used for enabling features which wouldn't work otherwise, like enabling XCPM on IvyBridge CPUs or enabling the Intel I-225 Ethernet Controller in macOS Catalina. 
 
 ### BootPatches
 For applying binary patches to `boot.efi`

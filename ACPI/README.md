@@ -12,11 +12,11 @@ Throughout this chapter, this section is broken down into smaller chunks to make
 
 Merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI tables.
 
-If set to `true`, it changes the way files in `ACPI/patched` are handled: Instead of adding these files at the end of the `DSDT` they will replace existing tables, if their signature, index and `OemTableIds` match existing OEM tables.
+If set to `true`, it changes the way .aml files in `ACPI/patched` are applied. Instead of appending these tables at the end of the `DSDT` they will replace existing tables, if their signature, index and `OemTableIds` match existing OEM tables. In other words, they will be merged with existing ACPI tables.
 
 With this function – as with `DSDT` – you can fix individual SSDTs (or other tables) simply by adding the corrected file(s) into `ACPI/patched`. No need to fiddle with `DropOem` or `DropTables`. The original order is preserved. The mapping for `SSDT` is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the `SSDT` position in `DSDT`. 
 
-For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you could just fix it nd put it back in `ACPI/patched`, replacing the original table. This also works if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. If you stick to the names provided in `ACPI/origin`, you should be fine.
+For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you could just fix it and put it back in `ACPI/patched`, replacing the original table. This also works if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. As long as you stick to the names provided in `ACPI/origin`, you should be fine.
 This way, you could find the SSDT containing all the 26 Ports for your board in the dumped ACPI, fix it, put it back in the `ACPI/patched` folder and boom: no more `USBports.kext` required.
 
 ## Disable ASPM
@@ -27,7 +27,7 @@ This patch affects the settings of the ACPI system itself, such as the fact that
 
 ## FixHeaders
 
-`FixHeaders` will check the headers of not only the `DSDT` but all ACPI tables in general, removing Chinese characters from table headers since macOS can not handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you still need it. 
+`FixHeaders` will check the headers of all ACPI tables in general, removing Chinese characters from the headers since macOS can not handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you may still need it. 
 
 Whether you have a problem with tables or not, it's safe to enable this fix. It is recommended to all users, even if you are not having to fix your DSDT. Old setting inside DSDT fixes remains for backward compatibility but I recommend to exclude it from those section.
 
@@ -47,9 +47,9 @@ Some systems can only be started using kernel parameter `cpus=1` or with a patch
 
 ## Reset Address / Reset Value
 
-These two parameters serve a common purpose - to fix restart. They be present in the `FADT` table, but that's not always the case. Sometimes the table is shorter than necessary, so these values are missing. 
+These two parameters serve a common purpose - to fix restart. They should be present in the `FADT` table, but that's not always the case. Sometimes the table is shorter than necessary, so these values are missing. 
 
-The variables are present in the `FACP` table but if they are empty, then `0x64`/`0xFE`are used, which means restart via PS2 Controller. This does not always work for everyone. Alternatively use `0x0CF9`/`0x06`, which means restart via PCI Bus. This pair is also used on native Macs, but does not always work on Hackintoshes. The difference is clear: on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Another combinations is `0x92`/`0x01`.
+The variables are present in the `FACP` table but if they are empty, then `0x64`/`0xFE`are used, which means restart via PS2 Controller. This does not always work for everyone. Alternatively, you can use `0x0CF9`/`0x06`, which controls restart via PCI Bus. This method is also used on native Macs, but does not always work on Hackintoshes. The difference is clear: on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Another possible combination is `0x92`/`0x01`.
 
 Last but not least you can set them to `0x0`/`0x0` to allow the use of default `FACP` values. If not present, the default values states above will be used instead.
 
@@ -69,7 +69,7 @@ In this sub-section of `ACPI`, you can add renaming rules (binary renames) to re
 
 ![Bildschirmfoto 2021-05-16 um 07 27 17](https://user-images.githubusercontent.com/76865553/135732656-82fe792e-7225-4255-beb9-d1074eb1522b.png)
 
-If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a `Find` value of `45484331` and a `Replace` value of `45483031` which literally translates to `EHC1` and `EH01` if you decode the hex values back to text with the Hex Converter in the "Tools" section of Clover Configurator. Which renames to use when depends on your system, used macOS version, etc. and is not part of this overview.
+If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a `Find` value of `45484331` and a `Replace` value of `45483031` which literally translates to `EHC1` and `EH01` if you decode the hex values back to text with the Hex Converter in the "Tools" section of Clover Configurator. Which renames to use when depends on your system's Acpi Tables, used macOS version, etc. and is not part of this overview.
 
 ### Rename Devices
 <details>
@@ -136,7 +136,7 @@ As you can see, the device exists and is located in `\SB_PCI0_EHC1` of the `DSDT
 
 ### TgtBridge
 
-The `TgtBridge` is a field/function inside the `ACPI > DSDT > Patches` section of the Clover `config.plist`. It's purpose is to limit the scope of binary DSDT patches to only work within a pre-defined section/area of the `DSDT`.
+The `TgtBridge` is a field/function inside the `ACPI > DSDT > Patches` section of the Clover `config.plist`. It's purpose is to limit the scope of binary renames to only work within a pre-defined section/area of the `DSDT`.
 
 For example: renaming the method `_STA`to `_XSTA` in device `GPI0`:
 
@@ -150,7 +150,7 @@ Some clarification: the Comment Field not only serves as a reminder what the pat
 
 **NOTE**: TgtBridge Bug (fixed since Clover r5123.1) 
 
-Prior to revision 5123.1, Clover's `TgtBridge` had a bug, where it would not only rename matches specified by `TgtBridge` but also replaced matches in OEM's SSDTs, resulting in many devices being enabled that should not have been started.
+Prior to revision 5123.1, `TgtBridge` had a bug, where it would not only rename matches found in the DSDT but also in OEM SSDTs as well which was not intended to happen.
 
 ## Fixes [1]
 
@@ -164,7 +164,7 @@ In addition to the `DeviceProperties`, there is also a Device Specific Method (`
 
 ### AddMCHC
 
-Such a device of class `0x060000` is, as a rule, absent in the DSDT, but for some chipsets this device is serviceable, and therefore it must be prescribed in order to properly wire the power management of the PCI bus. The question of the need for a patch is solved experimentally. Another experience, this device was needed on a mother with a Z77 chipset, otherwise the kernel panic at the initial stage of launch. Conversely, on the G41M (ICH7) chipset, this fix causes panic. Unfortunately, there is no general rule in sight.
+Adds MCHC device which is related to the Memory Controller and is sually combined with `FixSBUS` to get the System Management Bus Controller working. In general, a device of the `0x060000` class is absent in the DSDT, but for some chipsets this device is serviceable, and therefore it must be attached to I/O Reg in order to properly wire the power management of the PCI bus. 
 
 ### FixAirport
 
@@ -176,7 +176,12 @@ Mimics Windows XP under Darwin OS. Many sleep and brightness problems stem from 
 
 ### FixDisplay
 
-Produces a number of video card patches non-Intel video cards. Injects properties, and the devices themselves, if they are not present. Injects FakeID if ordered. Adds custom properties. The same fix adds an HDAU device for audio output via HDMI. If the FakeID parameter is specified, then it will be injected through the _DSM method. Patches for all video cards, only for non-Intel. Intel on-board graphics require other fixes.
+Produces a number of video card patches for non-Intel video cards (Intel on-board graphics require different fixes):
+
+- Injects properties and the devices themselves (if not present). 
+- Can inject a FakeID. If a FakeID parameter is specified, then it will be injected through the `_DSM` method.
+- Adds custom properties. 
+- Adds an `HDAU` device for audio output via HDMI. 
 
 ### FixFirewire
 
@@ -207,8 +212,7 @@ Fixes some problems with SATA, and removes the yellowness of disk icons in the s
 
 ### FixSBus
 
-Adds the System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep.
-
+Adds the System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep. To check if the SBUS is working correctly, enter `kextstat | grep -E "AppleSMBusController|AppleSMBusPCI"` in terminal. If the Terminal output contains the following 2 drivers, your SMBus is working correctly: `com.apple.driver.AppleSMBusPCI` and `com.apple.driver.AppleSMBusController`
 ### FixShutdown
 
 A condition is added to the `_PTS` (prepare to sleep) method: if argument = 5 (shutdown), then no other action is required. Strange, why? Nevertheless, there is repeated confirmation of the effectiveness of this patch for ASUS boards, maybe for others, too. Some `DSDT` already have such a check, in which case such a fix should be disabled. If `SuspendOverride` = `true` is set in the config, then this fix will be extended by arguments 3 and 4. That is, going to sleep (Suspend). On the other hand, if `HaltEnabler` = `true`, then this patch is probably no longer needed.
@@ -222,17 +226,16 @@ Attempts to solve numerous USB problems. For the `XHCI` controller, when using t
 ![Bildschirmfoto 2021-05-16 um 08 04 15](https://user-images.githubusercontent.com/76865553/135732698-6ead0af4-304c-4570-a407-aaafb70506f2.png)
 
 ### AddHDMI
+Adds an `HDAU` audio device to the `DSDT` that matches the HDMI output of ATI and Nvidia video cards to enabke audio over HDMI. Since the GPU was bought separately from the motherboard, there simply is no such device in the native DSDT. Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device:
 
-Adds an `HDAU` device to `DSDT` that matches the HDMI output on an ATI or Nvidia video card. It is clear that since the card was bought separately from the motherboard, there is simply no such device in the native DSDT. In addition, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device as appropriate:
-
-* `1` if UseIntelHDMI = false
-* `2` if there is an Intel port that occupied port 1.
+* `1` if `UseIntelHDMI` = false
+* `2` if there is an Intel port that occupies port 1.
 
 ### AddIMEI
+Adds Intel Management Engine (IMEI) device to the device tree, if it does not exist in the `DSDT`. IMEI is required for proper hardware video decoding on Intel iGPUs. Adding IMEI is only required in two cases:
 
-Required primarily for Sandy Bridge CPUs, which adds the `IMEI` device to the device tree, if it does not exist already.
-
-When mixing Ivy Bridge CPUs with 6 series motherboards, the IMEI device becomes incompatible with macOS. The device-id won't be recognized and this is a very important issue as macOS relies on the `IMEI` device for iGPU drivers. The same applies when mixing Sandy Bridge CPUs with 7 series motherboards.
+- Sandy Bridge CPUs running on 7-series mainboards or
+- Ivy Bridge CPUs running on 6-series mainboards
 
 ### AddPNLF
 
@@ -244,7 +247,7 @@ There are several sample brightness curves/graphs in the system and they have di
 
 ### DeleteUnused
 
-Removes unused floppy, CRT and DVI devices - an absolute prerequisite for running IntelX3100 on Dell laptops. Otherwise black screen, tested by hundreds of users.
+Removes unused floppy, CRT and DVI devices - a necessity for getting the Intel GMA X3100 to work on Dell Laptops. Otherwise you'll get a black screen. Tested by hundreds of users.
 
 ### FakeLPC
 
@@ -299,7 +302,6 @@ The DSDT has regions that have their own addresses, such as:
 is sufficient if you have a well-made custom `DSDT` with all the fixes. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it to the ACPI Section was inappropriate.
 
 ### FixRTC
-
 Removes interrupt from device `_RTC`. It's a required fix and it is very strange that someone would not enable it. If there is no interrupt in the original, then this patch won't cause any harm. However, the question arose about the need to edit the length of the region. To avoid clearing `CMOS`, you need to set the length to `2`, but at the same time a phrase like `"…only single bank…"` appears in the Kernel Log.
 
 I do not know what is wrong with this message, but it can be excluded if the length is set to 8 bytes by using the Fix `Rtc8Allowed`:
@@ -325,7 +327,7 @@ Likewise, this patch solves the problem with sleep.
 
 ### FixTMR
 
-Removes the interrupt from the _TMR timer in the same way. It is deprecated and not used by Mac.
+Removes the interrupt from the _TMR timer in the same way. It is no longer used on newer Macs but on Ivy Bridge it is still required to resolve IRQ conflicts so sound works (combine with `FixHPET`, `FixIPIC`, and `FixRTC`) 
 
 ### FixWAK
 

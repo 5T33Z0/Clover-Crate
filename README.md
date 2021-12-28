@@ -2,7 +2,7 @@
 [![Clover Version](https://img.shields.io/badge/Clover-r5141-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
 [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.19.0-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/)
 [![macOS](https://img.shields.io/badge/Supported_macOS-≤12.1-white.svg)](https://www.apple.com/macos/monterey/)
-![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-21.12.13-blueviolet.svg)
+![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-21.12.28-blueviolet.svg)
 ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 ## ABOUT
@@ -43,7 +43,8 @@ I created this repo for several reasons:
   - [**SMBIOS**](https://github.com/5T33Z0/Clover-Crate/tree/main/SMBIOS)
   - [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters)
 - **Appendix**
-  - [**Upgrading to the new Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
+  - [**About Kexts**](https://github.com/5T33Z0/Clover-Crate/blob/main/About_Kexts/README.md)
+  - [**Upgrading to Clover with OpenRuntime integration**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
   - [**Mapping USB Ports**](https://github.com/5T33Z0/Clover-Crate/tree/main/USB_Fixes)
   - [**Clover Laptop Configs and Hotpatches 2.0**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs)
   - [**Clover Dektop Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs)

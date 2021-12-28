@@ -7,27 +7,27 @@ These are boot arguments that are passed over to `boot.efi`, which in turn passe
 #### Debugging
 |Boot-arg|Description|
 |:------:|-----------|
-**`-v`**|_V_erbose Mode. Replaces the progress bar with a terminal output with a bootlog which helps resolving issues. Combine with `debug=0x100` and `keepsyms=1`
-**`-f`**|_F_orce-rebuild kext cache on boot.
-**`-s`**|_S_ingle User Mode. This mode will start the terminal mode, which can be used to repair your system. Should be disabled with a Quirk since you can use it to bypass the Admin account password.
+**`-v`**| _V_erbose Mode. Replaces the progress bar with a terminal output with a bootlog which helps resolving issues. Combine with `debug=0x100` and `keepsyms=1`
+**`-f`**| _F_orce-rebuild kext cache on boot.
+**`-s`**| _S_ingle User Mode. This will boot macOS in a terminal-based mode, which can be used to repair your system. If you're concerned with security, set quirk `DisableSingleUser` to true since Single User Mode can be used to bypass the Admin account password.
 **`-x`**|Safe Mode. Boots macOS with a minimal set of system extensions and features. It can also check your startup disk to find and fix errors like running First Aid in Disk Utility. Can be triggered from OC bootmenu by holding a key combination if `PollAppleHotkeys` is enabled.
 **`debug=0x100`**|Disables macOS'es watchdog. Prevents the machine from restarting on a kernel panic. That way you can hopefully glean some useful info and follow the breadcrumbs to get past the issues.
-**`keepsyms=1`**|Companion setting to `debug=0x100` that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what's causing the panic itself.
+**`keepsyms=1`**|Companion flag to `debug=0x100` that tells the OS to also print symbols on a kernel panic. Can provide some helpful insight as to what's causing the panic.
 **`dart=0`**|Disables VT-x/VT-d. Nowadays, `DisableIOMapper` Quirk is used instead.
 **`cpus=1`**|Limits the number of CPU cores to 1. Helpful in cases where macOS won't boot or install otherwise.
 **`npci=0x2000`**/**`npci=0x3000`**|Disables PCI debugging related to `kIOPCIConfiguratorPFM64`. Alternatively, use `npci=0x3000` which also disables debugging of `gIOPCITunnelledKey`. Required when stuck at `PCI Start Configuration` as there are IRQ conflicts related to your PCI lanes. **Not needed if `Above4GDecoding` can be enabled in BIOS**
-**`-no_compat_check`**|Disables macOS compatibility check. For example, macOS 11.0 BigSur no longer supports iMac models introduced before 2014. Enabling this allows installing andd booting macOS on otherwise unsupported SMBIOS. Downside: you can't install system updates if this is enabled.
+**`-no_compat_check`**|Disables macOS compatibility check. For example, macOS 11.0 BigSur no longer supports iMac models introduced before 2014. Enabling this allows installing and booting macOS on otherwise unsupported SMBIOS. Downside: you can't install system updates if this is enabled.
 
 #### GPU-specific boot arguments
 For more iGPU and dGPU-related boot args see the Whatevergreen topic.
 
 |Boot-arg|Description|
 |:------:|-----------|
-**`agdpmod=pikera`**|Disables Board-ID checks on AMD Navi GPUs (RX 5000 & 6000 series). Without this you'll get a black screen. Don't use on Navi Cards (i.e. Polaris and Vega).
-**`-igfxvesa`**|Disables graphics acceleration in favor of software rendering. Useful if iGPU and dGPU are incompatible or if you are using an NVIDIA GeForce Card and the WebDrivers are outdated after updating macOS, so the display won't turn on during boot.
+**`agdpmod=pikera`**|Disables Board-ID checks on AMD Navi GPUs (RX 5000 & 6000 series). Without this you'll get a black screen. Don't use on Polaris and Vega GPUs.
+**`-igfxvesa`**|Disables Intel graphics acceleration in favor of software rendering. Useful if the integrated graphics are incompatible with macOS. 
 **`-wegnoegpu`**|Disables all GPUs but the integrated graphics on Intel CPU. Use if GPU is incompatible with macOS. Doesn't work all the time.
-**`nvda_drv=1`**|Enable Web Drivers for NVIDIA Graphics Cards (supported up to macOS High Sierra only).
-**`nv_disable=1`**|Disables NVIDIA GPUs (***don't*** combine this with `nvda_drv=1`)
+**`nvda_drv=1`**|Enables Web Drivers for NVIDIA Graphics Cards up to macOS 10.11. From macOS 10.12 onward, use the `NvidiaWeb` feature in the System Parameters section instead which is written to NVRAM. 
+**`nv_disable=1`**|Disables hardware acceleration of NVIDIA GPUs (***don't*** combine this with `nvda_drv=1`). Use this if your screen turns off when installing macOS. It enables Vesa mode so you get a picture. After you installed Nvidia WebDrivers (supported up to High Sierra only), you can disable this boot-arg again. 
 
 #### Network-specific boot arguments
 |Boot-arg|Description|
@@ -38,7 +38,7 @@ For more iGPU and dGPU-related boot args see the Whatevergreen topic.
 |Boot-arg|Description|
 |:------:|-----------|
 **`alcid=1`**|For selecting a layout-id for AppleALC, whereas the numerical value specifies the layout-id. See [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system.
-**`amfi_get_out_of_my_way=1`**|Combines wit disabled SIP, this disables Apple Mobile File Integrity. AMFI is a macOS kernel module enforcing code-signing validation and library validation which strengthens security. Even after disabling these services, AMFI is still checking the signatures of every app that is run and will cause non-Apple apps to crash when they touch extra-sensitive areas of the system. There's also a [kext](https://github.com/osy/AMFIExemption) which does this on a per-app-basis.
+**`amfi_get_out_of_my_way=1`**|Combined with disabled SIP, this disables Apple Mobile File Integrity. AMFI is a macOS kernel module enforcing code-signing validation and library validation which strengthens security. Even after disabling these services, AMFI is still check the signatures of every app that is run and will cause non-Apple apps to crash when they touch extra-sensitive areas of the system. There's also a [kext](https://github.com/osy/AMFIExemption) which does this on a per-app-basis.
 
 #### Provided by Lilu.kext
 Assorted Lilu boot-args. Remember that Lilu is a Patch engines providing functionality for almost(?) any other kext in the hackintosh universe, so you got to be aware of that if you use any of these commands!
@@ -53,7 +53,7 @@ Assorted Lilu boot-args. Remember that Lilu is a Patch engines providing functio
 `lilucpu=N` |to let Lilu and plugins assume Nth CPUInfo::CpuGeneration.
 
 #### Provided by Whatevergreen.kext 
-Listed below you'll find a snall but usefuk assortion of whatevergreen's boot args for everythong graphics-related. Check the [complete list ](https://github.com/acidanthera/WhateverGreen/blob/master/README.md#boot-arguments) to find many, many more.
+Listed below you'll find a snall but useful assortion of Whatevergreen's boot args for everythong graphics-related. Check the [complete list](https://github.com/acidanthera/WhateverGreen/blob/master/README.md#boot-arguments) to find many, many more.
 
 |Boot-arg|Description|
 |:------:|-----------|
@@ -62,7 +62,7 @@ Listed below you'll find a snall but usefuk assortion of whatevergreen's boot ar
 `-wegswitchgpu`|Disables th iGPU if a discrete GPU is detected (or use `switch-to-external-gpu` property to iGPU)
 `-wegnoegpu`|Disables all discrete GPUs (or add `disable-gpu` property to each GFX0).
 `-wegnoigpu`|Disables internal GPU (or add `disable-gpu` property to iGPU)
-`agdpmod=pikera` | Replaces `board-id` with `board-ix`. Disables Board-ID checks on AMD Navi GPUs (RX 5000 & 6000 series). Without this, you’ll get a black screen. Don’t use on Navi Cards (i.e. Polaris and Vega).
+`agdpmod=pikera` | Replaces `board-id` with `board-ix`. Disables Board-ID checks on AMD Navi GPUs (RX 5000 & 6000 series). Without this, you’ll get a black screen. Don’t use on Polaris or Vega Cards.
 `agdpmod=vit9696`|Disables check for `board-id` (or add `agdpmod` property to external GPU).
 `applbkl=0`| Boot argument (and `applbkl` property) to disable `AppleBacklight.kext` patches for IGPU. In case of custom AppleBacklight profile, read [this](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.OldPlugins.en.md)
 `gfxrst=1`|Prefers drawing the Apple logo at the 2nd boot stage instead of framebuffer copying. Makes the transition between the progress bar and the desktop/login screen smoother if an external monitor is attached.
@@ -93,6 +93,7 @@ Boot-args for your favorite audio-enabler kext. All the Lilu boot arguments affe
 If you right-click anywhere in this list you will find many more boot-args not covered here:
 
 <details><summary><strong>Screenshot</strong></summary>
+
 ![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135818786-923330d4-564a-41c6-acbf-ae16b4ac0d55.png)
 </details>
 
