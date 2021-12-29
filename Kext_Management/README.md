@@ -1,6 +1,6 @@
-# Kexts and the `kexts` folder
+# Kext Management in Clover
 ## About Kexts
-Kexts is an abbreviation for "Kernel Extensions". Kexts are required by the mac Operating System. Most of them are either device drivers of some sort or pseudo-drivers for devices missing from PC hardware, such as `FakeSMC` or `VirtualSMC` which emulate the all important System Management Controller which doesn't exist on PC hardware but is required by macOS to run. We need to inject these kexts since the Apple system doesn't support our devices, or we want to add new functionality. For Linux and Windows no Kexts are required.
+Kexts is an abbreviation for "Kernel Extensions". They are required by the mac Operating System. Most of them are either device drivers of some sort or pseudo-drivers for devices missing from PC hardware, such as `FakeSMC` or `VirtualSMC` which emulate the all important System Management Controller which doesn't exist on PC hardware but is required by macOS to run. We need to inject these kexts since the Apple system doesn't support our devices, or we want to add new functionality. For Linux and Windows no Kexts are required.
 
 ## About the `kexts` folder used by Clover
 Since revision 3281, Clover loads kexts conditionally, based on the folders kexts are located in. The hierarchy is as follows:

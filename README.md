@@ -43,8 +43,8 @@ I created this repo for several reasons:
   - [**SMBIOS**](https://github.com/5T33Z0/Clover-Crate/tree/main/SMBIOS)
   - [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters)
 - **Appendix**
-  - [**About Kexts**](https://github.com/5T33Z0/Clover-Crate/blob/main/About_Kexts/README.md)
   - [**Upgrading to Clover with OpenRuntime integration**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover)
+  - [**Kext Management in Clover**](https://github.com/5T33Z0/Clover-Crate/blob/main/Kext_Management/README.md)
   - [**Mapping USB Ports**](https://github.com/5T33Z0/Clover-Crate/tree/main/USB_Fixes)
   - [**Clover Laptop Configs and Hotpatches 2.0**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs)
   - [**Clover Dektop Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs)
