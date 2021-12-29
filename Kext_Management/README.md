@@ -16,9 +16,9 @@ In the screenshot below, you see an example of conditional kext loading used on 
 
 As you can see, most of the kexts reside in the `kexts\Other` folder, but there are addtitonal kexts loaded for other versions of macOS:
 
-- for macOS `10.13`, additinal kexts `BrcmPatcRAM2` and `NoTouchID` are required
-- for macOS `10.14` only `BrcmPatcRAM2.kext` is needed additionally
+- for macOS `10.13`, additinal kexts `BrcmPatcRAM2` and `NoTouchID` are required.
+- for macOS `10.14` only `BrcmPatcRAM2.kext` is needed, since the issue that required `NoTouchID` has been fixed since macOS Mojave.
 - for macOS `10.15` and `11`, my Broadcom Wifi/BT Card requires `BrcmPatcRAM3.kext` and `BrcmBluetoothInjector.kext` to work.
 - for macOS `12` on the other hand, which uses a completely new Bluetooth stack, only `BlueToolFixup.kext` is required instead.
 
-The benefit of managing kexts this way is that you don't have to create different EFI folders just for running various versions of macOS on the same system. All that you may need is a different `config.plist` with a different SMBIOS or additional/different patches required for that macOS version to run. Since you can select configs from the Clover Bootmenu, this is a pretty handy way to manage various macOS versions with just one EFI Folder.
+The benefit of managing kexts this way is that you don't have to create different EFI folders for running various versions of macOS on the same system. All you may need is a different `config.plist` with a different SMBIOS or additional/different patches required for that macOS version to run. Since you can change configs from within the Clover Bootmenu, this is a pretty handy way to manage various macOS versions with just one EFI Folder.
