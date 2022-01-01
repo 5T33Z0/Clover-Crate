@@ -121,7 +121,7 @@ The EFI folder included in this repo uses a minimum set of enabled kexts to boot
 - VirtualSMC
 - WhateverGreen
 
-Additional kexts are available but stored in the "Off" folder - to enable any of them move them from the "Off" to the "Other" folder. Read the `EFI_Info.md` included in the EFI folder to find out more about these additional kexts and whether or not you need any them.
+Additional kexts are available but stored in the "Off" folder - to enable any of them move them from the "Off" to the "Other" folder. Read the `EFI_Info.md` included in the EFI folder to find out more about these additional kexts and whether you need them or not.
 
 For more info about additional kexts read this in-depth explanation on [Gathering Files](https://dortania.github.io/OpenCore-Install-Guide/ktext.html#kexts)
 
@@ -224,7 +224,7 @@ ___
 - Adjust `RtVariables` > `CsrActiveConfig` based on used macOS accordingly (see table above)
 - Rename config to `config.plist`and add it to `EFI\CLOVER` folder
 - Add files in ACPI folder to `EFI\CLOVER\ACPI\patched`
-- Add additional Kexts necessary for your Hardware and peripherals to `EFI\CLOVER\kexts\other`
+- Add additional kexts necessary for your Hardware and peripherals to `EFI\CLOVER\kexts\other`
 - Copy the EFI Folder to a FAT32 formatted flash drive and try booting from it
 
 #### Required ACPI Hotpatches
@@ -234,14 +234,14 @@ ___
 #### Included Configs
 |Config.plist|SMBIOS|supported macOS|Notes|
 |---------------------|------|---------------|-----|
-|Kaby_Lake_iMac18,1|iMac18,1|10.12 and newer| Using iGPU for driving a diplay
+|Kaby_Lake_iMac18,1|iMac18,1|10.12 and newer| Using iGPU for driving a display
 |Kaby_Lake_iMac18,3|iMac18,3|10.12 and newer| Used for computers using a dGPU for displaying, and an iGPU for computing tasks only
 
 #### Included Device Properties
 |Framebuffer Patches|iGPU|AAPL,ig-platform-id|Description|
 |--------------------------|:----:|:-----------------:|-----------|
 |PciRoot(0x0)/Pci(0x2,0x0)|Intel HD 630|00001259|For using the iGPU for driving a display.
-|PciRoot(0x0)/Pci(0x2,0x0)|Intel HD 630|03001259|For using the iGPU for computational taks only.
+|PciRoot(0x0)/Pci(0x2,0x0)|Intel HD 630|03001259|For using the iGPU for computational tasks only.
 
 #### Quirks and Kernel Patches Deviations
 - `KernelPM` &rarr; Not needed if you can disable CFGLock in BIOS.
@@ -328,7 +328,7 @@ Haswell_iMac15,1|iMac15,1|10.8 - 11.6.x|For Haswell CPUs using a dGPU for displa
 - Adjust `RtVariables` > `CsrActiveConfig` based on used macOS accordingly (see table above)
 - Rename config to `config.plist`and add it to `EFI\CLOVER` folder
 - Add files in ACPI folder to `EFI\CLOVER\ACPI\patched`
-- Add additional Kexts necessary for your Hardware and peripherals to `EFI\CLOVER\kexts\other`
+- Add additional kexts necessary for your Hardware and peripherals to `EFI\CLOVER\kexts\other`
 - Copy the EFI Folder to a FAT32 formatted flash drive and try booting from it
 - In Post-Install, create `SSDT-PM.aml `using [**ssdtPRGen**](https://github.com/Piker-Alpha/ssdtPRGen.sh) and add it to `EFI\CLOVER\ACPI\` to enable proper CPU Power Management
 
@@ -366,7 +366,7 @@ Haswell_iMac15,1|iMac15,1|10.8 - 11.6.x|For Haswell CPUs using a dGPU for displa
 - Adjust `RtVariables` > `CsrActiveConfig` based on used macOS accordingly (see table above)
 - Rename config to `config.plist`and add it to `EFI\CLOVER` folder
 - Add files in ACPI folder to `EFI\CLOVER\ACPI\patched`
-- Add additional Kexts necessary for your Hardware and peripherals to `EFI\CLOVER\kexts\other`
+- Add additional kexts necessary for your Hardware and peripherals to `EFI\CLOVER\kexts\other`
 - Copy the EFI Folder to a FAT32 formatted flash drive and try booting from it
 - In Post-Install, create `SSDT-PM.aml `using [**ssdtPRGen**](https://github.com/Piker-Alpha/ssdtPRGen.sh) and add it to `EFI\CLOVER\ACPI\` to enable proper CPU Power Management
 

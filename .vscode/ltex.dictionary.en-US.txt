@@ -15,3 +15,6 @@ NVRAM
 DEXT
 Speedstep
 Haswell
+Hotpatches
+kexts
+AppleACL
