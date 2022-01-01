@@ -7,9 +7,9 @@ These are boot arguments that are passed over to `boot.efi`, which in turn passe
 ### Debugging
 |Boot-arg|Description|
 |:------:|-----------|
-**`-v`**| _V_erbose Mode. Replaces the progress bar with a terminal output with a bootlog which helps to resolve issues. Combine with `debug=0x100` and `keepsyms=1`
-**`-f`**| _F_orce-rebuild kext cache on boot.
-**`-s`**| _S_ingle User Mode. This will boot macOS in a terminal-based mode, which can be used to repair your system. If you're concerned with security, set quirk `DisableSingleUser` to true since Single User Mode can be used to bypass the Admin account password.
+**`-v`**| Verbose Mode. Replaces the progress bar with a terminal output with a bootlog which helps to resolve issues. Combine with `debug=0x100` and `keepsyms=1`
+**`-f`**| Force-rebuild kext cache on boot.
+**`-s`**| Single User Mode. This will boot macOS in a terminal-based mode, which can be used to repair your system. If you're concerned with security, set quirk `DisableSingleUser` to true since Single User Mode can be used to bypass the Admin account password.
 **`-x`**|Safe Mode. Boots macOS with a minimal set of system extensions and features. It can also check your startup disk to find and fix errors like running First Aid in Disk Utility. Can be triggered from OC bootmenu by holding a key combination if `PollAppleHotkeys` is enabled.
 **`debug=0x100`**|Disables the watchdog. Prevents the machine from restarting on a kernel panic. That way you can hopefully glean some useful info and follow the breadcrumbs to get past the issues.
 **`keepsyms=1`**|Companion flag to `debug=0x100` that tells the OS to also print symbols on a kernel panic. Can provide some helpful insight as to what's causing the panic.
@@ -119,10 +119,10 @@ The options are:
 In general, it has not been possible to achieve unconditional legacy boot operation. It is easier and better to forget about legacy systems and use UEFI versions of OSes. The oldest of them is Windows 7-64, and I personally see no reason to stick with Windows XP. Does anyone still use a 32-bit only processor? Well, good luck then!
 
 ## Default Loader
-In addition to `DefaultVolume`, the path of the loader can be specified as DefaultLoader. This provides more precise default entry selection for Volumes that have multiple Loaders. The value can be the complete path or a unique portion like like file name.
+In addition to `DefaultVolume`, the path of the loader can be specified as Default Loader. This provides more precise default entry selection for Volumes that have multiple Loaders. The value can be the complete path or a unique portion like file name.
 
 ## XMPDetection
-Detect best eXtreme Memory Profile when detecting memory or disable XMP detection.
+Detects the best Extreme Memory Profile when detecting memory or disables XMP detection.
 
 ## NoEarlyProgress
 Removes tooltips before loading the loader interface, e.g. "Welcome to Clover".
