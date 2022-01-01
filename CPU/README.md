@@ -4,35 +4,35 @@ This section contains settings to manually set parameters for the CPU if the int
 ![CPU](https://user-images.githubusercontent.com/76865553/136802820-de658522-dad5-494c-b8a0-1362202f94ad.jpeg)
 
 ### Frequency MHz
-Describes the base frequency in MHz displayed in the System-Profiler. In other words: its effects are purely cosmetic. Usually, Clover automatically calculates this value based on the ACPI timer, but if it gets it wrong, you can correct it through this key. 
+Describes the base frequency in MHz displayed in the System-Profiler. In other words: its effects are purely cosmetic. Usually, Clover automatically calculates this value based on the ACPI timer, but if it gets it wrong, you can correct it through this key.
 
 ### Bus Speed in kHz
 Describes the base bus frequency in **kHz**. The bus frequency is critical for stable operation of the system. It's handed over from the bootloader to the kernel. If the frequency is wrong, the kernel won't start at all. If the frequency is slightly off, there can be problems with the clock, resulting in strange system behavior.
 
-Starting with Clover r1060, the bus frequency is detected automatically based on data from the ADC Timer which calculates these values more precisely than the value which is stored in the DMI (Desktop Management Interface). 
+Starting with Clover r1060, the bus frequency is detected automatically based on data from the ADC Timer which calculates these values more precisely than the value which is stored in the DMI (Desktop Management Interface).
 
 ### Latency
-Describes the delay for turning on the C3 state. The critical value is **0x3E8** = **1000**. Less and Speedstep turns on, more and it does not turn on. On real Macs, it is always set to **0x03E9** (1001) which disables Speedstep. On Hacks, we can choose if we want to behave it like a Mac or if we want to turn on power management. A reasonable value for the latter is **0x00FA** (250), which is found on some laptops (MacPro5.1 = 17, MacPro6.1 = 67, iMac13.2 = 250).
+Describes the delay for entering the `C3` state. The critical value is **0x3E8** = **1000**. Below 1000, Speedstep is enabled, above 1000, it does not turn on. On real Macs, it is always set to **0x03E9** (1001) which disables Speedstep. On Hacks, we can choose if we want to behave it like a Mac or if we want to turn on power management. A reasonable value for the latter is **0x00FA** (250), which is found on some laptops (MacPro5.1 = 17, MacPro6.1 = 67, iMac13.2 = 250).
 
 ### C2, C4, C6
 Parameters related to C-state. **ATTENTION!** This section is deprecated and has since been moved to &rarr; [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#enable-c2-c4-c6-and-c7)
 
 - `C2`: Set to false on modern computers
-- `C4`: According to the specification, either use C3 or C4. We choose C4. For IvyBridge, set it to false. 
-- `C6`: only for mobile computers. However, you can try to enable it on desktops as well. Set to true on IvyBridge and Haswell.
+- `C4`: According to the specification, either use C3 or C4. We choose C4. For Ivy Bridge, set it to false.
+- `C6`: only for mobile computers. However, you can try to enable it on desktops as well. Set to true for Ivy Bridge and Haswell CPUs.
 
-Note that with these C-States, people often complain about issues with sound/graphics and sleep. So be careful, or exclude them altogether. 
+Note that with these C-States, people often complain about issues with sound/graphics and sleep. So be careful, or exclude them altogether.
 
 ### QEMU
 When testing Clover in the QEMU virtual machine, developers discovered that it did not correctly emulate the Intel CPU. As a temporary measure, this key was created.
 
 ### QPI
-In the System Profiler, this value is called "Processor Bus Speed" ​​or simply "Bus Speed". For Clover, an algorithm has been developed to calculate the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods of setting this value are available: the value either exists in SMBIOS already, prescribed by the manufacturer, or BusSpeed x4 is simply calculated. After much debate, this value has been added to the config - write what you like (in MHz). 
+In the System Profiler, this value is called Processor Bus Speed or simply "Bus Speed". For Clover, an algorithm has been developed to calculate the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods of setting this value are available: the value either exists in SMBIOS already, prescribed by the manufacturer, or Bus Speed x4 is simply calculated. After much debate, this value has been added to the config - write what you like (in MHz).
 
-This does not affect work in any way - it's pure cosmetics. **According to the latest information, QPI makes sense only for CPUs of the Nehalem family**. For everyone else here you need to have BusSpeed ​​x4. Or nothing at all. If you force 0, then DMI table 132 will not be generated at all.
+This does not affect work in any way - it's pure cosmetics. **According to the latest information, QPI makes sense only for CPUs of the Nehalem family**. For everyone else here you need to have BusSpeed x4. Or nothing at all. If you force 0, then DMI table 132 will not be generated at all.
 
 ### Type
-This parameter was invented by Apple and is used in the "About this Mac" window to display information about the used CPU, which internally translates into a processor designation. Otherwise, "Unknown processor" will be displayed. 
+This parameter was invented by Apple and is used in the "About this Mac" window to display information about the used CPU, which internally translates into a processor designation. Otherwise, "Unknown processor" will be displayed.
 
 Basically, Clover knows all the ciphers, but since progress does not stand still, it is possible to manually change this value. Correcting this this changes what's displayed in the  "About this Mac" window - purely cosmetic. There is information from vit9696: [AppleSmBIOS](https://github.com/acidanthera/OpenCorePkg/blob/master/Include/Apple/IndustryStandard/AppleSmBios.h)
 

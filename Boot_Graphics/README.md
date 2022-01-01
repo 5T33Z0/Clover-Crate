@@ -4,10 +4,10 @@
 Background color (in HEX) for the macOS boot menu.
 
 ### EFILoginHiDPI
-Set to `1` to enable HiDPI output for the macOS boot menu.
+Set to `1` to enable HiDPI (High Dots Per Inch) output for the macOS boot menu.
 
 ### flagstate
->No entry in manual
+No info available.
 
 ### UIScale
 Set the scaling factor for the size of the macOS boot menu. Set to `2` for 4k displays.

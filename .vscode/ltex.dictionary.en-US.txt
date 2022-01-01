@@ -13,3 +13,5 @@ kext
 Lilu
 NVRAM
 DEXT
+Speedstep
+Haswell
