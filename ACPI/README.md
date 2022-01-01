@@ -116,7 +116,7 @@ Names like `_DSM` with and underscore in front of them define a method. These ar
 |10|KBD to PS2K|Rename for Keyboard. Check the device name of `PNP0303`, `PNP030B`, `PNP0320`. If the keyboard name cannot be determined in `DSDT`, check the "BIOS name" of the keyboard in Windows Device Manager. If keyboard is named `PS2K` already, no rename is required|
 |11|KBC0 to PS2K|same|
 |12|KBD0 to PS2K|same|
-|13|SMBU to SBUS|Renames System Management Bus. Most ThinkPads require this. </br>Before 6th gen, search the device name belonging to "0x001F0003" </br>6th gen and later machines: search "0x001F0004" belonging to the device name </br>If the device name `SBUS` aready, a rename is not required|
+|13|SMBU to SBUS|Renames System Management Bus. Most ThinkPads require this. </br>Before 6th Gen, search the device name belonging to "0x001F0003" </br>6th Gen and later machines: search "0x001F0004" belonging to the device name </br>If the device name `SBUS` already, a rename is not required|
 |14|LID to LID0| Search the device name belonging to `PNP0C0D` and rename it to `LID0`
 |15|PBTN to PWRB(dell)| Search device belonging to `PNP0C0**C**` and rename it to `PWRB`
 |16|SBTN to SLPB(dell)| Sleep Button rename. Search device belonging to `PNP0C0**E**`. If the name is `SLPB` already, no need for a rename.
@@ -226,7 +226,7 @@ Attempts to solve numerous USB problems. For the `XHCI` controller, when using t
 ![Bildschirmfoto 2021-05-16 um 08 04 15](https://user-images.githubusercontent.com/76865553/135732698-6ead0af4-304c-4570-a407-aaafb70506f2.png)
 
 ### AddHDMI
-Adds an `HDAU` audio device to the `DSDT` that matches the HDMI output of ATI and Nvidia video cards to enabke audio over HDMI. Since the GPU was bought separately from the motherboard, there simply is no such device in the native DSDT. Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device:
+Adds an `HDAU` audio device to the `DSDT` that matches the HDMI output of ATI and Nvidia video cards to enable audio over HDMI. Since the GPU was bought separately from the motherboard, there simply is no such device in the native DSDT. Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device:
 
 * `1` if `UseIntelHDMI` = false
 * `2` if there is an Intel port that occupies port 1.
@@ -373,7 +373,7 @@ The APLF and APSN parameters seem to affect speedstep, but for those who know wh
 
 #### CStates/PStates
 
-Here we specify that two additional tables are generated for C-States and for P-States, according to the rules developed by the hackintosh community. For C-States the table with parameters C2, C4, C6, Latency mentioned in the CPU section. It is also possible to specify the ones in the SSDT section.
+Here we specify that two additional tables are generated for C-States and for P-States, according to the rules developed by the Hackintosh community. For C-States the table with parameters C2, C4, C6, Latency mentioned in the CPU section. It is also possible to specify the ones in the SSDT section.
 
 #### PluginType
 
