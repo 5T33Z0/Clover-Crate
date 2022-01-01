@@ -68,18 +68,16 @@ Although not recommended, there are special cases, where you need to disable SIP
 Check the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to find out more about Booter- and CsrActiveConfig and how to calculate your own.
 
 ## HWTarget
-`HWTarget` is the latest feature added to Clover r5140. It enables System Updates for macOS Monterey which use SMBIOSes of Macs with a T2 Security Chip. It writes the variable `BridgeOSHardwareModel` to NVRAM, which is requested by macOS Monterey. 
+`HWTarget` is the latest feature introduced in Clover r5140. It's required for SMBIOSes of Macs with a T2 Security Chip in order to get notified about System Updates. It writes the variable `BridgeOSHardwareModel` to NVRAM, which is requested by macOS Monterey. 
 
-### Valid values for HWTarget
 If you use a SMBIOS of one of the Mac models listed below, copy the corresponding value and paste it in the `HWTarget` field of your `config.plist`.
 
-- MacBookPro15,1 (`J680AP`), 15,2 (`J132AP`), 15,3 (`J780AP`), & 15,4 (`J213AP`)
-- MacBookPro16,1 (`J152FAP`), 16,3 (`J223AP`), & 16,4 (`J215AP`)
-- MacBookPro16,2 (`J214KAP`)
-- MacBookAir8,1 (`J140KAP`) & 8,2 (`J140AAP`) 
+- MacBookPro15,1 (`J680AP`), 15,2 (`J132AP`), 15,3 (`J780AP`), 15,4 (`J213AP`)
+- MacBookPro16,1 (`J152FAP`), 16,2 (`J214KAP`), 16,3 (`J223AP`), 16,4 (`J215AP`)
+- MacBookAir8,1 (`J140KAP`), 8,2 (`J140AAP`) 
 - MacBookAir9,1 (`J230KAP`) 
 - Macmini8,1 (`J174AP`)
-- iMac20,1 (`J185AP`) & 20,2 (`J185FAP`) 
+- iMac20,1 (`J185AP`), 20,2 (`J185FAP`) 
 - iMacPro1,1 (`J137AP`)
 - MacPro7,1 (`J160AP`)
 
