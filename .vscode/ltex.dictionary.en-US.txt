@@ -7,3 +7,9 @@ SMBIOS
 MacBookPro
 Lapic
 Lapic
+AppleALC
+AMFI
+kext
+Lilu
+NVRAM
+DEXT
