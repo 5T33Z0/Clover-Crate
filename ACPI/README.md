@@ -12,9 +12,9 @@ Throughout this chapter, this section is broken down into smaller chunks to make
 
 Merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI tables.
 
-If set to `true`, it changes the way .aml files in `ACPI/patched` are applied. Instead of appending these tables at the end of the `DSDT` they will replace existing tables, if their signature, index and `OemTableIds` match existing OEM tables. In other words, they will be merged with existing ACPI tables.
+If set to `true`, it changes the way `.aml` files in `ACPI/patched` are applied. Instead of appending these tables at the end of the `DSDT` they will replace existing tables, if their signature, index and `OemTableIds` match existing OEM tables. In other words, they will be merged with existing ACPI tables.
 
-With this function – as with `DSDT` – you can fix individual SSDTs (or other tables) simply by adding the corrected file(s) into `ACPI/patched`. No need to fiddle with `DropOem` or `DropTables`. The original order is preserved. The mapping for `SSDT` is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the `SSDT` position in `DSDT`. 
+With this function – as with `DSDT` – you can fix individual SSDTs (or other tables) simply by adding the corrected file(s) into `ACPI/patched`. No need to fiddle with `DropOem` or `DropTables`. The original order is preserved. The mapping for `SSDT` is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the `SSDT` position in `DSDT`.
 
 For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you could just fix it and put it back in `ACPI/patched`, replacing the original table. This also works if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. As long as you stick to the names provided in `ACPI/origin`, you should be fine.
 This way, you could find the SSDT containing all the 26 Ports for your board in the dumped ACPI, fix it, put it back in the `ACPI/patched` folder and boom: no more `USBports.kext` required.
@@ -27,19 +27,19 @@ This patch affects the settings of the ACPI system itself, such as the fact that
 
 ## FixHeaders
 
-`FixHeaders` will check the headers of all ACPI tables in general, removing Chinese characters from the headers since macOS can not handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you may still need it. 
+`FixHeaders` will check the headers of all ACPI tables in general, removing Chinese characters from the headers since macOS can not handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you may still need it.
 
-Whether you have a problem with tables or not, it's safe to enable this fix. It is recommended to all users, even if you are not having to fix your DSDT. Old setting inside DSDT fixes remains for backward compatibility but I recommend to exclude it from those section.
+Whether you have a problem with tables or not, it's safe to enable this fix. It is recommended to all users, even if you are not having to fix your `DSDT`. Old setting inside DSDT fixes remains for backward compatibility, but I recommend excluding it from this section.
 
 ## FixMCFG
 
-The `MCFG` (Memory Mapped Configuration Table) describes the location of the PCI Express configuration space, and this table will be present in a firmware implementation compliant to this specification version 3.0 (or later). Helpful when using MacBook and MacBookPro SMBIOSes. The author of the patch is vit9696.
+The `MCFG` (Memory Mapped Configuration Table) describes the location of the PCI Express configuration space, and this table will be present in a firmware implementation compliant to this specification version 3.0 (or later). Helpful when using a MacBook or MacBookPro SMBIOS. The author of the patch is vit9696.
 
 If `FixMCFG` is enabled, the MCFG table will be corrected. However, discarding this table is also possible with the "Drop Tables" feature.
 
 ## Halt Enabler
 
-This Patch is for fixing the shutdown/sleep problem during UEFI boot. The fix is injected before calling `boot.efi`, clearing `SLP_SMI_EN` before the start of macOS. Nevertheless it is quite safe, at least on Intel systems.
+This Patch is for fixing the shutdown/sleep problem during UEFI boot. The fix is injected before calling `boot.efi`, clearing `SLP_SMI_EN` before the start of macOS. Nevertheless, it is quite safe, at least on Intel systems.
 
 ## Patch APIC
 
@@ -69,7 +69,7 @@ In this sub-section of `ACPI`, you can add renaming rules (binary renames) to re
 
 ![Bildschirmfoto 2021-05-16 um 07 27 17](https://user-images.githubusercontent.com/76865553/135732656-82fe792e-7225-4255-beb9-d1074eb1522b.png)
 
-If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a `Find` value of `45484331` and a `Replace` value of `45483031` which literally translates to `EHC1` and `EH01` if you decode the hex values back to text with the Hex Converter in the "Tools" section of Clover Configurator. Which renames to use when depends on your system's Acpi Tables, used macOS version, etc. and is not part of this overview.
+If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a `Find` value of `45484331` and a `Replace` value of `45483031` which literally translates to `EHC1` and `EH01` if you decode the hex values back to text with the Hex Converter in the "Tools" section of Clover Configurator. Which renames to use when depends on your system's ACPI Tables, used macOS version, etc. and is not part of this overview.
 
 ### Rename Devices
 <details>

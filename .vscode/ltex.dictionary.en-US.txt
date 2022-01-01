@@ -1,0 +1,9 @@
+Hackintoshes
+ACPI
+SSDTs
+APIC
+ASPM
+SMBIOS
+MacBookPro
+Lapic
+Lapic

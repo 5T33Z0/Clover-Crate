@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe difference is clear: on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset.\\E$"}
