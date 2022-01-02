@@ -13,6 +13,7 @@ Incomplete list of useful freeware Apps and Tools to accompany Clover.
 - [**English Clover Manual**](https://drovosek01.github.io/CloverHackyColor-WebVersion/english/from%20Cloudconvert/Clover_Of_Khaki_Color_eng_5129.html) (automated translation)
 - [**Hackintosh Install Guide for Clover (No Quirks included)**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
 - **ACPI Samples**:
-	- **General**: included in OpenCore Package (under "Docs"): https://github.com/acidanthera/OpenCorePkg/releases 
-	- **For Laptops** (including updated Clover configs with Quirks): https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configsg
+	- **General**: included in OpenCore Package (under "Docs"): https://github.com/acidanthera/OpenCorePkg/releases
+	- **Additional**: https://github.com/5T33Z0/OC-Little-Translated
+	- **Laptop-specific** (including updated Clover configs with Quirks): https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configsg
 	- **Clover-specific** (in chinese): https://github.com/daliansky/P-little
