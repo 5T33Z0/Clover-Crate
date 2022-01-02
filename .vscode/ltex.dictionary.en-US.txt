@@ -19,3 +19,9 @@ Hotpatches
 kexts
 AppleACL
 OpenCore
+VoodooHDA
+AppleHDA
+Plist
+framebuffer
+framebuffers
+Kext

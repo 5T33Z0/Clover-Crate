@@ -7,7 +7,7 @@ In this Section, you can:
 - Fix USB issues
 - Add Fake IDs to enable otherwise unsupported devices
 - Add or modify Devices (via `Devices` > `Properties`)
-- Add Framebuffer-Patches (via `Devices` > `Properties`)
+- Add Framebuffer patches (via `Devices` > `Properties`)
 
 ## FakeID
 A group of parameters for masking your devices as natively supported ones by macOS.
@@ -21,8 +21,8 @@ A group of parameters for masking your devices as natively supported ones by mac
 - **WiFi**: A Dell Wireless 1595 card has the DeviceID=`0x4315`, but the real one is by Broadcom, which supports chips 4312, 4331 and some others. So enter the device ID of a supported card and enable the `FixAirport` patch in the `ACPI` section to inject the fake ID into the `DSDT`.
 - The common **Marvell 80E8056** Network Card (DeviceID=`0x4353`) just doesn't work, but it works with the `AppleYukon2` driver if you change the ID to `0x4363`. Combine with `FixLan` to enable it.
 - **`IMEI`**: This device works with **Intel** **HD3000** and **HD4000** iGPUs. However, it is not certain that your chipset has the correct ID. The substitutions are as follows (combine with `AddIMEI` Fix):
-	- SandyBridge = `0x1C3A8086`
-	- IvyBridge = `0x1E3A8086`
+	- Sandy Bridge = `0x1C3A8086`
+	- Ivy Bridge = `0x1E3A8086`
 	- Haswell = `0x8C3A8086`
 
 	This mask works in two ways: when injecting or with the `DSDT` patch. However, if you don't want to fully inject it in the way Clover does it, you can use the `NoDefaultProperties` option instead.
@@ -70,7 +70,7 @@ In general, using the `Properties` tab (next to the `Arbitrary` tab) is the reco
 ### AddProperties
 ![AddProperties1](https://user-images.githubusercontent.com/76865553/136595982-7a5af1ab-bd37-489c-864b-4a7d9d41be29.png)
 
-Adding entries to this list creates an `<Array>` `AddProperties` and a `<Dictionary>` for the listed device. This is how the actual structure of the array looks like when viewed with a plist editor:
+Adding entries to this list creates an `<Array>` `AddProperties` and a `<Dictionary>` for the listed device. This is how the actual structure of the array looks like when viewed with a Plist Editor:
 ![AddProperties2](https://user-images.githubusercontent.com/76865553/136596168-ef38a5a9-e768-4ccd-805f-c5c4297435fb.png)
 
 The value has to be entered either as a `<data>` or a `hex string`. So instead of alphanumerical values (ABC...) you have to use hex (0x414243). Convert via Plist Editor or Xcode. The first Device key determines which device this property will be added to.
@@ -93,7 +93,7 @@ The `Arbitrary` section is an array of dictionaries, each corresponding to one d
 - `Value` **can** be a `<string>`, `<integer>` or `<data>`.
 
 ### Inject
-If enabled, all internal injection is replaced by entering a single string Properties, which corresponds to the Apple's APPLE_GETVAR_PROTOCOL injection with GUID={0x91BD12FE, 0xF6C3, 0x44FB, {0xA5, 0xB7, 0x51, 0x22, 0xAB, 0x30, 0x3A, 0xE0}}; which is used on real Macs. The old hackers called it `EFIstrings`.
+If enabled, all internal injection is replaced by entering a single string of properties, which corresponds to the Apple's APPLE_GETVAR_PROTOCOL injection with GUID={0x91BD12FE, 0xF6C3, 0x44FB, {0xA5, 0xB7, 0x51, 0x22, 0xAB, 0x30, 0x3A, 0xE0}}; which is used on real Macs. Old hackers call it `EFIstrings`.
 
 ### NoDefaultProperties
 In this case, the line for the injection is created, but does not contain any properties yet. For example this property could be a `FakeID`. This way of injecting a `FakeID` is outdated, so use the `Properties` tab instead.
