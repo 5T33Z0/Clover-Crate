@@ -381,7 +381,7 @@ For Haswell and newer CPUs you should set the key to `1`, for older ones to `0`.
 
 ### Min Multiplier
 
-Minimum CPU multiplier. It itself reports 16, and prefers to run at 1600, but you should set the stats down to 800 or even 700 in the table for speedstep. Experiment with it. If your system crashes during boot, the Low Frequency is too low!
+Minimum CPU multiplier. It itself reports 16, and prefers to run at 1600, but you should set the stats down to 800 or even 700 in the table for Speedstep. Experiment with it. If your system crashes during boot, the Low Frequency is too low!
 
 ### Max Multiplier
 
@@ -409,7 +409,7 @@ Register (SystemIO,
 ```
 ### UnderVolt Step
 
-Optional parameter to lower the CPU temperature by reducing its operating voltage. Possible values are 0 to 9. The higher the value, the lower the voltage, resulting in lower temperatures – until the computer hangs. This is where foolproof protection comes in: Clover won't let you set any value outside the specified range. However, even allowed values can result in unstable operation. The effect of undervolting is really noticeable. However, this parameter is only only applicable to Intel CPUs of the `Penryn` family.
+Optional parameter to lower the CPU temperature by reducing its operating voltage. Possible values are 0 to 9. The higher the value, the lower the voltage, resulting in lower temperatures – until the computer hangs. This is where foolproof protection comes in: Clover won't let you set any value outside the specified range. However, even allowed values can result in unstable operation. The effect of undervolting is really noticeable. However, this parameter is only applicable to Intel CPUs of the `Penryn` family.
 
 ## Drop Tables
 
@@ -427,13 +427,13 @@ Yo can add SSDTs from the `ACPI/patched` folder which should be omitted from loa
 
 Creates an array to load SSDTs in the `ACPI/patched` folder in the order specified in this list once you add an SSDT to this list. Only SSDTs present in this array will be loaded, namely in the specified order.
 
-In General, a problem with tables is their name. While it is not unusual for OEM Tabkes to use the national alphabet, or just no name, for Apple, it is inacceptable. The name has to be 4 characters of the Roman alphabet. Use "FixHeaders" to fix this issue.
+In General, a problem with tables is their name. While it is not unusual for OEM Tables to use the national alphabet, or just no name, for Apple, it is unacceptable. The name has to be 4 characters of the Roman alphabet. Use "FixHeaders" to fix this issue.
 
 ### Debug
 
 ![Debug](https://user-images.githubusercontent.com/76865553/136655999-a2c369e4-14d3-4410-87ad-7473da46c749.png)
 
-Enables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps resolving issues.
+Enables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps to resolve issues.
 
 ### RTC8Allowed
 See "Fixes [2]" Section → "[**FixRTC**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#fixrtc)".
@@ -448,7 +448,7 @@ Device (PEGP) type of device
 	Name (_SUN, One)
 	}
 ```
-You can change its address to `0`, but that doesn't always work. **NOTE**: This fix is deprecated an has been removed from Clover since r5116!
+You can change its address to `0`, but that doesn't always work. **NOTE**: This fix is deprecated and has been removed from Clover since r5116!
 
 ### SlpSmiAtWake
 

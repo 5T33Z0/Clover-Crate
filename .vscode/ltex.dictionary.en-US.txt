@@ -25,3 +25,8 @@ Plist
 framebuffer
 framebuffers
 Kext
+RtVariables
+AppleID
+aml
+VirtualSMC
+Hackintosh

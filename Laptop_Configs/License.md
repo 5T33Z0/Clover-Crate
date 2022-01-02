@@ -1,9 +1,9 @@
 ## The GNU General Public License (GPL-2.0)
 ## Version 2, June 1991
-Copyright (C) 1989, 1991 Free Software Foundation, Inc. 
+Copyright (C) 1989, 1991 Free Software Foundation, Inc.
 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
+Everyone is permitted to copy and distribute verbatim copiesof this license document, but changing it is not allowed.
 
 ### Preamble
 
@@ -94,7 +94,7 @@ To do so, attach the following notices to the program. It is safest to attach th
 
 One line to give the program's name and a brief idea of what it does.
 
- Copyright (C) <year> <name of author>
+Copyright (C) <year> <name of author>
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
@@ -113,6 +113,6 @@ You should also get your employer (if you work as a programmer) or your school, 
 
 Yoyodyne, Inc., hereby disclaims all copyright interest in the program `Gnomovision' (which makes passes at compilers) written by James Hacker.
 
-signature of Ty Coon, 1 April 1989 Ty Coon, President of Vice
+signature of Ty Coon, 1 April 1989Ty Coon, President of Vice
 
 This General Public License does not permit incorporating your program into proprietary programs. If your program is a subroutine library, you may consider it more useful to permit linking proprietary applications with the library. If this is what you want to do, use the GNU Library General Public License instead of this License.
