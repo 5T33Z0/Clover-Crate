@@ -9,19 +9,19 @@ In order to build our own USB Port map as SSDT, we will do the following:
 
 - Dumping the original ACPI tables from BIOS
 - Find the SSDT which declares USB ports
-- Modify it so 15 ports are mapped for macOS without affecting other OSes
+- Modify it, so 15 ports are mapped for macOS without affecting other OSes
 - Inject this table during boot, replacing the original one
 
-The method presented here is a slightly modified version of a guide by "Apfelnico" and "N0b0dy" of the [**German Hackintosh Forum**](https://www.hackintosh-forum.de/forum/thread/54986-usb-mittels-ssdt-deklarieren/?postID=721415) which I used to create my own `SSDT-PORTS.aml`. I just translated and transformed it into this step by step guide. 
+The method presented here is a slightly modified version of a guide by "Apfelnico" and "N0b0dy" of the [**German Hackintosh Forum**](https://www.hackintosh-forum.de/forum/thread/54986-usb-mittels-ssdt-deklarieren/?postID=721415) which I used to create my own `SSDT-PORTS.aml`. I just translated and transformed it into this step-by-step guide. 
 
-I broke it down in smaller sections so you won't be overwhelmed by a seemingly endless document. Open the collapsed sections to reveal their contents.
+I broke it down in smaller sections, so you won't be overwhelmed by a seemingly endless document. Open the collapsed sections to reveal their contents.
 
 ## Preparations
 
 ### Required Tools
 - [**Clover Bootmanager**](https://github.com/CloverHackyColor/CloverBootloader/releases) for dumping your System's ACPI tables and editing your config.plist.
 - [**maciASL**](https://github.com/acidanthera/MaciASL) or [**QtiASL**](https://github.com/ic005k/QtiASL) for editing `.aml` files.
-- [**IOResgistryExplorer**](https://github.com/utopia-team/IORegistryExplorer/releases) for gathering infos about I/O on macOS. Used for probing USB Ports.
+- [**IOResgistryExplorer**](https://github.com/utopia-team/IORegistryExplorer/releases) for gathering informations about I/O on macOS. Used for probing USB Ports.
 - [**Example Files**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/13_Mapping_USB_in_ACPI/Example_Files) (for following along)
 - FAT32 formatted USB 3.0 flash drive (USB 3.0) for dumping ACPI tables and probing ports.
 - USB 2.0 Flash Drive (optional, also for probing Ports).
@@ -41,7 +41,7 @@ Have a look inside the "origin" Folder. In there you will find a lot of tables. 
 We can see the following:
 
 - There are entries for `XHC` (eXtensible Host Controller) and for `XHC.RHUB` (USB Root Hub Device)
-- There's should also be a list of Ports, 26 in my case: `HS01` to `HS14`, `USR1` and `USR2`, and `SS01` to `SS10`. We will come back to the meaning of these names later. 
+- There's should also be a list of Ports, 26 in my case: `HS01` to `HS14`, `USR1` and `USR2`, and `SS01` to `SS10`. We will come back to the meaning of these names later.
 - Take note of the "Table Signature" and the "OEM Table ID" – we will use them to create a delete rule in the Clover config.
 
 **NOTE**: Just because this SSDT includes 26 port entries, it doesn't meant that they are all connected to physical devices on the mainboard. Look at it more as a template used by Devs.
@@ -52,7 +52,7 @@ In order to delete (or drop) the original table during boot and replace it with 
 
 1. Open your `config.plist` in Clover Configurator
 2. Go to ACPI > Drop Tables and add a new Rule (click on "+")
-3. In `Signature`, select `SSDT` from the Dopdown menu
+3. In `Signature`, select `SSDT` from the Dropdown menu
 4. In Type/Key, select `TableID`
 5. In `String/Tableid`, enter the name of the "OEM Table ID" stored in YOUR SSDT-Whatever.aml (as show in the first screenshot) without quotation marks:</br>
 	![Drop_Clvoer](https://user-images.githubusercontent.com/76865553/144123138-a33ad32e-95e0-4a32-b618-f2978734233c.png)
@@ -61,13 +61,13 @@ In order to delete (or drop) the original table during boot and replace it with 
 You should have the correct rule for replacing the ACPI Table containing the USB Port declarations. Let's move on to the hard part…
 
 ## Preparing a replacement SSDT
-Now that we have found the SSDT with the original usb port declarations, we can start modifying them. Almost. We still need more details, though…
+Now that we have found the SSDT with the original USB port declarations, we can start modifying them. Almost. We still need more details, though…
 
 ### Modifying the orginal USB Table
 In general, two methods are relevant for declaring USB ports:
  
 1. `_UPC` ([**USB Port Capabilities**](https://uefi.org/specs/ACPI/6.4/09_ACPI-Defined_Devices_and_Device-Specific_Objects/ACPIdefined_Devices_and_DeviceSpecificObjects.html#upc-usb-port-capabilities)): defines the type of port and it's state (enabled/disabled)
-2. `_PLD` ([**Physical Location of Device**](https://uefi.org/specs/ACPI/6.4/06_Device_Configuration/Device_Configuration.html#pld-physical-location-of-device)): defines the location of the pysical port and its properties. 
+2. `_PLD` ([**Physical Location of Device**](https://uefi.org/specs/ACPI/6.4/06_Device_Configuration/Device_Configuration.html#pld-physical-location-of-device)): defines the location of the physical port and its properties. 
 
 Both values are handed over to (`GUPC` and `GPLD`) inside the Root Hub (RHUB).
 
@@ -75,12 +75,12 @@ Both values are handed over to (`GUPC` and `GPLD`) inside the Root Hub (RHUB).
 First, take a look at the routine `GUPC`inside of the `RHUB` (Root Hub):
 
 ![GUPC](https://user-images.githubusercontent.com/76865553/137520755-8406844d-b16a-4f58-8e84-95e5122d5c06.png)
-	
+
 In this case, it includes a Package (`PCKG`) with four values that are handed over to every USB port in the method `_UPC`. But as is, we currently only have control over the first value of the package (via `Arg0`), which describes the availability of the port. But we also need control over the 2nd value in the package which declares the USB port type. Therefore, we need to modify the method `GUPC`:
 
 - In the Header, we change the `GUPC, 1,` to `GUPC, 2,` (since we want to control 2 values of this package)
 - Next, we add `PCKG [One] = Arg1`, so it hands over the 2nd package value to `_UPC` as well.
-- In the Package, we change the first value of to `0xFF` to set the port "enabled" 
+- In the Package, we change the first value of to `0xFF` to set the port "enabled"
 - Finally, we set the second package to `0x03`, which changes the port type to USB 2.0 and 3.0 with a Type A connector (the blue connectors).
 
 Now we have control over a port's status (on/off or available/unavailable) and what type it is. We get this code snippet:
@@ -100,7 +100,7 @@ Method (GUPC, 2, Serialized)
 	Return (PCKG) /* \GUPC.PCKG */
 }
 ```
-`Arg0`= represents the first value of the package. This sets the prot active (`0xff`) or inactive/disabled (`Zero`)</br>
+`Arg0`= represents the first value of the package. This sets the port active (`0xff`) or inactive/disabled (`Zero`)</br>
 `Arg1`= declares the USB port type mentioned earlier (`0x00` for USB2, `0x03` for USB, etc.)
 
 #### Deleting existing `_UPC` method
@@ -128,7 +128,7 @@ Once all `_UPC` Methods are deleted from all the ports are deleted (besides `USR
 
 ![No_errors](https://user-images.githubusercontent.com/76865553/137521582-8b901345-ade2-47eb-9388-321b7cc46df1.png)
 
-#### Adding new `_UPC` method
+#### Adding a new `_UPC` method
 
 In each Port (except for USR1 and USR2), add this method:
 
@@ -156,7 +156,7 @@ This is an example of port characteristics object implemented for a USB host con
 
 - Three Ports are implemented; Port 1 is not user visible/not connectable and Ports 2 and 3 are user visible and connectable.
 - Port 2 is located on the back panel
-- Port 3 has an integrated 2 port hub. Note that because this port hosts an integrated hub, it is therefore not sharable with another host controller (e.g. If the integrated hub is a USB2.0 hub, the port can never be shared with a USB1.1 companion controller). The ports available through the embedded hub are located on the front panel and are adjacent to one another.
+- Port 3 has an integrated 2-port hub. Note that because this port hosts an integrated hub, it is therefore not sharable with another host controller (e.g. If the integrated hub is a USB2.0 hub, the port can never be shared with a USB1.1 companion controller). The ports available through the embedded hub are located on the front panel and are adjacent to one another.
 
 **SOURCE**: [UEFI.org](https://uefi.org/specs/ACPI/6.4/09_ACPI-Defined_Devices_and_Device-Specific_Objects/ACPIdefined_Devices_and_DeviceSpecificObjects.html#upc-usb-port-capabilities)
 
@@ -169,7 +169,7 @@ According to the ACPI Specifications about [USB Port Capabilities](https://uefi.
 |**0x03**| Type-A connector, USB 2.0 and USB 3.0 combined | USB 3.0, 3.1 and 3.2 ports share the same Type. Usually colored blue (USB 2.0/3.0) or red (USB 3.2)|
 |**0x08**| Type C connector, USB 2.0 only | Mainly used in phones|
 |**0x09**| Type C connector, USB 2.0 and USB 3.0 with Switch | Flipping the device does not change the ACPI port |
-|**0x0A**| Type C connector, USB 2.0 and USB 3.0 w/o Switch |Flipping the device does change the ACPI port. generally seen on USB 3.1/3.2 mainboard headers|
+|**0x0A**| Type C connector, USB 2.0 and USB 3.0 w/o Switch |Flipping the device does change the ACPI port. Generally seen on USB 3.1/3.2 mainboard headers|
 |**0xFF**| Proprietary Connector | For Internal USB 2.0 ports like Bluetooth|
 
 We will use these "Type" bytes to declare the USB Port types.
@@ -177,7 +177,7 @@ We will use these "Type" bytes to declare the USB Port types.
 ### USB Port Names
 As seen earlier, the ports listed in the SSDT have different names.
 
-| Name          | Description            | Protocol          | Speed            |
+| Name          | Description            | Protocol          | Speed            |
 |:-------------:|------------------------|:------------------|-----------------:|
 | **HS01…HS14** | HS = High Speed Ports  | USB 2.0 only      | 480 mbit/s       |
 | **SS01…SS10** | SS = Super Speed Ports | USB 3.0, 3.1, 3.2 | 5 to 20 Gbit/s   |
@@ -194,10 +194,10 @@ At this stage, there are two options for mapping your USB ports.
 - Option B: you don't know which Ports connect to which physical connector so you need to probe them
 
 #### Option A: Mapping ports based on a known configuration
-This is for people who already created a USBPorts.kext in Hackintool or similar and still have the mapping. In my case, I have a Spreadsheet, which looks like this:
+This is for people who already created a `USBPorts.kext` in Hackintool or similar and still have the mapping. In my case, I have a Spreadsheet, which looks like this:
 
 ![Ports_List](https://user-images.githubusercontent.com/76865553/137521950-e354ec4f-aa9c-4a4e-a146-7d9204387c80.png)
-	
+
 As you can see, `HS01` is not used in my case, so we deactivate it. But to keep compatibility with other Operating Systems, we turn it off for macOS only. To achieve this, we use a conditional rule with an "if/else" statement, the method `_OSI` (Operating System Interfaces): `If (_OSI ("Darwin"))`. It tells the system: "If the Darwin Kernel (aka macOS) is loaded, `HS01` does not exist, everybody else can have it". This is a super elegant and non-invasive way of declaring USB Ports without messing up the port mapping for other OSes. This is the code snippet (adjust the scope accordingly):
 
 ![IFOSI](https://user-images.githubusercontent.com/76865553/137521985-96a3620d-b6b3-40ee-b554-ce86078b05d7.png)
@@ -230,7 +230,7 @@ Scope (\_SB.PCI0.XHC.RHUB.HS01)
   		}
 	}   
 ```
-**Example 3**: Port `HS03` deactivated for macOS Only. This utilizes the `If (_OSI ("Darwin"))` switch. This basically tells the system: "If the Darwin Kernel (aka macOS) is running, `HS03` does not exist, everybody else can have it". This is a super elegant and non-invasive way of declaring USB Ports without messing up the port mapping for Windows.
+**Example 3**: Port `HS03` deactivated for macOS Only. This utilizes the `If (_OSI ("Darwin"))` switch. This basically tells the system: "If the Darwin Kernel (aka macOS) is running, `HS03` does not exist, everybody else can have it". It's a super elegant and non-invasive way of declaring USB Ports without messing up the port mapping for Windows.
 
 ```swift
 Scope (HS03)
@@ -260,11 +260,11 @@ Scope (HS03)
 }
 ```
 
-Continue mapping your ports this way: for those which you do use, declare the port type in the packets. For those that you don't use, deactivate them but add an `If (_OSI ("Darwin"))` argument (as shown above). 
+Continue mapping your ports this way: for those which you do use, declare the port type in the packets. For those that you don't use, deactivate them but add an `If (_OSI ("Darwin"))` argument (as shown above).
 
 **Remember**: This SSDT contains 26 ports in total, so you need to deactivate at least 11 in total to stay within the Port limit of 15 for macOS!
 
-Once you reach `USR1` and `USR2`, change `GUPC` to `Zero`, `Zero`. This to deactivates them (if you need these port in Windows, add the `If (_OSI ("Darwin"))` switch.
+Once you reach `USR1` and `USR2`, change `GUPC` to `Zero`, `Zero`. This deactivates them. If you need these port in Windows, add the `If (_OSI ("Darwin"))` switch.
 
 ```swift
 Scope (USR1)
@@ -281,7 +281,7 @@ Scope (USR1)
 }
 ```
 #### OPTION B: Mapping Ports of an unknown configuration
-Option B is for user who don't alread know which internal USB ports connect to which physical port on the front and back I/O panel of their computer and internally. Basically, this works the same as Option A. The only difference is that you need to find out which physical connects to which internal USB Port of your machine.
+Option B is for user who don't already know which internal USB ports connect to which physical port on the front and back I/O panel of their computer and internally. Basically, this works the same as Option A. The only difference is that you need to find out which physical connects to which internal USB Port of your machine.
 
 ##### Gathering information about USB Ports
 The first step is to monitor the Ports, while connecting USB 2 and USB 3 Sticks to them. Take notes of which physical USB port connect to which port internally. You can monitor the Ports use IORegistryExploer for this too, but [Hackintool](https://github.com/headkaze/Hackintool) or Corpnewt's [USBMap](https://github.com/corpnewt/USBMap) are a lot simpler to use:
@@ -292,11 +292,11 @@ The first step is to monitor the Ports, while connecting USB 2 and USB 3 Sticks 
 In this example, the system has more than one USB Controller. For the sake of the Example, we focus on the `XHC` Controller ("HSXX" and "SSXX").
 - Leave the Window open and put in your USB 2 Stick into a port and check which entry turns blue in the list and take notes.
 - Next, put a USB 3.0 stick in the same port and see what turns blue next. Usually, if a physical USB port is blue, it supports USB 2 and 3 Ports. An as far as its routing is concerned, only the Prefix changes when switching between USB 2 and USB3. In other words: if a USB 2 stick is mapped to "HS01", the corresponding USB 3 Port will most likely be "SS01".
-- Continue probing all ports with USB 2/3/C flash drives or devices und you're done.
-- Once you collected all the neccessary data return to "Option A" of the guide to map the ports in ACPI.
+- Continue probing all ports with USB 2/3/C flash drives or devices and you're done.
+- Once you collected all the necessary data return to "Option A" of the guide to map the ports in ACPI.
 
 ### Assigning Physical Location of Device (`_PLD`) 
-This method provides a lot of details about the pysical location of the USB ports themselves. Such as: location, shape, color and a lot of rather uninteresting details for PC users. Here's a long list of some of the available parameters:
+This method provides a lot of details about the physical location of the USB ports themselves. Such as: location, shape, color and a lot of rather uninteresting details for PC users. Here's a long list of available parameters:
 
 ```swift
 Name (_PLD, Package (0x01)  // _PLD: Physical Location of Device
@@ -331,7 +331,7 @@ Name (_PLD, Package (0x01)  // _PLD: Physical Location of Device
         PLD_HorizontalOffset   = 0x0)
 })
 ```
-Among all these rather unnecessary properties, "Ejectable" might be useable. You want to make sure that internally connected USB ports, for Bluetooth for example are not ejectable. Otherwise you have to power cycle (aka reboot) your system. Since modifying `_PLD` won't be covered in this guide, please refer to to the ACPI specifications for [**`_PLD`**](https://uefi.org/specs/ACPI/6.4/06_Device_Configuration/Device_Configuration.html#pld-physical-location-of-device)
+Among all these rather unnecessary properties, "Ejectable" might be useable. You want to make sure that internally connected USB ports, for Bluetooth for example are not ejectable. Otherwise you have to power cycle (aka reboot) your system. Since modifying `_PLD` won't be covered in this guide, please refer to the ACPI specifications for [**`_PLD`**](https://uefi.org/specs/ACPI/6.4/06_Device_Configuration/Device_Configuration.html#pld-physical-location-of-device)
 
 ## Wrapping up and testing
 Once you are done with your port mapping activities, do the following:
@@ -340,9 +340,9 @@ Once you are done with your port mapping activities, do the following:
 - Mount your EFI partition
 - Copy the EFI folder to a FAT32 formatted USB flash drive (for testing)
 - Add the .aml file to the `EFI\CLOVER\ACPI\patched` folder on your flash driver.
-- Reboot from USB flash drive. 
+- Reboot from USB flash drive.
 - Test the ports with macOS and your other Operating systems.
-- If it works, Congrats! 
+- If it works, Congrats!
 - Copy the .aml and your config.plist back to the EFI folder on the hard disk.
 
 Enjoy your properly working USB ports!

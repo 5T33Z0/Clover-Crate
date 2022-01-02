@@ -6,7 +6,7 @@ Clover's previous `AptioMemoryFixes` are incapable of booting/installing macOS 1
 Users who want to stay on macOS Catalina or older should update to [r5123.1](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1) which is the final version with the old aptio memory fixes but contains the long-awaited fix for `TgtBridge` which had been broken for a long time.
 
 ## Who is this Guide for?
-This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. When updating Clover, there are several obstacles along the way, such as removing old memory fixes, drivers and picking the correct settings for newly added "Quirks" section of the `config.plist`. Users who don't want to run macOS Big Sur or newer on there systems don't need to update Clover – although you could, according to the [documentation](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2751618): "New Clover will understand old config.plist. You may not change it."
+This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. When updating Clover, there are several obstacles along the way, such as removing old memory fixes, drivers and picking the correct settings for newly added "Quirks" section of the `config.plist`. Users who don't want to run macOS Big Sur or newer on their systems don't need to update Clover – although you could, according to the [documentation](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2751618): "New Clover will understand old config.plist. You may not change it."
 
 ## Problem Description
 If you just update your existing "old" Clover EFI by installing the latest `Clover.pkg` like you used to, this will most likely result in an inoperable bootloader due to missing boot parameters in the `config.plist` as well as residual files from the "old" Clover version which need to be removed first.
@@ -26,13 +26,13 @@ The following drivers are no longer necessary and have to either be deleted when
 **`SMCHelper.efi`** | Only required when using `FakeSMC.kext`. If you use it in combination with `VirtualSMC.efi`, it can cause instant Kernel Panics. In other words: FakeSMC.kext + SMCHelper.efi = <span style="color:green">good</span>, VirtualSMC.kext + VirtualSMC.efi = <span style="color:green">good</span>; any other combination of the two: <span style="color:red">bad</span>. Nowadays, using VirtualSMC.kext alone is sufficient and recommended.| Delete
 
 ### Checking and Updating Kexts
-Outdated, incompatible and/or duplicate Kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use Kext-Updater to download the latest kexts and other Bootloader-related files.
+Outdated, incompatible and/or duplicate kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use Kext-Updater to download the latest kexts and other Bootloader-related files.
 
-If you are using a lot of Kexts (usually on Notebooks), have a look inside of them (right-click and select "Show package contents") to check if they include additional kexts (as "Plugins") and make sure that no duplicates exist in the "kexts" folder – Kexts for HID, WiFi and Bluetooth come to mind.
+If you are using a lot of kexts (usually on Notebooks), have a look inside of them (right-click and select "Show package contents") to check if they include additional kexts (as "Plugins") and make sure that no duplicates exist in the "kexts" folder – kexts for HID, WiFi and Bluetooth come to mind.
 
-If you get panics you can not isolate, move all non-essential kexts to the "Off" folder temporarily to work around the issue by starting with a minimal set of Kexts to get the system running. Once it runs, put the disabled Kexts back one at a time, reboot, and repeat until you to find the culprit for the panic and look for a solution (verbose mode is your friend). 
+If you get panics you can not isolate, move all non-essential kexts to the "Off" folder temporarily to work around the issue by starting with a minimal set of kexts to get the system running. Once it runs, put the disabled kexts back one at a time, reboot, and repeat until you to find the culprit for the panic and look for a solution (verbose mode is your friend).
 
-Here are some examples of Kexts I've experienced issues with when updating:
+Here are some examples of kexts I've experienced issues with when updating:
 
 - **VoodooPS2Controller.kext**: can cause Kernel Panic if one of its Plugins (VoodooInput.kext, VoodooPS2Mouse.kext, VoodooPS2Trackpad.kext and VoodooPS2Keyboard.kext) is also present at the root level of the "kexts" Folder.
 - **AirportBrcmFixup.kext**: this Kext contains 2 Plugins, `AirPortBrcm4360_Injector` and `AirPortBrcmNIC_Injector.kext`. When using AirPortBrcmFixup, you are supposed to use only one of these plugins, not both! Using both can cause the boot process to stall indefinitely. On top of that, `AirPortBrcm4360_Injector` is not supported by macOS Big Sur and has to be disabled anyway. In OpenCore, you can just disable a Kext in the config. Since the Clover config does not support to take control of the kext loading sequence, you have to delete it from the Kext itself (right click on AirportBrcmFixup, select "Show package contents" > "Plugins").
@@ -59,14 +59,14 @@ Files tagged gray are in there by default and are most likely unnecessary for UE
 	- **config.plist**
 8. Run Clover Configurator and update it to the latest Version. It should now include a new section at the bottom called `Quirks`.
 9. Open your `config.plist`
-10. Click on "Quirks". It should look like this (in the latest version of Clover Configurator, the Quirks section is devided into "Booter" and "Kernel" sections for better overview):
+10. Click on "Quirks". It should look like this (in the latest version of Clover Configurator, the Quirks section is divided into "Booter" and "Kernel" sections for better overview):
 ![](https://user-images.githubusercontent.com/76865553/135844035-1689a11a-6512-4008-80ea-e89f07a55367.png)
 11. Head over to the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/prerequisites.html) and pick the guide for your CPU Family and Platform.
 12. Jump to the "Booter" Section. It contains all required Booter Quirks tinted green in the screenshot. Make sure to unfold the "more in-depth info" box to see what they do. Find the options for your system and tick them away in Clover Configurator.
 13. Next, jump to the "Kernel" section of Dortania's guide and copy over the settings from "Quirks" and "Scheme". Again, make sure to unfold the "more in-depth" section to find all necessary settings.</br> 
 	**NOTE**: some of the OpenCore "Kernel Quirks" have different names and are located in the "Kernel and Kext Patches" section of Clover Configurator. In most cases you have the correct settings enabled already, otherwise your system wouldn't have started before. But it's good to double check if you have settings enabled which may be unnecessary. These include: ![](https://user-images.githubusercontent.com/76865553/135859628-34f6be51-7a20-4461-900e-0c72fbdcba51.png)</br>
-14. Finally, you can delete all the deprecated USB Port Limit Patches from your config since this can by handled by `XhciPortLimit` Quirk (for macOS ≥ Catalina you will need a USBPort.kext).
-15. Once you've ticked all the necessary quirks, save your configuration.
+14. Finally, you can delete all the deprecated USB Port Limit Patches from your config since this is handled by the `XhciPortLimit` Quirk (for macOS ≥ Catalina you will need a `USBPort.kext` instead).
+15. Once you've ticked all the necessary quirks, save your configuration file.
 
 ### Validating config.plist and fixing errors
 
@@ -85,14 +85,14 @@ Starting from version r5134, Clover now includes error reporting similar to Open
 ### Testing your (new) config
 
 - Copy the new EFI Folder to the root of your USB Flash Drive and try booting from it.
-- In the Clover Boot menu, perform an NVRAM Reset (F11) to clean out possible remnants of previous Aptio Memory Fixes 
+- In the Clover Boot menu, perform an NVRAM Reset (F11) to clean out possible remnants of previous Aptio Memory Fixes
 - Reboot again and then start macOS.
 
 If it does boot, you can mount the ESP partition of your hard drive, backup your old EFI Folder, delete it and put in the one from your USB Flash drive to make the changes permanent.
 
-## Further Resources and Troubleshooting:
+## Further Resources and Troubleshooting
 
-- Clover Config Guide (up to Coffeelake, excluding Quirks): [**Hackintosh Vanilla Desktop Guide**](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)
+- Clover Config Guide (up to Coffee Lake, excluding Quirks): [**Hackintosh Vanilla Desktop Guide**](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)
 - To find out more about how OpenCore differs from Clover and see which settings, drivers and features are compatible, check out the [**Clover Conversion Guide**](https://github.com/dortania/OpenCore-Install-Guide/tree/master/clover-conversion).
 - [**Clover Changelog**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/)
 - If you get Kernel Panics: head over to the [**OpenCore Troubleshooting Guide**](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/troubleshooting.html) and have a look at the "OpenCore Boot issues" and "Kernelspace Issues" sections to find your error message and possible fixes to resolve it.
@@ -104,4 +104,4 @@ Good luck!
 **NOTES**
 
 - For Big Sur and newer, remove the PreBoot Volume from the "Hide" Section of the GUI because macOS requires it for booting!
-- Even if you don't want to upgrade macOS past Catalina, an upgrade to the new Clover is recommended since kext injection via Open Runtime is cleaner and you have much more control over the applied memory fixes. The system also boots faster.
+- Even if you don't want to upgrade macOS past Catalina, an upgrade to the new Clover is recommended since kext injection via Open Runtime is cleaner, and you have much more control over the applied memory fixes. The system also boots faster.

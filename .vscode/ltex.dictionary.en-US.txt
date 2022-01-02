@@ -30,3 +30,6 @@ AppleID
 aml
 VirtualSMC
 Hackintosh
+Dmazar
+Booter
+PreBoot
