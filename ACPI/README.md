@@ -465,4 +465,4 @@ Advanced Hackers can use a binary rename to fix it (not covered here).
 Here you can specify the name of your **patched** custom DSDT if it is called something other than `DSDT.aml`, so that Clover picks it up and applies it.
 
 ## NOTES
-To delve deeper into how each of this `DSDT` patches and fixes is realized in code, you can refer to the [source code](https://github.com/CloverHackyColor/CloverBootloader/blob/81f2b91b1552a4387abaa2c48a210c63d5b6233c/rEFIt_UEFI/Platform/FixBiosDsdt.cpp) 
+If you are eager to find out how each of these `DSDT` patches and fixes is realized, you can delve deep into the [source code](https://github.com/CloverHackyColor/CloverBootloader/blob/81f2b91b1552a4387abaa2c48a210c63d5b6233c/rEFIt_UEFI/Platform/FixBiosDsdt.cpp).
