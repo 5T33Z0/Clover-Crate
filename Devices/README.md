@@ -34,10 +34,10 @@ A group of parameters for masking your devices as natively supported ones by mac
 Injects USB properties if enabled. Leave disabled if you want to inject them yourself via `Properties`.
 
 ### Add ClockID
-Enable to prevent the USB controller from waking the system involuntarily. If you want to wake the system via USB mouse, disable it. But be prepared that your computer will wake up spontaneously, e.g. from built-in camera, etc.
+Enable to prevent the USB controller from waking the system involuntarily. If you want to wake the system via USB mouse, disable it. But be prepared that your computer will wake up spontaneously, e.g. from a built-in camera, etc.
 
 ### FixOwnership
-In order for the USB controller to work in macOS, it has to be disconnected from the BIOS first, before the Darwin kernel is started. Since this is only required for legacy boot, this option is disabled by default – it is not required for UEFI boot.
+In order for the USB controller to work in macOS, it has to be disconnected from the BIOS first, before the Darwin kernel is started. Since this is only required for legacy boot, this option is disabled by default – it is not required for UEFI boot. But there are cases where it benefits laptops booting UEFI. For Desktops PCs it's usually not needed since most Desktops can enable XHCI/EHCI handoff in BIOS.
 
 ### HighCurrent
 Increases current on this USB controller to charge Devices – disabled by default.
