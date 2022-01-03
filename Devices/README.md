@@ -71,6 +71,7 @@ In general, using the `Properties` tab (next to the `Arbitrary` tab) is the reco
 ![AddProperties1](https://user-images.githubusercontent.com/76865553/136595982-7a5af1ab-bd37-489c-864b-4a7d9d41be29.png)
 
 Adding entries to this list creates an `<Array>` `AddProperties` and a `<Dictionary>` for the listed device. This is how the actual structure of the array looks like when viewed with a Plist Editor:
+
 ![AddProperties2](https://user-images.githubusercontent.com/76865553/136596168-ef38a5a9-e768-4ccd-805f-c5c4297435fb.png)
 
 The value has to be entered either as a `<data>` or a `hex string`. So instead of alphanumerical values (ABC...) you have to use hex (0x414243). Convert via Plist Editor or Xcode. The first Device key determines which device this property will be added to.
