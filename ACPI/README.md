@@ -152,9 +152,17 @@ Some clarification: the Comment Field not only serves as a reminder what the pat
 
 Prior to revision 5123.1, `TgtBridge` had a bug, where it would not only rename matches found in the DSDT but also in OEM SSDTs as well which was not intended to happen.
 
-## Fixes [1]
+## DSDT Fixes [1]
 
 ![Bildschirmfoto 2021-05-16 um 07 28 34](https://user-images.githubusercontent.com/76865553/135732689-dd1271db-f11d-468b-a57e-576bcf7f7d76.png)
+
+The `DSDT` is part of the ACPI tables provided by your mainboard's BIOS. It is the largest and most complex ACPI table and describes devices and methods of accessing them. Access methods can contain arithmetic and logical expressions. To correct this table manually, profound knowledge of programming in the ACPI Source Language (ASL) is mandatory. 
+
+Fortunately, Clover provides about 30 automated, selectable `Fixes`, which can be applied to the DSDT on the fly during boot to correct a lot of common prolems which need to be fixed before macOS is happy with the provided DSDT. This method is not as clean as addressing every issue via a SSDT hotpatch (like OpenCore requires), but it's an easily accessible approach to fix your DSDT.
+
+Listed below are the included `Fixes` provided by Clover and what they do. Note that these fixes have been accumulated over the years – some of them might be deprecated nowadays. Remember: just because a fix is there, it doesn't mean that you need it and that it still works with current versions of macOS!
+
+Take a look at the [**Desktop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) or [**Laptop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) configs section to get a feel for fixes that are still relevant in 2022 before getting all click-happy and just randomly enable every available fix! The `config-sample.plist` that comes with the clover package is a complete mess in this regard and should not be used as base template for building your own config at all! 
 
 ### AddDTGP
 
@@ -213,6 +221,7 @@ Fixes some problems with SATA, and removes the yellowness of disk icons in the s
 ### FixSBus
 
 Adds the System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep. To check if the SBUS is working correctly, enter `kextstat | grep -E "AppleSMBusController|AppleSMBusPCI"` in terminal. If the Terminal output contains the following 2 drivers, your SMBus is working correctly: `com.apple.driver.AppleSMBusPCI` and `com.apple.driver.AppleSMBusController`
+
 ### FixShutdown
 
 A condition is added to the `_PTS` (prepare to sleep) method: if argument = 5 (shutdown), then no other action is required. Strange, why? Nevertheless, there is repeated confirmation of the effectiveness of this patch for ASUS boards, maybe for others, too. Some `DSDT` already have such a check, in which case such a fix should be disabled. If `SuspendOverride` = `true` is set in the config, then this fix will be extended by arguments 3 and 4. That is, going to sleep (Suspend). On the other hand, if `HaltEnabler` = `true`, then this patch is probably no longer needed.
@@ -221,7 +230,7 @@ A condition is added to the `_PTS` (prepare to sleep) method: if argument = 5 (s
 
 Attempts to solve numerous USB problems. For the `XHCI` controller, when using the native or patched `IOUSBFamily.kext`, such a `DSDT` patch is indispensable. The Apple driver specifically uses ACPI, and the DSDT must be spelled correctly. This makes sure that there are no conflict with strings in the `DSDT`.
 
-## Fixes [2]
+## DSDT Fixes [2]
 
 ![Bildschirmfoto 2021-05-16 um 08 04 15](https://user-images.githubusercontent.com/76865553/135732698-6ead0af4-304c-4570-a407-aaafb70506f2.png)
 
@@ -465,5 +474,6 @@ Advanced Hackers can use a binary rename to fix it (not covered here).
 Here you can specify the name of your **patched** custom DSDT if it is called something other than `DSDT.aml`, so that Clover picks it up and applies it.
 
 ## Resources
+- Hackintosh Vanilla Guide. 
 - ASL Tutorial ([PDF](https://acpica.org/sites/acpica/files/asl_tutorial_v20190625.pdf)). Good starting point if you want to get into fixing your `DSDT` with `SSDT` hotpatches.
 - If you are eager to find out how each of the automated `DSDT` patches and fixes in this sections are realized, you can delve deep into the [source code](https://github.com/CloverHackyColor/CloverBootloader/blob/81f2b91b1552a4387abaa2c48a210c63d5b6233c/rEFIt_UEFI/Platform/FixBiosDsdt.cpp).
