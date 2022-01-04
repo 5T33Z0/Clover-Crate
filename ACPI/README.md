@@ -152,7 +152,7 @@ Some clarification: the Comment Field not only serves as a reminder what the pat
 
 Prior to revision 5123.1, `TgtBridge` had a bug, where it would not only rename matches found in the DSDT but also in OEM SSDTs as well which was not intended to happen.
 
-## DSDT Fixes [1]
+## Fixes [1]
 
 ![Bildschirmfoto 2021-05-16 um 07 28 34](https://user-images.githubusercontent.com/76865553/135732689-dd1271db-f11d-468b-a57e-576bcf7f7d76.png)
 
@@ -230,7 +230,7 @@ A condition is added to the `_PTS` (prepare to sleep) method: if argument = 5 (s
 
 Attempts to solve numerous USB problems. For the `XHCI` controller, when using the native or patched `IOUSBFamily.kext`, such a `DSDT` patch is indispensable. The Apple driver specifically uses ACPI, and the DSDT must be spelled correctly. This makes sure that there are no conflict with strings in the `DSDT`.
 
-## DSDT Fixes [2]
+## Fixes [2]
 
 ![Bildschirmfoto 2021-05-16 um 08 04 15](https://user-images.githubusercontent.com/76865553/135732698-6ead0af4-304c-4570-a407-aaafb70506f2.png)
 
