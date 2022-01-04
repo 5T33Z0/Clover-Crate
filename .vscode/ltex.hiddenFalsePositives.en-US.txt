@@ -1,3 +1,0 @@
-{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe difference is clear: on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset.\\E$"}
-{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QSee the documentation for your mainboard to find out which CODEC is used and then check the list of supported CODECS to pick the correct Layout-ID.\\E$"}
-{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QEDID\nExtended Display Identification Data (EDID) is a metadata format for display devices to describe their capabilities to a video source (e.g. graphics card).\\E$"}
