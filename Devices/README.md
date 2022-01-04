@@ -40,7 +40,7 @@ Enable to prevent the USB controller from waking the system involuntarily. If yo
 In order for the USB controller to work in macOS, it has to be disconnected from the BIOS first, before the Darwin kernel is started. Since this is only required for legacy boot, this option is disabled by default – it is not required for UEFI boot. But there are cases where it benefits laptops booting UEFI. For Desktops PCs it's usually not needed since most Desktops can enable XHCI/EHCI handoff in BIOS.
 
 ### HighCurrent
-Increases current on this USB controller to charge Devices – disabled by default.
+Increases current on a USB controller to charge devices – disabled by default. Irrelevant for macOS 10.11 and newer. For Skylake and newer CPUs, add SSDT-USBX instead (usually integrated in [SSDT-EC-USB](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/Embedded_Controller_(SSDT-EC))).
 
 ### NameEH00
 No information available in documentation.
