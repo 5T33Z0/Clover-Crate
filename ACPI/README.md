@@ -35,7 +35,7 @@ Whether you have a problem with tables or not, it's safe to enable this fix. It 
 
 The `MCFG` (Memory Mapped Configuration Table) describes the location of the PCI Express configuration space, and this table will be present in a firmware implementation compliant to this specification version 3.0 (or later). Helpful when using a MacBook or MacBookPro SMBIOS. The author of the patch is vit9696.
 
-If `FixMCFG` is enabled, the MCFG table will be corrected. However, discarding this table is also possible with the "Drop Tables" feature.
+If `FixMCFG` is enabled, the MCFG table will be corrected. However, discarding this table is also possible using the "Drop Tables" feature.
 
 ## Halt Enabler
 
