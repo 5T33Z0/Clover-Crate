@@ -86,7 +86,7 @@ Following are examples of commonly renamed devices:
 |:----------------| :----------------:| -----------------------|
 | EC              | EC0               | Embedded Controller
 | EHC1            | EH01              | USB Controller
-| EHC2            | EH02              | USB COntroller
+| EHC2            | EH02              | USB Controller
 | LPC             | LPCB              | LPC Bus
 | SAT1            | SATA              | SATA Drive
 | XHCI            | XHC               | USB Controller
@@ -98,14 +98,14 @@ Following are examples of commonly renamed devices:
 
 **II. Binary Renames in Detail**
 
-**Prerequisites**: In order to apply these renames correctly, you need a dump of your System's `DSDT`! 
+**Prerequisites**: In order to apply these renames correctly, you need a dump of your System's `DSDT`!
 
-Names like `_DSM` with and underscore in front of them define a method. These are usually renamed by replacing the `_` with an `X` (like `XDSM`) which basically disables the method (`XDSM`), so a different or custom method can be applied.
+Names like `_DSM` with and underscore in front of them define a method. These are usually renamed by replacing the `_` with a `X` (like `XDSM`) which basically disables the method (`XDSM`), so a different or custom method can be applied.
 
 | #  | Rename      | Description                      |
 |:--:| :---------: | -------------------------------- |
 | 01 | _DSM to XDSM| Other Patch Requirements         |
-| 02 | LPC to LPCB |In `DSDT`, search for `0x001F0000`.</br> 1: If the device name is already `LPCB`, there is no need to change the name.</br> 2: If there are multiple matches for `0x001F0000`, carefully determine whether this name change is needed or not </br>3:If ACPI includes an `ECDT.aml`, check "About ECDT correction method|
+| 02 | LPC to LPCB |In `DSDT`, search for `0x001F0000`.</br> 1: If the device name is already `LPCB`, there is no need to change the name.</br> 2: If there are multiple matches for `0x001F0000`, carefully determine whether this name change is needed or not </br>3:If ACPI includes an `ECDT.aml`, check "About `ECDT` correction method|
 | 03 | EC to EC0   | Changes name of Embedded Controller. In DSDT, check the device belonging to `PNP0C09`.</br>1:If the device name is already `EC0`, no renaming is required </br>2:If there are multiple matches for `0PNP0C09`, confirm the real `EC` name </br>3:If ACPI package includes `ECDT.aml`, see "About ECDT and how to fix it"|.|
 |04|H_EC to EC0|Same as EC|
 |05|ECDV to EC0(dell)|Same as EC|
@@ -130,13 +130,13 @@ To use this section properly, you need a dump the unmodified `DSDT` and examine 
 
 ![Rename Devices](https://user-images.githubusercontent.com/76865553/135732661-ba636a72-9490-4c6f-a018-bdede3752fa6.jpg)
 
-As you can see, the device exists and is located in `\SB_PCI0_EHC1` of the `DSDT`. Next, we tell Clover Configurator to replace the actual device name with `EH01` by adding it in the `Rename Device` field. After the patch is applied on the fly during boot, the device name and it's dependencies have been changed:
+As you can see, the device exists and is located in `\SB_PCI0_EHC1` of the `DSDT`. Next, we tell Clover Configurator to replace the actual device name with `EH01` by adding it in the `Rename Device` field. After the patch is applied on the fly during boot, the device name and its dependencies have been changed:
 
 ![DSDT_patched](https://user-images.githubusercontent.com/76865553/135732669-9ac77cf7-5c5f-41a0-b98f-0ae1453411dc.png)
 
 ### TgtBridge
 
-The `TgtBridge` is a field/function inside the `ACPI > DSDT > Patches` section of the Clover `config.plist`. It's purpose is to limit the scope of binary renames to only work within a pre-defined section/area of the `DSDT`.
+The `TgtBridge` is a field/function inside the `ACPI > DSDT > Patches` section of the Clover `config.plist`. Its purpose is to limit the scope of binary renames to only work within a pre-defined section/area of the `DSDT`.
 
 For example: renaming the method `_STA`to `_XSTA` in device `GPI0`:
 
@@ -144,11 +144,11 @@ For example: renaming the method `_STA`to `_XSTA` in device `GPI0`:
 
 As shown in the example, the name of the original Method `_STA` (pink) is converted to  hex (`5F535441`), so Clover can find it in the `DSDT`. If it finds this value it is then replaced by `58535441` (blue), which is the hex equivalent of the term `XSTA` (blue). If set like this, this patch would change *any* appearance ot the term `_STA` in the whole of the `DSDT` to `XSTA` which probably would break the system. To avoid this, you can use `TgtBridge` to specify and limit the matches of this patch to a specified name/device/method/area, in this case to the device `GPI0` (Cyan). Basically, you tell Clover: "look in `GPI0`and and if the method `_STA` is present, rename it to `XSTA` but leave the rest of the `DSDT` alone!"
 
-Which values to use in `TgtBridge` is up to you, if you know what to do. If string lengths do not match, Clover will correctly account for the length change, with one exception: make sure it doesn't happen inside an "If" or "Else" statement. If you need such a change, replace the entire operator. 
+Which values to use in `TgtBridge` is up to you, if you know what to do. If string lengths do not match, Clover will correctly account for the length change, with one exception: make sure it doesn't happen inside an "If" or "Else" statement. If you need such a change, replace the entire operator.
 
 Some clarification: the Comment Field not only serves as a reminder what the patch is about, but is also used in the Clover Boot Menu to enable/disable these patches. The initial value for `ON` or `OFF` is determined by the `Disabled` lines in the `config.plist`. The default value is `Disabled=false`. If you use someone else's set of patches, it is better to set them to `Disabled=true` and then enable them from the Boot menu one by one.
 
-**NOTE**: TgtBridge Bug (fixed since Clover r5123.1) 
+**NOTE**: TgtBridge Bug (fixed since Clover r5123.1)
 
 Prior to revision 5123.1, `TgtBridge` had a bug, where it would not only rename matches found in the DSDT but also in OEM SSDTs as well which was not intended to happen.
 
@@ -156,9 +156,9 @@ Prior to revision 5123.1, `TgtBridge` had a bug, where it would not only rename 
 
 ![Bildschirmfoto 2021-05-16 um 07 28 34](https://user-images.githubusercontent.com/76865553/135732689-dd1271db-f11d-468b-a57e-576bcf7f7d76.png)
 
-The `DSDT` (Differentiated System Description Table) is part of the ACPI tables provided by your mainboard's BIOS. It is the largest and most complex ACPI table and describes devices and methods of accessing them. Access methods can contain arithmetic and logical expressions. To correct this table manually, profound knowledge of programming in the ACPI Source Language (ASL) is mandatory. 
+The `DSDT` (Differentiated System Description Table) is part of the ACPI tables provided by your mainboard's BIOS. It is the largest and most complex ACPI table and describes devices and methods of accessing them. Access methods can contain arithmetic and logical expressions. To correct this table manually, profound knowledge of programming in the ACPI Source Language (ASL) is mandatory.
 
-Fortunately, Clover provides about 30 automated, selectable `Fixes`, which can be applied to the DSDT on the fly during boot to add/rename devices or fix common prolems which need to be addressed before macOS is happy with the provided DSDT. This method is not as clean as patching every issue via a SSDT (like OpenCore requires), but it's an easily accessible and valid approach to fix your DSDT.
+Fortunately, Clover provides about 30 automated, selectable `Fixes`, which can be applied to the DSDT on the fly during boot to add/rename devices or fix common problems which need to be addressed before macOS is happy with the provided DSDT. This method is not as clean as patching every issue via a SSDT (like OpenCore requires), but it's an easily accessible and valid approach to fix your DSDT.
 
 Listed below are the included `Fixes` provided by Clover and what they do. Note that these fixes have been accumulated over the years – some of them might be deprecated nowadays. Remember: just because a fix is available, it doesn't mean that you need it or that it still works with current versions of macOS. The `config-sample.plist` included in the Clover package is a complete mess in this regard and should not be used as a base template for building your own config at all!
 
@@ -174,7 +174,7 @@ In addition to the `DeviceProperties`, there is also a Device Specific Method (`
 
 ### AddMCHC
 
-Adds MCHC device which is related to the Memory Controller and is sually combined with `FixSBUS` to get the System Management Bus Controller working. In general, a device of the `0x060000` class is absent in the DSDT, but for some chipsets this device is serviceable, and therefore it must be attached to I/O Reg in order to properly wire the power management of the PCI bus. 
+Adds MCHC device which is related to the Memory Controller and is usually combined with `FixSBUS` to get the System Management Bus Controller working. In general, a device of the `0x060000` class is absent in the DSDT, but for some chipsets this device is serviceable, and therefore it must be attached to I/O Reg in order to properly wire the power management of the PCI bus.
 
 ### FixAirport
 
@@ -188,10 +188,10 @@ Mimics Windows XP under Darwin OS. Many sleep and brightness problems stem from 
 
 Produces a number of video card patches for non-Intel video cards (Intel on-board graphics require different fixes):
 
-- Injects properties and the devices themselves (if not present). 
+- Injects properties and the devices themselves (if not present).
 - Can inject a FakeID. If a FakeID parameter is specified, then it will be injected through the `_DSM` method.
-- Adds custom properties. 
-- Adds an `HDAU` device for audio output via HDMI. 
+- Adds custom properties.
+- Adds an `HDAU` device for audio output via HDMI.
 
 ### FixFirewire
 
@@ -199,7 +199,7 @@ Adds the "fwhub" property to the Firewire controller, if present. If not, then n
 
 ### FixHDA
 
-Correction of the description of the sound card in the `DSDT` so that the native AppleHDA driver works. Renaming `AZAL` to `HDEF` is performed, `layout-id` and `PinConfiguration` are injected. Obsolete nowadays, since `AppleALC.kext` handles this (in combination with the correct `layout-id` entered in the `Devices` section).
+Corrects the description of the sound card in the `DSDT` so that the native AppleHDA driver works. Renaming `AZAL` to `HDEF` is performed, `layout-id` and `PinConfiguration` are injected. Obsolete nowadays, since `AppleALC.kext` handles this (in combination with the correct `layout-id` added in the `Devices` section).
 
 ### FixHPET
 
@@ -211,18 +211,19 @@ In macOS 10.6.1, there was a panic on the `AppleIntelPIIXATA.kext`. Two solution
 
 ### FixIPIC
 
-Removes the interrupt from the `IPIC` device. Fixes the Power Button functionality, so holding the it for a few seconds opens up a dialog window with option to Reset, Sleep, or Shutdown the computer.
+Removes the interrupt from the `IPIC` device. Fixes the Power Button functionality, so holding it for a few seconds opens up a dialog window with option to Reset, Sleep, or Shutdown the computer.
 
 ### FixLAN
-Injection of the "built-in" property for the network card is necessary for correct operation. Also a card model is injected - for cosmetics.
+
+Injection of the "built-in" property for the network card is necessary for correct operation. Also, a card model is injected - for cosmetics.
 
 ### FixSATA
 
-Fixes some problems with SATA, and removes the yellowness of disk icons in the system by mimicry under ICH6. Actually a controversial method, however, without this fix, my DVDs will not play, and for a DVD the drive should not be removable. Those. just replacing the icon is not an option! There is an alternative, solved by adding a fix with the `AppleAHCIport.kext`. See the chapter on patching kexts. And, accordingly, this bit can be omitted! One of the few bits I recommend not to use.
+Fixes some SATA issues and removes the yellow disk icon which indicated that an external disk is used when in fact it's connected internally. This is a controversial fix and not recommended. But in some cases DVD drives (remember those?) won't play back DVDs. Alternatively, this could be resolved by adding `AppleAHCIport.kext`.
 
 ### FixSBus
 
-Adds the System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep. To check if the SBUS is working correctly, enter `kextstat | grep -E "AppleSMBusController|AppleSMBusPCI"` in terminal. If the Terminal output contains the following 2 drivers, your SMBus is working correctly: `com.apple.driver.AppleSMBusPCI` and `com.apple.driver.AppleSMBusController`
+Adds System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep. To check if the SBUS is working correctly, enter `kextstat | grep -E "AppleSMBusController|AppleSMBusPCI"` in terminal. If the Terminal output contains the following 2 drivers, your SMBus is working correctly: `com.apple.driver.AppleSMBusPCI` and `com.apple.driver.AppleSMBusController`
 
 ### FixShutdown
 
@@ -237,12 +238,14 @@ Attempts to solve numerous USB problems. For the `XHCI` controller, when using t
 ![Bildschirmfoto 2021-05-16 um 08 04 15](https://user-images.githubusercontent.com/76865553/135732698-6ead0af4-304c-4570-a407-aaafb70506f2.png)
 
 ### AddHDMI
-Adds an `HDAU` audio device to the `DSDT` that matches the HDMI output of ATI and Nvidia video cards to enable audio over HDMI. Since the GPU was bought separately from the motherboard, there simply is no such device in the native DSDT. Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device:
 
-* `1` if `UseIntelHDMI` = false
-* `2` if there is an Intel port that occupies port 1.
+Adds a `HDAU` audio device to the `DSDT` that matches the HDMI output of ATI and Nvidia video cards to enable audio over HDMI. Since the GPU was bought separately from the motherboard, there simply is no such device in the native DSDT. Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device:
+
+- `1` if `UseIntelHDMI` = false
+- `2` if there is an Intel port that occupies port 1.
 
 ### AddIMEI
+
 Adds Intel Management Engine (IMEI) device to the device tree, if it does not exist in the `DSDT`. IMEI is required for proper hardware video decoding on Intel iGPUs. Adding IMEI is only required in two cases:
 
 - Sandy Bridge CPUs running on 7-series mainboards or
@@ -254,11 +257,11 @@ Inserts a PNLF (Backlight) device, which is necessary to properly control the sc
 
 ### PNLF_UID
 
-There are several sample brightness curves/graphs in the system and they have different UIDs. If some realtor used that curve, that doesn't mean that you will have the same brightness with the same processor. It depends on the panel – not the processor. Generally speaking, using an `SSDT-PNLF.aml` is suggested. You can find one in the Samples Folder of the OpenCore Package.
+There are several sample brightness curves/graphs in the system, and they have different UIDs. If some realtor used that curve, that doesn't mean that you will have the same brightness with the same processor. It depends on the panel – not the processor. Generally speaking, using `SSDT-PNLF.aml` is recommended. You can find one in the Samples Folder of the OpenCore Package.
 
 ### DeleteUnused
 
-Removes unused floppy, CRT and DVI devices - a necessity for getting the Intel GMA X3100 to work on Dell Laptops. Otherwise you'll get a black screen. Tested by hundreds of users.
+Removes unused floppy, CRT and DVI devices - a necessity for getting the Intel GMA X3100 to work on Dell Laptops. Otherwise, you'll get a black screen. Tested by hundreds of users.
 
 ### FakeLPC
 
@@ -266,7 +269,7 @@ Replaces the DeviceID of the LPC controller so that the AppleLPC kext is attache
 
 ### FixACST
 
-Some DSDTs can have a device, method or variable named `ACST`, but this name is also used by macOS 10.8+ to control C-States! 
+Some DSDTs can have a device, method or variable named `ACST`, but this name is also used by macOS 10.8+ to control C-States!
 
 As a result, a completely implicit conflict with very unclear behavior can occur. This fix renames all occurrences of `ACST` to `OCST` which is safe. But check your DSDT first: search for `ACST` and check if it refers to Device `AC` and Method `_PSR`(_PSR: PowerSource) in some kind of way.
 
@@ -284,7 +287,7 @@ Patch for Intel integrated graphics is separated from the rest of the graphics c
 
 ### FixMutex
 
-This patch finds all Mutex objects and replaces `SyncLevel` with `0`. We use this patch because macOS does not support proper Mutex debugging and will break on any inquiry with Mutex that has a nonzero SyncLevel. Nonzero SyncLevel Mutex objects are one of the common causes of ACPI battery method failure. Added by Rehabman in revisions r4265 to r4346.
+This patch finds all Mutex objects and replaces `SyncLevel` with `0`. We use this patch because macOS does not support proper Mutex debugging and will break on any inquiry with Mutex that has a nonzero SyncLevel. Nonzero SyncLevel Mutex objects are one of the common causes of ACPI battery method failure. Added by RehabMan in revisions r4265 to r4346.
 
 For example, in Lenovo u430 mutexes are declared like this:
 
@@ -301,9 +304,9 @@ This is a very controversial patch. Use it only if you are fully aware of what y
 This is a very special patch. While other patches in this section are designed to fix `BIOS.aml` in order to create a good custom DSDT from scratch, this fix is designed for tuning an existing custom `DSDT.aml`.
 
 The DSDT has regions that have their own addresses, such as:
-`OperationRegion` (GNVS, SystemMemory, 0xDE6A5E18, 0x01CD). The problem is that this region address is created *dynamically* by the BIOS and it can be different from boot to boot. This was first noticed when changing the total amount of memory, then when changing BIOS settings, and on my computer it even depends on the pre-boot history, such as the amount of occupied NVRAM. Clearly, in the custom `DSDT.aml` this number is fixed, and therefore may not be true. The simplest observation is the lack of sleep. After fixing a region, sleep appears, but only until the next offset. This fix fixes all regions in the custom DSDT to values in the BIOS DSDT, and thus the mask
+`OperationRegion` (GNVS, SystemMemory, 0xDE6A5E18, 0x01CD). The problem is that this region address is created *dynamically* by the BIOS, and it can be different from boot to boot. This was first noticed when changing the total amount of memory, then when changing BIOS settings, and on my computer it even depends on the pre-boot history, such as the amount of occupied NVRAM. Clearly, in the custom `DSDT.aml` this number is fixed, and therefore may not be true. The simplest observation is the lack of sleep. After fixing a region, sleep appears, but only until the next offset. This fix fixes all regions in the custom DSDT to values in the BIOS DSDT, and thus the mask
 
-```swift 
+```swift
 <key>Fixes</key>
 <dict>
 	<key>FixRegions</key>
@@ -313,11 +316,11 @@ The DSDT has regions that have their own addresses, such as:
 is sufficient if you have a well-made custom `DSDT` with all the fixes. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it to the ACPI Section was inappropriate.
 
 ### FixRTC
-Removes interrupt from device `_RTC`. It's a required fix and it is very strange that someone would not enable it. If there is no interrupt in the original, then this patch won't cause any harm. However, the question arose about the need to edit the length of the region. To avoid clearing `CMOS`, you need to set the length to `2`, but at the same time a phrase like `"…only single bank…"` appears in the Kernel Log.
+Removes interrupt from device `_RTC`. It's a required fix, and it is very strange that someone would not enable it. If there is no interrupt in the original, then this patch won't cause any harm. However, the question arose about the need to edit the length of the region. To avoid clearing `CMOS`, you need to set the length to `2`, but at the same time a phrase like `"…only single bank…"` appears in the Kernel Log.
 
 I do not know what is wrong with this message, but it can be excluded if the length is set to 8 bytes by using the Fix `Rtc8Allowed`:
 
-```swift 
+```swift
 <key>ACPI</key>
 <dict>
 	<key>DSDT</key>
@@ -326,9 +329,8 @@ I do not know what is wrong with this message, but it can be excluded if the len
 	<false/>
 </dict>
 ```
-
-* `true` - the length of the region will remain 8 bytes, if there was one,
-* `false` - will be corrected by 2 bytes, which more reliably prevents the CMOS from being reset.
+- `true` - the length of the region will remain 8 bytes, if there was one,
+- `false` - will be corrected by 2 bytes, which more reliably prevents the CMOS from being reset.
 
 As researched by vit9696, the region length should still be `8`, because you need it to save the hibernation key. So the fix itself is useful. Since hibernation is not needed on Desktops, you may consider resetting the CMOS.
 
@@ -338,7 +340,7 @@ Likewise, this patch solves the problem with sleep.
 
 ### FixTMR
 
-Removes the interrupt from the _TMR timer in the same way. It is no longer used on newer Macs but on Ivy Bridge it is still required to resolve IRQ conflicts so sound works (combine with `FixHPET`, `FixIPIC`, and `FixRTC`) 
+Removes the interrupt from the _TMR timer in the same way. It is no longer used on newer Macs but on Ivy Bridge it is still required to resolve IRQ conflicts so sound works (combine with `FixHPET`, `FixIPIC`, and `FixRTC`).
 
 ### FixWAK
 
@@ -355,7 +357,7 @@ This value appears in real Macs, for iMacs it's about 200, for MacPro it's about
 
 ### Double First State
 
-In order for [Speedstep](https://en.wikipedia.org/wiki/SpeedStep) to work correctly, it is necessary to duplicate the first state of the P-states table. Although the necessity of this fix has become doubtful for newer CPUs, it is still relevant when using 3rd Gen Intel CPUs (Codename `IvyBridge`).
+In order for [Speedstep](https://en.wikipedia.org/wiki/SpeedStep) to work correctly, it is necessary to duplicate the first state of the P-states table. Although the necessity of this fix has become doubtful for newer CPUs, it is still relevant when using 3rd Gen Intel CPUs (Code name `IvyBridge`).
 
 ### Drop OEM
 
@@ -370,21 +372,17 @@ Specify which C-States you want to enable/generate.
 ### Generate
 ![Generate_Options](https://user-images.githubusercontent.com/76865553/136794188-a2fac646-48bb-469d-87f9-ca47afe00622.png)
 
-In the new Clover, this group of parameters is combined into one section, and `PluginType` is now just `true` or `false`. The other `PluginType` key (the one with the dropdown menu) is obsolete and only kept for backwards compatibility!
+In the new Clover, this group of parameters is combined into one section, and `PluginType` is now just `true` or `false`. The other `PluginType` key (the one with the dropdown menu) is obsolete and only kept for backwards compatibility purposes!
 
-The APLF and APSN parameters seem to affect speedstep, but for those who know what they are for. Note: Because APSN/APLF are part of Generate→PStates, they act if Generate→PStates=true, whereas PluginType is independent and acts independently of the Generate→PStates choice.
+#### APSN/APLF
 
-#### APLF
-
-#### APSN
-
-**NOTE**: Since APSN/APLF are components of `PStates`, they are *only* active *if* `PStates` are enabled (`true`), whereas `PluginType` works independently of `PStates`.
-
-**IMPORTANT**: None of the `Generate` options are needed if a custom SSDT-PM has been generated with ssdtPRGen or SSDTTime!
+The `APLF` and `APSN` parameters seem to affect Speedstep. As a prerequisite, `Generate PStates` needs to be enabled for them to be available, whereas PluginType works independently of the Generate PStates status.
 
 #### CStates/PStates
 
 Here we specify that two additional tables are generated for C-States and for P-States, according to the rules developed by the Hackintosh community. For C-States the table with parameters C2, C4, C6, Latency mentioned in the CPU section. It is also possible to specify the ones in the SSDT section.
+
+**IMPORTANT**: None of the `Generate` options are needed if a custom SSDT-PM has been generated with ssdtPRGen or SSDTTime!
 
 #### PluginType
 
@@ -426,7 +424,7 @@ Optional parameter to lower the CPU temperature by reducing its operating voltag
 
 ![Bildschirmfoto 2021-05-16 um 08 28 35](https://user-images.githubusercontent.com/76865553/135732583-c8d61605-03af-4b78-a4db-4df9d1e68d56.png)
 
-In this array, you can list tables which should be discarded from loading. These include various table signatures, such as `DMAR`, which is often dropped because macOS does not like `VT-d` technology. Other tables to drop would would be `MATS` (fixes issues with High Sierra) or `MCFG` because by specifying a MacBookPro or MacMini model, we get severe brakes. A better method has already been developed (see `FixMCFG`)
+In this array, you can list tables which should be discarded from loading. These include various table signatures, such as `DMAR`, which is often dropped because macOS does not like `VT-d` technology. Other tables to drop would be `MATS` (fixes issues with High Sierra) or `MCFG` because by specifying a MacBookPro or MacMini model, we get severe brakes. A better method has already been developed (see `FixMCFG`)
 
 ## DisabledAML
 
@@ -472,10 +470,12 @@ The shutdown patch only works on power state `5` (shutdown). However, we may wan
 This helps when going to sleep during a UEFI boot. Symptoms: the screen will turn off but the lights and fans would continue running.
 Advanced Hackers can use a binary rename to fix it (not covered here).
 
-### DSDT name: 
+### DSDT Name
+
 Here you can specify the name of your **patched** custom DSDT if it is called something other than `DSDT.aml`, so that Clover picks it up and applies it.
 
 ## Resources
+
 - Hackintosh Vanilla Guide. 
 - ASL Tutorial ([PDF](https://acpica.org/sites/acpica/files/asl_tutorial_v20190625.pdf)). Good starting point if you want to get into fixing your `DSDT` with `SSDT` hotpatches.
 - If you are eager to find out how each of the automated `DSDT` patches and fixes in this sections are realized, you can delve deep into the [source code](https://github.com/CloverHackyColor/CloverBootloader/blob/81f2b91b1552a4387abaa2c48a210c63d5b6233c/rEFIt_UEFI/Platform/FixBiosDsdt.cpp).
