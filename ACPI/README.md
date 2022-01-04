@@ -156,13 +156,15 @@ Prior to revision 5123.1, `TgtBridge` had a bug, where it would not only rename 
 
 ![Bildschirmfoto 2021-05-16 um 07 28 34](https://user-images.githubusercontent.com/76865553/135732689-dd1271db-f11d-468b-a57e-576bcf7f7d76.png)
 
-The `DSDT` is part of the ACPI tables provided by your mainboard's BIOS. It is the largest and most complex ACPI table and describes devices and methods of accessing them. Access methods can contain arithmetic and logical expressions. To correct this table manually, profound knowledge of programming in the ACPI Source Language (ASL) is mandatory. 
+The `DSDT` (Differentiated System Description Table) is part of the ACPI tables provided by your mainboard's BIOS. It is the largest and most complex ACPI table and describes devices and methods of accessing them. Access methods can contain arithmetic and logical expressions. To correct this table manually, profound knowledge of programming in the ACPI Source Language (ASL) is mandatory. 
 
 Fortunately, Clover provides about 30 automated, selectable `Fixes`, which can be applied to the DSDT on the fly during boot to add/rename devices or fix common prolems which need to be addressed before macOS is happy with the provided DSDT. This method is not as clean as patching every issue via a SSDT (like OpenCore requires), but it's an easily accessible and valid approach to fix your DSDT.
 
-Listed below are the included `Fixes` provided by Clover and what they do. Note that these fixes have been accumulated over the years – some of them might be deprecated nowadays. Remember: just because a fix is available, it doesn't mean that you need it or that it still works with current versions of macOS. The `config-sample.plist` included in the clover package is a complete mess in this regard and should not be used as a base template for building your own config at all!
+Listed below are the included `Fixes` provided by Clover and what they do. Note that these fixes have been accumulated over the years – some of them might be deprecated nowadays. Remember: just because a fix is available, it doesn't mean that you need it or that it still works with current versions of macOS. The `config-sample.plist` included in the Clover package is a complete mess in this regard and should not be used as a base template for building your own config at all!
 
-To get a better understanding for fixes that are still relevant in 2022, take a look at my [**Desktop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [**Laptop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) configs before getting all click-happy and just randomly enable every available fix! 
+To get a better understanding for fixes that are still relevant in 2022, take a look at my [**Desktop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [**Laptop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) configs before getting all click-happy and just randomly enable every available fix!
+
+**TIP**: Use these `Fixes` sparsely. Instead, apply SSDT hotpatches included in the OpenCore package or from my [**OC-Little Repo**](https://github.com/5T33Z0/OC-Little-Translated) to fix your DSDT.
 
 ### AddDTGP
 
