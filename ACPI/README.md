@@ -434,7 +434,7 @@ Yo can add SSDTs from the `ACPI/patched` folder which should be omitted from loa
 
 ## Sorted Order
 
-Creates an array to load SSDTs in the `ACPI/patched` folder in the order specified in this list once you add an SSDT to this list. Only SSDTs present in this array will be loaded, namely in the specified order.
+Creates an array to load SSDTs in the `ACPI/patched` folder in the order specified in this list once you add an SSDT to it. Only SSDTs present in this array will be loaded, namely in the specified order.
 
 In General, a problem with tables is their name. While it is not unusual for OEM Tables to use the national alphabet, or just no name, for Apple, it is unacceptable. The name has to be 4 characters of the Roman alphabet. Use "FixHeaders" to fix this issue.
 
