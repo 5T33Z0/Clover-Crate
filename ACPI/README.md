@@ -405,7 +405,9 @@ Optional parameter to lower the CPU temperature by reducing its operating voltag
 
 ![Bildschirmfoto 2021-05-16 um 08 28 35](https://user-images.githubusercontent.com/76865553/135732583-c8d61605-03af-4b78-a4db-4df9d1e68d56.png)
 
-In this array, you can list tables which should be discarded from loading. These include various table signatures, such as `DMAR`, which is often dropped because macOS does not like `VT-d` technology. Other tables to drop would be `MATS` (fixes issues with High Sierra) or `MCFG` because by specifying a MacBookPro or MacMini model, we get severe brakes. A better method has already been developed (see `FixMCFG`)
+In this array, you can list tables which should be prohibited from loading (in other words "dropped"). These include various table signatures (as templates), such as `DMAR`, which is often dropped because macOS does not like `VT-d` technology and can cause issues with network cards. Other tables to drop would be `MATS` (fixes issues with High Sierra) or `MCFG` when using MacBookPro or MacMini SMBIOS.
+
+Other tables included: SSDT (TableID needs to be specified), HPET, ECDT, BGRT (`ResetLogoStatus`in OpenCore), MCFG (using `FixMCFG` is preferred), DMAR, APIC, ASFT, SBST, SLIC and MATS.
 
 ## DisabledAML
 
