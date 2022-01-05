@@ -1,7 +1,7 @@
 # CPU
-This section contains settings to manually set parameters for the CPU if the internal algorithms fail to detect the correct parameters automatically. This section is only covered for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable and you know what you are doing!** 
+![CeePiiU](https://user-images.githubusercontent.com/76865553/148276037-6eadf7bf-f040-41c2-bf02-5ea5493e14d9.jpeg)
 
-![CPU](https://user-images.githubusercontent.com/76865553/136802820-de658522-dad5-494c-b8a0-1362202f94ad.jpeg)
+This section contains settings to manually set parameters for the CPU if the internal algorithms fail to detect the correct parameters automatically. This section is only covered for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable and you know what you are doing!** 
 
 ## Frequency MHz
 Describes the base frequency in MHz displayed in the System-Profiler. In other words: its effects are purely cosmetic. Usually, Clover automatically calculates this value based on the ACPI timer, but if it gets it wrong, you can correct it through this key.
