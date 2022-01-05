@@ -1,21 +1,21 @@
 # CPU
 ![CeePiiU](https://user-images.githubusercontent.com/76865553/148276037-6eadf7bf-f040-41c2-bf02-5ea5493e14d9.jpeg)
 
-This section contains settings to manually set parameters for the CPU if the internal algorithms fail to detect the correct parameters automatically. This section is only covered for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable and you know what you are doing!** 
+This section allows to manually set parameters for the CPU if the internal algorithms fail to auto-detect the correct parameters. This section is only covered for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable and you know what you are doing!** 
 
-## Frequency MHz
+## Frequency (in MHz)
 Describes the base frequency in MHz displayed in the System-Profiler. In other words: its effects are purely cosmetic. Usually, Clover automatically calculates this value based on the ACPI timer, but if it gets it wrong, you can correct it through this key.
 
-## Bus Speed in kHz
-Describes the base bus frequency in **kHz**. The bus frequency is critical for stable operation of the system. It's handed over from the bootloader to the kernel. If the frequency is wrong, the kernel won't start at all. If the frequency is slightly off, there can be problems with the clock, resulting in strange system behavior.
+## Bus Speed (in kHz)
+Describes the bus frequency in **kHz**. The bus frequency is critical for stable operation of the system. It's handed over from the bootloader to the kernel. If the frequency is wrong, the kernel won't start at all. If the frequency is slightly off, there can be problems with the clock, resulting in strange system behavior.
 
-Starting with Clover r1060, the bus frequency is detected automatically based on data from the ADC Timer which calculates these values more precisely than the value which is stored in the DMI (Desktop Management Interface).
+Starting with Clover r1060, the bus frequency is detected automatically based on data from the ADC Timer which calculates these values more precisely than the value stored in the DMI (Desktop Management Interface).
 
 ## Latency
 Describes the delay for entering the `C3` state. The critical value is **0x3E8** = **1000**. Below 1000, Speedstep is enabled, above 1000, it does not turn on. On real Macs, it is always set to **0x03E9** (1001) which disables Speedstep. On Hacks, we can choose if we want to behave it like a Mac or if we want to turn on power management. A reasonable value for the latter is **0x00FA** (250), which is found on some laptops (MacPro5.1 = 17, MacPro6.1 = 67, iMac13.2 = 250).
 
-## C2, C4, C6
-Parameters related to C-state. **ATTENTION!** This section is deprecated and has since been moved to &rarr; [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#enable-c2-c4-c6-and-c7)
+## C2, C4, C6 (deprecated)
+Parameters related to C-state. This section is deprecated and has since been moved to &rarr; [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#enable-c2-c4-c6-and-c7)
 
 - `C2`: Set to false on modern computers
 - `C4`: According to the specification, either use C3 or C4. We choose C4. For Ivy Bridge, set it to false.
@@ -29,7 +29,7 @@ When testing Clover in the QEMU virtual machine, developers discovered that it d
 ## QPI
 In the System Profiler, this value is called Processor Bus Speed or simply "Bus Speed". For Clover, an algorithm has been developed to calculate the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods of setting this value are available: the value either exists in SMBIOS already, prescribed by the manufacturer, or Bus Speed x4 is simply calculated. After much debate, this value has been added to the config - write what you like (in MHz).
 
-This does not affect work in any way - it's pure cosmetics. **According to the latest information, QPI makes sense only for CPUs of the Nehalem family**. For everyone else here you need to have BusSpeed x4. Or nothing at all. If you force 0, then DMI table 132 will not be generated at all.
+This does not affect work in any way - it's pure cosmetics. **QPI makes sense only for CPUs of the Nehalem family**. For everyone else here you need to have BusSpeed x4. Or nothing at all. If you force 0, then DMI table 132 will not be generated at all.
 
 ## Type
 This parameter was invented by Apple and is used in the "About this Mac" window to display information about the used CPU, which internally translates into a processor designation. Otherwise, "Unknown processor" will be displayed.
@@ -42,8 +42,8 @@ Describes the Thermal Design Power (in Watts), taken into account in the P-State
 ## SavingMode
 Another interesting parameter for controlling [Speedstep](https://en.wikipedia.org/wiki/SpeedStep). It affects the MSR `0x1B0` register and determines the behavior of the processor:
 
-- `0`: Maximum Performance
-- `15`: Maximum Energy Saving
+`0`: Maximum Performance</br>
+`15`: Maximum Energy Saving
 
 ## HWPEnable
 Starting with Clover r3879, Intel Speed ​​Shift technology has been introduced in Skylake CPUs. If enabled, then `1` is written to the MSR `0x770` register. Unfortunately, if the computer enters sleep and then wakes up, the MSR value `0x770` will be reset to `0` and Clover cannot re-enable it. But with a help of the [**HWPEnable.kext**](https://github.com/headkaze/HWPEnable) this can be fixed.  
