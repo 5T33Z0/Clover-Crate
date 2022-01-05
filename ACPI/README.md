@@ -407,7 +407,21 @@ Optional parameter to lower the CPU temperature by reducing its operating voltag
 
 In this array, you can list tables which should be prohibited from loading (in other words "dropped"). These include various table signatures (as templates), such as `DMAR`, which is often dropped because macOS does not like `VT-d` technology and can cause issues with network cards. Other tables to drop would be `MATS` (fixes issues with High Sierra) or `MCFG` when using MacBookPro or MacMini SMBIOS.
 
-Other tables included: SSDT (TableID needs to be specified), HPET, ECDT, BGRT (`ResetLogoStatus`in OpenCore), MCFG (using `FixMCFG` is preferred), DMAR, APIC, ASFT, SBST, SLIC and MATS.
+Other tables that can be dropped (presets): 
+
+| Table|Description|
+|:--------:|-----------|
+`APIC` 	 |Advanced Programmable Interrupt Controller. Using `PatchAPIC` is preferred.
+`SSDT`		 |Drops SSDT. TableID must be specified.
+`HPET` 	 |High Precision Event Timer. Using `FixHPET` is preferred.
+`ECDT`		 |Embedded Controller Description Table. Using `FixTMR`, `FixIPIC` and `FixRTC` is preferred.
+`BGRT` 	 |Boot Graphics Resource Table. `ResetLogoStatus`in OpenCore addresses this table
+`MCFG` 	 |Using `FixMCFG` is preferred.
+`DMAR` 	 |DMA Remapping Table. Using Quirk `DisableIoMapper` is preferred over dropping it to disable VT-d support. Since macOS Mojave, VT-d is working fine, so there really is no need to drop this table unless you are facing issues with network cards.
+`ASFT`		 | n/a
+`SBST`		 | Smart Battery Table.
+`SLIC`		 | Microsoft Software Licensing Table
+`MATS`		 | Drop when using macOS High Sierra: https://alextjam.es/debugging-appleacpiplatform/
 
 ## DisabledAML
 
