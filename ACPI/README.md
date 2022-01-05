@@ -1,4 +1,3 @@
-
 # ACPI
 
 The ACPI section offers many options to affect the ACPI Tables of a system in order to assist users to make it compatible with macOS: from replacing characters in the `DSDT`, over renaming devices, enabling features to applying patches. Since this section is the centerpiece of your `config.plist`, every available option is explained here. This is how it looks like in Clover Configurator:
@@ -153,7 +152,7 @@ Some clarification: the Comment Field not only serves as a reminder what the pat
 
 Prior to revision 5123.1, `TgtBridge` had a bug, where it would not only rename matches found in the DSDT but also in OEM SSDTs as well which was not intended to happen.
 
-## Fixes [1]
+### Fixes [1]
 
 ![Bildschirmfoto 2021-05-16 um 07 28 34](https://user-images.githubusercontent.com/76865553/135732689-dd1271db-f11d-468b-a57e-576bcf7f7d76.png)
 
@@ -167,25 +166,25 @@ To get a better understanding for fixes that are still relevant in 2022, take a 
 
 **TIP**: Use `Fixes` sparsely. Instead, apply SSDT hotpatches included in the OpenCore package or from my [**OC-Little Repo**](https://github.com/5T33Z0/OC-Little-Translated) to fix your DSDT.
 
-### AddDTGP
+#### AddDTGP
 
 In addition to the `DeviceProperties`, there is also a Device Specific Method (`_DSM`) specified in the `DSDT` called `DTGP` to inject custom parameters into some devices. 
 
 `_DSM` ia a well-known method, which is included in macOS since version 10.5. It contains an array with a device description and a call to the universal `DTGP` method, which is the same for all devices. Without the `DTGP` method, modified `DSDTs` would not work well. This fix simply adds this method so that it can then be applied to other fixes. It does not work on its own alone.
 
-### AddMCHC
+#### AddMCHC
 
 Adds MCHC device which is related to the Memory Controller and is usually combined with `FixSBUS` to get the System Management Bus Controller working. In general, a device of the `0x060000` class is absent in the DSDT, but for some chipsets this device is serviceable, and therefore it must be attached to I/O Reg in order to properly wire the power management of the PCI bus.
 
-### FixAirport
+#### FixAirport
 
 Similar to LAN, the device itself is created, if not already registered in `DSDT`. For some well-known models, the `DeviceID` is replaced with a supported one. And the Airport turns on without other patches.
 
-### FixDarwin
+#### FixDarwin
 
 Mimics Windows XP under Darwin OS. Many sleep and brightness problems stem from misidentification of the system.
 
-### FixDisplay
+#### FixDisplay
 
 Produces a number of video card patches for non-Intel video cards (Intel on-board graphics require different fixes):
 
@@ -194,99 +193,99 @@ Produces a number of video card patches for non-Intel video cards (Intel on-boar
 - Adds custom properties.
 - Adds an `HDAU` device for audio output via HDMI.
 
-### FixFirewire
+#### FixFirewire
 
 Adds the "fwhub" property to the Firewire controller, if present. If not, then nothing will happen. You can bet if you don't know if you need to or not.
 
-### FixHDA
+#### FixHDA
 
 Corrects the description of the sound card in the `DSDT` so that the native AppleHDA driver works. Renaming `AZAL` to `HDEF` is performed, `layout-id` and `PinConfiguration` are injected. Obsolete nowadays, since `AppleALC.kext` handles this (in combination with the correct `layout-id` added in the `Devices` section).
 
-### FixHPET
+#### FixHPET
 
 As already mentioned, this is the main fix needed. Thus, the minimum required `DSDT` patch mask looks like `0x0010`.
 
-### FixIDE
+#### FixIDE
 
 In macOS 10.6.1, there was a panic on the `AppleIntelPIIXATA.kext`. Two solutions to the problem are known: use a corrected kext, or fix the device in the `DSDT`. And for more modern systems? Use it, if there is such a controller (which is highly unlikely since IDE is obsolete).
 
-### FixIPIC
+#### FixIPIC
 
 Removes the interrupt from the `IPIC` device. Fixes the Power Button functionality, so holding it for a few seconds opens up a dialog window with option to Reset, Sleep, or Shutdown the computer.
 
-### FixLAN
+#### FixLAN
 
 Injection of the "built-in" property for the network card is necessary for correct operation. Also, a card model is injected - for cosmetics.
 
-### FixSATA
+#### FixSATA
 
 Fixes some SATA issues and removes the yellow disk icon which indicated that an external disk is used when in fact it's connected internally. This is a controversial fix and not recommended. But in some cases DVD drives (remember those?) won't play back DVDs. Alternatively, this could be resolved by adding `AppleAHCIport.kext`.
 
-### FixSBus
+#### FixSBus
 
 Adds System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep. To check if the SBUS is working correctly, enter `kextstat | grep -E "AppleSMBusController|AppleSMBusPCI"` in terminal. If the Terminal output contains the following 2 drivers, your SMBus is working correctly: `com.apple.driver.AppleSMBusPCI` and `com.apple.driver.AppleSMBusController`
 
-### FixShutdown
+#### FixShutdown
 
 A condition is added to the `_PTS` (prepare to sleep) method: if argument = 5 (shutdown), then no other action is required. Strange, why? Nevertheless, there is repeated confirmation of the effectiveness of this patch for ASUS boards, maybe for others, too. Some `DSDT` already have such a check, in which case such a fix should be disabled. If `SuspendOverride` = `true` is set in the config, then this fix will be extended by arguments 3 and 4. That is, going to sleep (Suspend). On the other hand, if `HaltEnabler` = `true`, then this patch is probably no longer needed.
 
-### FixUSB
+#### FixUSB
 
 Attempts to solve numerous USB problems. For the `XHCI` controller, when using the native or patched `IOUSBFamily.kext`, such a `DSDT` patch is indispensable. The Apple driver specifically uses ACPI, and the DSDT must be spelled correctly. This makes sure that there are no conflict with strings in the `DSDT`.
 
-## Fixes [2]
+### Fixes [2]
 
 ![Bildschirmfoto 2021-05-16 um 08 04 15](https://user-images.githubusercontent.com/76865553/135732698-6ead0af4-304c-4570-a407-aaafb70506f2.png)
 
-### AddHDMI
+#### AddHDMI
 
 Adds a `HDAU` audio device to the `DSDT` that matches the HDMI output of ATI and Nvidia video cards to enable audio over HDMI. Since the GPU was bought separately from the motherboard, there simply is no such device in the native DSDT. Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device:
 
 - `1` if `UseIntelHDMI` = false
 - `2` if there is an Intel port that occupies port 1.
 
-### AddIMEI
+#### AddIMEI
 
 Adds Intel Management Engine (IMEI) device to the device tree, if it does not exist in the `DSDT`. IMEI is required for proper hardware video decoding on Intel iGPUs. Adding IMEI is only required in two cases:
 
 - Sandy Bridge CPUs running on 7-series mainboards or
 - Ivy Bridge CPUs running on 6-series mainboards
 
-### AddPNLF
+#### AddPNLF
 
 Inserts a PNLF (Backlight) device, which is necessary to properly control the screen brightness, and, oddly enough, helps to solve the problem with sleep, including for the desktop.
 
-### PNLF_UID
+#### PNLF_UID
 
 There are several sample brightness curves/graphs in the system, and they have different UIDs. If some realtor used that curve, that doesn't mean that you will have the same brightness with the same processor. It depends on the panel – not the processor. Generally speaking, using `SSDT-PNLF.aml` is recommended. You can find one in the Samples Folder of the OpenCore Package.
 
-### DeleteUnused
+#### DeleteUnused
 
 Removes unused floppy, CRT and DVI devices - a necessity for getting the Intel GMA X3100 to work on Dell Laptops. Otherwise, you'll get a black screen. Tested by hundreds of users.
 
-### FakeLPC
+#### FakeLPC
 
 Replaces the DeviceID of the LPC controller so that the AppleLPC kext is attached to it. It is necessary for those cases when the chipset is not provided for macOS (for example ICH9). However, the native list of Intel and nForce chipsets is so large that the need for such a patch is very rare. It checks in the system whether the AppleLPC kext is loaded and if is not, the patch is needed.
 
-### FixACST
+#### FixACST
 
 Some DSDTs can have a device, method or variable named `ACST`, but this name is also used by macOS 10.8+ to control C-States!
 
 As a result, a completely implicit conflict with very unclear behavior can occur. This fix renames all occurrences of `ACST` to `OCST` which is safe. But check your DSDT first: search for `ACST` and check if it refers to Device `AC` and Method `_PSR`(_PSR: PowerSource) in some kind of way.
 
-### FixADP1
+#### FixADP1
 
 Corrects the `ADP1` device (power supply), which is necessary for laptops to sleep correctly - plugged in or unplugged.
 
-### FixDarwin7
+#### FixDarwin7
 
 Same as `FixDarwin`, but for Windows 7. Old `DSDTs` may not have a check for such a system. Now you have the option to.
 
-### FixIntelGfx
+#### FixIntelGfx
 
 Patch for Intel integrated graphics is separated from the rest of the graphics cards, that is, you can put the injection for Intel and not put for Nvidia.
 
-### FixMutex
+#### FixMutex
 
 This patch finds all Mutex objects and replaces `SyncLevel` with `0`. We use this patch because macOS does not support proper Mutex debugging and will break on any inquiry with Mutex that has a nonzero SyncLevel. Nonzero SyncLevel Mutex objects are one of the common causes of ACPI battery method failure. Added by RehabMan in revisions r4265 to r4346.
 
@@ -300,7 +299,7 @@ To make it compatible with macOS you need to change it to:
 
 This is a very controversial patch. Use it only if you are fully aware of what you are doing.
 
-### FixRegions
+#### FixRegions
 
 This is a very special patch. While other patches in this section are designed to fix `BIOS.aml` in order to create a good custom DSDT from scratch, this fix is designed for tuning an existing custom `DSDT.aml`.
 
@@ -316,7 +315,7 @@ The DSDT has regions that have their own addresses, such as:
 ```
 is sufficient if you have a well-made custom `DSDT` with all the fixes. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it to the ACPI Section was inappropriate.
 
-### FixRTC
+#### FixRTC
 Removes interrupt from device `_RTC`. It's a required fix, and it is very strange that someone would not enable it. If there is no interrupt in the original, then this patch won't cause any harm. However, the question arose about the need to edit the length of the region. To avoid clearing `CMOS`, you need to set the length to `2`, but at the same time a phrase like `"…only single bank…"` appears in the Kernel Log.
 
 I do not know what is wrong with this message, but it can be excluded if the length is set to 8 bytes by using the Fix `Rtc8Allowed`:
@@ -335,15 +334,15 @@ I do not know what is wrong with this message, but it can be excluded if the len
 
 As researched by vit9696, the region length should still be `8`, because you need it to save the hibernation key. So the fix itself is useful. Since hibernation is not needed on Desktops, you may consider resetting the CMOS.
 
-### FixS3D
+#### FixS3D
 
 Likewise, this patch solves the problem with sleep.
 
-### FixTMR
+#### FixTMR
 
 Removes the interrupt from the _TMR timer in the same way. It is no longer used on newer Macs but on Ivy Bridge it is still required to resolve IRQ conflicts so sound works (combine with `FixHPET`, `FixIPIC`, and `FixRTC`).
 
-### FixWAK
+#### FixWAK
 
 Adds Return to the `_WAK` method. It has to be, but for some reason often the `DSDT` does not contain it. Apparently the authors adhered to some other standards. In any case, this fix is completely safe.
 
