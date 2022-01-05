@@ -156,11 +156,11 @@ Prior to revision 5123.1, `TgtBridge` had a bug, where it would not only rename 
 
 ![Bildschirmfoto 2021-05-16 um 07 28 34](https://user-images.githubusercontent.com/76865553/135732689-dd1271db-f11d-468b-a57e-576bcf7f7d76.png)
 
-The `DSDT` (Differentiated System Description Table) is the largest and most complect of the ACPI tables included by your mainboard's BIOS. It describes devices and methods of accessing them. Access methods can contain arithmetic and logical expressions. To correct this table manually, profound knowledge of programming in the ACPI Source Language (ASL) is mandatory.
+The `DSDT` (Differentiated System Description Table) is the largest and most complex of the ACPI tables included by your mainboard's BIOS. It describes devices and methods of accessing them. Access methods can contain arithmetic and logical expressions. To correct this table manually, profound knowledge of programming in the ACPI Source Language (ASL) is mandatory.
 
 Fortunately, Clover provides automated, selectable `Fixes`, which can be applied to the DSDT on the fly during boot to add/rename devices or fix common problems which need to be addressed before macOS is happy with the provided DSDT. This method is not as clean as patching every issue via a SSDT (like OpenCore requires), but it's an easily accessible and valid approach to fix your DSDT.
 
-Listed below are the included `Fixes` provided by Clover (about 30) and what they do. Note that these fixes have been accumulated over the years – some of them might be deprecated nowadays. Remember: just because a fix is available, it doesn't mean that you need it or that it still works with current hardware or macOS versions.
+Listed below are the included DSDT `Fixes` provided by Clover (about 30) and what they do. Note that these fixes have been accumulated over the years – some of them might be deprecated nowadays. Remember: just because a fix is available, it doesn't mean that you need it or that it still works with current hardware or macOS versions.
 
 To get a better understanding for fixes that are still relevant in 2022, take a look at my [**Desktop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [**Laptop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) configs before getting all click-happy and just randomly enable every available fix!
 
@@ -168,9 +168,9 @@ To get a better understanding for fixes that are still relevant in 2022, take a 
 
 #### AddDTGP
 
-In addition to the `DeviceProperties`, there is also a Device Specific Method (`_DSM`) specified in the `DSDT` called `DTGP` to inject custom parameters into some devices. 
+In addition to the `DeviceProperties`, there is also a Device Specific Method (`_DSM`) specified in the `DSDT` called `DTGP` to inject custom parameters into some devices.
 
-`_DSM` ia a well-known method, which is included in macOS since version 10.5. It contains an array with a device description and a call to the universal `DTGP` method, which is the same for all devices. Without the `DTGP` method, modified `DSDTs` would not work well. This fix simply adds this method so that it can then be applied to other fixes. It does not work on its own alone.
+`_DSM` is a well-known method, which is included in macOS since version 10.5. It contains an array with a device description and a call to the universal `DTGP` method, which is the same for all devices. Without the `DTGP` method, modified `DSDTs` would not work well. This fix simply adds this method so that it can then be applied to other fixes. It does not work on its own alone.
 
 #### AddMCHC
 
@@ -191,11 +191,11 @@ Produces a number of video card patches for non-Intel video cards (Intel on-boar
 - Injects properties and the devices themselves (if not present).
 - Can inject a FakeID. If a FakeID parameter is specified, then it will be injected through the `_DSM` method.
 - Adds custom properties.
-- Adds an `HDAU` device for audio output via HDMI.
+- Adds a `HDAU` device for audio output via HDMI.
 
 #### FixFirewire
 
-Adds the "fwhub" property to the Firewire controller, if present. If not, then nothing will happen. You can bet if you don't know if you need to or not.
+Adds the `fwhub` property to the FireWire controller, if present. If not, then nothing will happen. You can bet if you don't know if you need to or not.
 
 #### FixHDA
 
@@ -287,7 +287,7 @@ Patch for Intel integrated graphics is separated from the rest of the graphics c
 
 #### FixMutex
 
-This patch finds all Mutex objects and replaces `SyncLevel` with `0`. We use this patch because macOS does not support proper Mutex debugging and will break on any inquiry with Mutex that has a nonzero SyncLevel. Nonzero SyncLevel Mutex objects are one of the common causes of ACPI battery method failure. Added by RehabMan in revisions r4265 to r4346.
+This patch finds all Mutex objects and replaces `SyncLevel` with `0`. We use this patch because macOS does not support proper Mutex debugging and will break on any inquiry with Mutex that has a non-zero SyncLevel. Non-zero SyncLevel Mutex objects are one of the common causes of ACPI battery method failure. Added by RehabMan in revisions r4265 to r4346.
 
 For example, in Lenovo u430 mutexes are declared like this:
 
@@ -301,24 +301,18 @@ This is a very controversial patch. Use it only if you are fully aware of what y
 
 #### FixRegions
 
-This is a very special patch. While other patches in this section are designed to fix `BIOS.aml` in order to create a good custom DSDT from scratch, this fix is designed for tuning an existing custom `DSDT.aml`.
+While other patches in this section are designed to fix your system's `DSDT.aml` on the fly during boot, this fix is designed for tuning an existing custom `DSDT.aml` which already includes all the necessary fixes.
 
 The DSDT has regions that have their own addresses, such as:
-`OperationRegion` (GNVS, SystemMemory, 0xDE6A5E18, 0x01CD). The problem is that this region address is created *dynamically* by the BIOS, and it can be different from boot to boot. This was first noticed when changing the total amount of memory, then when changing BIOS settings, and on my computer it even depends on the pre-boot history, such as the amount of occupied NVRAM. Clearly, in the custom `DSDT.aml` this number is fixed, and therefore may not be true. The simplest observation is the lack of sleep. After fixing a region, sleep appears, but only until the next offset. This fix fixes all regions in the custom DSDT to values in the BIOS DSDT, and thus the mask
+`OperationRegion` (GNVS, SystemMemory, 0xDE6A5E18, 0x01CD). The problem is that this region address is created *dynamically* by the BIOS. It can vary from boot to boot. But when using a custom `DSDT.aml` this values is no longer created dynamically and therefore may be incorrect.
 
-```swift
-<key>Fixes</key>
-<dict>
-	<key>FixRegions</key>
-	<true/>
-</dict>
-```
-is sufficient if you have a well-made custom `DSDT` with all the fixes. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it to the ACPI Section was inappropriate.
+A symptom that this might be the case is that supposedly fixed sleep issues reappear after the next boot. If `FixRegions` is enabled, it will set all regions in the custom DSDT to fixed values used in the BIOS DSDT at that moment. There is another patch, but it is not for DSDT specifically, but for all ACPI tables in general, so adding it to the ACPI Section was inappropriate.
 
 #### FixRTC
+
 Removes interrupt from device `_RTC`. It's a required fix, and it is very strange that someone would not enable it. If there is no interrupt in the original, then this patch won't cause any harm. However, the question arose about the need to edit the length of the region. To avoid clearing `CMOS`, you need to set the length to `2`, but at the same time a phrase like `"…only single bank…"` appears in the Kernel Log.
 
-I do not know what is wrong with this message, but it can be excluded if the length is set to 8 bytes by using the Fix `Rtc8Allowed`:
+Why this message appears is unknown, but it can be fixed if the length is set to 8 bytes by using the Fix `Rtc8Allowed`:
 
 ```swift
 <key>ACPI</key>
@@ -361,7 +355,7 @@ In order for [Speedstep](https://en.wikipedia.org/wiki/SpeedStep) to work correc
 
 ### Drop OEM
 
-Since we are going to dynamically load our own SSDT tables, we need to avoid unnecessary code overlaps to avoid conflicts. This option allows you to discard all native tables in favor of new ones. 
+Since we are going to dynamically load our own SSDT tables, we need to avoid unnecessary code overlaps to avoid conflicts. This option allows you to discard all native tables in favor of new ones.
 
 If you want to avoid patching SSDT tables altogether, there is another option: put the native tables with minor edits in the `EFI/OEM/xxx/ACPI/patched/` Folder, and discard the unpatched tables. However, it is recommended to use the selective Drop method mentioned above.
 
@@ -416,9 +410,12 @@ If set to `true`, the SSDT section will be used to select in the generated `_CST
 Register (FFixedHW,
 Register (SystemIO,
 ```
+
 ### UnderVolt Step
 
-Optional parameter to lower the CPU temperature by reducing its operating voltage. Possible values are 0 to 9. The higher the value, the lower the voltage, resulting in lower temperatures – until the computer hangs. This is where foolproof protection comes in: Clover won't let you set any value outside the specified range. However, even allowed values can result in unstable operation. The effect of undervolting is really noticeable. However, this parameter is only applicable to Intel CPUs of the `Penryn` family.
+Optional parameter to lower the CPU temperature by reducing its operating voltage. Possible values are `0` to `9`. The higher the value, the lower the voltage, resulting in lower temperatures – until the computer crashes. This is where foolproof protection kicks in: Clover won't let you set any value outside the specified range. However, even allowed values can result in unstable operation. The effect of undervolting is really noticeable.
+
+**NOTE**: This feature is only available Intel CPUs of the `Penryn` family (Intel Core 2 Duo)
 
 ## Drop Tables
 
@@ -445,23 +442,23 @@ In General, a problem with tables is their name. While it is not unusual for OEM
 Enables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps to resolve issues.
 
 ### RTC8Allowed
+
 See "Fixes [2]" Section → "[**FixRTC**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#fixrtc)".
 
-### ReuseFFFF
+### ReuseFFFF (Deprecated)
+
 In some cases, the attempt to patch the GPU is hindered by the presence of:
 
-```swift 
+```swift
 Device (PEGP) type of device
 	{
 	Name (_ADR, 0xFFFFFF)
 	Name (_SUN, One)
 	}
 ```
-You can change its address to `0`, but that doesn't always work. **NOTE**: This fix is deprecated and has been removed from Clover since r5116!
+You can change its address to `0`, but that doesn't always work.
 
-### SlpSmiAtWake
-
-Adds `SLP_SMI_EN=0` at every wake. This may help to solve sleep and shutdown issues on UEFI boot. **NOTE**: This fix is deprecated and has been removed from Clover since r5134!
+**NOTE**: This fix is deprecated and has been removed from Clover since r5116!
 
 ### SuspendOverride
 
@@ -476,6 +473,5 @@ Here you can specify the name of your **patched** custom DSDT if it is called so
 
 ## Resources
 
-- Hackintosh Vanilla Guide. 
 - ASL Tutorial ([PDF](https://acpica.org/sites/acpica/files/asl_tutorial_v20190625.pdf)). Good starting point if you want to get into fixing your `DSDT` with `SSDT` hotpatches.
 - If you are eager to find out how each of the automated `DSDT` patches and fixes in this sections are realized, you can delve deep into the [source code](https://github.com/CloverHackyColor/CloverBootloader/blob/81f2b91b1552a4387abaa2c48a210c63d5b6233c/rEFIt_UEFI/Platform/FixBiosDsdt.cpp).
