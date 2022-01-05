@@ -415,7 +415,7 @@ Register (SystemIO,
 
 Optional parameter to lower the CPU temperature by reducing its operating voltage. Possible values are `0` to `9`. The higher the value, the lower the voltage, resulting in lower temperatures – until the computer crashes. This is where foolproof protection kicks in: Clover won't let you set any value outside the specified range. However, even allowed values can result in unstable operation. The effect of undervolting is really noticeable.
 
-**NOTE**: This feature is only available Intel CPUs of the `Penryn` family (Intel Core 2 Duo)
+**NOTE**: This feature is only available Intel CPUs of the `Penryn` family (Intel Core 2 Duo and some Pentiums/Celerons).
 
 ## Drop Tables
 
