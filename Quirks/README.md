@@ -25,14 +25,14 @@ In order to set up these Quirks correctly, you need to follow the instruction fo
 ## Booter Quirks
 The following screenshot shows the Booter Quirks subsection which is new in Clover Configurator 5.19.0, which makes it a lot easier to handle than in earlier versions:
 
-![booter](https://user-images.githubusercontent.com/76865553/145463363-244f28cc-12d6-437a-9dc5-b6b0d791d080.png)
+![Booter](https://user-images.githubusercontent.com/76865553/148212620-62387a7a-d56a-4df7-b8bb-ad6b0131ebf5.png)
 
 The example above shows Booter Quirks for a 10th Gen Intel Cometlake Desktop CPU taken from [this section](https://dortania.github.io/OpenCore-Install-Guide/config.plist/comet-lake.html#booter) of the OpenCore Install Guide. Don't just copy these – use the correct ones required for your CPU!
 
 ## Kernel Quirks, Emulate and Scheme
 If you click on "Kernel" you will see these Quirks (also for 10 Gen Cometlake):
 
-![KernelQ](https://user-images.githubusercontent.com/76865553/139507546-7c49d3da-85c6-4253-ae8b-865e39ddcb3b.png)
+![Kernel+scheme](https://user-images.githubusercontent.com/76865553/148212751-e8322419-59f7-4341-b5d9-59b7c85a7260.png)
 
 You will find the corresponding settings for your CPU in the "Kernel" section of the Dortania Guide as mentioned earlier. Unfortunately, some Kernel Quirks are not located in the `Quirks` section but in the "Kext and Kernel Patches" section instead and use different names than OpenCore:
 
