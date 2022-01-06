@@ -71,8 +71,8 @@ In OCAT you enter the path to a device in the `base` field (don't forget to enab
 
 ### ACPI > Quirks
 
-| OpenCore          | Clover      |
-|:-----------------:|:-----------:|
+| OpenCore          | Clover    |
+|-------------------|-----------|
 | FadtEnableReset   | Reset Address / Reset Value |
 | Normalize Headers | FixHeaders |
 | Reset Logo Status | Drop Tables > BGRT|
