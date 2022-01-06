@@ -41,17 +41,18 @@ If `FixMCFG` is enabled, the MCFG table will be corrected. However, discarding t
 
 This Patch is for fixing the shutdown/sleep problem during UEFI boot. The fix is injected before calling `boot.efi`, clearing `SLP_SMI_EN` before the start of macOS. Nevertheless, it is quite safe, at least on Intel systems.
 
-## Patch APIC
+## Patch APIC 
 
-Some systems can only be started using kernel parameter `cpus=1` or with a patched kernel (Lapic NMI). A simple analysis showed that their `MADT` (Multiple APIC Description Table) is missing the NMI section.`Patch APIC` fixes such tables on the fly. If the table is complete already, nothing will be changed.
+Some systems can only be started using kernel parameter `cpus=1` or with a patched kernel (Lapic NMI). A simple analysis showed that the `MADT` (Multiple APIC Description Table) is missing the NMI section.`Patch APIC` fixes such tables on the fly. If the table is complete already, nothing will be changed.
 
 ## Reset Address / Reset Value
 
-These two parameters serve a common purpose - to fix restart. They should be present in the `FADT` table, but that's not always the case. Sometimes the table is shorter than necessary, so these values are missing. 
+These two parameters serve a common purpose - to fix restart. They should be present in the `FACP`/`FADT` table, but that's not always the case. Sometimes the table is shorter than expected, so the values are missing. Possible combinations:
 
-The variables are present in the `FACP` table but if they are empty, then `0x64`/`0xFE`are used, which means restart via PS2 Controller. This does not always work for everyone. Alternatively, you can use `0x0CF9`/`0x06`, which controls restart via PCI Bus. This method is also used on native Macs, but does not always work on Hackintoshes. The difference is clear: on Hackintoshes there is also a PS2 controller which can interfere with the restart if it is not reset. Another possible combination is `0x92`/`0x01`.
-
-Last but not least you can set them to `0x0`/`0x0` to allow the use of default `FACP` values. If not present, the default values states above will be used instead.
+- If both fields are left empty,`0x64`/`0xFE` will be used by default &rarr; Restarts the system via the PS2 Controller – just like a PC.
+- `0x0CF9`/`0x06` &rarr; restarts the system via PCI Bus – just like a real Mac. Shutdown and restart is faster but this combination does not work for all Hackintoshes.
+- `0x92`/`0x01`→ another possible combination.
+- `0x0`/`0x0`→ uses the default `FACP` values, if present. Otherwise, `0x64`/`0xFE` will be used instead.
 
 ## Smart UPS
 
