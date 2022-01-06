@@ -49,7 +49,7 @@ While Binary Renames work the same in OpenCore and Clover, you have a lot more o
 | OpenCore        | Clover    |
 |:---------------:|:----------:|
 | Comment         | Comment   |
-| Find		        | Find      |
+| Find		  | Find      |
 | Replace         | Replace   |
 | Base            | use [TgtBridge](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#tgtbridge) instead|
 | Enabled         | Disabled  |
@@ -73,11 +73,11 @@ In OCAT you enter the path to a device in the `base` field (don't forget to enab
 
 | OpenCore          | Clover      |
 |:-----------------:|:-----------:|
-| FadtEnableReset   | HaltEnabler |
+| FadtEnableReset   | Reset Address / Reset value |
 | Normalize Headers | FixHeaders  |
 | Reset Logo Status | Drop Tables > BGRT|
-| Rebase Regions    | ?           |
-| Reset HwSig		| ?           |
+| Rebase Regions    | FixRegions (?)|
+| Reset HwSig	    | ?           |
 | SyncTableIDs      | ?           |
 
 ## DeviceProperties
