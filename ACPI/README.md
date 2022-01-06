@@ -47,7 +47,7 @@ Some systems can only be started using kernel parameter `cpus=1` or with a patch
 
 ## Reset Address / Reset Value
 
-These two parameters serve a common purpose - to fix restart. They should be present in the `FACP`/`FADT` table, but that's not always the case. Sometimes the table is shorter than expected, so the values are missing. 
+These two parameters serve a common purpose - to fix restart. They should be present in the `FACP`/`FADT` table, but that's not always the case. Sometimes the table is shorter than expected, so the values are missing. In OpenCore, the equivalent is `FadtEnableReset`.
 
 - `Reset Address`: lets you change the `Address` in `Reset Register` section of the `FACP` table (example):
 	
