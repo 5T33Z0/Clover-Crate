@@ -50,9 +50,9 @@ Some systems can only be started using kernel parameter `cpus=1` or with a patch
 These two parameters serve a common purpose - to fix restart. They should be present in the `FACP`/`FADT` table, but that's not always the case. Sometimes the table is shorter than expected, so the values are missing. Possible combinations:
 
 - If both fields are left empty,`0x64`/`0xFE` will be used by default &rarr; Restarts the system via the PS2 Controller – just like a PC.
+- `0x0`/`0x0`→ uses the default `FACP` values, if present. Otherwise, `0x64`/`0xFE` will be used instead.
 - `0x0CF9`/`0x06` &rarr; restarts the system via PCI Bus – just like a real Mac. Shutdown and restart is faster but this combination does not work for all Hackintoshes.
 - `0x92`/`0x01`→ another possible combination.
-- `0x0`/`0x0`→ uses the default `FACP` values, if present. Otherwise, `0x64`/`0xFE` will be used instead.
 
 ## Smart UPS
 
