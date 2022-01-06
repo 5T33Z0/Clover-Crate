@@ -118,30 +118,30 @@ Following are examples of commonly renamed devices:
 | PowerButton     | PWRB              | Power Button Device
 | Sleep Button    | SLPB              | Sleep Button Device
 
-**II. Binary Renames in Detail**
+**II. Binary Rename examples**
 
 **Prerequisites**: In order to apply these renames correctly, you need a dump of your System's `DSDT`!
 
 Names like `_DSM` with and underscore in front of them define a method. These are usually renamed by replacing the `_` with a `X` (like `XDSM`) which basically disables the method (`XDSM`), so a different or custom method can be applied.
 
-| #  | Rename      | Description                      |
-|:--:| :---------: | -------------------------------- |
-| 01 | _DSM to XDSM| Other Patch Requirements         |
-| 02 | LPC to LPCB |In `DSDT`, search for `0x001F0000`.</br> 1: If the device name is already `LPCB`, there is no need to change the name.</br> 2: If there are multiple matches for `0x001F0000`, carefully determine whether this name change is needed or not </br>3:If ACPI includes an `ECDT.aml`, check "About `ECDT` correction method|
-| 03 | EC to EC0   | Changes name of Embedded Controller. In DSDT, check the device belonging to `PNP0C09`.</br>1:If the device name is already `EC0`, no renaming is required </br>2:If there are multiple matches for `0PNP0C09`, confirm the real `EC` name </br>3:If ACPI package includes `ECDT.aml`, see "About ECDT and how to fix it"|.|
-|04|H_EC to EC0|Same as EC|
-|05|ECDV to EC0(dell)|Same as EC|
-|06|EHC1 to EH01| Renames USB Controller. For machines with USB2.0, query the device name of `0x001D0000`.
-|07|EHC2 to EH02| For a 2nd USB Controller
-|08|XHCI to XHC| Changes name of modern USB Controller. Check the device name belonging to `0x00140000`. If the device name is already `XHC`, no binary rename is necessary|
-|09|XHC1 to XHC|Same as XHCI|
-|10|KBD to PS2K|Rename for Keyboard. Check the device name of `PNP0303`, `PNP030B`, `PNP0320`. If the keyboard name cannot be determined in `DSDT`, check the "BIOS name" of the keyboard in Windows Device Manager. If keyboard is named `PS2K` already, no rename is required|
-|11|KBC0 to PS2K|same|
-|12|KBD0 to PS2K|same|
-|13|SMBU to SBUS|Renames System Management Bus. Most ThinkPads require this. </br>Before 6th Gen, search the device name belonging to "0x001F0003" </br>6th Gen and later machines: search "0x001F0004" belonging to the device name </br>If the device name `SBUS` already, a rename is not required|
-|14|LID to LID0| Search the device name belonging to `PNP0C0D` and rename it to `LID0`
-|15|PBTN to PWRB(dell)| Search device belonging to `PNP0C0**C**` and rename it to `PWRB`
-|16|SBTN to SLPB(dell)| Sleep Button rename. Search device belonging to `PNP0C0**E**`. If the name is `SLPB` already, no need for a rename.
+| Rename      | Description                      |
+| :---------: | -------------------------------- |
+| _DSM to XDSM| Other Patch Requirements         |
+| LPC to LPCB |In `DSDT`, search for `0x001F0000`.</br> 1: If the device name is already `LPCB`, there is no need to change the name.</br> 2: If there are multiple matches for `0x001F0000`, carefully determine whether this name change is needed or not </br>3:If ACPI includes an `ECDT.aml`, check "About `ECDT` correction method|
+| EC to EC0   | Changes name of Embedded Controller. In DSDT, check the device belonging to `PNP0C09`.</br>1:If the device name is already `EC0`, no renaming is required </br>2:If there are multiple matches for `0PNP0C09`, confirm the real `EC` name </br>3:If ACPI package includes `ECDT.aml`, see "About ECDT and how to fix it"|.|
+|H_EC to EC0|Same as EC|
+|ECDV to EC0(dell)|Same as EC|
+|EHC1 to EH01| Renames USB Controller. For machines with USB2.0, query the device name of `0x001D0000`.
+|EHC2 to EH02| For a 2nd USB Controller
+|XHCI to XHC| Changes name of modern USB Controller. Check the device name belonging to `0x00140000`. If the device name is already `XHC`, no binary rename is necessary|
+|XHC1 to XHC|Same as XHCI|
+|KBD to PS2K|Rename for Keyboard. Check the device name of `PNP0303`, `PNP030B`, `PNP0320`. If the keyboard name cannot be determined in `DSDT`, check the "BIOS name" of the keyboard in Windows Device Manager. If keyboard is named `PS2K` already, no rename is required|
+|KBC0 to PS2K|same|
+|KBD0 to PS2K|same|
+|SMBU to SBUS|Renames System Management Bus. Most ThinkPads require this. </br>Before 6th Gen, search the device name belonging to "0x001F0003" </br>6th Gen and later machines: search "0x001F0004" belonging to the device name </br>If the device name `SBUS` already, a rename is not required|
+|LID to LID0| Search the device name belonging to `PNP0C0D` and rename it to `LID0`
+|PBTN to PWRB(dell)| Search device belonging to `PNP0C0**C**` and rename it to `PWRB`
+|SBTN to SLPB(dell)| Sleep Button rename. Search device belonging to `PNP0C0**E**`. If the name is `SLPB` already, no need for a rename.
 
 To convert any text to a hex you can use the Hex Converter inside of Clover Configurator
 </details>
