@@ -1,3 +1,10 @@
+```
+     _/_/_/  _/                                                  _/_/_/                        _/               
+  _/        _/    _/_/    _/      _/    _/_/    _/  _/_/      _/        _/  _/_/    _/_/_/  _/_/_/_/    _/_/    
+ _/        _/  _/    _/  _/      _/  _/_/_/_/  _/_/          _/        _/_/      _/    _/    _/      _/_/_/_/   
+_/        _/  _/    _/    _/  _/    _/        _/            _/        _/        _/    _/    _/      _/          
+ _/_/_/  _/    _/_/        _/        _/_/_/  _/              _/_/_/  _/          _/_/_/      _/_/    _/_/_/     
+```
 # CLOVER CRATE
 [![Clover Version](https://img.shields.io/badge/Clover-r5143-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
 [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.21.0-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/)
