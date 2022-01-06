@@ -47,11 +47,23 @@ Some systems can only be started using kernel parameter `cpus=1` or with a patch
 
 ## Reset Address / Reset Value
 
-These two parameters serve a common purpose - to fix restart. They should be present in the `FACP` table, but that's not always the case. Sometimes the table is shorter than expected, so the values are missing. 
+These two parameters serve a common purpose - to fix restart. They should be present in the `FACP`/`FADT` table, but that's not always the case. Sometimes the table is shorter than expected, so the values are missing. 
 
-- `Reset Address`: lets you change the `Address` in `Reset Register` section of the `FACP` table.
-- `Reset Value`: lets you change the value in the `Value to cause reset` section of the `FACP` table.
+- `Reset Address`: lets you change the `Address` in `Reset Register` section of the `FACP` table:
+	
+	```
+	[074h 0116  12]               Reset Register : [Generic Address Structure]
+	[074h 0116   1]                     Space ID : 01 [SystemIO]
+	[075h 0117   1]                    Bit Width : 08
+	[076h 0118   1]                   Bit Offset : 00
+	[077h 0119   1]         Encoded Access Width : 00 [Undefined/Legacy]
+	[078h 0120   8]                      Address : 0000000000000CF9
+	```
+- `Reset Value`: lets you change the value in the `Value to cause reset` section of the `FACP` table:
 
+	```
+	[080h 0128   1]         Value to cause reset : 06
+	```
 Possible combinations:
 
 - If both fields are left empty, `0x64`/`0xFE` will be used by default &rarr; Restarts the system via the PS2 Controller – just like a PC.
