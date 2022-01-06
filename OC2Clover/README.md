@@ -73,12 +73,12 @@ In OCAT you enter the path to a device in the `base` field (don't forget to enab
 
 | OpenCore          | Clover      |
 |:-----------------:|:-----------:|
-| FadtEnableReset   | Reset Address / Reset value |
-| Normalize Headers | FixHeaders  |
+| FadtEnableReset   | Reset Address / Reset Value |
+| Normalize Headers | FixHeaders |
 | Reset Logo Status | Drop Tables > BGRT|
-| Rebase Regions    | FixRegions (?)|
-| Reset HwSig	    | ?           |
-| SyncTableIDs      | ?           |
+| Rebase Regions    | ? |
+| Reset HwSig	    | FixRegions |
+| SyncTableIDs      | ?          |
 
 ## DeviceProperties
 In OCAT, devices are added or modified in a straight forward "DeviceProperties" section:</br>
