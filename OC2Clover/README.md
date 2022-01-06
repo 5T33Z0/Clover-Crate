@@ -165,9 +165,7 @@ While most of OpenCore's Kernel Patches are located in Clover's Quirks section, 
 If you want to use your SMBIOS data from "PlatformInfo > Generic" in Clover, you have to use different fields and section to do so. This can be a bit confusing due to naming differences as well as the number of fields available in both configs.
 
 In order to use the SMBIOS data in OpenCore and Clover, do the following:
-
 1. Copy the Data from the following fields to Clover Configurator's "SMBIOS" and "RtVariables" sections:</br>
-
 	| OpenCore (PlatformInfo > Generic) | Clover (SMBIOS)      |
 	|-----------------------------------|----------------------|
 	| SystemProductName                 | ProductName          |
