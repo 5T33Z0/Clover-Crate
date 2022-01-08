@@ -15,13 +15,13 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 - [**Kext Updater**](https://www.sl-soft.de/kext-updater/) (great tool for keeping kexts and other files up to date)
 - [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/) – App for downloading current macOS, creating an USB Installer and changing the Update Seed which can help resolving issues with system updates
 - [**ssdtPRGen**](https://github.com/Piker-Alpha/ssdtPRGen.sh) – Python Script to generate a SSDT for Power Management (for oler Intel CPUs)
-- [**BitmaskDecode**](https://github.com/corpnewt/BitmaskDecode/) – For calculating/analyzing `CsrActiveConfig`. 
 
 ### Cross-Platform
 - [**Python Installer**](https://www.python.org/downloads/) – Necessary for running a lot of the python-based tools in this list
 - [**SSDTTime**](https://github.com/corpnewt/SSDTTime) – Python-based Tool for dumping DSDT and automated ACPI Hotpatch generation
 - [**PlistEDPlus**](https://github.com/ic005k/PlistEDPlus) – Cross-platform plist editor
 - [**QtiASL**](https://github.com/ic005k/QtiASL) – ASL/AML Editor
+- [**BitmaskDecode**](https://github.com/corpnewt/BitmaskDecode/) – For calculating/analyzing `CsrActiveConfig`. 
 - [**gibMacOS**](https://github.com/corpnewt/gibMacOS) – Python-based Tool for downloading macOS
 - [**USBToolbox**](https://github.com/USBToolBox/tool) – USB Port mapping tool. Makes port mapping under macOS 11.3+ easier.
 
