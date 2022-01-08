@@ -13,7 +13,7 @@ Incomplete list of useful freeware Apps and Tools to accompany Clover.
 
 ## Resources
 - [**Clover vs OpenCore Nomenclature**](https://github.com/dortania/OpenCore-Install-Guide/blob/master/clover-conversion/Clover-config.md)
-- [**Old Hackintosh Install Guide for Clover (no Quirks included)**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
+- [**Old Hackintosh Install Guide for Clover](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) (no Quirks included)
 - **ACPI Samples**:
 	- **General**: included in OpenCore Package (under "Docs"): https://github.com/acidanthera/OpenCorePkg/releases
 	- **Additional**: https://github.com/5T33Z0/OC-Little-Translated. Primarily for OC Users but most of the files and guides apply to Clover as well.
