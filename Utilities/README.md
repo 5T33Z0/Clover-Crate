@@ -7,7 +7,7 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 - [**Bootloader Chooser**](https://github.com/jief666/BootloaderChooser) – A pre-bootloader which lets you pick the actual Bootloader you want to run. This way you can have multiple "Clover" and/or "OC" folders with different configs.
 
 ## Apps and tools
-### macOS
+### macOS (general)
 - [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/) – Configurator App for editing Clover's config.plist
 - [**MaciASL**](https://github.com/acidanthera/MaciASL) – ASL/AML Editor for macOS.
 - [**IORegistryExplorer**](https://github.com/khronokernel/IORegistryClone) – App for gathering infos about I/O Registry.
