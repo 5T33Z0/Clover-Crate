@@ -69,7 +69,6 @@ These two parameters serve a common purpose - to fix restart. They should be pre
 	...
 	```
 Possible combinations:
-
 - If both fields are left empty, `0x64`/`0xFE` will be used by default &rarr; Restarts the system via the PS2 Controller – just like a PC.
 - `0x0`/`0x0`→ uses the default `FACP` values, if present. Otherwise, `0x64`/`0xFE` will be used instead.
 - `0x0CF9`/`0x06` &rarr; restarts the system via PCI Bus – just like a real Mac. Shutdown and restart is faster but this combination does not work for all Hackintoshes.
@@ -188,7 +187,7 @@ Listed below are the included DSDT `Fixes` provided by Clover (about 30) and wha
 
 To get a better understanding for fixes that are still relevant in 2022, take a look at my [**Desktop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [**Laptop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) configs before getting all click-happy and just randomly enable every available fix!
 
-**TIP**: Use `Fixes` sparsely. Instead, apply SSDT hotpatches included in the OpenCore package or from my [**OC-Little Repo**](https://github.com/5T33Z0/OC-Little-Translated) to fix your DSDT.
+**TIP**: Use `Fixes` sparsely. Instead, apply SSDT hotpatches included in the OpenCore package or from my [**OC-Little Repo**](https://github.com/5T33Z0/OC-Little-Translated) to fix your `DSDT`.
 
 #### AddDTGP
 
