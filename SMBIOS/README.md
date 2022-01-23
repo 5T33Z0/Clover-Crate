@@ -45,7 +45,7 @@ By setting the latest BIOS and Firmware version in the SMBIOS section this hurdl
 This updates your BIOS and Firmware Data, so now you can continue your macOS installation successfully.
 
 ## About "Extended Firmware Features"
-![ExtFF](https://user-images.githubusercontent.com/76865553/139642095-73a2352b-c5e3-481b-8fc2-cdd6702a4dc1.png)
+![extfirmw](https://user-images.githubusercontent.com/76865553/150670638-9bfac516-9038-479c-bb12-d62afa0d2cc9.png)
 
 Expands the existing Firmware Features mask from 32 up to 64 bits which is required for newest Macs and macOS Monterey. Clover has the ability to set some default values for keys absent in config.plist. These are set automatically based on hardware characteristics or the selected mac model in SMBIOS. `iMacPro1,1` uses different values for `ExtendedFirmwareFeatures` and `ExtendedFirmwareFeaturesMask` than `iMac20,2`, for example.
 
