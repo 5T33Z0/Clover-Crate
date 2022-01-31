@@ -157,9 +157,9 @@ As you can see, the device exists and is located in `\SB_PCI0_EHC1` of the `DSDT
 
 ### TgtBridge
 
-The `TgtBridge` is a field/function inside the `ACPI > DSDT > Patches` section of the Clover `config.plist`. Its purpose is to limit the scope of binary renames to only work within a pre-defined section/area of the `DSDT`.
+The `TgtBridge` (short for Target Bridge) is a ACPI patching method which can be used to restrict ACPI patches to certain locations/devices within the `DSDT`. The feature is located in the `ACPI > DSDT > Patches` section of the Clover `config.plist`.
 
-For example: renaming the method `_STA`to `_XSTA` in device `GPI0`:
+**Example**: renaming the method `_STA`to `_XSTA` in device `GPI0`:
 
 ![TGTBridgeExample](https://user-images.githubusercontent.com/76865553/135732680-641af3ba-8140-477a-9c9e-69345d8e9b8f.png)
 
