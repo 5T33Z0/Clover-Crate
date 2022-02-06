@@ -15,6 +15,8 @@ After you're done with your changes, set it to `FALSE` again:
 ### Theme
 Enter the name of a theme installed in `EFI\Clover\themes\ThemeXYZ` for example. Use the folder name for reference. In this example, enter "ThemeXYZ".
 
+A collection of themes can be found on the [Clover Github Repo](https://github.com/CloverHackyColor/CloverThemes). Some of them are really old and might not be compatible with the newest version of Clover which results in a broken botloader GUI. So make sure to test them first by booting from a FAT32 formatted USB flash drive with the EFI folder first,
+
 ### EmbeddedThemeType
 Select between `Dark` and `Light` variant of an embedded theme. If left unset, the variants are picked based by the real time clock – light during the day, dark at night (if it's supported by the theme). Introduced in r4773.
 
