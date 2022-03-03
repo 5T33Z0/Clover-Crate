@@ -32,9 +32,9 @@ You can find the required Booter Quirks in the Booter section of [Dortania's Ope
 ## Kernel Quirks, Emulate and Scheme
 If you click on "Kernel" you will find Kernel Quirks, Emulation and Scheme Settings:
 
-![Quirks_Kernel](https://user-images.githubusercontent.com/76865553/156522756-1ce8fdf0-c5fc-430a-89ae-c7c9c8046dac.png)
+![Quirkz](https://user-images.githubusercontent.com/76865553/156524793-98e3f7c1-9058-4742-ab34-8ed7689c70bb.png)
 
-You will find the corresponding settings for your CPU in the "Kernel" section of the Dortania Guide as mentioned earlier. Unfortunately, some Kernel Quirks are not located in the `Quirks` section but in the "Kext and Kernel Patches" section instead and use different names than OpenCore:
+You will find the corresponding settings for your CPU in the "Kernel" section of the Dortania Guide as mentioned earlier. Unfortunately, some Kernel Quirks are not located in the `Quirks` section but in the "Kext and Kernel Patches" instead and also have different names:
 
 ![Qnames](https://user-images.githubusercontent.com/76865553/139507628-4dbc5d58-a823-4cd7-a739-9945dd3a2e94.png)
 
