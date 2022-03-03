@@ -41,7 +41,7 @@ You will find the corresponding settings for your CPU in the "Kernel" section of
 Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover) to replace the outdated `AptioMemoryFixes` by `OpenRuntime.efi` and add necessary Quirks.
 
 ## Additional Quirks
-This section lists Quirks which are new or not documented or not available in Clover Configurator yet or otherwise noteworthy.
+This section lists Quirks which are new, not documented or not available in Clover Configurator yet or are noteworthy otherwise.
 
 ### ForceOcWriteFlash
 Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Copy the key from the `Quirks` section of config-sample.plist to your config.plist since Clover Configurator doesn't support it (yet). From the OpenCore Documentation:
@@ -50,6 +50,12 @@ Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Copy th
 
 ### Provide Console Gop
 `ProvideConsoleGop` is another a OpenCore Quirk which has been implemented into Clover. Until r5128, it resided in the `Quirks` section as `ProvideConsoleGopEnable`. Since then, it has been relocated to the `GUI` section because it's related to the User Interface. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI > Output` section. **Hint**: it's always enabled.
+
+### ProvideCurrentCpuInfo
+This quirk works differently depending on the CPU to the macOS Kernel:
+- For Microsoft Hyper-V it provides the correct TSC and FSB values to the kernel, as well as disables CPU topology validation (10.8+).
+- For KVM and other hypervisors it provides precomputed MSR 35h values solving kernel panic with -cpu host.
+- For Intel CPUs it adds support for asymmetrical SMP systems (e.g. Intel Alder Lake) by patching core count to thread count along with the supplemental required changes (10.14+).
 
 ### ResizeAppleGPUBars
 `ResizeAppleGpuBars` is the latest Quirk added to Clover in r5142. It limits the GPU PCI BAR sizes for macOS up to the specified value or lower if it is unsupported. When the bit of is Set, it indicates that the Function supports operating with the BAR sized to (2^Bit) MB. `ResizeGpuBars` must be an integer value between `-1` to `19`.
