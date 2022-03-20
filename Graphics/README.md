@@ -19,7 +19,7 @@ You can enable the injection of parameters based on vendors:
 **NOTE**: These parameters were used before the advent of `Whatevergreen.kext` (WEG). Now that the WEG does most of the graphics customization work for you, it is recommended to disable all of these injections in cases where they don't work any more (mostly for NVIDIA).
 
 ### Unsing `Inject ATI` for current AMD Graphics Cards
-Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3. with newer GPUs- Here's how to set it up:
+Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3. with newer GPUs. Here's how to set it up:
 
 1. Enable `Inject ATI`
 2. Under `FB Name`, enter ther namer of the Framebuffer Patch matching the Controller used in your GPU or select one from the dropdown menue:
