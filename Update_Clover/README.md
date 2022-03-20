@@ -92,13 +92,13 @@ Starting from version r5134, Clover now includes error reporting similar to Open
 If it does boot, you can mount the ESP partition of your hard drive, backup your old EFI Folder, delete it and put in the one from your USB Flash drive to make the changes permanent.
 
 ## `OpenRuntime.efi` and older Clover builds (< r5142)
-There is an incompatibility with `OpenRuntime.efi` and Clover: revisions prior to r5142 require `OpenRuntime.efi` version 1.1 while r5142 and newer require v1.2 or newer. This is not really an issue for people who just want to stay up to date using the newest version of Clover anyway. But if you want to boot using a Clover build prior to r5142, you need v1.1 of OpenRuntime which will not work in r5142, of course.
+There is an incompatibility with `OpenRuntime.efi` and Clover: revisions prior to r5142 require `OpenRuntime.efi` version 1.1, while r5142 and newer require v1.2 (or newer). This is not really an issue for people who just want to stay up to date using the newest version of Clover and Drivers anyway. But if you want to boot using a Clover build older than r5142, you need v1.1 of OpenRuntime which will not work in r5142, of course.
 
-In order to workaround this issue, a special folder `drivers/5142` can be used to place the current `OpenRuntime-v12.efi.`, while regular `drivers/UEFI` contains the old `OpenRuntime-v11.efi`:
+To workaround this issue, a special folder `drivers/5142` can be used to place the current `OpenRuntime-v12.efi.`, while regular `drivers/UEFI` contains the old `OpenRuntime-v11.efi`:
 
 ![5142](https://user-images.githubusercontent.com/76865553/159173255-908f9f58-d394-4ae8-aeae-83d9780123c9.png)
 
-This way, you can switch back and forth between current Clover revisions and older revisions prior to r5142
+This way, you can switch back and forth between current and older Clover builds prior to r5142 without issues. Because Clover build prior to r5142  can't see the `drivers/5142` folder while Clover 5142+ does see this folder and prioritizes the included OpenRuntime.efi (if present) over the one stored under `drivers/UEFI`.
 
 ## Further Resources and Troubleshooting
 
