@@ -96,7 +96,7 @@ There is an incompatibility with `OpenRuntime.efi` and Clover: revisions prior t
 
 In order to workaround this issue, a special folder `drivers/5142` can be used to place the current `OpenRuntime-v12.efi.`, while regular `drivers/UEFI` contains the old `OpenRuntime-v11.efi`:
 
-![](/Users/steezonics/Desktop/5142.png)
+![5142](https://user-images.githubusercontent.com/76865553/159173255-908f9f58-d394-4ae8-aeae-83d9780123c9.png)
 
 This way, you can switch back and forth between current Clover revisions and older revisions prior to r5142
 
