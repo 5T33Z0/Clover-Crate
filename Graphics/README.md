@@ -16,7 +16,21 @@ You can enable the injection of parameters based on vendors:
 - `Inject Intel`
 - `Inject NVidia`
 
-**NOTE**: These parameters were used before the advent of `Whatevergreen.kext` (WEG). Now that the WEG does most of the graphics customization work for you, it is recommended to disable all of these injections.
+**NOTE**: These parameters were used before the advent of `Whatevergreen.kext` (WEG). Now that the WEG does most of the graphics customization work for you, it is recommended to disable all of these injections in cases where they don't work any more (mostly for NVIDIA).
+
+### Unsing `Inject ATI` for current AMD Graphics Cards
+Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3. with newer GPUs- Here's how to set it up:
+
+1. Enable `Inject ATI`
+2. Under `FB Name`, enter ther namer of the Framebuffer Patch matching the Controller used in your GPU or select one from the dropdown menue:
+	- **RX6900** &rarr; `Carswell`
+	- **RX6800** &rarr; `Belknap`
+	- **RX6600** &rarr; `Henbury` 
+	- **RX5700** &rarr; `Adder`
+	- **RX5500** &rarr; `Python`
+	- **RX570** &rarr; `Orinoco`
+
+**Source**: [**Clover Changes**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2778575)
 
 ## Dual Link
 The default value is `1`, but for some older configurations this will cause issues. In this case, set it to `0`.
