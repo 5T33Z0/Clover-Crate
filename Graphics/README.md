@@ -83,7 +83,7 @@ This parameter is required to configure on-board graphics, aka "Intel HD Graphic
 **NOTES**
 
 - For 10th Gen Intel Core CPUs and newer, it's recommended to configure the frambuffer using the `Devices/Properties` section instead, entering the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
-- When Clover detects an Intel iGPU, it automatically enables Intel Injection if the Graphics section doesn't exist in the `config.plist`. To bypass this, you can explicitly disable injection by clicking the "Inject Intel" button once to check it, and once to uncheck it in Clover Configurator
+- When Clover detects an Intel iGPU, it automatically enables Intel Injection if the Graphics section doesn't exist in the `config.plist`. To bypass this, you can explicitly disable injection by clicking the "Inject Intel" button once to enable it and again to uncheck it which removes the section from the raw XML code of the config.plist.
 
 ## VRAM
 The amount of video memory in MB. In fact, it is detected automatically, but you can adjust it manually. But in reality, I cannot remember a single case where this parameter has helped anyone in any way other than for mobile Radeon cards: if you set `LoadVBios=true` the correct amount of memory will be displayed.
