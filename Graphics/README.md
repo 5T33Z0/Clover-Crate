@@ -18,14 +18,9 @@ You can enable the injection of parameters based on vendors:
 
 **NOTE**: These parameters were used before the advent of `Whatevergreen.kext` (WEG). Now that the WEG does most of the graphics customization work for you, it is recommended to disable all of these injections in cases where they don't work any more (mostly for NVIDIA).
 
-<<<<<<< Updated upstream
-=======
 ## FB Name
-This parameter is specific to ATI Radeon Cards, for which about three dozens different framebuffers exist which don't follow any specific pattern. Clover automatically chooses the most appropriate name from the table on most known cards.
+This parameter is specific to ATI Radeon Cards, for which about three dozens different framebuffers exist which don't follow any specific pattern. Clover automatically chooses the most appropriate name from the table for most known cards. However, you can select a custom one from the dropdown menu if the automatically detected one causes issues.
 
-However, other users of the exact same card are challenged, they want a different name. So select one from the dropdown menu.
-
->>>>>>> Stashed changes
 ### Using `Inject ATI` for current AMD Graphics Cards
 Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3 with newer GPUs. Do the following to enable the correct framebuffer for your AMD GPU:
 
