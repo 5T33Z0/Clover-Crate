@@ -183,7 +183,5 @@ If for some reason the entry for the partition containing the Clover bootloader 
 
 In order to do so, do the following:
 
-1. In the Clover bootmenu, select "Clover Boot Options":</br>![](/Users/5t33z0/Desktop/misc/screenshot1.png)
-2. In the next screen, you will find the PCI path pointing to the `CLOVERX64.efi` bootloader file. Clicking or hitting Enter on "Add Clover boot options for all entries" will generate a boot entry in the BIOS bootmenu:</br>![](/Users/5t33z0/Desktop/misc/screenshot2.png)
-
-
+1. In the Clover bootmenu, select "Clover Boot Options":</br>![screenshot1](https://user-images.githubusercontent.com/76865553/159431070-103960ad-90b8-4a1a-b86c-7127c9bfac2d.png)
+2. In the next screen, you will find the PCI path pointing to the `CLOVERX64.efi` bootloader file. Clicking or hitting Enter on "Add Clover boot options for all entries" will generate a boot entry in the BIOS bootmenu:</br>![screenshot2](https://user-images.githubusercontent.com/76865553/159431126-4afa3874-d322-4cf2-b18e-942e8e76b86d.png)
