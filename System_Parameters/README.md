@@ -16,7 +16,7 @@ This key defines the global policy regarding kext injection:
 Since Clover r5125, loading of kexts is handled by OpenCore, so `FSInject` is obsolete.
 
 ## InjectSystemID
-For Chameleon users switching over to Clover!? – not covered here, obsolete don't care, leave disabled and carry on!
+For Chameleon users switching over to Clover! Not covered here. Leave disabled and carry on!
 
 ## NoCaches
 If enabled, the cache will be skipped on each boot. And just like `InjectKexts`, this key defines the global rule, so the value defined on Custom Entries will override this one.
