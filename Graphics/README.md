@@ -18,6 +18,14 @@ You can enable the injection of parameters based on vendors:
 
 **NOTE**: These parameters were used before the advent of `Whatevergreen.kext` (WEG). Now that the WEG does most of the graphics customization work for you, it is recommended to disable all of these injections in cases where they don't work any more (mostly for NVIDIA).
 
+<<<<<<< Updated upstream
+=======
+## FB Name
+This parameter is specific to ATI Radeon Cards, for which about three dozens different framebuffers exist which don't follow any specific pattern. Clover automatically chooses the most appropriate name from the table on most known cards.
+
+However, other users of the exact same card are challenged, they want a different name. So select one from the dropdown menu.
+
+>>>>>>> Stashed changes
 ### Using `Inject ATI` for current AMD Graphics Cards
 Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3 with newer GPUs. Do the following to enable the correct framebuffer for your AMD GPU:
 
@@ -44,11 +52,6 @@ The following parameters can be adjusted:
 - `ProductID`
 - `HorizontalSyncPulseWidth`: Fixes the eight apples issue. See `EightApple` Fix under &rarr; Kernel and Kext Patches.
 - `VideoInputSignal`
-
-## FB Name
-This parameter is specific to ATI Radeon Cards, for which about three dozens different framebuffers exist which don't follow any specific pattern. Clover automatically chooses the most appropriate name from the table on most known cards.
-
-However, other users of the exact same card are challenged, they want a different name. So select one from the dropdown menu.
 
 ## Load VBios
 Loads video bios from a file. It must be present in `EFI/CLOVER/OEM/xxx/ROM` or `EFI/CLOVER/ROM` and its name must consist of `vendor_device.rom`, e.g. `1002_68d8.rom`. Since r3222, longer file names including sub-vendor and sub-revision are supported as well. For example `10de_0f00_1458_3544.rom`. This option is useful if you want to load a patched Vbios when running macOS.
