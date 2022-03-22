@@ -16,7 +16,8 @@ You can enable the injection of parameters based on vendors:
 - `Inject Intel` &rarr; For Intel on-board graphics. See "ig-platform-id" for details
 - `Inject NVidia` &rarr; For old NVIDIA Cards **NOT** relying on NVIDIA Webdrivers. For GTX cards, use the **NvidiaWeb** option located under [**`System Paramters`**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters#nvidiaweb) instead.
 
-**NOTE**: These parameters were used before the advent of `Whatevergreen.kext` (WEG). Now that the WEG does most of the graphics customization work for you, it is recommended to disable all of these injections in cases where they don't work any more (mostly for NVIDIA).
+**NOTE**: The `Inject` parameters were used before the advent of `Whatevergreen.kext` (WEG). Now that the WEG does most of the graphics customization work for you, it is recommended to disable these injections in cases where they don't work any more (mostly for NVIDIA).
+
 
 ## FB Name
 Framebuffer Name. This parameter is specific to ATI/AMD Radeon Cards, for which about three dozen different framebuffers exist which don't follow any specific pattern. Clover automatically chooses the most appropriate Framebuffer for most common cards it detects. However, you can choose a custom one from the dropdown menu if the automatically detected one causes issues. Just make sure it matches the Controller used in your ATI/AMD Card.
@@ -79,7 +80,10 @@ This key works with ATI/AMD Radeon GPUs (6xxx and higher and possibly 5xxx). It 
 ## ig-platform-id
 This parameter is required to configure on-board graphics, aka "Intel HD Graphics xxxx". Select the corresponding framebuffer from the `ig-platform-id` dropdown menu in Clover Configurator.
 
-**NOTE**: For 10th Gen Intel Core CPUs and newer, it's recommended to configure the frambuffer using the `Devices/Properties` section instead, entering the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
+**NOTES**
+
+- For 10th Gen Intel Core CPUs and newer, it's recommended to configure the frambuffer using the `Devices/Properties` section instead, entering the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
+- When Clover detects an Intel iGPU, it automatically enables Intel Injection if the Graphics section doesn't exist in the `config.plist`. To bypass this, you can explicitly disable injection by clicking the "Inject Intel" button once to check it, and once to uncheck it in Clover Configurator
 
 ## VRAM
 The amount of video memory in MB. In fact, it is detected automatically, but you can adjust it manually. But in reality, I cannot remember a single case where this parameter has helped anyone in any way other than for mobile Radeon cards: if you set `LoadVBios=true` the correct amount of memory will be displayed.
