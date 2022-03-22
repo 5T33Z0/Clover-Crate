@@ -22,4 +22,4 @@ For Chameleon users switching over to Clover!? – not covered here, obsolete do
 If enabled, the cache will be skipped on each boot. And just like `InjectKexts`, this key defines the global rule, so the value defined on Custom Entries will override this one.
 
 ## NvidiaWeb
-If key value is true, it will allow access to load and use Nvidia WebDriver kexts from macOS 10.12 onwards. You still need to install Nvidia Web Drivers of course, which are only supported up to macOS High Sierra (10.13.6).
+If enabled, this will allow to load and use the Nvidia WebDriver kexts for NVIDIA GeForce Cards from macOS 10.12 onwards. You still need to install the [**Nvidia Web Drivers**](https://www.tonymacx86.com/nvidia-drivers/), which are only supported up to macOS High Sierra (10.13.6).

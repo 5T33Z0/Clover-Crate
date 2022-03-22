@@ -6,15 +6,15 @@ This group of parameters serves to inject Properties for various graphics cards,
 **ATTENTION!** Most of the options available in this section are obsolete in 2021. Instead, framebuffer patches are entered via `Devices/Properties`. The only settings which are still useful are the entries in the dropdown menu of `ig-platform-id` for Intel iGPUs (up to Coffeelake).
 
 ## Inject
-Can inject two dozen parameters, which are calculated not only based on the card model, but also on its internal characteristics after analyzing the video bios of a GPU.
+Can inject two dozen parameters, which are calculated not only based on the card model, but also on its internal characteristics after analyzing the VBIOS of a GPU.
 
-For Nvidia cards, `NVCAP` is calculated, for Intel on-board graphics, dozens of parameters are applied, for ATI cards parameters for connectors are injected. To list all of them would take another two hundred pages. Moreover, for modern GPUs you don't need these any longer, since Apple ensured that they work out of the box.
+For Nvidia cards, `NVCAP` is calculated, for Intel on-board graphics dozens of parameters are applied, for ATI/AMG cards parameters for connectors are injected. To list all of them would exceed the scope of this guide. Moreover, for most modern GPUs, you don't even need to the inject features in most cases, since Apple ensured that they work out of the box.
 
 You can enable the injection of parameters based on vendors:
 
-- `Inject ATI`
-- `Inject Intel`
-- `Inject NVidia`
+- `Inject ATI` &rarr; For ATI/AMD GPUs. See "FB Name" for details.
+- `Inject Intel` &rarr; For Intel on-board graphics. See "ig-platform-id" for details
+- `Inject NVidia` &rarr; For old NVIDIA Cards **NOT** relying on NVIDIA Webdrivers. For GTX cards, use the **NvidiaWeb** option located under [**`System Paramters`**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters#nvidiaweb) instead.
 
 **NOTE**: These parameters were used before the advent of `Whatevergreen.kext` (WEG). Now that the WEG does most of the graphics customization work for you, it is recommended to disable all of these injections in cases where they don't work any more (mostly for NVIDIA).
 
@@ -77,9 +77,9 @@ There have been cases where enabling this patch would cause a black screen when 
 This key works with ATI/AMD Radeon GPUs (6xxx and higher and possibly 5xxx). It fixes the contents of GPU registers so that the card becomes properly initialized so macOS drivers work as intended.
 
 ## ig-platform-id
-This parameter is required to configure on-board video cards, aka "Intel HD Graphics xxxx". Select the correct id for your CPU from the dropdown menu in Clover Configurator.
+This parameter is required to configure on-board graphics, aka "Intel HD Graphics xxxx". Select the corresponding framebuffer from the `ig-platform-id` dropdown menu in Clover Configurator.
 
-**NOTE**: As of 2021, on-board graphics are configured via `Devices/Properties` now, using the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
+**NOTE**: For 10th Gen Intel Core CPUs and newer, it's recommended to configure the frambuffer using the `Devices/Properties` section instead, entering the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
 
 ## VRAM
 The amount of video memory in MB. In fact, it is detected automatically, but you can adjust it manually. But in reality, I cannot remember a single case where this parameter has helped anyone in any way other than for mobile Radeon cards: if you set `LoadVBios=true` the correct amount of memory will be displayed.
