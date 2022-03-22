@@ -177,3 +177,13 @@ Sets the timeout in seconds (0-30 s), before the boot process continues loading 
 
 ## XMPDetection
 Detects the best Extreme Memory Profile when detecting memory or disables XMP detection.
+
+# Adding Clover entry to the BIOS Bootmenu
+If for some reason the entry for the partition containing the Clover bootloader is missing from your BIOS bootmenu, you can let Clover create one. But this has to be done in from within the Clover bootmenu because this affects UEFI BIOS variables working prior to Clover being started, so it can't be set up in the config.plit.
+
+In order to do so, do the following:
+
+1. In the Clover bootmenu, select "Clover Boot Options":</br>![](/Users/5t33z0/Desktop/misc/screenshot1.png)
+2. In the next screen, you will find the PCI path pointing to the `CLOVERX64.efi` bootloader file. Clicking or hitting Enter on "Add Clover boot options for all entries" will generate a boot entry in the BIOS bootmenu:</br>![](/Users/5t33z0/Desktop/misc/screenshot2.png)
+
+
