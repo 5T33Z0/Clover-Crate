@@ -83,7 +83,7 @@ This parameter is required to configure on-board graphics, aka "Intel HD Graphic
 **NOTES**
 
 - For 10th Gen Intel Core CPUs and newer, it's recommended to configure the frambuffer using the `Devices/Properties` section instead, entering the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
-- If Clover detects an Intel iGPU, it automatically enables Intel Injection if the `Graphics` section doesn't exist in the `config.plist`. To prevent graphics injection, you can explicitly disable it by clicking the "Inject Intel" button once to enable it and again to uncheck it which sets the `Inject` key to `false`:
+- If Clover detects an Intel iGPU, it _automatically_ enables Intel Injection if the `Graphics` section doesn't exist in the `config.plist`. To prevent graphics injection, you can explicitly disable it by clicking the "Inject Intel" button once to enable it and again to uncheck it which sets the `Inject` key to `false`:
 
 	```
 	<key>Graphics</key>
