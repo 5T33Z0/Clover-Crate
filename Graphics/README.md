@@ -13,11 +13,14 @@ For Nvidia cards, `NVCAP` is calculated, for Intel on-board graphics dozens of p
 You can enable the injection of parameters based on vendors:
 
 - `Inject ATI` &rarr; For ATI/AMD GPUs. See "FB Name" for details.
-- `Inject Intel` &rarr; For Intel on-board graphics. See "ig-platform-id" for details
-- `Inject NVidia` &rarr; For old NVIDIA Cards **NOT** relying on NVIDIA Webdrivers. For GTX cards, use the **NvidiaWeb** option located under [**`System Paramters`**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters#nvidiaweb) instead.
+- `Inject Intel` &rarr; For Intel on-board graphics. See "ig-platform-id" for details.
+- `Inject NVidia` &rarr; For old NVIDIA Cards **NOT** relying on NVIDIA Webdrivers. For GTX cards, enable the **NvidiaWeb** option (after installating the drivers, of course) located under [`System Paramters`](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters#nvidiaweb) instead.
 
-**NOTE**: The `Inject` parameters were used before the advent of `Whatevergreen.kext` (WEG). Now that the WEG does most of the graphics customization work for you, it is recommended to disable these injections in cases where they don't work any more (mostly for NVIDIA).
+**NOTES**: 
 
+- The `Inject` feature is a remnant of an era before `Whatevergreen.kext` (WEG) existed. Since WEG handles most of the neccessary adjustments to get graphics cards working with macOS nowadays, it is recommended to disable them (except for `Inject ATI` which is still useful in macOS 12 to address performance issues).
+- When using Intel on-board graphics on modern systems, using `Inject Intel` is not recommended. Instead, follow Whatevergreen's [Intel HD Graphics FAQ](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) to configure the framebuffer for your CPU in the `Devices/Properties` section manually. 
+- **Hint**: The `config.plists` included in the [Desktop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [Laptop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) sections contain a lot of Framebufer patches for various Intel CPU families already which might be useful to get your Intel HD/UHD graphics up and running.
 
 ## FB Name
 Framebuffer Name. This parameter is specific to ATI/AMD Radeon Cards, for which about three dozen different framebuffers exist which don't follow any specific pattern. Clover automatically chooses the most appropriate Framebuffer for most common cards it detects. However, you can choose a custom one from the dropdown menu if the automatically detected one causes issues. Just make sure it matches the Controller used in your ATI/AMD Card.
