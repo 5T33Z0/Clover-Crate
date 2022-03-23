@@ -6,7 +6,7 @@
 ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 ## ABOUT
-Clover Crate is an unofficial documentation of the Clover Bootloader and its features to help you to figure out what each option does. Its structure follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator.
+Clover Crate is an unofficial documentation of the Clover Boot Manager and its features to help you to figure out what each option does. Its structure follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator.
 
 Almost each available setting/parameter (besides obvious ones) is explained. Special attention to detail was given to the ACPI section, as this is one of the most important interfaces for configuring a Hackintosh. In each section/chapter, you can click on the list menu on the top left to select a feature you are interested in to jump to the corresponding entry, so you don't have to scroll all the way through a document. I am talking about this one:
 
