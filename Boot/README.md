@@ -127,7 +127,13 @@ Default Boot Volume is used to specify which entry is the default boot entry in 
 OS X Startup Disk can be used to reboot into another volume, but for the following reboot DefaultVolume will be used again.
 
 ## Default Loader
-In addition to `DefaultVolume`, the path of the loader can be specified as Default Loader. This provides more precise default entry selection for Volumes that have multiple Loaders. The value can be the complete path or a unique portion like file name.
+In addition to `DefaultVolume`, the path to the default boot loader of an Operating Systme can be set here. This provides a more precise default entry selection for Volumes that contain multiple boot loaders. This can be specified via a complete path or a unique portion like file name. 
+
+**IMPORTANT**: You cannot use the `Default Loader` section to set Clover or OpenCore as default Boot Loaders, since both are *Boot Managers*, not *Boot Loaders*! Boot Managers choose which Boot Loader to select. They don't actually boot the system. That's what the Boot Loaders does. Examples for *Boot Loaders* are:
+
+- `boot.efi` for macOS
+- `bootmgfw.efi` for Windows
+- `grubx64.efi` for Linux
 
 ## DisableCloverHotkeys
 Disables all hotkeys in the bootloader menu. The list of all hotkeys can be found by pressing F1 in the bootloader menu.
