@@ -129,7 +129,7 @@ OS X Startup Disk can be used to reboot into another volume, but for the followi
 ## Default Loader
 In addition to `DefaultVolume`, the path to the default boot loader of an Operating System can be specified here by entering the path to the boot loder or a unique portion of the file name. This can be useful for Volumes which contain multiple boot loaders, so the desifred boot loader is used by default when the volume is selected.
 
-**IMPORTANT**: You cannot use the `Default Loader` section to set Clover or OpenCore as default Boot Loaders, since both are *Boot Managers*, not *Boot Loaders*! Boot Managers choose which Boot Loader to select. They don't actually boot the system. That's what the Boot Loaders does. Examples for *Boot Loaders* are:
+**IMPORTANT**: You cannot use the `Default Loader` section to set Clover or OpenCore as default Boot Loaders, since both are *Boot Managers*, not *Boot Loaders!* Boot Managers choose which Boot Loader to select. They don't actually boot the system. That's the job of Boot Loaders. Examples for *Boot Loaders* are:
 
 - `boot.efi` for macOS
 - `bootmgfw.efi` for Windows
