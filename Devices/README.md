@@ -7,7 +7,7 @@ In this Section, you can:
 - Fix USB issues
 - Add Fake IDs to enable otherwise unsupported devices
 - Add or modify Devices (via `Devices` > `Properties`)
-- Add Framebuffer patches (via `Devices` > `Properties`)
+- Add Framebuffer Patches (via `Devices` > `Properties`)
 
 ## FakeID
 A group of parameters for masking your devices as natively supported ones by macOS.
@@ -62,12 +62,17 @@ Affects the `AppleHDA` driver and seems to solve the problem with clicks and pop
 ### ResetHDA
 Initialize the audio codec, if enabled. This behavior can be observed after rebooting from Windows to Mac. In OpenCore this feature called `ResetTrafficClass` (UEFI > Audio)
 
-## Properties
-This is where Clover and especially Clover Configuration get really confusing! Because the term `Properties` is used 3 times in 3 different contexts.
+## Properties 
+This is where Clover and Clover Configurator get really confusing. Because there are 4 different contexts/locations in which `Properties` can be added. These are:
 
-In general, using the `Properties` tab (next to the `Arbitrary` tab) is the recommended method for injecting device properties (based on the PCI path of the device) like Frame buffer patches and everything else you are familiar with from the `DeviceProperties` section in OpenCore. It works exactly the same.
+1. ~~**AddProperties**~~
+2. ~~**Properties [HEX]**~~
+3. ~~**Arbitrary** (Tab)~~
+4. **Properties** (Tab)
 
-### AddProperties
+**NOTE**: According to the release notes of Clover r5146, "`AddProperties` and `Arbitrary` will be deprecated", since using `Devices/Properties` has become the de facto standard method to add/modify devices. Therefore, I think removing the unused methods is a good thing since it will reduce confusion.
+
+### AddProperties (deprecated)
 ![AddProperties1](https://user-images.githubusercontent.com/76865553/136595982-7a5af1ab-bd37-489c-864b-4a7d9d41be29.png)
 
 Adding entries to this list creates an `<Array>` `AddProperties` and a `<Dictionary>` for the listed device. This is how the actual structure of the array looks like when viewed with a Plist Editor:
@@ -76,7 +81,7 @@ Adding entries to this list creates an `<Array>` `AddProperties` and a `<Diction
 
 The value has to be entered either as a `<data>` or a `hex string`. So instead of alphanumerical values (ABC...) you have to use hex (0x414243). Convert via Plist Editor or Xcode. The first Device key determines which device this property will be added to.
 
-### Properties (Hex)
+### Properties (HEX) (deprecated)
 ![Properties_Hex](https://user-images.githubusercontent.com/76865553/136596456-88ad496b-8a38-44e9-b4ed-7f2c50573303.png)
 
 This field creates a simple string in the config in the `Devices` Section if a hex value is entered:
@@ -85,13 +90,18 @@ This field creates a simple string in the config in the `Devices` Section if a h
 
 But as soon as you add a Device under to the actual `Properties` Tab (next to `Arbitrary`), this key is deleted.
 
-## Arbitrary
+### Arbitrary (Tab) (deprecated)
 ![Arbitrary](https://user-images.githubusercontent.com/76865553/136480147-879718e6-81eb-474d-a443-a13e0b56988a.png)
 
 The `Arbitrary` section is an array of dictionaries, each corresponding to one device with a given PCI address. To describe each device, a `CustomProperties` array consisting of `Key`/`Value` pairs is used. These Properties can be disabled by ticking the `Disabled` checkbox. You can enable or disable a property dynamically in the Clover menu.
 
 - `Key` **must** be a `<string>`.
 - `Value` **can** be a `<string>`, `<integer>` or `<data>`.
+
+### Properties (Tab)
+![](/Users/5t33z0/Desktop/DeviceProperties.png)
+
+Nowadays, using the `Properties` tab (next to the `Arbitrary` tab) is the recommended and most commonly used method for injecting device properties (based on the PCI path of the device) into macOS. This includes Framebuffer patches for on-board Graphics, Audio layouts for Soundcards, Wi-Fi and Ethernet cards, etc. It works exactly the same way as the `DeviceProperties` section in OpenCore.
 
 ### Inject
 If enabled, all internal injection is replaced by entering a single string of properties, which corresponds to the Apple's APPLE_GETVAR_PROTOCOL injection with GUID={0x91BD12FE, 0xF6C3, 0x44FB, {0xA5, 0xB7, 0x51, 0x22, 0xAB, 0x30, 0x3A, 0xE0}}; which is used on real Macs. Old hackers call it `EFIstrings`.
