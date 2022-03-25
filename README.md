@@ -56,7 +56,7 @@ I created this repo for several reasons:
 If you would like to contribute to the information provided in this repo in order to improve/expand it, feel free to create an issue with a meaningful title, link to the chapter/section and describe what you like to add, change, correct or expand upon.
 
 ## CREDITS
-- SergeySlice for [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader)
+- SergeySlice for [**Clover Boot Manager**](https://github.com/CloverHackyColor/CloverBootloader)
 - Acidanthera for [**OpenCore**](https://github.com/acidanthera/OpenCorePkg)
 - Khronokernel for [**Clover Desktop Guide**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
 - Dortania for the excellent Documentation on [**Fixing Post-Install issues**](https://dortania.github.io/OpenCore-Post-Install/) in particular
