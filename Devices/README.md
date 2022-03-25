@@ -66,7 +66,7 @@ Initialize the audio codec, if enabled. This behavior can be observed after rebo
 This is where Clover and Clover Configurator get really confusing. Because there are 4 different contexts/locations in which `Properties` can be added. These are:
 
 1. ~~**AddProperties**~~
-2. ~~**Properties [HEX]**~~
+2. **Properties [HEX]**
 3. ~~**Arbitrary** (Tab)~~
 4. **Properties** (Tab)
 
@@ -81,7 +81,7 @@ Adding entries to this list creates an `<Array>` `AddProperties` and a `<Diction
 
 The value has to be entered either as a `<data>` or a `hex string`. So instead of alphanumerical values (ABC...) you have to use hex (0x414243). Convert via Plist Editor or Xcode. The first Device key determines which device this property will be added to.
 
-### Properties (HEX) (deprecated)
+### Properties (HEX)
 ![Properties_Hex](https://user-images.githubusercontent.com/76865553/136596456-88ad496b-8a38-44e9-b4ed-7f2c50573303.png)
 
 This field creates a simple string in the config in the `Devices` Section if a hex value is entered:
@@ -99,7 +99,7 @@ The `Arbitrary` section is an array of dictionaries, each corresponding to one d
 - `Value` **can** be a `<string>`, `<integer>` or `<data>`.
 
 ### Properties (Tab)
-![](/Users/5t33z0/Desktop/DeviceProperties.png)
+![DeviceProperties](https://user-images.githubusercontent.com/76865553/160037727-7a3f81e8-b801-432e-898d-90d2ad61ffd6.png)
 
 Nowadays, using the `Properties` tab (next to the `Arbitrary` tab) is the recommended and most commonly used method for injecting device properties (based on the PCI path of the device) into macOS. This includes Framebuffer patches for on-board Graphics, Audio layouts for Soundcards, Wi-Fi and Ethernet cards, etc. It works exactly the same way as the `DeviceProperties` section in OpenCore.
 
