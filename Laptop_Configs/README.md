@@ -4,7 +4,7 @@
 >**DISCLAIMER**: This is my attempt to update Rehabman's existing Laptop configs for the new Clover version. I can't guarentee that all the configs work immediately since I do not possess a Laptop of every generation to test it.  
 
 ## About
-This project contains `config.plist` files for common Laptops with Intel CPUs and Graphics. It's an updated version of Clover Laptop Config plists by Rehabman. All configs have been updated and conform to the new Clover with OpenCore's OpenRuntime integration in the form of Quirks (for Clover r5123 and newer).
+This section contains `config.plist` files for common Laptops with Intel CPUs and Graphics. It's an updated version of Clover Laptop Config plists by Rehabman. All configs have been updated and conform to the new Clover with OpenCore's OpenRuntime integration in the form of Quirks (for Clover r5123 and newer).
 
 To understand and modify the included config.plists, please refer to these accompanying Guides by Rehabman:
 
