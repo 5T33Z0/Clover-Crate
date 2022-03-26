@@ -63,14 +63,39 @@ Affects the `AppleHDA` driver and seems to solve the problem with clicks and pop
 Initialize the audio codec, if enabled. This behavior can be observed after rebooting from Windows to Mac. In OpenCore this feature called `ResetTrafficClass` (UEFI > Audio)
 
 ## Properties 
-This is where Clover and Clover Configurator get really confusing. Because there are 4 different contexts/locations in which `Properties` can be added. These are:
+This is where Clover and Clover Configurator get really confusing. Because there ~~are~~ were 4 different ways to inject device `Properties`. These ~~are~~ were:
 
 1. ~~**AddProperties**~~
 2. **Properties [HEX]**
 3. ~~**Arbitrary** (Tab)~~
-4. **Properties** (Tab)
+4. **Devices/Properties** (Tab)
 
-**NOTE**: According to the release notes of Clover r5146, "`AddProperties` and `Arbitrary` will be deprecated", since using `Devices/Properties` has become the de facto standard method to add/modify devices. Therefore, I think removing the unused methods is a good thing since it will reduce confusion.
+**IMPORTANT**: With the release of Clover r5146, `AddProperties` and `Arbitrary` were retired, since using `Devices/Properties` has become the de facto standard method to add device properties. Existing entries in `Arbitrary` and `AddProperties` will still be applied if present, but it's recommended to convert them to regular Device Proterties instead. 
+
+I think removing the unused methods was a good choice since it will reduce confusion and makes transfering device properties between OpenCore and Clover configs a lot easier
+
+### Properties (Tab)
+Nowadays, using the `Devices` > `Properties` tab next to `Arbitrary` tab –  which is displayed by default (which sucks) is the recommended and de facto standard method for adding device properties. 
+
+This method is used for injecting properties of devices into macOS based on their PCI path. It can be utilized for injecting all sorts of parameters, including: Device IDs (so macOS sees the device), Framebuffer patches for on-board Graphics Cards, Audio layouts for Soundcards, Wi-Fi and Ethernet Cards, configuring Active State Power Management (ASPM), etc. It works exactly the same way as the `DeviceProperties` section in OpenCore.
+
+In a plist editor, the structure and hierarchy of this section looks like this:
+![](/Users/5t33z0/Desktop/DevProps.png)
+
+In Clover Configurator, this hierarchy is represented by a split view:
+
+![DeviceProperties](https://user-images.githubusercontent.com/76865553/160037727-7a3f81e8-b801-432e-898d-90d2ad61ffd6.png)
+
+On the left, you can add entries as PCI paths (as `<dict>`). On the right, you can add propertie keys for said devices (as `<Data>`, `<String>` or `<Number>`) which will then be applied to them on boot. On the bottom, there's also a handy dropdown menu with a list of common PCI Devices to choose from, so you don't have to jump through hoops to find out the PCI path of your iGPU for example.
+
+### Properties (HEX)
+![Properties_Hex](https://user-images.githubusercontent.com/76865553/136596456-88ad496b-8a38-44e9-b4ed-7f2c50573303.png)
+
+This field creates a simple string in the config in the `Devices` Section if a hex value is entered:
+
+![PropertiesHex2](https://user-images.githubusercontent.com/76865553/136596474-e3ce6d35-3f93-4194-b9e0-02a0231d470b.png)
+
+**NOTE**: As soon as you add a `Device` under to the `Properties` Tab (next to `Arbitrary`), this key will be deleted.
 
 ### AddProperties (deprecated)
 ![AddProperties1](https://user-images.githubusercontent.com/76865553/136595982-7a5af1ab-bd37-489c-864b-4a7d9d41be29.png)
@@ -81,15 +106,6 @@ Adding entries to this list creates an `<Array>` `AddProperties` and a `<Diction
 
 The value has to be entered either as a `<data>` or a `hex string`. So instead of alphanumerical values (ABC...) you have to use hex (0x414243). Convert via Plist Editor or Xcode. The first Device key determines which device this property will be added to.
 
-### Properties (HEX)
-![Properties_Hex](https://user-images.githubusercontent.com/76865553/136596456-88ad496b-8a38-44e9-b4ed-7f2c50573303.png)
-
-This field creates a simple string in the config in the `Devices` Section if a hex value is entered:
-
-![PropertiesHex2](https://user-images.githubusercontent.com/76865553/136596474-e3ce6d35-3f93-4194-b9e0-02a0231d470b.png)
-
-But as soon as you add a Device under to the actual `Properties` Tab (next to `Arbitrary`), this key is deleted.
-
 ### Arbitrary (Tab) (deprecated)
 ![Arbitrary](https://user-images.githubusercontent.com/76865553/136480147-879718e6-81eb-474d-a443-a13e0b56988a.png)
 
@@ -98,17 +114,16 @@ The `Arbitrary` section is an array of dictionaries, each corresponding to one d
 - `Key` **must** be a `<string>`.
 - `Value` **can** be a `<string>`, `<integer>` or `<data>`.
 
-### Properties (Tab)
-![DeviceProperties](https://user-images.githubusercontent.com/76865553/160037727-7a3f81e8-b801-432e-898d-90d2ad61ffd6.png)
-
-Nowadays, using the `Properties` tab (next to the `Arbitrary` tab) is the recommended and most commonly used method for injecting device properties (based on the PCI path of the device) into macOS. This includes Framebuffer patches for on-board Graphics, Audio layouts for Soundcards, Wi-Fi and Ethernet cards, etc. It works exactly the same way as the `DeviceProperties` section in OpenCore.
-
 ### Inject
-If enabled, all internal injection is replaced by entering a single string of properties, which corresponds to the Apple's APPLE_GETVAR_PROTOCOL injection with GUID={0x91BD12FE, 0xF6C3, 0x44FB, {0xA5, 0xB7, 0x51, 0x22, 0xAB, 0x30, 0x3A, 0xE0}}; which is used on real Macs. Old hackers call it `EFIstrings`.
+If enabled, all internal injection is replaced by entering a single string of properties, which corresponds to the Apple's `APPLE_GETVAR_PROTOCOL` injection method. A string could like this one which is used on real Macs: `GUID={0x91BD12FE, 0xF6C3, 0x44FB, {0xA5, 0xB7, 0x51, 0x22, 0xAB, 0x30, 0x3A, 0xE0}}`. Old hackers called these `EFIstrings`.
 
 ### NoDefaultProperties
-In this case, the line for the injection is created, but does not contain any properties yet. For example this property could be a `FakeID`. This way of injecting a `FakeID` is outdated, so use the `Properties` tab instead.
+Prohibits the injection of default properties that are triggered when enabling the `Inject` feature. When set to `true`, the line for the injection is created, but does not contain any properties yet. This property could be a `FakeID` for example.
 
+When combined with `Inject` &rarr; `ATI`, `NoDefaultProperties` will prevent the injection of most keys except those that are required for a `FakeID` to be applied to an AMD/ATI GPU (and probably iGPU).
+
+**NOTE**: This method of injecting a `FakeID` is outdated. Use the `Devices/Properties` tab is recommended.
+ 
 ### UseIntelHDMI
 This parameter affects the injection properties of the sound transmitted over HDMI, as well as the `DSDT` patch. However, both VoodooHDA and AppleHDA sound drivers, do not fully work with HDMI Output. According to new information, VoodooHDA only works with NVIDIA's HDMI output, and as for AMD, Apple has created a new `AppleGFXHDA.kext` driver in 10.13+ systems.
 
