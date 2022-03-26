@@ -80,7 +80,8 @@ Nowadays, using the `Devices` > `Properties` tab next to `Arbitrary` tab –  wh
 This method is used for injecting properties of devices into macOS based on their PCI path. It can be utilized for injecting all sorts of parameters, including: Device IDs (so macOS sees the device), Framebuffer patches for on-board Graphics Cards, Audio layouts for Soundcards, Wi-Fi and Ethernet Cards, configuring Active State Power Management (ASPM), etc. It works exactly the same way as the `DeviceProperties` section in OpenCore.
 
 In a plist editor, the structure and hierarchy of this section looks like this:
-![](/Users/5t33z0/Desktop/DevProps.png)
+
+![DevProps](https://user-images.githubusercontent.com/76865553/160235331-278ad725-f2bf-4e51-81a7-a9fbc6848952.png)
 
 In Clover Configurator, this hierarchy is represented by a split view:
 
