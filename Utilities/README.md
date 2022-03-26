@@ -40,5 +40,5 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 - **ACPI Samples**:
 	- **General**: included in OpenCore Package (under "Docs"): https://github.com/acidanthera/OpenCorePkg/releases
 	- **Additional**: https://github.com/5T33Z0/OC-Little-Translated. Primarily for OC Users but most of the files and guides apply to Clover as well.
-	- **Laptop-specific** (including updated Clover configs with Quirks): https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configsg
+	- **Laptop-specific** (including updated Clover configs with Quirks): https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs
 	- **Clover-specific** (in chinese): https://github.com/daliansky/P-little
