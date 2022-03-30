@@ -432,13 +432,13 @@ Other tables that can be dropped (presets):
 
 | Table|Description|
 |:--------:|-----------|
-`APIC` 	 |Advanced Programmable Interrupt Controller. Using `PatchAPIC` is preferred.
 `SSDT`		 |Drops SSDT. TableID must be specified.
 `HPET` 	 |High Precision Event Timer. Using `FixHPET` is preferred.
 `ECDT`		 |Embedded Controller Description Table. Using `FixTMR`, `FixIPIC` and `FixRTC` is preferred.
 `BGRT` 	 |Boot Graphics Resource Table. `ResetLogoStatus`in OpenCore addresses this table
-`MCFG` 	 |Using `FixMCFG` is preferred.
+`MCFG` 	 |Drops MCFG Table. Using `FixMCFG` is preferred.
 `DMAR` 	 |DMA Remapping Table. Using Quirk `DisableIoMapper` is preferred over dropping it to disable VT-d support. Since macOS Mojave, VT-d is working fine, so there really is no need to drop this table unless you are facing issues with network cards.
+`APIC` 	 |Advanced Programmable Interrupt Controller. Using `PatchAPIC` is preferred.
 `ASFT`		 | n/a
 `SBST`		 | Smart Battery Table.
 `SLIC`		 | Microsoft Software Licensing Table
