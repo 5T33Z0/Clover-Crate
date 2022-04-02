@@ -32,7 +32,9 @@ In combination with `Language`, this can used to fix an issue when installing be
 Currently, setting the language only makes sense for the "Help" menu called by the F1 Key. However, this value is sent to the system and can affect the default language.
 
 ### ScreenResolution
-Here you can change the default Screen Resolution of the Boot menu GUI. The default is 1024x768 px. Clover detects the highest possible resolution, but it can be wrong, so you can pick the correct or desired value from the dropdown menu.
+Here you can change the default resolution of the Clover GUI. The default/fallback is 1024x768 px. Clover tries to detect and set the highest possible resolution supported by your screen and graphics card automatically. But you can pick the correct or desired resolution from the dropdown menu yourself if auto-detection fails. You'll find the list of supported video modes in the boot-log.
+
+If `PatchVBios` is enabled in the `Graphics` section, you will see the maximum resolution available for your monitor. In this case, the `ScreenResolution` parameter may be superfluous. With some configurations though, enabling the `PatchVBios` will result in a black screen. In this case, Clover requires the `EDID` of the monitor. Legacy Clover tries to get it through BIOS calls, often successfully, sometimes not. UEFI Clover queries the UEFI BIOS, which probably has the `EDID` for iGPUs and probably doesn't for the discrete GPUs. Check the preboot.log – if no `EDID` is listed there, you need to enter it manually.
 
 ### Console Mode
 The correct value can be found in your `boot.log`, or set it to `Max` and the maximum possible resolution will be used for console mode.
