@@ -118,7 +118,10 @@ Enables the drawing of the custom boot logo.
 **NOTE**: As of r5140.1 "Apple" and "Alternate" don't show a progress bar. Feels like these are just a wallpaper covering the bootscreen.
 
 ## Debug
-If set to `true`, a log will be created on next boot. This will seriously slow down the boot time but allows you figure out what the problem was because each step will be accompanied by writing a debug.log to disk/flash drive. The boot time is about 10 minutes just to get into the GUI. But if everything hangs, you can press Reset, and then look for the file `/EFI/CLOVER/misc/debug.log`, which collectively records all logs for all loads, as long as this parameter is set.
+If set to `true`, a debug log will be created on next boot. This will slow down the boot time significantly (up to 10 minutes) but allows you figure out what the problem is since each step will be documenbte by writing a `debug.log` to disk/flash drive which will be saved line for line. So even if the system hangs and you have to perform a hard reset, you won't use the log. It will be located under `/EFI/CLOVER/misc/debug.log` and collectively records all logs for all boots, as long as the `Debug` feature is enabled.
+
+### Enabling the Preeboot.log
+Alternatively, you could use the the `preboot.log` instead which is not as in-depth but still very useful for identifying configuration issues and hardware conflicts. To enable it, press the `F2` key in the Clover Boot Menu GUI. The `preboot.log` will be saved in under `EFI/CLOVER/misc/`. However, the file's log entries end once macOS takes over control of the system. But it is still a useful resource for resolving issues that occur prior to macOS being started – and it's way faster than using the `Debug` option.
 
 ## Default Boot Volume
 Default Boot Volume is used to specify which entry is the default boot entry in the Clover GUI. It can be set to:
