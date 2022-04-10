@@ -71,8 +71,7 @@ This parameter is for legacy NVIDIA video cards and configures types and usage o
 
 **Examples**:
 
-![](/Users/5t33z0/Downloads/Neuer Ordner/ExtractImagesPdf_AlSoafsq/NVCAP.png)
-
+![NVCAP](https://user-images.githubusercontent.com/76865553/162608389-85c00cf3-2b10-49fe-8a0e-7f63c7f3f646.png)
 
 ## NvidiaGeneric
 If enabled, then instead of the name "Gigabyte Geforce 7300LE", "NVIDIA Geforce 7300LE" will be used.
