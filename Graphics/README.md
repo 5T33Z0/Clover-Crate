@@ -12,9 +12,16 @@ For Nvidia cards, `NVCAP` is calculated, for Intel on-board graphics dozens of p
 
 You can enable the injection of parameters based on vendors:
 
-- `Inject ATI` &rarr; For ATI/AMD GPUs. See "FB Name" for details.
-- `Inject Intel` &rarr; For Intel on-board graphics. See "ig-platform-id" for details.
-- `Inject NVidia` &rarr; For old NVIDIA Cards **NOT** relying on NVIDIA Webdrivers. For GTX cards, enable the **NvidiaWeb** option (after installating the drivers, of course) located under [`System Paramters`](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters#nvidiaweb) instead.
+- `Inject ATI` &rarr; For ATI/AMD GPUs. See "**FB Name**" for details.
+- `Inject Intel` &rarr; For Intel on-board graphics. See "**ig-platform-id**" for details.
+- `Inject NVidia` &rarr; For older NVIDIA Cards **not** requiring on NVIDIA WebDrivers.</br> Kepler cards and newer (e.g. Maxwell or Pascal) rely on WebDrivers. These can only be installed in post-install. Therefore, you need to do the following:
+	- Use boot-arg `nv_disable=1` to disable the card and use the software renderer to display an image during the macOS installation instead. 
+	- Once macOS is running, [**download**](https://www.tonymacx86.com/nvidia-drivers/) and install the appropriate WebDriver for your macOS build (supported up to macOS High Sierra only). 
+	- Next, delete the `nv_disable=1` boot-arg 
+	- In the **System Parameters** Section, enable **NvidiaWeb**
+	- Save your `config.plist` and reboot. Graphics acceleration should work now.
+
+	For more details about using NVIDIA cards, please refer to the [**Nvidia GeForce FAQs**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.GeForce.en.md).
 
 **NOTES**: 
 
@@ -81,12 +88,12 @@ There have been cases where enabling this patch would cause a black screen when 
 This key works with ATI/AMD Radeon GPUs (6xxx and higher and possibly 5xxx). It fixes the contents of GPU registers so that the card becomes properly initialized so macOS drivers work as intended.
 
 ## ig-platform-id
-This parameter is required to configure on-board graphics, aka "Intel HD Graphics xxxx". Select the corresponding framebuffer from the `ig-platform-id` dropdown menu in Clover Configurator.
+This parameter is required to configure on-board graphics, aka "Intel HD Graphics xxxx". Select the corresponding framebuffer from the `ig-platform-id` dropdown menu in Clover Configurator. For furter info on which values to use for which Intel CPU family, please refer to the extensive [**Intel HD Grpahics FAQ**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) from Whatevergreen.
 
 **NOTES**
 
 - For 10th Gen Intel Core CPUs and newer, it's recommended to configure the frambuffer using the `Devices/Properties` section instead, entering the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
-- If Clover detects an Intel iGPU, it _automatically_ enables Intel Injection if the `Graphics` section doesn't exist in the `config.plist`. To prevent graphics injection, you can explicitly disable it by clicking the "Inject Intel" button once to enable it and again to uncheck it which sets the `Inject` key to `false`:
+- If Clover detects an Intel iGPU, it _automatically_ enables Intel Injection if the `Graphics` section doesn't exist in the `config.plist`. To prevent this, you can explicitly disable it by clicking the "Inject Intel" button once to enable it and again to disable it which sets the `Inject` key to `false`:
 
 	```
 	<key>Graphics</key>
