@@ -179,7 +179,7 @@ Prior to revision 5123.1, `TgtBridge` had a bug, where it would not only rename 
 ![Bildschirmfoto 2021-05-16 um 08 04 15](https://user-images.githubusercontent.com/76865553/135732698-6ead0af4-304c-4570-a407-aaafb70506f2.png)
 
 
-The `DSDT` (Differentiated System Description Table) is the largest and most complex of the ACPI tables included by your mainboard's BIOS. It describes devices and methods of accessing them. Access methods can contain arithmetic and logical expressions. To correct this table manually, profound knowledge of programming in the ACPI Source Language (ASL) is mandatory.
+The `DSDT` (Differentiated System Description Table) is the largest and most complex of the ACPI tables included in your mainboard's BIOS/Firmware. It describes devices and methods of accessing them. Access methods can contain arithmetic and logical expressions. To correct this table manually, profound knowledge of programming in the ACPI Source Language (ASL) is mandatory.
 
 Fortunately, Clover provides automated, selectable `Fixes`, which can be applied to the DSDT on the fly during boot to add/rename devices or fix common problems which need to be addressed before macOS is happy with the provided DSDT. This method is not as clean as patching every issue via a SSDT (like OpenCore requires), but it's an easily accessible and valid approach to fix your DSDT.
 
