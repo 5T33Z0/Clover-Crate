@@ -67,8 +67,12 @@ This can also be used to inject device information of mobile Radeon cards into t
 For computers with UEFI-only BIOS, there is no Vbios on the legacy address.
 
 ## NVCAP
-This parameter is for Nvidia video cards and configures types and usage of video ports.
-The value consists of 40 hexadecimal digits in caps which have to be calculated based on analyzing of your video card's VBIOS. More info [**here**](https://dortania.github.io/OpenCore-Post-Install/gpu-patching/nvidia-patching/#nvcap).
+This parameter is for legacy NVIDIA video cards and configures types and usage of video ports. The value consists of 40 hexadecimal digits which have to be calculated based on  your video card's VBIOS which has to be analyzed to do so. You can follow [**this guide**](https://dortania.github.io/OpenCore-Post-Install/gpu-patching/nvidia-patching/#nvcap) to calculate the correct NVCAP value for your card.
+
+**Examples**:
+
+![](/Users/5t33z0/Downloads/Neuer Ordner/ExtractImagesPdf_AlSoafsq/NVCAP.png)
+
 
 ## NvidiaGeneric
 If enabled, then instead of the name "Gigabyte Geforce 7300LE", "NVIDIA Geforce 7300LE" will be used.
