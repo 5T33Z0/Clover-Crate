@@ -141,3 +141,10 @@ The key was introduced in r3298. In previous systems, the screen brightness was 
 
 ### LANInjection
 By default, the built-in property is injected for the NIC. This parameter can be used to disable the injection.
+
+## Addendum
+
+### About `AAPL,slot-name`
+`AAPL,slot-name` is a key which used in the Devices/Properties section to set the name of the slot where a devices is located. Based on this information, the System Profiler lists and categorizes the detected devices present in your system. This entry is mostly cosmetic, although some users claim that it is mandatory in some cases. 
+
+The `AAPL,slot-name` property is set by the AppleSMBIOS system kext based on the `_SUN` ACPI property and `DMI` tables. That is, `_SUN` specifies an ID in the range of 0-255, where the SMBIOS type 9 table with the corresponding ID is located, from where the slot name and other properties are pulled from.
