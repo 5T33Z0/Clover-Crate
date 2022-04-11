@@ -145,8 +145,6 @@ By default, the built-in property is injected for the NIC. This parameter can be
 ## Addendum
 
 ### About `AAPL,slot-name`
-`AAPL,slot-name` is a key which can be used in the Devices/Properties section. It allows you to add devices to the "PCI Cards" section of the System Profiler. This is a property that is usually injected by the `DSDT` or property strings but this is a wrong way to do it.
-
-The injection of this property requires "Name (_SUN, 0x02)" to be present in the device's DSDT section. You can set this to any one byte number but `0` and `1` because of compiler optimizations. If you don't use a custom DSDT you may instead set DSDT Mask Fix bits for those devices. 
+`AAPL,slot-name` is a key which can be used in the Devices/Properties section. It allows device to be listed in the System Profiler. Adding this key is mostly cosmedic but some users swear that it's required for certain devices. This property that usually injected by the `DSDT` or property strings but this is a wrong way to do it.
 
 The `AAPL,slot-name` property is set by the AppleSMBIOS system kext based on the `_SUN` (Slot User Number) ACPI property and `DMI` tables. That is, `_SUN` specifies an ID in the range of 0-255, where the SMBIOS type 9 table with the corresponding ID is located, from where the slot name and other properties are pulled from.
