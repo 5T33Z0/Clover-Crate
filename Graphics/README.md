@@ -91,11 +91,16 @@ There have been cases where enabling this patch would cause a black screen when 
 This key works with ATI/AMD Radeon GPUs (6xxx and higher and possibly 5xxx). It fixes the contents of GPU registers so that the card becomes properly initialized so macOS drivers work as intended.
 
 ## ig-platform-id
-This parameter is required to configure on-board graphics, aka "Intel HD Graphics xxxx". Select the corresponding framebuffer from the `ig-platform-id` dropdown menu in Clover Configurator. For furter info on which values to use for which Intel CPU family, please refer to the extensive [**Intel HD Grpahics FAQ**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) from Whatevergreen.
+Property used by macOS to determine the framebuffer profile for Ivy Bridge and newer Intel CPUs with integrated graphics, aka "Intel (U)HD Graphics xxxx". Select the corresponding framebuffer from the `ig-platform-id` dropdown menu in Clover Configurator (supported up Intel UHD Graphics 630 for Coffee Lake).
+
+Nowaday using Device Properties is the recommended method for configuring integrated graphics, including type of connectors (e.g. if you want to connect an external monitor to a Laptop), setting thr allocated/stolen memory, etc.
+
+For furter instruction on how to configure on-board graphics for supported Intel CPUs, please refer to Whatevergreen's extensive [**Intel HD Grpahics FAQ**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md).
 
 **NOTES**
 
-- For 10th Gen Intel Core CPUs and newer, it's recommended to configure the frambuffer using the `Devices/Properties` section instead, entering the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
+- For 10th Gen Intel Core CPUs and newer, it's recommended to configure the framebuffer using the `Devices/Properties` section instead, entering the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
+- Sandybridge CPUs require `AAPL,snb-platform-id` and have to be configured via `Devices/Properties` as well.
 - If Clover detects an Intel iGPU, it _automatically_ enables Intel Injection if the `Graphics` section doesn't exist in the `config.plist`. To prevent this, you can explicitly disable it by clicking the "Inject Intel" button once to enable it and again to disable it which sets the `Inject` key to `false`:
 
 	```
