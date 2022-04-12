@@ -165,22 +165,30 @@ While most of OpenCore's Kernel Patches are located in Clover's Quirks section, 
 | LapicKernelPanic            | Kernel LAPIC
 | PanicNoKextDump             | PanicNoKextDump
 
-## PlatformInfo > Generic
-If you want to use your SMBIOS data from "PlatformInfo > Generic" in Clover, you have to use different fields and section to do so. This can be a bit confusing due to naming differences as well as the number of fields available in both configs.
+## Converting SMBIOS Data from OpenCore to Clover
+If you want to use your SMBIOS data from "PlatformInfo/Generic" in your Clover config, you have to use different fields and section to do so. This can be a bit confusing due to naming differences as well as the number of fields available in both configs.
 
 In order to use the SMBIOS data in OpenCore and Clover, do the following:
-1. Copy the Data from the following fields to Clover Configurator's "SMBIOS" and "RtVariables" sections:</br>
-	| OpenCore (PlatformInfo > Generic) | Clover (SMBIOS)      |
-	|-----------------------------------|----------------------|
-	| SystemProductName                 | ProductName          |
-	| SystemUUID                        | SmUUID               |
-	| ROM                               | ROM (in RtVariables) |
-	| N/A in "Generic"                  | Board-ID             |
-	| SystemSerialNumber                | Serial Number        |
-	| MLB                               | Board Serial Number and MLB (in RtVariables)|
+
+1. Copy the Data from the following fields to Clover Configurator's "SMBIOS" and "RtVariables" sections:
+
+OpenCore (PlatformInfo > Generic) | Clover (SMBIOS)      |
+|-----------------------------------|----------------------|
+| SystemProductName                 | ProductName          |
+| SystemUUID                        | SmUUID               |
+| ROM                               | ROM (in RtVariables) |
+| N/A in "Generic"                  | Board-ID             |
+| SystemSerialNumber                | Serial Number        |
+| MLB                               | Board Serial Number and MLB (in `RtVariables`)|
+
 2. Next, tick the "Update Firmware Only" box.
 3. From the Dropdown Menu next to it to, select same Model you used for   "ProductName". This updates other fields like BIOS and Firmware.
 4. Save config and boot via Clover.
+
+### Using OpenCore Auxilary Tools to import/export Clover SMBIOS Data
+Besides manually copying over SMBIOS data from your OpenCore to your Clover config and vice versa, you could use [**OpenCore Auxiliary Tools**](https://github.com/ic005k/OCAuxiliaryTools/releases) instead, which has a built-in import/export function to import SMBIOS Data from Clover as well as exporting function SMBIOS data into a Clover config:
+
+![](/Users/steezonics/Desktop/ocat.png)
 
 **IMPORTANT**
 

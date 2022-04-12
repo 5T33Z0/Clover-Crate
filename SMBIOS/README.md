@@ -84,7 +84,7 @@ Four parameters are required to create a custom `AAPL,slot-name` entry in your c
 * In order for the `Slots` section to be present in the config.plist, a SMBIOS has to be generated because Slots is a sub-category of the SMBIOS dictionary.
 * As long as I have been using Clover, I've never used this section whatsoever. I always use Device Properties to define a device and call it a day. Especially since Hackintool can create all these device property entries with the correct AAPL,slot-names for you.
 
-## Running macOS on unsupported platforms
+## A note on running macOS on unsupported platforms
 Unlike real Macs which are limited to a certain range of supported macOS versions, you can trick macOS into running on CPU models it doesn't support officially – at least, if the used SMBIOS are not too far off from the specs of your hardware. 
 
 For example, you can use an SMBIOS intended for a Haswell CPU (4th Gen) with an Ivy Bridge CPU (3rd Gen), thereby expanding the range of macOS versions you can run. But since this SMBIOS is designed for a different CPU, it actually does not perform as good, especially on Notebooks. 
