@@ -52,10 +52,11 @@ Expands the existing Firmware Features mask from 32 up to 64 bits which is requi
 For reference values, check the files in the Mac models [database](https://github.com/acidanthera/OpenCorePkg/tree/master/AppleModels/DataBase) of the OpenCore repo.
 
 ## Slots (AAPL Injections)
-![](/Users/5t33z0/Desktop/Slots.png)
+![Slots](https://user-images.githubusercontent.com/76865553/162909263-82c199bb-6117-415a-9083-953095401693.png)
+
 `AAPL,slot-name` injector. Allows you to manually add devices to the PCI section of the System Profiler:
 
-![](/Users/5t33z0/Desktop/SysInfo.png)
+![SysInfo](https://user-images.githubusercontent.com/76865553/162909344-a6ea67e5-7d3d-47c4-b7af-5610a911d385.png)
 
 Usually, this is injected by SSDTs ot DSDT or Device Properties. But injecting this property requires `Name (_SUN, 0x02)` to be present in the Device's description inside the DSDT or SSDT. You can set this to any one byte number but `0` and `1` because of compiler optimizations. If you don't use a custom DSDT you may instead set DSDT Mask Fix bits for those devices. 
 
@@ -74,12 +75,12 @@ Four parameters are required to create a custom `AAPL,slot-name` entry in your c
 * **Name** - The name string that you want to assign to the `AAPL,slot-name`.
 * **Type** - Select the type of PCIe Slot the Device is connected to from the Dropdown Menu (PCIe to PCIe x16)
 
-**NOTES**:
+**NOTES**
 
 * In order for the `Slots` section to be present in the config.plist, a SMBIOS has to be generated because it's a sub-section of `SMBIOS`.
 * As long as I have been using Clover, I've never used this section whatsoever. I always use Device Properties to define a device and call it a day. Especially since Hackintool can create all these device property entries with the correct AAPL,slot-names for you.
 
-## NOTES
+## On running macOS on unsupprted hardware
 Unlike real Macs which are limited to a certain range of supported macOS versions, you can trick macOS into running on CPU models it doesn't support officially – at least, if the used SMBIOS are not too far off from the specs of your hardware. 
 
 For example, you can use an SMBIOS intended for a Haswell CPU (4th Gen) with an Ivy Bridge CPU (3rd Gen), thereby expanding the range of macOS versions you can run. But since this SMBIOS is designed for a different CPU, it actually does not perform as good, especially on Notebooks. 
