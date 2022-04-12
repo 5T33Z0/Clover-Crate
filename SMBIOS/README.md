@@ -58,7 +58,7 @@ For reference values, check the files in the Mac models [database](https://githu
 
 ![SysInfo](https://user-images.githubusercontent.com/76865553/162909344-a6ea67e5-7d3d-47c4-b7af-5610a911d385.png)
 
-Usually, the `AAPL,slot-name` is generated based on your system's `DSDT` or Device `Properties` in your `config.plist`. For macOS to list and categorize PCIe devices, it requires the `Name (_SUN, 0xXX)` field for a device to be present in a inside the `DSDT`, as shown in this example:
+By default, the `AAPL,slot-name` is is injected into macOS by system's `DSDT` or Device `Properties` in your `config.plist`. For macOS to list and categorize PCIe devices, it requires the `Name (_SUN, 0xXX)` field for a device to be present inside the `DSDT`, as shown in this example:
 
 ```swift
 Device (GIGE)
@@ -67,7 +67,7 @@ Device (GIGE)
     Name (_SUN, 0x02)  // _SUN: Slot User Number
 ```
 
-But if you use 3rd party PCIe cards, this entry will most likely not be present in your `DSDT`, so the device(s) will not appear in the `PCI` category (unless you use a patched one with added `_SUN` descrptions).
+But if you use 3rd party PCIe cards, this entry will most likely not be present in your `DSDT`, so the device(s) will not appear in the `PCI` category of the System Profiler (unless you use a patched one with added `_SUN` descrptions).
 
 Clover can generate `AAPL-slot,name` entries for certain types of devices, if the `_SUN` method does not exist in your `DSDT`. You must set the patch mask for these devices using any one byte number but `0` and `1` since they are reserved for compiler-related operations, so genereating the `AAPL,slot-name `entries might fail.
  
@@ -81,7 +81,7 @@ Four parameters are required to create a custom `AAPL,slot-name` entry in your c
 **NOTES**
 
 * `AAPL,slot-name` is mostly a cosmedic property (despite what some users may think)
-* In order for the `Slots` section to be present in the config.plist, a SMBIOS has to be generated because it's a sub-category of the SMBIOS dictionary.
+* In order for the `Slots` section to be present in the config.plist, a SMBIOS has to be generated because Slots is a sub-category of the SMBIOS dictionary.
 * As long as I have been using Clover, I've never used this section whatsoever. I always use Device Properties to define a device and call it a day. Especially since Hackintool can create all these device property entries with the correct AAPL,slot-names for you.
 
 ## Running macOS on unsupported platforms
