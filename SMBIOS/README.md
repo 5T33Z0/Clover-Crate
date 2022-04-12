@@ -54,28 +54,29 @@ For reference values, check the files in the Mac models [database](https://githu
 ## Slots (AAPL Injections)
 ![Slots](https://user-images.githubusercontent.com/76865553/162909263-82c199bb-6117-415a-9083-953095401693.png)
 
-`AAPL,slot-name` injector. Allows you to manually add devices to the PCI section of the System Profiler:
+`AAPL,slot-name` injector. Allows you to manually add devices to the `PCI` section of the System Profiler:
 
 ![SysInfo](https://user-images.githubusercontent.com/76865553/162909344-a6ea67e5-7d3d-47c4-b7af-5610a911d385.png)
 
-Usually, the AAPL,slot-name is injected based on the information provided by a DSDT or Device Properties. But injecting this property requires `Name (_SUN, 0xXX)` to be present in the Device's description inside the DSDT/SSDT. 
-
-Clover can generate AAPL-slot,namr entries for certain device types, if the `_SUN` method does not exist in the DSDT. If you don't use a custom DSDT you may set DSDT Mask Fix bits for those devices instead. But you must set the patch mask for these devices using any one byte number but `0` and `1` since they are reserved for other things, so genereating the AAPL,slot-name entries might fail. 
-
-**Example**:
+Usually, the `AAPL,slot-name` is generated based on your system's `DSDT` or Device `Properties` in your `config.plist`. For macOS to list and categorize PCIe devices, it requires the `Name (_SUN, 0xXX)` field for a device to be present in a inside the `DSDT`, as shown in this example:
 
 ```swift
 Device (GIGE)
 {
     Name (_ADR, 0x00050000)  // _ADR: Address
     Name (_SUN, 0x02)  // _SUN: Slot User Number
-```    
+```
+
+But if you use 3rd party PCIe cards, this entry will most likely not be present in your `DSDT`, so the device(s) will not appear in the `PCI` category (unless you use a patched one with added `_SUN` descrptions).
+
+Clover can generate `AAPL-slot,name` entries for certain types of devices, if the `_SUN` method does not exist in your `DSDT`. You must set the patch mask for these devices using any one byte number but `0` and `1` since they are reserved for compiler-related operations, so genereating the `AAPL,slot-name `entries might fail.
+ 
 Four parameters are required to create a custom `AAPL,slot-name` entry in your config:
 
-* **Device**: Select the type of device you want assign a `AAPL,slot-name` to. Only certain types of devices are available/supported here: ATI, NVidia, IntelGFX, LAN, WIFI, Firewire, HDMI, USB, NVME.
-* **ID**: Must be the same number as defined in the Device's description inside your DSDT under `Name (_SUN,…`.
-* **Name** - The name string that you want to assign to the `AAPL,slot-name`.
-* **Type** - Select the type of PCIe Slot the Device is connected to from the Dropdown Menu (PCIe to PCIe x16)
+* **Device**: Select the type of device you want assign a `AAPL,slot-name` to. Supported device types are: `ATI`, `NVidia`, `IntelGFX`, `LAN`, `WIFI`, `Firewire`, `HDMI`, `USB` and `NVME`. For other device types use the `Devices/Properties` section instead.
+* **ID**: Must be the same number as defined in the Device's description inside your `DSDT` under `Name (_SUN, 0xXX`), wher XX is a placeholder for a number.
+* **Name** - Enter the name for the slot. Sets how the entry will be named in System Profiler 
+* **Type** - Select the type/speed of PCIe Slot the Device is connected to from the Dropdown Menu (PCIe to PCIe x16)
 
 **NOTES**
 
