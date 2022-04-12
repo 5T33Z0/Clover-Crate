@@ -76,7 +76,7 @@ Four parameters are required to create a custom `AAPL,slot-name` entry in your c
 * **Device**: Select the type of device you want assign a `AAPL,slot-name` to. Supported device types are: `ATI`, `NVidia`, `IntelGFX`, `LAN`, `WIFI`, `Firewire`, `HDMI`, `USB` and `NVME`. For other device types use the `Devices/Properties` section instead.
 * **ID**: Must be the same number as defined in the Device's description inside your `DSDT` under `Name (_SUN, 0xXX`), where `XX` is a placeholder for a number.
 * **Name** - Enter the name for the slot. Sets how the entry will be named in System Profiler 
-* **Type** - Select the type/speed of PCIe Slot the Device is connected to from the Dropdown Menu (PCIe to PCIe x16)
+* **Type** - Select the type of PCIe Slot (number of lanes) the device is connected to from the dropdown menu (`PCIe` to `PCIe x16`)
 
 **NOTES**
 
