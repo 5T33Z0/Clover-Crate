@@ -51,6 +51,34 @@ Expands the existing Firmware Features mask from 32 up to 64 bits which is requi
 
 For reference values, check the files in the Mac models [database](https://github.com/acidanthera/OpenCorePkg/tree/master/AppleModels/DataBase) of the OpenCore repo.
 
+## Slots (AAPL Injections)
+![](/Users/5t33z0/Desktop/Slots.png)
+`AAPL,slot-name` injector. Allows you to manually add devices to the PCI section of the System Profiler:
+
+![](/Users/5t33z0/Desktop/SysInfo.png)
+
+Usually, this is injected by SSDTs ot DSDT or Device Properties. But injecting this property requires `Name (_SUN, 0x02)` to be present in the Device's description inside the DSDT or SSDT. You can set this to any one byte number but `0` and `1` because of compiler optimizations. If you don't use a custom DSDT you may instead set DSDT Mask Fix bits for those devices. 
+
+**Example**:
+
+```swift
+Device (GIGE)
+{
+    Name (_ADR, 0x00050000)  // _ADR: Address
+    Name (_SUN, 0x02)  // _SUN: Slot User Number
+```    
+Four parameters are required to create a custom `AAPL,slot-name` entry in your config:
+
+* **Device**: Select the type of device you want assign a `AAPL,slot-name` to. Only certain types of devices are available/supported here: ATI, NVidia, IntelGFX, LAN, WIFI, Firewire, HDMI, USB, NVME.
+* **ID**: Must be the same number as defined in the Device's description inside your DSDT under `Name (_SUN,…`.
+* **Name** - The name string that you want to assign to the `AAPL,slot-name`.
+* **Type** - Select the type of PCIe Slot the Device is connected to from the Dropdown Menu (PCIe to PCIe x16)
+
+**NOTES**:
+
+* In order for the `Slots` section to be present in the config.plist, a SMBIOS has to be generated because it's a sub-section of `SMBIOS`.
+* As long as I have been using Clover, I've never used this section whatsoever. I always use Device Properties to define a device and call it a day. Especially since Hackintool can create all these device property entries with the correct AAPL,slot-names for you.
+
 ## NOTES
 Unlike real Macs which are limited to a certain range of supported macOS versions, you can trick macOS into running on CPU models it doesn't support officially – at least, if the used SMBIOS are not too far off from the specs of your hardware. 
 
