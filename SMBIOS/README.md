@@ -58,7 +58,9 @@ For reference values, check the files in the Mac models [database](https://githu
 
 ![SysInfo](https://user-images.githubusercontent.com/76865553/162909344-a6ea67e5-7d3d-47c4-b7af-5610a911d385.png)
 
-Usually, this is injected by SSDTs ot DSDT or Device Properties. But injecting this property requires `Name (_SUN, 0x02)` to be present in the Device's description inside the DSDT or SSDT. You can set this to any one byte number but `0` and `1` because of compiler optimizations. If you don't use a custom DSDT you may instead set DSDT Mask Fix bits for those devices. 
+Usually, the AAPL,slot-name is injected based on the information provided by a DSDT or Device Properties. But injecting this property requires `Name (_SUN, 0xXX)` to be present in the Device's description inside the DSDT/SSDT. 
+
+Clover can generate AAPL-slot,namr entries for certain device types, if the `_SUN` method does not exist in the DSDT. If you don't use a custom DSDT you may set DSDT Mask Fix bits for those devices instead. But you must set the patch mask for these devices using any one byte number but `0` and `1` since they are reserved for other things, so genereating the AAPL,slot-name entries might fail. 
 
 **Example**:
 
