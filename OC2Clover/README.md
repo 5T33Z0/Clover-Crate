@@ -188,7 +188,7 @@ OpenCore (PlatformInfo > Generic) | Clover (SMBIOS)      |
 ### Using OpenCore Auxilary Tools to import/export Clover SMBIOS Data
 Besides manually copying over SMBIOS data from your OpenCore to your Clover config and vice versa, you could use [**OpenCore Auxiliary Tools**](https://github.com/ic005k/OCAuxiliaryTools/releases) instead, which has a built-in import/export function to import SMBIOS Data from Clover as well as exporting function SMBIOS data into a Clover config:
 
-![](/Users/steezonics/Desktop/ocat.png)
+![ocat](https://user-images.githubusercontent.com/76865553/162971063-cbab15fa-4c83-4013-a732-5486d4f00e31.png)
 
 **IMPORTANT**
 
