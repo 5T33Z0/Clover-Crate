@@ -80,7 +80,8 @@ Four parameters are required to create a custom `AAPL,slot-name` entry in your c
 
 **NOTES**
 
-* In order for the `Slots` section to be present in the config.plist, a SMBIOS has to be generated because it's a sub-section of `SMBIOS`.
+* `AAPL,slot-name` is mostly a cosmedic property (despite what some users may think)
+* In order for the `Slots` section to be present in the config.plist, a SMBIOS has to be generated because it's a sub-category of the SMBIOS dictionary.
 * As long as I have been using Clover, I've never used this section whatsoever. I always use Device Properties to define a device and call it a day. Especially since Hackintool can create all these device property entries with the correct AAPL,slot-names for you.
 
 ## Running macOS on unsupported platforms
