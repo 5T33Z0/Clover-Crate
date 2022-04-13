@@ -189,7 +189,7 @@ Sets the timeout in seconds (0-30 s), before the boot process continues loading 
 - `Fast`: Skips the GUI and boots from the default volume instantly, so no user interaction is possible – so no chance to correct something in case of an error.
 
 ## XMPDetection
-Detects the best Extreme Memory Profile when detecting memory or disables XMP detection.
+Enables (`0`) or disables (`-1`) XMP (eXtreme Memory Profile) detection on boot. This depends on the BIOS and mainly affects the correct detection of the installed RAM. Additionally to simply enabling/disabling XMP detection, you can can also choose bewteen Profile 1 (`1`) or Profile 2 (`2`) if your RAM modules support different memory profiles. Perhaps in the future this profile will be used for other purposes.
 
 # Adding Clover entry to the BIOS Bootmenu
 If for some reason the entry for the partition containing the Clover bootloader is missing from your BIOS bootmenu, you can let Clover create one. But this has to be done in from within the Clover bootmenu because this affects UEFI BIOS variables working prior to Clover being started, so it can't be set up in the config.plit.
