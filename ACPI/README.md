@@ -157,17 +157,17 @@ As you can see, the device exists and is located in `\SB_PCI0_EHC1` of the `DSDT
 
 ### TgtBridge
 
-The `TgtBridge` (short for Target Bridge) is a ACPI patching method which can be used to restrict ACPI patches to certain locations/devices within the `DSDT`. The feature is located in the `ACPI > DSDT > Patches` section of the Clover `config.plist`.
+The `TgtBridge` (= Target Bridge) can be used to limit the scope of a binary rename to a specific device within the `DSDT`. It's located in the `ACPI/DSDT/Patches` section of the Clover config. Using the `TgtBridge` is recommended to avoid that renamings of otherwise widely-used methods (like `_STA, _CRS` or `_INI` for example) are applied to the whole of the DSDT which would otherwise most likely break it.
 
 **Example**: renaming the method `_STA`to `_XSTA` in device `GPI0`:
 
 ![TGTBridgeExample](https://user-images.githubusercontent.com/76865553/135732680-641af3ba-8140-477a-9c9e-69345d8e9b8f.png)
 
-As shown in the example, the name of the original Method `_STA` (pink) is converted to  hex (`5F535441`), so Clover can find it in the `DSDT`. If it finds this value it is then replaced by `58535441` (blue), which is the hex equivalent of the term `XSTA` (blue). If set like this, this patch would change *any* appearance ot the term `_STA` in the whole of the `DSDT` to `XSTA` which probably would break the system. To avoid this, you can use `TgtBridge` to specify and limit the matches of this patch to a specified name/device/method/area, in this case to the device `GPI0` (Cyan). Basically, you tell Clover: "look in `GPI0`and and if the method `_STA` is present, rename it to `XSTA` but leave the rest of the `DSDT` alone!"
+As shown above, the name of the original Method `_STA` (pink) is converted to  hex (`5F535441`), so Clover can find it in the `DSDT`. If it finds this value it is then replaced by `58535441` (blue), which is the hex equivalent of the term `XSTA` (blue). If set like this, this patch would change *any* match ot the term `_STA` in the whole of the `DSDT` to `XSTA` which probably would break the system. To avoid this, you can use `TgtBridge` to specify and limit the matches of this patch to a specified name/device/method/area, in this case to the device `GPI0` (Cyan). Basically, you tell Clover: "In device `GPI0`, look for the method `_STA`. If it's present, rename it to `XSTA` but leave the rest of the `DSDT` alone!"
 
-Which values to use in `TgtBridge` is up to you, if you know what to do. If string lengths do not match, Clover will correctly account for the length change, with one exception: make sure it doesn't happen inside an "If" or "Else" statement. If you need such a change, replace the entire operator.
+Which values to use in `TgtBridge` is up to you. If string lengths do not match, Clover will correctly account for the length change, with one exception: make sure it doesn't happen inside an "If" or "Else" statement. If you need such a change, replace the entire operator. Usually, you rename methods in devices just to disable them or to redifine them within a custom SSDT later.
 
-Some clarification: the Comment Field not only serves as a reminder what the patch is about, but is also used in the Clover Boot Menu to enable/disable these patches. The initial value for `ON` or `OFF` is determined by the `Disabled` lines in the `config.plist`. The default value is `Disabled=false`. If you use someone else's set of patches, it is better to set them to `Disabled=true` and then enable them from the Boot menu one by one.
+The `Comment` field not only serves as a reminder about what a patch does, it is also serves as an item/entry in the Clover Boot Menu to enable/disable a patch. The initial value for `ON` or `OFF` is determined by the `Disabled` lines in the `config.plist`. The default value is `Disabled=false`. If you use someone else's set of patches, it is better to set them to `Disabled=true` and then enable them from the Boot menu one by one.
 
 **NOTE**: TgtBridge Bug (fixed since Clover r5123.1)
 
