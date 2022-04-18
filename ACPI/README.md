@@ -175,11 +175,9 @@ Prior to the release of r5123.1, the `TgtBridge` had a bug, where it would not o
 
 To workaround this bug, users would have to create restore rules for every instance which utilzed the TgtBridge to revese the renames for all other matches as shown in this example:
 
-![](/Users/5t33z0/Desktop/TgtBrige_workaround.png)
+![TgtBrige_workaround](https://user-images.githubusercontent.com/76865553/163777028-951e0d8e-abf2-4f2d-9612-3704aaf9f6e9.png)
 
-Basically, you would tell Clover to look for `XSTA` and rename it `STA` for any devices which are not `GPIO`. I imagine that this workaround slows down boot times significantly since all tables have to be scanned up an down to replace and restore values. 
-
-So if you are still using the "pre-OC" version of Clover with the bugged TgtBrige, you should definitely update it and disable/delete all these restore rules.
+In this example, you would tell Clover to look for `XSTA` and rename it `STA` for any devices which are not `GPIO`. I imagine that this workaround slows down boot times significantly since all tables have to be scanned up an down to replace and restore values. So if you are still using the "pre-OC" version of Clover with the bugged TgtBrige, you should definitely update it and disable/delete all these restore rules.
 
 ### Fixes
 
