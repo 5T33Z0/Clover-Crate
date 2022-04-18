@@ -169,9 +169,17 @@ Which values to use in `TgtBridge` is up to you. If string lengths do not match,
 
 The `Comment` field not only serves as a reminder about what a patch does, it is also serves as an item/entry in the Clover Boot Menu to enable/disable a patch. The initial value for `ON` or `OFF` is determined by the `Disabled` lines in the `config.plist`. The default value is `Disabled=false`. If you use someone else's set of patches, it is better to set them to `Disabled=true` and then enable them from the Boot menu one by one.
 
-**NOTE**: TgtBridge Bug (fixed since Clover r5123.1)
+#### About the `TgtBridge` Bug (fixed since Clover [r5123.1](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1))
 
-Prior to revision 5123.1, `TgtBridge` had a bug, where it would not only rename matches found in the DSDT but also in OEM SSDTs as well which was not intended to happen.
+Prior to the release of r5123.1, the `TgtBridge` had a bug, where it would not only rename matches found in the DSDT but also in all OEM SSDTs which was not intended. With the release of Clover r5123.1 (the last release supporting Aptio Memory Fixes), this bug was finnally fixed.
+
+To workaround this bug, users would have to create restore rules for every instance which utilzed the TgtBridge to revese the renames for all other matches as shown in this example:
+
+![](/Users/5t33z0/Desktop/TgtBrige_workaround.png)
+
+Basically, you would tell Clover to look for `XSTA` and rename it `STA` for any devices which are not `GPIO`. I imagine that this workaround slows down boot times significantly since all tables have to be scanned up an down to replace and restore values. 
+
+So if you are still using the "pre-OC" version of Clover with the bugged TgtBrige, you should definitely update it and disable/delete all these restore rules.
 
 ### Fixes
 
