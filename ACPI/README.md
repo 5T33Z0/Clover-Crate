@@ -20,7 +20,7 @@ For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you cou
 
 This way, you could find the SSDT containing all the 26 Ports for your board in the dumped ACPI, fix it, put it back in the `ACPI/patched` folder and boom: no more `USBports.kext` required. 
 
-**TIP**: `AutoMerge` can also be useful in cases where dropping a tablesfails for unknown reasons. I recently noticesd that the original DMAR table would not be dropped, so instead put a corrected DMAR table in the ACPI/patched` folder and it replaced the original one, which resolved a problem with a 3rd party ethernet card.
+**TIP**: `AutoMerge` can also be useful in cases where dropping a tables fails for unknown reasons. I recently noticesd that the original DMAR table would not be dropped, so instead I put a corrected DMAR table in the `ACPI/patched` folder and it replaced the original one, which resolved a problem with a 3rd party ethernet card.
 
 ## Disable ASPM
 
