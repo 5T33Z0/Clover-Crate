@@ -206,11 +206,11 @@ In addition to `DeviceProperties`, there is also a Device Specific Method (`_DSM
 **NOTE**: OpemCore users can use `SSDT-DTPG` instead. But since OC heavily relies on SSDT hotpatches, the `DTGP` method is usually integrated in the SSDT (if required).
 
 ##### Explanation
-`DTGP` passes through calls to device-specific methods on various Device objects, unless a specific `UUID` is provided that indicates that macOS is calling the `_DSM`. macOS first probes each ACPI Device's `DSM` by passing over only 2 arguments (one of which is the `UUID`). macOS then expects the `_DSM` to return the number of additional arguments that can be used. It's fine if the device returns more arguments than expected, but not less, so its best to just return the maximum, which is three arguments (`Arg0` to `Arg2`). 
+`DTGP` passes through calls to device-specific methods on various Device objects, unless a specific `UUID` is provided that indicates that macOS is calling the `_DSM`. macOS has a non-standard device enumeration behavior: it first probes each ACPI Device's `DSM` by passing over only 2 arguments (one of which is the `UUID`). macOS then expects the `_DSM` to return the number of additional arguments that can be used. It's fine if the device returns more arguments than expected, but not less, so it's best to return the maximum, which is three (`Arg0` to `Arg2`). 
 
-macOS will call `_DSM` methods of Device objects with only two arguments at first. When this occurs, the method should return three. So all you need to do is check if `Arg2` exists (is non-zero). If it doesn't, return `3`. If it does, return whatever properties you want macOS to see for that device.
+macOS will call `_DSM` methods of Device objects with only two arguments at first. When this occurs, the method should return `3`. So all you need to do is check if `Arg2` exists (is non-zero). If it doesn't, return `3`. If it does, return whatever properties you want macOS to use for that device.
 
-In other words, `store` is saving information you want to hand over to macOS as a local variable via the `DTGP` method. So its whole purpose is to handle macOS-specific behavior without breaking non-macOS behavior - like runninng Windows on real Macs (with Bootcamp).
+In other words, `store` is saving information you want to hand over to macOS as a local variable via the `DTGP` method. So its whole purpose is to handle macOS-specific behavior without breaking non-macOS behavior - like running Windows on real Macs (with Bootcamp) for example.
 
 #### AddHDMI
 
