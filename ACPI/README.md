@@ -42,7 +42,9 @@ If `FixMCFG` is enabled, the MCFG table will be corrected. However, discarding t
 
 ## Halt Enabler
 
-This Patch is for fixing the shutdown/sleep problem during UEFI boot. The fix is injected before calling `boot.efi`, clearing `SLP_SMI_EN` before the start of macOS. Nevertheless, it is quite safe, at least on Intel systems.
+This patch is for fixing shutdown/sleep problems during UEFI boot. The fix is injected before calling `boot.efi`, clearing `SLP_SMI_EN` before the start of macOS. Nevertheless, it is quite safe, at least on Intel systems. 
+
+In OpenCore, use ACPI Quirk `FadtEnableReset` for this.
 
 ## Patch APIC 
 
@@ -187,7 +189,6 @@ In this example, you would tell Clover to look for `XSTA` and rename it `STA` fo
 ![Bildschirmfoto 2021-05-16 um 07 28 34](https://user-images.githubusercontent.com/76865553/135732689-dd1271db-f11d-468b-a57e-576bcf7f7d76.png)
 ![Bildschirmfoto 2021-05-16 um 08 04 15](https://user-images.githubusercontent.com/76865553/135732698-6ead0af4-304c-4570-a407-aaafb70506f2.png)
 
-
 The `DSDT` (Differentiated System Description Table) is the largest and most complex of the ACPI tables included in your mainboard's BIOS/Firmware. It describes devices and methods of accessing them. Access methods can contain arithmetic and logical expressions. To correct this table manually, profound knowledge of programming in the ACPI Source Language (ASL) is mandatory.
 
 Fortunately, Clover provides automated, selectable `Fixes`, which can be applied to the DSDT on the fly during boot to add/rename devices or fix common problems which need to be addressed before macOS is happy with the provided DSDT. This method is not as clean as patching every issue via a SSDT (like OpenCore requires), but it's an easily accessible and valid approach to fix your DSDT.
@@ -200,9 +201,16 @@ To get a better understanding for fixes that are still relevant in 2022, take a 
 
 #### AddDTGP
 
-In addition to the `DeviceProperties`, there is also a Device Specific Method (`_DSM`) specified in the `DSDT` called `DTGP` to inject custom parameters into some devices.
+In addition to `DeviceProperties`, there is also a Device Specific Method (`_DSM`) specified in the `DSDT` of real Macs called `DTGP`. Its purpose is to inject custom parameters into some devices. Without this method, patched `DSDTs` would not work well. This fix injects the `DTGP` method into the system `DSDT` during boot, so that it can be utilized by other fixes and patches. It doesn't do anything on its own.
 
-`_DSM` is a well-known method, which is included in macOS since version 10.5. It contains an array with a device description and a call to the universal `DTGP` method, which is the same for all devices. Without the `DTGP` method, modified `DSDTs` would not work well. This fix simply adds this method so that it can then be applied to other fixes. It does not work on its own alone.
+**NOTE**: OpemCore users can use `SSDT-DTPG` instead. But since OC heavily relies on SSDT hotpatches, the `DTGP` method is usually integrated in the SSDT (if required).
+
+**Explanation**
+`DTGP` passes through calls to device-specific methods on various Device objects, unless a specific `UUID` is provided that indicates macOS is the OS calling the `_DSM`. macOS first probes each ACPI Device's `DSM` by passing over only 2 arguments (one of which is the `UUID`). macOS then expects that the `_DSM` to return the number of additional arguments that can be used. It's fine if the device returns more arguments than expected, but not less, so its best to just return the maximum, which is three arguments (or `Arg2`, starting from `Arg0`). 
+
+macOS will call `_DSM` methods of Device objects with only 2 arguments at first. When this occurs, the method should return '3'. So all you need to do is check if `Arg2` exists (is non-zero). If it doesn't, return `3`. If it does, return whatever properties you want macOS to see for that device.
+
+In other words, `store` is saving information you want to hand over to macOS as a local variable that can be passed through `DTGP`. So its whole purpose is to handle macOS-specific behavior without breaking non-macOS behavior - like runninng Windows on real Macs (with Bootcamp).
 
 #### AddHDMI
 
@@ -250,7 +258,9 @@ Corrects the `ADP1` device (power supply), which is necessary for laptops to sle
 
 #### FixAirport
 
-Similar to LAN, the device itself is created, if not already registered in `DSDT`. For some well-known models, the `DeviceID` is replaced with a supported one. And the Airport turns on without other patches.
+Similar to LAN, the device itself is created, if not already registered in `DSDT`. For some well-known models, the `DeviceID` is replaced with a supported one. And the Airport turns on without other patches. 
+
+**NOTE**: This fix is pretty much deprecated nowadys. Use `AirportBrcmFixup.kext` instead.
 
 #### FixDarwin
 
