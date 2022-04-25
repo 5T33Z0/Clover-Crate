@@ -97,12 +97,9 @@ Boot-args for your favorite audio-enabler kext. All the Lilu boot arguments affe
 **`-alcbeta`**| Enables AppleALC on unsupported systems (usually unreleased or old ones)
 **`alcverbs=1`**| Enables alc-verb support (also alc-verbs device property)
 
-If you right-click anywhere in this list you will find many more boot-args not covered here:
-
-<details><summary><strong>Screenshot</strong></summary>
+If you right-click anywhere in the "Arguments" list, you will find many more boot-args not covered here:
 
 ![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135818786-923330d4-564a-41c6-acbf-ae16b4ac0d55.png)
-</details>
 </details>
 
 ## Custom Logo
