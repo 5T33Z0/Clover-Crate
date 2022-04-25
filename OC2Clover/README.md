@@ -13,17 +13,10 @@ Following is an incomplete list of .aml files not needed in Clover, since it pro
 
 |SSDT|Clover DSDT Fixes
 |:--:|----------------------|
-<<<<<<< Updated upstream
 `SSDT-AC.aml`| Use `FixAdp1` instead
-`SSDT-DTGP` | Use `AddDTGP`, so it the code for it doesn't have to be part of SSDT patches. 
-`SSDT-HPET.aml`| Use Fixes `FixHPET`, `FixIPIC`, `FixTMR` and `FixRTC` instead. You also don’t need the accompanying rename `change_CRS to XCRS` which is required in OpenCore.
-`SSDT-SBUS-MCHC.aml`|Use `AddMCHC`and`FixSBUS`instead
-=======
-`SSDT-AC`| Use `FixAdp1` instead
 `SSDT-DTGP` | Use `AddDTGP` to inject the `DTGP` method into the `DSDT` instead
-`SSDT-HPET`| Use `FixHPET`, `FixIPIC`, `FixTMR` and `FixRTC` instead. You also don’t need the accompanying rename `change_CRS to XCRS` which is required in OpenCore
+`SSDT-HPET.aml`| Use `FixHPET`, `FixIPIC`, `FixTMR` and `FixRTC` instead. You also don’t need the accompanying rename `change_CRS to XCRS` which is required in OpenCore.
 `SSDT-SBUS-MCHC`|Use `AddDTGP`, `AddMCHC` and `FixSBUS`instead. `AddDTGP` is required since the code sippet added by Clover when `FixSBUS` is enabled, uses `DTGP` to pass through arguments. Otherwise you will find a "unknown method" comment in the `DSDT`.
->>>>>>> Stashed changes
 
 To be continued…
 
