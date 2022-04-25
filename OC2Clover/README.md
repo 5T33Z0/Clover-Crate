@@ -11,7 +11,7 @@ In general, you can use the same SSDTs (.aml) in Clover as in OpenCore. Since Cl
 ### ACPI > Add
 Following is an incomplete list of .aml files not needed in Clover, since it provides DSDT `Fixes` for them:
 
-|SSDT Name|Clover DSDT Fixes
+|SSDT-Name|Clover DSDT Fixes
 |:-------:|----------------------|
 `SSDT-AC`| Use `FixAdp1` instead
 `SSDT-DTGP` | Use `AddDTGP` to inject the `DTGP` method into the `DSDT` instead
