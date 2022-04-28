@@ -1,4 +1,4 @@
-# Converting OpenCore Properties to Clover
+# Converting OpenCore Settings to Clover
 >Work In Progress! Please supply additional info if you have it and want to contribute to this list.
 
 This is for users planning to convert their working OpenCore Config to Clover. It’s an adaptation of the [**Clover Conversion Guide**](https://github.com/dortania/OpenCore-Install-Guide/tree/master/clover-conversion) – just the other way around (and a bit more in-depth).
@@ -165,27 +165,30 @@ While most of OpenCore's Kernel Patches are located in Clover's Quirks section, 
 | LapicKernelPanic            | Kernel LAPIC
 | PanicNoKextDump             | PanicNoKextDump
 
-## Converting SMBIOS Data from OpenCore to Clover
-If you want to use your SMBIOS data from "PlatformInfo/Generic" in your Clover config, you have to use different fields and section to do so. This can be a bit confusing due to naming differences as well as the number of fields available in both configs.
+## Exchanging SMBIOS Data between OpenCore and Clover
+### Manual method
+Exchanging existing SMBIOS data back and forth between an OpenCore and a Clover config can be a bit confusing since both use different names and locations for data fields. 
 
-In order to use the SMBIOS data in OpenCore and Clover, do the following:
+Transferring the data correctly is important because otherwise you have to enter your AppleID and Password again which in return will register your computer as a new device in the Apple Account. On top of that you have to re-enter and 2-way-authenticate the system every single time you switch betweeen OpenCore and Clover, which is incredibly annowying. So in order to prevent this, you have to do the following:
 
 1. Copy the Data from the following fields to Clover Configurator's "SMBIOS" and "RtVariables" sections:
 
-OpenCore (PlatformInfo > Generic) | Clover (SMBIOS)      |
-|-----------------------------------|----------------------|
-| SystemProductName                 | ProductName          |
-| SystemUUID                        | SmUUID               |
-| ROM                               | ROM (in RtVariables) |
-| N/A in "Generic"                  | Board-ID             |
-| SystemSerialNumber                | Serial Number        |
-| MLB                               | Board Serial Number and MLB (in `RtVariables`)|
+PlatformInfo/Generic (OpenCore)| SMBIOS (Clover)      |
+|------------------------------|----------------------|
+| SystemProductName            | ProductName          |
+| SystemUUID                   | SmUUID               |
+| ROM                          | ROM (under `RtVariables`). Select "from SMBIOS" and paste the ROM address |
+| N/A in "Generic"             | Board-ID             |
+| SystemSerialNumber           | Serial Number        |
+| MLB                          | 1. Board Serial Number (under `SMBIOS`)</br>2. MLB (under `RtVariables`)|
 
 2. Next, tick the "Update Firmware Only" box.
-3. From the Dropdown Menu next to it to, select same Model you used for   "ProductName". This updates other fields like BIOS and Firmware.
-4. Save config and boot via Clover.
+3. From the Dropdown Menu next to it to, select the Mac model you used for "ProductName". This updates other fields like BIOS and Firmware.
+4. Save config and reboot with Clover.
 
-### Using OpenCore Auxilary Tools to import/export Clover SMBIOS Data
+You know that the SMBIOS data has bee transferred correctly, if you don't have to re-enter your Apple-ID and password.
+
+### Import/export Clover SMBIOS Data with OCAT
 Besides manually copying over SMBIOS data from your OpenCore to your Clover config and vice versa, you could use [**OpenCore Auxiliary Tools**](https://github.com/ic005k/OCAuxiliaryTools/releases) instead, which has a built-in import/export function to import SMBIOS Data from Clover as well as exporting function SMBIOS data into a Clover config:
 
 ![ocat](https://user-images.githubusercontent.com/76865553/162971063-cbab15fa-4c83-4013-a732-5486d4f00e31.png)
