@@ -177,7 +177,7 @@ PlatformInfo/Generic (OpenCore)| SMBIOS (Clover)      |
 |------------------------------|----------------------|
 | SystemProductName            | ProductName          |
 | SystemUUID                   | SmUUID               |
-| ROM                          | ROM (under `RtVariables`). Select "from SMBIOS" and paste the ROM address |
+| ROM                          | ROM (under `RtVariables`). Select "from SMBIOS" and paste the ROM address|
 | N/A in "Generic"             | Board-ID             |
 | SystemSerialNumber           | Serial Number        |
 | MLB                          | 1. Board Serial Number (under `SMBIOS`)</br>2. MLB (under `RtVariables`)|
