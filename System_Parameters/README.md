@@ -16,7 +16,7 @@ This key defines the global policy regarding kext injection:
 Since Clover r5125, loading of kexts is handled by OpenCore, so `FSInject` is obsolete.
 
 ## InjectSystemID
-For Chameleon users switching over to Clover! Not covered here. Leave disabled and carry on!
+Injects SystemID into macOS. If this is not enabled, the System ID is missing and will be displayed as "???" in Hackintool which might lead to issues with your Apple ID when transfering over SMBIOS Data from OpenCore and vice versa. Users switching over from Chameleon also need to enable this.
 
 ## NoCaches
 If enabled, the cache will be skipped on each boot. And just like `InjectKexts`, this key defines the global rule, so the value defined on Custom Entries will override this one.
