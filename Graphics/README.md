@@ -12,9 +12,9 @@ For Nvidia cards, `NVCAP` is calculated, for Intel on-board graphics dozens of p
 
 You can enable the injection of parameters based on vendors:
 
-- `Inject ATI` &rarr; For ATI/AMD GPUs. See [**FB Name**](https://github.com/5T33Z0/Clover-Crate/tree/main/Graphics#fb-name) for details.
-- `Inject Intel` &rarr; For Intel on-board graphics. See "**ig-platform-id**" for details.
-- `Inject NVidia` &rarr; For older NVIDIA Cards **not** requiring on NVIDIA WebDrivers.</br> Kepler cards and newer (e.g. Maxwell or Pascal) rely on WebDrivers. These can only be installed in post-install. Therefore, you need to do the following:
+- `Inject ATI` &rarr; For ATI/AMD GPUs. See "[**FB Name**](https://github.com/5T33Z0/Clover-Crate/tree/main/Graphics#fb-name)" for details.
+- `Inject Intel` &rarr; For Intel on-board graphics. See "[**ig-platform-id**](https://github.com/5T33Z0/Clover-Crate/tree/main/Graphics#ig-platform-id)" for details.
+- `Inject NVidia` &rarr; For older NVIDIA Cards, **not** requiring on NVIDIA WebDrivers.</br> Kepler cards and newer (e.g. Maxwell or Pascal) rely on WebDrivers. These can only be installed in post-install. Therefore, you need to do the following:
 	- Use boot-arg `nv_disable=1` to disable the card and use the software renderer to display an image during the macOS installation instead. 
 	- Once macOS is running, [**download**](https://www.tonymacx86.com/nvidia-drivers/) and install the appropriate WebDriver for your macOS build (supported up to macOS High Sierra only). 
 	- Next, delete the `nv_disable=1` boot-arg 
@@ -30,7 +30,7 @@ You can enable the injection of parameters based on vendors:
 - **Hint**: The `config.plists` included in the [Desktop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [Laptop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) sections contain a lot of Framebufer patches for various Intel CPU families already which might be useful to get your Intel HD/UHD graphics up and running.
 
 ## FB Name
-**Framebuffer Name**. This parameter is specific to ATI/AMD Radeon Cards for which more than 70 different framebuffer varniants exist, each with a unique name to identify it (check the extensive list in Clover Configurator). 
+**Framebuffer Name**. Specific to ATI/AMD Radeon Cards. More than 70 different framebuffer variants are known for various AMD video controllers, each with a unique name to identify it (check the extensive list in Clover Configurator). They are primarily used to get a picture from the video outputs, since each of these framebuffers contains a different mapping. You only need to use FB Name if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
 
 Usually, Clover automatically chooses the most appropriate Framebuffer for most common cards it detects. However, you can choose a custom one from the dropdown menu or enter a name manually if the automatically detected one causes issues. Just make sure it matches the Controller used in your ATI/AMD Card.
 
@@ -49,7 +49,7 @@ Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were u
 **Source**: [**Clover Changes**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2778575)
 
 ### Patching ATI/AMD Connectors
-ATI/AMD framebuffers can be patched to adssign different connectors to output the video signal. You can follow [this guide](https://www.insanelymac.com/forum/topic/282787-clover-v2-instructions/#comment-1853099) if you have need to do this. But keep in mind that this guide is from 2012 so I don't know if it is still relevant today.  
+ATI/AMD framebuffers can be patched to assign different connectors to output the video signal. You can follow [this guide](https://www.insanelymac.com/forum/topic/282787-clover-v2-instructions/#comment-1853099) if you have need to do this. But keep in mind that this guide is from 2012 so I don't know if it is still relevant today.  
 
 ## Dual Link
 The default value is `1`, but for some older configurations this will cause issues. In this case, set it to `0`.
