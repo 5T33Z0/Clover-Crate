@@ -189,7 +189,7 @@ PlatformInfo/Generic (OpenCore)| SMBIOS (Clover)      |
 You know that the SMBIOS data has bee transferred correctly, if you don't have to re-enter your Apple-ID and password.
 
 #### Troubleshooting
-If you have to re-enter your Appple ID Password after changing from OpenCore to Clover or vice versa, the used SMBIOS Data is not oidentical, so you have to figure out where the mismatch is. You can use Hackintool to do so:
+If you have to re-enter your Appple ID Password after changing from OpenCore to Clover or vice versa, the used SMBIOS Data is not identical, so you have to figure out where the mismatch is. You can use Hackintool to do so:
 
 - Mount the EFI
 - Open the config for the currently used Bootmanger
