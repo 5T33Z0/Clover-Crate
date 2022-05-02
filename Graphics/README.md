@@ -32,7 +32,7 @@ You can enable the injection of parameters based on vendors:
 ## FB Name
 **Framebuffer Name**. Specific to ATI/AMD Video Cards. More than 70 different framebuffer names exist for various AMD Video Controller kexts. Each has a unique name to identify it (check the extensive list in Clover Configurator) and contains different video output mappings as defined in the `IOKitPersonalities` of the repsective kexts' `info.plist`. Here is an example from `AMD9500Controller.kext` located in S/L/E:
 
-![](/Users/5t33z0/Desktop/FB_name.png)
+![FB_name](https://user-images.githubusercontent.com/76865553/166189455-06fe0e53-3f3b-4675-9972-d828872b5d57.png)
 
 To find the Controller kext used by your AMD/ATI card, run Hackintool, click on the "PCIe" Tab and look for it ("Class" is "Display Controller"). Once you find it, click on the magnifying class icon at the beginning of the entry. This takes you stright to the kext in Finder. Right-click it and select "Show Package Contents". Inside you will find the `info.plist`.
 
