@@ -36,7 +36,7 @@ You can enable the injection of parameters based on vendors:
 
 To find the Controller kext used by your AMD/ATI card, run Hackintool, click on the "PCIe" Tab and look for it ("Class" is "Display Controller"). Once you find it, click on the magnifying class icon at the beginning of the entry. This takes you stright to the kext in Finder. Right-click it and select "Show Package Contents". Inside you will find the `info.plist`.
 
-Usually, Clover automatically picks an appropriate Framebuffer for common cards it detects. However, you can choose a custom one from the dropdown menu or enter a name manually if the dection fials or the default Framebuffer causes issues. Just make sure it matches the Controller used in your ATI/AMD Card (Hackintool is your friend).
+Usually, Clover automatically picks an appropriate Framebuffer for common cards it detects. However, you can choose a custom one from the dropdown menu or enter a name manually if the dection fails or the default Framebuffer causes issues. Just make sure it matches the Controller used in your ATI/AMD Card (Hackintool is your friend).
 
 **NOTES**: 
 
