@@ -30,15 +30,24 @@ You can enable the injection of parameters based on vendors:
 - **Hint**: The `config.plists` included in the [Desktop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [Laptop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) sections contain a lot of Framebufer patches for various Intel CPU families already which might be useful to get your Intel HD/UHD graphics up and running.
 
 ## FB Name
-**Framebuffer Name**. Specific to ATI/AMD Radeon Cards. More than 70 different framebuffer variants are known for various AMD video controllers, each with a unique name to identify it (check the extensive list in Clover Configurator). They are primarily used to get a picture from the video outputs, since each of these framebuffers contains a different mapping. You only need to use FB Name if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
+**Framebuffer Name**. Specific to ATI/AMD Video Cards. More than 70 different framebuffer names exist for various AMD Video Controller kexts. Each has a unique name to identify it (check the extensive list in Clover Configurator) and contains different video output mappings as defined in the `IOKitPersonalities` of the repsective kexts' `info.plist`. Here is an example from `AMD9500Controller.kext` located in S/L/E:
 
-Usually, Clover automatically chooses the most appropriate Framebuffer for most common cards it detects. However, you can choose a custom one from the dropdown menu or enter a name manually if the automatically detected one causes issues. Just make sure it matches the Controller used in your ATI/AMD Card.
+![](/Users/5t33z0/Desktop/FB_name.png)
 
-### Using `Inject ATI` for current AMD Graphics Cards
-Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3 with newer GPUs. Do the following to enable the correct framebuffer for your AMD GPU:
+To find the Controller kext used by your AMD/ATI card, run Hackintool, click on the "PCIe" Tab and look for it ("Class" is "Display Controller"). Once you find it, click on the magnifying class icon at the beginning of the entry. This takes you stright to the kext in Finder. Right-click it and select "Show Package Contents". Inside you will find the `info.plist`.
+
+Usually, Clover automatically picks an appropriate Framebuffer for common cards it detects. However, you can choose a custom one from the dropdown menu or enter a name manually if the dection fials or the default Framebuffer causes issues. Just make sure it matches the Controller used in your ATI/AMD Card (Hackintool is your friend).
+
+**NOTES**: 
+
+- You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
+- OpenCore users can do this via `DeviceProperties`: Add the key `fb_name` to the PCIRoot Address entry for the GPU followd by the Name of the desired Framebuffer as a String.
+
+### `Inject ATI` and `FB Name` in macOS Monterey
+Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3+ with newer GPUs. Do the following to enable the correct framebuffer for your AMD GPU:
 
 1. Enable `Inject ATI`
-2. Under `FB Name`, enter ther name of the Framebuffer Patch matching the Controller used in your GPU or select one from the dropdown menu:
+2. Under `FB Name`, enter ther name of the Framebuffer Patch matching the Controller in your GPU or select one from the dropdown menu:
 	- **RX6900** &rarr; `Carswell`
 	- **RX6800** &rarr; `Belknap`
 	- **RX6600** &rarr; `Henbury` 
@@ -49,7 +58,9 @@ Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were u
 **Source**: [**Clover Changes**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2778575)
 
 ### Patching ATI/AMD Connectors
-ATI/AMD framebuffers can be patched to assign different connectors to output the video signal. You can follow [this guide](https://www.insanelymac.com/forum/topic/282787-clover-v2-instructions/#comment-1853099) if you have need to do this. But keep in mind that this guide is from 2012 so I don't know if it is still relevant today.  
+ATI/AMD framebuffers can be patched to assign different connectors to output the video signal. You can follow [this guide](https://www.insanelymac.com/forum/topic/282787-clover-v2-instructions/#comment-1853099) if you have need to do this. But keep in mind that this guide is from 2012 so I don't know if it is still relevant today. 
+
+OpenCore users need to use DeviceProperties to do this. Check the [**Clover Conversion Guide**](https://github.com/dortania/OpenCore-Install-Guide/blob/master/clover-conversion/Clover-config.md#graphics) for details.
 
 ## Dual Link
 The default value is `1`, but for some older configurations this will cause issues. In this case, set it to `0`.
