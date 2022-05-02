@@ -65,16 +65,15 @@ To find the Controller kext used by your AMD/ATI card, run Hackintool, click on 
 
 Usually, Clover automatically picks an appropriate Framebuffer for common cards it detects. However, you can choose a custom one from the dropdown menu or enter a name manually if the dection fails or the default Framebuffer causes issues. Just make sure it matches the Controller used in your ATI/AMD Card (Hackintool is your friend).
 
-**NOTES**: 
+OpenCore users have to do this via `DeviceProperties`: 
+- Add the PCIRoot Address entry for the GPU (use Hackintool to export the device list)
+- Add the corresponfing `AAPL,slot-name` (check `pcidevices.plist`)
+- Add its `device-id` (this determines which Controller kext will be used)
+- Add `fb_name` property with the name of the desired Framebuffer as a String.</br>
+**Example**:</br>
+![DEVPROP](https://user-images.githubusercontent.com/76865553/166193678-e009e15d-f065-4e4f-adf0-b6350e042181.png)
 
-- You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
-- OpenCore need to do this via `DeviceProperties`: 
-	- Add the PCIRoot Address entry for the GPU (use Hackintool to export the device list)
-	- Add the corresponfing `AAPL,slot-name` (check `pcidevices.plist`)
-	- Add its `device-id` (this determines which Controller kext will be used)
-	- Add `fb_name` property with the name of the desired Framebuffer as a String.</br>
-	**Example**:</br>
-		![](/Users/5t33z0/Desktop/DEVPROP.png)
+**NOTE**: You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
 
 #### `Inject ATI` and `FB Name` in macOS Monterey
 Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3+ with newer GPUs. Do the following to enable the correct framebuffer for your AMD GPU:
