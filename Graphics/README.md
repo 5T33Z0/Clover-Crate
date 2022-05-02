@@ -21,8 +21,7 @@ You can enable the injection of parameters based on vendors:
 	- Once macOS is running, [**download**](https://www.tonymacx86.com/nvidia-drivers/) and install the appropriate WebDriver for your macOS build (supported up to macOS High Sierra only). 
 	- Next, delete the `nv_disable=1` boot-arg 
 	- In the **System Parameters** Section, enable **NvidiaWeb**
-	- Save your `config.plist` and reboot. Graphics acceleration should work now.
-
+	- Save your `config.plist` and reboot. Graphics acceleration should work now.</br>
 	For more details about using NVIDIA cards, please refer to the [**Nvidia GeForce FAQs**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.GeForce.en.md).
 
 **NOTES**: 
@@ -45,8 +44,7 @@ For furter instruction on how to configure on-board graphics for supported Intel
 
 - For 10th Gen Intel Core CPUs and newer, it's recommended to configure the framebuffer using the `Devices/Properties` section instead, entering the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
 - Sandybridge CPUs require `AAPL,snb-platform-id` and have to be configured via `Devices/Properties` as well.
-- If Clover detects an Intel iGPU, it _automatically_ enables Intel Injection if the `Graphics` section doesn't exist in the `config.plist`. To prevent this, you can explicitly disable it by clicking the "Inject Intel" button once to enable it and again to disable it which sets the `Inject` key to `false`:
-
+- If Clover detects an Intel iGPU, it _automatically_ enables Intel Injection if the `Graphics` section doesn't exist in the `config.plist`. To prevent this, you can explicitly disable it by clicking the "Inject Intel" button once to enable it and again to disable it which sets the `Inject` key to `false`:</br>
 	```
 	<key>Graphics</key>
     <dict>
