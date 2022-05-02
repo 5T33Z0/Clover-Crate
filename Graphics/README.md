@@ -68,11 +68,13 @@ Usually, Clover automatically picks an appropriate Framebuffer for common cards 
 **NOTES**: 
 
 - You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
-- OpenCore users can do this via `DeviceProperties`: 
+- OpenCore need to do this via `DeviceProperties`: 
 	- Add the PCIRoot Address entry for the GPU (use Hackintool to export the device list)
 	- Add the corresponfing `AAPL,slot-name` (check `pcidevices.plist`)
 	- Add its `device-id` (this determines which Controller kext will be used)
-	- Add `fb_name` property with the name of the desired Framebuffer as a String.
+	- Add `fb_name` property with the name of the desired Framebuffer as a String.</br>
+	**Example**:</br>
+		![](/Users/5t33z0/Desktop/DEVPROP.png)
 
 #### `Inject ATI` and `FB Name` in macOS Monterey
 Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3+ with newer GPUs. Do the following to enable the correct framebuffer for your AMD GPU:
