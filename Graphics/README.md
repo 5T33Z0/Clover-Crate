@@ -73,7 +73,9 @@ OpenCore users have to do this via `DeviceProperties`:
 **Example**:</br>
 ![DEVPROP](https://user-images.githubusercontent.com/76865553/166193678-e009e15d-f065-4e4f-adf0-b6350e042181.png)
 
-**NOTE**: You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
+**NOTES**: 
+- You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
+- Injecting "FB name" it might cause conflicts when WhateverGreen is active, because WEG uses the default AMDRadeonFramebuffer to do its magic.
 
 #### `Inject ATI` and `FB Name` in macOS Monterey
 Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3+ with newer GPUs. Do the following to enable the correct framebuffer for your AMD GPU:
