@@ -69,7 +69,8 @@ Usually, Clover automatically picks an appropriate Framebuffer for common cards 
 
 - You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
 - OpenCore users can do this via `DeviceProperties`: 
-	- Add the PCIRoot Address entry for the GPU (use Hackintool to find it)
+	- Add the PCIRoot Address entry for the GPU (use Hackintool to export the device list)
+	- Add the corresponfing `AAPL,slot-name` (check `pcidevices.plist`)
 	- Add its `device-id` (this determines which Controller kext will be used)
 	- Add `fb_name` property with the name of the desired Framebuffer as a String.
 
