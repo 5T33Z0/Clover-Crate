@@ -177,7 +177,7 @@ PlatformInfo/Generic (OpenCore)| SMBIOS (Clover)      |
 |------------------------------|----------------------|
 | SystemProductName            | ProductName          |
 | SystemUUID                   | SmUUID               |
-| ROM                          | ROM (under `RtVariables`). Select "from SMBIOS" and paste the ROM address|
+| ROM                          | ROM (under `RtVariables`). If your Serial was generated based on the real MAC Address of your Ethernet Controller you can select `UseMacAddr0` from the dropdown menu instead.
 | N/A in "Generic"             | Board-ID             |
 | SystemSerialNumber           | Serial Number        |
 | MLB                          | 1. Board Serial Number (under `SMBIOS`)</br>2. MLB (under `RtVariables`)|
