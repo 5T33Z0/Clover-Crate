@@ -167,9 +167,9 @@ While most of OpenCore's Kernel Patches are located in Clover's Quirks section, 
 
 ## Exchanging SMBIOS Data between OpenCore and Clover
 ### Manual method
-Exchanging existing SMBIOS data back and forth between an OpenCore and a Clover config can be a bit confusing since both use different names and locations for data fields. 
+Exchanging existing SMBIOS data between OpenCore Clover can be a bit confusing since both use different names and locations for data fields. 
 
-Transferring the data correctly is important because otherwise you have to enter your AppleID and Password again which in return will register your computer as a new device in the Apple Account. On top of that you have to re-enter and 2-way-authenticate the system every single time you switch betweeen OpenCore and Clover, which is incredibly annowying. So in order to prevent this, you have to do the following:
+Transferring SMBIOS data correctly is important because otherwise you have to enter your AppleID and Password again which in return will register your computer as a new device in the Apple Account. On top of that you have to re-enter and 2-way-authenticate the system every single time you switch betweeen OpenCore and Clover, which is incredibly annowying. So in order to prevent this, you have to do the following:
 
 1. Copy the Data from the following fields to Clover Configurator's "SMBIOS" and "RtVariables" sections:
 
@@ -181,9 +181,10 @@ PlatformInfo/Generic (OpenCore)| SMBIOS (Clover)      |
 | N/A in "Generic"             | Board-ID             |
 | SystemSerialNumber           | Serial Number        |
 | MLB                          | 1. Board Serial Number (under `SMBIOS`)</br>2. MLB (under `RtVariables`)|
+N/A in OpenCore                | Custom UUID (=Hardware UUID). Leave empty.
 
 2. Next, tick the "Update Firmware Only" box.
-3. From the Dropdown Menu next to it to, select the Mac model you used for "ProductName". This updates other fields like BIOS and Firmware.
+3. From the Dropdown Menu next to it to, select the Mac model you used for "ProductName". This updates fields like BIOS and Firmware to the latest version.
 4. Save config and reboot with Clover.
 
 You know that the SMBIOS data has bee transferred correctly, if you don't have to re-enter your Apple-ID and password.

@@ -84,6 +84,56 @@ Four parameters are required to create a custom `AAPL,slot-name` entry in your c
 * In order for the `Slots` section to be present in the config.plist, a SMBIOS has to be generated because Slots is a sub-category of the SMBIOS dictionary.
 * As long as I have been using Clover, I've never used this section whatsoever. I always use Device Properties to define a device and call it a day. Especially since Hackintool can create all these device property entries with the correct AAPL,slot-names for you.
 
+## Exchanging SMBIOS Data between OpenCore and Clover
+### Manual method
+Exchanging existing SMBIOS data between OpenCore Clover can be a bit confusing since both use different names and locations for data fields. 
+
+Transferring SMBIOS data correctly is important because otherwise you have to enter your AppleID and Password again which in return will register your computer as a new device in the Apple Account. On top of that you have to re-enter and 2-way-authenticate the system every single time you switch betweeen OpenCore and Clover, which is incredibly annowying. So in order to prevent this, you have to do the following:
+
+1. Copy the Data from the following fields to Clover Configurator's "SMBIOS" and "RtVariables" sections:
+
+PlatformInfo/Generic (OpenCore)| SMBIOS (Clover)      |
+|------------------------------|----------------------|
+| SystemProductName            | ProductName          |
+| SystemUUID                   | SmUUID               |
+| ROM                          | ROM (under `RtVariables`). Select "from SMBIOS" and paste the ROM address|
+| N/A in "Generic"             | Board-ID             |
+| SystemSerialNumber           | Serial Number        |
+| MLB                          | 1. Board Serial Number (under `SMBIOS`)</br>2. MLB (under `RtVariables`)|
+N/A in OpenCore                | Custom UUID (=Hardware UUID). Leave empty.
+
+2. Next, tick the "Update Firmware Only" box.
+3. From the Dropdown Menu next to it to, select the Mac model you used for "ProductName". This updates fields like BIOS and Firmware to the latest version.
+4. Save config and reboot with Clover.
+
+You know that the SMBIOS data has bee transferred correctly, if you don't have to re-enter your Apple-ID and password.
+
+#### Troubleshooting
+If you have to re-enter your Appple ID Password after changing from OpenCore to Clover or vice versa, the used SMBIOS Data is either not identical or there is another issue, so you have to figure out where the mismatch is. You can use Hackintool to do so:
+
+- Mount the EFI
+- Open the config for the currently used Bootmanger
+- Run Hackintool. The "System" section shows the currently used SMBIOS Data: </br> ![SYSINFO](https://user-images.githubusercontent.com/76865553/166119425-8970d155-b546-4c91-8daf-ec308d16916f.png)
+- Check if the framed parameters match the ones in your config.
+- If they don't, correct them and use the ones from Hackintool 
+- If they do mach the values used in your config, open the config from your other Boot Manager and compare the data from Hackintool again and adjust the data accordingly.
+- Save the config and reboot
+- Change to the other Boot Manager and start macOS
+- If the data is correct you won't have to enter your Apple ID Password again (double-check in Hackintool to verify).
+
+### SMBIOS Data Import/Export with OCAT
+Besides manually copying over SMBIOS data from your OpenCore to your Clover config and vice versa, you could use [**OpenCore Auxiliary Tools**](https://github.com/ic005k/OCAuxiliaryTools/releases) instead, which has a built-in import/export function to import SMBIOS Data from Clover as well as exporting function SMBIOS data into a Clover config:
+
+![ocat](https://user-images.githubusercontent.com/76865553/162971063-cbab15fa-4c83-4013-a732-5486d4f00e31.png)
+
+**IMPORTANT**
+
+- If you did everything correct, you won't have to enter your AppleID Password after switching bootloaders and macOS will let you know, that "This AppleID is now used with this device" or something like that.
+- But if macOS asks for your AppleID Password and Mail passwords etc. after switching bootloaders, you did something wrong. In this case you should reboot into OpenCore instead and check again. Otherwise, you are registering your computer as a new/different Mac.
+
+### 1-Click-Solution for Clover Users
+If you've used the real MAC Address of your Ethernet Controller ("ROM") when generating your SMBIOS Data for your OpenCore config, you can avoid possible SMBIOS conflicts altogether. In the "Rt Variables" section, click on "from System" and you should be fine!
+
 ## A note on running macOS on unsupported platforms
 Unlike real Macs which are limited to a certain range of supported macOS versions, you can trick macOS into running on CPU models it doesn't support officially – at least, if the used SMBIOS are not too far off from the specs of your hardware. 
 
