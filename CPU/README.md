@@ -49,7 +49,9 @@ Another interesting parameter for controlling [Speedstep](https://en.wikipedia.o
 Starting with Clover r3879, Intel Speed ​​Shift technology has been introduced in Skylake CPUs. If enabled, then `1` is written to the MSR `0x770` register. Unfortunately, if the computer enters sleep and then wakes up, the MSR value `0x770` will be reset to `0` and Clover cannot re-enable it. But with a help of the [**HWPEnable.kext**](https://github.com/headkaze/HWPEnable) this can be fixed.  
 
 ## HWPValue
-This value turned out to be the most appropriate. It value will be written to MSR register `0x774`, but only if MSR `0x770` is set to `1`. Otherwise, this register is unavailable. 
+HWPValue is a bitmask which provides infos about the Energy Performance Preference (Performance vs. Power Saving), the maximum Multopiplier of the CPU and the Lowest Frequency it can go to get Intel Speed Shift working properly on Skylake and newer CPUs. It value will be written to MSR register `0x774`, but only if MSR `0x770` is set to `1`. Otherwise, this register is unavailable. Check [this guide](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) to figure out how to calculate the correct HWPValue.
+
+**NOTE**: I think nowadays you would probably just use [CPUFriendFriend](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) to generate a DataProvider kext with the correct frequency vectors for your CPU.
 
 ## UseARTFrequency
 Processors of the Intel Skylake family have a new base frequency parameter which changes in smaller increments than the bus frequency, the so-called `ARTFrequency`. Its value is usually `24 MHz`. Clover can calculate it and commit it to the core. In practice, the calculated frequency leads to inaccurate operation, so it can simply be disabled. In this case the system core will act in its own way. In newer versions of Clover, this figure is rounded, as vit9696 believes there can be only three values, and they are round, up to `1 MHz`.
