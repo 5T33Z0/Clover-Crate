@@ -48,7 +48,7 @@ In OpenCore, use ACPI Quirk `FadtEnableReset` for this.
 
 ## Patch APIC 
 
-Some systems can only be started using kernel parameter `cpus=1` or with a patched kernel (Lapic NMI). A simple analysis showed that the `MADT` (Multiple APIC Description Table) is missing the NMI section.`Patch APIC` fixes such tables on the fly. If the table is complete already, nothing will be changed.
+`APIC` stands for Advanced Programmable Interrupt Controller. Its parameters are defined in the `MADT` (Multiple APIC Description Table). If this table is missing the "NMI" section, the system can only boot by setting the kernel parameter `cpus=1` or with a patched kernel (Lapic NMI). `Patch APIC` fixes this table on the fly so the system can boot. If the table is complete already, nothing will be changed.
 
 ## Reset Address / Reset Value
 
