@@ -39,7 +39,49 @@ It affects the MSR `0x1B0` register and determines the behavior of the processor
 
 With the launch of the Skylake CPU family, Intel introduced [Speed Shift](https://coderbag.com/product/quickcpu/features/hwp/intel-speed-shift-performance-settings) technology aka HWP (Hardware p-state) or Hardware Controlled Performance. It delivers quicker responsiveness with short duration performance shifts, by allowing the processor to more quickly select its best operating frequency and voltage for optimal performance and power efficiency independent of the OS which reduces latency and in return slightly improves overall performance. 
 
-If enabled, then `1` is written to the MSR `0x770` register. Unfortunately, if the computer enters sleep and then wakes up, the MSR value `0x770` will be reset to `0` and Clover cannot re-enable it. But with a help of the [**HWPEnable.kext**](https://github.com/headkaze/HWPEnable) this can be fixed.  
+If enabled, then `1` is written to the MSR `0x770` register. Unfortunately, if the computer enters sleep and then wakes up, the MSR value `0x770` will be reset to `0` and Clover cannot re-enable it. But with a help of the [**HWPEnable.kext**](https://github.com/headkaze/HWPEnable) this can be fixed.
+
+<details>
+<summary><strong> Board-IDs with HWP support</strong> (click to reveal)</summary>
+
+Listed below you will find a list of Mac models supporting Instel Speed Step which can be extracted using [**freqVectorsEdit**](https://github.com/Piker-Alpha/freqVectorsEdit.sh).
+
+```freqVectorsEdit.sh v3.2 Copyright (c) 2013-2022 by Pike R. Alpha.
+-----------------------------------------------------------------
+Bugs > https://github.com/Piker-Alpha/freqVectorsEdit.sh/issues <
+
+Available resource files (plists) with FrequencyVectors:
+
+ [  1 ] Mac-EE2EBD4B90B839A8.plist (MacBook10,1 @ 3000 HWP/3200 HWP/3600 HWP)
+ [  8 ] Mac-6FEBD60817C77D8A.plist (Unknown Model @ 3800 HWP/4100 HWP)
+ [ 12 ] Mac-CAD6701F7CEA0921.plist (MacBookPro14,2 @ 3500 HWP/3700 HWP/4000 HWP)
+ [ 13 ] Mac-226CB3C6A851A671.plist (Unknown Model @ 3600 HWP)
+ [ 17 ] Mac-27AD2F918AE68F61.plist (Unknown Model HWP)
+ [ 19 ] Mac-7BA5B2DFE22DDD8C.plist (Unknown Model @ 3600 HWP/4000 HWP/4100 HWP/4500 HWP)
+ [ 20 ] Mac-E7203C0F68AA0004.plist (Unknown Model @ 3900 HWP/4500 HWP)
+ [ 21 ] Mac-63001698E7A34814.plist (Unknown Model @ 3600 HWP/4100 HWP/4600 HWP)
+ [ 26 ] Mac-A5C67F76ED83108C.plist (MacBookPro13,3 @ 3500 HWP/3600 HWP/3800 HWP)
+ [ 27 ] Mac-473D31EABEB93F9B.plist (MacBookPro13,1 @ 3100 HWP/3400 HWP)
+ [ 29 ] Mac-CFF7D910A743CAAF.plist (Unknown Model @ 4500 HWP)
+ [ 31 ] Mac-53FDB3D8DB8CA971.plist (Unknown Model @ 3900 HWP/4500 HWP)
+ [ 33 ] Mac-1E7E29AD0135F9BC.plist (Unknown Model @ 4100 HWP/4300 HWP/4500 HWP/4600 HWP/4800 HWP/5000 HWP)
+ [ 34 ] Mac-AF89B6D9451A490B.plist (Unknown Model @ 4500 HWP)
+ [ 35 ] Mac-9AE82516C7C6B903.plist (MacBook9,1 @ 2200 HWP/2700 HWP/3100 HWP)
+ [ 38 ] Mac-551B86E5744E2388.plist (MacBookPro14,3 @ 3800 HWP/3900 HWP/4100 HWP)
+ [ 39 ] Mac-564FBA6031E5946A.plist (Unknown Model HWP)
+ [ 42 ] Mac-5F9802EFE386AA28.plist (Unknown Model @ 3800 HWP/4100 HWP)
+ [ 44 ] Mac-87DCB00F4AD77EEA.plist (Unknown Model @ 3200 HWP/3500 HWP/3800 HWP)
+ [ 46 ] Mac-B4831CEBD52A0C4C.plist (MacBookPro14,1 @ 3400 HWP/4000 HWP)
+ [ 48 ] Mac-A61BADE1FDAD7B05.plist (Unknown Model @ 4500 HWP/4800 HWP/5000 HWP)
+ [ 49 ] Mac-E1008331FDC96864.plist (Unknown Model @ 4500 HWP/4800 HWP/5000 HWP)
+ [ 50 ] Mac-0CFF9C7C2B63DF8D.plist (Unknown Model @ 3200 HWP/3500 HWP/3800 HWP)
+ [ 51 ] Mac-66E35819EE2D0D05.plist (MacBookPro13,2 @ 3300 HWP/3500 HWP/3600 HWP)
+ [ 55 ] Mac-827FB448E656EC26.plist (Unknown Model @ 3800 HWP/4100 HWP/4200 HWP/4500 HWP/4700 HWP)
+ [ 56 ] Mac-827FAC58A8FDFA22.plist (Unknown Model @ 3600 HWP)
+ [ 59 ] Mac-937A206F2EE63C01.plist (Unknown Model @ 4100 HWP/4300 HWP/4500 HWP/4600 HWP/4800 HWP/5000 HWP)
+ [ 64 ] Mac-AA95B1DDAB278B95.plist (Unknown Model @ 4100 HWP/4300 HWP/4600 HWP/5000 HWP)
+```
+</details>
 
 ## HWPValue
 `HWPValue` is a bitmask consistion of 3 parameters to get Intel Speed Step working properly on Skylake and newer CPUs: the Energy Performance Preference (EPP), the maximum Multiplier of the CPU and the Lowest Frequency it can run at. The value will be written to MSR register `0x774`, but only if MSR `0x770` is set to `1`. Otherwise, this register is unavailable. Check [this guide](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) to figure out how to calculate the correct HWPValue for your CPU.
@@ -47,7 +89,7 @@ If enabled, then `1` is written to the MSR `0x770` register. Unfortunately, if t
 **NOTES**
 
 - Requires Intel Skylake or newer CPU.
-- In order to make use of Intel Speed Shift, you need to use a SMBIOS and Board-ID (usually from a Laptop) which supports it.
+- In order to make use of Intel Speed Shift, you need to use a SMBIOS and Board-ID (usually Laptops) which supports it.
 - Nowadays you would probably use [CPUFriendFriend](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) instead to generate a DataProvider kext with the correct frequency vectors for your CPU.
 
 ## UseARTFrequency
