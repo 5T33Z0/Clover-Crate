@@ -1,11 +1,10 @@
 # RtVariables
 ![RTvarsnu](https://user-images.githubusercontent.com/76865553/140332564-944c61eb-6168-4a12-b580-0f0744fd4fdf.png)
 
-The following two parameters are intended to allow registration in iMessage service.
-Starting from Clover r1129 the parameters are taken from SMBIOS and are not needed to be entered here.
+This seciton contains Runtime Variables affecting Apple services or Clover itself. `ROM` and `MLB` for example are required to allow registration in iMessage service. Starting from Clover r1129 the parameters are taken from SMBIOS and are not needed to be entered maually here unless something is missing.
 
 ## ROM
-Last digits of `SmUUID` or `MAC Address`. Clover can detect the MAC Address of your Ethernet Adapter if `UseMacAddr0` is selected. This does not work for everyone, so test it.
+Last digits of `SmUUID` or `MAC Address`. Clover can detect and apply the MAC Address of your Ethernet Adapter automatically if `UseMacAddr0` is selected. This does not work for everyone, so test it.
 
 ## MLB
 **MLB** = BoardSerialNumber
@@ -27,12 +26,12 @@ These are bit masks to set various boot flags. There's no further info in the ma
 **NOTE**: In most cases you don't have to change anything here. But if you do, you should exactly know what you are doing and why! You can also change these flags from the Options menu in the Bootloader GUI (Options > System Parameters > bootargs > Flags). But in this case the applied settings are only applied temporary for the next boot.
 
 ## CsrActiveConfig
-With the release of macOS El Capitan in 2015, a new security feature was introduced: System Integrity Protection (SIP). By default, SIP is enabled (`0x000`) and does not allow you to load your kexts or install your system utilities. To disable it, Clover gives you the option of setting new in NVRAM.
-
+With the release of macOS El Capitan in 2015, a new security feature was introduced: System Integrity Protection (SIP). By default, SIP is enabled (`0x000`) and does not allow you to load your kexts or install your system utilities. To disable it, you can calculate your own bitmask containing various flags.
+ 
 ### Flags for Security Settings
-The default value for `CsrActiveConfig` in Clover r5142 currently is `0xA87`, which consists of the following enabled flags:
+The default value for `CsrActiveConfig` for Clover r5142 currently is `0xA87`, which consists of the following enabled flags:
 
-|Bit| Flag Name | HEX Value | Default in r5142
+|Bit| Flag Name | HEX Value | Clover Default
 |:-:|-----------|----------:|:---------------:|
 |0|CSR_ALLOW_UNTRUSTED_KEXTS|0x1|x
 |1|CSR_ALLOW_UNRESTRICTED_FS|0x2|x
@@ -49,7 +48,7 @@ The default value for `CsrActiveConfig` in Clover r5142 currently is `0xA87`, wh
 
 **NOTES**: `0xA87` is a 12 bit bit mask and as such, is only valid for macOS 11 and 12. So if you are using an older Version of macOS, use the **CloverCalcs** Spreadsheet which can be found in the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to calculate your own.
 
-You can also change these flags from the Options menu in the Bootloader GUI (Options > System Parameters > System Integrity Protection). But in this case the settings are only applied temporarily during the next boot.
+You can also change these flags from the options menu in the Bootloader GUI (Options > System Parameters > System Integrity Protection). But in this case the settings are only applied temporarily during the next boot.
 
 ### Recommended values for disabling System Integrity Protection
 :warning: Disabling SIP is not recommended!
