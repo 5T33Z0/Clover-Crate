@@ -14,18 +14,6 @@ Starting with Clover r1060, the bus frequency is detected automatically based on
 ## Latency
 Describes the delay for entering the `C3` state. The critical value is **0x3E8** = **1000**. Below 1000, Speedstep is enabled, above 1000, it does not turn on. On real Macs, it is always set to **0x03E9** (1001) which disables Speedstep. On Hacks, we can choose if we want to behave it like a Mac or if we want to turn on power management. A reasonable value for the latter is **0x00FA** (250), which is found on some laptops (MacPro5.1 = 17, MacPro6.1 = 67, iMac13.2 = 250).
 
-## C2, C4, C6 (deprecated)
-Parameters related to C-state. This section is deprecated and has since been moved to &rarr; [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#enable-c2-c4-c6-and-c7)
-
-- `C2`: Set to false on modern computers
-- `C4`: According to the specification, either use C3 or C4. We choose C4. For Ivy Bridge, set it to false.
-- `C6`: only for mobile computers. However, you can try to enable it on desktops as well. Set to true for Ivy Bridge and Haswell CPUs.
-
-Note that with these C-States, people often complain about issues with sound/graphics and sleep. So be careful, or exclude them altogether.
-
-## QEMU
-When testing Clover in the QEMU virtual machine, developers discovered that it did not correctly emulate the Intel CPU. As a temporary measure, this key was created.
-
 ## QPI
 In the System Profiler, this value is called Processor Bus Speed or simply "Bus Speed". For Clover, an algorithm has been developed to calculate the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods of setting this value are available: the value either exists in SMBIOS already, prescribed by the manufacturer, or Bus Speed x4 is simply calculated. After much debate, this value has been added to the config - write what you like (in MHz).
 
@@ -40,21 +28,44 @@ Basically, Clover knows all the ciphers, but since progress does not stand still
 Describes the Thermal Design Power (in Watts), taken into account in the P-States when generating the Processor Power Management tables. You can find the TDP for your CPU on [Intel's Product Specifications Website](https://ark.intel.com/content/www/us/en/ark.html#@Processors)
 
 ## SavingMode
-Another interesting parameter for controlling [Speedstep](https://en.wikipedia.org/wiki/SpeedStep). It affects the MSR `0x1B0` register and determines the behavior of the processor:
+Here, you can set `Performace Bias Range` which affects the behavior of [Intel Speedstep](https://en.wikipedia.org/wiki/SpeedStep). A lower value shifts the Bias more to performance while a higher value shifts it more towards saving Energy.
+
+It affects the MSR `0x1B0` register and determines the behavior of the processor:
 
 `0`: Maximum Performance</br>
 `15`: Maximum Energy Saving
 
-## HWPEnable
-Starting with Clover r3879, Intel Speed ​​Shift technology has been introduced in Skylake CPUs. If enabled, then `1` is written to the MSR `0x770` register. Unfortunately, if the computer enters sleep and then wakes up, the MSR value `0x770` will be reset to `0` and Clover cannot re-enable it. But with a help of the [**HWPEnable.kext**](https://github.com/headkaze/HWPEnable) this can be fixed.  
+## HWPEnable (= Intel Speed Shift)
+
+With the launch of the Skylake CPU family, Intel introduced [Speed Shift](https://coderbag.com/product/quickcpu/features/hwp/intel-speed-shift-performance-settings) technology aka HWP (Hardware p-state) or Hardware Controlled Performance. It delivers quicker responsiveness with short duration performance shifts, by allowing the processor to more quickly select its best operating frequency and voltage for optimal performance and power efficiency independent of the OS which reduces latency and in return slightly improves overall performance. 
+
+If enabled, then `1` is written to the MSR `0x770` register. Unfortunately, if the computer enters sleep and then wakes up, the MSR value `0x770` will be reset to `0` and Clover cannot re-enable it. But with a help of the [**HWPEnable.kext**](https://github.com/headkaze/HWPEnable) this can be fixed.  
 
 ## HWPValue
-HWPValue is a bitmask which provides infos about the Energy Performance Preference (Performance vs. Power Saving), the maximum Multopiplier of the CPU and the Lowest Frequency it can go to get Intel Speed Shift working properly on Skylake and newer CPUs. It value will be written to MSR register `0x774`, but only if MSR `0x770` is set to `1`. Otherwise, this register is unavailable. Check [this guide](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) to figure out how to calculate the correct HWPValue.
+`HWPValue` is a bitmask consistion of 3 parameters to get Intel Speed Step working properly on Skylake and newer CPUs: the Energy Performance Preference (EPP), the maximum Multiplier of the CPU and the Lowest Frequency it can run at. The value will be written to MSR register `0x774`, but only if MSR `0x770` is set to `1`. Otherwise, this register is unavailable. Check [this guide](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) to figure out how to calculate the correct HWPValue for your CPU.
 
-**NOTE**: I think nowadays you would probably just use [CPUFriendFriend](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) to generate a DataProvider kext with the correct frequency vectors for your CPU.
+**NOTES**
+
+- Requires Intel Skylake or newer CPU.
+- In order to make use of Intel Speed Shift, you need to use a SMBIOS and Board-ID (usually from a Laptop) which supports it.
+- Nowadays you would probably use [CPUFriendFriend](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) instead to generate a DataProvider kext with the correct frequency vectors for your CPU.
 
 ## UseARTFrequency
-Processors of the Intel Skylake family have a new base frequency parameter which changes in smaller increments than the bus frequency, the so-called `ARTFrequency`. Its value is usually `24 MHz`. Clover can calculate it and commit it to the core. In practice, the calculated frequency leads to inaccurate operation, so it can simply be disabled. In this case the system core will act in its own way. In newer versions of Clover, this figure is rounded, as vit9696 believes there can be only three values, and they are round, up to `1 MHz`.
+Processors of the Intel Skylake family have a new base frequency parameter which changes in smaller increments than the bus frequency, the so-called `ARTFrequency`. Its value is usually `24 MHz`. Clover can calculate it and commit it to the core. In practice, the calculated frequency leads to inaccurate operation, so it can simply be disabled. In this case the system core will act in its own way. In newer versions of Clover, this figure is rounded, as vit9696 believes there can be only three values, and they are round, up to `1 MHz`. You need to enable it to get speed shift working properly.
 
 ## TurboDisable
 Disable Intel Turbo Boost Technology. Useful for Notebooks so they don't overheat.
+
+## QEMU
+When testing Clover in the QEMU virtual machine, developers discovered that it did not correctly emulate the Intel CPU. As a temporary measure, this key was created.
+
+## C2, C4, C6 (deprecated)
+Parameters related to C-state. This section is deprecated and has since been moved to &rarr; [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#enable-c2-c4-c6-and-c7)
+
+- `C2`: Set to false on modern computers
+- `C4`: According to the specification, either use C3 or C4. We choose C4. For Ivy Bridge, set it to false.
+- `C6`: only for mobile computers. However, you can try to enable it on desktops as well. Set to true for Ivy Bridge and Haswell CPUs.
+
+Note that with these C-States, people often complain about issues with sound/graphics and sleep. So be careful, or exclude them altogether.
+
+
