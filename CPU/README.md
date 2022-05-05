@@ -109,5 +109,3 @@ Parameters related to C-state. This section is deprecated and has since been mov
 - `C6`: only for mobile computers. However, you can try to enable it on desktops as well. Set to true for Ivy Bridge and Haswell CPUs.
 
 Note that with these C-States, people often complain about issues with sound/graphics and sleep. So be careful, or exclude them altogether.
-
-
