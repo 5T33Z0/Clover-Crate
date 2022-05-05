@@ -25,7 +25,7 @@ I created this repo for several reasons:
 </details>
 
 ## TABLE of CONTENTS
-- **Clover Configuration**
+- **CLOVER CONFIGURATION**
   - [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#readme)
   - [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot#readme)
   - [**Boot Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics#readme)
@@ -38,7 +38,7 @@ I created this repo for several reasons:
   - [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables#readme)
   - [**SMBIOS**](https://github.com/5T33Z0/Clover-Crate/tree/main/SMBIOS#readme)
   - [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters#readme)
-- **Appendix**
+- **APPENDIX**
   - [**Upgrading to Clover with OpenRuntime integration**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover#readme)
   - [**Kext Management in Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kext_Management#readme)
   - [**Mapping USB Ports**](https://github.com/5T33Z0/Clover-Crate/tree/main/USB_Fixes#readme)
