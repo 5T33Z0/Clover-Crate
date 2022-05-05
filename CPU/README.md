@@ -89,7 +89,7 @@ Available resource files (plists) with FrequencyVectors:
 **NOTES**
 
 - Requires Intel Skylake or newer CPU.
-- In order to make use of Intel Speed Shift, you need to use a SMBIOS and Board-ID (usually Laptops) which supports it.
+- In order to make use of Intel Speed Shift, you need to use an SMBIOS and Board-ID which supports it (usually Laptops).
 - Nowadays you would probably use [CPUFriendFriend](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) instead to generate a DataProvider kext with the correct frequency vectors for your CPU.
 
 ## UseARTFrequency
