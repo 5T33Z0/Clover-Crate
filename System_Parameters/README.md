@@ -10,10 +10,10 @@ Unique identification number of your computer. If you don't put this key in, som
 ## InjectKexts
 This key defines the global policy regarding kext injection:
 
-- `Yes`: Always inject kexts from `/EFI/CLOVER/kexts/`
-- `No`: ~~Never inject kexts~~
+- `Yes`: Injects kexts located under `/EFI/CLOVER/kexts/`
+- `No`: ~~Doesn't inject kexts~~
 
-Since Clover r5125, loading of kexts is handled by OpenCore, so `FSInject` is obsolete. In other words: leaving this empy or not doesn't matter – kexts are injected anyway!
+Since Clover r5125, loading of kexts is handled by OpenCore, so `FSInject` and this setting is obsolete. In other words: leaving this empy or not doesn't matter – kexts are injected anyway!
 
 ## InjectSystemID
 Injects System ID into macOS. If this is not enabled, the System ID is missing and will be displayed as "???" in Hackintool which might lead to issues with your Apple ID when transfering over SMBIOS Data from OpenCore and vice versa. Users switching over from Chameleon also need to enable this.
