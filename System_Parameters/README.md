@@ -4,7 +4,7 @@
 ## Backlight Level
 Sets and stores the user default monitor brightness level in NVRAM. However, this only works on some systems. By default, a value from macOS is used. Changing the Backlight Level in the config.plist will override the default brightness level set by macOS. 
 
-**Format**: Hex,, for example `0x0101`
+**Format**: Hex, for example `0x0101`
 
 ## CustomUUID
 Unique identification number of your system. If you don't put this key in, some hardware information will be generated, but if you want full control over what happens, hit "Generate New" to create your own or "Get it from system".
