@@ -2,10 +2,12 @@
 ![sysparams](https://user-images.githubusercontent.com/76865553/136677062-ef979281-d50b-44a6-9b28-363c8cb70175.png)
 
 ## Backlight Level
-Monitor brightness level. However, only few systems will be affected by this parameter. It also is read from NVRAM. By default, a value given by the system is used. Specifying it in the configuration file will override it.
+Sets and stores the user default monitor brightness level in NVRAM. However, this only works on some systems. By default, a value from macOS is used. Changing the Backlight Level in the config.plist will override the default brightness level set by macOS. 
+
+**Format**: Hex,, for example `0x0101`
 
 ## CustomUUID
-Unique identification number of your computer. If you don't put this key in, some hardware information will be generated, but if you want full control over what happens, hit "Generate New" to create your own or "Get it from system".
+Unique identification number of your system. If you don't put this key in, some hardware information will be generated, but if you want full control over what happens, hit "Generate New" to create your own or "Get it from system".
 
 ## InjectKexts (deprecated)
 This key defines the global policy regarding kext injection:
