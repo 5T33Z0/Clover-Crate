@@ -1,6 +1,6 @@
-## Terminal Commands
+# Terminal Commands
 
-### macOS related
+## macOS related
 
 **Collection of defaults commands** (for modifying behavior, options, look and feel of macOS):</br>
 https://macos-defaults.com/
@@ -15,14 +15,16 @@ https://macos-defaults.com/
 `defaults write com.apple.frameworks.diskimages skip-verify TRUE`</br>
 `defaults write com.apple.frameworks.diskimages skip-verify FALSE`</br>
 
+**List MAC Addresses**</br>
+`networksetup -listallhardwareports`
+
 **Add "Quit" option to Finder**:</br>
 `defaults write com.apple.finder QuitMenuItem -bool YES`</br>
 `killall Finder`</br>
 
 **Show all Files in Finder**:</br>
 `defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder`</br>
-After you're done with your changes, set it to FALSE again:</br>
-`defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder`
+`defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder` (to revert it)
 
 **Show the User Library in Big Sur**:</br>
 `setfile -a v ~/Library`</br>
@@ -31,6 +33,12 @@ After you're done with your changes, set it to FALSE again:</br>
 **Rebuild Launch Services**:</br>
 `/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user`
 
+**Rebuild DYLD and XPC caches**
+```
+sudo update_dyld_shared_cache -force
+sudo /usr/libexec/xpchelper --rebuild-cache
+```
+
 **Enable Sidecar**:</br>
 `defaults write com.apple.sidecar.display AllowAllDevices -bool true`</br>
 `defaults write com.apple.sidecar.display hasShownPref -bool true`
@@ -38,7 +46,9 @@ After you're done with your changes, set it to FALSE again:</br>
 **Disable Logging:**</br>
 `sudo rm /System/Library/LaunchDaemons/com.apple.syslogd.plist`
 
-### Hackintosh specific
+## Hackintosh specific
+**Currently used SMBIOS**</br>
+`system_profiler SPHardwareDataType | grep 'Model Identifier'` 
 
 **Find loaded Kexts** (excluding those from Apple)</br>
 `kextstat | grep -v com.apple`</br>
@@ -113,7 +123,7 @@ or
 `sudo defaults delete /Library/Preferences/com.apple.CoreDisplay useMetal`</br>
 `sudo defaults delete /Library/Preferences/com.apple.CoreDisplay useIOP`
 
-[Source](https://github.com/lvs1974/NvidiaGraphicsFixup/releases)
+[**Source**](https://github.com/lvs1974/NvidiaGraphicsFixup/releases)
 
 **Change Update Seed to Developer**</br>
 `sudo /System/Library/PrivateFrameworks/Seeding.framework/Resources/seedutil unenroll`</br>
@@ -123,12 +133,17 @@ or
 `sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist`</br>
 `sudo rm /Library/Preferences/SystemConfiguration/preferences.plist`</br>
 
-**Listing ACPI Errors**</br>
-`sudo dmesg | grep "ACPI"` </br>
-`sudo dmesg | grep "ACPI" > $HOME/Desktop/acpi.txt` (creates a Log on Desktop)
+**Listing ACPI Errors**
+`log show --last boot | grep AppleACPIPlatform` </br>
+`log show --last boot | grep AppleACPIPlatform > ~/Desktop/Log_"$(date '+%Y-%m-%d_%H-%M-%S')".log (creates a Log on Desktop)
 
-**Show ACPI Errors for last boot**</br>
-`log show --predicate "processID == 0" --debug --last boot | grep ACPI`
+**Checking for Wake Reasons**</br>
+`pmset -g log | grep -e "Sleep.*due to" -e "Wake.*due to"`
 
-**Finding out Wake Reasons**
-`log show | grep -i "wake reason"`
+**List of PMSET Commands**<br>
+https://www.dssw.co.uk/reference/pmset.html
+
+- **Example**: `sudo pmset proximitywake 0` &rarr; disables wake based on proximity of other devices using the same iCloud ID (iWatch or similar).
+
+**Find aut current Bus and CPU Frequency** </br>
+`sysctl -a | grep freq`
