@@ -7,13 +7,13 @@ Monitor brightness level. However, only few systems will be affected by this par
 ## CustomUUID
 Unique identification number of your computer. If you don't put this key in, some hardware information will be generated, but if you want full control over what happens, hit "Generate New" to create your own or "Get it from system".
 
-## InjectKexts
+## InjectKexts (deprecated)
 This key defines the global policy regarding kext injection:
 
 - `Yes`: Injects kexts located under `/EFI/CLOVER/kexts/`
 - `No`: ~~Doesn't inject kexts~~
 
-Since Clover r5125, loading of kexts is handled by OpenCore, so `FSInject` and this setting is obsolete. In other words: leaving this empy or not doesn't matter – kexts are injected anyway!
+Since the release of Clover r5125, kext injection is handled by `OpenRuntime`. It replaces the previously used `FSInject.efi`. Since the `InjectKexts` "belonged" to FSInject, the switch is "dead" now – you can delete FSInject.efi from Drivers/UEFI as well now! In other words: unless you are using Clover ≤ r5231.1 with the old AptioMemory Fixexs, leaving `InjectKexts` enabled or disbalbed doesn't matter at all – kexts will be injected into macOS anyway!
 
 ## InjectSystemID
 Injects System ID into macOS. If this is not enabled, the System ID is missing and will be displayed as "???" in Hackintool which might lead to issues with your Apple ID when transfering over SMBIOS Data from OpenCore and vice versa. Users switching over from Chameleon also need to enable this.
