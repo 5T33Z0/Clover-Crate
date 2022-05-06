@@ -37,7 +37,7 @@ It affects the MSR `0x1B0` register and determines the behavior of the processor
 
 ## HWPEnable (= Intel Speed Shift)
 
-With the launch of the Skylake CPU family, Intel introduced [Speed Shift](https://coderbag.com/product/quickcpu/features/hwp/intel-speed-shift-performance-settings) technology aka HWP (Hardware p-state) or Hardware Controlled Performance. It delivers quicker responsiveness with short duration performance shifts, by allowing the processor to more quickly select its best operating frequency and voltage for optimal performance and power efficiency independent of the OS which reduces latency and in return slightly improves overall performance. 
+With the launch of the Skylake CPU family, Intel introduced [**Speed Shift**](https://coderbag.com/product/quickcpu/features/hwp/intel-speed-shift-performance-settings) technology aka HWP (Hardware p-state) or Hardware Controlled Performance. It delivers quicker responsiveness with short duration performance shifts, by allowing the processor to more quickly select its best operating frequency and voltage for optimal performance and power efficiency independent of the OS which reduces latency and in return slightly improves overall performance. 
 
 If enabled, then `1` is written to the MSR `0x770` register. Unfortunately, if the computer enters sleep and then wakes up, the MSR value `0x770` will be reset to `0` and Clover cannot re-enable it. But with a help of the [**HWPEnable.kext**](https://github.com/headkaze/HWPEnable) this can be fixed.
 
@@ -83,14 +83,14 @@ Available resource files (plists) with FrequencyVectors:
 ```
 </details>
 
-## HWPValue
-`HWPValue` is a bitmask consistion of 3 parameters to get Intel Speed Step working properly on Skylake and newer CPUs: the Energy Performance Preference (EPP), the maximum Multiplier of the CPU and the Lowest Frequency it can run at. The value will be written to MSR register `0x774`, but only if MSR `0x770` is set to `1`. Otherwise, this register is unavailable. Check [this guide](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) to figure out how to calculate the correct HWPValue for your CPU.
-
 **NOTES**
 
-- Requires Intel Skylake or newer CPU.
-- In order to make use of Intel Speed Shift, you need to use an SMBIOS and Board-ID which supports it (usually Laptops).
-- Nowadays you would probably use [CPUFriendFriend](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) instead to generate a DataProvider kext with the correct frequency vectors for your CPU.
+- HWP requires Intel Skylake or newer.
+- In order to make use of Intel Speed Shift, you need to pick an SMBIOS and Board-ID which supports it (usually Laptops).
+- Using `HWPEnable` is outdated. Nowadays [**CPUFriendFriend**](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) is used to extract and modify frequency vectors included in the Board-ID plist of the selected SMBIOS. This data can then be adjusted and injected back into macOS with the help of CPUFriend and a DataProvider kext.
+
+## HWPValue
+`HWPValue` is a bitmask consistion of 3 parameters to get Intel Speed Step working properly on Skylake and newer CPUs: the Energy Performance Preference (EPP), the maximum Multiplier of the CPU and the Lowest Frequency it can run at. The value will be written to MSR register `0x774`, but only if MSR `0x770` is set to `1`. Otherwise, this register is unavailable. Check [this guide](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) to figure out how to calculate the correct HWPValue for your CPU.
 
 ## UseARTFrequency
 Processors of the Intel Skylake family have a new base frequency parameter which changes in smaller increments than the bus frequency, the so-called `ARTFrequency`. Its value is usually `24 MHz`. Clover can calculate it and commit it to the core. In practice, the calculated frequency leads to inaccurate operation, so it can simply be disabled. In this case the system core will act in its own way. In newer versions of Clover, this figure is rounded, as vit9696 believes there can be only three values, and they are round, up to `1 MHz`. You need to enable it to get speed shift working properly.
