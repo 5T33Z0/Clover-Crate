@@ -9,7 +9,7 @@ Describes the base frequency in MHz displayed in the System-Profiler. In other w
 ## Bus Speed (in kHz)
 Describes the bus frequency in **kHz**. The bus frequency is critical for stable operation of the system. It's handed over from the bootloader to the kernel. If the frequency is wrong, the kernel won't start at all. If the frequency is slightly off, there can be problems with the clock, resulting in strange system behavior.
 
-Starting with Clover r1060, the bus frequency is detected automatically based on data from the ADC Timer which calculates these values more precisely than the value stored in the DMI (Desktop Management Interface).
+Starting with Clover r1060, the bus frequency is detected automatically based on data from the ADC Timer which calculates these values more accurate than the value stored in the DMI (Desktop Management Interface).
 
 ## Latency
 Describes the delay for entering the `C3` state. The critical value is **0x3E8** = **1000**. Below 1000, Speedstep is enabled, above 1000, it does not turn on. On real Macs, it is always set to **0x03E9** (1001) which disables Speedstep. On Hacks, we can choose if we want to behave it like a Mac or if we want to turn on power management. A reasonable value for the latter is **0x00FA** (250), which is found on some laptops (MacPro5.1 = 17, MacPro6.1 = 67, iMac13.2 = 250).
