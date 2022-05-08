@@ -11,7 +11,9 @@ Describes the bus frequency in **kHz**. The bus frequency is critical for stable
 
 Starting with Clover r1060, the bus frequency is detected automatically based on data from the ADC Timer which calculates these values more accurate than the value stored in the Desktop Management Interface (DMI).
 
-To check the Bus Frequency, open Terminal and enter: `sysctl hw.busfrequency`. In my test the result was: `hw.busfrequency: 96000000` (= 96 million Hz = 96 mHz) when using Clover. When using OpenCore, the result was `400000000` (Bus Speed of 100 mHz x 4). I guess OpenCore uses a different method to calculate `QPI`.
+To check the Bus Frequency, enter in Terminal: `sysctl hw.busfrequency`. 
+
+With the `MacBookPro10,1` SMBIOS, the output was: `96000000` (= 96 million Hz = 96 mHz) when using Clover. When using OpenCore, the result was `400000000` (Bus Speed of 100 mHz x 4). I guess OpenCore uses a different method to calculate `QPI` in this case.
 
 ## QPI
 QPI (Intel QuickPath Interconnect) is the successor of the FSB (Front Side Bus). Unlike FSB, it's not a Bus system but a routing mechanism managing the communincation and data transfer between CPU cores and the chipset. The technology was introduced in 2010 with the release of the Nehalem CPU family. After much debate, QPI has been added to the config. Enter what you like (in MHz).
