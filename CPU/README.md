@@ -17,10 +17,10 @@ To check the Bus Frequency, enter in Terminal: `sysctl hw.busfrequency`. I ran t
 
 SMBIOS | Clover (Hz) | OpenCore (Hz)
 :-------:|:--------:|:--------:
-MacBookPro10,1| 96000000 | 400000000*
-iMac20,2| 100000000 |
+MacBookPro10,1| 96000000 | 400000000
+iMac20,2| 100000000 |400000000
 
-*When using OpenCore, the result was 400000000 Hz (Base Clock of 100 mHz x 4). I guess OpenCore uses a different method to calculate `QPI` in this case.
+It seems that Clover uses the correct Bus Frequency reported by the system, while OpenCore uses Base Clock x 4. See `QPI` for more details.
 
 ## QPI
 QPI (Intel QuickPath Interconnect) is the successor of the FSB (Front Side Bus). Unlike FSB, it's not a Bus system but a routing mechanism managing the communincation and data transfer between CPU cores and the chipset. The technology was introduced in 2010 with the release of the Nehalem CPU family. After much debate, QPI has been added to the config. Enter what you like (in MHz).
