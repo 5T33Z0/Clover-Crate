@@ -4,7 +4,7 @@
 This section allows to manually set parameters for the CPU if the internal algorithms fail to auto-detect the correct parameters. This section is only covered for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable and you know what you are doing!** 
 
 ## Frequency (in MHz)
-Describes the base frequency in MHz displayed in the System-Profiler. In other words: its effects are purely cosmetic. Usually, Clover automatically calculates this value based on the ACPI timer, but if it gets it wrong, you can correct it through this key.
+Let's you change the base frequency of the installed CPU displayed in the "About this Mac" section. Usually, Clover automatically reports the correct value based on the ACPI timer, but if it gets it wrong, you can correct it here. In other word's: it's purely cosmetic.
 
 ## Bus Speed (in kHz)
 Describes the bus frequency in **kHz**. The bus frequency is critical for stable operation of the system. It's handed over from the bootloader to the kernel. If the frequency is wrong, the kernel won't start at all. If the frequency is slightly off, there can be problems with the clock, resulting in strange system behavior.
@@ -25,7 +25,7 @@ It seems that Clover uses the correct Bus Frequency reported by the system, whil
 ## QPI
 QPI (Intel QuickPath Interconnect) is the successor of the FSB (Front Side Bus). Unlike FSB, it's not a Bus system but a routing mechanism managing the communincation and data transfer between CPU cores and the chipset. The technology was introduced in 2010 with the release of the Nehalem CPU family. After much debate, QPI has been added to the config. Enter what you like (in MHz).This does not affect work in any way - it's purely cosmetic (except for 1st Gen Intel Core i7 CPUs).
 
-In macOS's System Profiler, this value is called "Processor Bus Speed" or "Bus Speed". Clover automatically calculates the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods for setting this value are available: 1) the value either already exists in SMBIOS – as prescribed by the manufacturer, or 2) Bus Speed x4 is used instead. 
+In macOS's System Profiler, this value is listed in the "Hardware" section as "Processor Interconnect Speed" or "(Processor) Bus Speed". Clover automatically calculates the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods for setting this value are available: 1) the value either already exists in SMBIOS – as prescribed by the manufacturer, or 2) Bus Speed x4 is used instead. 
 
 **Setting QPI only makes sense for CPUs of the Nehalem family** because Nahalem uses a really complicated method for calculating the QPI link speed based on various inter-dependent parameters and their relation to each other. A great explanation can be found on [YouTube](https://www.youtube.com/watch?v=F24D7EZuZB4). For newer CPU families you can enter Bus Speed x4 (usually, a Base Clock of 100 mHz x4) or leave it empty. If you enter `0`, DMI table 132 will not be generated.
 

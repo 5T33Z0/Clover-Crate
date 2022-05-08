@@ -8,7 +8,8 @@ Since this menu is very convoluted I will group parameters together by vendor (I
 **ATTENTION!** Most of the options available in this section are obsolete in 2021. Instead, framebuffer patches are entered via `Devices/Properties`. The only settings which are still useful are the entries in the dropdown menu of `ig-platform-id` for Intel iGPUs (up to Coffeelake).
 
 ## Inject
-Can inject two dozen parameters, which are calculated not only based on the card model, but also on its internal characteristics after analyzing the VBIOS of a GPU.
+The Inject feature is a remnent of the Chameleon era where it was called `GraphicsEnabler`. 
+It can inject about two dozen parameters, which are calculated not only based on the card model, but also on its internal characteristics after analyzing the VBIOS of a GPU.
 
 For Nvidia cards, `NVCAP` is calculated, for Intel on-board graphics dozens of parameters are applied, for ATI/AMD cards parameters for connectors are injected. To list all of them would exceed the scope of this guide. Moreover, for most modern GPUs, you don't even need to the inject features in most cases, since Apple ensured that they work out of the box.
 
