@@ -23,7 +23,7 @@ iMac20,2| 100000000 |400000000
 It seems that Clover uses the correct Bus Frequency reported by the system, while OpenCore uses Base Clock x 4. See `QPI` for more details.
 
 ## QPI
-QPI (Intel QuickPath Interconnect) is the successor of the FSB (Front Side Bus). Unlike FSB, it's not a Bus system but a routing mechanism managing the communincation and data transfer between CPU cores and the chipset. The technology was introduced in 2010 with the release of the Nehalem CPU family. After much debate, QPI has been added to the config. Enter what you like (in MHz).This does not affect work in any way - it's purely cosmetic (except for 1st Gen Intel Core i7 CPUs).
+QPI (Intel QuickPath Interconnect) is the successor of the FSB (Front Side Bus). Unlike FSB, it's not a Bus system but a routing mechanism managing the communication and data transfer between CPU cores and the chipset. The technology was introduced in 2010 with the release of the Nehalem CPU family. After much debate, QPI has been added to the config. Enter what you like (in MHz).This does not affect work in any way - it's purely cosmetic (except for 1st Gen Intel Core i7 CPUs).
 
 In macOS's System Profiler, this value is listed in the "Hardware" section as "Processor Interconnect Speed" or "(Processor) Bus Speed". Clover automatically calculates the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods for setting this value are available: 1) the value either already exists in SMBIOS – as prescribed by the manufacturer, or 2) Bus Speed x4 is used instead. 
 
@@ -43,7 +43,7 @@ Check this document to find out which value you need to enter: [AppleSmBIOS](htt
 Describes the Thermal Design Power (in Watts), taken into account in the P-States when generating the Processor Power Management tables. You can find the TDP for your CPU on [Intel's Product Specifications Website](https://ark.intel.com/content/www/us/en/ark.html#@Processors)
 
 ## SavingMode
-Here, you can set `Performace Bias Range` which affects the behavior of [Intel Speedstep](https://en.wikipedia.org/wiki/SpeedStep). A lower value shifts the Bias more to performance while a higher value shifts it more towards saving Energy.
+Here, you can set `Performance Bias Range` which affects the behavior of [Intel SpeedStep](https://en.wikipedia.org/wiki/SpeedStep). A lower value shifts the Bias more to performance while a higher value shifts it more towards saving Energy.
 
 It affects the MSR `0x1B0` register and determines the behavior of the processor:
 
@@ -59,7 +59,7 @@ If enabled, then `1` is written to the MSR `0x770` register. Unfortunately, if t
 <details>
 <summary><strong> Board-IDs with HWP support</strong> (click to reveal)</summary>
 
-Listed below you will find a list of Mac models supporting Instel Speed Step which can be extracted using [**freqVectorsEdit**](https://github.com/Piker-Alpha/freqVectorsEdit.sh).
+Listed below you will find a list of Mac models supporting Intel Speed Step which can be extracted using [**freqVectorsEdit**](https://github.com/Piker-Alpha/freqVectorsEdit.sh).
 
 ```freqVectorsEdit.sh v3.2 Copyright (c) 2013-2022 by Pike R. Alpha.
 -----------------------------------------------------------------
@@ -105,7 +105,7 @@ Available resource files (plists) with FrequencyVectors:
 - Using `HWPEnable` is outdated. Nowadays [**CPUFriendFriend**](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) is used to extract and modify frequency vectors included in the Board-ID plist of the selected SMBIOS. This data can then be adjusted and injected back into macOS with the help of CPUFriend and a DataProvider kext.
 
 ## HWPValue
-`HWPValue` is a bitmask consistion of 3 parameters to get Intel Speed Step working properly on Skylake and newer CPUs: the Energy Performance Preference (EPP), the maximum Multiplier of the CPU and the Lowest Frequency it can run at. The value will be written to MSR register `0x774`, but only if MSR `0x770` is set to `1`. Otherwise, this register is unavailable. Check [this guide](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) to figure out how to calculate the correct HWPValue for your CPU.
+`HWPValue` is a bitmask consisting of 3 parameters to get Intel Speed Step working properly on Skylake and newer CPUs: the Energy Performance Preference (EPP), the maximum Multiplier of the CPU and the Lowest Frequency it can run at. The value will be written to MSR register `0x774`, but only if MSR `0x770` is set to `1`. Otherwise, this register is unavailable. Check [this guide](https://www.tonymacx86.com/threads/skylake-hwp-enable.214915/) to figure out how to calculate the correct HWPValue for your CPU.
 
 ## UseARTFrequency
 Processors of the Intel Skylake family have a new base frequency parameter which changes in smaller increments than the bus frequency, the so-called `ARTFrequency`. Its value is usually `24 MHz`. Clover can calculate it and commit it to the core. In practice, the calculated frequency leads to inaccurate operation, so it can simply be disabled. In this case the system core will act in its own way. In newer versions of Clover, this figure is rounded, as vit9696 believes there can be only three values, and they are round, up to `1 MHz`. You need to enable it to get speed shift working properly.
