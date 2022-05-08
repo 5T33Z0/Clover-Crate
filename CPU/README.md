@@ -13,14 +13,14 @@ Starting with Clover r1060, the bus frequency is detected automatically based on
 
 To check the Bus Frequency, enter in Terminal: `sysctl hw.busfrequency`. 
 
-With the `MacBookPro10,1` SMBIOS, the output was: `96000000` (= 96 million Hz = 96 mHz) when using Clover. When using OpenCore, the result was `400000000` (Bus Speed of 100 mHz x 4). I guess OpenCore uses a different method to calculate `QPI` in this case.
+With the `MacBookPro10,1` SMBIOS, the output was: `96000000` (= 96 million Hz = 96 mHz) when using Clover. When using OpenCore, the result was `400000000` (Base Clock of 100 mHz x 4). I guess OpenCore uses a different method to calculate `QPI` in this case.
 
 ## QPI
 QPI (Intel QuickPath Interconnect) is the successor of the FSB (Front Side Bus). Unlike FSB, it's not a Bus system but a routing mechanism managing the communincation and data transfer between CPU cores and the chipset. The technology was introduced in 2010 with the release of the Nehalem CPU family. After much debate, QPI has been added to the config. Enter what you like (in MHz).
 
 In macOS's System Profiler, this value is called "Processor Bus Speed" or "Bus Speed". Clover automatically calculates the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods for setting this value are available: 1) the value either already exists in SMBIOS – as prescribed by the manufacturer, or 2) Bus Speed x4 is used instead.
 
-This does not affect work in any way - it's purely cosmetic. **Setting QPI only makes sense for CPUs of the Nehalem family**. For every other CPU family you have to enter Bus Speed x4 (usually 100 x4) or leave it empty. If you enter `0`, DMI table 132 will not be generated.
+This does not affect work in any way - it's purely cosmetic. **Setting QPI only makes sense for CPUs of the Nehalem family**. For every other CPU family you have to enter Bus Speed x4 (usually, a Base Clock of 100 mHz x4) or leave it empty. If you enter `0`, DMI table 132 will not be generated.
 
 ## Latency
 Describes the delay for entering the `C3` state. The critical value is **0x3E8** = **1000**. Below 1000, Speedstep is enabled, above 1000, it does not turn on. On real Macs, it is always set to **0x03E9** (1001) which disables Speedstep. On Hacks, we can choose if we want to behave it like a Mac or if we want to turn on power management. A reasonable value for the latter is **0x00FA** (250), which is found on some laptops (MacPro5.1 = 17, MacPro6.1 = 67, iMac13.2 = 250).
