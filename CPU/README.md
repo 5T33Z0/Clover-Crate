@@ -9,20 +9,26 @@ Describes the base frequency in MHz displayed in the System-Profiler. In other w
 ## Bus Speed (in kHz)
 Describes the bus frequency in **kHz**. The bus frequency is critical for stable operation of the system. It's handed over from the bootloader to the kernel. If the frequency is wrong, the kernel won't start at all. If the frequency is slightly off, there can be problems with the clock, resulting in strange system behavior.
 
-Starting with Clover r1060, the bus frequency is detected automatically based on data from the ADC Timer which calculates these values more accurate than the value stored in the DMI (Desktop Management Interface).
+Starting with Clover r1060, the bus frequency is detected automatically based on data from the ADC Timer which calculates these values more accurate than the value stored in the Desktop Management Interface (DMI).
+
+To check the Bus Frequency, open Terminal and enter: `sysctl hw.busfrequency`. In my test the result was: `hw.busfrequency: 96000000` (= 96 million Hz = 96 mHz) when using Clover. When using OpenCore, the result was `400000000` (Bus Spee of 100 mHz x 4). I guess OpenCore uses a different method to calculate `QPI`.
+
+## QPI
+QPI (Intel QuickPath Interconnect) is the successor of the FSB (Front Side Bus). Unlike FSB, it's not a Bus system but a routing mechanism managing the communincation and data transfer between CPU cores and the chipset. The technology was introduced in 2010 with the release of the Nehalem CPU family. After much debate, QPI has been added to the config. Enter what you like (in MHz).
+
+In macOS's System Profiler, this value is called "Processor Bus Speed" or "Bus Speed". Clover automatically calculates the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods for setting this value are available: 1) the value either already exists in SMBIOS – as prescribed by the manufacturer, or 2) Bus Speed x4 is used instead.
+
+This does not affect work in any way - it's purely cosmetic. **Setting QPI only makes sense for CPUs of the Nehalem family**. For every other CPU family you have to enter Bus Speed x4 (usually 100 x4) or leave it empty. If you enter `0`, DMI table 132 will not be generated.
 
 ## Latency
 Describes the delay for entering the `C3` state. The critical value is **0x3E8** = **1000**. Below 1000, Speedstep is enabled, above 1000, it does not turn on. On real Macs, it is always set to **0x03E9** (1001) which disables Speedstep. On Hacks, we can choose if we want to behave it like a Mac or if we want to turn on power management. A reasonable value for the latter is **0x00FA** (250), which is found on some laptops (MacPro5.1 = 17, MacPro6.1 = 67, iMac13.2 = 250).
 
-## QPI
-In the System Profiler, this value is called Processor Bus Speed or simply "Bus Speed". For Clover, an algorithm has been developed to calculate the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods of setting this value are available: the value either exists in SMBIOS already, prescribed by the manufacturer, or Bus Speed x4 is simply calculated. After much debate, this value has been added to the config - write what you like (in MHz).
-
-This does not affect work in any way - it's pure cosmetics. **QPI makes sense only for CPUs of the Nehalem family**. For everyone else here you need to have BusSpeed x4. Or nothing at all. If you force 0, then DMI table 132 will not be generated at all.
-
 ## Type
-This parameter was invented by Apple and is used in the "About this Mac" window to display information about the used CPU, which internally translates into a processor designation. Otherwise, "Unknown processor" will be displayed.
+This parameter is used by Apple to display information about the used CPU in the "About this Mac" window, which internally translates into a processor designation. Otherwise, "Unknown processor" will be displayed. Any value entered here only has cosmetic effect – it will not change the way the CPU operates!
 
-Basically, Clover knows all the ciphers, but since progress does not stand still, it is possible to manually change this value. Correcting this this changes what's displayed in the  "About this Mac" window - purely cosmetic. There is information from vit9696: [AppleSmBIOS](https://github.com/acidanthera/OpenCorePkg/blob/master/Include/Apple/IndustryStandard/AppleSmBios.h)
+Clover usually detects all CPU models correctly but you can enter a different value to change what is displayed. This can be helpful when you use a Fake CPU-ID for example and the correct CPU type is no longer detected by macOS, so it is shown as "Unknown processor". 
+
+Check this document to find out which value you need to enter: [AppleSmBIOS](https://github.com/acidanthera/OpenCorePkg/blob/master/Include/Apple/IndustryStandard/AppleSmBios.h)
 
 ## TDP
 Describes the Thermal Design Power (in Watts), taken into account in the P-States when generating the Processor Power Management tables. You can find the TDP for your CPU on [Intel's Product Specifications Website](https://ark.intel.com/content/www/us/en/ark.html#@Processors)
