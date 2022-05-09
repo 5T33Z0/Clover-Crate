@@ -52,7 +52,7 @@ Here are some examples of kexts I've experienced issues with when updating:
 	- `OpenRuntime.efi`</br> 
 Now we have the *required* minimum set of Drivers:</br>
 ![Drivers](https://user-images.githubusercontent.com/76865553/136026914-af63dce9-a505-4b61-8ad4-0d14348fac37.png)</br>
-Files tagged gray are in there by default. They are completely unnecessary to boot UEFI-based systems. It's really annoying that these drivers are in there by default and not the ones you actually *need*. Move them to the "Off" folder one by one to disable them and check if the system still boots from the USB flash drive without them. `AudioDXE.efi` is only needed for playing back boot chimes - so if you don't use any, you can delete/disable it. `FSInject` is deprecated since OpenRuntime handles kext injection now and `SMCHelper`is unnecessary as well – it *must* be deleted if `VirtualSMC.kext` is used!
+Files tagged gray are in there by default. They are completely unnecessary to boot UEFI-based systems. Move them to the "Off" folder one by one to disable them and check if the system still boots from the USB flash drive without them. `AudioDXE.efi` is only needed for playing back boot chimes - so if you don't use any, you can delete/disable it. `FSInject` is deprecated since OpenRuntime handles kext injection now and `SMCHelper`is unnecessary as well – it *must* be deleted if `VirtualSMC.kext` is used!
 7. Next, copy over the following files/folders from your existing EFI folder:</br>
 	- **Kexts** (updated to the latest available version, of course), 
 	- **.aml** Files from "ACPI/patched" folder 
