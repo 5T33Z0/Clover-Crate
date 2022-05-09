@@ -12,7 +12,7 @@ These are boot arguments that are passed over to `boot.efi`, which in turn passe
 **`-v`**|_V_erbose Mode. Replaces the progress bar with a terminal output with a bootlog which helps resolving issues. Combine with `debug=0x100` and `keepsyms=1`
 **`-f`**|_F_orce-rebuild kext cache on boot.
 **`-s`**|_S_ingle User Mode. This mode will start the terminal mode, which can be used to repair your system. Should be disabled with a Quirk since you can use it to bypass the Admin account password.
-**`-x`**|Safe Mode. Boots macOS with a minimal set of system extensions and features. It can also check your startup disk to find and fix errors like running First Aid in Disk Utility. Can be triggered from OC bootmenu by holding a key combination if `PollAppleHotkeys` is enabled.
+**`-x`**|Safe Mode. Boots macOS with a minimal set of system extensions and features. It can also check your startup disk to find and fix errors like running First Aid in Disk Utility. Can be triggered from OC boot menu by holding a key combination if `PollAppleHotkeys` is enabled.
 **`debug=0x100`**|Disables macOS'es watchdog. Prevents the machine from restarting on a kernel panic. That way you can hopefully glean some useful info and follow the breadcrumbs to get past the issues.
 **`keepsyms=1`**|Companion setting to `debug=0x100` that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what's causing the panic itself.
 **`dart=0`**|Disables VT-x/VT-d. Nowadays, `DisableIOMapper` Quirk is used instead.
@@ -41,7 +41,7 @@ For more iGPU and dGPU-related boot args see the Whatevergreen topic.
 |Boot-arg|Description|
 |:------:|-----------|
 **`alcid=1`**|For selecting a layout-id for AppleALC, whereas the numerical value specifies the layout-id. See [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system.
-**`amfi_get_out_of_my_way=1`**|Combines wit disabled SIP, this disables Apple Mobile File Integrity. AMFI is a macOS kernel module enforcing code-signing validation and library validation which strengthens security. Even after disabling these services, AMFI is still checking the signatures of every app that is run and will cause non-Apple apps to crash when they touch extra-sensitive areas of the system. There's also a [kext](https://github.com/osy/AMFIExemption) which does this on a per-app-basis.
+**`amfi_get_out_of_my_way=1`**|Combined wit disabled SIP, this disables Apple Mobile File Integrity. AMFI is a macOS kernel module enforcing code-signing validation and library validation which strengthens security. Even after disabling these services, AMFI is still checking the signatures of every app that is run and will cause non-Apple apps to crash when they touch extra-sensitive areas of the system. There's also a [kext](https://github.com/osy/AMFIExemption) which does this on a per-app-basis.
 **`-force_uni_control`**|Force-enables the Universal Control service in macOS Monteray 12.3+.
 
 ## Boot-args and device properties provided by kexts
@@ -70,7 +70,7 @@ Listed below you'll find a small but useful assortment of WEG's boot args for ev
 **`-wegnoigpu`**|Disables internal GPU (or add `disable-gpu` property to iGPU)
 **`agdpmod=pikera`**| Replaces `board-id` with `board-ix`. Disables Board-ID checks on AMD Navi GPUs (RX 5000 & 6000 series). Without this, you’ll get a black screen. Don’t use on Polaris or Vega cards.
 **`agdpmod=vit9696`**|Disables check for `board-id` (or add `agdpmod` property to external GPU).
-**`applbkl=0`**| Boot argument (and `applbkl` property) to disable `AppleBacklight.kext` patches for IGPU. In case of custom AppleBacklight profile, read [this](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.OldPlugins.en.md)
+**`applbkl=0`**| Boot argument (and `applbkl` property) to disable `AppleBacklight.kext` patches for the iGPU. In case of custom AppleBacklight profile, read [this](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.OldPlugins.en.md)
 **`gfxrst=1`**|Prefers drawing the Apple logo at the 2nd boot stage instead of framebuffer copying. Makes the transition between the progress bar and the desktop/login screen smoother if an external monitor is attached.
 **`ngfxgl=1`**|Disables Metal support on NVIDIA cards (or use `disable-metal` property)
 **`igfxgl=1`**|boot argument (and `disable-metal` property) to disable Metal support on Intel.
@@ -115,7 +115,7 @@ Enables the drawing of the custom boot logo.
 **NOTE**: As of r5140.1 "Apple" and "Alternate" don't show a progress bar. Feels like these are just a wallpaper covering the bootscreen.
 
 ## Debug
-If set to `true`, a debug log will be created on next boot. This will slow down the boot time significantly (up to 10 minutes) but allows you figure out what the problem is since each step will be documenbte by writing a `debug.log` to disk/flash drive which will be saved line for line. So even if the system hangs and you have to perform a hard reset, you won't lose the log. It will be located under `/EFI/CLOVER/misc/debug.log` and collectively records all logs for all boots, as long as the `Debug` feature is enabled.
+If set to `true`, a debug log will be created on next boot. This will slow down the boot time significantly (up to 10 minutes) but allows you figure out what the problem is since each step will be documented by writing a `debug.log` to disk/flash drive which will be saved line for line. So even if the system hangs and you have to perform a hard reset, you won't lose the log. It will be located under `/EFI/CLOVER/misc/debug.log` and collectively records all logs for all boots, as long as the `Debug` feature is enabled.
 
 ### Enabling the Preeboot.log
 Alternatively, you could use the the `preboot.log` instead which is not as in-depth but still very useful for identifying configuration issues and hardware conflicts. To enable it, press the `F2` key in the Clover Boot Menu GUI. The `preboot.log` will be saved in under `EFI/CLOVER/misc/`. However, the file's log entries end once macOS takes over control of the system. But it is still a useful resource for resolving issues that occur prior to macOS being started – and it's way faster than using the `Debug` option.
@@ -188,10 +188,10 @@ Sets the timeout in seconds (0-30 s), before the boot process continues loading 
 ## XMPDetection
 Enables (if set to `0`) or disables XMP detection. By default it's disabled (set to `-1`). Usually, enabling this feature is only necessary if the XMP Profile of the RAM is not detected. In addition to simply enabling/disabling XMP detection, you can can also choose between Profile 1 (`1`) or Profile 2 (`2`) if your RAM modules support different memory profiles. Perhaps in the future the profiles will be used for other purposes.
 
-# Adding Clover entry to the BIOS Bootmenu
-If for some reason the entry for the partition containing the Clover bootloader is missing from your BIOS bootmenu, you can let Clover create one. But this has to be done in from within the Clover bootmenu because this affects UEFI BIOS variables working prior to Clover being started, so it can't be set up in the config.plit.
+# Adding Clover entry to the BIOS Boot menu
+If for some reason the entry for the partition containing the Clover bootloader is missing from your BIOS boot menu, you can let Clover create one. But this has to be done in from within the Clover boot menu because this affects UEFI BIOS variables working prior to Clover being started, so it can't be set up in the config.plist.
 
 In order to do so, do the following:
 
-1. In the Clover bootmenu, select "Clover Boot Options":</br>![screenshot1](https://user-images.githubusercontent.com/76865553/159431070-103960ad-90b8-4a1a-b86c-7127c9bfac2d.png)
-2. In the next screen, you will find the PCI path pointing to the `CLOVERX64.efi` bootloader file. Clicking or hitting Enter on "Add Clover boot options for all entries" will generate a boot entry in the BIOS bootmenu:</br>![screenshot2](https://user-images.githubusercontent.com/76865553/159431126-4afa3874-d322-4cf2-b18e-942e8e76b86d.png)
+1. In the Clover boot menu, select "Clover Boot Options":</br>![screenshot1](https://user-images.githubusercontent.com/76865553/159431070-103960ad-90b8-4a1a-b86c-7127c9bfac2d.png)
+2. In the next screen, you will find the PCI path pointing to the `CLOVERX64.efi` bootloader file. Clicking or hitting Enter on "Add Clover boot options for all entries" will generate a boot entry in the BIOS boot menu:</br>![screenshot2](https://user-images.githubusercontent.com/76865553/159431126-4afa3874-d322-4cf2-b18e-942e8e76b86d.png)

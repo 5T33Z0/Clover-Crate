@@ -70,14 +70,14 @@ This is where Clover and Clover Configurator get really confusing. Because there
 3. ~~**Arbitrary** (Tab)~~
 4. **Devices/Properties** (Tab)
 
-**IMPORTANT**: With the release of Clover r5146, `AddProperties` and `Arbitrary` were retired, since using `Devices/Properties` has become the de facto standard method to add device properties. Existing entries in `Arbitrary` and `AddProperties` will still be applied if present, but it's recommended to convert them to regular Device Proterties instead. 
+**IMPORTANT**: With the release of Clover r5146, `AddProperties` and `Arbitrary` were retired, since using `Devices/Properties` has become the de facto standard method to add device properties. Existing entries in `Arbitrary` and `AddProperties` will still be applied if present, but it's recommended to convert them to regular Device Properties instead. 
 
-I think removing the unused methods was a good choice since it will reduce confusion and makes transfering device properties between OpenCore and Clover configs a lot easier
+I think removing the unused methods was a good choice since it will reduce confusion and makes transferring device properties between OpenCore and Clover configs a lot easier
 
 ### Properties (Tab)
 Nowadays, using the `Devices` > `Properties` tab next to `Arbitrary` tab –  which is displayed by default (which sucks) is the recommended and de facto standard method for adding device properties. 
 
-This method is used for injecting properties of devices into macOS based on their PCI path. It can be utilized for injecting all sorts of parameters, including: Device IDs (so macOS sees the device), Framebuffer patches for on-board Graphics Cards, Audio layouts for Soundcards, Wi-Fi and Ethernet Cards, configuring Active State Power Management (ASPM), etc. It works exactly the same way as the `DeviceProperties` section in OpenCore.
+This method is used for injecting properties of devices into macOS based on their PCI path. It can be utilized for injecting all sorts of parameters, including: Device IDs (so macOS sees the device), Framebuffer patches for on-board Graphics Cards, Audio layouts for sound cards, Wi-Fi and Ethernet Cards, configuring Active State Power Management (ASPM), etc. It works exactly the same way as the `DeviceProperties` section in OpenCore.
 
 In a plist editor, the structure and hierarchy of this section looks like this:
 
@@ -87,7 +87,7 @@ In Clover Configurator, this hierarchy is represented by a split view:
 
 ![DeviceProperties](https://user-images.githubusercontent.com/76865553/160037727-7a3f81e8-b801-432e-898d-90d2ad61ffd6.png)
 
-On the left, you can add entries as PCI paths (as `<dict>`). On the right, you can add propertie keys for said devices (as `<Data>`, `<String>` or `<Number>`) which will then be applied to them on boot. On the bottom, there's also a handy dropdown menu with a list of common PCI Devices to choose from, so you don't have to jump through hoops to find out the PCI path of your iGPU for example.
+On the left, you can add entries as PCI paths (as `<dict>`). On the right, you can add properties for said devices (as `<Data>`, `<String>` or `<Number>`) which will then be applied to them on boot. On the bottom, there's also a handy dropdown menu with a list of common PCI Devices to choose from, so you don't have to jump through hoops to find out the PCI path of your iGPU for example.
 
 ### Properties (HEX)
 ![Properties_Hex](https://user-images.githubusercontent.com/76865553/136596456-88ad496b-8a38-44e9-b4ed-7f2c50573303.png)
@@ -145,6 +145,6 @@ By default, the built-in property is injected for the NIC. This parameter can be
 ## Addendum
 
 ### About `AAPL,slot-name`
-`AAPL,slot-name` is a key which can be used in the Devices/Properties section. It allows device to be listed in the System Profiler. Adding this key is mostly cosmedic but some users swear that it's required for certain devices. This property that usually injected by the `DSDT` or property strings but this is a wrong way to do it.
+`AAPL,slot-name` is a key which can be used in the Devices/Properties section. It allows device to be listed in the System Profiler. Adding this key is mostly cosmetic but some users swear that it's required for certain devices. This property that usually injected by the `DSDT` or property strings but this is a wrong way to do it.
 
 The `AAPL,slot-name` property is set by the AppleSMBIOS system kext based on the `_SUN` (Slot User Number) ACPI property and `DMI` tables. That is, `_SUN` specifies an ID in the range of 0-255, where the SMBIOS type 9 table with the corresponding ID is located, from where the slot name and other properties are pulled from.

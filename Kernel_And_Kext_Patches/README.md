@@ -1,7 +1,7 @@
 # Kernel and Kext Patches
 ![KernelQuirks](https://user-images.githubusercontent.com/76865553/136670474-678b7ae1-b5ec-4791-963a-7af091a833ca.png)
 
-This is a group of parameters for creating binary patches on the fly. Note that this can only be done if the kernelcache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 categories: one with Kernel Patches which you can click to enable. These are primarily for making your CPU work with macOS. The second category is for creating your own patches which can be applied to kexts and kernels themselves. 
+This is a group of parameters for creating binary patches on the fly. Note that this can only be done if the kernel cache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 categories: one with Kernel Patches which you can click to enable. These are primarily for making your CPU work with macOS. The second category is for creating your own patches which can be applied to kexts and kernels themselves. 
 
 ## ATI Section
 This section applies to macOS 10.7 and newer using ATI/AMD Graphics Cards. There are 3 fields where data has to be entered to get the card and its connectors fully working in macOS:
@@ -71,7 +71,7 @@ Besides the basic `Find`/`Replace` masks, there are several additional modifiers
 |:-----------:|:--------------:|--------------------------------|
 | Identifier  | Name           | Name of the Kext/Kernel the patch should be applied to.
 | Base        | Procedure      | Name of the procedure we are looking for. The real name may be longer, but the comparison is done by a substring. Make sure the substring occurs only in "Procedure".
-| Comment     | Comment        | Besides using it as a reminder what a patch does, this field is also used for listing the available patches in Clover's bootmenu.
+| Comment     | Comment        | Besides using it as a reminder what a patch does, this field is also used for listing the available patches in Clover's boot menu.
 | Find		    | Find           | Value to find
 | Replace     | Replace        | Value to replace the found value by
 | Mask        | MaskFind       | If some bit=1, we look for an exact match, if the bit=0, we ignore the difference.

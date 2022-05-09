@@ -5,11 +5,10 @@ This group of parameters serves to inject Properties for various graphics cards,
 
 Since this menu is very convoluted I will group parameters together by vendor (Intel, ATI/AMD and NVIDIA)
 
-**ATTENTION!** Most of the options available in this section are obsolete in 2021. Instead, framebuffer patches are entered via `Devices/Properties`. The only settings which are still useful are the entries in the dropdown menu of `ig-platform-id` for Intel iGPUs (up to Coffeelake).
+**ATTENTION!** Most of the options available in this section are obsolete in 2021. Instead, framebuffer patches are entered via `Devices/Properties`. The only settings which are still useful are the entries in the dropdown menu of `ig-platform-id` for Intel iGPUs (up to Coffee Lake).
 
 ## Inject
-The Inject feature is a remnent of the Chameleon era where it was called `GraphicsEnabler`. 
-It can inject about two dozen parameters, which are calculated not only based on the card model, but also on its internal characteristics after analyzing the VBIOS of a GPU.
+The Inject feature (or Graphics Injector) is a remnant of the Chameleon era where it was called `GraphicsEnabler`. It can inject about two dozen parameters, which are calculated not only based on the card model, but also on its internal characteristics after analyzing the VBIOS of a GPU.
 
 For Nvidia cards, `NVCAP` is calculated, for Intel on-board graphics dozens of parameters are applied, for ATI/AMD cards parameters for connectors are injected. To list all of them would exceed the scope of this guide. Moreover, for most modern GPUs, you don't even need to the inject features in most cases, since Apple ensured that they work out of the box.
 
@@ -27,9 +26,9 @@ You can enable the injection of parameters based on vendors:
 
 **NOTES**: 
 
-- The `Inject` feature is a remnant of the era before `Whatevergreen.kext` (WEG) existed. Since WEG handles most of the neccessary adjustments to get graphics cards working with macOS nowadays, it is recommended to disable them (except for `Inject ATI` which is still useful in macOS 12 to address performance issues).
+- The `Inject` feature is a remnant of the era before `Whatevergreen.kext` (WEG) existed. Since WEG handles most of the necessary adjustments to get graphics cards working with macOS nowadays, it is recommended to disable them (except for `Inject ATI` which is still useful in macOS 12 to address performance issues).
 - When using Intel on-board graphics on modern systems, using `Inject Intel` is not recommended. Instead, follow Whatevergreen's [Intel HD Graphics FAQ](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) to configure the framebuffer for your CPU in the `Devices/Properties` section manually. 
-- **Hint**: The `config.plists` included in the [Desktop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [Laptop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) sections contain a lot of Framebufer patches for various Intel CPU families already which might be useful to get your Intel HD/UHD graphics up and running.
+- **Hint**: The `config.plists` included in the [Desktop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [Laptop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) sections contain a lot of Framebuffer patches for various Intel CPU families already which might be useful to get your Intel HD/UHD graphics up and running.
 
 ## Inject Intel
 Listed below are all parameters related to the `Inject Intel` feature.
@@ -37,14 +36,14 @@ Listed below are all parameters related to the `Inject Intel` feature.
 ### ig-platform-id
 Property used by macOS to determine the framebuffer profile for Ivy Bridge and newer Intel CPUs with integrated graphics, aka "Intel (U)HD Graphics xxxx". Select the corresponding framebuffer from the `ig-platform-id` dropdown menu in Clover Configurator (supported up Intel UHD Graphics 630 for Coffee Lake).
 
-Nowaday using Device Properties is the recommended method for configuring integrated graphics, including type of connectors (e.g. if you want to connect an external monitor to a Laptop), setting thr allocated/stolen memory, etc.
+Nowadays, using Device Properties is the recommended method for configuring integrated graphics, including type of connectors (e.g. if you want to connect an external monitor to a Laptop), setting thr allocated/stolen memory, etc.
 
-For furter instruction on how to configure on-board graphics for supported Intel CPUs, please refer to Whatevergreen's extensive [**Intel HD Grpahics FAQ**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md).
+For further instruction on how to configure on-board graphics for supported Intel CPUs, please refer to Whatevergreen's extensive [**Intel HD Grpahics FAQ**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md).
 
 **NOTES**
 
 - For 10th Gen Intel Core CPUs and newer, it's recommended to configure the framebuffer using the `Devices/Properties` section instead, entering the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
-- Sandybridge CPUs require `AAPL,snb-platform-id` and have to be configured via `Devices/Properties` as well.
+- Sandy Bridge CPUs require `AAPL,snb-platform-id` and have to be configured via `Devices/Properties` as well.
 - If Clover detects an Intel iGPU, it _automatically_ enables Intel Injection if the `Graphics` section doesn't exist in the `config.plist`. To prevent this, you can explicitly disable it by clicking the "Inject Intel" button once to enable it and again to disable it which sets the `Inject` key to `false`:</br>
 	```
 	<key>Graphics</key>
@@ -58,17 +57,17 @@ For furter instruction on how to configure on-board graphics for supported Intel
 Listed below are all parameters related to the `Inject ATI` feature.
 
 ### FB Name
-**Framebuffer Name**. Specific to ATI/AMD Video Cards. More than 70 different framebuffer names exist for various AMD Video Controller kexts. Each has a unique name to identify it (check the extensive list in Clover Configurator) and contains different video output mappings as defined in the `IOKitPersonalities` of the repsective kexts' `info.plist`. Here is an example from `AMD9500Controller.kext` located in S/L/E:
+**Framebuffer Name**. Specific to ATI/AMD Video Cards. More than 70 different framebuffer names exist for various AMD Video Controller kexts. Each has a unique name to identify it (check the extensive list in Clover Configurator) and contains different video output mappings as defined in the `IOKitPersonalities` of the respective kexts' `info.plist`. Here is an example from `AMD9500Controller.kext` located in S/L/E:
 
 ![FB_name](https://user-images.githubusercontent.com/76865553/166189455-06fe0e53-3f3b-4675-9972-d828872b5d57.png)
 
-To find the Controller kext used by your AMD/ATI card, run Hackintool, click on the "PCIe" Tab and look for it ("Class" is "Display Controller"). Once you find it, click on the magnifying class icon at the beginning of the entry. This takes you stright to the kext in Finder. Right-click it and select "Show Package Contents". Inside you will find the `info.plist`.
+To find the Controller kext used by your AMD/ATI card, run Hackintool, click on the "PCIe" Tab and look for it ("Class" is "Display Controller"). Once you find it, click on the magnifying class icon at the beginning of the entry. This takes you straight to the kext in Finder. Right-click it and select "Show Package Contents". Inside you will find the `info.plist`.
 
-Usually, Clover automatically picks an appropriate Framebuffer for common cards it detects. However, you can choose a custom one from the dropdown menu or enter a name manually if the dection fails or the default Framebuffer causes issues. Just make sure it matches the Controller used in your ATI/AMD Card (Hackintool is your friend).
+Usually, Clover automatically picks an appropriate Framebuffer for common cards it detects. However, you can choose a custom one from the dropdown menu or enter a name manually if the detection fails or the default Framebuffer causes issues. Just make sure it matches the Controller used in your ATI/AMD Card (Hackintool is your friend).
 
 OpenCore users have to do this via `DeviceProperties`: 
 - Add the PCIRoot Address entry for the GPU (use Hackintool to export the device list)
-- Add the corresponfing `AAPL,slot-name` (check `pcidevices.plist`)
+- Add the corresponding `AAPL,slot-name` (check `pcidevices.plist`)
 - Add its `device-id` (this determines which Controller kext will be used)
 - Add `fb_name` property with the name of the desired Framebuffer as a String.</br>
 **Example**:</br>
@@ -76,13 +75,13 @@ OpenCore users have to do this via `DeviceProperties`:
 
 **NOTES**: 
 - You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
-- Injecting "FB name" it might cause conflicts when WhateverGreen is active, because WEG uses the default AMDRadeonFramebuffer to do its magic.
+- Injecting "FB name" it might cause conflicts when WhateverGreen is active, because WEG uses the default `AMDRadeonFramebuffer` to do its magic.
 
 #### `Inject ATI` and `FB Name` in macOS Monterey
 Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3+ with newer GPUs. Do the following to enable the correct framebuffer for your AMD GPU:
 
 1. Enable `Inject ATI`
-2. Under `FB Name`, enter ther name of the Framebuffer Patch matching the Controller in your GPU or select one from the dropdown menu:
+2. Under `FB Name`, enter the name of the Framebuffer Patch matching the Controller in your GPU or select one from the dropdown menu:
 	- **RX6900** &rarr; `Carswell`
 	- **RX6800** &rarr; `Belknap`
 	- **RX6600** &rarr; `Henbury` 
@@ -98,7 +97,7 @@ ATI/AMD framebuffers can be patched to assign different connectors to output the
 OpenCore users need to use DeviceProperties to do this. Check the [**Clover Conversion Guide**](https://github.com/dortania/OpenCore-Install-Guide/blob/master/clover-conversion/Clover-config.md#graphics) for details.
 
 ### RadeonDeInit
-This key works with ATI/AMD Radeon GPUs (6xxx and higher and possibly 5xxx). It fixes the contents of GPU registers so that the card becomes properly initialized so macOS drivers work as intended.
+This key works with ATI/AMD Radeon GPUs (6xxx and higher, possibly 5xxx). It fixes the contents of GPU registers so that the card becomes properly initialized so macOS drivers work as intended.
 
 ## Inject Nvidia
 Listed below are all parameters related to the `Inject Nvidia` feature.
@@ -135,7 +134,7 @@ The following parameters can be adjusted:
 ## Load VBios
 Loads video bios from a file. It must be present in `EFI/CLOVER/OEM/xxx/ROM` or `EFI/CLOVER/ROM` and its name must consist of `vendor_device.rom`, e.g. `1002_68d8.rom`. Since r3222, longer file names including sub-vendor and sub-revision are supported as well. For example `10de_0f00_1458_3544.rom`. This option is useful if you want to load a patched Vbios when running macOS.
 
-This can also be used to inject device information of mobile Radeon cards into the system, if macOS cannot detect it. Clover will grab the VBios from the legacy memory at address `0xc0000` injects it into the system so the mobile Radeon card turns on!
+This can also be used to inject device information of mobile Radeon cards into the system, if macOS cannot detect it. Clover will grab the VBios from the legacy memory at address `0xc0000` injects it into the system so the mobile Radeon card turns on.
 
 For computers with UEFI-only BIOS, there is no Vbios on the legacy address.
 

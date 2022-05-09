@@ -67,9 +67,9 @@ Device (GIGE)
     Name (_SUN, 0x02)  // _SUN: Slot User Number
 ```
 
-But if you use 3rd party PCIe cards, this entry will most likely not be present in your `DSDT`, so the device(s) will not appear in the `PCI` category of the System Profiler (unless you use a patched one with added `_SUN` descrptions).
+But if you use 3rd party PCIe cards, this entry will most likely not be present in your `DSDT`, so the device(s) will not appear in the `PCI` category of the System Profiler (unless you use a patched one with added `_SUN` descriptions).
 
-Clover can generate `AAPL-slot,name` entries for certain types of devices, if the `_SUN` method does not exist in your `DSDT`. You must set the patch mask for these devices using any one byte number but `0` and `1` since they are reserved for compiler-related operations, so genereating the `AAPL,slot-name `entries might fail.
+Clover can generate `AAPL-slot,name` entries for certain types of devices, if the `_SUN` method does not exist in your `DSDT`. You must set the patch mask for these devices using any one byte number but `0` and `1` since they are reserved for compiler-related operations, so generating the `AAPL,slot-name `entries might fail.
  
 Four parameters are required to create a custom `AAPL,slot-name` entry in your config:
 
@@ -80,7 +80,7 @@ Four parameters are required to create a custom `AAPL,slot-name` entry in your c
 
 **NOTES**
 
-* `AAPL,slot-name` is mostly a cosmedic property (despite what some users may think)
+* `AAPL,slot-name` is mostly a cosmetic property (despite what some users may think)
 * In order for the `Slots` section to be present in the config.plist, a SMBIOS has to be generated because Slots is a sub-category of the SMBIOS dictionary.
 * As long as I have been using Clover, I've never used this section whatsoever. I always use Device Properties to define a device and call it a day. Especially since Hackintool can create all these device property entries with the correct AAPL,slot-names for you.
 
@@ -88,7 +88,7 @@ Four parameters are required to create a custom `AAPL,slot-name` entry in your c
 ### Manual method
 Exchanging existing SMBIOS data between OpenCore Clover can be a bit confusing since both use different names and locations for data fields. 
 
-Transferring SMBIOS data correctly is important because otherwise you have to enter your AppleID and Password again which in return will register your computer as a new device in the Apple Account. On top of that you have to re-enter and 2-way-authenticate the system every single time you switch betweeen OpenCore and Clover, which is incredibly annowying. So in order to prevent this, you have to do the following:
+Transferring SMBIOS data correctly is important because otherwise you have to enter your AppleID and Password again which in return will register your computer as a new device in the Apple Account. On top of that you have to re-enter and 2-way-authenticate the system every single time you switch between OpenCore and Clover, which is incredibly annoying. So in order to prevent this, you have to do the following:
 
 1. Copy the Data from the following fields to Clover Configurator's "SMBIOS" and "RtVariables" sections:
 
@@ -109,10 +109,10 @@ N/A in OpenCore                | Custom UUID (=Hardware UUID). Leave empty.
 You know that the SMBIOS data has bee transferred correctly, if you don't have to re-enter your Apple-ID and password.
 
 #### Troubleshooting
-If you have to re-enter your Appple ID Password after changing from OpenCore to Clover or vice versa, the used SMBIOS Data is either not identical or there is another issue, so you have to figure out where the mismatch is. You can use Hackintool to do so:
+If you have to re-enter your Apple ID Password after changing from OpenCore to Clover or vice versa, the used SMBIOS Data is either not identical or there is another issue, so you have to figure out where the mismatch is. You can use Hackintool to do so:
 
 - Mount the EFI
-- Open the config for the currently used Bootmanger
+- Open the config for the currently used Boot Manager
 - Run Hackintool. The "System" section shows the currently used SMBIOS Data: </br> ![SYSINFO](https://user-images.githubusercontent.com/76865553/166119425-8970d155-b546-4c91-8daf-ec308d16916f.png)
 - Check if the framed parameters match the ones in your config.
 - If they don't, correct them and use the ones from Hackintool 

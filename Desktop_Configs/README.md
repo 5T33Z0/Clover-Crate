@@ -1,5 +1,5 @@
 # Clover Desktop Configs (UEFI only)
-This section contains pre-configured config.plists for running macOS on Desktop PCs with 2nd to 10th Gen Intel CPUs. The included configs are based on Corpnewt's Vanilla Hackintosh Guide. But since this guide is no longer maintained, I took his configs and updated them. I added Device Properties and necessary Quirks so they are compatible with the new OpenCore Memory Fixes integrated in Clover since r5123. They are not an all-in-all solution since I don't know which additional hardware and peripherals you are using but they should assist you in getting your system running, expecially if you are new to hackintoshing.
+This section contains pre-configured config.plists for running macOS on Desktop PCs with 2nd to 10th Gen Intel CPUs. The included configs are based on Corpnewt's Vanilla Hackintosh Guide. But since this guide is no longer maintained, I took his configs and updated them. I added Device Properties and necessary Quirks so they are compatible with the new OpenCore Memory Fixes integrated in Clover since r5123. They are not an all-in-all solution since I don't know which additional hardware and peripherals you are using but they should assist you in getting your system running, especially if you are new to hackintoshing.
 
 ## Building your EFI Folder
 - Download or update [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/)
@@ -258,7 +258,7 @@ ___
 - Adjust `RtVariables` > `CsrActiveConfig` based on used macOS accordingly (see table above)
 - Rename config to `config.plist`and add it to `EFI\CLOVER` folder
 - Add files in ACPI folder to `EFI\CLOVER\ACPI\patched`
-- Add additional Kexts necessary for your Hardware and peripherals to `EFI\CLOVER\kexts\other`
+- Add additional kexts necessary for your hardware and peripherals to `EFI\CLOVER\kexts\other`
 - Copy the EFI Folder to a FAT32 formatted flash drive and try booting from it
 
 #### Required ACPI Hotpatches
@@ -291,7 +291,7 @@ ___
 - Adjust `RtVariables` > `CsrActiveConfig` based on used macOS accordingly (see table above)
 - Rename config to `config.plist`and add it to `EFI\CLOVER` folder
 - Add files in ACPI folder to `EFI\CLOVER\ACPI\patched`
-- Add additional Kexts necessary for your Hardware and peripherals to `EFI\CLOVER\kexts\other`
+- Add additional kexts necessary for your Hardware and peripherals to `EFI\CLOVER\kexts\other`
 - Copy the EFI Folder to a FAT32 formatted flash drive and try booting from it
 
 #### Required ACPI Hotpatches

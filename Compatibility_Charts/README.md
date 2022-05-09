@@ -13,7 +13,7 @@ This list, although helpful and informative, is not as binding for hackintoshes 
 - …you can make use of macOS Monterey's virtualization capabilities to spoof a supported SMBIOS but let the hardware run on the intended SMBIOS for your CPU! Check my [**Boad-ID VMM spoof guide**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof) to find out how it works.
 
 ### Picking the right SMBIOS
-Choosing an appropriate SMBIOS for your Hackintosh is crucial if you want a smooth running and efficiant system. You should chose your SMBIOS based on the following aspects:
+Choosing an appropriate SMBIOS for your Hackintosh is crucial if you want a smooth running and efficient system. You should chose your SMBIOS based on the following aspects:
 
 - **CPU Vendor and product Family**: Intel? AMD? Mobile? Desktop? NUC? With or without iGPU support?
 - **Discrete GPU**: Vendor and Model (ATI/AMD?, NVIDIA?)

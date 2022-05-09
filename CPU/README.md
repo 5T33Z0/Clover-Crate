@@ -15,10 +15,10 @@ To check the Bus Frequency, enter in Terminal: `sysctl hw.busfrequency`. I ran t
 
 **Results**:
 
-SMBIOS | Clover (Hz) | OpenCore (Hz)
-:-------:|:--------:|:--------:
-MacBookPro10,1| 96000000 | 400000000
-iMac20,2| 100000000 |400000000
+SMBIOS        | Clover (Hz) | OpenCore (Hz)
+:------------:|:-----------:|:--------:
+MacBookPro10,1| 96000000    | 400000000
+iMac20,2      | 100000000   | 400000000
 
 It seems that Clover uses the correct Bus Frequency reported by the system, while OpenCore uses Base Clock x 4. See `QPI` for more details.
 

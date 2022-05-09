@@ -14,7 +14,7 @@ Merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI tab
 
 If set to `true`, it changes the way `.aml` files in `ACPI/patched` are applied. Instead of appending these tables at the end of the `DSDT` they will replace existing tables, if their signature, index and `OemTableIds` match existing OEM tables. In other words, they will be merged with existing ACPI tables.
 
-With this function – as with `DSDT` – you can fix individual SSDTs (or other tables) simply by adding the corrected file(s) into `ACPI/patched`. No need to fiddle with `DropOem` or `DropTables`. The original order is preserved. The mapping for `SSDT` is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the `SSDT` position in `DSDT`. 
+With this function – as with `DSDT` – you can fix individual SSDTs (or other tables) simply by adding the corrected file(s) into `ACPI/patched`. No need to fiddle with `DropOem` or `DropTables`. The original order is preserved. The mapping for `SSDT` is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the `SSDT` position in `DSDT`.
 
 For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you could just fix it and put it back in `ACPI/patched`, replacing the original table. This also works if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. As long as you stick to the names provided in `ACPI/origin`, you should be fine.
 
@@ -76,7 +76,7 @@ These two parameters serve a common purpose - to fix restart. They should be pre
 Possible combinations:
 - If both fields are left empty, `0x64`/`0xFE` will be used by default &rarr; Restarts the system via the PS2 Controller – just like a PC.
 - `0x0`/`0x0`→ uses the default `FACP` values, if present. Otherwise, `0x64`/`0xFE` will be used instead.
-- `0x0CF9`/`0x06` &rarr; restarts the system via PCI Bus – just like a real Mac. Shutdown and restart is faster but this combination does not work for all Hackintoshes.
+- `0x0CF9`/`0x06` &rarr; restarts the system via PCI Bus – just like a real Mac. Shutdown and restart is faster but this combination does not work for all Systems.
 - `0x92`/`0x01`→ another possible combination.
 
 ## Smart UPS
@@ -170,19 +170,19 @@ The `TgtBridge` (= Target Bridge) can be used to limit the scope of a binary ren
 
 As shown above, the name of the original Method `_STA` (pink) is converted to  hex (`5F535441`), so Clover can find it in the `DSDT`. If it finds this value it is then replaced by `58535441` (blue), which is the hex equivalent of the term `XSTA` (blue). If set like this, this patch would change *any* match ot the term `_STA` in the whole of the `DSDT` to `XSTA` which probably would break the system. To avoid this, you can use `TgtBridge` to specify and limit the matches of this patch to a specified name/device/method/area, in this case to the device `GPI0` (Cyan). Basically, you tell Clover: "In device `GPI0`, look for the method `_STA`. If it's present, rename it to `XSTA` but leave the rest of the `DSDT` alone!"
 
-Which values to use in `TgtBridge` is up to you. If string lengths do not match, Clover will correctly account for the length change, with one exception: make sure it doesn't happen inside an "If" or "Else" statement. If you need such a change, replace the entire operator. Usually, you rename methods in devices just to disable them or to redifine them within a custom SSDT later.
+Which values to use in `TgtBridge` is up to you. If string lengths do not match, Clover will correctly account for the length change, with one exception: make sure it doesn't happen inside an "If" or "Else" statement. If you need such a change, replace the entire operator. Usually, you rename methods in devices just to disable them or to redefine them within a custom SSDT later.
 
 The `Comment` field not only serves as a reminder about what a patch does, it is also serves as an item/entry in the Clover Boot Menu to enable/disable a patch. The initial value for `ON` or `OFF` is determined by the `Disabled` lines in the `config.plist`. The default value is `Disabled=false`. If you use someone else's set of patches, it is better to set them to `Disabled=true` and then enable them from the Boot menu one by one.
 
 #### About the `TgtBridge` Bug (fixed since Clover [r5123.1](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1))
 
-Prior to the release of r5123.1, the `TgtBridge` had a bug, where it would not only rename matches found in the DSDT but also in all OEM SSDTs which was not intended. With the release of Clover r5123.1 (the last release supporting Aptio Memory Fixes), this bug was finnally fixed.
+Prior to the release of r5123.1, the `TgtBridge` had a bug, where it would not only rename matches found in the DSDT but also in all OEM SSDTs which was not intended. With the release of Clover r5123.1 (the last release supporting Aptio Memory Fixes), this bug was finally fixed.
 
-To workaround this bug, users would have to create restore rules for every instance which utilzed the TgtBridge to revese the renames for all other matches as shown in this example:
+To workaround this bug, users would have to create restore rules for every instance which utilized the TgtBridge to reverse the renames for all other matches as shown in this example:
 
 ![TgtBrige_workaround](https://user-images.githubusercontent.com/76865553/163777028-951e0d8e-abf2-4f2d-9612-3704aaf9f6e9.png)
 
-In this example, you would tell Clover to look for `XSTA` and rename it `STA` for any devices which are not `GPIO`. I imagine that this workaround slows down boot times significantly since all tables have to be scanned up an down to replace and restore values. So if you are still using the "pre-OC" version of Clover with the bugged TgtBrige, you should definitely update it and disable/delete all these restore rules.
+In this example, you would tell Clover to look for `XSTA` and rename it `STA` for any devices which are not `GPIO`. I imagine that this workaround slows down boot times significantly since all tables have to be scanned up an down to replace and restore values. So if you are still using the "pre-OC" version of Clover with the bugged TgtBridge, you should definitely update it and disable/delete all these restore rules.
 
 ### Fixes
 
@@ -212,7 +212,7 @@ Basically, macOS won't actually read/merge device properties from ACPI unless a 
 
 macOS will call `_DSM` methods of Device objects with only two arguments at first. When this occurs, the method should return `3`. So all you need to do is check if `Arg2` exists (is non-zero). If it doesn't, return `3`. If it does, return whatever properties you want macOS to use for that device.
 
-In other words, `store` is saving information you want to hand over to macOS as a local variable via the `DTGP` method. So its whole purpose is to handle macOS-specific behavior without breaking non-macOS behavior - like running Windows on real Macs (with Bootcamp) for example.
+In other words, `store` is saving information you want to hand over to macOS as a local variable via the `DTGP` method. So its whole purpose is to handle macOS-specific behavior without breaking non-macOS behavior - like running Windows on real Macs (with Boot Camp) for example.
 
 #### AddHDMI
 
@@ -262,7 +262,7 @@ Corrects the `ADP1` device (power supply), which is necessary for laptops to sle
 
 Similar to LAN, the device itself is created, if not already registered in `DSDT`. For some well-known models, the `DeviceID` is replaced with a supported one. And the Airport turns on without other patches. 
 
-**NOTE**: This fix is pretty much deprecated nowadys. Use `AirportBrcmFixup.kext` instead.
+**NOTE**: This fix is pretty much deprecated nowadays. Use `AirportBrcmFixup.kext` instead.
 
 #### FixDarwin
 
@@ -283,7 +283,7 @@ Produces a number of video card patches for non-Intel video cards (Intel on-boar
 
 #### FixFirewire
 
-Adds the `fwhub` property to the FireWire controller, if present. If not, then nothing will happen. You can bet if you don't know if you need to or not.
+Adds `fwhub` property to the FireWire controller, if present. If not, then nothing will happen. You can bet if you don't know if you need to or not.
 
 #### FixHDA
 
@@ -299,7 +299,7 @@ In macOS 10.6.1, there was a panic on the `AppleIntelPIIXATA.kext`. Two solution
 
 #### FixIPIC
 
-Removes the interrupt from the `IPIC` device. Fixes the Power Button functionality, so holding it for a few seconds opens up a dialog window with option to Reset, Sleep, or Shutdown the computer.
+Removes the interrupt from the `IPIC` device. Fixes the Power button, so that holding it for a few seconds brings up a dialog window with the to Reset, Sleep, or Shutdown the system.
 
 #### FixIntelGfx
 
@@ -396,7 +396,7 @@ In the new Clover, this group of parameters is combined into one section, and `P
 
 #### APSN/APLF
 
-The `APLF` and `APSN` parameters seem to affect Speedstep. As a prerequisite, `Generate PStates` needs to be enabled for them to be available, whereas PluginType works independently of the Generate PStates status.
+The `APLF` and `APSN` parameters seem to affect Intel SpeedStep. As a prerequisite, `Generate PStates` needs to be enabled for them to be available, whereas PluginType works independently of the Generate PStates status.
 
 #### CStates/PStates
 
@@ -410,7 +410,7 @@ For Haswell and newer CPUs you should set the key to `1`, for older ones to `0`.
 
 ### Min Multiplier
 
-Minimum CPU multiplier. It itself reports 16, and prefers to run at 1600, but you should set the stats down to 800 or even 700 in the table for Speedstep. Experiment with it. If your system crashes during boot, the Low Frequency is too low!
+Minimum CPU multiplier. It itself reports 16, and prefers to run at 1600, but you should set the stats down to 800 or even 700 in the table for SpeedStep. Experiment with it. If your system crashes during boot, the Low Frequency is too low!
 
 ### Max Multiplier
 
@@ -418,11 +418,11 @@ Introduced in conjunction to Min Multiplier, but it seems to be doing nothing an
 
 ### NoDynamicExtract
 
-If set to `true`, this flag will disable the extraction of dynamic SSDTs when using `F4` in the bootloader menu. Dynamic SSDTs are rarely needed and usually cause confusion (erroneously putting them in the `ACPI/patched` Folder). Added by Rehabman in revision 4359.
+If set to `true`, this flag will disable the extraction of dynamic SSDTs when using `F4` in the bootloader menu. Dynamic SSDTs are rarely needed and usually cause confusion (erroneously putting them in the `ACPI/patched` Folder). Added by Rehabman in r4359.
 
 ### NoOEMTableID
 
-If set to `true`, the OEM table identifier is *NOT* added to the end of file name in ACPI tables dump by pressing `F4` in the Clover Boot Menu. If set to `false`, end spaces are removed from SSDT names when the OEM table ID is added as a suffix. Added by Rehabman in revisions 4265 to 4346.
+If set to `true`, the OEM table identifier is *NOT* added to the end of file name in ACPI tables dump by pressing `F4` in the Clover Boot Menu. If set to `false`, end spaces are removed from SSDT names when the OEM table ID is added as a suffix. Added by Rehabman in r4265 to r4346.
 
 ### PLimit Dict
 

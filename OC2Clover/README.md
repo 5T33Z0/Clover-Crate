@@ -169,7 +169,7 @@ While most of OpenCore's Kernel Patches are located in Clover's Quirks section, 
 ### Manual method
 Exchanging existing SMBIOS data between OpenCore Clover can be a bit confusing since both use different names and locations for data fields. 
 
-Transferring SMBIOS data correctly is important because otherwise you have to enter your AppleID and Password again which in return will register your computer as a new device in the Apple Account. On top of that you have to re-enter and 2-way-authenticate the system every single time you switch betweeen OpenCore and Clover, which is incredibly annowying. So in order to prevent this, you have to do the following:
+Transferring SMBIOS data correctly is important because otherwise you have to enter your AppleID and Password again which in return will register your computer as a new device in the Apple Account. On top of that you have to re-enter and 2-way-authenticate the system every single time you switch between OpenCore and Clover, which is incredibly annoying. So in order to prevent this, you have to do the following:
 
 1. Copy the Data from the following fields to Clover Configurator's "SMBIOS" and "RtVariables" sections:
 
@@ -190,12 +190,12 @@ N/A in OpenCore                | Custom UUID (=Hardware UUID). Leave empty.
 You know that the SMBIOS data has bee transferred correctly, if you don't have to re-enter your Apple-ID and password.
 
 #### Troubleshooting
-If you have to re-enter your Appple ID Password after changing from OpenCore to Clover or vice versa, the used SMBIOS Data is either not identical or there is another issue, so you have to figure out where the mismatch is.
+If you have to re-enter your Apple ID Password after changing from OpenCore to Clover or vice versa, the used SMBIOS Data is either not identical or there is another issue, so you have to figure out where the mismatch is.
 
 In this case, you can use Hackintool to identify the problem:
 
 - Mount the EFI
-- Open the config for the currently used Bootmanger
+- Open the config for the currently used Boot Manager
 - Run Hackintool. The "System" section shows the currently used SMBIOS Data: </br> ![SYSINFO](https://user-images.githubusercontent.com/76865553/166119425-8970d155-b546-4c91-8daf-ec308d16916f.png)
 - Check if the framed parameters match the ones in your config.
 - If they don't, correct them and use the ones from Hackintool 
@@ -205,7 +205,7 @@ In this case, you can use Hackintool to identify the problem:
 - If the data is correct you won't have to enter your Apple ID Password again (double-check in Hackintool to verify).
 
 #### Clover r5147 beta bug
-There's currently an issue with r5147 beta which results in the Endiannes of the first 3 pairs of the System-ID being switched:
+There's currently an issue with r5147 beta which results in the Endianness of the first 3 pairs of the System-ID being switched:
 
 ![](/Users/steezonics/Desktop/Flipped.png)
 
@@ -214,7 +214,7 @@ On first glance System-IDs don't have anything in common, but on closer inspecti
 [52 | EB | 67 | 2E] - [AC | F2] - [EC | 5A]</br>
 [2E | 67 | EB | 52] - [F2 | AC] - [5A | EC]
 
-If you shift the pairs of diguts from right to left, they are identical. So there's some sort of Endianness change going on somewhere in Clover. To resolve this. simple simply use the "wrong" System-ID in your Clover Config. It will get reversed again after rebootingso that it's correct again.
+If you shift the pairs of digits from right to left, they are identical. So there's some sort of Endianness change going on somewhere in Clover. To resolve this. simple simply use the "wrong" System-ID in your Clover Config. It will get reversed again after rebooting so that it's correct again.
 
 ### SMBIOS Data Import/Export with OCAT
 Besides manually copying over SMBIOS data from your OpenCore to your Clover config and vice versa, you could use [**OpenCore Auxiliary Tools**](https://github.com/ic005k/OCAuxiliaryTools/releases) instead, which has a built-in import/export function to import SMBIOS Data from Clover as well as exporting function SMBIOS data into a Clover config:

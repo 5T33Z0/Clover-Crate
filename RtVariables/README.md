@@ -1,7 +1,7 @@
 # RtVariables
 ![RTvarsnu](https://user-images.githubusercontent.com/76865553/140332564-944c61eb-6168-4a12-b580-0f0744fd4fdf.png)
 
-This seciton contains Runtime Variables affecting Apple services or Clover itself. `ROM` and `MLB` for example are required to allow registration in iMessage service. Starting from Clover r1129 the parameters are taken from SMBIOS and are not needed to be entered maually here unless something is missing.
+This section contains Runtime Variables affecting Apple services or Clover itself. `ROM` and `MLB` for example are required to allow registration in iMessage service. Starting from Clover r1129 the parameters are taken from SMBIOS and are not needed to be entered manually here unless something is missing.
 
 ## ROM
 Last digits of `SmUUID` or `MAC Address`. Clover can detect and apply the MAC Address of your Ethernet Adapter automatically if `UseMacAddr0` is selected. This does not work for everyone, so test it.
