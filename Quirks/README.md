@@ -2,6 +2,8 @@
 
 `Quirks` is a set of features to configure Booter and Kernel Settings in Clover. The underlying technology is OpenCore's `OpenRuntime.efi` which has been fully integrated into Clover since r5126. It replaces the previously used `AptioMemoryFixes` which are no longer capable of booting newer macOS versions. So an upgrade to r5126 or later is mandatory in order to be able to install and boot macOS Big Sur and newer with Clover.
 
+Besides the [misleading claim](https://www.insanelymac.com/forum/topic/351590-intel-uhd-graphics-630-help/?do=findComment&comment=2781905) that Clover will "assign default value[s] for all absent keys [–] *even for Quirks*", you *still* have to configure them *correctly* so your system will boot!
+
 <details>
 <summary><strong>Background: From Aptio Memory Fixes to Quirks</strong></summary>
 
