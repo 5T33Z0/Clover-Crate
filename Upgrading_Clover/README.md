@@ -119,7 +119,8 @@ This is for users who want to use the pkg installer instead. Don't do this if yo
 11. Add any additional system-specific drivers you need (HID, FileVault, etc)
 13. Scroll to the end of the list and select **CloverConfigPlistValidator** as well
 14. Click on "Install"
-15. Once it's done, reboot and hope for the best
+15. Once it's done, check your config.plist for errors in Clover Configurator using the Clover Validator in the "Tools" section and correct them if necessary.
+16. Save your config, reboot and hope for the best
 
 **IMPORTANT**: Make sure you have a working backup of your currently working EFI folder stored on a FAT32 formatted flash drive to boot from just in case you run into issues.
 
