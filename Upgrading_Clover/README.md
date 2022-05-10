@@ -114,8 +114,8 @@ This is for users who want to use the pkg installer instead. Don't do this if yo
 8. Select the following settings:
 	- **Clover for UEFI Booting only**
 	- **Install Clover in the ES**P (that's where the EFI folder is located)
-9. In the **UEFI Drivers** section, tick the UEFI Drivers box to deselect all drivers:</br>![UEFI_none](https://user-images.githubusercontent.com/76865553/167565684-d55678cf-8d6b-48b7-842f-2b92bee9c30a.png)
-10. Next, enable the following UEFI Drivers:</br>![ReqDrvs](https://user-images.githubusercontent.com/76865553/167565750-b80807b2-31e5-4d78-a4ac-4532d0fa65e9.png)</br> **NOTE**: The "Recommended Drivers" are useless on UEFI systems using OpenRuntime.efi. But if you want bootchime support, enable AudioDxe!
+9. In the **UEFI Drivers** section, tick the UEFI Drivers box to deselect all drivers:</br>![UEFI_none](https://user-images.githubusercontent.com/76865553/167565684-d55678cf-8d6b-48b7-842f-2b92bee9c30a.png)</br> **NOTE**: The "Recommended Drivers" are useless on UEFI systems using OpenRuntime.efi. But if you want bootchime support, enable AudioDxe!
+10. Next, enable the following UEFI Drivers:</br>![ReqDrvs](https://user-images.githubusercontent.com/76865553/167565750-b80807b2-31e5-4d78-a4ac-4532d0fa65e9.png)
 11. Add any additional system-specific drivers you need (HID, FileVault, etc)
 13. Scroll to the end of the list and select **CloverConfigPlistValidator** as well
 14. Click on "Install"
