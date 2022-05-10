@@ -108,7 +108,7 @@ This is for users who want to use the pkg installer instead. Don't do this if yo
 2. Remove deprecated Memory fixes and drivers manually as explained previously
 3. Open your config.plist with Clover Configurator and add the required Quirks for your system.
 4. Save the config
-5. Run Clover_r5146.pkg (or newer)
+5. [Download](https://github.com/CloverHackyColor/CloverBootloader/releases) and Run Clover_r5146.pkg (or newer)
 6. Click "Continue" until you reach the "Installation Type" screen
 7. Next, click on "Customize":</br>![Cstmz](https://user-images.githubusercontent.com/76865553/167565587-bb5e6eef-55f7-4f2b-abf4-b235a2b7df4c.png)
 8. Select the following settings:
