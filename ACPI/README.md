@@ -150,7 +150,7 @@ Names like `_DSM` with and underscore in front of them define a method. These ar
 To convert any text to a hex you can use the Hex Converter inside of Clover Configurator
 </details>
 
-`RenameDevices` serves as a more refined method for renaming devices which is less brute force than using a simple binary rename which replaces *every* occurrence of a word/value throughout the *whole* `DSDT`, which can be problematic. The rules created here only apply to the ACPI path specified in the `Find Device` field, so these patches are more precise, less invasive and more efficient than renaming them via `DSDT` > `Patches`.
+`RenameDevices` serves as a more refined method for renaming devices (and/or methods used within devices) which is less brute force than using a simple binary rename which replaces *every* occurrence of a word/value throughout the *whole* `DSDT`, which can be problematic. The rules created here only apply to the ACPI path specified in the `Find Device` field, so these patches are more precise, less invasive and more efficient than renaming them via `DSDT` > `Patches`.
 
 To use this section properly, you need a dump the unmodified `DSDT` and examine it with maciASL. In this case, we search for `ECH1`:
 

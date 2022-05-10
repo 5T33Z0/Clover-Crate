@@ -1,12 +1,13 @@
 # Upgrading Clover for macOS 11+ compatibility
+>:warning: The following Guide is for UEFI only!
 
 ## Why Upgrade?
-Clover's previous `AptioMemoryFixes` are incapable of booting/installing macOS 11 and newer. Therefore, OpenCore's Memory Fixes (`OpenRuntime.efi`) have been integrated to keep Clover relevant. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is mandatory in order to be able to install and boot macOS 11 and newer. 
+Clover's previous `AptioMemoryFixes` no longer work in macOS 11 and newer. Therefore, OpenCore's memory fixes (included in `OpenRuntime.efi`) have been implemented to keep Clover alive. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is *mandatory* to install and boot macOS 11 and newer. 
 
-Users who want to stay on macOS Catalina or older should update to [r5123.1](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1) which is the final version with the old aptio memory fixes but contains the long-awaited fix for `TgtBridge` which had been broken for a long time.
+Users who want to stay on macOS Catalina or older should update to [**r5123.1**](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1) which is the final revision supporting the old Aptio memory fixes. It also contains the long-awaited fix for the `TgtBridge` which had been broken for a long time.
 
 ## Who is this Guide for?
-This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. When updating Clover, there are several obstacles along the way, such as removing old memory fixes, drivers and picking the correct settings for newly added "Quirks" section of the `config.plist`. Users who don't want to run macOS Big Sur or newer on their systems don't need to update Clover – although you could, according to the [documentation](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2751618): "New Clover will understand old config.plist. You may not change it."
+This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their UEFI machines. When updating Clover, there are several obstacles along the way, such as removing old memory fixes and drivers as well as configuring the newly added "Quirks" in the `config.plist`. Users who don't want to run macOS Big Sur or newer on their systems don't need to upgrade Clover.
 
 ## Problem Description
 If you just update your existing "old" Clover EFI by installing the latest `Clover.pkg` like you used to, this will most likely result in an inoperable bootloader due to missing boot parameters in the `config.plist` as well as residual files from the "old" Clover version which need to be removed first.
@@ -38,7 +39,7 @@ Here are some examples of kexts I've experienced issues with when updating:
 - **AirportBrcmFixup.kext**: this Kext contains 2 Plugins, `AirPortBrcm4360_Injector` and `AirPortBrcmNIC_Injector.kext`. When using AirPortBrcmFixup, you are supposed to use only one of these plugins, not both! Using both can cause the boot process to stall indefinitely. On top of that, `AirPortBrcm4360_Injector` is not supported by macOS Big Sur and has to be disabled anyway. In OpenCore, you can just disable a Kext in the config. Since the Clover config does not support to take control of the kext loading sequence, you have to delete it from the Kext itself (right click on AirportBrcmFixup, select "Show package contents" > "Plugins").
 - **BrcmPatchRAM** and a bad combination of it's accompanying kexts can cause issues as well. Don't use BlueToolFixup.kext and BrcmBluetoothInjector.kext together. Former is needed for enabling Bluetooth in macOS Monterey where the latter is used in earlier versions of macOS.
 
-## Building a new EFI folder
+## Building a new EFI folder (manual Upgrade)
 
 1. Prepare a USB flash drive. Format it to FAT32 (MBR). We'll use it for testing our updated EFI Folder first, before copying it to the ESP on the HDD.
 2. Download the [latest Clover Release](https://github.com/CloverHackyColor/CloverBootloader/releases) as a .zip archive for a manual update.
@@ -99,6 +100,27 @@ To workaround this issue, a special folder `drivers/5142` can be used to place t
 ![5142](https://user-images.githubusercontent.com/76865553/159173658-4774c7bb-8dcb-4018-82da-c424da658d0e.png)
 
 This way, you can switch back and forth between current and older Clover builds prior to r5142 without issues. Because Clover build prior to r5142  can't see the `drivers/5142` folder while Clover 5142+ does see this folder and prioritizes the included OpenRuntime.efi (if present) over the one stored under `drivers/UEFI`.
+
+## Using the .pkg Installer to upgrade Clover
+This is for users who want to use the pkg installer instead. Don't do this if you already created your EFI folder manually!
+
+1. Mount your EFI
+2. Remove deprecated Memory fixes and drivers manually as explained previously
+3. Open your config.plist with Clover Configurator and add the required Quirks for your system.
+4. Save the config
+5. Run Clover_r5146.pkg (or newer)
+6. Click "Continue" until you reach the "Installation Type" screen
+7. Next, click on "Customize":</br>![](/Users/5t33z0/Desktop/Cstmz.png)
+8. Select the following settings:
+	- **Clover for UEFI Booting only**
+	- **Install Clover in the ES**P (that's where the EFI folder is located)
+9. In the **UEFI Drivers** section, tick the UEFI Drivers box to deselect all drivers:</br>![](/Users/5t33z0/Desktop/UEFI_none.png)
+10. Next, enable the following UEFI Drivers:</br>![](/Users/5t33z0/Desktop/ReqDrvs.png)
+11. Scroll down to the end of the list and select **CloverConfigPlistValidator** as well
+12. Click on "Install"
+13. Once it's done, reboot
+
+**IMPORTANT**: Make sure you have a working backup of your currently working EFI folder stored on a FAT32 formatted flash drive to boot from just in case you run into issues.
 
 ## Further Resources and Troubleshooting
 
