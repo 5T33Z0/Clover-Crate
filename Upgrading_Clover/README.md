@@ -110,15 +110,16 @@ This is for users who want to use the pkg installer instead. Don't do this if yo
 4. Save the config
 5. Run Clover_r5146.pkg (or newer)
 6. Click "Continue" until you reach the "Installation Type" screen
-7. Next, click on "Customize":</br>![](/Users/5t33z0/Desktop/Cstmz.png)
+7. Next, click on "Customize":</br>![Cstmz](https://user-images.githubusercontent.com/76865553/167565587-bb5e6eef-55f7-4f2b-abf4-b235a2b7df4c.png)
 8. Select the following settings:
 	- **Clover for UEFI Booting only**
 	- **Install Clover in the ES**P (that's where the EFI folder is located)
-9. In the **UEFI Drivers** section, tick the UEFI Drivers box to deselect all drivers:</br>![](/Users/5t33z0/Desktop/UEFI_none.png)
-10. Next, enable the following UEFI Drivers:</br>![](/Users/5t33z0/Desktop/ReqDrvs.png)
-11. Scroll down to the end of the list and select **CloverConfigPlistValidator** as well
-12. Click on "Install"
-13. Once it's done, reboot
+9. In the **UEFI Drivers** section, tick the UEFI Drivers box to deselect all drivers:</br>![UEFI_none](https://user-images.githubusercontent.com/76865553/167565684-d55678cf-8d6b-48b7-842f-2b92bee9c30a.png)
+10. Next, enable the following UEFI Drivers:</br>![ReqDrvs](https://user-images.githubusercontent.com/76865553/167565750-b80807b2-31e5-4d78-a4ac-4532d0fa65e9.png)
+11. Add any additional system-specific drivers you need (HID, FileVault, etc)
+13. Scroll to the end of the list and select **CloverConfigPlistValidator** as well
+14. Click on "Install"
+15. Once it's done, reboot and hope for the best
 
 **IMPORTANT**: Make sure you have a working backup of your currently working EFI folder stored on a FAT32 formatted flash drive to boot from just in case you run into issues.
 
