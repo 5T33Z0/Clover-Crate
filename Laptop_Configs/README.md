@@ -11,15 +11,14 @@ To understand and modify the included config.plists, please refer to these accom
 - [Booting the macOS Installer on Laptops with Clover](http://www.tonymacx86.com/el-capitan-laptop-support/148093-guide-booting-os-x-installer-laptops-clover.html)
 - [Using Clover to "hotpatch" ACPI](https://www.tonymacx86.com/threads/guide-using-clover-to-hotpatch-acpi.200137). Included in this package are some handy SSDTs for use with Clover ACPI hotpatching. If you understand ACPI, you may find the SSDTs (in conjunction with additional plists with patches) quite useful.
 
-### Config Conversion Notes
-In order to make these configs compatible with the latest Clover release (r5141), I had to change the following things:
+### Config Upgrade Notes
+In order to make these configs compatible with the latest Clover release (r5141), I had to change the following so they would pass validation in Clover Config Plist Validator (CCPV):
 
-- Validated configs with Clover Config Plist Validator (CCPV) to find conflicts
-- Put `#` in front of Comments where they are not supported to avoid errors in CCPV
 - Removed deprecated Keys like `DropOEM_DSM`
+- Put `#` in front of Comments where they are not supported to avoid errors in CCPV
 - Commented-out `#DropTables`. Enable if needed
-- Deleted `ACPI` > `DropTables` > `DMAR` → covered by `DisableIoMapper` Quirk
-- Deleted `ACPI` > `DropTables` > `MCFG` → covered by `FixMCFG` 
+- Deleted `ACPI/DropTables/DMAR` → covered by `DisableIoMapper` Quirk
+- Deleted `ACPI/DropTables/MCFG` → covered by `FixMCFG` 
 - Added Quirks for 2nd to 9th Gen Intel CPUs
 
 ## Brief description of included SSDT Hotpatches
@@ -37,7 +36,7 @@ In order to make these configs compatible with the latest Clover release (r5141)
 |**LPC**| Injects properties to force `AppleLPC` to load for various unsupported LPC device-ids. It assumes the LPC device is named `LPCB`.
 |**PNLF**|Injects a PNLF device that works with `IntelBacklight.kext` or `AppleBacklight.kext`+ `AppleBacklightFixup.kext`. Configured with RMCF.BKLT, RMCF.LMAX, RMCF.FBTP. See [Laptop backlight control using AppleBacklightFixup.kext](https://www.tonymacx86.com/threads/guide-laptop-backlight-control-using-applebacklightinjector-kext.218222/)
 |**PTSWAK**| Provides overrides for both `_PTS` and `_WAK` methods. When combined with the appropriate companion patches from hotpatch/config.plist, these methods can provide various fixes. The actions are controlled by RMCF.DPTS, RMCF.SHUT, RMCF.XPEE, RMCF.SSTF. Refer to `SSDT-RMCF.dsl` for more information on those options.
-|**RMCF**|Rehabman Configuration File. Provides configuration data for other SSDTs. Read the comments within the SSDT for more information.|
+|**RMCF**|Rehabman Configuration File. Provides configuration data for SSDT-IGPU, SSDT-PNLF, SSDT-PTSWAK and SSDT-HDEF/HAUD. Read the comments within the SSDT for more information.|
 |**RMDT**|Adds `RMDT` (RehabMan Debug Trace) device. This SSDT is for use with `ACPIDebug.kext`. Instead of patching your `DSDT` to add the `RMDT` device, you can use this SSDT and refer to the methods with External. See `ACPIDebug.kext` documentation for more information regarding the RMDT methods.|
 |**SATA**| This SSDT injects properties (Fake device-id, compatible) to enable the SATA controller with certain unsupported SATA controllers. It assumes the SATA device is named `SATA` (typical is `SAT0`, thus requiring a `SAT0` to `SATA` binary rename).
 |**SKLSPF**|Optional SSDT which can be paired with `SSDT-IGPU`. When present, SSDT-IGPU uses its data as overrides for various Kaby Lake iGPUs to spoof them as Skylake devices. Prior to 10.12.6, Skylake spoofing was the only option for Kaby Lake graphics to work. Keep in mind that complete Skylake spoofing required `FakePCIID.kext` and `FakePCIID_Intel_HD_Graphics.kext`.</br> **NOTE**: This is completely irrelevant nowadays, since Kaby Lake has been fully supported since the initial release of these configs in 2018!
