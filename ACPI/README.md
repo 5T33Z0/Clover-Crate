@@ -40,13 +40,15 @@ The `MCFG` (Memory Mapped Configuration Table) describes the location of the PCI
 
 If `FixMCFG` is enabled, the MCFG table will be corrected. However, discarding this table is also possible by using the "Drop Tables" feature. 
 
-**Procdure**: To find our if you need this fix, enable it and reboot. After that open the original MCFG table table (stored in EFI/CLOVER/ACPI/origin) and compare it with the fixed one: in maciASL, click on "File" > "New from ACPI" and select "MCFG". If both tables are identical in terms of content, you don't need this fix.
+**Verifying procedure**: To find our if you need this fix, enable it and reboot. Once you're back in macOS, open the original MCFG table (stored in EFI/CLOVER/ACPI/origin) and compare it with the fixed one: in maciASL, click on "File" > "New from ACPI" and select "MCFG". If both tables are identical (in terms of values), you don't need this fix. 
+
+This procedure applies to all fixes aimed at specific tables (apart from the ones affecting the `DSDT`) in general!
 
 ## Halt Enabler
 
 This patch is for fixing shutdown/sleep problems during UEFI boot. The fix is injected before calling `boot.efi`, clearing `SLP_SMI_EN` before the start of macOS. Nevertheless, it is quite safe, at least on Intel systems. 
 
-In OpenCore, use ACPI Quirk `FadtEnableReset` for this.
+In OpenCore, enable `ACPI/Quirks/FadtEnableReset`.
 
 ## Patch APIC 
 
@@ -54,7 +56,7 @@ In OpenCore, use ACPI Quirk `FadtEnableReset` for this.
 
 ## Reset Address / Reset Value
 
-These two parameters serve a common purpose - to fix restart. They should be present in the `FACP`/`FADT` table, but that's not always the case. Sometimes the table is shorter than expected, so the values are missing. In OpenCore, the equivalent is `FadtEnableReset`.
+These two parameters serve a common purpose - to fix restart. They should be present in the `FACP`/`FADT` table, but that's not always the case. Sometimes the table is shorter than expected, so both values are missing. In OpenCore, the equivalent is `ACPI/Quirks/FadtEnableReset`.
 
 - `Reset Address`: lets you change the `Address` in `Reset Register` section of the `FACP` table (example):
 	
@@ -75,7 +77,9 @@ These two parameters serve a common purpose - to fix restart. They should be pre
 	[080h 0128   1]         Value to cause reset : 06
 	...
 	```
+
 Possible combinations:
+
 - If both fields are left empty, `0x64`/`0xFE` will be used by default &rarr; Restarts the system via the PS2 Controller – just like a PC.
 - `0x0`/`0x0`→ uses the default `FACP` values, if present. Otherwise, `0x64`/`0xFE` will be used instead.
 - `0x0CF9`/`0x06` &rarr; restarts the system via PCI Bus – just like a real Mac. Shutdown and restart is faster but this combination does not work for all Systems.
