@@ -1,6 +1,38 @@
 # Boot
 ![Boot](https://user-images.githubusercontent.com/76865553/136703418-a28fed86-1f46-4519-80ad-671e96b89141.jpeg)
 
+<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
+
+- [Arguments](#arguments)
+	- [Debugging](#debugging)
+   - [GPU-specific boot arguments](#gpu-specific-boot-arguments)
+   - [Network-specific boot arguments](#network-specific-boot-arguments)
+   - [Other useful boot arguments](#other-useful-boot-arguments)
+- [Boot-args and device properties provided by kexts](#boot-args-and-device-properties-provided-by-kexts)
+	- [Lilu.kext](#lilukext)
+   - [Whatevergreen.kext](#whatevergreenkext)
+   - [AppleALC](#applealc)
+- [Custom Logo](#custom-logo)
+- [Debug](#debug)
+	- [Enabling the Preeboot.log](#enabling-the-preebootlog)
+- [Default Boot Volume](#default-boot-volume)
+- [Default Loader](#default-loader)
+- [DisableCloverHotkeys](#disablecloverhotkeys)
+- [Fast](#fast)
+- [HibernationFixup](#hibernationfixup)
+- [Legacy](#legacy)
+- [NeverDoRecovery](#neverdorecovery)
+- [NeverHibernate](#neverhibernate)
+- [NoEarlyProgress](#noearlyprogress)
+- [RtcHibernateAware](#rtchibernateaware)
+- [SignatureFixup](#signaturefixup)
+- [SkipHibernateTimeout](#skiphibernatetimeout)
+- [StrictHibernate](#stricthibernate)
+- [Timeout](#timeout)
+- [XMPDetection](#xmpdetection)
+- [Adding Clover entry to the BIOS Boot menu](#adding-clover-entry-to-the-bios-boot-menu)
+</details>
+
 ## Arguments
 These are boot arguments that are passed over to `boot.efi`, which in turn passes them down to the system kernel. See Apple's documentation for a list n the `com.apple.Boot.plist` manual. Some commonly used ones are:
 

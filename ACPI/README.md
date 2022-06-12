@@ -1,4 +1,6 @@
 # ACPI
+![CCACPI](https://user-images.githubusercontent.com/76865553/148648883-a0d3984c-254a-4a73-b02b-16439c6bc9a1.png)
+
 <details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
 
 - [AutoMerge](#automerge)
@@ -76,7 +78,6 @@
 
 The ACPI section not only is the first in the list but also the most important one as well. It offers many options to affect the ACPI tables of a system in order to assist users to make it compatible with macOS: from replacing characters in the `DSDT`, renaming devices, enabling features to applying patches. Since this section is the centerpiece of your `config.plist`, every available option is explained in detail. This is how it looks like in Clover Configurator:
 
-![CCACPI](https://user-images.githubusercontent.com/76865553/148648883-a0d3984c-254a-4a73-b02b-16439c6bc9a1.png)
 
 Throughout this chapter, this section is broken down into smaller chunks to make it more digestible.
 
