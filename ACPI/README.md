@@ -1,4 +1,78 @@
 # ACPI
+<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
+
+- [AutoMerge](#automerge)
+- [Disable ASPM](#disable-aspm)
+- [FixHeaders](#fixheaders)
+- [FixMCFG](#fixmcfg)
+- [Halt Enabler](#halt-enabler)
+- [Patch APIC](#patch-apic)
+- [Reset Address / Reset Value](#reset-address--reset-value)
+- [Smart UPS](#smart-ups)
+- [DSDT](#dsdt)
+	- [Patches](#patches)
+	- [Rename Devices](#rename-devices)
+	- [TgtBridge](#tgtbridge)
+		- [About the `TgtBridge` Bug (fixed since Clover r5123.1)](#about-the-tgtbridge-bug-fixed-since-clover-r51231)
+	- [Fixes](#fixes)
+		- [AddDTGP](#adddtgp)
+			- [DTGP Explained](#dtgp-explained)
+		- [AddHDMI](#addhdmi)
+		- [AddIMEI](#addimei)
+		- [AddMCHC](#addmchc)
+		- [AddPNLF](#addpnlf)
+		- [PNLF_UID](#pnlf_uid)
+		- [DeleteUnused](#deleteunused)
+		- [FakeLPC](#fakelpc)
+		- [FixACST](#fixacst)
+		- [FixADP1](#fixadp1)
+		- [FixAirport](#fixairport)
+		- [FixDarwin](#fixdarwin)
+		- [FixDarwin7](#fixdarwin7)
+		- [FixDisplay](#fixdisplay)
+		- [FixFirewire](#fixfirewire)
+		- [FixHDA](#fixhda)
+		- [FixHPET](#fixhpet)
+		- [FixIDE](#fixide)
+		- [FixIPIC](#fixipic)
+		- [FixIntelGfx](#fixintelgfx)
+		- [FixLAN](#fixlan)
+		- [FixMutex](#fixmutex)
+		- [FixRTC](#fixrtc)
+		- [FixRegions](#fixregions)
+		- [FixS3D](#fixs3d)
+		- [FixSATA](#fixsata)
+		- [FixSBus](#fixsbus)
+		- [FixShutdown](#fixshutdown)
+		- [FixTMR](#fixtmr)
+		- [FixUSB](#fixusb)
+		- [FixWAK](#fixwak)
+- [SSDT](#ssdt)
+	- [C3 Latency](#c3-latency)
+	- [Double First State](#double-first-state)
+	- [Drop OEM](#drop-oem)
+	- [Enable C2, C4, C6 and C7](#enable-c2-c4-c6-and-c7)
+	- [Generate Options](#generate-options)
+		- [APSN/APLF](#apsnaplf)
+		- [CStates/PStates](#cstatespstates)
+		- [PluginType](#plugintype)
+	- [Min Multiplier](#min-multiplier)
+	- [Max Multiplier](#max-multiplier)
+	- [NoDynamicExtract](#nodynamicextract)
+	- [NoOEMTableID](#nooemtableid)
+	- [PLimit Dict](#plimit-dict)
+	- [Use SystemIO](#use-systemio)
+	- [UnderVolt Step](#undervolt-step)
+- [Drop Tables](#drop-tables)
+- [DisabledAML](#disabledaml)
+- [Sorted Order](#sorted-order)
+	- [Debug](#debug)
+	- [ReuseFFFF (Deprecated)](#reuseffff-deprecated)
+	- [RTC8Allowed](#rtc8allowed)
+	- [SuspendOverride](#suspendoverride)
+	- [DSDT Name](#dsdt-name)
+- [Resources](#resources)
+</details>
 
 The ACPI section not only is the first in the list but also the most important one as well. It offers many options to affect the ACPI tables of a system in order to assist users to make it compatible with macOS: from replacing characters in the `DSDT`, renaming devices, enabling features to applying patches. Since this section is the centerpiece of your `config.plist`, every available option is explained in detail. This is how it looks like in Clover Configurator:
 
@@ -211,7 +285,8 @@ In addition to `DeviceProperties`, there is also a Device Specific Method (`_DSM
 
 **NOTE**: OpenCore users can add `SSDT-DTGP` instead. But since OC heavily relies on self-contained SSDT hotpatches to make devices work instead of patched DSDTs, the `DTGP` method is rarely used/required. 
 
-##### Explanation
+##### DTGP Explained
+
 Basically, macOS won't actually read/merge device properties from ACPI unless a Buffer of `0x03` is returned when it asks for this property (`Arg0` = UUID, `Arg1` = 1 and `Arg2` = 0).
 
 `DTGP` passes through calls to device-specific methods on various Device objects, unless a specific `UUID` is provided that indicates that macOS is calling the `_DSM`. macOS has a non-standard device enumeration behavior: it first probes each ACPI Device's `DSM` by passing over only 2 arguments (one of which is the `UUID`). macOS then expects the `_DSM` to return the number of additional arguments that can be used. It's fine if the device returns more arguments than expected, but not less, so it's best to return the maximum, which is three (`Arg0` to `Arg2`). 
