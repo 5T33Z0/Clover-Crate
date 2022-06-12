@@ -1,6 +1,17 @@
 # Upgrading Clover for macOS 11+ compatibility
 >:warning: The following Guide is for UEFI only!
-
+- [Why Upgrade?](#why-upgrade)
+- [Who is this Guide for?](#who-is-this-guide-for)
+- [Problem Description](#problem-description)
+- [Prerequisites: removing obsolete drivers and avoiding kext conflicts](#prerequisites-removing-obsolete-drivers-and-avoiding-kext-conflicts)
+	- [Removing obsolete/unnecessary Drivers](#removing-obsoleteunnecessary-drivers)
+	- [Checking and Updating Kexts](#checking-and-updating-kexts)
+- [Building a new EFI folder (manual Upgrade)](#building-a-new-efi-folder-manual-upgrade)
+	- [Validating config.plist and fixing errors](#validating-configplist-and-fixing-errors)
+	- [Testing your (new) config](#testing-your-new-config)
+- [`OpenRuntime.efi` and older Clover builds (< r5142)](#openruntimeefi-and-older-clover-builds--r5142)
+- [Using the .pkg Installer to upgrade Clover](#using-the-pkg-installer-to-upgrade-clover)
+- [Further Resources and Troubleshooting](#further-resources-and-troubleshooting)
 ## Why Upgrade?
 Clover's previous `AptioMemoryFixes` no longer work in macOS 11 and newer. Therefore, OpenCore's memory fixes (included in `OpenRuntime.efi`) have been implemented to keep Clover alive. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is *mandatory* to install and boot macOS 11 and newer. 
 
