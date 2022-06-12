@@ -3,6 +3,9 @@
 This is my attempt to provide a better and more relevant `config-sample.plist` than the one that's currently included in the Clover Package. Im my personal opinon. the current sample is a mess – expecially in regards to the ACPI section.
 
 ### ACPI
+![ACPI01_bad](https://user-images.githubusercontent.com/76865553/173228912-69daf7b3-b1ef-4e4d-97da-be3a28bd55f5.png)
+![ACPI02_bad](https://user-images.githubusercontent.com/76865553/173228922-1c47e00a-ffc8-4e4e-af6b-77360c4e3658.png)
+
 Listed below are issues with the current settings in the ACPI Section.
 
 #### Patches
