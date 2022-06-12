@@ -8,10 +8,6 @@ Listed below are issues with the current settings in the ACPI Section.
 ![ACPI01_bad](https://user-images.githubusercontent.com/76865553/173228912-69daf7b3-b1ef-4e4d-97da-be3a28bd55f5.png)
 ![ACPI02_bad](https://user-images.githubusercontent.com/76865553/173228922-1c47e00a-ffc8-4e4e-af6b-77360c4e3658.png)
 
-**Suggested**:
-![CfgNew01](https://user-images.githubusercontent.com/76865553/173230782-87893bcd-4a8f-438d-ac60-6b165424c547.png)
-![CfgNew02](https://user-images.githubusercontent.com/76865553/173230786-9691ec45-e641-4f9a-bb29-8bd2bb260878.png)
-
 #### Patches
 - `HECI` to `IMEI` &rarr; handled by Whatevergreen for the longest time
 - `GFX0` to `IGPU` &rarr; handled by Whatevergreen as well
