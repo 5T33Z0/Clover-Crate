@@ -8,9 +8,9 @@ Since this menu is very convoluted I will group parameters together by vendor (I
 **ATTENTION!** Most of the options available in this section are obsolete in 2021. Instead, framebuffer patches are entered via `Devices/Properties`. The only settings which are still useful are the entries in the dropdown menu of `ig-platform-id` for Intel iGPUs (up to Coffee Lake).
 
 ## Inject
-The Inject feature (or Graphics Injector) is a remnant of the Chameleon era where it was called `GraphicsEnabler`. It can inject about two dozen parameters, which are calculated not only based on the card model, but also on its internal characteristics after analyzing the VBIOS of a GPU.
+The `Inject` feature is the successot of Chameleon's `GraphicsEnabler`. It can inject about two dozen parameters into macOS, not only based on the GPU model, but also on its internal characteristics after analyzing its VBIOS.
 
-For Nvidia cards, `NVCAP` is calculated, for Intel on-board graphics dozens of parameters are applied, for ATI/AMD cards parameters for connectors are injected. To list all of them would exceed the scope of this guide. Moreover, for most modern GPUs, you don't even need to the inject features in most cases, since Apple ensured that they work out of the box.
+For Nvidia cards, `NVCAP` is calculated, for Intel on-board graphics dozens of parameters are applied, for ATI/AMD cards frambuffers and connectors are injected. To list all of them would exceed the scope of this guide. Moreover, for most modern GPUs, you don't even need to the inject features in most cases, since Apple ensured that they work out of the box.
 
 You can enable the injection of parameters based on vendors:
 
@@ -57,7 +57,7 @@ For further instruction on how to configure on-board graphics for supported Inte
 Listed below are all parameters related to the `Inject ATI` feature.
 
 ### FB Name
-**Framebuffer Name**. Specific to ATI/AMD Video Cards. More than 70 different framebuffer names exist for various AMD Video Controller kexts. Each has a unique name to identify it (check the extensive list in Clover Configurator) and contains different video output mappings as defined in the `IOKitPersonalities` of the respective kexts' `info.plist`. Here is an example from `AMD9500Controller.kext` located in S/L/E:
+**Framebuffer Name**. Specific to ATI/AMD GPUs. More than 70 different framebuffer names exist for various AMD Video Controller kexts. Each has a unique name to identify it (check the extensive list in Clover Configurator) and contains different video output mappings as defined in the `IOKitPersonalities` of the respective kexts' `info.plist`. Here is an example from `AMD9500Controller.kext` located in S/L/E:
 
 ![FB_name](https://user-images.githubusercontent.com/76865553/166189455-06fe0e53-3f3b-4675-9972-d828872b5d57.png)
 
@@ -73,7 +73,8 @@ OpenCore users have to do this via `DeviceProperties`:
 **Example**:</br>
 ![DEVPROP](https://user-images.githubusercontent.com/76865553/166193678-e009e15d-f065-4e4f-adf0-b6350e042181.png)
 
-**NOTES**: 
+**NOTES**:
+
 - You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
 - Injecting "FB name" it might cause conflicts when WhateverGreen is active, because WEG uses the default `AMDRadeonFramebuffer` to do its magic.
 
@@ -92,9 +93,9 @@ Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were u
 **Source**: [**Clover Changes**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2778575)
 
 #### Patching ATI/AMD Connectors
-ATI/AMD framebuffers can be patched to assign different connectors to output the video signal. You can follow [this guide](https://www.insanelymac.com/forum/topic/282787-clover-v2-instructions/#comment-1853099) if you have need to do this. But keep in mind that this guide is from 2012 so I don't know if it is still relevant today. 
+ATI/AMD framebuffers can be patched to assign the video output to different connectors. You can follow [this guide](https://www.insanelymac.com/forum/topic/282787-clover-v2-instructions/#comment-1853099) if you have need to re-assign the output. But keep in mind that this guide is from 2012 so I don't know if it is still working today. 
 
-OpenCore users need to use DeviceProperties to do this. Check the [**Clover Conversion Guide**](https://github.com/dortania/OpenCore-Install-Guide/blob/master/clover-conversion/Clover-config.md#graphics) for details.
+OpenCore users need to use `DeviceProperties`to do this. Check the [**Clover Conversion Guide**](https://github.com/dortania/OpenCore-Install-Guide/blob/master/clover-conversion/Clover-config.md#graphics) for details.
 
 ### RadeonDeInit
 This key works with ATI/AMD Radeon GPUs (6xxx and higher, possibly 5xxx). It fixes the contents of GPU registers so that the card becomes properly initialized so macOS drivers work as intended.

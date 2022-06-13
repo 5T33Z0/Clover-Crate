@@ -15,12 +15,14 @@ https://macos-defaults.com/
 `defaults write com.apple.frameworks.diskimages skip-verify TRUE`</br>
 `defaults write com.apple.frameworks.diskimages skip-verify FALSE`</br>
 
+**Disable Library Validation**</br>
+`sudo defaults write /Library/Preferences/com.apple.security.libraryvalidation.plist DisableLibraryValidation -bool true`
+
 **List MAC Addresses**</br>
 `networksetup -listallhardwareports`
 
 **Add "Quit" option to Finder**:</br>
-`defaults write com.apple.finder QuitMenuItem -bool YES`</br>
-`killall Finder`</br>
+`defaults write com.apple.finder "QuitMenuItem" -bool "true" && killall Finder`
 
 **Show all Files in Finder**:</br>
 `defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder`</br>
@@ -48,7 +50,13 @@ sudo /usr/libexec/xpchelper --rebuild-cache
 
 ## Hackintosh specific
 **Currently used SMBIOS**</br>
-`system_profiler SPHardwareDataType | grep 'Model Identifier'` 
+`system_profiler SPHardwareDataType | grep 'Model Identifier'`
+
+**Check OpenCore version set in NVRAM**:</br>
+`nvram 4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102:opencore-version`
+
+**Check currently active csr-active-config set in NVRAM**:</br>
+`nvram 7C436110-AB2A-4BBB-A880-FE41995C9F82:csr-active-config`
 
 **Find loaded Kexts** (excluding those from Apple)</br>
 `kextstat | grep -v com.apple`</br>
@@ -66,12 +74,8 @@ sudo /usr/libexec/xpchelper --rebuild-cache
 `log show --last boot`
 
 **Search for terms in last boot log**:</br>
-`show --last boot | grep` your searchterm
-
-log show --last boot | grep "VRMI"
-
-**Check currently active csr-active-config set in NVRAM**:</br>
-`nvram 7C436110-AB2A-4BBB-A880-FE41995C9F82:csr-active-config`
+`log show --last boot | grep "your search term"` </br>
+Exanple: `log show --last boot | grep "ACPI"`
 
 **Create new shapshot** (macOS 11+ only) In Recovery, enter:</br>
 `csrutil authenticated-root disable`</br>
@@ -133,9 +137,9 @@ or
 `sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist`</br>
 `sudo rm /Library/Preferences/SystemConfiguration/preferences.plist`</br>
 
-**Listing ACPI Errors**
+**Listing ACPI Errors**</br>
 `log show --last boot | grep AppleACPIPlatform` </br>
-`log show --last boot | grep AppleACPIPlatform > ~/Desktop/Log_"$(date '+%Y-%m-%d_%H-%M-%S')".log (creates a Log on Desktop)
+`log show --last boot | grep AppleACPIPlatform > ~/Desktop/Log_"$(date '+%Y-%m-%d_%H-%M-%S')".log` (Saves Log to Desktop)
 
 **Checking for Wake Reasons**</br>
 `pmset -g log | grep -e "Sleep.*due to" -e "Wake.*due to"`
@@ -145,5 +149,8 @@ https://www.dssw.co.uk/reference/pmset.html
 
 - **Example**: `sudo pmset proximitywake 0` &rarr; disables wake based on proximity of other devices using the same iCloud ID (iWatch or similar).
 
-**Find aut current Bus and CPU Frequency** </br>
+**Find out current Bus and CPU Frequency** </br>
 `sysctl -a | grep freq`
+
+**Dump Audio Codec** (in Linux)</br>
+`cd ~/Desktop && mkdir CodecDump && for c in /proc/asound/card*/codec#*; do f="${c/\/*card/card}"; cat "$c" > CodecDump/${f//\//-}.txt; done && zip -r CodecDump.zip CodecDump`
