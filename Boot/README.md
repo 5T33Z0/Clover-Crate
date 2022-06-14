@@ -4,17 +4,17 @@
 <details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
 
 - [Arguments](#arguments)
-	- [Debugging](#debugging)
-   - [GPU-specific boot arguments](#gpu-specific-boot-arguments)
-   - [Network-specific boot arguments](#network-specific-boot-arguments)
-   - [Other useful boot arguments](#other-useful-boot-arguments)
+  - [Debugging](#debugging)
+  - [GPU-specific boot arguments](#gpu-specific-boot-arguments)
+  - [Network-specific boot arguments](#network-specific-boot-arguments)
+  - [Other useful boot arguments](#other-useful-boot-arguments)
 - [Boot-args and device properties provided by kexts](#boot-args-and-device-properties-provided-by-kexts)
-	- [Lilu.kext](#lilukext)
-   - [Whatevergreen.kext](#whatevergreenkext)
-   - [AppleALC](#applealc)
+  - [Lilu.kext](#lilukext)
+  - [Whatevergreen.kext](#whatevergreenkext)
+  - [AppleALC](#applealc)
 - [Custom Logo](#custom-logo)
 - [Debug](#debug)
-	- [Enabling the Preeboot.log](#enabling-the-preebootlog)
+  - [Enabling the Preeboot.log](#enabling-the-preebootlog)
 - [Default Boot Volume](#default-boot-volume)
 - [Default Loader](#default-loader)
 - [DisableCloverHotkeys](#disablecloverhotkeys)
@@ -74,7 +74,7 @@ For more iGPU and dGPU-related boot args see the Whatevergreen topic.
 |:------:|-----------|
 **`alcid=1`**|For selecting a layout-id for AppleALC, whereas the numerical value specifies the layout-id. See [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system.
 **`amfi_get_out_of_my_way=1`**|Combined wit disabled SIP, this disables Apple Mobile File Integrity. AMFI is a macOS kernel module enforcing code-signing validation and library validation which strengthens security. Even after disabling these services, AMFI is still checking the signatures of every app that is run and will cause non-Apple apps to crash when they touch extra-sensitive areas of the system. There's also a [kext](https://github.com/osy/AMFIExemption) which does this on a per-app-basis.
-**`-force_uni_control`**|Force-enables the Universal Control service in macOS Monteray 12.3+.
+**`-force_uni_control`**|Force-enables the Universal Control service in macOS Monterey 12.3+.
 
 ## Boot-args and device properties provided by kexts
 
