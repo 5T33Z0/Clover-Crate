@@ -31,7 +31,7 @@ You can enable the injection of parameters based on vendors:
 - **Hint**: The `config.plists` included in the [Desktop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [Laptop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) sections contain a lot of Framebuffer patches for various Intel CPU families already which might be useful to get your Intel HD/UHD graphics up and running.
 
 ## Inject Intel
-Listed below are all parameters related to the `Inject Intel` feature.
+Listed below are all parameters related to the `Inject Intel` feature. For an in-depth guide on older Intel HD Graphics (HD 3000, 4000/46000 and Iris), check Rampage Dev's [Intel Graphics Guide](https://web.archive.org/web/20170816122747/http://www.rampagedev.com/guides/intel-hd-graphics-guide/).
 
 ### ig-platform-id
 Property used by macOS to determine the framebuffer profile for Ivy Bridge and newer Intel CPUs with integrated graphics, aka "Intel (U)HD Graphics xxxx". Select the corresponding framebuffer from the `ig-platform-id` dropdown menu in Clover Configurator (supported up Intel UHD Graphics 630 for Coffee Lake).
@@ -101,7 +101,7 @@ OpenCore users need to use `DeviceProperties`to do this. Check the [**Clover Con
 This key works with ATI/AMD Radeon GPUs (6xxx and higher, possibly 5xxx). It fixes the contents of GPU registers so that the card becomes properly initialized so macOS drivers work as intended.
 
 ## Inject Nvidia
-Listed below are all parameters related to the `Inject Nvidia` feature.
+Listed below are all parameters related to the `Inject Nvidia` feature. For an in-depth guide on older NVIDIA cards (up to Geforce 900 series) check Rampage Dev's [NVIDIA Graphics Guide](https://web.archive.org/web/20170814211046/http://www.rampagedev.com/guides/nvidia-graphics/)
 
 ### NVCAP
 This parameter is for legacy NVIDIA video cards and configures types and usage of video ports. The value consists of 40 hexadecimal digits which have to be calculated based on  your video card's VBIOS which has to be analyzed to do so. You can follow [**this guide**](https://dortania.github.io/OpenCore-Post-Install/gpu-patching/nvidia-patching/#nvcap) to calculate the correct NVCAP value for your card.
