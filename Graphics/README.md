@@ -54,7 +54,7 @@ For further instruction on how to configure on-board graphics for supported Inte
     ```
 
 ## Inject ATI
-Listed below are all parameters related to the `Inject ATI` feature.
+Listed below are all parameters related to the `Inject ATI` feature. For more insight check out Rampage Dev's in-depth [AMD Graphics Guide](https://web.archive.org/web/20170814210930/http://www.rampagedev.com/guides/graphic-cards-injection/) for old AMD GPUs.
 
 ### FB Name
 **Framebuffer Name**. Specific to ATI/AMD GPUs. More than 70 different framebuffer names exist for various AMD Video Controller kexts. Each has a unique name to identify it (check the extensive list in Clover Configurator) and contains different video output mappings as defined in the `IOKitPersonalities` of the respective kexts' `info.plist`. Here is an example from `AMD9500Controller.kext` located in S/L/E:
