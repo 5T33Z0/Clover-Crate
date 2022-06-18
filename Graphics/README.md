@@ -57,7 +57,7 @@ For further instruction on how to configure on-board graphics for supported Inte
 Listed below are all parameters related to the `Inject ATI` feature. For more insight check out Rampage Dev's in-depth [AMD Graphics Guide](https://web.archive.org/web/20170814210930/http://www.rampagedev.com/guides/graphic-cards-injection/) for old AMD GPUs.
 
 ### FB Name
-**Framebuffer Name**. Specific to ATI/AMD GPUs. More than 70 different framebuffer names exist for various AMD Video Controller kexts. Each has a unique name to identify it (check the extensive list in Clover Configurator) and contains different video output mappings as defined in the `IOKitPersonalities` of the respective kexts' `info.plist`. Here is an example from `AMD9500Controller.kext` located in S/L/E:
+**Framebuffer Name** – specific to ATI/AMD GPUs. More than 70 different framebuffers exist for various AMD Video Controller kexts. Each Framebuffer has a unique name to identify it (check the extensive list in Clover Configurator) containing different video output mappings as defined in the `IOKitPersonalities` of the respective kexts' `info.plist`. Here is an example from `AMD9500Controller.kext` located in `S/L/E`:
 
 ![FB_name](https://user-images.githubusercontent.com/76865553/166189455-06fe0e53-3f3b-4675-9972-d828872b5d57.png)
 
@@ -65,21 +65,9 @@ To find the Controller kext used by your AMD/ATI card, run Hackintool, click on 
 
 Usually, Clover automatically picks an appropriate Framebuffer for common cards it detects. However, you can choose a custom one from the dropdown menu or enter a name manually if the detection fails or the default Framebuffer causes issues. Just make sure it matches the Controller used in your ATI/AMD Card (Hackintool is your friend).
 
-OpenCore users have to do this via `DeviceProperties`: 
-- Add the PCIRoot Address entry for the GPU (use Hackintool to export the device list)
-- Add the corresponding `AAPL,slot-name` (check `pcidevices.plist`)
-- Add its `device-id` (this determines which Controller kext will be used)
-- Add `fb_name` property with the name of the desired Framebuffer as a String.</br>
-**Example**:</br>
-![DEVPROP](https://user-images.githubusercontent.com/76865553/166193678-e009e15d-f065-4e4f-adf0-b6350e042181.png)
-
-**NOTES**:
-
-- You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
-- Injecting "FB name" it might cause conflicts when WhateverGreen is active, because WEG uses the default `AMDRadeonFramebuffer` to do its magic.
-
 #### `Inject ATI` and `FB Name` in macOS Monterey
-Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3+ with newer GPUs. Do the following to enable the correct framebuffer for your AMD GPU:
+Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3+ with newer GPUs ([**Source**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2778575)). 
+Do the following to enable the correct framebuffer for your AMD GPU:
 
 1. Enable `Inject ATI`
 2. Under `FB Name`, enter the name of the Framebuffer Patch matching the Controller in your GPU or select one from the dropdown menu:
@@ -89,8 +77,14 @@ Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were u
 	- **RX5700** &rarr; `Adder`
 	- **RX5500** &rarr; `Python`
 	- **RX570** &rarr; `Orinoco`
+3. Add `SSDT-NAVI.aml` to `EFI/CLOVER/ACPI/patched` (contains the necessary device renames)
+4. Disable Whatevergreen.kext (move to `/kexts/off`)
 
-**Source**: [**Clover Changes**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2778575)
+**NOTES**:
+
+- :warning: Make sure to have a working backup of your EFI folder on a FAT32 formated flash drive.
+- Injecting "FB name" might cause conflicts if WhateverGreen is active, because WEG uses the default `AMDRadeonFramebuffer` to do its magic.
+- You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
 
 #### Patching ATI/AMD Connectors
 ATI/AMD framebuffers can be patched to assign the video output to different connectors. You can follow [this guide](https://www.insanelymac.com/forum/topic/282787-clover-v2-instructions/#comment-1853099) if you have need to re-assign the output. But keep in mind that this guide is from 2012 so I don't know if it is still working today. 
