@@ -84,9 +84,8 @@ Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were u
 1. Enable `Inject ATI`
 2. Under `FB Name`, enter the name of the Framebuffer Patch matching the Controller in your GPU or select one from the dropdown menu:
 	- **RX6900** &rarr; `Carswell`
-	- **RX6600/XT** &rarr; `Henbury`
 	- **RX6800** &rarr; `Belknap`
-	- **RX6600** &rarr; `Henbury` 
+	- **RX6600/XT** &rarr; `Henbury` 
 	- **RX5700** &rarr; `Adder`
 	- **RX5500** &rarr; `Python`
 	- **RX570** &rarr; `Orinoco`
