@@ -5,6 +5,29 @@ This is for users planning to convert their working OpenCore Config to Clover. I
 
 The most relevant sections for converting a OpenCore config to Clover and vice versa are: "ACPI", "Device Properties", "Kernel and Kext Patches" and "Quirks", which will be covered here.
 
+<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
+
+- [ACPI](#acpi)
+	- [ACPI > Add](#acpi--add)
+	- [ACPI > Delete](#acpi--delete)
+	- [ACPI > Patch](#acpi--patch)
+	- [ACPI > Quirks](#acpi--quirks)
+- [DeviceProperties](#deviceproperties)
+- [Kernel](#kernel)
+	- [Kernel > Add](#kernel--add)
+	- [Kernel > Patch](#kernel--patch)
+- [NVRAM > Add > 7C436110-AB2A-4BBB-A880-FE41995C9F82](#nvram--add--7c436110-ab2a-4bbb-a880-fe41995c9f82)
+- [Quirks](#quirks)
+	- [Kernel > Quirks](#kernel--quirks)
+- [Exchanging SMBIOS Data between OpenCore and Clover](#exchanging-smbios-data-between-opencore-and-clover)
+	- [Manual method](#manual-method)
+		- [Troubleshooting](#troubleshooting)
+		- [Clover r5146 beta bug](#clover-r5146-beta-bug)
+	- [SMBIOS Data Import/Export with OCAT](#smbios-data-importexport-with-ocat)
+	- [1-Click-Solution for Clover Users](#1-click-solution-for-clover-users)
+</details>
+
+
 ## ACPI
 In general, you can use the same SSDTs (.aml) in Clover as in OpenCore. Since Clover does not inject ACPI Tables in Windows, they don't require the if OSI Darwin method. Some SSDTs which are required by OpenCore are not necessary in Clover since they are included as ACPI fixes, which are injected during boot.
 
@@ -16,7 +39,7 @@ Following is an incomplete list of .aml files not needed in Clover, since it pro
 `SSDT-AC`| Use `FixAdp1` instead
 `SSDT-DTGP` | Use `AddDTGP` to inject the `DTGP` method into the `DSDT` instead
 `SSDT-HPET`| Use `FixHPET`, `FixIPIC`, `FixTMR` and `FixRTC` instead. You also don’t need the accompanying rename `change_CRS to XCRS` which is required in OpenCore.
-`SSDT-SBUS-MCHC`|Use `AddDTGP`, `AddMCHC` and `FixSBUS`instead. AddDTGP is required because the code sippet added by Clover when FixSBUS is enabled, uses DTGP to pass through arguments. Otherwise you will find a "unknown method" compiler comment in the DSDT when searching for "DTGP".
+`SSDT-SBUS-MCHC`|Use `AddDTGP`, `AddMCHC` and `FixSBUS`instead. `AddDTGP` is required because the code sippet added by Clover when FixSBUS is enabled, uses DTGP to pass through arguments. Otherwise you will find a "unknown method" compiler comment about DTGP the end of the DSDT.
 
 To be continued…
 
