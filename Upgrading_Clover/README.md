@@ -1,5 +1,8 @@
 # Upgrading Clover for macOS 11+ compatibility
 >:warning: The following Guide is for UEFI only!
+
+**TABLE of CONTENTS**
+
 - [Why Upgrade?](#why-upgrade)
 - [Who is this Guide for?](#who-is-this-guide-for)
 - [Problem Description](#problem-description)
@@ -12,6 +15,7 @@
 - [`OpenRuntime.efi` and older Clover builds (< r5142)](#openruntimeefi-and-older-clover-builds--r5142)
 - [Using the .pkg Installer to upgrade Clover](#using-the-pkg-installer-to-upgrade-clover)
 - [Further Resources and Troubleshooting](#further-resources-and-troubleshooting)
+
 ## Why Upgrade?
 Clover's previous `AptioMemoryFixes` no longer work in macOS 11 and newer. Therefore, OpenCore's memory fixes (included in `OpenRuntime.efi`) have been implemented to keep Clover alive. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is *mandatory* to install and boot macOS 11 and newer. 
 
@@ -146,7 +150,6 @@ This is for users who want to use the pkg installer instead. Don't do this if yo
 
 Good luck!
 
-**NOTES**
-
+## NOTES
 - For Big Sur and newer, remove the PreBoot Volume from the "Hide" Section of the GUI because macOS requires it for booting!
 - Even if you don't want to upgrade macOS past Catalina, an upgrade to the new Clover is recommended since kext injection via Open Runtime is cleaner, and you have much more control over the applied memory fixes. The system also boots faster.
