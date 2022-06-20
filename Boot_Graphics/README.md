@@ -1,5 +1,6 @@
 # Boot Graphics
 ![BootGraphics](https://user-images.githubusercontent.com/76865553/136703531-d311f0d3-d296-4120-b31c-934ca9bea353.jpeg)
+
 ## DefaultBackground Color
 Background color (in HEX) for the macOS boot menu.
 

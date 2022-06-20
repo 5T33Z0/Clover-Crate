@@ -204,8 +204,8 @@ In this case, you can use Hackintool to identify the problem:
 - Change to the other Boot Manager and start macOS
 - If the data is correct you won't have to enter your Apple ID Password again (double-check in Hackintool to verify).
 
-#### Clover r5147 beta bug
-There's currently an issue with r5147 beta which results in the Endianness of the first 3 pairs of the System-ID being switched:
+#### Clover r5146 beta bug
+There's currently an issue with r5146 beta which results in the Endianness of the first 3 pairs of the System-ID being switched:
 
 ![](/Users/steezonics/Desktop/Flipped.png)
 

@@ -1,7 +1,30 @@
 # Kernel and Kext Patches
 ![KernelQuirks](https://user-images.githubusercontent.com/76865553/136670474-678b7ae1-b5ec-4791-963a-7af091a833ca.png)
 
-This is a group of parameters for creating binary patches on the fly. Note that this can only be done if the kernel cache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 categories: one with Kernel Patches which you can click to enable. These are primarily for making your CPU work with macOS. The second category is for creating your own patches which can be applied to kexts and kernels themselves. 
+A group of parameters for creating binary patches on the fly. Note that this can only be done if the kernel cache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 categories: one with Kernel Patches which you can click to enable. These are primarily for making your CPU work with macOS. The second category is for creating your own patches which can be applied to kexts and kernels themselves. 
+
+<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
+
+- [ATI Section](#ati-section)
+  - [ATIConnectorsController](#aticonnectorscontroller)
+  - [ATIConnectorsData](#aticonnectorsdata)
+  - [ATIConnectorsPatch](#aticonnectorspatch)
+- [Kernel Patches](#kernel-patches)
+  - [AppleIntelCPUPM](#appleintelcpupm)
+  - [AppleRTC](#applertc)
+  - [Debug](#debug)
+  - [DellSMBIOSPatch](#dellsmbiospatch)
+  - [FakeCPUID](#fakecpuid)
+  - [EightApple](#eightapple)
+  - [KernelLapic](#kernellapic)
+  - [KernelPm](#kernelpm)
+  - [KernelXCPM](#kernelxcpm)
+- [About Patching Masks](#about-patching-masks)
+  - [KextsToPatch](#kextstopatch)
+  - [KernelToPatch](#kerneltopatch)
+  - [BootPatches](#bootpatches)
+</details>
+
 
 ## ATI Section
 This section applies to macOS 10.7 and newer using ATI/AMD Graphics Cards. There are 3 fields where data has to be entered to get the card and its connectors fully working in macOS:

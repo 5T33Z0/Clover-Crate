@@ -1,16 +1,38 @@
 # Graphics
 ![Graphics](https://user-images.githubusercontent.com/76865553/136713622-7300a5e5-de05-413a-b748-579b95a36d58.jpeg)
 
+<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
+
+- [Inject](#inject)
+- [Inject Intel](#inject-intel)
+	- [ig-platform-id](#ig-platform-id)
+- [Inject ATI](#inject-ati)
+	- [FB Name](#fb-name)
+		- [`Inject ATI` and `FB Name` in macOS Monterey](#inject-ati-and-fb-name-in-macos-monterey)
+		- [Patching ATI/AMD Connectors](#patching-atiamd-connectors)
+	- [RadeonDeInit](#radeondeinit)
+- [Inject Nvidia](#inject-nvidia)
+	- [NVCAP](#nvcap)
+	- [NvidiaGeneric](#nvidiageneric)
+	- [NvidiaSingle](#nvidiasingle)
+	- [NvidiaNoEFI](#nvidianoefi)
+- [Dual Link](#dual-link)
+- [EDID](#edid)
+- [Load VBios](#load-vbios)
+- [PatchVbios](#patchvbios)
+- [VRAM](#vram)
+</details>
+
 This group of parameters serves to inject Properties for various graphics cards, on-board and discrete. There are many parameters that are actually injected, but they are mostly constants, some are calculated, some are defined in the internal table and only very few parameters are entered via config.
 
 Since this menu is very convoluted I will group parameters together by vendor (Intel, ATI/AMD and NVIDIA)
 
-**ATTENTION!** Most of the options available in this section are obsolete in 2021. Instead, framebuffer patches are entered via `Devices/Properties`. The only settings which are still useful are the entries in the dropdown menu of `ig-platform-id` for Intel iGPUs (up to Coffee Lake).
+**ATTENTION!** Nowadays, framebuffer patches are entered primarily via `Devices/Properties`. Settings which are still useful today are: `ig-platform-id` for Intel iGPUs (up to Intel Coffee Lake) and `Inject ATI` in combination with `FB Name` for improving performance of current AMD cards in macOS Monterey.
 
 ## Inject
-The `Inject` feature is the successot of Chameleon's `GraphicsEnabler`. It can inject about two dozen parameters into macOS, not only based on the GPU model, but also on its internal characteristics after analyzing its VBIOS.
+The `Inject` feature is the successor of Chameleon's `GraphicsEnabler`. It can inject about two dozen parameters into macOS, not only based on the GPU model, but also on its internal characteristics after analyzing its VBIOS.
 
-For Nvidia cards, `NVCAP` is calculated, for Intel on-board graphics dozens of parameters are applied, for ATI/AMD cards frambuffers and connectors are injected. To list all of them would exceed the scope of this guide. Moreover, for most modern GPUs, you don't even need to the inject features in most cases, since Apple ensured that they work out of the box.
+For NVIDIA cards, `NVCAP` is calculated, for Intel on-board graphics dozens of parameters are applied, for ATI/AMD cards frambuffers and connectors are injected. To list all of them would exceed the scope of this guide. Moreover, for most modern GPUs, you don't even need to the inject features in most cases, since Apple ensured that they work out of the box.
 
 You can enable the injection of parameters based on vendors:
 
@@ -18,11 +40,13 @@ You can enable the injection of parameters based on vendors:
 - `Inject ATI` &rarr; For ATI/AMD GPUs. See "[**FB Name**](https://github.com/5T33Z0/Clover-Crate/tree/main/Graphics#fb-name)" for details.
 - `Inject NVidia` &rarr; For older NVIDIA Cards, **not** requiring on NVIDIA WebDrivers.</br> Kepler cards and newer (e.g. Maxwell or Pascal) rely on WebDrivers. These can only be installed in post-install. Therefore, you need to do the following:
 	- Use boot-arg `nv_disable=1` to disable the card and use the software renderer to display an image during the macOS installation instead. 
-	- Once macOS is running, [**download**](https://www.tonymacx86.com/nvidia-drivers/) and install the appropriate WebDriver for your macOS build (supported up to macOS High Sierra only). 
+	- Once macOS is running, [**download**](https://www.tonymacx86.com/nvidia-drivers/) and install the appropriate WebDriver for your macOS build (supported up to macOS High Sierra only).[^1] 
 	- Next, delete the `nv_disable=1` boot-arg 
 	- In the **System Parameters** Section, enable **NvidiaWeb**
 	- Save your `config.plist` and reboot. Graphics acceleration should work now.</br>
 	For more details about using NVIDIA cards, please refer to the [**Nvidia GeForce FAQs**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.GeForce.en.md).
+
+[^1]: Although NVIDIA Cards ***were*** officially supported up to macOS High Sierra, you can no longer install Nvidia Web Drivers since [Nvidia revoked the certificates](https://twitter.com/khronokernel/status/1532545973372588033) shortly after Khronokernel figured out how to enable Nvidia Web Drivers in macOS Monterey. I don't know if this also affects previously installed Web Drivers (I guess you have to stay offline to not lose the Certs), but at this stage my advice would be to just move on and switch to AMD.
 
 **NOTES**: 
 

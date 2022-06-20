@@ -1,6 +1,35 @@
 # Devices
 ![Devices](https://user-images.githubusercontent.com/76865553/136703701-40771976-3d25-4fd7-8c63-d51d5b498224.jpeg)
 
+<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
+
+- [FakeID](#fakeid)
+- [USB](#usb)
+	- [Inject](#inject)
+	- [Add ClockID](#add-clockid)
+	- [FixOwnership](#fixownership)
+	- [HighCurrent](#highcurrent)
+	- [NameEH00](#nameeh00)
+- [Audio](#audio)
+	- [Inject](#inject-1)
+	- [AFGLowPowerState](#afglowpowerstate)
+	- [ResetHDA](#resethda)
+- [Properties](#properties)
+	- [Properties (Tab)](#properties-tab)
+	- [Properties (HEX)](#properties-hex)
+	- [AddProperties (deprecated)](#addproperties-deprecated)
+	- [Arbitrary (Tab) (deprecated)](#arbitrary-tab-deprecated)
+	- [Inject](#inject-2)
+	- [NoDefaultProperties](#nodefaultproperties)
+	- [UseIntelHDMI](#useintelhdmi)
+	- [HDMIInjection](#hdmiinjection)
+	- [ForceHPET](#forcehpet)
+	- [SetIntelBacklight](#setintelbacklight)
+	- [LANInjection](#laninjection)
+- [Addendum](#addendum)
+	- [About `AAPL,slot-name`](#about-aaplslot-name)
+</details>
+
 In this Section, you can:
 
 - Add Audio Layout IDs

@@ -1,18 +1,40 @@
 # GUI
-This section is for configuring the look and behavior of Clover's Boot menu GUI as well as defining which Volumes are displayed.
-
 ![GUI](https://user-images.githubusercontent.com/76865553/136703745-7ec35d11-5458-482c-a8c8-ccaf48d9650d.jpeg)
 
-### CustomIcons
-Enabling this key will use custom disk icons stored in in the root folder of the volumes themselves, instead of using the disk icon from a theme. It is this file: `.VolumeIcon.icns` which is a hidden file. To show all files in Finder, use:
+<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
 
-`defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder`
+- [CustomIcons](#customicons)
+- [Theme](#theme)
+  - [EmbeddedThemeType](#embeddedthemetype)
+- [Timezone](#timezone)
+- [KbdPrevLang](#kbdprevlang)
+- [Language](#language)
+- [ScreenResolution](#screenresolution)
+- [Console Mode](#console-mode)
+- [PlayAsync](#playasync)
+- [ProvideConsoleGop](#provideconsolegop)
+- [ShowOptimus](#showoptimus)
+- [TextOnly](#textonly)
+- [Mouse](#mouse)
+  - [Enabled](#enabled)
+  - [Speed](#speed)
+  - [Mirror](#mirror)
+- [Scan](#scan)
+  - [Entries](#entries)
+  - [Legacy](#legacy)
+  - [Tool](#tool)
+  - [Linux](#linux)
+  - [Kernel](#kernel)
+- [Custom Entries](#custom-entries)
+- [Hide Volume](#hide-volume)
+</details>
 
-After you're done with your changes, set it to `FALSE` again:
+This section is for configuring the look and behavior of Clover's Boot menu GUI as well as defining which Volumes are displayed.
 
-`defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder`
+## CustomIcons
+Enabling this key will use custom disk icons (`.VolumeIcon.icns`) stored in in the root folder of the volumes themselves, instead of using the disk icon from a theme. Since this is a hidden file, you have to press `Cmd–Shift–.` in Finder to reveal/hide it.
 
-### Theme
+## Theme
 Enter the name of a theme installed in `EFI\Clover\themes\ThemeXYZ` for example. Use the folder name for reference. In this example, enter "ThemeXYZ".
 
 A collection of themes can be found on the [Clover Github Repo](https://github.com/CloverHackyColor/CloverThemes). Some of them are really old and might not be compatible with the newest version of Clover which results in a broken boot menu GUI. So make sure to test them first by booting from a FAT32 formatted USB flash drive with the EFI folder first,
@@ -20,26 +42,26 @@ A collection of themes can be found on the [Clover Github Repo](https://github.c
 ### EmbeddedThemeType
 Select between `Dark` and `Light` variant of an embedded theme. If left unset, the variants are picked based by the real time clock – light during the day, dark at night (if it's supported by the theme). Introduced in r4773.
 
-### Timezone
+## Timezone
 Clover r4773 introduced the concept of changing theme styles of embedded themes depending on the time of day. From 8:00 AM to 8:00 PM a light variant will be used and from 8:00 PM to 8:00 AM the dark variant will be used. It's based on GMT timing, so add or subtract the number of hours for your location.
 
-### KbdPrevLang
+## KbdPrevLang
 Select your preferred Keyboard Layout for macOS if you want to save the system language when upgrading macOS with native NVRAM.
 
 In combination with `Language`, this can used to fix an issue when installing beta versions of macOS. These sometimes do not include other languages besides english. In this case you will just see a gray screen where there the install assistant should be. Just set `Language` to `en-US:0` and you will be fine. 
 
-### Language
+## Language
 Currently, setting the language only makes sense for the "Help" menu called by the F1 Key. However, this value is sent to the system and can affect the default language.
 
-### ScreenResolution
+## ScreenResolution
 Here you can change the default resolution of the Clover GUI. The default/fallback is 1024x768 px. Clover tries to detect and set the highest possible resolution supported by your screen and graphics card automatically. But you can pick the correct or desired resolution from the dropdown menu yourself if auto-detection fails. You'll find the list of supported video modes in the boot-log.
 
 If `PatchVBios` is enabled in the `Graphics` section, you will see the maximum resolution available for your monitor. In this case, the `ScreenResolution` parameter may be superfluous. With some configurations though, enabling the `PatchVBios` will result in a black screen. In this case, Clover requires the `EDID` of the monitor. Legacy Clover tries to get it through BIOS calls, often successfully, sometimes not. UEFI Clover queries the UEFI BIOS, which probably has the `EDID` for iGPUs and probably doesn't for the discrete GPUs. Check the preboot.log – if no `EDID` is listed there, you need to enter it manually.
 
-### Console Mode
+## Console Mode
 The correct value can be found in your `boot.log`, or set it to `Max` and the maximum possible resolution will be used for console mode.
 
-### PlayAsync
+## PlayAsync
 Clover r4833 added audio support for the Boot menu via the `AudioDxe.efi` driver. `PlayAsync` determines the playback mode of the boot chime: either sequential or simultaneously. With synchronous playback (default), the boot process is sequential: chime first, then the bootloader kicks in. If `PlayAsync` is enabled, the boot process will run parallel or simultaneously to the audio playback. The chime has to be named `sound.wav` for day themes and `sound_night.wav` for night mode and needs to be placed in the root folder of the used theme.
 
 **NOTES**: 
@@ -47,17 +69,17 @@ Clover r4833 added audio support for the Boot menu via the `AudioDxe.efi` driver
 - If the file is too long it will be cut off when macOS takes control of the audio driver. 
 - In my opinion (5T33Z0), this feature should have been called `PlaySimult` instead, because that what it does. Using the term `asynchronous` in the context of audio evokes a feeling of audio issues rather than a feature.
 
-### ProvideConsoleGop
+## ProvideConsoleGop
 Creates a GOP protocol for console mode, i.e. for text output not in text mode, as you are used to doing in PC BIOS, but in graphical mode, as Apple does.
 
 In revisions prior to r5128, this setting was also present in Quirks as `ProvideConsoleGopEnable` but has since been removed to avoid duplicate parameters.
 
 `ProvideConsoleGop` from GUI will override `ProvideConsoleGopEnable` from the `Quirks` section  – just in case you forgot to remove this parameter from the config when updating the Clover.
 
-### ShowOptimus
+## ShowOptimus
 Enables an on-screen notification in the Boot menu about which GPUs are enabled, so you can disabled discrete Optimus GPUs on the fly since they are not supported by macOS. If on-board and discrete GPU are enabled, the notification `Intel Discrete` is displayed.
 
-### TextOnly
+## TextOnly
 Text-only menu mode for a minimal GUI and faster loading times (like it was 1984 all over again).
 
 ## Mouse

@@ -3,21 +3,21 @@
 
 <details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
 
-- [CPU](#cpu)
-  - [Frequency (in MHz)](#frequency-in-mhz)
-  - [Bus Speed (in kHz)](#bus-speed-in-khz)
-  - [QPI](#qpi)
-  - [Latency](#latency)
-  - [Type](#type)
-  - [TDP](#tdp)
-  - [SavingMode](#savingmode)
-  - [HWPEnable (= Intel Speed Shift)](#hwpenable--intel-speed-shift)
-  - [HWPValue](#hwpvalue)
-  - [UseARTFrequency](#useartfrequency)
-  - [TurboDisable](#turbodisable)
-  - [QEMU](#qemu)
-  - [C2, C4, C6 (deprecated)](#c2-c4-c6-deprecated)
+- [Frequency (in MHz)](#frequency-in-mhz)
+- [Bus Speed (in kHz)](#bus-speed-in-khz)
+- [QPI](#qpi)
+- [Latency](#latency)
+- [Type](#type)
+- [TDP](#tdp)
+- [SavingMode](#savingmode)
+- [HWPEnable (= Intel Speed Shift)](#hwpenable--intel-speed-shift)
+- [HWPValue](#hwpvalue)
+- [UseARTFrequency](#useartfrequency)
+- [TurboDisable](#turbodisable)
+- [QEMU](#qemu)
+- [C2, C4, C6 (deprecated)](#c2-c4-c6-deprecated)
 </details>
+
 This section allows to manually set parameters for the CPU if the internal algorithms fail to auto-detect the correct parameters. This section is only covered for the sake of completeness. The bottom line is: **you don't change anything here unless it's unavoidable and you know what you are doing!** 
 
 ## Frequency (in MHz)
