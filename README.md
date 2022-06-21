@@ -21,7 +21,7 @@ I created this repo for several reasons:
 | :warning: | THIS is NOT a Hackintosh Guide! |
 |-----------|:--------------------------------|
 
-  The information provided in this repository is primarily based on excerpts of the official Russian documentation for Clover using AI-based translation tools (deepl, google and yandex translate). The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their meaning. Nevertheless, some facts may have been lost during the process of translation.
+The information provided in this repository is based on excerpts of the official Russian documentation for Clover using AI-based translation tools (deepl, google and yandex translate) as well as my own extensive research. The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their meaning. Nevertheless, some details may have been lost in translation (although I doubt it).
 </details>
 
 ## TABLE of CONTENTS
