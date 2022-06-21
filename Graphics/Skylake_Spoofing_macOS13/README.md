@@ -28,6 +28,7 @@ Run either [VDADecoderChecker](https://i.applelife.ru/2019/05/451893_10.12_VDADe
 
 ## CREDITS
 - PMheart for the Patch 
-- Acidanthera for the kexts
+- Acidanthera for Lilu and Whatevergreen
+- Lorys89 for SKLAsKBLGraphicsInfo.kext
 - Slice et. al. for Clover
 - Cyberdevs for the [settings](https://www.insanelymac.com/forum/topic/351969-pre-release-macos-ventura/?do=findComment&comment=2785675)
