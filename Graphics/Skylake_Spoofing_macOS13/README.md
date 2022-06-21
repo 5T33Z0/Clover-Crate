@@ -1,5 +1,5 @@
 # Enabling Skylake Graphics in macOS 13
-![](/Users/5t33z0/Desktop/spoofkbl.png)
+![spoofkbl](https://user-images.githubusercontent.com/76865553/174734416-c00fd81f-644f-43dd-a44b-80831d859894.png)
 
 With the release of macOS 13 beta, support for 4th to 6th Gen CPUs was [dropped](https://github.com/dortania/OpenCore-Legacy-Patcher/issues/998) – on-board graphics included. In order to enable integrated graphics, you need to spoof Kaby Lake Framebuffers. The example below is from an i7 6700K.
 
