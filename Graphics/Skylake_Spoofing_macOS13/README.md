@@ -22,13 +22,13 @@ Do the following to enable Intel HD 530 on-board graphics in macOS 13:
 - Save you config and reboot
 
 ## Verifying
-Run either [VDADecoderChecker](https://i.applelife.ru/2019/05/451893_10.12_VDADecoderChecker.zip) or VideoProc. In this case, iGPU Acceleration is working fine:
+Run either [**VDADecoderChecker**](https://i.applelife.ru/2019/05/451893_10.12_VDADecoderChecker.zip) or VideoProc. In this case, iGPU Acceleration is working fine:
 
 ![videoproc_HD530](https://user-images.githubusercontent.com/76865553/174106261-050c342d-66f9-4f98-b63c-c4bbea3f7f28.png)
 
-## CREDITS
+## NOTES and CREDITS
+- The previously used, additional `SKLAsKBLGraphicsInfo.kext` is no longer required
 - PMheart for the Patch 
 - Acidanthera for Lilu and Whatevergreen
-- Lorys89 for SKLAsKBLGraphicsInfo.kext
 - Slice et. al. for Clover
 - Cyberdevs for the [settings](https://www.insanelymac.com/forum/topic/351969-pre-release-macos-ventura/?do=findComment&comment=2785675)
