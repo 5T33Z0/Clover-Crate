@@ -15,13 +15,13 @@ I created this repo for several reasons:
 3. **Consolidating and Unifying** sources which are scattered all over the net: the manual is only available in Russian on GitHub, the changelog is only available at insanelymac and only updated sporadically. The Clover Wiki at Source Forge hasn't been updated in years.
 4. **Exemplifying** Clover's features using Clover Configurator.
 
-<details>
-<summary><strong>DISCLAIMER</strong></summary>
+<details><summary><strong>DISCLAIMER</strong></summary>
 
 | :warning: | THIS is NOT a Hackintosh Guide! |
 |-----------|:--------------------------------|
 
 The information provided in this repository is based on excerpts of the official Russian documentation for Clover using AI-based translation tools (deepl, google and yandex translate) as well as my own extensive research. The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their meaning. Nevertheless, some details may have been lost in translation (although I doubt it).
+
 </details>
 
 ## TABLE of CONTENTS
