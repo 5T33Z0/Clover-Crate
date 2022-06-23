@@ -5,8 +5,8 @@ With the release of macOS 13 beta, support for 4th to 6th Gen CPUs was [dropped]
 
 Do the following to enable Intel HD 530 on-board graphics in macOS 13: 
 
-- Download the latest version of [**Lilu**](https://dortania.github.io/builds/?product=Lilu&viewall=true) available on Dortania's Build Repo and unzip it
-- [**Download**](https://dortania.github.io/builds/?product=WhateverGreen&viewall=true) the latest version of Whatevergreen from Dortania's build repo.
+- [**Download**](https://dortania.github.io/builds/?product=Lilu&viewall=true) the latest version of Lilu from Dortania's Build Repo.
+- [**Download**](https://dortania.github.io/builds/?product=WhateverGreen&viewall=true) the latest version of Whatevergreen as well.
 - Mount your EFI
 - Add the kexts to `EFI/CLOVER/kexts/other`.
 - Open the config.plist.
