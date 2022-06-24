@@ -51,7 +51,7 @@ This section contains pre-configured config.plists for running macOS on Desktop 
 
 ## Building your EFI Folder
 - Download or update [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/)
-- Download the [**Clover EFI Package**](https://github.com/5T33Z0/Clover-Crate/blob/main/Desktop_Configs/EFI_Clover_r5145.zip?raw=true) and unpack it
+- Download the [**Clover EFI Package**](https://github.com/5T33Z0/Clover-Crate/blob/main/Desktop_Configs/EFI_Clover_r5146.zip?raw=true) and unpack it
 - Copy the config for the CPU family of your choice to `EFI\CLOVER`
 - Copy the included SSDT files for the chosen CPU to `EFI\CLOVER\ACPI\patched` 
 - Continue reading the [**"About the configs"**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs#about-the-configs) section for your CPU…
