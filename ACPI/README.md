@@ -597,6 +597,6 @@ Advanced Hackers can use a binary rename to fix it (not covered here).
 Here you can specify the name of your **patched** custom DSDT if it is called something other than `DSDT.aml`, so that Clover picks it up and applies it.
 
 ## Resources
-
+- ACPI [Specifications](https://uefi.org/htmlspecs/ACPI_Spec_6_4_html/)
 - ASL Tutorial by acpica.org ([PDF](https://acpica.org/sites/acpica/files/asl_tutorial_v20190625.pdf)). Good starting point if you want to get into fixing your `DSDT` with `SSDT` hotpatches.
 - If you are eager to find out how each of the automated `DSDT` patches and fixes in this sections are realized, you can delve deep into the [source code](https://github.com/CloverHackyColor/CloverBootloader/blob/81f2b91b1552a4387abaa2c48a210c63d5b6233c/rEFIt_UEFI/Platform/FixBiosDsdt.cpp).
