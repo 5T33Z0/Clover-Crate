@@ -8,17 +8,17 @@ The most relevant sections for converting a OpenCore config to Clover and vice v
 <details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
 
 - [ACPI](#acpi)
-	- [ACPI > Add](#acpi--add)
-	- [ACPI > Delete](#acpi--delete)
-	- [ACPI > Patch](#acpi--patch)
-	- [ACPI > Quirks](#acpi--quirks)
+	- [ACPI/Add](#acpiadd)
+	- [ACPI/Delete](#acpidelete)
+	- [ACPI/Patch](#acpipatch)
+	- [ACPI/Quirks](#acpiquirks)
 - [DeviceProperties](#deviceproperties)
 - [Kernel](#kernel)
-	- [Kernel > Add](#kernel--add)
-	- [Kernel > Patch](#kernel--patch)
-- [NVRAM > Add > 7C436110-AB2A-4BBB-A880-FE41995C9F82](#nvram--add--7c436110-ab2a-4bbb-a880-fe41995c9f82)
+	- [Kernel/Add](#kerneladd)
+	- [Kernel/Patch](#kernelpatch)
+- [NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82](#nvramadd7c436110-ab2a-4bbb-a880-fe41995c9f82)
 - [Quirks](#quirks)
-	- [Kernel > Quirks](#kernel--quirks)
+	- [Kernel/Quirks](#kernelquirks)
 - [Exchanging SMBIOS Data between OpenCore and Clover](#exchanging-smbios-data-between-opencore-and-clover)
 	- [Manual method](#manual-method)
 		- [Troubleshooting](#troubleshooting)
@@ -29,7 +29,7 @@ The most relevant sections for converting a OpenCore config to Clover and vice v
 ## ACPI
 In general, you can use the same SSDTs (.aml) in Clover as in OpenCore. Since Clover does not inject ACPI Tables in Windows, they don't require the if OSI Darwin method. Some SSDTs which are required by OpenCore are not necessary in Clover since they are included as ACPI fixes, which are injected during boot.
 
-### ACPI > Add
+### ACPI/Add
 Following is an incomplete list of .aml files not needed in Clover, since it provides DSDT `Fixes` for them:
 
 |SSDT Name | Clover DSDT Fixes
@@ -41,10 +41,10 @@ Following is an incomplete list of .aml files not needed in Clover, since it pro
 
 To be continued…
 
-### ACPI > Delete
-The ACPI > Delete section is meant for deleting certain Tables from ACPI (usually combined with other SSDTs to replace them, like SSDT-PM or SSDT-PLUG for example).
+### ACPI/Delete
+The ACPI/Delete section is meant for deleting certain Tables from ACPI (usually combined with other SSDTs to replace them, like SSDT-PM or SSDT-PLUG for example).
 
-In Clover Configurator, this section is located under ACPI > Drop Tables. These are the available parameters:
+In Clover Configurator, this section is located under ACPI/Drop Tables. These are the available parameters:
 
 | OpenCore        | Clover              |
 |:----------------|:--------------------|
@@ -68,13 +68,13 @@ In Clover Configurator, this section is located under ACPI > Drop Tables. These 
 - In Clover, you enter actual names whereas in OpenCore you have to use HEX values.
 - You have to use either `TableID` or `TableLength`, not both.
 
-### ACPI > Patch
+### ACPI/Patch
 While Binary Renames work the same in OpenCore and Clover, you have a lot more options in OpenCore:
 
 | OpenCore        | Clover    |
-|:---------------:|:----------:|
+|:---------------:|:---------:|
 | Comment         | Comment   |
-| Find		  | Find      |
+| Find		        | Find      |
 | Replace         | Replace   |
 | Base            | use [TgtBridge](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#tgtbridge) instead|
 | Enabled         | Disabled  |
@@ -94,7 +94,7 @@ In Clover you also have the option "RenameDevices" which works the same as the `
 In OCAT you enter the path to a device in the `base` field (don't forget to enable them):</br>
 ![Dev_base](https://user-images.githubusercontent.com/76865553/138652948-fc403674-e434-4980-8062-a1ae1e787ab6.png)
 
-### ACPI > Quirks
+### ACPI/Quirks
 
 | OpenCore          | Clover    |
 |-------------------|-----------|
@@ -116,7 +116,7 @@ Besides that they work the same and the data is interchangeable.
 ## Kernel
 For users who want to convert their Kext and Kernel Patches from OpenCore to Clover. Note that Clover uses two different sections for patching: one for patching kexts ("KextsToPatch") and one for Patching the Kernel (KernelToPatch), whereas in OpenCore this is handled in the same section ("Kernel > Patch").
 
-### Kernel > Add
+### Kernel/Add
 In Clover, you don't have to add kexts to a list, and you don't have to worry about the kext loading sequence either. Kext dependencies are hard-coded into Clover, so Lilu and VirtualSMC will always load first.
 
 Whereas in OpenCore you need to define which kext loads for which macOS version via `Min/MaxKernel` parameters, Clover determines this much more hands-on by using the EFI folder structure inside `EFI\CLOVER\kexts\`:
@@ -127,7 +127,7 @@ Whereas in OpenCore you need to define which kext loads for which macOS version 
 
 This is a lot less cumbersome than having to set `MinKernel` and `MaxKernel` values for kexts. On the other hand it makes updating kexts a bit more tedious since you have to look in any sub-folder. Additionally, managing kexts this way leads to duplicates, so the overall size of the EFI grows unnecessarily.
 
-### Kernel > Patch
+### Kernel/Patch
 Besides the basic `Find`/`Replace` masks, there are several additional modifiers you can utilize for applying Kernels and Kext patches. In the table below, you find the available options and differences in nomenclature between OpenCore and Clover:
 
 | OpenCore    | Clover         | Description (where applicable) |
@@ -153,7 +153,7 @@ Besides the basic `Find`/`Replace` masks, there are several additional modifiers
 | –           | MatchBuild     | Applies/Limits a patch to a specific system build of macOS, such as `21D5025F`, for example. You can list multiple builds separated by commas. If no value for `MatchBuild` is set, the patch applies to all builds. In general, patching kexts or kernels based on the build version is not very common and rarely needed.
 | –           | InfoPlistPatch | Applies patches to parameters inside `plists` of kexts defined in the `Name` field. The search can include multiple strings, excluding all invisible characters, such as line feeds and tabs. The search should be set as `<data>`, because the service characters such as "<" can not be set in text form. The lengths of the search and replacement strings can be different, but need to have the same length (fill one mask with spaces to match the length of the other one if necessary).
 
-## NVRAM > Add > 7C436110-AB2A-4BBB-A880-FE41995C9F82
+## NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82
 From this UUID, you probably want to transfer:
 
 - `boot-args`: Add these to "Boot" > "Arguments" in Clover
@@ -173,7 +173,7 @@ This is one of the most important aspects of your config. In OpenCore there are 
 
 For more details on how OpenCore's Quirks are implemented into Clover, please refer to the Chapters [**"Quirks"**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) and [**Upgrading Clover for macOS 11+ compatibility**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover).
 
-### Kernel > Quirks
+### Kernel/Quirks
 While most of OpenCore's Kernel Patches are located in Clover's Quirks section, the following are located under Kernel and Kext Patches instead:
 
 | OpenCore (Kernel > Quirks)  | Clover (Kernel and Kext Patches)|
