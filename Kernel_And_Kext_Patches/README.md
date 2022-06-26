@@ -9,12 +9,12 @@ A group of parameters for creating binary patches on the fly. Note that this can
   - [ATIConnectorsController](#aticonnectorscontroller)
   - [ATIConnectorsData](#aticonnectorsdata)
   - [ATIConnectorsPatch](#aticonnectorspatch)
+- [FakeCPUID](#fakecpuid)
 - [Kernel Patches](#kernel-patches)
   - [AppleIntelCPUPM](#appleintelcpupm)
   - [AppleRTC](#applertc)
   - [Debug](#debug)
   - [DellSMBIOSPatch](#dellsmbiospatch)
-  - [FakeCPUID](#fakecpuid)
   - [EightApple](#eightapple)
   - [KernelLapic](#kernellapic)
   - [KernelPm](#kernelpm)
@@ -49,22 +49,7 @@ The Connectors Patch data has to be provided as `<string>`. In this example for 
 
 **NOTE**: In macOS 10.12, the connectors used in this example will be different, so the data used in this example is not representative, although the method for calculating the correct values for `ATIConnectorsData` and `ATIConnectorsPatch` remains the same. 
 
-## Kernel Patches
-These boxes have to be checked when setting-up the required quirks &rarr; [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) for the used CPU. Usually, you need `AppleIntelCPUPM` for older Intel CPUs (up to Ivy Bridge) or `KernelPM` (Haswell and newer).
-
-### AppleIntelCPUPM
-&rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
-
-### AppleRTC
-Obsolete! vit9696 investigated the problem, and corrected RTC operations in Clover, now the recommended key value is `false` because it affects hibernation.
-
-### Debug
-If you want to observe how the Kexts are patched &rarr; For developers.
-
-### DellSMBIOSPatch
-&rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
-
-### FakeCPUID
+## FakeCPUID
 Assigns a different Device-ID to the used CPU. Useful when trying to run older versions of macOS with a newer CPU which isn't supported. For example, if you are trying to run macOS High Sierra or Mojave with a Comet Lake CPU which is not supported prior to macOS 10.15, you can use a Fake CPU-ID of the Coffee Lake CPU family, to make macOS accept it.
 
 Unfortunately, the list of fake CPU-IDs in Clover Configurator is outdated and ends at Kaby Lake. Below you'll find additional IDs for Coffee Lake and newer CPUs:
@@ -79,6 +64,21 @@ Unfortunately, the list of fake CPU-IDs in Clover Configurator is outdated and e
 | [Tiger Lake](https://en.wikipedia.org/wiki/Tiger_Lake_(microprocessor)) | <span style="color:red"> N/A </span> | <span style="color:red"> N/A </span> | <span style="color:red"> Untested </span> | **0x0806C0** (U)|
 
 **SOURCE**: [**Dortania**](https://github.com/dortania/OpenCore-Install-Guide/blob/master/macos-limits.md)
+
+## Kernel Patches
+These boxes have to be checked when setting-up the required quirks &rarr; [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) for the used CPU. Usually, you need `AppleIntelCPUPM` for older Intel CPUs (up to Ivy Bridge) or `KernelPM` (Haswell and newer).
+
+### AppleIntelCPUPM
+&rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
+
+### AppleRTC
+Obsolete! vit9696 investigated the problem, and corrected RTC operations in Clover, now the recommended key value is `false` because it affects hibernation.
+
+### Debug
+If you want to observe how the Kexts are patched &rarr; For developers.
+
+### DellSMBIOSPatch
+&rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### EightApple
 On some systems, the progress bar break down into 8 apples during boot. No confirmation yet if the patch works. Added in r5119.
