@@ -1,14 +1,15 @@
 # Quirks
 
-`Quirks` is a set of features to configure Booter and Kernel Settings in Clover. The underlying technology is OpenCore's `OpenRuntime.efi` which has been fully integrated into Clover since r5126. It replaces the previously used `AptioMemoryFixes` which are no longer capable of booting newer macOS releases. So an upgrade to r5126 or later is mandatory in order to be able to install and boot macOS Big Sur and newer with Clover.
+`Quirks` is a set of features to configure Booter and Kernel Settings in Clover. The underlying technology is OpenCore's `OpenRuntime.efi` which has been fully integrated into Clover since r5126. It replaces the previously used `AptioMemoryFixes` which are no longer capable of booting newer macOS versions. So an upgrade to r5126 or later is mandatory in order to be able to install and boot macOS Big Sur and newer with Clover.
 
 Besides the [misleading claim](https://www.insanelymac.com/forum/topic/351590-intel-uhd-graphics-630-help/?do=findComment&comment=2781905) that Clover will "assign default value[s] for all absent keys [–] *even for Quirks*", you *still* have to configure them *correctly* so your system will boot!
 
 <details>
 <summary><strong>Background: From Aptio Memory Fixes to Quirks</strong></summary>
 
-The development of a driver for adjusting the memory that UEFI BIOS Aptio (by AMI) by Dmazar marked the beginning of the UEFI Boot era for Clover.
-The Allocate function in this BIOS allocates memory in the lower registers, but to boot macOS, the lower memory has to be free. This issue not only affected memory but also `boot.efi`, address virtualization, pointers, functions, etc. It was Dmazar who figured out how to resolve them. This became the `OsxAptioFixDrv.efi` driver.
+The development of a driver for adjusting the memory of the Aptio UEFI BIOS (by AMI) by Dmazar marked the beginning of the UEFI Boot era for Clover.
+
+The Allocate function in this BIOS allocates memory in the lower registers, but to boot macOS, the lower memory has to be freed. This issue not only affected memory but also `boot.efi`, address virtualization, pointers, functions, etc. It was Dmazar who figured out how to resolve the issues which resulted in the `OsxAptioFixDrv.efi` driver.
 
 After Dmazar left, no one touched this driver for a very long time until vit9696 decided to overhaul it. First, he made changes to the driver so that it could utilize native NVRAM on many chipsets, which was not possible before. Next, he broke the new driver (`OpenRuntime.efi`) down into sections of **semantic expressions (quirks), which could then be turned on and off by the user as needed when using the OpenCore Bootloader**.
 
@@ -17,12 +18,12 @@ ReddestDream, a programmer who decided to make `OpenRuntime.efi` work with Clove
 Next, Slice integrated the `OpenRuntime.efi` source code into his repo, so he could do bisectioning. Finally, he integrated the quirks into the structure of the Clover `config.plist`, so that a separate config for quirks was no longer necessary and Quirks could also be changed on the fly from within the bootloader GUI.
 </details>
 
-In order to set up these Quirks correctly, you need to follow the instruction for your CPU family in the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/). Specifically, these sections:
+In order to conifgure Quirks correctly, you need to follow the instruction for your CPU family in the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) – specifically, these sections:
 
-- **Booter > Quirks**
-- **Kernel > Quirks**
-- **Kernel > Scheme**
-- **UEFI > Output: `ProvideConsoleGop`**: Located under "GUI" in Clover config.
+- **Booter/Quirks**
+- **Kernel/Quirks**
+- **Kernel/Scheme**
+- **UEFI/Output: `ProvideConsoleGop`**: Located under "GUI" in Clover config.
 
 ## Booter Quirks
 The following screenshot shows the Booter Quirks subsection which has been introduced in Clover 5.19.00:
@@ -51,7 +52,7 @@ Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Copy th
 > Enables writing to flash memory for all NVRAM system variables handled by OpenRuntime.efi. This value should be disabled on most types of firmware but is left configurable to account for firmware that may have issues with volatile variable storage overflows or similar. Boot issues across multiple OSes can be observed on e.g. Lenovo ThinkPad T430 and T530 without this quirk. Apple variables related to Secure Boot and hibernation are exempt from this for security reasons. Furthermore, some OpenCore variables are exempt for different reasons, such as the boot log due to an available user option, and the TSC frequency due to timing issues. When toggling this option, a NVRAM reset may be required to ensure full functionality.
 
 ### Provide Console Gop
-`ProvideConsoleGop` is another a OpenCore Quirk which has been implemented into Clover. Until r5128, it resided in the `Quirks` section as `ProvideConsoleGopEnable`. Since then, it has been relocated to the `GUI` section because it's related to the User Interface. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI > Output` section. **Hint**: it's always enabled.
+`ProvideConsoleGop` is another a OpenCore Quirk which has been implemented into Clover. Until r5128, it resided in the `Quirks` section as `ProvideConsoleGopEnable`. Since then, it has been relocated to the `GUI` section because it's related to the User Interface. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI/Output` section. **Hint**: it's always enabled.
 
 ### ProvideCurrentCpuInfo
 This quirk works differently depending on the CPU to the macOS Kernel:

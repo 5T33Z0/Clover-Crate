@@ -84,7 +84,8 @@ To confirm that the parameter is set, reboot and enter in Terminal: `sysctl hw.t
 
 **Source**: [**Insanelymac**](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/?do=findComment&comment=2771041)
 
-**NOTES**:
+**NOTES**
+
 - From the look of things, the available `HWTarget` values seem to be identical with the values for `SecureBootModel` used by OpenCore, except that they're written in uppercase and and appended the letters "AP". For example, the value for MacPro7,1 is `j160` in OpenCore, whereas in Clover it's `J160AP`, etc.
 - `HWTarget` is only required when using a SMBIOS of Macs with a T2 chip.
 - `HWTarget` is only necessary when upgrading from Big Sur to Monterey. Once macOS Monterey is running, it seems no longer be required (supposedly).
