@@ -65,7 +65,20 @@ If you want to observe how the Kexts are patched &rarr; For developers.
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### FakeCPUID
-Assigns a different Device-ID to the used CPU. Useful when trying to run an older version of macOS with a newer CPU which isn't supported. For example, if you are trying to run macOS High Sierra or Mojave with a Comet Lake CPU which is not supported before macOS 10.15, you can use a Device-ID of the Coffee Lake CPU family, to make macOS accept it.
+Assigns a different Device-ID to the used CPU. Useful when trying to run older versions of macOS with a newer CPU which isn't supported. For example, if you are trying to run macOS High Sierra or Mojave with a Comet Lake CPU which is not supported prior to macOS 10.15, you can use a Fake CPU-ID of the Coffee Lake CPU family, to make macOS accept it.
+
+Unfortunately, the list of fake CPU-IDs in Clover Configurator is outdated and ends at Kaby Lake. Below you'll find additional IDs for Coffee Lake and newer CPUs:
+
+| CPU Generation | Initial macOS support | Last supported version | Notes | CPUID |
+| :--- | :---: | :---: | :--- | :--- |
+| [Coffee Lake](https://en.wikipedia.org/wiki/Coffee_Lake) | 10.12.6 | ^^ |  | **0x0906EA** (S/H/E) **0x0806EA** (U)|
+| [Amber](https://en.wikipedia.org/wiki/Kaby_Lake#List_of_8th_generation_Amber_Lake_Y_processors), [Whiskey](https://en.wikipedia.org/wiki/Whiskey_Lake_(microarchitecture)), [Comet Lake](https://en.wikipedia.org/wiki/Comet_Lake_(microprocessor)) | 10.14.1 | ^^ |  | **0x0806E0** (U/Y) |
+| [Comet Lake](https://en.wikipedia.org/wiki/Comet_Lake_(microprocessor)) | 10.15.4 | ^^ |  | **0x0906E0** (S/H)|
+| [Ice Lake](https://en.wikipedia.org/wiki/Ice_Lake_(microprocessor)) | ^^ | ^^ |  | **0x0706E5** (U) |
+| [Rocket Lake](https://en.wikipedia.org/wiki/Rocket_Lake) | ^^ | ^^ | Requires Comet Lake CPUID | **0x0A0671** |
+| [Tiger Lake](https://en.wikipedia.org/wiki/Tiger_Lake_(microprocessor)) | <span style="color:red"> N/A </span> | <span style="color:red"> N/A </span> | <span style="color:red"> Untested </span> | **0x0806C0** (U)|
+
+**SOURCE**: [**Dortania**](https://github.com/dortania/OpenCore-Install-Guide/blob/master/macos-limits.md)
 
 ### EightApple
 On some systems, the progress bar break down into 8 apples during boot. No confirmation yet if the patch works. Added in r5119.
