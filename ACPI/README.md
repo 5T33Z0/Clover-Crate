@@ -153,7 +153,7 @@ These two parameters serve a common purpose - to fix restart. They should be pre
 	...
 	```
 
-Possible combinations:
+**Possible value combinations**:
 
 - If both fields are left empty, `0x64`/`0xFE` will be used by default &rarr; Restarts the system via the PS2 Controller – just like a PC.
 - `0x0`/`0x0`→ uses the default `FACP` values, if present. Otherwise, `0x64`/`0xFE` will be used instead.
