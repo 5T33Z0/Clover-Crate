@@ -68,6 +68,8 @@ Enable to prevent the USB controller from waking the system involuntarily. If yo
 ### FixOwnership
 In order for the USB controller to work in macOS, it has to be disconnected from the BIOS first, before the Darwin kernel is started. Since this is only required for legacy boot, this option is disabled by default – it is not required for UEFI boot, since UEFI based systems usually have an option for enabling XHCI/EHCI handoff. But there are cases where you cannot enable XCHI/EHCI handoff in the BIOS (usually on Laptops) where `FixOwnership` comes in handy. For Desktops PCs it's usually not needed since XHCI/EHCI handoff can be enabled in the BIOS.
 
+In OpenCore you find this setting under `UEFI/Quirks/ReleaseUSBOwnership`.
+
 ### HighCurrent
 Increases current on a USB controller to charge devices – disabled by default. Irrelevant for macOS 10.11 and newer. For Skylake and newer CPUs, add SSDT-USBX instead (usually integrated in [SSDT-EC-USB](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/Embedded_Controller_(SSDT-EC))).
 
