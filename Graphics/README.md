@@ -9,6 +9,7 @@
 - [Inject ATI](#inject-ati)
 	- [FB Name](#fb-name)
 		- [`Inject ATI` and `FB Name` in macOS Monterey](#inject-ati-and-fb-name-in-macos-monterey)
+		- [AMD Radeon Performance Tweaks](#amd-radeon-performance-tweaks)
 		- [Patching ATI/AMD Connectors](#patching-atiamd-connectors)
 	- [RadeonDeInit](#radeondeinit)
 - [Inject Nvidia](#inject-nvidia)
