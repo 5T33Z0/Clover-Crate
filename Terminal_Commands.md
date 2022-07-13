@@ -3,7 +3,10 @@
 ## macOS related
 
 **Collection of defaults commands** (for modifying behavior, options, look and feel of macOS):</br>
-https://macos-defaults.com/
+**https://macos-defaults.com/**
+
+**Show macOS Version and Build Number**</br>
+`sw_vers`
 
 **Show macOS Kernel Version**:</br>
 `uname -r`
@@ -11,7 +14,7 @@ https://macos-defaults.com/
 **Disable Gatekeeper:**</br>
 `sudo spctl --master-disable`
 
-**Show the User Library in Big Sur**:</br>
+**Show the User Library in Big Sur+**:</br>
 `setfile -a v ~/Library`</br>
 `chflags nohidden ~/Library`
 
@@ -22,6 +25,9 @@ https://macos-defaults.com/
 **Add "Quit" option to Finder**:</br>
 `defaults write com.apple.finder "QuitMenuItem" -bool "true" && killall Finder`
 
+**Add "GPU" Tab to Activity Monitor**:</br>
+`defaults write com.apple.ActivityMonitor ShowGPUTab -bool true`
+
 **Disable Library Validation**</br>
 `sudo defaults write /Library/Preferences/com.apple.security.libraryvalidation.plist DisableLibraryValidation -bool true`
 
@@ -31,6 +37,8 @@ https://macos-defaults.com/
 **Show all Files in Finder**:</br>
 `defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder`</br>
 `defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder` (to revert it)
+
+Alternatively, use a **Key Command**: ⌘⇧. (Command-Shift-Dot)
 
 **Rebuild Launch Services**:</br>
 `/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user`
@@ -51,10 +59,13 @@ sudo /usr/libexec/xpchelper --rebuild-cache
 
 ## CPU related
 
-**Display CPU Vendor**</br>
+**Show CPU Vendor**</br>
 `sysctl -a | grep machdep.cpu.vendor`
 
-**Display CPU Model**</br>
+**Show CPU Model** (doesn't really tell you much)</br> 
+`sysctl -a | grep machdep.cpu.model`
+
+**Show CPU Brand String**</br>
 `sysctl machdep.cpu.brand_string`
 
 **List CPU features**</br>
@@ -169,3 +180,8 @@ https://www.dssw.co.uk/reference/pmset.html
 
 **Dump Audio Codec** (in Linux)</br>
 `cd ~/Desktop && mkdir CodecDump && for c in /proc/asound/card*/codec#*; do f="${c/\/*card/card}"; cat "$c" > CodecDump/${f//\//-}.txt; done && zip -r CodecDump.zip CodecDump`
+___
+
+# Keyboard Shorcuts
+
+**Show hidden Files and Folders in Finder**: ⌘⇧. (Command-Shift-Dot)

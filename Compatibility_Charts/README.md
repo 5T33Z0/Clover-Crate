@@ -8,14 +8,14 @@ Check this [spreadsheet](https://docs.google.com/spreadsheets/d/1yLZeRFeONwDj1zM
 
 This list, although helpful and informative, is not as binding for hackintoshes as it is for real Macs, because…
 
-- …on Hackintoshes, you can use different SMBIOSes to run newer versions of macOS on officially unsupported CPUs.
-- …you can run older versions of OSX/macOS on newer CPUs which are not supported by the chosen OSX/macOS by utilizing Fake CPU-IDs.
-- …you can make use of macOS Monterey's virtualization capabilities to spoof a supported SMBIOS but let the hardware run on the intended SMBIOS for your CPU! Check my [**Boad-ID VMM spoof guide**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof) to find out how it works.
+- …on Hackintoshes you can use different SMBIOSes to run newer versions of macOS on officially unsupported CPUs.
+- …you can run older versions of OSX/macOS on newer CPUs which are not supported by utilizing Fake CPU-IDs.
+- …you can make use of macOS Monterey's virtualization capabilities to spoof a supported SMBIOS but let the hardware run on the intended SMBIOS for your CPU! Check my [**Boad-ID VMM spoof guide**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof) to find out how it works (requires OpenCore). Clover users need to use boot-arg `-no_compat_check` (disables System Updates).
 
 ### Picking the right SMBIOS
 Choosing an appropriate SMBIOS for your Hackintosh is crucial if you want a smooth running and efficient system. You should chose your SMBIOS based on the following aspects:
 
-- **CPU Vendor and product Family**: Intel? AMD? Mobile? Desktop? NUC? With or without iGPU support?
+- **CPU Vendor and product Family**: Intel? AMD? Mobile? Desktop? NUC? With or without integrated graphics?
 - **Discrete GPU**: Vendor and Model (ATI/AMD?, NVIDIA?)
 - **macOS Version**: the used CPU family determines the optimal SMBIOS. But the latest macOS version is most likely only supported by more recent SMBIOSes.
 
