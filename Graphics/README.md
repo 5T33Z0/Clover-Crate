@@ -104,6 +104,9 @@ Do the following to enable the correct framebuffer for your AMD GPU:
 3. Add `SSDT-NAVI.aml` to `EFI/CLOVER/ACPI/patched` (contains the necessary device renames)
 4. Disable Whatevergreen.kext (move to `/kexts/off`)
 
+#### AMD Radeon Performance Tweaks
+You can follow [this guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/AMD_Radeon_Tweaks) to tweak the Performance of Polaris and Navi Cards.
+
 **NOTES**:
 
 - :warning: Make sure to have a working backup of your EFI folder on a FAT32 formated flash drive.
