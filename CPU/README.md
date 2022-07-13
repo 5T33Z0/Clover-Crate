@@ -40,7 +40,7 @@ iMac20,2      | 100000000   | 400000000
 It seems that Clover uses the correct Bus Frequency reported by the system, while OpenCore uses Base Clock x 4. See `QPI` for more details.
 
 ## QPI
-QPI (Intel QuickPath Interconnect) is the successor of the FSB (Front Side Bus). Unlike FSB, it's not a Bus system but a routing mechanism managing the communication and data transfer between CPU cores and the chipset. The technology was introduced in 2010 with the release of the Nehalem CPU family. After much debate, QPI has been added to the config. Enter what you like (in MHz).This does not affect work in any way - it's purely cosmetic (except for 1st Gen Intel Core i7 CPUs).
+QPI (Intel QuickPath Interconnect) is the successor of the FSB (Front Side Bus). Unlike FSB, it's not a Bus system but a routing mechanism managing the communication and data transfer between CPU cores and the chipset. The technology was introduced in 2010 with the release of the Nehalem CPU family. After much debate, QPI has been added to the config. Enter what you like (in MHz). This does not affect work in any way - it's purely cosmetic (except for 1st Gen Intel Core i7 CPUs).
 
 In macOS's System Profiler, this value is listed in the "Hardware" section as "Processor Interconnect Speed" or "(Processor) Bus Speed". Clover automatically calculates the correct value based on data sheets from Intel. In the source code of the `AppleSmbios` kernel, two methods for setting this value are available: 1) the value either already exists in SMBIOS – as prescribed by the manufacturer, or 2) Bus Speed x4 is used instead. 
 
