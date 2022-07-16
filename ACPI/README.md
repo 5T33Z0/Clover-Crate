@@ -516,7 +516,7 @@ If set to `true`, the OEM table identifier is *NOT* added to the end of file nam
 
 If set to `true`, the SSDT section will be used to select in the generated `_CST` tables between:
 
-```swift
+```asl
 Register (FFixedHW,
 Register (SystemIO,
 ```
@@ -571,7 +571,7 @@ Enables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling 
 
 In some cases, the attempt to patch the GPU is hindered by the presence of:
 
-```swift
+```asl
 Device (PEGP) type of device
 	{
 	Name (_ADR, 0xFFFFFF)

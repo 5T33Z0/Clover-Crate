@@ -56,13 +56,13 @@ For reference values, check the files in the Mac models [database](https://githu
 ## Slots (AAPL Injections)
 ![Slots](https://user-images.githubusercontent.com/76865553/162909263-82c199bb-6117-415a-9083-953095401693.png)
 
-`AAPL,slot-name` injector. Allows you to manually add devices to the `PCI` section of the System Profiler:
+`AAPL,slot-name` injector. Allows you to manually add devices to the `PCI` seaslction of the System Profiler:
 
 ![SysInfo](https://user-images.githubusercontent.com/76865553/162909344-a6ea67e5-7d3d-47c4-b7af-5610a911d385.png)
 
 By default, the `AAPL,slot-name` is is injected into macOS by system's `DSDT` or Device `Properties` in your `config.plist`. For macOS to list and categorize PCIe devices, it requires the `Name (_SUN, 0xXX)` field for a device to be present inside the `DSDT`, as shown in this example:
 
-```swift
+```asl
 Device (GIGE)
 {
     Name (_ADR, 0x00050000)  // _ADR: Address
