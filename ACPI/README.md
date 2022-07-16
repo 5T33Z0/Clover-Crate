@@ -282,11 +282,13 @@ To get a better understanding for fixes that are still relevant in 2022, take a 
 
 #### AddDTGP
 
-In addition to `DeviceProperties`, there is also a Device Specific Method (`_DSM`) specified in the `DSDT` of real Macs called `DTGP`. Its purpose is to inject custom parameters into some devices. Without this method, patched `DSDTs` would not work well. This fix injects the `DTGP` method into the system `DSDT` during boot, so that it can be utilized by other fixes and patches. It doesn't do anything on its own.
+Enabling `AddDTGP` injects the `DTGP` method into the  `DSDT` during boot, so that it can be utilized by other fixes and patches. It doesn't do anything on its own.
 
-**NOTE**: OpenCore users can add `SSDT-DTGP` instead. But since OC heavily relies on self-contained SSDT hotpatches to make devices work instead of patched DSDTs, the `DTGP` method is rarely used/required. 
+**NOTE**: OpenCore users can add `SSDT-DTGP.aml` instead. But since OC heavily relies on self-contained SSDT hotpatches to make devices work instead of patched DSDTs, the `DTGP` method is rarely used/required. 
 
 ##### DTGP Explained
+
+In addition to `DeviceProperties`, you can also use the method `_DSM` (Device Specific Method) to do so. It contains properties for a device and makes use of the method `DTGP` which is universal for all devices. It is specified in the `DSDT` of real Macs. Its purpose is to inject custom parameters into some devices. Without this method, patched `DSDTs` would not work well. 
 
 Basically, macOS won't actually read/merge device properties from ACPI unless a Buffer of `0x03` is returned when it asks for this property (`Arg0` = UUID, `Arg1` = 1 and `Arg2` = 0).
 
