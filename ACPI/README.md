@@ -76,10 +76,7 @@
 - [Resources](#resources)
 </details>
 
-The ACPI section not only is the first in the list but also the most important one as well. It offers many options to affect the ACPI tables of a system in order to assist users to make it compatible with macOS: from replacing characters in the `DSDT`, renaming devices, enabling features to applying patches. Since this section is the centerpiece of your `config.plist`, every available option is explained in detail. This is how it looks like in Clover Configurator:
-
-
-Throughout this chapter, this section is broken down into smaller chunks to make it more digestible.
+The ACPI section not only is the first in the list but also the most important one as well (next to Kernel Patches and Quirks). It offers many options to affect the ACPI tables of your system in order to make it compatible with macOS: from replacing characters in the `DSDT`, renaming devices, enabling features to applying patches. Since this section is the centerpiece of your `config.plist`, every available option is explained in detail. Throughout this chapter, this section is broken down into smaller chunks to make it more digestible.
 
 ## AutoMerge
 
@@ -102,6 +99,8 @@ This way, you could find the SSDT containing all the 26 Ports for your board in 
 Active-state power management (ASPM) is a power management mechanism for PCI Express devices to garner power savings while otherwise in a fully active state. It is normally used on laptops and other mobile Internet devices to extend battery life.
 
 This patch affects the settings of the ACPI system itself, such as the fact that Apple's ASPM management does not work as expected. For example when using non-native chipsets.
+
+You can also modify ASPM settings of devices using [properties](https://github.com/5T33Z0/OC-Little-Translated/tree/main/04_Fixing_Sleep_and_Wake_Issues/Setting_ASPM_Operating_Mode)
 
 ## FixHeaders
 
