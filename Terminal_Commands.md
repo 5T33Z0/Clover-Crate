@@ -72,6 +72,16 @@ defaults write com.apple.sidecar.display hasShownPref -bool true
 **Disable Logging:**</br>
 `sudo rm /System/Library/LaunchDaemons/com.apple.syslogd.plist`
 
+**Disable macOS Upgrade Notifications** (change "macOS name" as needed)</br> 
+
+```
+sudo / usr / sbin / softwareupdate --ignore "macOS Big Sur"`</br>
+defaults write com.apple.systempreferences AttentionPrefBundleIDs 0; killall dock
+```
+To re-enable Upgrade Notifications, enter:</br>
+
+`sudo / usr / sbin / softwareupdate --reset-ignored`
+
 ## CPU related
 
 **Show CPU Vendor**</br>
@@ -113,7 +123,7 @@ defaults write com.apple.sidecar.display hasShownPref -bool true
 **Find loaded Kexts** (excluding those from Apple)</br>
 `kextstat | grep -v com.apple`</br>
 
-**Rebuild Kext Cache**:</br>
+**Rebuild Kext Cache**: (Deprecated in macOS 13)</br>
 `sudo kextcache -i /`</br>
 
 **Update PreBoot Volume**:</br>
@@ -127,7 +137,7 @@ defaults write com.apple.sidecar.display hasShownPref -bool true
 
 **Search for terms in last boot log**:</br>
 `log show --last boot | grep "your search term"` </br>
-Exanple: `log show --last boot | grep "ACPI"`
+Example: `log show --last boot | grep "ACPI"`
 
 **Create new shapshot** (macOS 11+ only) In Recovery, enter:</br>
 
