@@ -69,8 +69,8 @@ Here are some examples of kexts I've experienced issues with when updating:
 Now we have the *required* minimum set of Drivers (green and red):</br>
 ![Drivers](https://user-images.githubusercontent.com/76865553/136026914-af63dce9-a505-4b61-8ad4-0d14348fac37.png)</br>
 7. **Delete unnecessary Drivers**: Files tagged in gray are pressent in the **drivers/UEFI** folder by default. They are completely unnecessary to boot UEFI-based systems! Delete them or move them into the "off" folder to disable them.
-	- `AudioDXE.efi` is only needed for playing back boot chimes and for dumping the Audio Codec when pressing `F4` in the Clover Boot menue. It slows down the initial start of Clover, so if you don't use a boot chime and don't want to create your own AppleALC Layout-ID, you should delete/disable it.
-	- `FSInject` is deprecated since OpenRuntime handles kext injection now, so delete it (if present)
+	- `AudioDXE.efi` is only needed for playing back boot chimes and for dumping the Audio Codec when pressing `F4` in the Clover Boot menu. It also slows down the initial start of Clover. So if you don't need it, delete/disable it.
+	- `FSInject` is deprecated since OpenRuntime handles kext injection now, so delete/disable it (if present).
 	- `SMCHelper`is unnecessary as well – it *must* be deleted if `VirtualSMC.kext` is used!
 	- `EnglisdDxe.efi`: Provides a better Unicode Collation protocol used by Shell.efi. Sometimes this protocol is absent or badly implemented. Unless you plan to work in Shell a lot, delete/disabled it.
 7. Next, copy over the following files/folders from your existing EFI folder:</br>
