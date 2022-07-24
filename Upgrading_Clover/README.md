@@ -10,13 +10,15 @@
 	- [Removing obsolete/unnecessary Drivers](#removing-obsoleteunnecessary-drivers)
 	- [Checking and Updating Kexts](#checking-and-updating-kexts)
 - [Building a new EFI folder (manual Upgrade)](#building-a-new-efi-folder-manual-upgrade)
-	- [Validating config.plist and fixing errors](#validating-configplist-and-fixing-errors)
 	- [Config.plist Adjustments](#configplist-adjustments)
+		- [Correcting `RenameDevices` section](#correcting-renamedevices-section)
+		- [Updating SMBIOS (Update Firmware Only)](#updating-smbios-update-firmware-only)
+	- [Validating config.plist and fixing errors](#validating-configplist-and-fixing-errors)
 	- [Testing your (new) config](#testing-your-new-config)
 - [`OpenRuntime.efi` and older Clover builds (< r5142)](#openruntimeefi-and-older-clover-builds--r5142)
 - [Using the .pkg Installer to upgrade Clover](#using-the-pkg-installer-to-upgrade-clover)
 - [Further Resources and Troubleshooting](#further-resources-and-troubleshooting)
-- [NOTES](#notes)
+- [Notes](#notes)
 
 ## Why Upgrade?
 Clover's previous `AptioMemoryFixes` no longer work in macOS 11 and newer. Therefore, OpenCore's memory fixes (included in `OpenRuntime.efi`) have been implemented to keep Clover alive. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is *mandatory* to install and boot macOS 11 and newer. 
@@ -91,21 +93,9 @@ Now we have the *required* minimum set of Drivers (green and red):</br>
 14. Finally, you can delete all the deprecated USB Port Limit Patches from your config since this is handled by the `XhciPortLimit` Quirk (for macOS ≥ Catalina you will need a `USBPort.kext` instead).
 15. Once you've ticked all the necessary quirks, save your configuration file.
 
-### Validating config.plist and fixing errors
-
-Starting from version r5134, Clover now includes error reporting similar to OpenCore which displays configuration errors before the actual boot menu appears. Do the following to validate your config and fix configuration errors:
-
-1. Open Terminal
-2. Drag `CloverConfigPlistValidator` into it and hit the right arrow key once, so the file path is no longer highlighted
-3. Next, drag and drop your clover config.plist into the terminal window. Make sure there is a blank space between the 2 file paths
-4. Hit "Enter"
-5. Check the results. If it says: "Your plist looks so wonderful. Well done!", then you don't have to do anything else.
-6. If there are errors shown in the log, open both your `config.plist` and the `config-sample.plist` included in the Clover package in a plist editor and compare the structure of the section(s) referenced by the validator. Look for any differences (like formatting, deleted features, etc.) and fix them.
-7. Save your config.
-8. Re-check for errors
-9. Repeat comparison, fixing, saving and re-checking until all issues are resolved
-
 ### Config.plist Adjustments
+
+#### Correcting `RenameDevices` section
 When upgrading Clover, you also need to adjust some config settings as well. The "Quirks" Dictionary will automatically be created once you select a Quirk in Clover Configurator and save. 
 
 But the structure of `ACPI/RenameDevices` section has to be changed from a Dictionary to an Array and each String has to reside in its own Dictionary as well, as shown below.
@@ -122,6 +112,31 @@ You can use ProperTree to do this. The easies way without losing data is this:
 - Move each string into it's own dictionary. 
 - Finally, change the class of `RenameDevices` from "Dictionary" to "Array". 
 - Save the config.plist
+
+#### Updating SMBIOS (Update Firmware Only)
+Update the BIOS and Firmware to the latest version to prevent macOS installation failures. If the firmware version is out of date, installation will quit with an error message. To prevent this, do the following:
+
+- Open your config.plist in Clover Configurator
+- Click on "SMBIOS"
+- Check "Update Firmware Only" box:</br>
+![FWONLY](https://user-images.githubusercontent.com/76865553/167351554-835f91e4-b952-4303-b2d8-a2b19878739a.png)
+- From the dropdown menu next to it, select your Mac model (the one listed under "Product Name") and click on its list entry
+- This will update the fields for BIOS and Firmware only, leaving the Serial, MLB, etc. unchanged
+- Save the config
+
+### Validating config.plist and fixing errors
+
+Starting from version r5134, Clover now includes error reporting similar to OpenCore which displays configuration errors before the actual boot menu appears. Do the following to validate your config and fix configuration errors:
+
+1. Open Terminal
+2. Drag `CloverConfigPlistValidator` into it and hit the right arrow key once, so the file path is no longer highlighted
+3. Next, drag and drop your clover config.plist into the terminal window. Make sure there is a blank space between the 2 file paths
+4. Hit "Enter"
+5. Check the results. If it says: "Your plist looks so wonderful. Well done!", then you don't have to do anything else.
+6. If there are errors shown in the log, open both your `config.plist` and the `config-sample.plist` included in the Clover package in a plist editor and compare the structure of the section(s) referenced by the validator. Look for any differences (like formatting, deleted features, etc.) and fix them.
+7. Save your config.
+8. Re-check for errors
+9. Repeat comparison, fixing, saving and re-checking until all issues are resolved
 
 ### Testing your (new) config
 
@@ -174,6 +189,6 @@ This is for users who want to use the pkg installer instead. Don't do this if yo
 
 Good luck!
 
-## NOTES
+## Notes
 - For Big Sur and newer, remove the PreBoot Volume from the "Hide" Section of the GUI because macOS requires it for booting!
 - Even if you don't want to upgrade macOS past Catalina, an upgrade to the new Clover is recommended since kext injection via Open Runtime is cleaner, and you have much more control over the applied memory fixes. The system also boots faster.
