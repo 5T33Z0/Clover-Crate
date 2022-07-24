@@ -11,10 +11,12 @@
 	- [Checking and Updating Kexts](#checking-and-updating-kexts)
 - [Building a new EFI folder (manual Upgrade)](#building-a-new-efi-folder-manual-upgrade)
 	- [Validating config.plist and fixing errors](#validating-configplist-and-fixing-errors)
+	- [Config.plist Adjustments](#configplist-adjustments)
 	- [Testing your (new) config](#testing-your-new-config)
 - [`OpenRuntime.efi` and older Clover builds (< r5142)](#openruntimeefi-and-older-clover-builds--r5142)
 - [Using the .pkg Installer to upgrade Clover](#using-the-pkg-installer-to-upgrade-clover)
 - [Further Resources and Troubleshooting](#further-resources-and-troubleshooting)
+- [NOTES](#notes)
 
 ## Why Upgrade?
 Clover's previous `AptioMemoryFixes` no longer work in macOS 11 and newer. Therefore, OpenCore's memory fixes (included in `OpenRuntime.efi`) have been implemented to keep Clover alive. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is *mandatory* to install and boot macOS 11 and newer. 
@@ -117,8 +119,8 @@ But the structure of `ACPI/RenameDevices` section has to be changed from a Dicti
 You can use ProperTree to do this. The easies way without losing data is this:
 
 - Create dictionaries for each String. 
-- Move each strich into it's own dictionary. 
-- Finally, change the cloass of `RenameDevices` from "Dictionary" to "Array". 
+- Move each string into it's own dictionary. 
+- Finally, change the class of `RenameDevices` from "Dictionary" to "Array". 
 - Save the config.plist
 
 ### Testing your (new) config
