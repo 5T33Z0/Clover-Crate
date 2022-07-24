@@ -103,6 +103,24 @@ Starting from version r5134, Clover now includes error reporting similar to Open
 8. Re-check for errors
 9. Repeat comparison, fixing, saving and re-checking until all issues are resolved
 
+### Config.plist Adjustments
+When upgrading Clover, you also need to adjust some config settings as well. The "Quirks" Dictionary will automatically be created once you select a Quirk in Clover Configurator and save. 
+
+But the structure of `ACPI/RenameDevices` section has to be changed from a Dictionary to an Array and each String has to reside in its own Dictionary as well, as shown below.
+
+**Old Config**:</br>
+![](/Users/5t33z0/Desktop/Config_old.png)
+
+**New Config**:</br>
+![](/Users/5t33z0/Desktop/Config_new.png)
+
+You can use ProperTree to do this. The easies way without losing data is this:
+
+- Create dictionaries for each String. 
+- Move each strich into it's own dictionary. 
+- Finally, change the cloass of `RenameDevices` from "Dictionary" to "Array". 
+- Save the config.plist
+
 ### Testing your (new) config
 
 - Copy the new EFI Folder to the root of your USB Flash Drive and try booting from it.
