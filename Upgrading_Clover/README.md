@@ -111,10 +111,10 @@ When upgrading Clover, you also need to adjust some config settings as well. The
 But the structure of `ACPI/RenameDevices` section has to be changed from a Dictionary to an Array and each String has to reside in its own Dictionary as well, as shown below.
 
 **Old Config**:</br>
-![](/Users/5t33z0/Desktop/Config_old.png)
+![Config_old](https://user-images.githubusercontent.com/76865553/180644167-b8405336-cbfa-4d4d-9363-fae1af532c51.png)
 
 **New Config**:</br>
-![](/Users/5t33z0/Desktop/Config_new.png)
+![Config_new](https://user-images.githubusercontent.com/76865553/180644172-bd4116d2-5f69-4d14-985f-cc5eb5a7853e.png)
 
 You can use ProperTree to do this. The easies way without losing data is this:
 
