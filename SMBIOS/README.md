@@ -73,7 +73,7 @@ For reference values, check the files in the Mac models [database](https://githu
 ## Slots (AAPL Injections)
 ![Slots](https://user-images.githubusercontent.com/76865553/162909263-82c199bb-6117-415a-9083-953095401693.png)
 
-`AAPL,slot-name` injector. Allows you to manually add devices to the `PCI` seaslction of the System Profiler:
+`AAPL,slot-name` injector. Allows you to manually add devices to the `PCI` section of the System Profiler:
 
 ![SysInfo](https://user-images.githubusercontent.com/76865553/162909344-a6ea67e5-7d3d-47c4-b7af-5610a911d385.png)
 
@@ -134,8 +134,8 @@ Besides manually copying over SMBIOS data from your OpenCore to your Clover conf
 
 **IMPORTANT**
 
-- If you did everything correct, you won't have to enter your AppleID Password after switching bootloaders and macOS will let you know, that "This AppleID is now used with this device" or something like that.
-- But if macOS asks for your AppleID Password and Mail passwords etc. after switching bootloaders, you did something wrong. In this case you should reboot into OpenCore instead and check again. Otherwise, you are registering your computer as a new/different Mac.
+- If you did everything correct, you won't have to enter your AppleID Password after switching Boot Managers and macOS will let you know, that "This AppleID is now used with this device" or something like that.
+- But if macOS asks for your AppleID Password and Mail passwords etc. after switching Boot Managers, you did something wrong. In this case you should reboot into OpenCore instead and check again. Otherwise, you are registering your computer as a new/different Mac.
 
 ### 1-Click-Solution for Clover Users
 If you've used the real MAC Address of your Ethernet Controller ("ROM") when generating your SMBIOS Data for your OpenCore config, you can avoid possible SMBIOS conflicts altogether. In the "Rt Variables" section, click on "from System" and you should be fine!
@@ -161,4 +161,4 @@ For example, you can use an SMBIOS intended for a Haswell CPU (4th Gen) with an 
 A workaround to this issue is to use the SMBIOS intended for your CPU but add `-no_compat_check` to the boot arguments. The downside is that you can't install system updates this way, so you need to switch back the SMBIOS to whatever is officially supported by macOS Monterey to get updates and enable `HWTarget` in RtVariables as well (using a Plist Editor since this parameter is not yet available in Clover Configurator).
 
 ## Notes
-- Check the attached macOS Compatinility Charts to find out which macOS version is compatible with which SMBIOS
+- Check the attached macOS Compatibility Charts to find out which macOS version is compatible with which SMBIOS
