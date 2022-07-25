@@ -1,8 +1,25 @@
 # SMBIOS
->**SMBIOS** stands for **System Management BIOS**. It defines data structures (and access methods) that can be used to read management information produced by the BIOS of a computer. This eliminates the need for the operating system to probe hardware directly to discover what devices are present in the computer. The SMBIOS specification is produced by the Distributed Management Task Force (DMTF), a non-profit standards development organization. The DMTF estimates that two billion client and server systems implement SMBIOS.
-**SOURCE**: [Wikipedia](https://en.wikipedia.org/wiki/System_Management_BIOS#From_UEFI)
 
-This section is needed to mimic your PC as a Mac. The entered `ProductName` is of special significance here. Not only does it define the range of macOS versions it can run, moreover it sets a lot of system parameters for the hardware used in the chosen model. So picking a model which is close to the specs of your hardware gets you a lot closer to having a well-working Hackintosh. The most important point of reference for picking an appropriate SMBIOS is the CPU you are using.
+**TABLE of CONTENTS**
+
+- [About](#about)
+- [Example: Generating SMBIOS data with Clover Configurator](#example-generating-smbios-data-with-clover-configurator)
+- [About "Update Firmware Only"](#about-update-firmware-only)
+- [About "Extended Firmware Features"](#about-extended-firmware-features)
+- [Slots (AAPL Injections)](#slots-aapl-injections)
+- [Exchanging SMBIOS Data between OpenCore and Clover](#exchanging-smbios-data-between-opencore-and-clover)
+	- [Manual method](#manual-method)
+	- [SMBIOS Data Import/Export with OCAT](#smbios-data-importexport-with-ocat)
+	- [1-Click-Solution for Clover Users](#1-click-solution-for-clover-users)
+	- [Troubleshooting](#troubleshooting)
+- [Running macOS on unsupported platforms](#running-macos-on-unsupported-platforms)
+- [Notes](#notes)
+
+## About
+>**SMBIOS** stands for **System Management BIOS**. It defines data structures (and access methods) that can be used to read management information produced by the BIOS of a computer. This eliminates the need for the operating system to probe hardware directly to discover what devices are present in the computer. The SMBIOS specification is produced by the Distributed Management Task Force (DMTF), a non-profit standards development organization. The DMTF estimates that two billion client and server systems implement SMBIOS. **SOURCE**: [Wikipedia](https://en.wikipedia.org/wiki/System_Management_BIOS#From_UEFI)
+
+
+This section is needed to mimic your PC as a Mac and to be able to install and run macOS. The entered `ProductName` is of special significance here. Not only does it define the range of macOS versions it can run, moreover it sets a lot of system parameters for the hardware used in the chosen model. So picking a model which is close to the specs of your hardware gets you a lot closer to having a well-working Hackintosh. The most important point of reference for picking an appropriate SMBIOS is the CPU you are using.
 
 I won't be covering each individual field of the SMBIOS section here, since it is tedious and completely unnecessary, as you will find out soon. Instead, I will focus only on the important ones: `ProductName`, `SerialNumber`, `Board-ID` and `SmUUID`.
 
@@ -110,19 +127,6 @@ N/A in OpenCore                | Custom UUID (=Hardware UUID). Leave empty.
 
 You know that the SMBIOS data has bee transferred correctly, if you don't have to re-enter your Apple-ID and password.
 
-#### Troubleshooting
-If you have to re-enter your Apple ID Password after changing from OpenCore to Clover or vice versa, the used SMBIOS Data is either not identical or there is another issue, so you have to figure out where the mismatch is. You can use Hackintool to do so:
-
-- Mount the EFI
-- Open the config for the currently used Boot Manager
-- Run Hackintool. The "System" section shows the currently used SMBIOS Data: </br> ![SYSINFO](https://user-images.githubusercontent.com/76865553/166119425-8970d155-b546-4c91-8daf-ec308d16916f.png)
-- Check if the framed parameters match the ones in your config.
-- If they don't, correct them and use the ones from Hackintool 
-- If they do mach the values used in your config, open the config from your other Boot Manager and compare the data from Hackintool again and adjust the data accordingly.
-- Save the config and reboot
-- Change to the other Boot Manager and start macOS
-- If the data is correct you won't have to enter your Apple ID Password again (double-check in Hackintool to verify).
-
 ### SMBIOS Data Import/Export with OCAT
 Besides manually copying over SMBIOS data from your OpenCore to your Clover config and vice versa, you could use [**OpenCore Auxiliary Tools**](https://github.com/ic005k/OCAuxiliaryTools/releases) instead, which has a built-in import/export function to import SMBIOS Data from Clover as well as exporting function SMBIOS data into a Clover config:
 
@@ -135,6 +139,19 @@ Besides manually copying over SMBIOS data from your OpenCore to your Clover conf
 
 ### 1-Click-Solution for Clover Users
 If you've used the real MAC Address of your Ethernet Controller ("ROM") when generating your SMBIOS Data for your OpenCore config, you can avoid possible SMBIOS conflicts altogether. In the "Rt Variables" section, click on "from System" and you should be fine!
+
+### Troubleshooting
+If you have to re-enter your Apple ID Password after changing from OpenCore to Clover or vice versa, the used SMBIOS Data is either not identical or there is another issue, so you have to figure out where the mismatch is. You can use Hackintool to do so:
+
+- Mount the EFI
+- Open the config for the currently used Boot Manager
+- Run Hackintool. The "System" section shows the currently used SMBIOS Data: </br> ![SYSINFO](https://user-images.githubusercontent.com/76865553/166119425-8970d155-b546-4c91-8daf-ec308d16916f.png)
+- Check if the framed parameters match the ones in your config.
+- If they don't, correct them and use the ones from Hackintool 
+- If they do mach the values used in your config, open the config from your other Boot Manager and compare the data from Hackintool again and adjust the data accordingly.
+- Save the config and reboot
+- Change to the other Boot Manager and start macOS
+- If the data is correct you won't have to enter your Apple ID Password again (double-check in Hackintool to verify).
 
 ## Running macOS on unsupported platforms
 Unlike real Macs which are limited to a certain range of supported macOS versions, you can trick macOS into running on CPU models it doesn't support officially – at least, if the used SMBIOS are not too far off from the specs of your hardware. 
