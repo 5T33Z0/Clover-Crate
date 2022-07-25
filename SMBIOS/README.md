@@ -136,12 +136,12 @@ Besides manually copying over SMBIOS data from your OpenCore to your Clover conf
 ### 1-Click-Solution for Clover Users
 If you've used the real MAC Address of your Ethernet Controller ("ROM") when generating your SMBIOS Data for your OpenCore config, you can avoid possible SMBIOS conflicts altogether. In the "Rt Variables" section, click on "from System" and you should be fine!
 
-## Rnning macOS on unsupported platforms
+## Running macOS on unsupported platforms
 Unlike real Macs which are limited to a certain range of supported macOS versions, you can trick macOS into running on CPU models it doesn't support officially – at least, if the used SMBIOS are not too far off from the specs of your hardware. 
 
-For example, you can use an SMBIOS intended for a Haswell CPU (4th Gen) with an Ivy Bridge CPU (3rd Gen), thereby expanding the range of macOS versions you can run. But since this SMBIOS is designed for a different CPU, it actually does not perform as good, especially on Notebooks. 
+For example, you can use an SMBIOS intended for a Haswell CPU (4th Gen) with an Ivy Bridge CPU (3rd Gen), thereby expanding the range of macOS versions you can run. But since this SMBIOS is designed for a different CPU, it actually does not perform as good, especially on Notebooks. n the end it's a question of what's more important to you: being able to run the latest version of macOS vs. getting the most out of the machine as far as performance is concerned. 
 
-In the end it's a question of what's more important to you: being able to run the latest version of macOS versus getting the most out of the machine as far as performance is concerned. A workaround to this issue is to use the SMBIOS intended for your CPU but add `-no_compat_check` to the boot arguments. The downside is that you can't install system updates this way, so you need to switch back the SMBIOS to whatever is officially supported by macOS Monterey to get updates and enable `HWTarget` in RtVariables as well (using a Plist Editor since this parameter is not yet available in Clover Configurator).
+A workaround to this issue is to use the SMBIOS intended for your CPU but add `-no_compat_check` to the boot arguments. The downside is that you can't install system updates this way, so you need to switch back the SMBIOS to whatever is officially supported by macOS Monterey to get updates and enable `HWTarget` in RtVariables as well (using a Plist Editor since this parameter is not yet available in Clover Configurator).
 
 ## Notes
 - Check the attached macOS Compatinility Charts to find out which macOS version is compatible with which SMBIOS
