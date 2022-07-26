@@ -6,7 +6,7 @@ If you are looking for an actual tool to calculate these things (and more), you 
 
 **Screenshots**:
 
-![CSR_Clover](https://user-images.githubusercontent.com/76865553/137451603-733fec89-7e37-411d-beff-844af404f1a9.png)
+![CSR_CLVR](https://user-images.githubusercontent.com/76865553/180943866-26d80d0e-6a88-49b3-a007-81bd81632934.png)
 
 ![BooterCfg](https://user-images.githubusercontent.com/76865553/137451683-befe8dbd-a1fd-44f1-8a1e-e851685ca92a.png)
 
