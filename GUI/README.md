@@ -29,7 +29,7 @@
 - [Hide Volume](#hide-volume)
 </details>
 
-This section is for configuring the look and behavior of Clover's Boot menu GUI as well as defining which Volumes are displayed.
+This section is for configuring the look and behavior of Clover's Boot menu GUI as well as defining which Volumes are displayed. To find out which options are accessible from the actual Clover Bootloader GUI, click [here](https://github.com/5T33Z0/Clover-Crate/blob/main/GUI/Boot_Menu_Options.md)
 
 ## CustomIcons
 Enabling this key will use custom disk icons (`.VolumeIcon.icns`) stored in in the root folder of the volumes themselves, instead of using the disk icon from a theme. Since this is a hidden file, you have to press `Cmd–Shift–.` in Finder to reveal/hide it.
