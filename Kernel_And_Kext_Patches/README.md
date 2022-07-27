@@ -3,7 +3,7 @@
 
 A group of parameters for creating binary patches on the fly. Note that this can only be done if the kernel cache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 categories: one with Kernel Patches which you can click to enable. These are primarily for making your CPU work with macOS. The second category is for creating your own patches which can be applied to kexts and kernels themselves.
 
-:warning: **AMD users**: Use ProperTree or another Plist Editor for editing the config.plist. The Kernel Patches required for AMD systems supposedly break this section after saving it in Clover Configurator, leaving your system in a non-booting state due to missing entries.
+:warning: **AMD users**: Use ProperTree or another Plist Editor for editing this section of the config.plist. The Kernel Patches required for AMD systems require the "Skip" function but that's not implemented in Clover Configurator. And after adding all these kernel patches and hitting save, the "Skip" key is deleted from the config.plist. This leaves AMD system in a non-booting state on the next reboot due to missing entries.
 
 **TABLE of CONTENTS**
 
