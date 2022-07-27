@@ -45,10 +45,14 @@ This sections is all about the options Clover provides from the Boot Menu – an
 ## Function Keys
 - **F1**: Help Menu (multilingual)
 - **F2**: Save preboot.log
+- **F3**: Show hidden Bootmenu Entries
 - **F4**: Save (OEM) ACPI tables in `/EFI/CLOVER/ACPI/origin`
 - **F5**: To test DSDT patching
 - **F6**: Saves VBIOS in `/EFI/CLOVER/misc`
-- **F10**:  Take Screenshot
+- **F7**: Test Audio Device
+- **F8**: Dump Audio Codec
+- **F9**: Switch Screen Resolution
+- **F10**: Take Screenshot
 - **F11**: Reset NVRAM
 - **F12**: Eject optical media
 
@@ -61,7 +65,6 @@ This sections is all about the options Clover provides from the Boot Menu – an
 If you highlight a Volume as shown above and press the [SPACE] bar, you will see the following screen:
 
 ![screenshot1](https://user-images.githubusercontent.com/76865553/181207085-175752e4-a6a1-4d1b-8aaf-a377191c560f.png)
-
 
 The sections framed in cyan shows details about the selected Volume. The green section shows boot options (only available for bootable macOS Volumes).
 
@@ -130,7 +133,9 @@ Lets you choose DSDT fixes to apply:
 ![screenshot13](https://user-images.githubusercontent.com/76865553/181207751-a581fd58-3ceb-4af8-9a85-890c572f3bfb.png)
 
 #### Custom DSDT Patches
-To do…
+Access all your custom DSDT fixes (like binary renames) to enable/disable them. The name displayed is based on the "Comment" you've entered in the config.plist for each entry.
+
+![CSTMDSDT](https://user-images.githubusercontent.com/76865553/181235211-813bc1e1-6a1b-4e7c-8538-cc17ff7be92c.png)
 
 ### SMBIOS
 Displays the currently used SMBIOS data.
@@ -166,7 +171,9 @@ List availabke Audio Devices and additional options:
 ![screenshot29](https://user-images.githubusercontent.com/76865553/181208017-ad9706ef-7d80-44ae-8ca7-c22715445cd4.png)
 
 ### Startup Sound Output
-Change Boot Chime and Audio Device
+Run some tests (`AudioDXE.efi` has to be present in the Drivers folder) and set the volume of the Boot chime.
+
+![Output](https://user-images.githubusercontent.com/76865553/181235659-7b9c6790-d8de-40f2-88c0-e2933d41af02.png)
 
 ### System Parameters
 Block kexts, Change CSR Active Config and other settings:
