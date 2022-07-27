@@ -182,9 +182,6 @@ Block kexts, Change CSR Active Config and other settings:
 
 ![screenshot32](https://user-images.githubusercontent.com/76865553/181208057-9ef87261-603a-4bc3-85d7-909549bcb019.png)
 
-**Reset SMC** is a brand new feature that was introduced in r5148 and works similar as on real Macs. `SMCHelper.efi` as a driver has been removed from Clover and instead has been embedded into Clover as a Service. It is suggested to use FakeSMC.kext (and Plugins) to fully utilize the functionality the new approch provides.
+**Reset SMC** was introduced in r5148 and works similar to how SMC Reset works on real Macs. `SMCHelper.efi` as a driver has been retired and is now  embedded into Clover as a Service. Reset SMC requires `FakeSMC.kext` to work – it's not supported by VirtualSMC. Read the [**Clover Changes**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856) for more details.
 
-**Source**: [Clover Changes](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856)
-
-However, in my personal tests, boot times were significantly slower when using FakeSMC instaed of VirtualSMC, so I will continue using VirtualSMC instaed.
-
+In my personal test, boot times were *significantly* slower when using FakeSMC, so I will continue using VirtualSMC. Also the 
