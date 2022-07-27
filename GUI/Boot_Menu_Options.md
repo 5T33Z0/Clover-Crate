@@ -117,7 +117,9 @@ In this menu, you basically have control over any ACPI-related parameter:
 ![screenshot11](https://user-images.githubusercontent.com/76865553/181207662-520ee3d9-fb7a-4299-ac62-a4c5fccc9f29.png)
 
 #### Debug DSDT
-Enables a debugging feature for the DSDT.
+Enables debugging of the DSDT. This logs what happens to `DSDT` while it is being patched. Useful if the system doesn't bot.
+
+First, the original version is stored as `DSDT-or.aml` in the ACPI/origin folder. Then the DSDT patches will be applied and the patched DSDT is stored as `DSDT-pa0.aml` in the ACPI/origin folder as well. If the file already exists from the previous attempt, then a new one will be created: `DSDT-pa1.aml`, `DSDT-pa2.aml`, etc. Don't forget to clean the once you're done with debugging.
 
 #### DSDT Name
 Here you can enter the name of your patched `DSDT` file if you use one.
@@ -171,7 +173,7 @@ List availabke Audio Devices and additional options:
 ![screenshot29](https://user-images.githubusercontent.com/76865553/181208017-ad9706ef-7d80-44ae-8ca7-c22715445cd4.png)
 
 ### Startup Sound Output
-Run some tests (`AudioDXE.efi` has to be present in the Drivers folder) and set the volume of the Boot chime.
+Run some tests (`AudioDXE.efi` has to be present in the Drivers folder) and set the volume of the Boot chime. It goes from 0 to 100 %.
 
 ![Output](https://user-images.githubusercontent.com/76865553/181235659-7b9c6790-d8de-40f2-88c0-e2933d41af02.png)
 
@@ -179,3 +181,10 @@ Run some tests (`AudioDXE.efi` has to be present in the Drivers folder) and set 
 Block kexts, Change CSR Active Config and other settings:
 
 ![screenshot32](https://user-images.githubusercontent.com/76865553/181208057-9ef87261-603a-4bc3-85d7-909549bcb019.png)
+
+**Reset SMC** is a brand new feature that was introduced in r5148 and works similar as on real Macs. `SMCHelper.efi` as a driver has been removed from Clover and instead has been embedded into Clover as a Service. It is suggested to use FakeSMC.kext (and Plugins) to fully utilize the functionality the new approch provides.
+
+**Source**: [Clover Changes](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856)
+
+However, in my personal tests, boot times were significantly slower when using FakeSMC instaed of VirtualSMC, so I will continue using VirtualSMC instaed.
+
