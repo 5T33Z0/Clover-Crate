@@ -1,5 +1,5 @@
 # Clover Boot Menu Options
-This sections is all about the options Clover provides from the Boot Menu – and it's a lot of options. You have almost as much control over Clover from the Boot Menu as you would have when editing the config.plist directly which is really helpful to change settings on the fly temporarly if you have any issues and want to try things. 
+This sections is all about the options Clover provides from the Boot Menu – and it's a lot of options. You have almost as much control over Clover from the Boot Menu as you would have when editing the config.plist directly which is really helpful to change settings on the fly temporarily if you have any issues and want to try things. 
 
 :warning: Most of the settings you can change in Clover's Boot Menu are *temporary* only.
 
@@ -70,7 +70,7 @@ The sections framed in cyan shows details about the selected Volume. The green s
 
 ### Boot options
 
-You can set various boot-args in this menu. A prime use case example for changing boot-args on the fly is enabing `nv_disabke=1` after a macOS update to run my NVIDIA GPU in VESA mode so you have a picture and can update the NVIDIA Webdrivers to the latest versions. Because otherwise the screen won't turn on after a system update.
+You can set various boot-args in this menu. A prime use case example for changing boot-args on the fly is enabling `nv_disabke=1` after a macOS update to run my NVIDIA GPU in VESA mode so you have a picture and can update the NVIDIA Webdrivers to the latest versions. Because otherwise the screen won't turn on after a system update.
 
 ### Blocking Kexts
 
@@ -179,4 +179,3 @@ Run some tests (`AudioDXE.efi` has to be present in the Drivers folder) and set 
 Block kexts, Change CSR Active Config and other settings:
 
 ![screenshot32](https://user-images.githubusercontent.com/76865553/181208057-9ef87261-603a-4bc3-85d7-909549bcb019.png)
-
