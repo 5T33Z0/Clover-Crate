@@ -3,6 +3,37 @@ This sections is all about the options Clover provides from the Boot Menu – an
 
 :warning: Most of the settings you can change in Clover's Boot Menu are *temporary* only.
 
+<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
+
+- [Navigating the Boot Menu](#navigating-the-boot-menu)
+- [Function Keys](#function-keys)
+- [Available options for the selected Volume](#available-options-for-the-selected-volume)
+  - [Volume Info](#volume-info)
+  - [Boot options](#boot-options)
+  - [Blocking Kexts](#blocking-kexts)
+- [Clover Boot Options](#clover-boot-options)
+- [Options](#options)
+  - [Boot-args](#boot-args)
+  - [Configs](#configs)
+  - [GUI Tuning](#gui-tuning)
+  - [ACPI patching](#acpi-patching)
+    - [Debug DSDT](#debug-dsdt)
+    - [DSDT Name](#dsdt-name)
+    - [Tables Dropping](#tables-dropping)
+    - [DSDT Fix Mask](#dsdt-fix-mask)
+    - [Custom DSDT Patches](#custom-dsdt-patches)
+  - [SMBIOS](#smbios)
+  - [Binaries Patching](#binaries-patching)
+  - [Quirks Mask](#quirks-mask)
+  - [Graphics Injector](#graphics-injector)
+  - [PCI Devices](#pci-devices)
+  - [CPU Tuning](#cpu-tuning)
+  - [Audio Tuning](#audio-tuning)
+  - [Startup Sound Output](#startup-sound-output)
+  - [System Parameters](#system-parameters)
+
+</details>
+
 ## Navigating the Boot Menu
 
 - Use Arrow Keys or Mouse Cursor to navigate
