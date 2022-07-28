@@ -5,6 +5,8 @@ A group of parameters for creating binary patches on the fly. Note that this can
 
 :warning: **AMD Users**: Use ProperTree or another Plist Editor for editing your config.plist! Because the Kernel Patches required for AMD systems make use of the "Count" and "Skip" functions which are supported by Clover's config.plist but are not implemented in Clover Configurator which has a dramatic effect: if you open a config.plist for an AMD system and save it (you don't even need to change any setting), it will remove all the "Count" and "Skip" keys from the config, leaving AMD systems in an unbootable state on the next restart due to these entries missing from the Patching Mask. Details [here](https://www.insanelymac.com/forum/topic/352766-clover-configurator-problem/).
 
+Needless to say, this affects *all* Kernel and Kext patches making use of "Count" and "Skip" – even Intel systems. So if your config uses such patches, don't use Clover Configurator. It might not be as bad of an issue as on AMD systems, but it sure enough makes the patch not work as intended. 
+
 **TABLE of CONTENTS**
 
 - [ATI Section](#ati-section)
