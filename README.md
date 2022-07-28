@@ -12,7 +12,7 @@ I created this repo for the following reasons:
 
 1. **Overcoming** language barriers: Clover's official documentation (PDF, 171 pages) is only available in Russian.
 2. **Condensing** available information in one place, presenting it in a more current fashion, using Markdown and GitHub.
-3. **Consolidating and Unifying** sources which are scattered all over the net: the manual is only available in Russian on GitHub, the differences/changes between releases are only available at insanelymac and it's not a proper changelog. The Clover Wiki at Source Forge hasn't been updated in years. Eventually it got merged into the Clover Bootloader Repo but it's mostly a copy/paste of what already existed. It doesn't go into details as much.
+3. **Consolidating and Unifying** sources which are scattered all over the net: the manual is only available in Russian on GitHub, the differences/changes between releases are only available at insanelymac and it's not a proper changelog. The Clover Wiki at Source Forge has been neglected for years. Eventually it got merged into the Wiki of the Clover Bootloader Repo.
 4. **Exemplifying** Clover's features using Clover Configurator.
 
 ### Disclamer and Warnings
