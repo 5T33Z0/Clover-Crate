@@ -2,24 +2,25 @@
 [![Clover Version](https://img.shields.io/badge/Clover-r5148-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.22.0-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS-≤13-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-22.07.28-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 ## ABOUT
-Clover Crate is an unofficial documentation of the popular Clover Boot Manager and its features to help you to figure out what each option does. Its structure closely follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator.
+**Clover Crate** is an unofficial documentation of the popular Clover Boot Manager and its features to help you to figure out what each option does. Its structure closely follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator.
 
-Almost every available setting/parameter (besides obvious ones) is explained. Special attention to detail was given to the ACPI section, as it is one of the most important interfaces for configuring a Hackintosh. In each section/chapter, you can click on the list menu on the top left to select a feature you are interested in to jump to the corresponding entry, so you don't have to scroll all the way through a document. I am talking about this one:
+Every setting/parameter (besides obvious ones) is explained. Special attention to detail was given to the ACPI section, as it is one of the most important interfaces for configuring a Hackintosh. In each section/chapter, you can click on the list menu on the top left to select a feature you are interested in to jump to the corresponding entry, so you don't have to scroll all the way through a document. I am talking about this one:
 
 ![TOC](https://user-images.githubusercontent.com/76865553/136510478-2bccd5ae-6cc6-4a98-8f8d-63c41de2d3b3.png)
 
-I created this repo for several reasons:
+I created this repo for the following reasons:
 
 1. **Overcoming** language barriers: Clover's official documentation (PDF, 171 pages) is only available in Russian.
 2. **Condensing** available information in one place, presenting it in a more current fashion, using Markdown and GitHub.
-3. **Consolidating and Unifying** sources which are scattered all over the net: the manual is only available in Russian on GitHub, the changelog is only available at insanelymac and only updated sporadically. The Clover Wiki at Source Forge hasn't been updated in years.
+3. **Consolidating and Unifying** sources which are scattered all over the net: the manual is only available in Russian on GitHub, the differences/changes between releases are only available at insanelymac and it's not a proper changelog. The Clover Wiki at Source Forge hasn't been updated in years. Eventually it got merged into the Clover Bootloader Repo but it's mostly a copy/paste of what already existed. It doesn't go into details as much.
 4. **Exemplifying** Clover's features using Clover Configurator.
+
+### Disclamer and Warnings
+The information provided in this repository is based on excerpts of the official Russian documentation for Clover using AI-based translation tools (deepl, google and yandex translate) as well as my own extensive research. The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their meaning. Nevertheless, some details may have been lost in translation (although I doubt it).
 
 | :warning: | THIS is NOT a Hackintosh Guide! |
 |-----------|:--------------------------------|
-:warning:| **AMD Users: [Don't use Clover Configurator](https://www.insanelymac.com/forum/topic/352766-clover-configurator-problem/)**
-
-The information provided in this repository is based on excerpts of the official Russian documentation for Clover using AI-based translation tools (deepl, google and yandex translate) as well as my own extensive research. The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their meaning. Nevertheless, some details may have been lost in translation (although I doubt it).
+| :warning: | **AMD Users: [Don't use Clover Configurator](https://www.insanelymac.com/forum/topic/352766-clover-configurator-problem/)**
 
 ## TABLE of CONTENTS
 - **CLOVER CONFIGURATION**
