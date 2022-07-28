@@ -3,7 +3,7 @@
 
 A group of parameters for creating binary patches on the fly. Note that this can only be done if the kernel cache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 categories: one with Kernel Patches which you can click to enable. These are primarily for making your CPU work with macOS. The second category is for creating your own patches which can be applied to kexts and kernels themselves.
 
-:warning: **AMD Users**: Use ProperTree or another Plist Editor for editing this section of the config.plist! The Kernel Patches for AMD systems require the "Count" and "Skip" keys but these are not implemented in Clover Configurator. So if you edit a config.plist in Clover Configurator, which has patches that make use of these keys and hit "Save", the "Skip" and "Court" keys will beleted from the config.plist. This leaves AMD systems in a non-booting state on the next reboot due to missing entries in the Kernel Patches.
+:warning: **AMD Users**: Use ProperTree or another Plist Editor for editing your config.plist! Because the Kernel Patches required for AMD systems make use of the "Count" and "Skip" functions which are supported by Clover's config.plist but are not implemented in Clover Configurator which has a dramatic effect: if you open a config.plist for an AMD system and save it (you don't even need to change any setting), it will remove all the "Count" and "Skip" keys from the config, leaving AMD systems in an unbootable state on the next restart due to these entries missing from the Patching Mask. Details [here](https://www.insanelymac.com/forum/topic/352766-clover-configurator-problem/).
 
 **TABLE of CONTENTS**
 

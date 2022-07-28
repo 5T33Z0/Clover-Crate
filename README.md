@@ -1,5 +1,5 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover-r5148-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.22.0-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS-≤13-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-22.07.27-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
+[![Clover Version](https://img.shields.io/badge/Clover-r5148-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.22.0-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS-≤13-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-22.07.28-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 ## ABOUT
 Clover Crate is an unofficial documentation of the popular Clover Boot Manager and its features to help you to figure out what each option does. Its structure closely follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator.
@@ -15,14 +15,11 @@ I created this repo for several reasons:
 3. **Consolidating and Unifying** sources which are scattered all over the net: the manual is only available in Russian on GitHub, the changelog is only available at insanelymac and only updated sporadically. The Clover Wiki at Source Forge hasn't been updated in years.
 4. **Exemplifying** Clover's features using Clover Configurator.
 
-<details><summary><strong>DISCLAIMER</strong></summary>
-
 | :warning: | THIS is NOT a Hackintosh Guide! |
 |-----------|:--------------------------------|
+:**warning**:| **AMD Users: [Don't use Clover Configurator](https://www.insanelymac.com/forum/topic/352766-clover-configurator-problem/)**
 
 The information provided in this repository is based on excerpts of the official Russian documentation for Clover using AI-based translation tools (deepl, google and yandex translate) as well as my own extensive research. The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their meaning. Nevertheless, some details may have been lost in translation (although I doubt it).
-
-</details>
 
 ## TABLE of CONTENTS
 - **CLOVER CONFIGURATION**
