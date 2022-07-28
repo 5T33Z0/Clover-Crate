@@ -17,7 +17,7 @@ I created this repo for several reasons:
 
 | :warning: | THIS is NOT a Hackintosh Guide! |
 |-----------|:--------------------------------|
-:**warning**:| **AMD Users: [Don't use Clover Configurator](https://www.insanelymac.com/forum/topic/352766-clover-configurator-problem/)**
+:warning:| **AMD Users: [Don't use Clover Configurator](https://www.insanelymac.com/forum/topic/352766-clover-configurator-problem/)**
 
 The information provided in this repository is based on excerpts of the official Russian documentation for Clover using AI-based translation tools (deepl, google and yandex translate) as well as my own extensive research. The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their meaning. Nevertheless, some details may have been lost in translation (although I doubt it).
 
