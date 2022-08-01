@@ -1,7 +1,7 @@
 # Clover Boot Menu Options
-This sections is all about the options Clover provides from the Boot Menu – and it's a lot of options. You have almost as much control over Clover from the Boot Menu as you would have when editing the config.plist directly which is really helpful to change settings on the fly temporarily if you have any issues and want to try things. 
+This sections is about the options available from Clover's Bootmenu – and there are a lot. It is unparalleled in terms of functionality. It offers almost as much control over settings as you have when editing the config.plist itself. Settings can be changed on the fly to resolve boot issues or for testing purposes without messing up your config.plist.
 
-:warning: Most of the settings you can change in Clover's Boot Menu are *temporary* only.
+:warning: Most of the settings you can change from Clover's Bootmenu are *temporary* – they are only applied one time during the next boot process. So if your system wasn't booting before but it does now after changing settings from the GUI, you have to set and save them in the config.plist afterwards.
 
 <details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
 
@@ -47,7 +47,7 @@ This sections is all about the options Clover provides from the Boot Menu – an
 - **F2**: Save preboot.log
 - **F3**: Show hidden Bootmenu Entries
 - **F4**: Save (OEM) ACPI tables in `/EFI/CLOVER/ACPI/origin`
-- **F5**: To test DSDT patching
+- **F5**: Applies the currently enabled DSDT patches to your OEM `DSDT` and stores it as a new file under Clover/ACPI/patched
 - **F6**: Saves VBIOS in `/EFI/CLOVER/misc`
 - **F7**: Test Audio Device
 - **F8**: Dump Audio Codec
