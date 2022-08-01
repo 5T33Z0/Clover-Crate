@@ -31,6 +31,7 @@ This sections is about the options available from Clover's Bootmenu – and ther
   - [Audio Tuning](#audio-tuning)
   - [Startup Sound Output](#startup-sound-output)
   - [System Parameters](#system-parameters)
+- [A word on using `F5` for patching the `DSDT`](#a-word-on-using-f5-for-patching-the-dsdt)
 
 </details>
 
@@ -205,4 +206,4 @@ If you press `F5` in the Bootmenu, these Patches and Fixes will be merged into t
 
 :warning: You will still need the SSDTs present in the `ACPI/patched` folder to boot your system, since this DSDT is only *partially* patched. You could however use this partially patched `DSDT` and apply more patches to it using maciASL until you have a *fully patched* DSDT so that you no longer need the SSDTs.
 
-But all of this DSDT patching busines is completly irrelevant and unnecessary nowadays since patching the DSDT and applying SSDTs on the fly during boot is much faster than replacing the whole OEM DSDT with a patched one. So my advice would be: don't bother doing it.
+But all of this DSDT patching business is completely irrelevant and unnecessary nowadays since patching the DSDT and applying SSDTs on the fly during boot is much faster than replacing the whole OEM DSDT with a patched one – we are talking of replacing a few hundred lines of code (applying patches, fixes and SSDTs) vs. about 20.000 lines (patched DSDT). So my advice would be: don't bother doing it.
