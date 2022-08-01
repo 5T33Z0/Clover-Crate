@@ -47,7 +47,7 @@ This sections is about the options available from Clover's Bootmenu – and ther
 - **F2**: Save preboot.log
 - **F3**: Show hidden Bootmenu Entries
 - **F4**: Save (OEM) ACPI tables in `/EFI/CLOVER/ACPI/origin`
-- **F5**: Applies the currently enabled DSDT patches to your OEM `DSDT` and stores it as a new file under `/EFI/Clover/ACPI/patched`
+- **F5**: Applies the selected DSDT Fixes and Patches to your OEM `DSDT` and stores it as a new file under `/EFI/Clover/ACPI/origin`
 - **F6**: Saves VBIOS in `/EFI/CLOVER/misc`
 - **F7**: Test Audio Device
 - **F8**: Dump Audio Codec
