@@ -47,7 +47,7 @@ This sections is about the options available from Clover's Bootmenu – and ther
 - **F2**: Save preboot.log
 - **F3**: Show hidden Bootmenu Entries
 - **F4**: Save (OEM) ACPI tables in `/EFI/CLOVER/ACPI/origin`
-- **F5**: Applies the selected DSDT Fixes and Patches to your OEM `DSDT` and stores it as a new file under `/EFI/Clover/ACPI/origin`
+- **F5**: Applies selected DSDT Fixes and Patches to your OEM `DSDT` and stores it as a new file under `/EFI/Clover/ACPI/origin`
 - **F6**: Saves VBIOS in `/EFI/CLOVER/misc`
 - **F7**: Test Audio Device
 - **F8**: Dump Audio Codec
@@ -185,3 +185,25 @@ Block kexts, Change CSR Active Config and other settings:
 **Reset SMC** was introduced in r5148 and works similar to how SMC Reset works on real Macs. `SMCHelper.efi` as a driver has been retired and is now  embedded into Clover as a Service. Reset SMC requires `FakeSMC.kext` to work – it's not supported by VirtualSMC. Read the [**Clover Changes**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856) for more details.
 
 In my personal test, boot times were *significantly* slower when using FakeSMC, so I will continue using VirtualSMC. Also the 
+
+## A word on using `F5` for patching the `DSDT`
+Although one might be tempted to think "Dude, it can patch the `DSDT` for ya!", this is not the case. Clover cannot magically patch the `DSDT` by pressing a single button. This function does something else. 
+
+**Q**: "So what does this feature do then?"</br>
+**A**: "It integrates *existing* DSDT Patches and Fixes present in your config.plist in the ACPI setcion into your OEM DSDT and saves it as a new file."
+
+I am talking about these Patches and Fixes:</br>![](/Users/5t33z0/Desktop/ACPI.png)
+
+If you press `F5` in the Bootmenu, these Patches and Fixes will be merged into the DSDT and a new, patched DSDT will be stored in the `/EFI/Clover/ACPI/origin` folder with some digits attached to its name:</br>![](/Users/5t33z0/Desktop/patched_dsdt.png)
+
+**Q**: "What am I supposed to do with that?"
+**A**: "Well you can move it to `/EFI/Clover/ACPI/patched` and then you no longer need the Patches and Fixes in your config but use this partially patched `DSDT` instead."
+
+**Like this**:</br>
+
+![](/Users/5t33z0/Desktop/NopatchesNofixes.png)
+
+:warning: You will still need the SSDTs present in the `ACPI/patched` folder to boot your system, since this DSDT is only *partially* patched. You could however use this partially patched `DSDT` and apply more patches to it using maciASL until you have a *fully patched* DSDT so that you no longer need the SSDTs.
+
+But all of this DSDT patching busines is completly irrelevant and unnecessary nowadays since patching the DSDT and applying SSDTs on the fly during boot is much faster than replacing the whole OEM DSDT with a patched one. So my advice would be: don't bother doing it.
+
