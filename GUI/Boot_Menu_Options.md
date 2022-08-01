@@ -192,18 +192,17 @@ Although one might be tempted to think "Dude, it can patch the `DSDT` for ya!", 
 **Q**: "So what does this feature do then?"</br>
 **A**: "It integrates *existing* DSDT Patches and Fixes present in your config.plist in the ACPI setcion into your OEM DSDT and saves it as a new file."
 
-I am talking about these Patches and Fixes:</br>![](/Users/5t33z0/Desktop/ACPI.png)
+I am talking about these Patches and Fixes:</br>![ACPI](https://user-images.githubusercontent.com/76865553/182084087-498b5157-2b10-4602-8c89-fdc4f626cbb7.png)
 
-If you press `F5` in the Bootmenu, these Patches and Fixes will be merged into the DSDT and a new, patched DSDT will be stored in the `/EFI/Clover/ACPI/origin` folder with some digits attached to its name:</br>![](/Users/5t33z0/Desktop/patched_dsdt.png)
+If you press `F5` in the Bootmenu, these Patches and Fixes will be merged into the DSDT and a new, patched DSDT will be stored in the `/EFI/Clover/ACPI/origin` folder with some digits attached to its name:</br>![patched_dsdt](https://user-images.githubusercontent.com/76865553/182084137-5664c230-0ecc-4cd0-9dd9-c73e6a0b48ad.png)
 
-**Q**: "What am I supposed to do with that?"
+**Q**: "What am I supposed to do with that?"</br>
 **A**: "Well you can move it to `/EFI/Clover/ACPI/patched` and then you no longer need the Patches and Fixes in your config but use this partially patched `DSDT` instead."
 
 **Like this**:</br>
 
-![](/Users/5t33z0/Desktop/NopatchesNofixes.png)
+![NopatchesNofixes](https://user-images.githubusercontent.com/76865553/182084194-1cf28c13-856e-4bb8-a4ab-3ce932efba55.png)
 
 :warning: You will still need the SSDTs present in the `ACPI/patched` folder to boot your system, since this DSDT is only *partially* patched. You could however use this partially patched `DSDT` and apply more patches to it using maciASL until you have a *fully patched* DSDT so that you no longer need the SSDTs.
 
 But all of this DSDT patching busines is completly irrelevant and unnecessary nowadays since patching the DSDT and applying SSDTs on the fly during boot is much faster than replacing the whole OEM DSDT with a patched one. So my advice would be: don't bother doing it.
-
