@@ -102,6 +102,8 @@ This patch affects the settings of the ACPI system itself, such as the fact that
 
 You can also modify ASPM settings of devices using [properties](https://github.com/5T33Z0/OC-Little-Translated/tree/main/04_Fixing_Sleep_and_Wake_Issues/Setting_ASPM_Operating_Mode)
 
+**OpenCore** equivalent: Use DeviceProperty `pci-aspm-default` | Type: `Data` | `00`
+
 ## FixHeaders
 
 `FixHeaders` will check the headers of all ACPI tables in general, removing Chinese characters from the headers since macOS can not handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you may still need it.
@@ -122,7 +124,7 @@ This procedure applies to all fixes aimed at specific tables (apart from the one
 
 This patch is for fixing shutdown/sleep problems during UEFI boot. The fix is injected before calling `boot.efi`, clearing `SLP_SMI_EN` before the start of macOS. Nevertheless, it is quite safe, at least on Intel systems. 
 
-In OpenCore, enable `ACPI/Quirks/FadtEnableReset`.
+**OpenCore** equivalent: `ACPI/Quirks/FadtEnableReset`.
 
 ## Patch APIC 
 
@@ -254,6 +256,8 @@ Which values to use in `TgtBridge` is up to you. If string lengths do not match,
 
 The `Comment` field not only serves as a reminder about what a patch does, it is also serves as an item/entry in the Clover Boot Menu to enable/disable a patch. The initial value for `ON` or `OFF` is determined by the `Disabled` lines in the `config.plist`. The default value is `Disabled=false`. If you use someone else's set of patches, it is better to set them to `Disabled=true` and then enable them from the Boot menu one by one.
 
+**OpenCore** equivalent: `Base` parameter in `ACPI/Patch` section
+
 #### About the `TgtBridge` Bug (fixed since Clover [r5123.1](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1))
 
 Prior to the release of r5123.1, the `TgtBridge` had a bug, where it would not only rename matches found in the DSDT but also in all OEM SSDTs which was not intended. With the release of Clover r5123.1 (the last release supporting Aptio Memory Fixes), this bug was finally fixed.
@@ -345,7 +349,7 @@ Corrects the `ADP1` device (power supply), which is necessary for laptops to sle
 
 Similar to LAN, the device itself is created, if not already registered in `DSDT`. For some well-known models, the `DeviceID` is replaced with a supported one. And the Airport turns on without other patches. 
 
-**NOTE**: This fix is pretty much deprecated nowadays. Use `AirportBrcmFixup.kext` instead.
+**NOTE**: This fix is deprecated nowadays and doesn't work any longer. Use `AirportBrcmFixup.kext` instead.
 
 #### FixDarwin
 
@@ -364,6 +368,8 @@ Produces a number of video card patches for non-Intel video cards (Intel on-boar
 - Adds custom properties.
 - Adds a `HDAU` device for audio output via HDMI.
 
+**NOTE**: Pretty much deprecated. WhateverGreen handles most of it nowadays. Use manual framebuffer patching via Devices/Properties instead.
+
 #### FixFirewire
 
 Adds `fwhub` property to the FireWire controller, if present. If not, then nothing will happen. You can bet if you don't know if you need to or not.
@@ -371,6 +377,8 @@ Adds `fwhub` property to the FireWire controller, if present. If not, then nothi
 #### FixHDA
 
 Corrects the description of the sound card in the `DSDT` so that the native AppleHDA driver works. Renaming `AZAL` to `HDEF` is performed, `layout-id` and `PinConfiguration` are injected. Obsolete nowadays, since `AppleALC.kext` handles this (in combination with the correct `layout-id` added in the `Devices` section).
+
+**NOTE**: Handled by AppleALC.kext nowadays.
 
 #### FixHPET
 
@@ -383,6 +391,8 @@ In macOS 10.6.1, there was a panic on the `AppleIntelPIIXATA.kext`. Two solution
 #### FixIPIC
 
 Removes the interrupt from the `IPIC` device. Fixes the Power button, so that holding it for a few seconds brings up a dialog window with the to Reset, Sleep, or Shutdown the system.
+
+**OpenCore** equivalent: Generate SSDT-HPET and IRQ fixes using SSDTTime
 
 #### FixIntelGfx
 
@@ -429,9 +439,22 @@ Likewise, this patch solves the problem with sleep.
 
 Fixes some SATA issues and removes the yellow disk icon which indicated that an external disk is used when in fact it's connected internally. This is a controversial fix and not recommended. But in some cases DVD drives (remember those?) won't play back DVDs. Alternatively, this could be resolved by adding `AppleAHCIport.kext`.
 
+OpenCore equivalent: `Kernel/Quirks/ExternalDiskIcons` &rarr; YES
+
 #### FixSBus
 
-Adds System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep. To check if the SBUS is working correctly, enter `kextstat | grep -E "AppleSMBusController|AppleSMBusPCI"` in terminal. If the Terminal output contains the following 2 drivers, your SMBus is working correctly: `com.apple.driver.AppleSMBusPCI` and `com.apple.driver.AppleSMBusController`
+Adds System Management Bus Controller to the device tree, thereby removing the warning about its absence from the system log. It also creates the correct bus power management layout, which affects sleep. To check if the SBUS is working correctly, enter the following command in Terminal:
+
+`kextstat | grep -E "AppleSMBusController|AppleSMBusPCI"` 
+
+If the Terminal output contains the following 2 drivers, your SMBus is working correctly: 
+
+```
+com.apple.driver.AppleSMBusPCI
+com.apple.driver.AppleSMBusController
+```
+
+**OpenCore** equivalent: Use `SSDT-SBUS-MCHC`.
 
 #### FixShutdown
 
