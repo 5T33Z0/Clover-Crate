@@ -126,7 +126,7 @@ This key works with ATI/AMD Radeon GPUs (6xxx and higher, possibly 5xxx). It fix
 Listed below are all parameters related to the `Inject Nvidia` feature. For an in-depth guide on older NVIDIA cards (up to Geforce 900 series) check Rampage Dev's [NVIDIA Graphics Guide](https://web.archive.org/web/20170814211046/http://www.rampagedev.com/guides/nvidia-graphics/)
 
 ### NVCAP
-This parameter is for legacy NVIDIA video cards and configures types and usage of video ports. The value consists of 40 hexadecimal digits which have to be calculated based on  your video card's VBIOS which has to be analyzed to do so. You can follow [**this guide**](https://dortania.github.io/OpenCore-Post-Install/gpu-patching/nvidia-patching/#nvcap) to calculate the correct NVCAP value for your card.
+This parameter is for legacy NVIDIA video cards and configures types and usage of video ports. The value consists of 40 hexadecimal digits which have to be calculated based on  your video card's VBIOS which has to be analyzed to do so. You can follow [**this guide**](https://dortania.github.io/OpenCore-Post-Install/gpu-patching/nvidia-patching/#nvcap) and use [**this tool**](https://github.com/1Revenger1/NVCAP-Calculator) to calculate the correct NVCAP value for your card.  
 
 **Examples**:
 
