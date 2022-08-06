@@ -274,13 +274,13 @@ It's not really documented, but can use the `RenameDevices` feature to rename Me
 ##### Comparison: renaming Methods with `TgtBridge` vs. `RenameDevices`
 Using the Target Bridge is the intended method for renaming methods inside of different devices, in this case 2 different devices, `TPM` and `VID`.
  
-**DSDT Patches**:</br>![](/Users/5t33z0/Desktop/method_TGT_Bridge.png)</br>
-**Outcome in DSDT**:</br>![](/Users/5t33z0/Desktop/DSDT_TGT.png)
+**DSDT Patches**:</br>![method_TGT_Bridge](https://user-images.githubusercontent.com/76865553/183251766-17bbf2c6-b1d9-417e-b3e8-b7b290502a9a.png)</br>
+**Outcome in DSDT**:</br>![DSDT_TGT](https://user-images.githubusercontent.com/76865553/183251790-1effb6d5-9c44-4ce6-9ded-241fab89dc68.png)
 
 But you can achieve the same by adding the ACPI path(s) to the method(s) you want to rename inside of a device the `RenameDevices` section instead.
 
-**Rename Devices** Rules: </br>![](/Users/5t33z0/Desktop/Rendev.png)</br>
-**Outcome in DSDT**:</br>![](/Users/5t33z0/Desktop/Rename_Devices.png)
+**Rename Devices** Rules: </br>![Rendev](https://user-images.githubusercontent.com/76865553/183251818-221b4451-5f97-44bc-976b-3d79561d4a86.png)</br>
+**Outcome in DSDT**:</br>![Rename_Devices](https://user-images.githubusercontent.com/76865553/183251834-bc70e0c1-f070-49b8-9cbf-aafdcca0841d.png)
 
 So, which approch you apply is up to you. Using DSDT patches section has the advantage, that you can turn this rules as needed, which you can't do when using the `RenameDevices`feature. But on the other hand youc an specify exact locations to apply a patch to.
 
