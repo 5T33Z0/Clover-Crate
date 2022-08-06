@@ -179,6 +179,32 @@ In this sub-section of `ACPI`, you can add renaming rules (binary renames) to re
 
 If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a `Find` value of `45484331` and a `Replace` value of `45483031` which literally translates to `EHC1` and `EH01` if you decode the hex values back to text with the Hex Converter in the "Tools" section of Clover Configurator. Which renames to use when depends on your system's ACPI Tables, used macOS version, etc. and is not part of this overview.
 
+### TgtBridge
+
+The `TgtBridge` (= Target Bridge) can be used to limit the scope of a binary rename to a specific device within the `DSDT`. It's located in the `ACPI/DSDT/Patches` section of the Clover config. Using the `TgtBridge` is recommended to avoid that renamings of otherwise widely-used methods (like `_STA, _CRS` or `_INI` for example) are applied to the whole of the DSDT which would otherwise most likely break it.
+
+**Example**: renaming the method `_STA`to `_XSTA` in device `GPI0`:
+
+![TGTBridgeExample](https://user-images.githubusercontent.com/76865553/135732680-641af3ba-8140-477a-9c9e-69345d8e9b8f.png)
+
+As shown above, the name of the original Method `_STA` (pink) is converted to  hex (`5F535441`), so Clover can find it in the `DSDT`. If it finds this value it is then replaced by `58535441` (blue), which is the hex equivalent of the term `XSTA` (blue). If set like this, this patch would change *any* match ot the term `_STA` in the whole of the `DSDT` to `XSTA` which probably would break the system. To avoid this, you can use `TgtBridge` to specify and limit the matches of this patch to a specified name/device/method/area, in this case to the device `GPI0` (Cyan). Basically, you tell Clover: "In device `GPI0`, look for the method `_STA`. If it's present, rename it to `XSTA` but leave the rest of the `DSDT` alone!"
+
+Which values to use in `TgtBridge` is up to you. If string lengths do not match, Clover will correctly account for the length change, with one exception: make sure it doesn't happen inside an "If" or "Else" statement. If you need such a change, replace the entire operator. Usually, you rename methods in devices just to disable them or to redefine them within a custom SSDT later.
+
+The `Comment` field not only serves as a reminder about what a patch does, it is also serves as an item/entry in the Clover Boot Menu to enable/disable a patch. The initial value for `ON` or `OFF` is determined by the `Disabled` lines in the `config.plist`. The default value is `Disabled=false`. If you use someone else's set of patches, it is better to set them to `Disabled=true` and then enable them from the Boot menu one by one.
+
+**OpenCore** equivalent: `Base` parameter in `ACPI/Patch` section
+
+#### About the `TgtBridge` Bug (fixed since Clover [r5123.1](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1))
+
+Prior to the release of r5123.1, the `TgtBridge` had a bug, where it would not only rename matches found in the DSDT but also in all OEM SSDTs which was not intended. With the release of Clover r5123.1 (the last release supporting Aptio Memory Fixes), this bug was finally fixed.
+
+To workaround this bug, users would have to create restore rules for every instance which utilized the TgtBridge to reverse the renames for all other matches as shown in this example:
+
+![TgtBrige_workaround](https://user-images.githubusercontent.com/76865553/163777028-951e0d8e-abf2-4f2d-9612-3704aaf9f6e9.png)
+
+In this example, you would tell Clover to look for `XSTA` and rename it `STA` for any devices which are not `GPIO`. I imagine that this workaround slows down boot times significantly since all tables have to be scanned up an down to replace and restore values. So if you are still using the "pre-OC" version of Clover with the bugged TgtBridge, you should definitely update it and disable/delete all these restore rules.
+
 ### Rename Devices
 <details>
 <summary><strong>Excursion: Renaming Devices Basics</strong></summary>
@@ -242,31 +268,21 @@ As you can see, the device exists and is located in `\SB_PCI0_EHC1` of the `DSDT
 
 ![DSDT_patched](https://user-images.githubusercontent.com/76865553/135732669-9ac77cf7-5c5f-41a0-b98f-0ae1453411dc.png)
 
-### TgtBridge
+#### Using the `RenameDevices` feature for renaming Methods
+It's not really documented, but can use the `RenameDevices` feature to rename Methods based on their ACPI path as well. It basically work's the same way as using the Target Bridge in the patch section. But instead of using the device name as reference, you enter the complete ACPI path to the method you want to rename which is even more precise. In my test, using `TgtBridge` vs. `RenameDevices` produced identical results.
 
-The `TgtBridge` (= Target Bridge) can be used to limit the scope of a binary rename to a specific device within the `DSDT`. It's located in the `ACPI/DSDT/Patches` section of the Clover config. Using the `TgtBridge` is recommended to avoid that renamings of otherwise widely-used methods (like `_STA, _CRS` or `_INI` for example) are applied to the whole of the DSDT which would otherwise most likely break it.
+##### Comparison: renaming Methods with `TgtBridge` vs. `RenameDevices`
+Using the Target Bridge is the intended method for renaming methods inside of different devices, in this case 2 different devices, `TPM` and `VID`.
+ 
+**DSDT Patches**:</br>![](/Users/5t33z0/Desktop/method_TGT_Bridge.png)</br>
+**Outcome in DSDT**:</br>![](/Users/5t33z0/Desktop/DSDT_TGT.png)
 
-**Example**: renaming the method `_STA`to `_XSTA` in device `GPI0`:
+But you can achieve the same by adding the ACPI path(s) to the method(s) you want to rename inside of a device the `RenameDevices` section instead.
 
-![TGTBridgeExample](https://user-images.githubusercontent.com/76865553/135732680-641af3ba-8140-477a-9c9e-69345d8e9b8f.png)
+**Rename Devices** Rules: </br>![](/Users/5t33z0/Desktop/Rendev.png)</br>
+**Outcome in DSDT**:</br>![](/Users/5t33z0/Desktop/Rename_Devices.png)
 
-As shown above, the name of the original Method `_STA` (pink) is converted to  hex (`5F535441`), so Clover can find it in the `DSDT`. If it finds this value it is then replaced by `58535441` (blue), which is the hex equivalent of the term `XSTA` (blue). If set like this, this patch would change *any* match ot the term `_STA` in the whole of the `DSDT` to `XSTA` which probably would break the system. To avoid this, you can use `TgtBridge` to specify and limit the matches of this patch to a specified name/device/method/area, in this case to the device `GPI0` (Cyan). Basically, you tell Clover: "In device `GPI0`, look for the method `_STA`. If it's present, rename it to `XSTA` but leave the rest of the `DSDT` alone!"
-
-Which values to use in `TgtBridge` is up to you. If string lengths do not match, Clover will correctly account for the length change, with one exception: make sure it doesn't happen inside an "If" or "Else" statement. If you need such a change, replace the entire operator. Usually, you rename methods in devices just to disable them or to redefine them within a custom SSDT later.
-
-The `Comment` field not only serves as a reminder about what a patch does, it is also serves as an item/entry in the Clover Boot Menu to enable/disable a patch. The initial value for `ON` or `OFF` is determined by the `Disabled` lines in the `config.plist`. The default value is `Disabled=false`. If you use someone else's set of patches, it is better to set them to `Disabled=true` and then enable them from the Boot menu one by one.
-
-**OpenCore** equivalent: `Base` parameter in `ACPI/Patch` section
-
-#### About the `TgtBridge` Bug (fixed since Clover [r5123.1](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1))
-
-Prior to the release of r5123.1, the `TgtBridge` had a bug, where it would not only rename matches found in the DSDT but also in all OEM SSDTs which was not intended. With the release of Clover r5123.1 (the last release supporting Aptio Memory Fixes), this bug was finally fixed.
-
-To workaround this bug, users would have to create restore rules for every instance which utilized the TgtBridge to reverse the renames for all other matches as shown in this example:
-
-![TgtBrige_workaround](https://user-images.githubusercontent.com/76865553/163777028-951e0d8e-abf2-4f2d-9612-3704aaf9f6e9.png)
-
-In this example, you would tell Clover to look for `XSTA` and rename it `STA` for any devices which are not `GPIO`. I imagine that this workaround slows down boot times significantly since all tables have to be scanned up an down to replace and restore values. So if you are still using the "pre-OC" version of Clover with the bugged TgtBridge, you should definitely update it and disable/delete all these restore rules.
+So, which approch you apply is up to you. Using DSDT patches section has the advantage, that you can turn this rules as needed, which you can't do when using the `RenameDevices`feature. But on the other hand youc an specify exact locations to apply a patch to.
 
 ### Fixes
 
