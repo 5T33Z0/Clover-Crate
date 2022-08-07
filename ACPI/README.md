@@ -179,6 +179,8 @@ In this sub-section of `ACPI`, you can add renaming rules (binary renames) to re
 
 If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a `Find` value of `45484331` and a `Replace` value of `45483031` which literally translates to `EHC1` and `EH01` if you decode the hex values back to text with the Hex Converter in the "Tools" section of Clover Configurator. Which renames to use when depends on your system's ACPI Tables, used macOS version, etc. and is not part of this overview.
 
+:bulb: During my tests I realized that the rename rules created here are *not* limited to the `DSDT` – they apply system-wide! If you want to restrict renames to the `DSDT` only, you probably have to make use of the `TgtBridge`.
+
 ### TgtBridge
 
 The `TgtBridge` (= Target Bridge) can be used to limit the scope of a binary rename to a specific device within the `DSDT`. It's located in the `ACPI/DSDT/Patches` section of the Clover config. Using the `TgtBridge` is recommended to avoid that renamings of otherwise widely-used methods (like `_STA, _CRS` or `_INI` for example) are applied to the whole of the DSDT which would otherwise most likely break it.
@@ -258,7 +260,9 @@ Names like `_DSM` with and underscore in front of them define a method. These ar
 To convert any text to a hex you can use the Hex Converter inside of Clover Configurator
 </details>
 
-`RenameDevices` serves as a more refined method for renaming devices (and/or methods used within devices) which is less brute force than using a simple binary rename which replaces *every* occurrence of a word/value throughout the *whole* `DSDT`, which can be problematic. The rules created here only apply to the ACPI path specified in the `Find Device` field, so these patches are more precise, less invasive and more efficient than renaming them via `DSDT` > `Patches`.
+`RenameDevices` serves as a more refined method for renaming devices (and/or methods) which is less brute force than using a simple binary rename which replaces *every* occurrence of an expression throughout the *entirety* of ACPI tables, which can be problematic.
+
+The rules created here apply to a `Device (xxxx)` or `Method (xxxx)` specified in the `Find Device` field and all sub-sequent occurences of it in all other ACPI tabels so that the device/method names remain congruent across the whole system while [avoiding false positive matches](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2613951).
 
 To use this section properly, you need a dump the unmodified `DSDT` and examine it with maciASL. In this case, we search for `ECH1`:
 
