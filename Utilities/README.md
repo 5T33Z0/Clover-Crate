@@ -30,6 +30,7 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 - [**BitmaskDecode**](https://github.com/corpnewt/BitmaskDecode/) – For calculating/analyzing `CsrActiveConfig`. 
 - [**gibMacOS**](https://github.com/corpnewt/gibMacOS) – Python-based Tool for downloading macOS
 - [**USBToolbox**](https://github.com/USBToolBox/tool) – USB Port mapping tool. Makes port mapping under macOS 11.3+ easier.
+- [**Clover-Anonymizer**](https://github.com/dreamwhite/Clover-Anonymizer) – Removes sensitive data from the `config.plist`
 
 ## Resources
 - [**Clover Changelog and Explanations**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/)
