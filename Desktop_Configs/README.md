@@ -155,11 +155,13 @@ Depending on your setup you might need to disable (add a `#` in front of the PCI
 ### About Audio
 Since I don't know which mainboard you are using, you need to find out which Audio CODEC is mounted on your board and then change the injected Layout ID in `Devices/Audio` accordingly. 
 
-Here's a list of audio codecs supported by AppleACL and the corresponding layout IDs: https://github.com/dreamwhite/ChonkyAppleALC-Build
+**Finding a suitable ALC Layout-ID** 
 
+- Visit https://github.com/dreamwhite/ChonkyAppleALC-Build
 - Click on the folder name corrsponding to the vendor of your audio Codec
-- Find your model, click the folder
-- See the available Layout-IDs for your Codec and test them.
+- Find your model, click on the folder
+- See the available Layout-IDs for your Codec 
+- Check, if one for your specific Mainboard or Laptop exists and add it to your config.plist. Otherwise, test them.
 
 ### About Kexts
 Depending on the hardware components used on your mainboard, you may need to add different kexts for LAN/WiFi/Bluetooth, NVME, etc. Please find out if you need different/additional kexts and add them *before* using this EFI folder. 
@@ -446,8 +448,9 @@ Haswell_iMac15,1|iMac15,1|10.8 - 11.6.x|For Haswell CPUs using a dGPU for displa
 </details>
 
 ## Credits & Thank Yous
-- Slice for [Clover Boot Manager](https://github.com/CloverHackyColor/CloverBootloader)
 - Acidanthera for tons of kexts
-- Dreamwhite for [ChonkyAppleALC](https://github.com/dreamwhite/ChonkyAppleALC-Build)
-- Corpnewt for original [Vanilla Desktop Guide and Configs](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
+- corpnewt for original [Vanilla Desktop Guide and Configs](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
 - Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
+- Dreamwhite for [ChonkyAppleALC](https://github.com/dreamwhite/ChonkyAppleALC-Build)
+- Slice for [Clover Boot Manager](https://github.com/CloverHackyColor/CloverBootloader)
+
