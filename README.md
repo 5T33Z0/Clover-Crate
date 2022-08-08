@@ -24,9 +24,11 @@ The methods and techniques presented in this repo are based on utilizing the off
 
 > MaLd0n's implications that you need a custom DSDT to add and remove (well, remove yes, but disabling is good enough in virtually all cases) devices is **incorrect**. Aside from those claims, most device rename changes (probably also things you considered „missing“) are also not needed, as they are performed by Lilu and its plug-ins. This approach is a lot safer than previous ACPI renames as dumb find-replace patches can yield false positives, the kext approach cannot.
 
-#### :warning: CAUTION
-- **THIS is NOT a Hackintosh Guide**!
-- **AMD Users: [Don't use Clover Configurator](https://www.insanelymac.com/forum/topic/352766-clover-configurator-problem/)** for now!
+| :warning: CAUTION|
+|:-----------------------------------------------------------|
+|This is **not a Hackintosh Guide**! To configure your own vanilla Hackintosh, you can use these [**Desktop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [**Laptop Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) to get you started.
+|**AMD Users**: Don't use Clover Configurator for now! It [**deletes the "Count" and "Skip" keys from the config.plist**](https://www.insanelymac.com/forum/topic/352766-clover-configurator-problem/), which renders the required Kernel Patches for AMD CPUs useless.
+
 
 ## TABLE of CONTENTS
 - **CLOVER CONFIGURATION**
