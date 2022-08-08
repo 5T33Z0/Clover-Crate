@@ -153,7 +153,13 @@ This chapter lists all the included Configs and their variations, covering multi
 Depending on your setup you might need to disable (add a `#` in front of the PCI patch or key) or enable certain entries (delete the `#`).
 
 ### About Audio
-Since I don't know which Board you are using, you need to find out which Audio CODEC is used on your board and then change the injected Layout ID in `Devices > Audio` accordingly. Here's a list of audio codecs supported by AppleACL and the corresponding layout IDs: https://github.com/acidanthera/AppleALC/wiki/Supported-codecs.
+Since I don't know which mainboard you are using, you need to find out which Audio CODEC is mounted on your board and then change the injected Layout ID in `Devices/Audio` accordingly. 
+
+Here's a list of audio codecs supported by AppleACL and the corresponding layout IDs: https://github.com/dreamwhite/ChonkyAppleALC-Build
+
+- Click on the folder name corrsponding to the vendor of your audio Codec
+- Find your model, click the folder
+- See the available Layout-IDs for your Codec and test them.
 
 ### About Kexts
 Depending on the hardware components used on your mainboard, you may need to add different kexts for LAN/WiFi/Bluetooth, NVME, etc. Please find out if you need different/additional kexts and add them *before* using this EFI folder. 
@@ -439,7 +445,9 @@ Haswell_iMac15,1|iMac15,1|10.8 - 11.6.x|For Haswell CPUs using a dGPU for displa
 - `XhciPortLimit` &rarr; Disable for macOS 11.3 and newer – create a USB Port Map 
 </details>
 
-## Credits
+## Credits & Thank Yous
 - Slice for [Clover Boot Manager](https://github.com/CloverHackyColor/CloverBootloader)
+- Acidanthera for tons of kexts
+- Dreamwhite for [ChonkyAppleALC](https://github.com/dreamwhite/ChonkyAppleALC-Build)
 - Corpnewt for original [Vanilla Desktop Guide and Configs](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
 - Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
