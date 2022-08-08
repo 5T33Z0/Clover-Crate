@@ -187,7 +187,7 @@ For more info about additional kexts read this in-depth explanation on [Gatherin
 | macOS Version     | Bitmask Size  | CsrActiveConfig |
 |------------------:|:-------------:|:---------------:|
 | macOS 11/12       | 12 bits       |`0xFEF`
-| macOS 10.14/10.15 | 11 bits       |`0x7FF`
+| macOS 10.14/10.15 | 11 bits       |`0x7EF`
 | macOS 10.13       | 10 bits       |`0x3FF`
 | macOS 10.12       | 9 bits        |`0x1FF`
 | macOS 10.11       | 8 bits        |`0x0FF`
