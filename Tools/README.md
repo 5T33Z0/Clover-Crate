@@ -4,10 +4,10 @@ The Tools Section of Clover Configurator is pretty straight forward and self-exp
 Some of the tools don't work if you don't install Clover via the .pkg installer. 
 
 ## Mount EFI
-Lists the availabe Disks, Volumes and EFI partitions it detects and allows you to mount them
+Lists the available Disks, Volumes and EFI partitions it detects and allows you to mount them.
 
 ## Boot.log
-Lets you generate a Boot log if you are using Clover Bootmanager
+Lets you generate a Boot log if you are using Clover Bootmanager.
 
 ## Generate Config
 This tools is useful if you didn't have a `config.plist` to begin with and used the Bootmenu GUI to configure the system which is totally possible although it is a rather uncommon approach for configuring a Hackintosh. 
@@ -41,7 +41,7 @@ Useful for creating ACPI and Kernel patches. Supported conversions:
 Let's you edit the config in text mode. Useful if someone posts sections of a config or patches as raw text. Then you can paste it into the text mode window and sync the config. But be careful when using this mode: if you paste text at the wrong location or the file structure/hierarchy is incorrect you might mess up the config.
 
 ## Kext Installer
-Lets you install and more imprtantly: update kexts. Just make sure, you select the correct folder, i.e. "OS Version" from the drop down menu. And since the primary folder for kexts is the "Other" folder, you should select this. 
+Lets you install and more importantly: update kexts. Just make sure, you select the correct folder, i.e. "OS Version" from the drop down menu. And since the primary folder for kexts is the "Other" folder, you should select this. 
 
 Unfortunately Clover Configurator supports has a rather limited list of available kexts and you cannot add any repos to it, unlike OCAT.
 
@@ -51,7 +51,16 @@ Allows you to clone your EFI folder to another EFI partition. A really unneccess
 :warning: Doesn't work for legacy boot, only UEFI!
 
 ## Clover Validator
-:waring: Requires `CloverConfigPlistValidator` to be present in `usr/local/bin`. Therefore you need to install Clover via the .pkg Installer. Copying it there manually doesn't cut it.
+:waring: Requires `CloverConfigPlistValidator` to be present in `usr/local/bin`. You need to install Clover via the .pkg Installer. Simply copying it there manually doesn't cut it.
+
+Therefore, you have to download the validator from the [Clover github repo](https://github.com/CloverHackyColor/CloverBootloader/releases) unpack it and verify the config manually:
+
+1. Open Terminal
+2. Drag CloverConfigPlistValidator into the Terminal window, leave a space
+3. Drag in your `config.plist` 
+4. Hit Enter to validate it:</br>![](/Users/5t33z0/Desktop/CCVLDTE2.png)
+5. Fix any config errors the tool might report
+6. Validate it again until you get this message:</br>![](/Users/5t33z0/Desktop/CCVLDTE.png)
 
 ## :warning: Caution
 If you plan to use both, OpenCore and Clover in parallel, don't install Clover via the .pkg Installer. Build, update and maintain your Clover EFI folder manually as explained in my EFI Update guide! 
