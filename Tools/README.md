@@ -17,18 +17,27 @@ A more common scenario would be: you messed up your config and after a reboot ca
 
 So once your back in macOS, open Clover Configurator and run this tool to create a config.plist. This way you get a nearly complete configuration file with the parameters used to successfully load the OS. Some more manual work is needed to finish it.
 
-:waring: Requires `clover-genconfig` to be present in `usr/local/bin`. Therefor you need to install Clover via the .pkg Installer
+:waring: Requires `clover-genconfig` to be present in `usr/local/bin`. Therefore you need to install Clover via the .pkg Installer
 
 ### Themes Editor
 Gives you access to the `themes.plist` included in every theme and lets you change its parameters.
 
 ### Install/Update Clover
+Does what it says. :warning: Requires Clover to be installed via the .pkg Installer
+
 ### Install Drivers
+Lets you download and instal additional drivers in `EFI/Clover/drivers`.
+
 ### NVRAM
+
 ### HEX Converter
+
 ### Text Mode
+
 ### Kext Installer
+
 ### Clover Cloner
+
 ### Clover Validator
 
 ## :warning: Caution
