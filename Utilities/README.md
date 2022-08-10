@@ -32,6 +32,9 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 - [**USBToolbox**](https://github.com/USBToolBox/tool) – USB Port mapping tool. Makes port mapping under macOS 11.3+ easier.
 - [**Clover-Anonymizer**](https://github.com/dreamwhite/Clover-Anonymizer) – Removes sensitive data from the `config.plist`
 
+### Web-based Applications
+- [**Clover Cloud Editor**](https://www.root86.com/CCE/cce/index.php) – Online Clover Config Editor
+
 ## Resources
 - [**Clover Changelog and Explanations**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/)
 - [**Old Clover Documentation**](https://www.insanelymac.com/forum/topic/282787-clover-v2-instructions/)
