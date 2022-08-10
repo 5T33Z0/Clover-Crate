@@ -1,7 +1,5 @@
 # Tools Section
-The Tools Section of Clover Configurator is pretty straight forward and self-explanatory. But there are a few additional things you may want to know.
-
-Some of the tools don't work if you don't install Clover via the .pkg installer. 
+The Tools Section of Clover Configurator is pretty straight forward and self-explanatory. But there are a few additional things you may want to know. Some of the tools don't work if you don't install Clover via the .pkg installer. 
 
 ## Mount EFI
 Lists the available Disks, Volumes and EFI partitions it detects and allows you to mount them.
