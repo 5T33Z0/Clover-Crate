@@ -1,5 +1,5 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover-r5148-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.22.0-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS-≤13-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-22.08.10-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
+[![Clover Version](https://img.shields.io/badge/Clover-r5148-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.22.0-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS-≤13.0_beta-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-22.08.10-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 ## ABOUT
 **Clover Crate** is an unofficial documentation of the popular Clover Boot Manager and its features to help you to figure out what each option does. Its structure closely follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator.
@@ -29,7 +29,6 @@ The methods and techniques presented in this repo are based on utilizing the off
 |This is **not a Hackintosh Guide**! To configure your own vanilla Hackintosh, you can use these [**Desktop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [**Laptop Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) to get you started.
 |**AMD Users**: Don't use Clover Configurator for now! It [**deletes the "Count" and "Skip" keys from the config.plist**](https://www.insanelymac.com/forum/topic/352766-clover-configurator-problem/), which renders the required Kernel Patches for AMD CPUs useless.
 
-
 ## TABLE of CONTENTS
 - **CLOVER CONFIGURATION**
   - [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#readme)
@@ -44,6 +43,7 @@ The methods and techniques presented in this repo are based on utilizing the off
   - [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables#readme)
   - [**SMBIOS**](https://github.com/5T33Z0/Clover-Crate/tree/main/SMBIOS#readme)
   - [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters#readme)
+  - [**Tools Section**](https://github.com/5T33Z0/Clover-Crate/blob/main/Tools/README.md)
 - **APPENDIX**
   - [**Upgrading to Clover with OpenRuntime integration**](https://github.com/5T33Z0/Clover-Crate/tree/main/Upgrading_Clover#readme)
   - [**Kext Management in Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kext_Management#readme)
