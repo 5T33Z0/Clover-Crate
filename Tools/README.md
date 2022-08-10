@@ -58,9 +58,9 @@ Therefore, you have to download the validator from the [Clover github repo](http
 1. Open Terminal
 2. Drag CloverConfigPlistValidator into the Terminal window, leave a space
 3. Drag in your `config.plist` 
-4. Hit Enter to validate it:</br>![](/Users/5t33z0/Desktop/CCVLDTE2.png)
+4. Hit Enter to validate it:</br>![CCVLDTE2](https://user-images.githubusercontent.com/76865553/184026365-0c0750a7-9a9e-4e81-aaa5-54bbbc13d8eb.png)
 5. Fix any config errors the tool might report
-6. Validate it again until you get this message:</br>![](/Users/5t33z0/Desktop/CCVLDTE.png)
+6. Validate it again until you get this message:</br>![CCVLDTE](https://user-images.githubusercontent.com/76865553/184026420-54bf7b1e-c8df-4a3d-95dc-0ed78a505e03.png)
 
 ## :warning: Caution
 If you plan to use both, OpenCore and Clover in parallel, don't install Clover via the .pkg Installer. Build, update and maintain your Clover EFI folder manually as explained in my EFI Update guide! 
