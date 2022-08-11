@@ -51,7 +51,7 @@ Allows you to clone your EFI folder to another EFI partition. A really unneccess
 :warning: Doesn't work for legacy boot, only UEFI!
 
 ## Clover Validator
-:waring: Requires `CloverConfigPlistValidator` to be present in `usr/local/bin`. You need to install Clover via the .pkg Installer. Simply copying it there manually doesn't cut it.
+:warning: Requires `CloverConfigPlistValidator` to be present in `usr/local/bin`. You need to install Clover via the .pkg Installer. Simply copying it there manually doesn't cut it.
 
 Therefore, you have to download the validator from the [Clover github repo](https://github.com/CloverHackyColor/CloverBootloader/releases) unpack it and verify the config manually:
 
