@@ -145,7 +145,7 @@ Adds `NVDA` property to the Nvidia injector. Explained [here](https://www.insane
 The default value is `1`, but for some older configurations this will cause issues. In this case, set it to `0`.
 
 ## EDID
-![](/Users/5t33z0/Desktop/Clover_EDID.png)
+![Clover_EDID](https://user-images.githubusercontent.com/76865553/184686410-d3157963-4c17-4d2b-8892-74fa95bab6f5.png)
 **Extended Display Identification Data** (or EDID) is a metadata format for display devices to describe their capabilities to a video source (e.g. graphics card). The data format is defined by a standard published by the Video Electronics Standards Association (VESA). Sometimes this value is necessary to fix issues like graphical glitches like black screen on wake or the 8 Apples glitch, etc.
 
 **The following parameters can be entered**:
