@@ -145,14 +145,17 @@ Adds `NVDA` property to the Nvidia injector. Explained [here](https://www.insane
 The default value is `1`, but for some older configurations this will cause issues. In this case, set it to `0`.
 
 ## EDID
-Extended Display Identification Data (EDID) is a metadata format for display devices to describe their capabilities to a video source (e.g. graphics card). The data format is defined by a standard published by the Video Electronics Standards Association (VESA). Sometimes this value is necessary to fix issues like graphical glitches, etc.
+![](/Users/5t33z0/Desktop/Clover_EDID.png)
+**Extended Display Identification Data** (or EDID) is a metadata format for display devices to describe their capabilities to a video source (e.g. graphics card). The data format is defined by a standard published by the Video Electronics Standards Association (VESA). Sometimes this value is necessary to fix issues like graphical glitches like black screen on wake or the 8 Apples glitch, etc.
 
-The following parameters can be adjusted:
+**The following parameters can be entered**:
 
 - `VendorID`
 - `ProductID`
 - `HorizontalSyncPulseWidth`: Fixes the eight apples issue. See `EightApple` Fix under &rarr; Kernel and Kext Patches.
 - `VideoInputSignal`
+
+Follow this [**guide**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/11_Graphics/Inject_EDID/README.md) to figure out how to obtain the EDID of your display.
 
 ## Load VBios
 Loads video bios from a file. It must be present in `EFI/CLOVER/OEM/xxx/ROM` or `EFI/CLOVER/ROM` and its name must consist of `vendor_device.rom`, e.g. `1002_68d8.rom`. Since r3222, longer file names including sub-vendor and sub-revision are supported as well. For example `10de_0f00_1458_3544.rom`. This option is useful if you want to load a patched Vbios when running macOS.
