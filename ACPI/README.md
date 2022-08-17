@@ -13,9 +13,12 @@
 - [Smart UPS](#smart-ups)
 - [DSDT](#dsdt)
 	- [Patches](#patches)
-	- [Rename Devices](#rename-devices)
 	- [TgtBridge](#tgtbridge)
 		- [About the `TgtBridge` Bug (fixed since Clover r5123.1)](#about-the-tgtbridge-bug-fixed-since-clover-r51231)
+	- [Rename Devices](#rename-devices)
+		- [Using the `RenameDevices` feature for renaming Methods](#using-the-renamedevices-feature-for-renaming-methods)
+			- [Comparison: renaming Methods with `TgtBridge` vs. `RenameDevices`](#comparison-renaming-methods-with-tgtbridge-vs-renamedevices)
+		- [Excursion: Renaming Devices Basics](#excursion-renaming-devices-basics)
 	- [Fixes](#fixes)
 		- [AddDTGP](#adddtgp)
 			- [DTGP Explained](#dtgp-explained)
@@ -208,8 +211,40 @@ To workaround this bug, users would have to create restore rules for every insta
 In this example, you would tell Clover to look for `XSTA` and rename it `STA` for any devices which are not `GPIO`. I imagine that this workaround slows down boot times significantly since all tables have to be scanned up an down to replace and restore values. So if you are still using the "pre-OC" version of Clover with the bugged TgtBridge, you should definitely update it and disable/delete all these restore rules.
 
 ### Rename Devices
+`RenameDevices` serves as a more refined method for renaming devices (and methods) which is less brute force than using a simple binary rename which replaces *every* occurrence of an expression throughout the *entirety* of ACPI tables, which can be problematic.
+
+The rules created here apply to a `Device (xxxx)` or `Method (xxxx)` specified in the `Find Device` field and all sub-sequent occurences of it in all other ACPI tabels so that the device/method names remain congruent across the whole system while [avoiding false positives](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2613951). 
+
+In my opinin, `RenameDevice` is one of the best yet least utilized features of Clover, simply because people think it's for renaming devices only and because it's "hidden" in a 2nd Tab in Clover Configurator no one ever clicks on.
+
+To use this section properly, you need a dump the unmodified `DSDT` and examine it with maciASL. In this case, we search for `ECH1`:
+
+![Rename Devices](https://user-images.githubusercontent.com/76865553/135732661-ba636a72-9490-4c6f-a018-bdede3752fa6.jpg)
+
+As you can see, the device exists and is located in `\SB_PCI0_EHC1` of the `DSDT`. Next, we tell Clover Configurator to replace the actual device name with `EH01` by adding it in the `Rename Device` field. After the patch is applied on the fly during boot, the device name and its dependencies have been changed:
+
+![DSDT_patched](https://user-images.githubusercontent.com/76865553/135732669-9ac77cf7-5c5f-41a0-b98f-0ae1453411dc.png)
+
+#### Using the `RenameDevices` feature for renaming Methods
+It's not really documented, but can use the `RenameDevices` feature to rename Methods based on their ACPI path as well. It basically work's the same way as using the Target Bridge in the patch section. But instead of using the device name as reference, you enter the complete ACPI path to the method you want to rename which is even more precise. In my test, using `TgtBridge` vs. `RenameDevices` produced identical results.
+
+##### Comparison: renaming Methods with `TgtBridge` vs. `RenameDevices`
+Using the Target Bridge is the intended method for renaming methods inside of different devices, in this case 2 different devices, `TPM` and `VID`.
+ 
+**DSDT Patches**:</br>![method_TGT_Bridge](https://user-images.githubusercontent.com/76865553/183251766-17bbf2c6-b1d9-417e-b3e8-b7b290502a9a.png)</br>
+**Outcome in DSDT**:</br>![DSDT_TGT](https://user-images.githubusercontent.com/76865553/183251790-1effb6d5-9c44-4ce6-9ded-241fab89dc68.png)
+
+But you can achieve the same simply by adding the ACPI path(s) to the method(s) you want to rename inside of a device the `RenameDevices` section instead without having to create a find and replace rule which requires converting words to HEX, etc.
+
+**Rename Devices** Rules: </br>![Rendev](https://user-images.githubusercontent.com/76865553/183251818-221b4451-5f97-44bc-976b-3d79561d4a86.png)</br>
+**Outcome in DSDT**:</br>![Rename_Devices](https://user-images.githubusercontent.com/76865553/183251834-bc70e0c1-f070-49b8-9cbf-aafdcca0841d.png)
+
+So, which approch you apply is up to you. Using DSDT patches section has the advantage, that you can turn this rules as needed, which you can't do when using the `RenameDevices`feature. But on the other hand youc an specify exact locations to apply a patch to.
+
 <details>
-<summary><strong>Excursion: Renaming Devices Basics</strong></summary>
+<summary><strong>Excursion: Renaming Devices Basics</strong> (click to reveal)</summary>
+
+#### Excursion: Renaming Devices Basics
 
 **I. About binary renames**
 
@@ -220,7 +255,7 @@ Following are examples of commonly renamed devices:
 
 | Original Device | Renamed for macOS | Description            |
 |:----------------| :----------------:| -----------------------|
-| EC              | EC0               | Embedded Controller
+| EC              | EC0               | Embedded Controller. Not recommended!
 | EHC1            | EH01              | USB Controller
 | EHC2            | EH02              | USB Controller
 | LPC             | LPCB              | LPC Bus
@@ -240,53 +275,25 @@ Names like `_DSM` with and underscore in front of them define a method. These ar
 
 | Rename      | Description                      |
 | :---------: | -------------------------------- |
-| _DSM to XDSM| Other Patch Requirements         |
-| LPC to LPCB |In `DSDT`, search for `0x001F0000`.</br> 1: If the device name is already `LPCB`, there is no need to change the name.</br> 2: If there are multiple matches for `0x001F0000`, carefully determine whether this name change is needed or not </br>3:If ACPI includes an `ECDT.aml`, check "About `ECDT` correction method|
-| EC to EC0   | Changes name of Embedded Controller. In DSDT, check the device belonging to `PNP0C09`.</br>1:If the device name is already `EC0`, no renaming is required </br>2:If there are multiple matches for `0PNP0C09`, confirm the real `EC` name </br>3:If ACPI package includes `ECDT.aml`, see "About ECDT and how to fix it"|.|
-|H_EC to EC0|Same as EC|
-|ECDV to EC0(dell)|Same as EC|
-|EHC1 to EH01| Renames USB Controller. For machines with USB2.0, query the device name of `0x001D0000`.
-|EHC2 to EH02| For a 2nd USB Controller
-|XHCI to XHC| Changes name of modern USB Controller. Check the device name belonging to `0x00140000`. If the device name is already `XHC`, no binary rename is necessary|
-|XHC1 to XHC|Same as XHCI|
-|KBD to PS2K|Rename for Keyboard. Check the device name of `PNP0303`, `PNP030B`, `PNP0320`. If the keyboard name cannot be determined in `DSDT`, check the "BIOS name" of the keyboard in Windows Device Manager. If keyboard is named `PS2K` already, no rename is required|
-|KBC0 to PS2K|same|
-|KBD0 to PS2K|same|
-|SMBU to SBUS|Renames System Management Bus. Most ThinkPads require this. </br>Before 6th Gen, search the device name belonging to "0x001F0003" </br>6th Gen and later machines: search "0x001F0004" belonging to the device name </br>If the device name `SBUS` already, a rename is not required|
-|LID to LID0| Search the device name belonging to `PNP0C0D` and rename it to `LID0`
-|PBTN to PWRB(dell)| Search device belonging to `PNP0C0**C**` and rename it to `PWRB`
-|SBTN to SLPB(dell)| Sleep Button rename. Search device belonging to `PNP0C0**E**`. If the name is `SLPB` already, no need for a rename.
+| **_DSM to XDSM**| Other Patch Requirements         |
+| **LPC to LPCB** |In `DSDT`, search for `0x001F0000`.</br> 1: If the device name is already `LPCB`, there is no need to change the name.</br> 2: If there are multiple matches for `0x001F0000`, carefully determine whether this name change is needed or not </br>3:If ACPI includes an `ECDT.aml`, check "About `ECDT` correction method|
+| **EC to EC0**   | Changes name of Embedded Controller. In DSDT, check the device belonging to `PNP0C09`.</br>1:If the device name is already `EC0`, no renaming is required </br>2:If there are multiple matches for `0PNP0C09`, confirm the real `EC` name </br>3:If ACPI package includes `ECDT.aml`, see "About ECDT and how to fix it"|.|
+|**H_EC to EC0**|Same as EC|
+|**ECDV to EC0** (dell)|Same as EC|
+|**EHC1 to EH01**| Renames USB Controller. For machines with USB2.0, query the device name of `0x001D0000`.
+|**EHC2 to EH02**| For a 2nd USB Controller
+|**XHCI to XHC_**| Changes name of modern USB Controller. Check the device name belonging to `0x00140000`. If the device name is already `XHC`, no binary rename is necessary|
+|**XHC1 to XHC_**|Same as XHCI|
+|**KBD to PS2K**|Rename for Keyboard. Check the device name of `PNP0303`, `PNP030B`, `PNP0320`. If the keyboard name cannot be determined in `DSDT`, check the "BIOS name" of the keyboard in Windows Device Manager. If keyboard is named `PS2K` already, no rename is required|
+|**KBC0 to PS2K**|same|
+|**KBD0 to PS2K**|same|
+|**SMBU to SBUS**|Renames System Management Bus. Most ThinkPads require this. </br>Before 6th Gen, search the device name belonging to "0x001F0003" </br>6th Gen and later machines: search "0x001F0004" belonging to the device name </br>If the device name `SBUS` already, a rename is not required|
+|**LID to LID0**| Search the device name belonging to `PNP0C0D` and rename it to `LID0`
+|**PBTN to PWRB** (dell)| Search device belonging to `PNP0C0**C**` and rename it to `PWRB`
+|**SBTN to SLPB** (dell)| Sleep Button rename. Search device belonging to `PNP0C0**E**`. If the name is `SLPB` already, no need for a rename.
 
-To convert any text to a hex you can use the Hex Converter inside of Clover Configurator
+To convert any text to a hex you can use the HEX Converter inside of Clover Configurator.
 </details>
-
-`RenameDevices` serves as a more refined method for renaming devices (and/or methods) which is less brute force than using a simple binary rename which replaces *every* occurrence of an expression throughout the *entirety* of ACPI tables, which can be problematic.
-
-The rules created here apply to a `Device (xxxx)` or `Method (xxxx)` specified in the `Find Device` field and all sub-sequent occurences of it in all other ACPI tabels so that the device/method names remain congruent across the whole system while [avoiding false positive matches](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2613951).
-
-To use this section properly, you need a dump the unmodified `DSDT` and examine it with maciASL. In this case, we search for `ECH1`:
-
-![Rename Devices](https://user-images.githubusercontent.com/76865553/135732661-ba636a72-9490-4c6f-a018-bdede3752fa6.jpg)
-
-As you can see, the device exists and is located in `\SB_PCI0_EHC1` of the `DSDT`. Next, we tell Clover Configurator to replace the actual device name with `EH01` by adding it in the `Rename Device` field. After the patch is applied on the fly during boot, the device name and its dependencies have been changed:
-
-![DSDT_patched](https://user-images.githubusercontent.com/76865553/135732669-9ac77cf7-5c5f-41a0-b98f-0ae1453411dc.png)
-
-#### Using the `RenameDevices` feature for renaming Methods
-It's not really documented, but can use the `RenameDevices` feature to rename Methods based on their ACPI path as well. It basically work's the same way as using the Target Bridge in the patch section. But instead of using the device name as reference, you enter the complete ACPI path to the method you want to rename which is even more precise. In my test, using `TgtBridge` vs. `RenameDevices` produced identical results.
-
-##### Comparison: renaming Methods with `TgtBridge` vs. `RenameDevices`
-Using the Target Bridge is the intended method for renaming methods inside of different devices, in this case 2 different devices, `TPM` and `VID`.
- 
-**DSDT Patches**:</br>![method_TGT_Bridge](https://user-images.githubusercontent.com/76865553/183251766-17bbf2c6-b1d9-417e-b3e8-b7b290502a9a.png)</br>
-**Outcome in DSDT**:</br>![DSDT_TGT](https://user-images.githubusercontent.com/76865553/183251790-1effb6d5-9c44-4ce6-9ded-241fab89dc68.png)
-
-But you can achieve the same by adding the ACPI path(s) to the method(s) you want to rename inside of a device the `RenameDevices` section instead.
-
-**Rename Devices** Rules: </br>![Rendev](https://user-images.githubusercontent.com/76865553/183251818-221b4451-5f97-44bc-976b-3d79561d4a86.png)</br>
-**Outcome in DSDT**:</br>![Rename_Devices](https://user-images.githubusercontent.com/76865553/183251834-bc70e0c1-f070-49b8-9cbf-aafdcca0841d.png)
-
-So, which approch you apply is up to you. Using DSDT patches section has the advantage, that you can turn this rules as needed, which you can't do when using the `RenameDevices`feature. But on the other hand youc an specify exact locations to apply a patch to.
 
 ### Fixes
 
