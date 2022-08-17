@@ -139,7 +139,7 @@ These two parameters serve a common purpose - to fix restart. They should be pre
 
 - `Reset Address`: lets you change the `Address` in `Reset Register` section of the `FACP` table (example):
 	
-	```
+	```asl
 	...
 	[074h 0116  12]               Reset Register : [Generic Address Structure]
 	[074h 0116   1]                     Space ID : 01 [SystemIO]
@@ -151,7 +151,7 @@ These two parameters serve a common purpose - to fix restart. They should be pre
 	```
 - `Reset Value`: lets you change the value in the `Value to cause reset` section of the `FACP` table:
 
-	```
+	```asl
 	...
 	[080h 0128   1]         Value to cause reset : 06
 	...
@@ -584,7 +584,7 @@ In this array, you can list tables which should be prohibited from loading (in o
 
 Other tables that can be dropped (presets): 
 
-| Table|Description|
+| Table    |Description|
 |:--------:|-----------|
 `SSDT`		 |Drops SSDT. TableID must be specified.
 `HPET` 	 |High Precision Event Timer. Using `FixHPET` is preferred.
