@@ -74,7 +74,7 @@ While Binary Renames work the same in OpenCore and Clover, you have a lot more o
 | OpenCore        | Clover    |
 |:---------------:|:---------:|
 | Comment         | Comment   |
-| Find		        | Find      |
+| Find		  | Find      |
 | Replace         | Replace   |
 | Base            | use [TgtBridge](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#tgtbridge) instead|
 | Enabled         | Disabled  |
@@ -83,10 +83,12 @@ While Binary Renames work the same in OpenCore and Clover, you have a lot more o
 | TableLength     | –       |
 | Mask            | –       |
 | ReplaceMask     | –       |
-| Count           | –       |
+| Count           | Count   |
 | Limit           | –       | 
 | Skip            | –       |
 | BaseSkip        | –       |
+
+**UPDATE**: `Count` was added in Clover r5149. `TYPE`can be `Number` or `String`. If you use `Data`, you receive a warning from CloverConfigPlistValidator: " Tag '/ACPI/DSDT/Patches[0]/Count:19' should be an integer. It's currently a data. For now, I've made the conversion. Please update."
 
 In Clover you also have the option "RenameDevices" which works the same as the `Base` Parameter in OpenCore with the difference that it is limited to devices:</br>
 ![Ren_Dev](https://user-images.githubusercontent.com/76865553/138651675-a51e51df-8249-4a79-8d75-c9de401e268c.png)
