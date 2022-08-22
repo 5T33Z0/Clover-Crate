@@ -39,7 +39,7 @@ The following drivers are no longer necessary and have to either be deleted when
 
 |Driver(s)|Description|Action
 |---------|-----------|-----|
-|**`AptioMemoryFix.efi`**,</br>**`OsxAptioFix3Drv.efi`**,</br>**`OsxAptioFixDrv.efi`**,</br>**`OcQuirks.efi`** and **`OcQuirks.plist`**|Obsolete Aptio Memory Fixes and OCQuirks. OcQuirks is a relic from earlier attempts to include OpenCore Booter Quirks into Clover (≤ r5122).|Delete
+|**`AptioMemoryFix.efi`**,</br>**`OsxAptioFixDrv.efi`**,</br>**`OsxAptioFix2Drv-free2000`**,</br> **`OsxAptioFix3Drv.efi`**,</br>**`OsxLowMemFixDrv`**,</br>**`OcQuirks.efi`** and **`OcQuirks.plist`**|Obsolete Aptio Memory Fixes and OCQuirks. OcQuirks is a relic from earlier attempts to include OpenCore Booter Quirks into Clover (≤ r5122).|Delete
 **`DataHubDxe.efi`**| DataHub protocol which provides parameters like OEM Model, FSBFrequency, ARTFrequency, Clover's boot-log and many other things to macOS which it cannot obtain otherwise. It has been fully integrated into Clover since r5129. Newer versions of the Clover Package don't contain this driver anyway.|Delete
 **`EmuVariableUefi.efi`** | Necessary for emulating NVRAM, if it is not available (legacy systems) or working incorrectly.|Delete
 **`FSInject.efi`** | For Kext injection. Only necessary for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of Prelinkedkernel. Since r5125, OpenCore handles Kext injection, so FSInject has become obsolete|Delete
