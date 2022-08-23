@@ -3,41 +3,36 @@
 
 **TABLE of CONTENTS**
 
-- [Upgrading Clover for macOS 11+ compatibility](#upgrading-clover-for-macos-11-compatibility)
-	- [About](#about)
-		- [Why Upgrade?](#why-upgrade)
-		- [Who is this Guide for?](#who-is-this-guide-for)
-		- [Problem Description](#problem-description)
-	- [Upgrade instructions (manual method)](#upgrade-instructions-manual-method)
-		- [EFI Folder adjustments](#efi-folder-adjustments)
-			- [Remove obsolete and unnecessary Drivers](#remove-obsolete-and-unnecessary-drivers)
-			- [Check and update Kexts](#check-and-update-kexts)
-		- [Building a new EFI folder (manual Upgrade)](#building-a-new-efi-folder-manual-upgrade)
-		- [Config.plist Adjustments](#configplist-adjustments)
-			- [Correcting `RenameDevices` section](#correcting-renamedevices-section)
-			- [Updating SMBIOS (Update Firmware Only)](#updating-smbios-update-firmware-only)
-		- [Validating config.plist and fixing errors](#validating-configplist-and-fixing-errors)
-		- [Testing your (new) config](#testing-your-new-config)
-	- [Using the .pkg Installer to upgrade Clover](#using-the-pkg-installer-to-upgrade-clover)
-	- [`OpenRuntime.efi` and older Clover builds (< r5142)](#openruntimeefi-and-older-clover-builds--r5142)
-	- [Further Resources and Troubleshooting](#further-resources-and-troubleshooting)
-	- [Notes](#notes)
+- [About](#about)
+	- [Who needs to upgrade (and who not)?](#who-needs-to-upgrade-and-who-not)
+- [Upgrade instructions (manual method)](#upgrade-instructions-manual-method)
+	- [EFI Folder adjustments](#efi-folder-adjustments)
+		- [Remove obsolete and unnecessary Drivers](#remove-obsolete-and-unnecessary-drivers)
+		- [Check and update Kexts](#check-and-update-kexts)
+	- [Building a new EFI folder (manual Upgrade)](#building-a-new-efi-folder-manual-upgrade)
+	- [Config.plist adjustments](#configplist-adjustments)
+		- [Correcting the `RenameDevices` section](#correcting-the-renamedevices-section)
+		- [Updating the SMBIOS (Update Firmware Only)](#updating-the-smbios-update-firmware-only)
+	- [Validating the config.plist and fixing errors](#validating-the-configplist-and-fixing-errors)
+	- [Testing your (new) config](#testing-your-new-config)
+- [Using the .pkg Installer to upgrade Clover](#using-the-pkg-installer-to-upgrade-clover)
+- [`OpenRuntime.efi` and older Clover builds (< r5142)](#openruntimeefi-and-older-clover-builds--r5142)
+- [Further Resources and Troubleshooting](#further-resources-and-troubleshooting)
+- [Notes](#notes)
 
-## About 
-### Why Upgrade?
-Clover's previous `AptioMemoryFixes` no longer work in macOS 11 and newer. Therefore, OpenCore's memory fixes (included in `OpenRuntime.efi`) have been implemented to keep Clover alive. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is *mandatory* to install and boot macOS 11 and newer. 
+## About
+This guide is for upgrading/converting your Clover EFI folder and config from the "old" to the "new" version which utilizes OpenCore's memory fixes and the newly added "Quirks".
 
-Users who want to stay on macOS Catalina or older should update to [**r5123.1**](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1) which is the final revision supporting the old Aptio memory fixes. It also contains the long-awaited fix for the `TgtBridge` which had been broken for a long time.
+Clover's previously used `AptioMemoryFixes` no longer work in macOS 11 and newer. Therefore, OpenCore's memory fixes (`OpenRuntime.efi`) have been implemented to keep Clover alive. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is *mandatory* in order to install and boot macOS 11 and newer.
 
-### Who is this Guide for?
-This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their UEFI machines. 
-
-When updating Clover, there are several obstacles along the way, such as removing old memory fixes and drivers as well as configuring the newly added "Quirks" in the `config.plist`. Users who don't want to run macOS Big Sur or newer on their systems don't need to upgrade Clover.
-
-### Problem Description
-If you just update your existing "old" Clover EFI by installing the latest `Clover.pkg` like you used to, this will most likely result in an inoperable bootloader due to missing boot parameters in the `config.plist` as well as residual files from the "old" Clover version which need to be removed first.
+When upgrading Clover, there are several obstacles along the way, such as removing old memory fixes and drivers as well as configuring the newly added "Quirks" in the `config.plist`. 
 
 Why there are no proper upgrade instructions provided on the Clover Github Repo is a mystery to me, really…
+
+### Who needs to upgrade (and who not)?
+This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. 
+
+Users who want to stay on macOS Catalina or older should update to [**r5123.1**](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1) which is the final revision supporting the old Aptio memory fixes. It also contains the long-awaited fix for the `TgtBridge` which had been broken for a long time.
 
 ## Upgrade instructions (manual method)
 Follow the steps below to successfully upgrade your EFI folder and Config so you can install macOS Big Sur and newer. Manual upgrading from the "old" to the "new" Clover version is the preferred method since it forces you to do some housekeeping so you can get rid of some old ballast you no longer need.
@@ -56,11 +51,11 @@ The following drivers are no longer necessary and have to either be deleted when
 **`SMCHelper.efi`** | Deprecated since r5148, [Commit 735987a](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856). Its functionality is now embedded in Clover as a service. This change also brought a new "ResetSMC" option to the Clover Boot Menu which works similar to SMC Reset on real Macs.| Delete
 
 #### Check and update Kexts
-Outdated, incompatible and/or duplicate kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use Kext-Updater to download the latest kexts and other Bootloader-related files.
+Outdated, incompatible and/or duplicate kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use [**Kext-Updater**](https://www.sl-soft.de/en/kext-updater/) to download the latest kexts and other Bootloader-related files.
 
 If you are using a lot of kexts (usually on Notebooks), have a look inside of them (right-click and select "Show package contents") to check if they include additional kexts (as "Plugins") and make sure that no duplicates exist in the "kexts" folder – kexts for HID, WiFi and Bluetooth come to mind.
 
-If you get panics you can not isolate, move all non-essential kexts to the "Off" folder temporarily to work around the issue by starting with a minimal set of kexts to get the system running. Once it runs, put the disabled kexts back one at a time, reboot, and repeat until you to find the culprit for the panic and look for a solution (verbose mode is your friend).
+:bulb: If you get panics you can not isolate, move all non-essential kexts to the "Off" folder temporarily to work around the issue by starting with a minimal set of kexts to get the system running. Once it runs, put the disabled kexts back one at a time, reboot, and repeat until you to find the culprit for the panic and look for a solution (verbose mode is your friend).
 
 Here are some examples of kexts I've experienced issues with when updating:
 
@@ -76,7 +71,7 @@ Here are some examples of kexts I've experienced issues with when updating:
 4. Extract both zip archives.
 5. Have a look at `CloverV2/EFI/CLOVER/drivers/off/UEFI` and its sub-folders. Inside, you will find these Drivers: </br>
 ![Bildschirmfoto 2021-10-05 um 10 32 30](https://user-images.githubusercontent.com/76865553/136025337-d12b41ac-b3f6-4c3f-9a31-e61294daf01a.png)</br>
-6. Move the following files from "**divers/Off**" to "**/drivers/UEFI**":</br>
+6. Move the following files from "**drivers/Off**" to "**/drivers/UEFI**":</br>
 	- `ApfsDriverLoader.efi`, 
 	- `VBoxHfs.efi` (or `HfsPlus.efi`, which is faster) and 
 	- `OpenRuntime.efi`</br> 
@@ -87,26 +82,26 @@ Now we have the *required* minimum set of Drivers (green and red):</br>
 	- `FSInject` is deprecated since OpenRuntime handles kext injection now, so delete/disable it (if present).
 	- `SMCHelper`is unnecessary as well – it *must* be deleted if `VirtualSMC.kext` is used!
 	- `EnglisdDxe.efi`: Provides a better Unicode Collation protocol used by Shell.efi. Sometimes this protocol is absent or badly implemented. Unless you plan to work in Shell a lot, delete/disabled it.
-7. Next, copy over the following files/folders from your existing EFI folder:</br>
+8. Next, copy over the following files/folders from your existing EFI folder:</br>
 	- **Kexts** (updated to the latest available version, of course), 
 	- **.aml** Files from "ACPI/patched" folder 
 	- **config.plist**
-8. Run Clover Configurator and update it to the latest Version. It should now include a new section at the bottom called `Quirks`.
-9. Open your `config.plist`
-10. Click on "Quirks". It should look like this (in the latest version of Clover Configurator, the Quirks section is divided into "Booter" and "Kernel" sections for better overview):</br>
+9. Run Clover Configurator and update it to the latest Version. It should now include a new section at the bottom called `Quirks`.
+10. Open your `config.plist`
+11. Click on "Quirks". It should look like this (in the latest version of Clover Configurator, the Quirks section is divided into "Booter" and "Kernel" sections for better overview):</br>
 ![Booter](https://user-images.githubusercontent.com/76865553/148212620-62387a7a-d56a-4df7-b8bb-ad6b0131ebf5.png)</br>
 ![Kernel+scheme](https://user-images.githubusercontent.com/76865553/148212751-e8322419-59f7-4341-b5d9-59b7c85a7260.png)</br>
-11. Head over to the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/prerequisites.html) and pick the guide for your CPU Family and Platform.
-12. Jump to the "Booter" Section. It contains all required Booter Quirks tinted green in the screenshot. Make sure to unfold the "more in-depth info" box to see what they do. Find the options for your system and tick them away in Clover Configurator.
-13. Next, jump to the "Kernel" section of Dortania's guide and copy over the settings from "Quirks" and "Scheme". Again, make sure to unfold the "more in-depth" section to find all necessary settings.</br> 
-	**NOTE**: some of the OpenCore "Kernel Quirks" have different names and are located in the "Kernel and Kext Patches" section of Clover Configurator. In most cases you have the correct settings enabled already, otherwise your system wouldn't have started before. But it's good to double check if you have settings enabled which may be unnecessary. These include: ![](https://user-images.githubusercontent.com/76865553/135859628-34f6be51-7a20-4461-900e-0c72fbdcba51.png)</br>
-14. Finally, you can delete all the deprecated USB Port Limit Patches from your config since this is handled by the `XhciPortLimit` Quirk (for macOS ≥ Catalina you will need a `USBPort.kext` instead).
-15. Once you've ticked all the necessary quirks, save your configuration file.
+12. Head over to the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/prerequisites.html) and pick the guide for your CPU Family and Platform.
+13. Jump to the "Booter" Section. It contains all required Booter Quirks tinted green in the screenshot. Make sure to unfold the "more in-depth info" box to see what they do. Find the options for your system and tick them away in Clover Configurator.
+14. Next, jump to the "Kernel" section of Dortania's guide and copy over the settings from "Quirks" and "Scheme". Again, make sure to unfold the "more in-depth" section to find all necessary settings.</br> 
+	**NOTE**: some of the OpenCore "Kernel Quirks" have different names and are located in the "Kernel and Kext Patches" section of the config. In most cases you have the correct settings enabled already, otherwise your system wouldn't have started before. But it's good to double check if you have settings enabled which may be unnecessary. These include: ![](https://user-images.githubusercontent.com/76865553/135859628-34f6be51-7a20-4461-900e-0c72fbdcba51.png)</br>
+15. Finally, you can delete all the deprecated USB Port Limit Patches from your config since this is handled by the `XhciPortLimit` Quirk (for macOS ≥ Catalina you will need a `USBPort.kext` instead).
+16. Once you've ticked all the necessary quirks, save your configuration file.
 
-### Config.plist Adjustments
+### Config.plist adjustments
 
-#### Correcting `RenameDevices` section
-When upgrading Clover, you also need to adjust some config settings as well. The "Quirks" Dictionary will automatically be created once you select a Quirk in Clover Configurator and save. 
+#### Correcting the `RenameDevices` section
+When upgrading Clover, you also need to adjust some config settings as well. The "Quirks" Dictionary will automatically be created once you select a Quirk in Clover Configurator and save the file
 
 But the structure of `ACPI/RenameDevices` section has to be changed from a Dictionary to an Array and each String has to reside in its own Dictionary as well, as shown below.
 
@@ -123,7 +118,7 @@ You can use ProperTree to do this. The easies way without losing data is this:
 - Finally, change the class of `RenameDevices` from "Dictionary" to "Array". 
 - Save the config.plist
 
-#### Updating SMBIOS (Update Firmware Only)
+#### Updating the SMBIOS (Update Firmware Only)
 Update the BIOS and Firmware to the latest version to prevent macOS installation failures. If the firmware version is out of date, installation will quit with an error message. To prevent this, do the following:
 
 - Open your config.plist in Clover Configurator
@@ -134,7 +129,7 @@ Update the BIOS and Firmware to the latest version to prevent macOS installation
 - This will update the fields for BIOS and Firmware only, leaving the Serial, MLB, etc. unchanged
 - Save the config
 
-### Validating config.plist and fixing errors
+### Validating the config.plist and fixing errors
 
 Starting from version r5134, Clover now includes error reporting similar to OpenCore which displays configuration errors before the actual boot menu appears. Do the following to validate your config and fix configuration errors:
 
@@ -196,8 +191,6 @@ This way, you can switch back and forth between current and older Clover builds 
 - If you get Kernel Panics: head over to the [**OpenCore Troubleshooting Guide**](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/troubleshooting.html) and have a look at the "OpenCore Boot issues" and "Kernelspace Issues" sections to find your error message and possible fixes to resolve it.
 - Fixing Network issues after Clover Update: Have a look at [**this**](https://www.insanelymac.com/forum/topic/345789-guide-how-to-update-clover-for-bigsur-compatibility-and-beyond-using-openruntime-and-quirks-r5123/page/2/?tab=comments#comment-2751614)
 - Check the [**ACPI section**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI) to learn more about the all important ACPI Section of Clover.
-
-Good luck!
 
 ## Notes
 - For Big Sur and newer, remove the PreBoot Volume from the "Hide" Section of the GUI because macOS requires it for booting!
