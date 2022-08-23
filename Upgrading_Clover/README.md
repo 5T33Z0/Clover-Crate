@@ -1,40 +1,50 @@
 # Upgrading Clover for macOS 11+ compatibility
->:warning: The following Guide is for UEFI only!
+>:warning: The following guide is for booting in UEFI mode only!
 
 **TABLE of CONTENTS**
 
-- [Why Upgrade?](#why-upgrade)
-- [Who is this Guide for?](#who-is-this-guide-for)
-- [Problem Description](#problem-description)
-- [Prerequisites: removing obsolete drivers and avoiding kext conflicts](#prerequisites-removing-obsolete-drivers-and-avoiding-kext-conflicts)
-	- [Removing obsolete/unnecessary Drivers](#removing-obsoleteunnecessary-drivers)
-	- [Checking and Updating Kexts](#checking-and-updating-kexts)
-- [Building a new EFI folder (manual Upgrade)](#building-a-new-efi-folder-manual-upgrade)
-	- [Config.plist Adjustments](#configplist-adjustments)
-		- [Correcting `RenameDevices` section](#correcting-renamedevices-section)
-		- [Updating SMBIOS (Update Firmware Only)](#updating-smbios-update-firmware-only)
-	- [Validating config.plist and fixing errors](#validating-configplist-and-fixing-errors)
-	- [Testing your (new) config](#testing-your-new-config)
-- [`OpenRuntime.efi` and older Clover builds (< r5142)](#openruntimeefi-and-older-clover-builds--r5142)
-- [Using the .pkg Installer to upgrade Clover](#using-the-pkg-installer-to-upgrade-clover)
-- [Further Resources and Troubleshooting](#further-resources-and-troubleshooting)
-- [Notes](#notes)
+- [Upgrading Clover for macOS 11+ compatibility](#upgrading-clover-for-macos-11-compatibility)
+	- [About](#about)
+		- [Why Upgrade?](#why-upgrade)
+		- [Who is this Guide for?](#who-is-this-guide-for)
+		- [Problem Description](#problem-description)
+	- [Upgrade instructions (manual method)](#upgrade-instructions-manual-method)
+		- [EFI Folder adjustments](#efi-folder-adjustments)
+			- [Remove obsolete and unnecessary Drivers](#remove-obsolete-and-unnecessary-drivers)
+			- [Check and update Kexts](#check-and-update-kexts)
+		- [Building a new EFI folder (manual Upgrade)](#building-a-new-efi-folder-manual-upgrade)
+		- [Config.plist Adjustments](#configplist-adjustments)
+			- [Correcting `RenameDevices` section](#correcting-renamedevices-section)
+			- [Updating SMBIOS (Update Firmware Only)](#updating-smbios-update-firmware-only)
+		- [Validating config.plist and fixing errors](#validating-configplist-and-fixing-errors)
+		- [Testing your (new) config](#testing-your-new-config)
+	- [Using the .pkg Installer to upgrade Clover](#using-the-pkg-installer-to-upgrade-clover)
+	- [`OpenRuntime.efi` and older Clover builds (< r5142)](#openruntimeefi-and-older-clover-builds--r5142)
+	- [Further Resources and Troubleshooting](#further-resources-and-troubleshooting)
+	- [Notes](#notes)
 
-## Why Upgrade?
+## About 
+### Why Upgrade?
 Clover's previous `AptioMemoryFixes` no longer work in macOS 11 and newer. Therefore, OpenCore's memory fixes (included in `OpenRuntime.efi`) have been implemented to keep Clover alive. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is *mandatory* to install and boot macOS 11 and newer. 
 
 Users who want to stay on macOS Catalina or older should update to [**r5123.1**](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1) which is the final revision supporting the old Aptio memory fixes. It also contains the long-awaited fix for the `TgtBridge` which had been broken for a long time.
 
-## Who is this Guide for?
-This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their UEFI machines. When updating Clover, there are several obstacles along the way, such as removing old memory fixes and drivers as well as configuring the newly added "Quirks" in the `config.plist`. Users who don't want to run macOS Big Sur or newer on their systems don't need to upgrade Clover.
+### Who is this Guide for?
+This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their UEFI machines. 
 
-## Problem Description
+When updating Clover, there are several obstacles along the way, such as removing old memory fixes and drivers as well as configuring the newly added "Quirks" in the `config.plist`. Users who don't want to run macOS Big Sur or newer on their systems don't need to upgrade Clover.
+
+### Problem Description
 If you just update your existing "old" Clover EFI by installing the latest `Clover.pkg` like you used to, this will most likely result in an inoperable bootloader due to missing boot parameters in the `config.plist` as well as residual files from the "old" Clover version which need to be removed first.
 
-## Prerequisites: removing obsolete drivers and avoiding kext conflicts
-In order to avoid the dilemma of your system not booting, you have to clean up your old EFI folder before upgrading to macOS 11+.
+Why there are no proper upgrade instructions provided on the Clover Github Repo is a mystery to me, really…
 
-### Removing obsolete/unnecessary Drivers
+## Upgrade instructions (manual method)
+Follow the steps below to successfully upgrade your EFI folder and Config so you can install macOS Big Sur and newer. Manual upgrading from the "old" to the "new" Clover version is the preferred method since it forces you to do some housekeeping so you can get rid of some old ballast you no longer need.
+
+### EFI Folder adjustments
+
+#### Remove obsolete and unnecessary Drivers
 The following drivers are no longer necessary and have to either be deleted when updating Clover or omitted when building a new EFI folder:
 
 |Driver(s)|Description|Action
@@ -45,7 +55,7 @@ The following drivers are no longer necessary and have to either be deleted when
 **`FSInject.efi`** | For Kext injection. Only necessary for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of Prelinkedkernel. Since r5125, OpenCore handles Kext injection, so FSInject has become obsolete|Delete
 **`SMCHelper.efi`** | Deprecated since r5148, [Commit 735987a](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856). Its functionality is now embedded in Clover as a service. This change also brought a new "ResetSMC" option to the Clover Boot Menu which works similar to SMC Reset on real Macs.| Delete
 
-### Checking and Updating Kexts
+#### Check and update Kexts
 Outdated, incompatible and/or duplicate kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use Kext-Updater to download the latest kexts and other Bootloader-related files.
 
 If you are using a lot of kexts (usually on Notebooks), have a look inside of them (right-click and select "Show package contents") to check if they include additional kexts (as "Plugins") and make sure that no duplicates exist in the "kexts" folder – kexts for HID, WiFi and Bluetooth come to mind.
@@ -58,7 +68,7 @@ Here are some examples of kexts I've experienced issues with when updating:
 - **AirportBrcmFixup.kext**: this Kext contains 2 Plugins, `AirPortBrcm4360_Injector` and `AirPortBrcmNIC_Injector.kext`. When using AirPortBrcmFixup, you are supposed to use only one of these plugins, not both! Using both can cause the boot process to stall indefinitely. On top of that, `AirPortBrcm4360_Injector` is not supported by macOS Big Sur and has to be disabled anyway. In OpenCore, you can just disable a Kext in the config. Since the Clover config does not support to take control of the kext loading sequence, you have to delete it from the Kext itself (right click on AirportBrcmFixup, select "Show package contents" > "Plugins").
 - **BrcmPatchRAM** and a bad combination of it's accompanying kexts can cause issues as well. Don't use BlueToolFixup.kext and BrcmBluetoothInjector.kext together. Former is needed for enabling Bluetooth in macOS Monterey where the latter is used in earlier versions of macOS.
 
-## Building a new EFI folder (manual Upgrade)
+### Building a new EFI folder (manual Upgrade)
 
 1. Prepare a USB flash drive. Format it to FAT32 (MBR). We'll use it for testing our updated EFI Folder first, before copying it to the ESP on the HDD.
 2. Download the [latest Clover Release](https://github.com/CloverHackyColor/CloverBootloader/releases) as a .zip archive for a manual update.
@@ -146,15 +156,6 @@ Starting from version r5134, Clover now includes error reporting similar to Open
 
 If it does boot, you can mount the ESP partition of your hard drive, backup your old EFI Folder, delete it and put in the one from your USB Flash drive to make the changes permanent.
 
-## `OpenRuntime.efi` and older Clover builds (< r5142)
-There is an incompatibility with `OpenRuntime.efi` and Clover: revisions prior to r5142 require `OpenRuntime.efi` version 1.1, while r5142 and newer require v1.2 (or newer). This is not really an issue for people who just want to stay up to date using the newest version of Clover and Drivers anyway. But if you want to boot using a Clover build older than r5142, you need v1.1 of OpenRuntime which will not work in r5142, of course.
-
-To workaround this issue, a special folder `drivers/5142` can be used to place the current `OpenRuntime-v12.efi.`, while regular `drivers/UEFI` contains the old `OpenRuntime-v11.efi`:
-
-![5142](https://user-images.githubusercontent.com/76865553/159173658-4774c7bb-8dcb-4018-82da-c424da658d0e.png)
-
-This way, you can switch back and forth between current and older Clover builds prior to r5142 without issues. Because Clover build prior to r5142  can't see the `drivers/5142` folder while Clover 5142+ does see this folder and prioritizes the included OpenRuntime.efi (if present) over the one stored under `drivers/UEFI`.
-
 ## Using the .pkg Installer to upgrade Clover
 This is for users who want to use the pkg installer instead. Don't do this if you already created your EFI folder manually!
 
@@ -177,6 +178,15 @@ This is for users who want to use the pkg installer instead. Don't do this if yo
 16. Save your config, reboot and hope for the best
 
 **IMPORTANT**: Make sure you have a backup of your currently working EFI folder stored on a FAT32 formatted flash drive to boot from just in case you run into issues.
+
+## `OpenRuntime.efi` and older Clover builds (< r5142)
+There is an incompatibility with `OpenRuntime.efi` and Clover: revisions prior to r5142 require `OpenRuntime.efi` version 1.1, while r5142 and newer require v1.2 (or newer). This is not really an issue for people who just want to stay up to date using the newest version of Clover and Drivers anyway. But if you want to boot using a Clover build older than r5142, you need v1.1 of OpenRuntime which will not work in r5142, of course.
+
+To workaround this issue, a special folder `drivers/5142` can be used to place the current `OpenRuntime-v12.efi.`, while regular `drivers/UEFI` contains the old `OpenRuntime-v11.efi`:
+
+![5142](https://user-images.githubusercontent.com/76865553/159173658-4774c7bb-8dcb-4018-82da-c424da658d0e.png)
+
+This way, you can switch back and forth between current and older Clover builds prior to r5142 without issues. Because Clover build prior to r5142  can't see the `drivers/5142` folder while Clover 5142+ does see this folder and prioritizes the included OpenRuntime.efi (if present) over the one stored under `drivers/UEFI`.
 
 ## Further Resources and Troubleshooting
 
