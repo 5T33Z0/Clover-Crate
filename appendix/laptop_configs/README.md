@@ -1,2 +1,0 @@
-# Laptop\_Configs
-
