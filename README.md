@@ -27,7 +27,7 @@ The methods and techniques presented in this repo are based on utilizing the off
 | :warning: CAUTION|
 |:-----------------------------------------------------------|
 |This is **not a Hackintosh Guide**! To configure your own vanilla Hackintosh, you can use these [**Desktop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [**Laptop Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) to get you started.
-|**AMD Users**: Don't use Clover Configurator for now! It [**deletes the "Count" and "Skip" keys from the config.plist**](https://www.insanelymac.com/forum/topic/352766-clover-configurator-problem/), which renders the required Kernel Patches for AMD CPUs useless.
+|**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
 
 ## TABLE of CONTENTS
 - **CLOVER CONFIGURATION**
