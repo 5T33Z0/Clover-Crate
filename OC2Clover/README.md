@@ -37,7 +37,7 @@ Following is an incomplete list of .aml files not needed in Clover, since it pro
 `SSDT-AC`| Use `FixAdp1` instead
 `SSDT-DTGP` | Use `AddDTGP` to inject the `DTGP` method into the `DSDT` instead
 `SSDT-HPET`| Use `FixHPET`, `FixIPIC`, `FixTMR` and `FixRTC` instead. You also don’t need the accompanying rename `change_CRS to XCRS` which is required in OpenCore.
-`SSDT-SBUS-MCHC`|Use `AddDTGP`, `AddMCHC` and `FixSBUS`instead. `AddDTGP` is required because the code sippet added by Clover when FixSBUS is enabled, uses DTGP to pass through arguments. Otherwise you will find a "unknown method" compiler comment about DTGP the end of the DSDT.
+`SSDT-SBUS-MCHC`|Use `AddDTGP`, `AddMCHC` and `FixSBUS`instead. `AddDTGP` is required because the code sippet added by Clover when FixSBUS is enabled, uses DTGP to pass through arguments. Otherwise you will find a "unknown method" compiler comment about `DTGP` the end of the `DSDT`.
 
 To be continued…
 
@@ -74,33 +74,29 @@ While Binary Renames work the same in OpenCore and Clover, you have a lot more o
 | OpenCore        | Clover    |
 |:---------------:|:---------:|
 | Comment         | Comment   |
-| Find		  | Find      |
+| Find            | Find      |
 | Replace         | Replace   |
-| Base            | use [TgtBridge](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#tgtbridge) instead|
+| Base            | [**TgtBridge**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#tgtbridge) or [**RenameDevices**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#rename-devices)|
 | Enabled         | Disabled  |
-| Table Signature | –       |
-| OEMTableID      | –       |  
-| TableLength     | –       |
-| Mask            | –       |
-| ReplaceMask     | –       |
-| Count           | Count   |
-| Limit           | –       | 
-| Skip            | –       |
-| BaseSkip        | –       |
+| Table Signature | –         |
+| OEMTableID      | –         |  
+| TableLength     | –         |
+| Mask            | –         |
+| ReplaceMask     | –         |
+| Count           | Count     |
+| Limit           | –         | 
+| Skip            | Skip      |
+| BaseSkip        | –         |
 
-**UPDATE**: `Count` key was added in Clover r5149. `TYPE`can be `Number` or `String`. If you use `Data`, you receive a warning from CloverConfigPlistValidator: " Tag '/ACPI/DSDT/Patches[0]/Count:19' should be an integer. It's currently a data. For now, I've made the conversion. Please update." If you need the count parameter, don't edit your config with Clover Configurator, since it's known to delete unknown new keys from the config when saving.
+**NOTES**: 
 
-In Clover you also have the option "RenameDevices" which works the same as the `Base` Parameter in OpenCore with the difference that it is limited to devices:</br>
-![Ren_Dev](https://user-images.githubusercontent.com/76865553/138651675-a51e51df-8249-4a79-8d75-c9de401e268c.png)
-
-In OCAT you enter the path to a device in the `base` field (don't forget to enable them):</br>
-![Dev_base](https://user-images.githubusercontent.com/76865553/138652948-fc403674-e434-4980-8062-a1ae1e787ab6.png)
+- `Count` key was added in Clover r5149. `TYPE` can be `Number` or `String`. If you use `Data`, you receive a warning from CloverConfigPlistValidator: " Tag '/ACPI/DSDT/Patches[0]/Count:19' should be an integer. It's currently a data. For now, I've made the conversion. Please update."
 
 ### ACPI/Quirks
 
 | OpenCore          | Clover    |
 |-------------------|-----------|
-| FadtEnableReset   | Reset Address / Reset Value |
+| FadtEnableReset   | Reset Address </br> Reset Value |
 | Normalize Headers | FixHeaders |
 | Reset Logo Status | Drop Tables > BGRT|
 | Rebase Regions    | ? |
@@ -234,8 +230,8 @@ Besides manually copying over SMBIOS data from your OpenCore to your Clover conf
 
 **IMPORTANT**
 
-- If you did everything correct, you won't have to enter your AppleID Password after switching bootloaders and macOS will let you know, that "This AppleID is now used with this device" or something like that.
-- But if macOS asks for your AppleID Password and Mail passwords etc. after switching bootloaders, you did something wrong. In this case you should reboot into OpenCore instead and check again. Otherwise, you are registering your computer as a new/different Mac.
+- If you did everything correct, you won't have to enter your AppleID Password after switching Boot Managers and macOS will let you know, that "This AppleID is now used with this device" or something like that.
+- But if macOS asks for your AppleID Password and Mail passwords etc. after switching Boot Managers, you did something wrong. In this case you should reboot into OpenCore instead and check again. Otherwise, you are registering your computer as a new/different Mac.
 
 ### 1-Click-Solution for Clover Users
 If you've used the real MAC Address of your Ethernet Controller ("ROM") when generating your SMBIOS Data for your OpenCore config, you can avoid possible SMBIOS conflicts altogether. In the "Rt Variables" section, click on "from System" and you should be fine!
