@@ -1,14 +1,16 @@
 # Resources for configuring your Clover `config.plist`
 
 ## Preface
-One of the main (pseudo-)criticism about Clover is that there's no english documentation and no Configuration guide. Besides the fact that theses people must have been sleeping under a rock for the past 10 years, it's simply not true.
+One of the main (pseudo-)criticisms about Clover is that there's no english documentation and no Configuration guide. Besides the fact that these people must have been living under a rock for the past 10 years, it's simply not true.
 
-First of all, if there's no english documentation for Clover, what is this here, then? Second off all, there has been a [**Configuration Guide for Clover**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) long before OpenCore was even conceived. It's actually written by the same people who created the OpenCore Install Guide before they abandoned Clover! :fax: 
+First of all, if there's no english documentation for Clover, what is this here, then? Second off all, there has been a [**Configuration Guide for Clover**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) long before OpenCore was even conceived. It's actually written by the same people who created the OpenCore Install Guide before they abandoned Clover! :fax:
+
+Listed below, you find various approaches for configurating your Clover `config.plist`.
 
 ## Configuring the Clover `config.plist`
 
 ### Option 1: Utilizing the OC Install Guide
-Basically if you are well-versed with Hackintoshing, you can utilize the [**OpenCore install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) for Clover as well, specifically the following sections:
+If you are well-versed with Hackintoshing, you can utilize the [**OpenCore install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) for Clover as well, specifically the following sections:
 
 OpenCore Config | Clover Config and EFI Folder
 ----------------|------------------------------
@@ -25,15 +27,15 @@ OpenCore Config | Clover Config and EFI Folder
 Extract the Info you need from the [**OpenCore install Guide**](https://dortania.github.io/OpenCore-Install-Guide/)
 
 #### 11th Gen Intel CPUs and newer
-Not covered by the OpenCore Install guide. Follow the Comet Lake Instructions from the [**OpenCore install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) and then just look for Help on Reddit or Github.
+Not covered by the OpenCore Install Guide. Follow the Comet Lake Instructions from the [**OpenCore install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) and then just look for Help on Reddit or Github.
 
 #### AMD CPUs
 Extract the Info you need from the [**OpenCore install Guide**](https://dortania.github.io/OpenCore-Install-Guide/)
 
 ### Option 2: Using the Hackintosh Vanilla Desktop Guide
 
-#### 3rd to 9th Gen Intel Core CPUs
-It's outdated but still usable. If you have a For 3rd Gen to 9th Gen Intel Core CPU you can just follow this guide to set up you Clover config.plist.
+#### For 3rd to 9th Gen Intel Core CPUs
+It's outdated but still usable. If you have a For 3rd Gen to 9th Gen Intel Core CPU you can just follow this guide to set up you Clover `config.plist`.
 
 1. Follow the Instructions for your Intel CPU on [**Hackintosh Vanilla Desktop Guide**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
 2. Add **ACPI Tables**, patches and Kernel Patches listed in the corresponding OpenCore Installation Guide
