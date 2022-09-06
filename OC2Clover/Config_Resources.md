@@ -7,7 +7,7 @@ First of all, if there's no english documentation for Clover, what is this here,
 
 ## Configuring the Clover `config.plist`
 
-### Utilizing the OC Install Guide
+### Option 1: Utilizing the OC Install Guide
 Basically if you are well-versed with Hackintoshing, you can utilize the [**OpenCore install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) for Clover as well, specifically the following sections:
 
 OpenCore Config | Clover Config and EFI Folder
@@ -21,15 +21,6 @@ OpenCore Config | Clover Config and EFI Folder
 `NVRAM`| `Boot/Arguments`, `RTVariables/CsrActiveConfig` and other parameters
 `PlatformInfo/Generic` | `SMBIOS`, `RT Variables`
 
-### Using the Hackintosh Vanilla Desktop Guide
-
-#### 3rd to 9th Gen Intel Core CPUs
-It's outdated but still usable. If you have a For 3rd Gen to 9th Gen Intel Core CPU you can just follow this guide to set up you Clover config.plist.
-
-1. Follow the Instructions for your Intel CPU on [**Hackintosh Vanilla Desktop Guide**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
-2. Add **ACPI Tables**, patches and Kernel Patches listed in the corresponding OpenCore Installation Guide
-3. Add Quirks as explained [**here**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
-
 #### 2nd and 10th Gen Intel Core CPUs
 Extract the Info you need from the [**OpenCore install Guide**](https://dortania.github.io/OpenCore-Install-Guide/)
 
@@ -38,3 +29,16 @@ Not covered by the OpenCore Install guide. Follow the Comet Lake Instructions fr
 
 #### AMD CPUs
 Extract the Info you need from the [**OpenCore install Guide**](https://dortania.github.io/OpenCore-Install-Guide/)
+
+### Option 2: Using the Hackintosh Vanilla Desktop Guide
+
+#### 3rd to 9th Gen Intel Core CPUs
+It's outdated but still usable. If you have a For 3rd Gen to 9th Gen Intel Core CPU you can just follow this guide to set up you Clover config.plist.
+
+1. Follow the Instructions for your Intel CPU on [**Hackintosh Vanilla Desktop Guide**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
+2. Add **ACPI Tables**, patches and Kernel Patches listed in the corresponding OpenCore Installation Guide
+3. Add Quirks as explained [**here**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
+
+### Option 3: Preconfigured Clover Configs
+**Dektop**: https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs</br>
+**Laptop**: https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs
