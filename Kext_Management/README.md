@@ -8,7 +8,10 @@ Since revision 3281, Clover loads kexts conditionally, based on the folders kext
 1. By default, all kexts placed in the `kexts\Other` folder are loaded first and for *any* version of macOS.
 2. Next, Kexts located in sub-folders corresponding to specific macOS versions are loaded (e.g. `10.15`, `11`, `12`, etc.). This is a pretty handy feature since some macOS versions require different variants and combinations of kexts to make a feature/component work (networking kext like `BrcmPatchRAM` come to mind, for example). This way you don't have to worry about juggling Kexts around between the `Off` and `Other` folders when using different versions of macOS.
 
-NOTES: This approach of kext management is similar to OpenCore's `MinKernel` and `MaxKernel` parameters. It's just not as elegant: it will produce duplicate kexts, updating them requires more effort and the overall size of the EFI increases.
+**NOTES**: 
+
+- This approach to kext management is similar to OpenCore's `MinKernel` and `MaxKernel` parameters. It's just not as elegant: it will produce duplicate kexts, updating them requires more effort and the overall size of the EFI increases. 
+- On the other hand, you don't have to worry about kext order when using Clover – unlike OpenCore, where sorting kexts in the wrong order or listing kexts which are not present in the kexts folder inevitably result in Kernel Panics on boot.
 
 ## Example of conditional Kext Loading
 In the screenshot below, you see an example of conditional kext loading used on a Laptop:
