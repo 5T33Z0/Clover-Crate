@@ -26,7 +26,7 @@ The methods and techniques presented in this repo are based on utilizing the off
 
 | :warning: CAUTION|
 |:-----------------------------------------------------------|
-|This is **not a Hackintosh Guide**! To configure your own vanilla Hackintosh, you can use these [**Desktop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [**Laptop Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) to get you started.
+|This is **not a Hackintosh Guide**! To configure your own vanilla Hackintosh, you can use my [**preconfigured EFIs and Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/EFIs_and_Configs) to get you started.
 |**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
 
 ## TABLE of CONTENTS
@@ -46,10 +46,9 @@ The methods and techniques presented in this repo are based on utilizing the off
   - [**Tools Section**](https://github.com/5T33Z0/Clover-Crate/blob/main/Tools/README.md)
 - **APPENDIX**
   - [**Upgrading to Clover with OpenRuntime integration**](https://github.com/5T33Z0/Clover-Crate/tree/main/Upgrading_Clover#readme)
+  - [**Preconfigured EFIs and Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/EFIs_and_Configs)
   - [**Kext Management in Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kext_Management#readme)
   - [**Mapping USB Ports**](https://github.com/5T33Z0/Clover-Crate/tree/main/USB_Fixes#readme)
-  - [**Clover Laptop Configs and Hotpatches 2.0**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs)
-  - [**Clover Desktop Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs)
   - [**Converting OpenCore Properties to Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/OC2Clover#readme)
   - [**Clover Calculators**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras)
   - [**Compatibility Charts**](https://github.com/5T33Z0/Clover-Crate/tree/main/Compatibility_Charts)
