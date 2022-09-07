@@ -3,7 +3,7 @@
 
 | :warning: CAUTION|
 |:-----------------------------------------------------------|
-|**Beta Users**: Don't update Clover beta past [**Clover beta-6890d4812**](https://github.com/CloverHackyColor/CloverBootloader/actions/runs/2935784129) for the time being. It breaks macOS Catalina, Monterey and Ventura. I've tested it on 2 different machines.
+|**Beta Users**: Don't update Clover beta past [**Clover beta-6890d4812**](https://github.com/CloverHackyColor/CloverBootloader/actions/runs/2935784129) for the time being. It breaks macOS Monterey and Ventura. I've tested it on 2 different machines.
 |**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
 
 ## ABOUT
