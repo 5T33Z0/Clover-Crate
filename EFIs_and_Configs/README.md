@@ -1,25 +1,25 @@
 # Resources for configuring Clover's `config.plist`
 
 ## Preface
-One of the main (pseudo-)criticisms about Clover is that there's no english documentation and no Configuration guide. Besides the fact that these people must have been living under a rock for the past 10 years, it's simply not true!
+One of the main criticisms about Clover is that there's no english documentation and no Configuration guide. 
 
-First of all, if there is no English language guide, what is this please? Second off all, a [**Configuration Guide for Clover**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) existed long before OpenCore was even conceived. It's written by CorpNewt who went on to create a lot of helpful tools for OpenCore. :fax:
+First of all, if there is no English documentation, what is this please? Second off all, a [**Configuration Guide for Clover**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) existed long before OpenCore was even conceived. It's written by CorpNewt who went on to create a lot of helpful tools for OpenCore. :fax:
 
-So, listed below, you find various approaches for configurating your Clover `config.plist`.
+Listed below, you find various options for configuring your Clover `config.plist`.
 
 ## Configuring the Clover `config.plist`
 
-### Option 1: Hackintosh Vanilla Desktop Guide
+### Option 1: Hackintosh Vanilla Desktop Guide (Intel Desktops)
 If you have a For 3rd Gen to 9th Gen Intel Core dektop system and want to configure it from scratch, you can follow this guide to set up you Clover `config.plist`. For 10th Gen Intel and AMD, use Options 2 or 3 instead.
 
 1. Follow the Instructions for your Intel CPU on [**Hackintosh Vanilla Desktop Guide**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
 2. Add ACPI Tables and Patches listed in the corresponding OpenCore Installation Guide
 3. Since the Vanilla Desktop guide is from 2018, it doesn't cover "Quirks" settings. Add them by utilizing the OpenCore install guide as explained [**here**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks)
 
-### Option 2: Preconfigured Clover Configs
+### Option 2: Preconfigured Clover Configs (Intel Dektop and Laptops)
 &rarr; see **Dektop** and **Laptop** Configs and EFIs in this section, Covers 2nd to 10th Gen Intel Core CPUs.
 
-### Option 3: Utilizing the OC Install Guide
+### Option 3: Utilizing the OC Install Guide (Intel Dektop, Laptop, AMD)
 You can you can utilize the [**OpenCore install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) to configure 2nd to 10th Gen Intel Core and AMD CPUs. For Clover, the following sections are relevant:
 
 OpenCore Config | Clover Config and EFI Folder
