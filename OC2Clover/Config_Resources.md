@@ -44,3 +44,6 @@ It's outdated but still usable. If you have a For 3rd Gen to 9th Gen Intel Core 
 ### Option 3: Preconfigured Clover Configs
 **Dektop**: https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs</br>
 **Laptop**: https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs
+
+## Clover Folder Structure and Installation
+- https://github.com/5T33Z0/Clover-Crate/tree/main/Upgrading_Clover
