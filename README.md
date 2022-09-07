@@ -1,6 +1,11 @@
 # CLOVER CRATE
 [![Clover Version](https://img.shields.io/badge/Clover-r5149-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.22.0-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS-≤13.0_beta-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-22.09.07-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
+| :warning: CAUTION|
+|:-----------------------------------------------------------|
+|**Beta Users**: Don't update Clover beta past [**Clover beta-6890d4812**](https://github.com/CloverHackyColor/CloverBootloader/actions/runs/2935784129) for the time being. It breaks macOS Catalina, Monterey and Ventura. I've tested it on 2 different machines.
+|**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
+
 ## ABOUT
 **Clover Crate** is an unofficial documentation of the popular Clover Boot Manager and its features to help you to figure out what each option does. Its structure closely follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator.
 
@@ -23,11 +28,6 @@ The methods and techniques presented in this repo are based on utilizing the off
 **Clover-Crate** does not consider patching the `DSDT` an *appropriate* measure to get the "Real Vanilla Hackintosh" experience and therefore does not support nor promote patching the `DSDT`. In fact, it's quite the opposite, as explained [**here**](http://web.archive.org/web/20220807100310/https://www.insanelymac.com/forum/topic/352881-when-is-rebaseregions-necessary/):
 
 > MaLd0n's implications that you need a custom DSDT to add and remove (well, remove yes, but disabling is good enough in virtually all cases) devices is **incorrect**. Aside from those claims, most device rename changes (probably also things you considered „missing“) are also not needed, as they are performed by Lilu and its plug-ins. This approach is a lot safer than previous ACPI renames as dumb find-replace patches can yield false positives, the kext approach cannot.
-
-| :warning: CAUTION|
-|:-----------------------------------------------------------|
-|This is **not a Hackintosh Guide**! To configure your own vanilla Hackintosh, you can use my [**preconfigured EFIs and Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/EFIs_and_Configs) to get you started.
-|**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
 
 ## TABLE of CONTENTS
 - **CLOVER CONFIGURATION**
