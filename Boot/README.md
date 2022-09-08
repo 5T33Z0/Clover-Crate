@@ -152,6 +152,8 @@ If set to `true`, a debug log will be created on next boot. This will slow down 
 ### Enabling the Preeboot.log
 Alternatively, you could use the the `preboot.log` instead which is not as in-depth but still very useful for identifying configuration issues and hardware conflicts. To enable it, press the `F2` key in the Clover Boot Menu GUI. The `preboot.log` will be saved in under `EFI/CLOVER/misc/`. However, the file's log entries end once macOS takes over control of the system. But it is still a useful resource for resolving issues that occur prior to macOS being started – and it's way faster than using the `Debug` option.
 
+**NOTE**: If you delete `EFI/CLOVER/misc` from the folder structure then the `Debug` features will no longer work!
+
 ## Default Boot Volume
 Default Boot Volume is used to specify which entry is the default boot entry in the Clover GUI. It can be set to:
 
@@ -175,10 +177,16 @@ In addition to `DefaultVolume`, the path to the default boot loader of an Operat
 Disables all hotkeys in the bootloader menu. The list of all hotkeys can be found by pressing F1 in the bootloader menu.
 
 ## Fast
-Skips the bootloader GUI and boots directly into the selected default volume instead. Reduces boot time but also disables any user interaction with the boot menu to change an operating system or change any other settings.
+`Fast` is similar to setting `Timeout` to `0` but there are some differences:
+
+- Skips the bootmenu GUI completely &rarr; No user interaction with the boot menu to change the OS or any settings is possible
+- Boots directly into the default/last used volume &rarr; no chance to switch the OS
+- Does not search for the best video mode 
+
+:warning: Use with caution! Should only be used if macOS is the only OS on your machine.
 
 ## HibernationFixup
-Fixes hibernation on systems without native NVRAM support.
+Fixes hibernation on systems without native NVRAM support. To be used for [**Hibernation modes**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/04_Fixing_Sleep_and_Wake_Issues/Changing_Hibernation_Modes) 25 and 3 with `Lilu.kext` and [**`HibernationFixup.kext`**](https://github.com/acidanthera/HibernationFixup).
 
 ## Legacy
 Legacy Boot. Necessary for running older versions of Windows and Linux. Depends on the hardware and the BIOS, so several algorithms have been implemented. 

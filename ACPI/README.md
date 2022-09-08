@@ -616,6 +616,8 @@ In General, a problem with tables is their name. While it is not unusual for OEM
 
 Enables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps to resolve issues.
 
+**NOTE**: If you delete `EFI/CLOVER/misc` from the folder structure then the `Debug` features will no longer work!
+
 ### ReuseFFFF (Deprecated)
 
 In some cases, the attempt to patch the GPU is hindered by the presence of:
