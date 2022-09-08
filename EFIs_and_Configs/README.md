@@ -3,7 +3,7 @@
 ## Preface
 One of the main criticisms about Clover is that there's no english documentation and no Configuration guide. 
 
-First of all, if there is no English documentation, what is this please? Second off all, a [**Configuration Guide for Clover**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) existed long before OpenCore was even conceived. It's written by CorpNewt who went on to create a lot of helpful tools for OpenCore. :fax:
+First of all, if there is no English documentation, what is this please? Second of all the Clover Github repo contains a Wiki as well. Third and finally, a [**Configuration Guide for Clover**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) existed long before OpenCore was even conceived. It's written by CorpNewt who went on to create a lot of helpful tools for OpenCore. :fax:
 
 Listed below, you find various options for configuring your Clover `config.plist`.
 
