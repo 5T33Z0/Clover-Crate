@@ -44,10 +44,10 @@ You will find the corresponding settings for your CPU in the "Kernel" section of
 Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover) to replace the outdated `AptioMemoryFixes` by `OpenRuntime.efi` and add necessary Quirks.
 
 ## Additional Quirks
-This section lists Quirks which are new, not documented or not available in Clover Configurator yet or are noteworthy otherwise.
+This section lists Quirks which are new, undocumented or unavailable in Clover Configurator yet or are noteworthy otherwise.
 
 ### ForceOcWriteFlash
-Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Copy the key from the `Quirks` section of config-sample.plist to your config.plist since Clover Configurator doesn't support it (yet). From the OpenCore Documentation:
+Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Description from the OpenCore Documentation:
 
 > Enables writing to flash memory for all NVRAM system variables handled by OpenRuntime.efi. This value should be disabled on most types of firmware but is left configurable to account for firmware that may have issues with volatile variable storage overflows or similar. Boot issues across multiple OSes can be observed on e.g. Lenovo ThinkPad T430 and T530 without this quirk. Apple variables related to Secure Boot and hibernation are exempt from this for security reasons. Furthermore, some OpenCore variables are exempt for different reasons, such as the boot log due to an available user option, and the TSC frequency due to timing issues. When toggling this option, a NVRAM reset may be required to ensure full functionality.
 
