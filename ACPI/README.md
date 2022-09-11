@@ -531,15 +531,21 @@ In the new Clover, this group of parameters is combined into one section, and `P
 
 The `APLF` and `APSN` parameters seem to affect Intel SpeedStep. As a prerequisite, `Generate PStates` needs to be enabled for them to be available, whereas PluginType works independently of the Generate PStates status.
 
-#### CStates/PStates
+#### CStates
+Automatic SSDT table generation, which extends the processor section with `_CST` methods for each core. `_CST` generation is affected by parameters `EnableC2`, `EnableC4`, `EnableC6`, and `C3Latency`.
 
-Here we specify that two additional tables are generated for C-States and for P-States, according to the rules developed by the Hackintosh community. For C-States the table with parameters C2, C4, C6, Latency mentioned in the CPU section. It is also possible to specify the ones in the SSDT section.
+#### PStates
+Automatic SSDT table generation, which extends the processor section with `_PCT`, `_PPC` and `_PSS` methods:
 
-**IMPORTANT**: None of the `Generate` options are needed if a custom SSDT-PM has been generated with ssdtPRGen or SSDTTime!
+- `_PCT`: Performance control. Controls `SpeedStep` functions
+- `_PPC`: Performance Present Capabilities. `SpeedStep` capabilities. This method returns a value limiting the frequency. Look further for PLimitDict.
+- `_PSS`: Performance Supported States. An array containing possible CPU states - P-States. `PLimitDict`, `UnderVoltStep` and `Turbo` will be taken into consideration when generated this array.
 
 #### PluginType
 
 For Haswell and newer CPUs you should set the key to `1`, for older ones to `0`. This key, together with the Generate → `PluginType` key, makes it possible to generate an SSDT table containing only `PluginType`, but no P-States if their generation is disabled. This key is not needed; it has been saved for backward compatibility.
+
+**IMPORTANT**: None of the `Generate` options are needed if a custom SSDT-PM has been generated with ssdtPRGen or SSDTTime!
 
 ### Min Multiplier
 
