@@ -639,11 +639,9 @@ As researched by vit9696, the region length should `8`, because you need it to s
 If set to `true` - the length of the region will remain 8 bytes, if it exists. When set to `false`, the region will be corrected by 2 bytes, which more reliably prevents the CMOS from being reset.
 
 ### SuspendOverride
+Influences the `FixShutdown` fix and extends it. Normally, the shutdown patch only works on power state `S5` (Shutdown). However, one may want to extend this patch to states `S3`(Sleep) and `S4` (Hibernate) by enabling `SuspendOverride`.
 
-The shutdown patch only works on power state `5` (shutdown). However, we may want to extend this patch to states `3` and `4` by enabling `SuspendOverride`.
-
-This helps when going to sleep during a UEFI boot. Symptoms: the screen will turn off but the lights and fans would continue running.
-Advanced Hackers can use a binary rename to fix it (not covered here).
+This helps when going to sleep during a UEFI boot. Symptoms: the screen will turn off but the lights and fans would continue running. Advanced Hackers can use a binary rename to fix it (not covered here).
 
 ### DSDT Name
 
