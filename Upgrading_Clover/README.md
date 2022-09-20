@@ -100,8 +100,16 @@ Now we have the *required* minimum set of Drivers (green and red):</br>
 
 ### Config.plist adjustments
 
+#### Disable/Delete outdated DSDT, Kernel and Kext Patches
+- Disable/Delete outdated DSDT Patches. Most of these renames are handled by Kexts nowadays. </br>**Examples**:
+	- **HDAS to HDEF** &rarr; Covered by AppleALC
+	- **GFx0 to IGPU** &rarr; Covered by Whatevergreen
+	- **HECI to IMEI** &rarr; Covered by Whatevergreen
+- Disable/Delete all **USB Port Limit** patches. &rarr; Handled by `XhciPortLimit` Quirk. Past macOS Catalina you need a USB Port Map kext anyway!
+- Disable **External icons patch** &rarr; Handled by `ExternalDiskIcons` Quirk
+
 #### Correcting the `RenameDevices` section
-When upgrading Clover, you also need to adjust some config settings as well. The "Quirks" Dictionary will automatically be created once you select a Quirk in Clover Configurator and save the file
+When upgrading Clover, you also need to adjust some config settings as well. The "Quirks" Dictionary will automatically be created once you select a Quirk in Clover Configurator and save the file.
 
 But the structure of `ACPI/RenameDevices` section has to be changed from a Dictionary to an Array and each String has to reside in its own Dictionary as well, as shown below.
 
