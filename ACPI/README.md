@@ -608,7 +608,7 @@ Other tables that can be dropped (presets):
 
 ![Bildschirmfoto 2021-05-16 um 08 31 09](https://user-images.githubusercontent.com/76865553/135732710-df439b95-b7b9-4e88-bd47-0bc082ec63a6.png)
 
-Yo can add SSDTs from the `ACPI/patched` folder which should be omitted from loading when booting the system.
+Yo can add SSDTs from the `ACPI/patched` folder which should be blocked from loading when booting the system. The whole name of the SSDT (including .aml) has to be entered.
 
 ## Sorted Order
 
