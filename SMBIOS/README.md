@@ -18,7 +18,6 @@
 ## About
 >**SMBIOS** stands for **System Management BIOS**. It defines data structures (and access methods) that can be used to read management information produced by the BIOS of a computer. This eliminates the need for the operating system to probe hardware directly to discover what devices are present in the computer. The SMBIOS specification is produced by the Distributed Management Task Force (DMTF), a non-profit standards development organization. The DMTF estimates that two billion client and server systems implement SMBIOS. **SOURCE**: [Wikipedia](https://en.wikipedia.org/wiki/System_Management_BIOS#From_UEFI)
 
-
 This section is needed to mimic your PC as a Mac and to be able to install and run macOS. The entered `ProductName` is of special significance here. Not only does it define the range of macOS versions it can run, moreover it sets a lot of system parameters for the hardware used in the chosen model. So picking a model which is close to the specs of your hardware gets you a lot closer to having a well-working Hackintosh. The most important point of reference for picking an appropriate SMBIOS is the CPU you are using.
 
 I won't be covering each individual field of the SMBIOS section here, since it is tedious and completely unnecessary, as you will find out soon. Instead, I will focus only on the important ones: `ProductName`, `SerialNumber`, `Board-ID` and `SmUUID`.
