@@ -37,6 +37,7 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 - [**ProperTree**](https://github.com/corpnewt/ProperTree) – Python-based .plist Editor.
 - [**PlistEDPlus**](https://github.com/ic005k/PlistEDPlus) – Cross-platform plist editor
 - [**Xiasl**](https://github.com/ic005k/Xiasl) – ASL/AML Editor
+- [**ACPI Rename**](https://github.com/corpnewt/ACPIRename) – Handy Python script to analyze a DSDT. It can list its Device, Method and Name Paths and can generate HEX values for binray renames.
 - [**BitmaskDecode**](https://github.com/corpnewt/BitmaskDecode/) – For calculating/analyzing `CsrActiveConfig`. 
 - [**gibMacOS**](https://github.com/corpnewt/gibMacOS) – Python-based Tool for downloading macOS
 - [**USBToolbox**](https://github.com/USBToolBox/tool) – USB Port mapping tool. Makes port mapping under macOS 11.3+ easier.
