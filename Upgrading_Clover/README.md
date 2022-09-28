@@ -32,7 +32,7 @@ Why there are no proper upgrade instructions provided on the Clover Github Repo 
 ### Who needs to upgrade (and who not)?
 This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. 
 
-Users who want to stay on macOS Catalina or older should update to [**r5123.1**](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1) which is the final revision supporting the old Aptio memory fixes. It also contains the long-awaited fix for the `TgtBridge` which had been broken for a long time.
+Users who want to stay on macOS Catalina or older should update to [**r5123.1**](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1) which is the final revision supporting the old Aptio memory fixes. It also contains the long-awaited fix for the Target Bridge (`TgtBridge`) which had been broken for a long time. 
 
 ## Upgrade instructions (manual method)
 Follow the steps below to successfully upgrade your EFI folder and Config so you can install macOS Big Sur and newer. Manual upgrading from the "old" to the "new" Clover version is the preferred method since it forces you to do some housekeeping so you can get rid of some old ballast you no longer need.
@@ -40,15 +40,15 @@ Follow the steps below to successfully upgrade your EFI folder and Config so you
 ### EFI Folder adjustments
 
 #### Remove obsolete and unnecessary Drivers
-The following drivers are no longer necessary and have to either be deleted when updating Clover or omitted when building a new EFI folder:
+The following drivers are no longer necessary and have to either be deleted when updating Clover or omitted when building a new EFI folder from scratch:
 
 |Driver(s)|Description|Action
 |---------|-----------|-----|
-|**`AptioMemoryFix.efi`**,</br>**`OsxAptioFixDrv.efi`**,</br>**`OsxAptioFix2Drv-free2000`**,</br> **`OsxAptioFix3Drv.efi`**,</br>**`OsxLowMemFixDrv`**,</br>**`OcQuirks.efi`** and **`OcQuirks.plist`**|Obsolete Aptio Memory Fixes and OCQuirks. OcQuirks is a relic from earlier attempts to include OpenCore Booter Quirks into Clover (≤ r5122).|Delete
-**`DataHubDxe.efi`**| DataHub protocol which provides parameters like OEM Model, FSBFrequency, ARTFrequency, Clover's boot-log and many other things to macOS which it cannot obtain otherwise. It has been fully integrated into Clover since r5129. Newer versions of the Clover Package don't contain this driver anyway.|Delete
+|**`AptioMemoryFix.efi`**,</br>**`OsxAptioFixDrv.efi`**,</br>**`OsxAptioFix2Drv-free2000`**,</br> **`OsxAptioFix3Drv.efi`**,</br>**`OsxLowMemFixDrv`**,</br>**`OcQuirks.efi`** and **`OcQuirks.plist`**|Obsolete **Aptio Memory Fixes** and OCQuirks. OcQuirks is a relic from earlier attempts to include OpenCore Booter Quirks into Clover (≤ r5122).|Delete
+**`DataHubDxe.efi`**| **DataHub protocol** which provides parameters like OEM Model, FSBFrequency, ARTFrequency, Clover's boot-log and many other things to macOS which it cannot obtain otherwise. It has been fully integrated into Clover since r5129. Newer versions of the Clover Package don't contain this driver anyway.|Delete
 **`EmuVariableUefi.efi`** | Necessary for emulating NVRAM, if it is not available (legacy systems) or working incorrectly.|Delete
-**`FSInject.efi`** | For Kext injection. Only necessary for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of Prelinkedkernel. Since r5125, OpenCore handles Kext injection, so FSInject has become obsolete|Delete
-**`SMCHelper.efi`** | Deprecated since r5148, [Commit 735987a](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856). Its functionality is now embedded in Clover as a service. This change also brought a new "ResetSMC" option to the Clover Boot Menu which works similar to SMC Reset on real Macs.| Delete
+**`FSInject.efi`** | For Kext injection. Only necessary for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of Prelinkedkernel. Since r5125, OpenCore handles Kext injection, so **FSInject** is obsolete!|Delete
+**`SMCHelper.efi`** | Deprecated since r5148, [Commit 735987a](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856). Its functionality is now integrated into Clover as a service. This change introduced a new `Reset SMC` option (only available when using FakeSMC) to the Clover Boot Menu which works similar to SMC Reset on real Macs.| Delete
 
 #### Check and update Kexts
 Outdated, incompatible and/or duplicate kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use [**Kext-Updater**](https://www.sl-soft.de/en/kext-updater/) to download the latest kexts and other Bootloader-related files.
@@ -190,6 +190,15 @@ To workaround this issue, a special folder `drivers/5142` can be used to place t
 ![5142](https://user-images.githubusercontent.com/76865553/159173658-4774c7bb-8dcb-4018-82da-c424da658d0e.png)
 
 This way, you can switch back and forth between current and older Clover builds prior to r5142 without issues. Because Clover build prior to r5142  can't see the `drivers/5142` folder while Clover 5142+ does see this folder and prioritizes the included OpenRuntime.efi (if present) over the one stored under `drivers/UEFI`.
+
+## FakeSMC vs. VirtualSMC
+Although both do the same – emulating Apples System Management Controller (SMC), there are differences as far as their plugin kexts are concerned. I prefer VirtualSMC for the following reasons:
+
+- Newer, more up-to-date code
+- Boots macOS faster (you'll notice it especially on older systems)
+- Only has 5 Plugin Kexts that are clearly named in regards to their functionality. FakeSMC comes with 12 Plugin Kexts and some of them are really obscure so that in order to pick the right one you have to figure out the vendor of some chips on the mainboard.
+
+The only advantage FakeSMC brings in combination with Clover is that it enables the `Reset SMC` feature from the [Boot Menu](https://github.com/5T33Z0/Clover-Crate/blob/main/GUI/Boot_Menu_Options.md#system-parameters) which doesn't work with VirtualSMC. I don't know why this would be necessary since NVRAM reset handles that as well, but it is what it is.
 
 ## Further Resources and Troubleshooting
 
