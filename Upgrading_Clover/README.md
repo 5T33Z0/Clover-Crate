@@ -34,7 +34,9 @@ Why there are no proper upgrade instructions provided on the Clover Github Repo 
 ### Who needs to upgrade (and who not)?
 This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. 
 
-Users who want to stay on macOS Catalina or older should update to [**r5123.1**](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1) which is the final revision supporting the old Aptio memory fixes. It also contains the long-awaited fix for the Target Bridge (`TgtBridge`) which had been broken for a long time. 
+Users who want to stay on macOS Catalina or older should update to [**r5123.1**](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5123.1) which is the final revision supporting the old Aptio memory fixes. It also contains the long-awaited fix for the Target Bridge (`TgtBridge`) which had been broken for a long time.
+
+During the Clover Upgrade, we will also "rejuvenate" your EFI folder and config by updateing, drivers and kexts and removing obsolete ACPI renammes, updating the firmware info, etc.
 
 ## Upgrade instructions (manual method)
 Follow the steps below to successfully upgrade your EFI folder and Config so you can install macOS Big Sur and newer. Manual upgrading from the "old" to the "new" Clover version is the preferred method since it forces you to do some housekeeping so you can get rid of some old ballast you no longer need.
