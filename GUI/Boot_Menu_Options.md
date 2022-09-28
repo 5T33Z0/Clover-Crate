@@ -185,7 +185,7 @@ Block kexts, Change CSR Active Config and other settings:
 
 **Reset SMC** was introduced in r5148 and works similar to how SMC Reset works on real Macs. Reset SMC requires `FakeSMC.kext` to work – it's not supported by VirtualSMC. Read the [**Clover Changes**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856) for more details.
 
-In my personal test, boot times were *significantly* slower when using FakeSMC, so I will continue using VirtualSMC. Also the 
+In my personal tests, boot times were *significantly* slower when using FakeSMC, so I will continue using VirtualSMC. Since ECEnabler.kext doesn't work with Fake SMC's VoodooBatterySMC plugin, VirtualSMC is the better choice for hacking Laptops as well, imo.
 
 ## A word on using `F5` for patching the `DSDT`
 Although one might be tempted to think "Dude, it can patch the `DSDT` for ya!", this is not the case. Clover cannot magically patch the `DSDT` by pressing a single button. This function does something else. 
