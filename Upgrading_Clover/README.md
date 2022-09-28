@@ -1,5 +1,5 @@
 # Upgrading Clover for macOS 11+ compatibility
->:warning: The following guide is for booting in UEFI mode only!
+>:warning: The following guide applies to booting in UEFI mode only!
 
 **TABLE of CONTENTS**
 
@@ -11,12 +11,14 @@
 		- [Check and update Kexts](#check-and-update-kexts)
 	- [Building a new EFI folder (manual Upgrade)](#building-a-new-efi-folder-manual-upgrade)
 	- [Config.plist adjustments](#configplist-adjustments)
+		- [Disable/Delete outdated DSDT, Kernel and Kext Patches](#disabledelete-outdated-dsdt-kernel-and-kext-patches)
 		- [Correcting the `RenameDevices` section](#correcting-the-renamedevices-section)
 		- [Updating the SMBIOS (Update Firmware Only)](#updating-the-smbios-update-firmware-only)
 	- [Validating the config.plist and fixing errors](#validating-the-configplist-and-fixing-errors)
 	- [Testing your (new) config](#testing-your-new-config)
 - [Using the .pkg Installer to upgrade Clover](#using-the-pkg-installer-to-upgrade-clover)
 - [`OpenRuntime.efi` and older Clover builds (< r5142)](#openruntimeefi-and-older-clover-builds--r5142)
+- [FakeSMC vs. VirtualSMC](#fakesmc-vs-virtualsmc)
 - [Further Resources and Troubleshooting](#further-resources-and-troubleshooting)
 - [Notes](#notes)
 
@@ -196,9 +198,10 @@ Although both do the same – emulating Apples System Management Controller (SMC
 
 - Newer, more up-to-date code
 - Boots macOS faster (you'll notice it especially on older systems)
-- Only has 5 Plugin Kexts that are clearly named in regards to their functionality. FakeSMC comes with 12 Plugin Kexts and some of them are really obscure so that in order to pick the right one you have to figure out the vendor of some chips on the mainboard.
+- Only has 5 Plugin kexts that are clearly named in regards to their functionality. FakeSMC comes with 12 Plugins and some of them are really obscure so that in order to pick the right one you have to figure out the vendor of some chip on the mainboard.
+- On Laptops, VirtualSMC's `SMCBatteryManager.kext` and `ECEnabler.kext` work in tandem to enable Battery Status indicator without addtional Battery Patches. FakeSMC's `VoodooBatterySMC.kext` which is basically from 2009 doesn't work with ECEnabler.
 
-The only advantage FakeSMC brings in combination with Clover is that it enables the `Reset SMC` feature from the [Boot Menu](https://github.com/5T33Z0/Clover-Crate/blob/main/GUI/Boot_Menu_Options.md#system-parameters) which doesn't work with VirtualSMC. I don't know why this would be necessary since NVRAM reset handles that as well, but it is what it is.
+The only advantage FakeSMC has in combination with Clover is that it enables the `Reset SMC` feature in the [Boot Menu](https://github.com/5T33Z0/Clover-Crate/blob/main/GUI/Boot_Menu_Options.md#system-parameters) which doesn't work when using VirtualSMC. I don't know why this would be necessary since NVRAM reset handles that as well, but it is what it is.
 
 ## Further Resources and Troubleshooting
 
