@@ -37,6 +37,7 @@ The methods and techniques presented in this repo are based on utilizing the off
   - [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices#readme)
   - [**Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Graphics#readme)
   - [**GUI**](https://github.com/5T33Z0/Clover-Crate/tree/main/GUI#readme)
+  - [**Boot Menu Options**](https://github.com/5T33Z0/Clover-Crate/blob/main/GUI/Boot_Menu_Options.md) 
   - [**Kernel and Kext Patches**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kernel_And_Kext_Patches#readme)
   - [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks#readme)
   - [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables#readme)
