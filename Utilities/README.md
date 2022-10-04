@@ -23,6 +23,7 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 - [**unpkg**](https://www.timdoug.com/unpkg/) – Utility to unpack .pkg files into a folder instead of installing them on the system.
 - [**UninstallPKG**](https://www.corecode.io/uninstallpkg/index.html) – remove unwanted packages from your Mac
 - [**ssdtPRGen**](https://github.com/Piker-Alpha/ssdtPRGen.sh) – Python Script to generate a SSDT for Power Management (for Ivy Bridge and older)
+- [**Meld for macOS**](https://yousseb.github.io/meld/) – Very useful app for comparing two config files with one another.
 
 ### macOS Ventura
 - [**StartOSInstall**](https://github.com/chris1111/Startosinstall-Ventura) – Script to turn an external SSD into a macOS Installer. For Big Sur and newer.
