@@ -39,12 +39,14 @@ Users who want to stay on macOS Catalina or older should update to [**r5123.1**]
 During the Clover Upgrade, we will also "rejuvenate" your EFI folder and config by updateing, drivers and kexts and removing obsolete ACPI renammes, updating the firmware info, etc.
 
 ## Upgrade instructions (manual method)
-Follow the steps below to successfully upgrade your EFI folder and Config so you can install macOS Big Sur and newer. Manual upgrading from the "old" to the "new" Clover version is the preferred method since it forces you to do some housekeeping so you can get rid of some old ballast you no longer need.
+- Follow the steps below to successfully upgrade your EFI folder and config.plist so you can install macOS Big Sur and newer.
+- Store a backup of your working EFI folder on a FAT32 formatted USB flashdrive before you begin.
+- Manually upgrading from the "old" to the "new" Clover version is preferred since it forces you to do some housekeeping to "rejuvenate" your EFI folder and config.
 
-### EFI Folder adjustments
+### Clover folder adjustments
 
 #### Remove obsolete and unnecessary Drivers
-The following drivers are no longer necessary and have to either be deleted when updating Clover or omitted when building a new EFI folder from scratch:
+The following drivers are no longer necessary and have to be deleted from `EFI/CLOVER/drivers/UEFI` when upgrading Clover and omitted when building a new EFI folder from scratch:
 
 |Driver(s)|Description|Action
 |---------|-----------|-----|
