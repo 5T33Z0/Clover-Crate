@@ -3,7 +3,12 @@
 
 This is for users planning to convert their working OpenCore Config to Clover. It’s an adaptation of the [**Clover Conversion Guide**](https://github.com/dortania/OpenCore-Install-Guide/tree/master/clover-conversion) – just the other way around (and a bit more in-depth).
 
-The most relevant sections for converting a OpenCore config to Clover and vice versa are: "ACPI", "Device Properties", "Kernel and Kext Patches" and "Quirks", which will be covered here.
+The most relevant sections for converting a OpenCore config to Clover and vice versa are: 
+
+- **ACPI**
+- **Devices/Properties**
+- **Kernel and Kext Patches** 
+- **Quirks**
 
 <details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
 
