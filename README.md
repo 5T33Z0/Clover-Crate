@@ -24,7 +24,7 @@ The information provided in this repository is based on excerpts of the official
 
 The methods and techniques presented in this repo are based on utilizing the official Clover release and its features alongside Kexts, SSDTs, Device Properties and other tools to enable/disable devices and features in macOS to get a *proper* working system which is ACPI conform!
 
-**Clover-Crate** does not consider patching the `DSDT` an *appropriate* measure to get the "Real Vanilla Hackintosh" experience and therefore does not support nor promote patching the `DSDT`. In fact, it's quite the opposite, as explained [**here**](http://web.archive.org/web/20220807100310/https://www.insanelymac.com/forum/topic/352881-when-is-rebaseregions-necessary/):
+**Clover-Crate** does not consider patching the `DSDT` an *appropriate* measure to get the "Real Vanilla Hackintosh" experience and therefore does not support nor promote patching the `DSDT`. In fact, it's quite the opposite, as explained [**here**](https://www.insanelymac.com/forum/topic/352881-when-is-rebaseregions-necessary/):
 
 > MaLd0n's implications that you need a custom DSDT to add and remove (well, remove yes, but disabling is good enough in virtually all cases) devices is **incorrect**. Aside from those claims, most device rename changes (probably also things you considered „missing“) are also not needed, as they are performed by Lilu and its plug-ins. This approach is a lot safer than previous ACPI renames as dumb find-replace patches can yield false positives, the kext approach cannot.
 
