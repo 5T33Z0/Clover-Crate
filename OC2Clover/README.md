@@ -15,6 +15,7 @@ The most relevant sections for converting a OpenCore config to Clover and vice v
 - [ACPI](#acpi)
 	- [ACPI/Add](#acpiadd)
 	- [ACPI/Delete](#acpidelete)
+		- [Dropping CPU Power Management tables](#dropping-cpu-power-management-tables)
 	- [ACPI/Patch](#acpipatch)
 	- [ACPI/Quirks](#acpiquirks)
 - [DeviceProperties](#deviceproperties)
@@ -35,6 +36,9 @@ The most relevant sections for converting a OpenCore config to Clover and vice v
 In general, you can use the same SSDTs (.aml) in Clover as in OpenCore. Since Clover does not inject ACPI Tables in Windows, they don't require the if OSI Darwin method. Some SSDTs which are required by OpenCore are not necessary in Clover since they are included as ACPI fixes, which are injected during boot.
 
 ### ACPI/Add
+
+**Location** in Clover EFI: `EFI/CLOVER/ACPI/patched`
+
 Following is an incomplete list of .aml files not needed in Clover, since it provides DSDT `Fixes` for them:
 
 |SSDT Name | Clover DSDT Fixes
@@ -44,9 +48,13 @@ Following is an incomplete list of .aml files not needed in Clover, since it pro
 `SSDT-HPET`| Use `FixHPET`, `FixIPIC`, `FixTMR` and `FixRTC` instead. You also don’t need the accompanying rename `change_CRS to XCRS` which is required in OpenCore.
 `SSDT-SBUS-MCHC`|Use `AddDTGP`, `AddMCHC` and `FixSBUS`instead. `AddDTGP` is required because the code sippet added by Clover when FixSBUS is enabled, uses DTGP to pass through arguments. Otherwise you will find a "unknown method" compiler comment about `DTGP` the end of the `DSDT`.
 
+
 To be continued…
 
 ### ACPI/Delete
+
+**Location** in Clover: `ACPI/DropTables`
+
 The ACPI/Delete section is meant for deleting certain Tables from ACPI (usually combined with other SSDTs to replace them, like SSDT-PM or SSDT-PLUG for example).
 
 In Clover Configurator, this section is located under ACPI/Drop Tables. These are the available parameters:
@@ -60,7 +68,7 @@ In Clover Configurator, this section is located under ACPI/Drop Tables. These ar
 | Enabled         | Disabled            |
 | Comment         | –                   |
 
-**Example**: Dropping CPU Power Management tables
+#### Dropping CPU Power Management tables
 
 - In OCAT:</br>
 ![OCAT_del](https://user-images.githubusercontent.com/76865553/138651510-a9d179a5-b8e3-43a4-9aff-3b536fffbbd7.png)
@@ -74,6 +82,9 @@ In Clover Configurator, this section is located under ACPI/Drop Tables. These ar
 - You have to use either `TableID` or `TableLength`, not both.
 
 ### ACPI/Patch
+
+**Location** in Clover: `ACPI/DSDT/Patches/ArrayX` (X = starting from 0) 
+
 While Binary Renames work the same in OpenCore and Clover, you have a lot more options in OpenCore:
 
 | OpenCore        | Clover    |
@@ -93,11 +104,14 @@ While Binary Renames work the same in OpenCore and Clover, you have a lot more o
 | Skip            | Skip      |
 | BaseSkip        | –         |
 
-**NOTES**: 
+**NOTES**:
 
+- While OpenCore uses an `Enabled` switch, Clover uses `Disabled` instead. So you cannot simply copy/paste over DSDT patches!
 - `Count` key was added in Clover r5149. `TYPE` can be `Number` or `String`. If you use `Data`, you receive a warning from CloverConfigPlistValidator: " Tag '/ACPI/DSDT/Patches[0]/Count:19' should be an integer. It's currently a data. For now, I've made the conversion. Please update."
 
 ### ACPI/Quirks
+
+**Location** in Clover: `Quirks`
 
 | OpenCore          | Clover    |
 |-------------------|-----------|
