@@ -111,16 +111,16 @@ While Binary Renames work the same in OpenCore and Clover, you have a lot more o
 
 ### ACPI/Quirks
 
-**Location** in Clover: `ACPI`
+**Locations** in Clover: See table
 
 | OpenCore          | Clover    |
 |-------------------|-----------|
-| FadtEnableReset   | Reset Address </br> Reset Value |
-| Normalize Headers | FixHeaders |
-| Reset Logo Status | Drop Tables: BGRT|
-| Rebase Regions    | FixRegions |
-| Reset HwSig.      | ? |
-| SyncTableIDs      | ? |
+| FadtEnableReset   | `ACPI/ResetAddress` </br> `ACPI/ResetValue` |
+| Normalize Headers | `ACPI/FixHeaders`|
+| Reset Logo Status | `ACPI/DropTables`: BGRT|
+| Rebase Regions    | `ACPI/DSDT/Fixes/FixRegions` |
+| Reset HwSig.      | – |
+| SyncTableIDs      | – |
 
 ## DeviceProperties
 In OCAT, devices are added or modified in a straight forward "DeviceProperties" section:</br>
