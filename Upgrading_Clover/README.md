@@ -55,6 +55,7 @@ The following drivers are no longer necessary and have to be deleted from `EFI/C
 **`EmuVariableUefi.efi`** | Necessary for emulating NVRAM, if it is not available (legacy systems) or working incorrectly.|Delete
 **`FSInject.efi`** | For Kext injection. Only necessary for legacy versions of macOS ≤ 10.7 (Lion) which are capable of loading individual kexts instead of Prelinkedkernel. Since r5125, OpenCore handles Kext injection, so **FSInject** is obsolete!|Delete
 **`SMCHelper.efi`** | Deprecated since r5148, [Commit 735987a](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856). Its functionality is now integrated into Clover as a service. This change introduced a new `Reset SMC` option (only available when using FakeSMC) to the Clover Boot Menu which works similar to SMC Reset on real Macs.| Delete
+**`AppleKeyAggregator`**, </br> **`AppleUITheme`** and </br> **`AppleImageCodec`** | Needed for FileVault 2 support. Embedded into Clover since r5149.| Delete
 
 #### Check and update Kexts
 Outdated, incompatible and/or duplicate kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use [**Kext-Updater**](https://www.sl-soft.de/en/kext-updater/) to download the latest kexts and other Bootloader-related files.
