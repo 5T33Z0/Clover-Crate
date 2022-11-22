@@ -46,6 +46,9 @@ Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.
 ## Additional Quirks
 This section lists Quirks which are new, undocumented or unavailable in Clover Configurator yet or are noteworthy otherwise.
 
+### TscSyncTimeout
+Added in r5150. This is an experimental OpenCore quirk (from the UEFI section). The timeout has entered as integer in µs. Xeon E5-2650v2 need a value of `750000`. This quirk is not implemented in Clover Configurator yet, so if you need to set it, edit the config with a plist editor instead!
+
 ### ForceOcWriteFlash
 Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Description from the OpenCore Documentation:
 
