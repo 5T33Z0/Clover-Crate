@@ -43,11 +43,16 @@ You will find the corresponding settings for your CPU in the "Kernel" section of
 
 Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover) to replace the outdated `AptioMemoryFixes` by `OpenRuntime.efi` and add necessary Quirks.
 
-## Additional Quirks
-This section lists Quirks which are new, undocumented or unavailable in Clover Configurator yet or are noteworthy otherwise.
+## UEFI Quirks
+![](/Users/5t33z0/Desktop/UEFI_Quirks.png)
 
 ### TscSyncTimeout
-Added in r5150. This is an experimental OpenCore quirk (from the UEFI section). The timeout has entered as integer in µs. Xeon E5-2650v2 need a value of `750000`. This quirk is not implemented in Clover Configurator yet, so if you need to set it, edit the config with a plist editor instead!
+Added in r5150. This is an experimental quirk provided by OpenCore. The timeout has to be entered as an integer in µs. Xeon E5-2650v2 need a value of `750000`. Before playing with this value, it's recommended to use one of the existing kexts for fixing TSC Sync issues instead (like [CpuTscSync](https://github.com/acidanthera/CpuTscSync)). 
+
+**NOTE**: Update Clover Configurator to the latest version (5.24.0.0 or newer) to find the new UEFI Tab in the Quirks section!
+
+## Additional Quirks
+This section lists Quirks which are new, undocumented or unavailable in Clover Configurator yet or are noteworthy otherwise.
 
 ### ForceOcWriteFlash
 Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Description from the OpenCore Documentation:
