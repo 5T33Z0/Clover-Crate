@@ -44,7 +44,8 @@ You will find the corresponding settings for your CPU in the "Kernel" section of
 Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover) to replace the outdated `AptioMemoryFixes` by `OpenRuntime.efi` and add necessary Quirks.
 
 ## UEFI Quirks
-![](/Users/5t33z0/Desktop/UEFI_Quirks.png)
+
+![UEFI_Quirks](https://user-images.githubusercontent.com/76865553/203743139-961fc413-887a-471e-b41a-30e73821ef56.png)
 
 ### TscSyncTimeout
 Added in r5150. This is an experimental quirk provided by OpenCore. The timeout has to be entered as an integer in µs. Xeon E5-2650v2 need a value of `750000`. Before playing with this value, it's recommended to use one of the existing kexts for fixing TSC Sync issues instead (like [CpuTscSync](https://github.com/acidanthera/CpuTscSync)). 
