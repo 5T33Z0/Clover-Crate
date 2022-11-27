@@ -23,7 +23,8 @@ In order to conifgure Quirks correctly, you need to follow the instruction for y
 - **Booter/Quirks**
 - **Kernel/Quirks**
 - **Kernel/Scheme**
-- **UEFI/Output: `ProvideConsoleGop`**: Located under "GUI" in Clover config.
+- **UEFI/Quirks**
+- **UEFI/Output/`ProvideConsoleGop`**: Located under "GUI" in Clover config.
 
 ## Booter Quirks
 The following screenshot shows the Booter Quirks subsection which has been introduced in Clover 5.19.00:
