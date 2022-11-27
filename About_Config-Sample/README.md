@@ -7,6 +7,12 @@
 - [Preface](#preface)
 - [ACPI Section](#acpi-section)
 - [Boot Section](#boot-section)
+- [Boot Graphics Section](#boot-graphics-section)
+- [CPU Section](#cpu-section)
+- [Devices Section](#devices-section)
+- [Disable Drivers](#disable-drivers)
+- [GUI](#gui)
+
 
 ## Preface
 Unfortunately, the config sample included in the Clover Package is a complete mess. It seems to me that in order to populate every section of the config, settings were enabled randomly without applying any common sense whatsoever.
@@ -45,5 +51,31 @@ See the corresponding section to find out what each option/setting does!
 	- `No early Progress`
 	- `Never hibernate`
 	- `Never do Recovery`
+
+## [Boot Graphics Section](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics#readme)
+
+- `DefaultBackgroundColor`: delete `0xBFBFBF` unless you want your background to be this [gray](https://www.htmlcsscolor.com/hex/BFBFBF)
+- `EFILoginHiDPI`: only enable if your screen supports HiDPI mode
+- `UIScale`: leave at `1` for regular and Full HD displays, set to `2` for 4k Displays 
+- `Flagstate`: undocumented… leave empty
+
+## [CPU Section](https://github.com/5T33Z0/Clover-Crate/tree/main/CPU)
+
+- Leave as is
+
+## [Devices Section](https://github.com/5T33Z0/Clover-Crate/tree/main/Devices)
+
+- You can add your ALC Layout ID here, if it's not set via Device Properties
+- Disable `FixOwnership` since it's only required for legacy systems
+- Otherwise leave as is.
+
+## Disable Drivers
+
+- Leave empty
+
+## [GUI](https://github.com/5T33Z0/Clover-Crate/tree/main/GUI)
+- Set `Mode` to `Custom` and select:
+	- Entries
+	- Tools 
 
 To be continued…
