@@ -25,7 +25,7 @@ See the corresponding section to find out what each option/setting does!
 	`SSDT-AC`| Enable `FixAdp1` instead
 	`SSDT-DTGP` | Enable `AddDTGP` to inject the `DTGP` method into the `DSDT` instead
 	`SSDT-HPET`| Enable `FixHPET`, `FixIPIC`, `FixTMR` and `FixRTC` to fix IRQ conflicts instead. You also don’t need the accompanying rename `change_CRS to XCRS` which is required in OpenCore.
-	`SSDT-SBUS-MCHC`|Enable `AddDTGP`, `AddMCHC` and `FixSBUS`instead. `AddDTGP` is required because the code sippet added by Clover when `FixSBUS` is enabled, uses `DTGP` to pass through arguments. Otherwise you will find a "unknown method" compiler comment about `DTGP` the end of the `DSDT`.
+	`SSDT-SBUS-MCHC`|Enable `AddDTGP`, `AddMCHC` and `FixSBUS`instead. `AddDTGP` is required because the code snippet added by Clover when `FixSBUS` is enabled, uses `DTGP` to pass through arguments. Otherwise you will find a "unknown method" compiler comment about `DTGP` the end of your `DSDT`.
 	None| Enable `DeleteUnused` to remove some unused legacy devices from the `DSDT`
 - `SSDT`: leave empty. Use `SSDT-PLUG` instead
 - `Disabled AML`: leave empty
