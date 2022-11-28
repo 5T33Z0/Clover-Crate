@@ -19,7 +19,7 @@ I created this repo for the following reasons:
 3. **Consolidating and unifying resources** which are scattered all over the internet: the manual is only available in Russian on GitHub, the changelog is only available at insanelymac and the Clover Wiki had been neglected for years until it finally got integrated into Clover's GitHub Repo in 2022 (after I started Clover Crate).
 4. **Exemplifying Clover's features** using Clover Configurator: Acidanthera and Dortania did such an amazing job on documenting OpenCore that I though it was about time Clvoer gets something that at least documents its features and how to use them *properly*.
 
-### Disclamer
+### Disclaimer
 The information provided in this repository is based on excerpts of the official Russian documentation for Clover using AI-based translation tools (deepl, google and yandex translate) as well as my own extensive research. The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their meanings. Nevertheless, some details may have been lost in translation (although I doubt it).
 
 The methods and techniques presented in this repo are based on utilizing the official Clover release and its features alongside Kexts, SSDTs, Device Properties and other tools to enable/disable devices and features in macOS to get a *proper* working system which is ACPI conform!
