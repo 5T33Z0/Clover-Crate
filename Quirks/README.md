@@ -7,15 +7,15 @@ Besides [misleading claims](https://www.insanelymac.com/forum/topic/351590-intel
 <details>
 <summary><strong>Background: From Aptio Memory Fixes to Quirks</strong></summary>
 
-The development of a driver for adjusting the memory of the Aptio UEFI BIOS (by AMI) by Dmazar marked the beginning of the UEFI Boot era for Clover.
+The development of a driver for adjusting the memory of AMI's Aptio UEFI BIOS by Dmazar marked the beginning of the UEFI Boot era for Clover.
 
-The Allocate function in this BIOS allocates memory in the lower registers, but to boot macOS, the lower memory has to be freed. This issue not only affected memory but also `boot.efi`, address virtualization, pointers, functions, etc. It was Dmazar who figured out how to resolve the issues which resulted in the `OsxAptioFixDrv.efi` driver.
+This BIOS allows to allocate memory in the lower registers, but to boot macOS, the lower memory has to be freed. This issue not only affected memory but also `boot.efi`, address virtualization, pointers, functions, etc. It was Dmazar who figured out how to resolve the issues which resulted in the `OsxAptioFixDrv.efi` drivers.
 
 After Dmazar left, no one touched this driver for a very long time until vit9696 decided to overhaul it. First, he made changes to the driver so that it could utilize native NVRAM on many chipsets, which was not possible before. Next, he broke the new driver (`OpenRuntime.efi`) down into sections of **semantic expressions (quirks), which could then be turned on and off by the user as needed when using the OpenCore Bootloader**.
 
-ReddestDream, a programmer who decided to make `OpenRuntime.efi` work with Clover somehow, created a separate driver (`OcQuirks.efi`), which worked in conjunction with `OpenRuntime.efi` and an additional `OcQuirks.plist` to store all the settings. This construction could then be utilized by Clover.
+ReddestDream, a programmer who decided to make `OpenRuntime.efi` work with Clover somehow, created a separate driver (`OcQuirks.efi`), which worked in conjunction with `OpenRuntime.efi` and an additional `OcQuirks.plist` to store all the settings. This construct could then be utilized by Clover.
 
-Next, Slice integrated the `OpenRuntime.efi` source code into his repo, so he could do bisectioning. Finally, he integrated the quirks into the structure of the Clover `config.plist`, so that a separate config for quirks was no longer necessary and Quirks could also be changed on the fly from within the bootloader GUI.
+Next, Slice integrated the `OpenRuntime.efi` source code into his repo, so he could do bisectioning. Finally, he integrated the quirks section into Clover's `config.plist`, so that the separate OcQuirks.plist was no longer required and Quirks could also be changed on the fly from within the bootloader GUI.
 </details>
 
 In order to conifgure Quirks correctly, you need to follow the instruction for your CPU family in the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) – specifically, these sections:
