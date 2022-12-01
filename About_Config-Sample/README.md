@@ -22,7 +22,7 @@
 ## Preface
 Unfortunately, the config sample included in the Clover Package is a complete mess. It seems to me that in order to populate every section of the config, settings were just enabled randomly without applying any common sense whatsoever.
 
-Therefore, my advice is: don't use it! Instead, open Clover Configurator and create a new empty config by pressing **CMD+N** and follow the [Clover Desktop Guide](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) and add the missing Quirks. This way the config also gets a lot smaller in size which which improves the boot process.
+Therefore, my advice is: don't use it! Instead, open Clover Configurator and create a new empty config by pressing **CMD+N** and follow the [Clover Desktop Guide](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) and add the missing [Quirks](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks). This way the config also gets a lot smaller in size which which improves the boot process.
 
 Below you find a list of issues I am having with the sample config as well as recommended settings for each section. Clicking on the headlines forwards you to the corresponding chapter which explains every option in detail.
 
