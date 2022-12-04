@@ -332,10 +332,12 @@ In other words, `store` is saving information you want to hand over to macOS as 
 
 #### AddHDMI
 
-Adds a `HDAU` audio device to the `DSDT` that matches the HDMI output of ATI and Nvidia video cards to enable audio over HDMI. Since the GPU was bought separately from the motherboard, there simply is no such device in the native DSDT. Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the device:
+Contrary to what the name of this fix suggests, it *does not* enable HDMI ports for video. Instead, it adds an `HDAU` audio device to the `DSDT` to enable digital audio over HDMI for ATI and Nvidia GPUs. Since a discrete GPU is a separate piece of hardware there's simply no such device present in your mainboard's `DSDT` file. Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the `HDAU` device:
 
 - `1` if `UseIntelHDMI` = false
-- `2` if there is an Intel port that occupies port 1.
+- `2` if there is an Intel port that occupies port 1
+
+Nowadays, this fix is covered by **Whatevergreen.kext**.
 
 #### AddIMEI
 
@@ -368,7 +370,7 @@ Replaces the DeviceID of the LPC Bus Controller so that the AppleLPC kext is att
 
 Some DSDTs can have a device, method or variable named `ACST`, but this name is also used by macOS 10.8+ to control C-States!
 
-As a result, a completely implicit conflict with very unclear behavior can occur. This fix renames all occurrences of `ACST` to `OCST` which is safe. But check your DSDT first: search for `ACST` and check if it refers to Device `AC` and Method `_PSR`(_PSR: PowerSource) in some kind of way.
+As a result, a completely implicit conflict with very unclear behavior can occur. This fix renames all occurrences of `ACST` to `OCST` which is safe. But check your `DSDT` first: search for `ACST` and check if it refers to Device `AC` (= Power Adapter) and method `_PSR` (= PowerSource) in some kind of way.
 
 #### FixADP1
 
