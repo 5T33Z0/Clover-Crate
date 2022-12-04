@@ -125,7 +125,9 @@ This procedure applies to all fixes aimed at specific tables (apart from the one
 
 ## Halt Enabler
 
-This patch is for fixing shutdown/sleep problems during UEFI boot. The fix is injected before calling `boot.efi`, clearing `SLP_SMI_EN` before the start of macOS. Nevertheless, it is quite safe, at least on Intel systems. 
+This patch fixes shutdown/sleep issues caused by incorrectly initialized chipsets on UEFI boot. Symptoms: the system doesn't enter sleep state (the screen turns off, but the fans don't).
+
+The fix is injected before calling `boot.efi`, clearing `SLP_SMI_EN` before booting macOS. Nevertheless, it is quite safe, at least on Intel systems.
 
 **OpenCore** equivalent: `ACPI/Quirks/FadtEnableReset`.
 
