@@ -98,12 +98,14 @@ Do the following to enable the correct framebuffer for your AMD GPU:
 2. Under `FB Name`, enter the name of the Framebuffer Patch matching the Controller in your GPU or select one from the dropdown menu:
 	- **RX6900** &rarr; `Carswell`
 	- **RX6800** &rarr; `Belknap`
-	- **RX6600/XT** &rarr; `Henbury` 
+	- **RX6600/XT** &rarr; `Henbury`
+	- **Radeon 7** &rarr; `Donguil`
 	- **RX5700** &rarr; `Adder`
 	- **RX5500** &rarr; `Python`
 	- **RX570** &rarr; `Orinoco`
 3. Add `SSDT-NAVI.aml` to `EFI/CLOVER/ACPI/patched` (contains the necessary device renames)
-4. Disable Whatevergreen.kext (move to `/kexts/off`)
+4. Disable `Whatevergreen.kext` (move to `/kexts/off`)
+5. Reboot and check if the performance has improved
 
 #### AMD Radeon Performance Tweaks
 You can follow [this guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/AMD_Radeon_Tweaks) to tweak the Performance of Polaris and Navi Cards.
