@@ -34,7 +34,7 @@
 </details>
 
 ## Arguments
-These are boot arguments that are passed over to `boot.efi`, which in turn passes them down to the system kernel. See Apple's documentation for a list n the `com.apple.Boot.plist` manual. Some commonly used ones are:
+These are boot arguments that are passed over to `boot.efi`, which in return passes them down to the system kernel. See Apple's documentation for a list in the `com.apple.Boot.plist`. Some commonly used ones are:
 
 <details><summary><strong>List of boot-args</strong> (click to reveal content)</summary>
 
