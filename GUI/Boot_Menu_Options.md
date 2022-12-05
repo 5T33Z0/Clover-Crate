@@ -105,6 +105,8 @@ If you have more than one config.plist you can switch to a different one here:
 
 ![screenshot7](https://user-images.githubusercontent.com/76865553/181207526-4428fb34-723d-470c-a3ab-130df093cbf8.png)
 
+Switching configs (and themes) is only possible because Cover loads the config.plist in two stages. First time during early boot to choose a GUI theme and the second time once an OS to boot is selected. This way, it's possible to select a different config.plist for the second stage. This is helpful if you have two different macOS versions installed which require different settings. Somethin else that OpenCore cannot do.
+
 ### GUI Tuning
 In this sub-menu you can change the behavior of he mouse pointer and switch themes (if you have any installed):
 
