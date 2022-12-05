@@ -75,7 +75,7 @@ These boxes have to be checked when setting-up the required quirks &rarr; [**Qui
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### AppleRTC
-Obsolete! vit9696 investigated the problem, and corrected RTC operations in Clover, now the recommended key value is `false` because it affects hibernation.
+Obsolete! vit9696 investigated the problem, and corrected RTC operations in Clover. The recommended value is `false` because it affects hibernation.
 
 ### Debug
 If you want to observe how the Kexts are patched &rarr; For developers.
