@@ -105,7 +105,7 @@ This patch affects the settings of the ACPI system itself, such as the fact that
 
 You can also modify ASPM settings of devices using [properties](https://github.com/5T33Z0/OC-Little-Translated/tree/main/04_Fixing_Sleep_and_Wake_Issues/Setting_ASPM_Operating_Mode)
 
-**OpenCore** equivalent: Use DeviceProperty `pci-aspm-default` | Type: `Data` | `00`
+**OpenCore** equivalent: Use DeviceProperty `pci-aspm-default` | Type: `Data` | Value: `00`
 
 ## FixHeaders
 
@@ -352,11 +352,15 @@ Adds MCHC device which is related to the Memory Controller and is usually combin
 
 #### AddPNLF
 
-Inserts a PNLF (Backlight) device, which is necessary to properly control the screen brightness, and, oddly enough, helps to solve the problem with sleep, including for the desktop.
+Inserts a PNLF (Backlight) device, which is necessary to properly control the screen brightness, and, oddly enough, helps to solve problems with sleep, even on desktop systems.
+
+In my experience this is no longer working on macOS. Use [`SSDT-PNLF`](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/Brightness_Controls_(SSDT-PNLF)) instead.
 
 #### PNLF_UID
 
-There are several sample brightness curves/graphs in the system, and they have different UIDs. If some vendor uses that curve, it doesn't mean that you will have the same brightness with the same processor. It depends on the panel – not the processor. Generally speaking, using `SSDT-PNLF.aml` is recommended. You can find one in the Samples Folder of the OpenCore Package and in this repo as well (check the Laptop and Dektop configs sections).
+There are several sample brightness curves/graphs in the system, and they have different UIDs. If some vendor uses that curve, it doesn't mean that you will have the same brightness with the same processor. It depends on the panel – not the processor. 
+
+This also doen't work correctly any more (the brightness will reset to max after a reboot), so using aforementioned `SSDT-PNLF.aml` is recommended in this case as well.
 
 #### DeleteUnused
 
@@ -415,6 +419,8 @@ Corrects the description of the sound card in the `DSDT` so that the native Appl
 
 As already mentioned, this is the main fix needed. Thus, the minimum required `DSDT` patch mask looks like `0x0010`.
 
+**OpenCore** equivalent: Generate `SSDT-HPET` and IRQ fixes using SSDTTime
+
 #### FixIDE
 
 In macOS 10.6.1, there was a panic on the `AppleIntelPIIXATA.kext`. Two solutions to the problem are known: use a corrected kext, or fix the device in the `DSDT`. And for more modern systems? Use it, if there is such a controller (which is highly unlikely since IDE is obsolete).
@@ -423,7 +429,7 @@ In macOS 10.6.1, there was a panic on the `AppleIntelPIIXATA.kext`. Two solution
 
 Removes the interrupt from the `IPIC` device. Fixes the Power button, so that holding it for a few seconds brings up a dialog window with the to Reset, Sleep, or Shutdown the system.
 
-**OpenCore** equivalent: Generate SSDT-HPET and IRQ fixes using SSDTTime
+**OpenCore** equivalent: Generate `SSDT-HPET` and IRQ fixes using SSDTTime
 
 #### FixIntelGfx
 
@@ -464,7 +470,7 @@ A symptom that this might be the case is that supposedly fixed sleep issues reap
 
 #### FixS3D
 
-Likewise, this patch solves the problem with sleep.
+Attempts to fix Sleep/Wake issues by correcting `_S3D` methods in the DSDT.
 
 #### FixSATA
 
@@ -493,7 +499,9 @@ A condition is added to the `_PTS` (prepare to sleep) method: if argument = 5 (s
 
 #### FixTMR
 
-Removes the interrupt from the _TMR timer in the same way. It is no longer used on newer Macs but on Ivy Bridge it is still required to resolve IRQ conflicts so sound works (combine with `FixHPET`, `FixIPIC`, and `FixRTC`).
+Removes the interrupt from the `_TMR` timer in the same way. It is no longer used on newer Macs but on Ivy Bridge it is still required to resolve IRQ conflicts so sound works (combine with `FixHPET`, `FixIPIC`, and `FixRTC`).
+
+**OpenCore** equivalent: Generate `SSDT-HPET` and IRQ fixes using SSDTTime
 
 #### FixUSB
 
