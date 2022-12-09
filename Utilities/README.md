@@ -3,13 +3,13 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 
 ## Clover-related
 - [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader/releases) – Bootloader for macOS, Windows and Linux in UEFI and in legacy mode 
-- [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/) – Configurator App for editing Clover's config.plist
 - [**Clover Suite Builder**](https://www.insanelymac.com/forum/topic/347872-introducing-clover-suite-builder/) – Tool for compiling Clover from the Source Code
-- [**Bootloader Chooser**](https://github.com/jief666/BootloaderChooser) – A pre-bootloader which lets you pick the actual Bootloader you want to run. This way you can have multiple "Clover" and/or "OC" folders with different configs.
+- [**Bootloader Chooser**](https://github.com/jief666/BootloaderChooser) – A pre-bootloader which lets you pick the actual Boot Manager you want to run. This way, you can switch between "Clover" and "OC" easily.
 - [**Clover-Anonymizer**](https://github.com/dreamwhite/Clover-Anonymizer) – Removes sensitive data from the `config.plist`
 
 ## Apps and Tools
 ### macOS (General)
+- [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/) – Configurator App for editing Clover's config.plist
 - [**MaciASL**](https://github.com/acidanthera/MaciASL) – ASL/AML Editor for macOS.
 - [**IORegistryExplorer**](https://github.com/khronokernel/IORegistryClone) – App for gathering infos about I/O Registry.
 - [**Hackintool**](https://github.com/headkaze/Hackintool) – Powerful post-install utility that everyone should have in their Hackintosh tool box
@@ -43,6 +43,12 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 - [**gibMacOS**](https://github.com/corpnewt/gibMacOS) – Python-based Tool for downloading macOS
 - [**USBToolbox**](https://github.com/USBToolBox/tool) – USB Port mapping tool. Makes port mapping under macOS 11.3+ easier.
 - [**freqVectorsEdit**](https://github.com/Piker-Alpha/freqVectorsEdit.sh) – Python Script for editing frequency Vectors of Board-ID plists contained in the X86PlatformPlugin.kext
+
+### Windows
+- [**USB Device Tree Viewer**](https://www.uwe-sieber.de/usbtreeview_e.html) – Helpful tool for analyzing USB ports
+- [**CrystalDiskInfo**](https://crystalmark.info/en/software/crystaldiskinfo/) – Great tool for checking the health of hard disks, SSDs and NVMEs.
+- [**GPU-Z**](https://www.techpowerup.com/gpuz/) – Provides useful information about your GPU
+- [**HWiNFO**](https://www.hwinfo.com/) – Great Tool for getting in-depth info about your system and components
 
 ### Web-based Applications
 - [**Clover Cloud Editor**](https://www.root86.com/CCE/cce/index.php) – Online Clover Config Editor
