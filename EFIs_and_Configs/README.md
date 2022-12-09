@@ -37,4 +37,4 @@ OpenCore Config | Clover Config and EFI Folder
 Not covered by the OpenCore Install Guide. Follow the [**Comet Lake Instructions**](https://dortania.github.io/OpenCore-Install-Guide/config.plist/comet-lake.html) from the OpenCore install Guide and then just look for Help on Reddit or Github.
 
 ## Clover Folder structure and pkg installation
-Refer to my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Upgrading_Clover)
+&rarr; Refer to my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Upgrading_Clover)

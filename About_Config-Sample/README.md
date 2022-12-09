@@ -30,7 +30,7 @@ Below you find a list of issues I am having with the sample config as well as re
 See the corresponding section to find out what each option/setting does!
 
 - `DSDT/Patches`: Delete existing rules/leave empty. Most binary renames are unnecessary nowadays, since they handled by Kexts like Whatevergreen and AppleALC. Unless you have to redefine certain methods (usually required when working with laptops), Use SSDT hotfixes included in the OpenCore Package or my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated) instead. 
-- If you need to rename devices or methods, use the `RenameDevices` section instead of `DSDT/Patches`. It has the big advantage that it renames every occurance in any of the ACPI tables so that the name of a device/method remains congruent across the whole system.
+- If you need to rename devices or methods, use the `RenameDevices` section instead of `DSDT/Patches`. It has the big advantage that it renames every occurance in any of the ACPI tables so that the name of a device/method remains consistent across the whole system.
 - `DSDT/Fixes`: Most of these fixes in this section are obsolete but the following are still relevant and can be used to substitute the following SSDTs:
 	|SSDT | Clover DSDT Fix(es)
 	|:--------:|----------------------|
