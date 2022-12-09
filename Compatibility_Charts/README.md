@@ -2,7 +2,7 @@
 Listed below, you find some charts containing useful information about SMBIOS, Hardware and DRM compatibility as well as NVRAM variables.
 
 ## SMBIOS Compatibility Chart
-Check this [spreadsheet](https://docs.google.com/spreadsheets/d/1yLZeRFeONwDj1zMoONQAQ4rlodAnME1q5jFXE-q5H8s/edit#gid=0) to find out which SMBIOS is natively supported by which versions of macOS.
+Check this [spreadsheet](https://github.com/5T33Z0/Clover-Crate/blob/main/Compatibility_Charts/SMBIOS_Compat_Short.pdf) to find out which SMBIOS is natively supported by which versions of macOS.
 
 **NOTES**
 
