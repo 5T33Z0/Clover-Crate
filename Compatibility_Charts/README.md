@@ -21,8 +21,14 @@ Choosing an appropriate SMBIOS for your Hackintosh is crucial if you want a smoo
 
 For an in-depth guide on choosing the best SMBIOS for your system, please refer to Dortania's [**SMBIOS Guide**](https://dortania-github-io.thrrip.space/OpenCore-Install-Guide/extras/smbios-support.html#how-to-decide)
 
-## Apple ALC Layout ID's by CODEC
-This repo lists all available Apple ALC Layout IDs based on the name of the CODEC. Just open the .md file for your CODEC to find out if a Layout for your system exists already https://github.com/dreamwhite/applealc-layouts
+## AppleALC Layout IDs sorted by CODEC
+This [repo](https://github.com/dreamwhite/ChonkyAppleALC-Build) contains all available AppleALC Layout IDs based on the name of the CODEC, while the official AppleALC repo [lists](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs) them all on one page.
+
+- Click on the folder for your vendor
+- Find the .md file for your CODEC 
+- Click to open it
+
+Inside, you will find a list of all available Layout-IDs for the selected CODEC with additional info about the system/mainboard it has been created for.
 
 ## Intel CPUs used in real Macs
 Check this [spreadsheet](https://docs.google.com/spreadsheets/d/1x09b5-DGh8ozNwN5ZjAi7TMnOp4TDm6DbmrKu86i_bQ/edit#gid=0)
