@@ -13,7 +13,7 @@ So that's exactly what we are going to do: re-enable `XPCM` with a kernel patch 
 ## Requirements
 
 * System with a 3rd gen Intel Core CPU (Codename **Ivy Bridge**)
-* Tools: Terminal, ssdtPRGEN, Plist Editor, MaciASL
+* Tools: Terminal, ssdtPRGEN, ProperTree, MaciASL
 * SMBIOS for Ivy Bridge CPUs: `iMac13,1`/`iMac13,2` for Desktops and `MacBookPro9,x` or `MacBookPro10,x` for Laptops
 * Boot-arg `-no_conmpat_check` to run Big Sur and newer on unsupported Hardware
 
