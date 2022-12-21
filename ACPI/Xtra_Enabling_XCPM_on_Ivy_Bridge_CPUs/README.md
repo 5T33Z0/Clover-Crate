@@ -27,8 +27,10 @@ Create a backup of your currently working EFI folder just in case something goes
 
 ### 1. Force-enable `XCPM` for Ivy Bridge
 
-* Download "XCPM_IvyBridge_Clover.plist" 
-* Open it in your plist editor of choice
+* Open [**XCPM_IvyBridge_Clover.plist**](https://raw.githubusercontent.com/5T33Z0/Clover-Crate/main/ACPI/Xtra_Enabling_XCPM_on_Ivy_Bridge_CPUs/XCPM_IvyBridge_Clover.plist)
+* Press <kbd>CMD</kbd><kbd>A</kbd> followed by <kbd>CMD</kbd><kbd>C</kbd>
+* Run [**ProperTree**](https://github.com/corpnewt/ProperTree)
+* Press <kbd>CMD</kbd><kbd>V</kbd>
 * Copy the entries listed under `ACPI/DropTables`, `Boot`, `KernelAndKextPatches`, `KernelToPatch` and `Quirks` to your `config.plist`
 * Save the changes and reboot
 
@@ -95,3 +97,4 @@ Since macOS Ventura removed the `AppleIntelCPUPowerManagement.kext` which housed
 - Piker Alpha for ssdtPRGen
 - Intel for Intel Power Gadget
 - Acidanthera for porting maciASL to 64 bit
+- Corpnewt for ProperTree
