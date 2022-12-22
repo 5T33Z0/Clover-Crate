@@ -89,9 +89,11 @@ Since Big Sur requires `MacBookPro11,x` to boot, `ssdtPRGen` fails to generate S
 - Re-enable `-no_compat_check`
 - Save and reboot
 
-## macOS Ventura and legacy CPUs
+## macOS Ventura and Ivy Bridge
 
-Since macOS Ventura removed the `AppleIntelCPUPowerManagement.kext` which housed the `ACPI_SMC_PlatformPlugin`, `SSDT-PM` tables generated for 'plugin-type' 0 can no longer attach to the now mising plugin. Therefore, CPU Power management won't work corectly (no turbo states). So when switching to macOS Ventura, force-enabling XCPM and re-generating your `SSDT-PM` with 'plugin type' 1 enabled is mandatory!
+With the release of macOS Ventura, Apple removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the `ACPI_SMC_PlatformPlugin.kext` itself (previously located under `S/L/E/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/MacOS/`), rendering SSDT-PM generated for 'plugin-type' 0 useless, since it can no longer attach to the now missing plugin. Therefore, CPU Power Management won't work correctly (no turbo states). 
+
+So when switching to macOS Ventura, force-enabling XCPM and re-generating your `SSDT-PM` for 'plugin type' 1 is mandatory in order to get proper CPU Power Management.
 
 ## Credits
 - Piker Alpha for ssdtPRGen
