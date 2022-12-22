@@ -557,7 +557,10 @@ Automatic SSDT table generation, which extends the processor section with `_PCT`
 
 For Haswell and newer CPUs you should set the key to `1`, for older ones to `0`. This key, together with the Generate → `PluginType` key, makes it possible to generate an SSDT table containing only `PluginType`, but no P-States if their generation is disabled. This key is not needed; it has been saved for backward compatibility.
 
-**IMPORTANT**: None of the `Generate` options are needed if a custom SSDT-PM has been generated with ssdtPRGen or SSDTTime!
+**IMPORTANT**
+
+- None of the `Generate` options are needed if a custom `SSDT-PM.aml` or `SSDT-PLUG` has been generated with ssdtPRGen or SSDTTime!
+- In order to get CPU Power Management working under macOS Ventura using Ivy Bridge CPUs, `XCPM` has to be force-enabled and the SSDT has to be regenerated with support for Plugin Type 1. You can [**follow my guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI/Xtra_Enabling_XCPM_on_Ivy_Bridge_CPUs) to do so.
 
 ### Min Multiplier
 
