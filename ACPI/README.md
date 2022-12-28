@@ -83,7 +83,7 @@ The ACPI section not only is the first in the list but also the most important o
 
 ## AutoMerge
 
-![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135732535-ca43869b-4e97-47b2-a490-9c8aa5488fa8.png)
+![AutoMerge](https://user-images.githubusercontent.com/76865553/135732535-ca43869b-4e97-47b2-a490-9c8aa5488fa8.png)
 
 Merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI tables.
 
@@ -429,7 +429,9 @@ In macOS 10.6.1, there was a panic on the `AppleIntelPIIXATA.kext`. Two solution
 
 Removes the interrupt from the `IPIC` device. Fixes the Power button, so that holding it for a few seconds brings up a dialog window with the to Reset, Sleep, or Shutdown the system.
 
-**OpenCore** equivalent: Generate `SSDT-HPET` and IRQ fixes using SSDTTime
+Also required for fixing Audio on pre Skylake systems. Usually needs to be combined with `FixHPET`, `FixIPIC`, `FixTMR` and `FixRTC`.
+
+**OpenCore** equivalent: Generate `SSDT-HPET` and IRQ fixes with SSDTTime
 
 #### FixIntelGfx
 
