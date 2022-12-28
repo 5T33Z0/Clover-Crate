@@ -1,7 +1,7 @@
 # Boot
 ![Boot](https://user-images.githubusercontent.com/76865553/136703418-a28fed86-1f46-4519-80ad-671e96b89141.jpeg)
 
-<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
+**TABLE of CONTENTS**
 
 - [Arguments](#arguments)
   - [Debugging](#debugging)
@@ -31,12 +31,9 @@
 - [Timeout](#timeout)
 - [XMPDetection](#xmpdetection)
 - [Adding Clover entry to the BIOS Boot menu](#adding-clover-entry-to-the-bios-boot-menu)
-</details>
 
 ## Arguments
-These are boot arguments that are passed over to `boot.efi`, which in return passes them down to the system kernel. See Apple's documentation for a list in the `com.apple.Boot.plist`. Some commonly used ones are:
-
-<details><summary><strong>List of boot-args</strong> (click to reveal content)</summary>
+The following tables contain boot arguments that are passed over to `boot.efi`, which in return passes them down to the system kernel. See Apple's documentation for a list in the `com.apple.Boot.plist`. Some commonly used ones are:
 
 ### Debugging
 |Boot-arg|Description|
@@ -48,9 +45,9 @@ These are boot arguments that are passed over to `boot.efi`, which in return pas
 **`debug=0x100`**|Disables macOS'es watchdog. Prevents the machine from restarting on a kernel panic. That way you can hopefully glean some useful info and follow the breadcrumbs to get past the issues.
 **`keepsyms=1`**|Companion setting to `debug=0x100` that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what's causing the panic itself.
 **`dart=0`**|Disables VT-x/VT-d. Nowadays, `DisableIOMapper` Quirk is used instead.
-**`cpus=1`**|Limits the number of CPU cores to 1. Helpful in cases where macOS won't boot or install otherwise.
-**`npci=0x2000`**/**`npci=0x3000`**|Disables PCI debugging related to `kIOPCIConfiguratorPFM64`. Alternatively, use `npci=0x3000` which also disables debugging of `gIOPCITunnelledKey`. Required when stuck at `PCI Start Configuration` as there are IRQ conflicts related to your PCI lanes. **Not needed if `Above4GDecoding` can be enabled in BIOS**
-**`-no_compat_check`**|Disables macOS compatibility check. For example, macOS 11.0 BigSur no longer supports iMac models introduced before 2014. Enabling this allows installing andd booting macOS on otherwise unsupported SMBIOS. Downside: you can't install system updates if this is enabled.
+**`cpus=1`** | Limits the number of CPU cores to 1. Helpful in cases where macOS won't boot or install otherwise.
+**`npci=0x2000`** / **`npci=0x3000`** | Disables PCI debugging related to `kIOPCIConfiguratorPFM64`. Alternatively, use `npci=0x3000` which also disables debugging of `gIOPCITunnelledKey`. Required when stuck at `PCI Start Configuration` as there are IRQ conflicts related to your PCI lanes. **Not needed if `Above4GDecoding` can be enabled in BIOS**
+**`-no_compat_check`**|Disables macOS compatibility check. For example, macOS 11.0 BigSur no longer supports iMac models introduced before 2014. Enabling this allows installing and booting macOS on otherwise unsupported SMBIOS. Downside: you can't install system updates if this boot-arg is active. But this can be worked around by adding `RestrictEvents.kext` and boot-arg `revpatch=sbvmm`
 
 ### GPU-specific boot arguments
 For more iGPU and dGPU-related boot args see the Whatevergreen topic.
@@ -129,10 +126,7 @@ Boot-args for your favorite audio-enabler kext. All the Lilu boot arguments affe
 **`-alcbeta`**| Enables AppleALC on unsupported systems (usually unreleased or old ones)
 **`alcverbs=1`**| Enables alc-verb support (also alc-verbs device property)
 
-If you right-click anywhere in the "Arguments" list, you will find many more boot-args not covered here:
-
-![Bildschirmfoto](https://user-images.githubusercontent.com/76865553/135818786-923330d4-564a-41c6-acbf-ae16b4ac0d55.png)
-</details>
+If you right-click anywhere in the "Arguments" list, you will find many more boot-args not covered here.
 
 ## Custom Logo
 Enables the drawing of the custom boot logo.
