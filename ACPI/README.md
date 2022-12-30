@@ -543,7 +543,11 @@ In the new Clover, this group of parameters is combined into one section, and `P
 
 #### APSN/APLF
 
-The `APLF` and `APSN` parameters seem to affect Intel SpeedStep. As a prerequisite, `Generate PStates` needs to be enabled for them to be available, whereas PluginType works independently of the Generate PStates status.
+`APSN` stands for "Apple Processor Sleep Number." It is an integer value that is used to specify the sleep state that the processor should enter when it is not needed. Processor sleep states are low-power modes that allow the processor to enter a dormant state in order to conserve power and extend battery life in portable devices.
+
+`APLF` stands for "Apple Low Frequency Mode." It is an integer value that is used to enable or disable a low-frequency mode for the processor. When low-frequency mode is enabled, the processor's clock speed is reduced in order to conserve power and reduce heat generation.
+
+Both parameters seem to affect Intel SpeedStep. As a prerequisite, `Generate PStates` needs to be enabled for them to be available, whereas PluginType works independently of the Generate PStates status.
 
 #### CStates
 Automatic SSDT table generation, which extends the processor section with `_CST` methods for each core. `_CST` generation is affected by parameters `EnableC2`, `EnableC4`, `EnableC6`, and `C3Latency`.
