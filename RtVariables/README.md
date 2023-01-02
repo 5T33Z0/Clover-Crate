@@ -10,20 +10,24 @@ Last digits of `SmUUID` or `MAC Address`. Clover can detect and apply the MAC Ad
 **MLB** = BoardSerialNumber
 
 ## BooterConfig
-These are bit masks to set various boot flags. There's no further info in the manual about them. But if you ever wanted to know where the value `0x28` for `BooterConfig` comes from, check the next table.
+Bitmask containing various boot flags. There's no further info in the manual about any of them. But if you ever wanted to know where the value `0x28` for `BooterConfig` comes from, check the next table.
 
 ### Bitfields for boot-arg flags
-|Bit| Flag Name | HEX Value  | Default in r5142
-|:---:|-----------|-----------:|:---------------:|
-|0|Reboot On Panic    | 0x1|
-|1|Hi DPI             | 0x2|
-|2|Black Screen       | 0x4|
-|3|CSR Active Config  | 0x8|  x|
-|4|CSR Pending Config | 0x10|
-|5|CSR Boot           | 0x20| x|
-|6|Black Background   | 0x40|
+|Bit  | Flag Name | HEX Value  | Default flags</br>(r5142+)
+|:---:|-----------|:-----------:|:---------------:|
+|0| Reboot On Panic    | 0x1 |
+|1| Hi DPI             | 0x2 |
+|2| Black Screen       | 0x4 |
+|3| CSR Active Config  | 0x8 | x |
+|4| CSR Pending Config | 0x10 |
+|5| CSR Boot           | 0x20 | x |
+|6| Black Background   | 0x40 |
 
-**NOTE**: In most cases you don't have to change anything here. But if you do, you should exactly know what you are doing and why! You can also change these flags from the Options menu in the Bootloader GUI (Options > System Parameters > bootargs > Flags). But in this case the applied settings are only applied temporary for the next boot.
+**NOTES**: 
+
+- In most cases you don't have to change anything here. But if you do, you should exactly know what you are doing and why! You can also change these flags from the Options menu in the Bootloader GUI (Options > System Parameters > bootargs > Flags). But in this case the applied settings are only applied temporary for the next boot.
+- The Clover menu contains 2 additional entries: "Lugin UI" and "Install UI". They don't have a hex value assigned to them so you can't add them to the bitmask.
+- My [Clover Calcs](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) spreadsheet contains a calculator to calculate your own bitmask (usually not required).
 
 ## CsrActiveConfig
 With the release of macOS El Capitan in 2015, a new security feature was introduced: System Integrity Protection (SIP). By default, SIP is enabled (`0x000`) and does not allow you to load your kexts or install your system utilities. To disable it, you can calculate your own bitmask containing various flags.
@@ -46,16 +50,18 @@ The default value for `CsrActiveConfig` for Clover r5142 currently is `0xA87`, w
 |10|CSR_ALLOW_EXECUTABLE_POLICY_OVERRIDE|0x400|
 |11|CSR_ALLOW_UNAUTHENTICATED_ROOT|0x800|x
 
-**NOTES**: `0xA87` is a 12 bit bit mask and as such, is only valid for macOS 11 and 12. So if you are using an older Version of macOS, use the **CloverCalcs** Spreadsheet which can be found in the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to calculate your own.
+**NOTES**: 
 
-You can also change these flags from the options menu in the Bootloader GUI (Options > System Parameters > System Integrity Protection). But in this case the settings are only applied temporarily during the next boot.
+- `0xA87` is a 12 bit bitmask and as such, is only valid for macOS 11 and newewr. So if you are using an older Version of macOS, use the **CloverCalcs** Spreadsheet which can be found in the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to calculate your own.
+- You can also change these flags from the options menu in the Clover GUI (Options > System Parameters > System Integrity Protection). But in this case, the flags are only applied temporarily until the next reboot.
+- Contrary to popular believe, enabling bit 12 (ALLOW_UNAUTHENTICATED_ROOT) which is required for applying Post-Install patches like installing removed iGPU/GPU drivers *does not* disable System Update Notifications. This only happens when used in combination with bit 5 (ALLOW_APPLE_INTERNAL).
 
 ### Recommended values for disabling System Integrity Protection
 :warning: Disabling SIP is not recommended!
 
 | macOS Version     | Bitmask Size  | CsrActiveConfig |
 |------------------:|:-------------:|:---------------:|
-| macOS 11/12       | 12 bits       |`0xFEF`
+| macOS 11/12/13    | 12 bits       |`0xFEF`
 | macOS 10.14/10.15 | 11 bits       |`0x7FF`
 | macOS 10.13       | 10 bits       |`0x3FF`
 | macOS 10.12       | 9 bits        |`0x1FF`
