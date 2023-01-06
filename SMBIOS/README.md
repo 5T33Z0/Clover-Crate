@@ -13,6 +13,7 @@
 	- [1-Click-Solution for Clover Users](#1-click-solution-for-clover-users)
 	- [Troubleshooting](#troubleshooting)
 - [Running macOS on unsupported platforms](#running-macos-on-unsupported-platforms)
+	- [Workaround (macOS 11.3 only)](#workaround-macos-113-only)
 - [Notes](#notes)
 
 ## About
@@ -153,11 +154,28 @@ If you have to re-enter your Apple ID Password after changing from OpenCore to C
 - If the data is correct you won't have to enter your Apple ID Password again (double-check in Hackintool to verify).
 
 ## Running macOS on unsupported platforms
-Unlike real Macs which are limited to a certain range of supported macOS versions, you can trick macOS into running on CPU models it doesn't support officially – at least, if the used SMBIOS are not too far off from the specs of your hardware. 
+Unlike real Macs, which are limited to a certain range of supported macOS versions, you can trick macOS into running on CPU models it doesn't support officially – at least, if the used SMBIOS are not too far off from the specs of your hardware. 
 
-For example, you can use an SMBIOS intended for a Haswell CPU (4th Gen) with an Ivy Bridge CPU (3rd Gen), thereby expanding the range of macOS versions you can run. But since this SMBIOS is designed for a different CPU, it actually does not perform as good, especially on Notebooks. n the end it's a question of what's more important to you: being able to run the latest version of macOS vs. getting the most out of the machine as far as performance is concerned. 
+For example, you can use an SMBIOS intended for a Haswell CPU (4th Gen) with an Ivy Bridge CPU (3rd Gen), thereby expanding the range of macOS versions you can install and run (&rarr; check the [**SMBIOS Compatibility Chart**](https://github.com/5T33Z0/Clover-Crate/tree/main/Compatibility_Charts) to find one).
 
-A workaround to this issue is to use the SMBIOS intended for your CPU but add `-no_compat_check` to the boot arguments. The downside is that you can't install system updates this way, so you need to switch back the SMBIOS to whatever is officially supported by macOS Monterey to get updates and enable `HWTarget` in RtVariables as well (using a Plist Editor since this parameter is not yet available in Clover Configurator).
+But since this "higher" SMBIOS was designed for a different CPU, it actually does not perform as well with the older CPU, especially on Notebooks. So you have to make a descision: do you want to run the latest version of macOS or do you want to get the most out of your system in terms of compatibility and performance? 
+
+### Workaround (macOS 11.3 only)
+Luckily, there's a workaround which allows booting newer macOS versions with an unsupported SMBIOS/board-id and installing updates which wouldn't be possible otherwise. Since this fix makes uses of virtualization capabilities only present in macOS 11.3 and newer (Kernel 20.4.0+), you can't apply it in macOS Catalina and older.
+
+**Here's how it works**:
+
+- After installing macOS 11.3+ using the required SMBIOS, switch back to SMBIOS best suited for your CPU model
+- Add `-no_compat_check` to boot arguments. Otherwise you will be greeted with the "forbidden" sign instead of the Apple logo the next time you are trying to boot. The downside is that this also disables System Updates.
+- Add `RestrictEvents.kext` and `revpatch=sbvmm` boot-arg, which force-enables the `VMM-x86_64` board-id. This allows System Updates.
+
+**Now you finally can**:
+
+- Boot macOS with an unsupported SMBIOS/board-id,
+- Have proper CPU Power Management since you can use the correct SMBIOS for your CPU and 
+- Get System Updates with Clover – which was impossible before!
+
+When I was booting macOS Ventura on my Ivy Bridge Laptop with Clover using SMBIOS `MacBookPro10,1`, `-no_compat_check`, `RestrictEvent.kext` and `revpatch=sbvmm`, I was offered System Updates, which is pretty damn cool.
 
 ## Notes
 - Check the attached macOS Compatibility Charts to find out which macOS version is compatible with which SMBIOS
