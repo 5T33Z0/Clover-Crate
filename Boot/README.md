@@ -48,6 +48,7 @@ The following tables contain boot arguments that are passed over to `boot.efi`, 
 **`cpus=1`** | Limits the number of CPU cores to 1. Helpful in cases where macOS won't boot or install otherwise.
 **`npci=0x2000`** / **`npci=0x3000`** | Disables PCI debugging related to `kIOPCIConfiguratorPFM64`. Alternatively, use `npci=0x3000` which also disables debugging of `gIOPCITunnelledKey`. Required when stuck at `PCI Start Configuration` as there are IRQ conflicts related to your PCI lanes. **Not needed if `Above4GDecoding` can be enabled in BIOS**
 **`-no_compat_check`** | Disables macOS compatibility checks. Allows installing and booting macOS with unsupported SMBIOS/board-ids. Downside: you can't install system updates if this boot-arg is active. But this restriction can be worked around by adding `RestrictEvents.kext` and boot-arg `revpatch=sbvmm` ([requires macOS 11.3 or newer](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates)).
+
 ### GPU-specific boot arguments
 For more iGPU and dGPU-related boot args see the Whatevergreen topic.
 
@@ -59,6 +60,7 @@ For more iGPU and dGPU-related boot args see the Whatevergreen topic.
 **`-wegnoegpu`**|Disables all GPUs but the integrated graphics on Intel CPU. Use if GPU is incompatible with macOS. Doesn't work all the time.
 **`nvda_drv=1`**|Enable Web Drivers for NVIDIA Graphics Cards (supported up to macOS High Sierra only).
 **`nv_disable=1`**|Disables NVIDIA GPUs (***don't*** combine this with `nvda_drv=1`)
+**'unfairgva=x'** (x = number from 1 to 7 )| Replaces `shikigva` in macOS 11+ to address issues with [**DRM**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.Chart.md) on AMD cards. It's a bitmask with 3 bits (1, 2 and 4) which can be combined to enable/select different features as [explained here](https://www.insanelymac.com/forum/topic/351752-amd-gpu-unfairgva-drm-sidecar-featureunlock-and-gb5-compute-help/)
 
 ### Network-specific boot arguments
 |Boot-arg|Description|
