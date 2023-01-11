@@ -167,7 +167,7 @@ Starting from version r5134, Clover now includes error reporting similar to Open
 If it does boot, you can mount the ESP partition of your hard drive, backup your old EFI Folder, delete it and put in the one from your USB Flash drive to make the changes permanent.
 
 ## Using the .pkg Installer to upgrade Clover
-This is for users who want to use the pkg installer instead. Don't do this if you already created your EFI folder manually!
+This is for users who want to use the pkg installer instead. Don't do this if you already created your EFI folder manually! You also shouldn't use the .pkg installer if you are planning to switch back an forth between Clover and OpenCore since the .pkg Installer [places files on the system](https://github.com/dortania/OpenCore-Install-Guide/tree/master/clover-conversion#cleaning-the-clover-junk-in-macos) that you don't want to get in the way of OpenCore.
 
 1. Mount your EFI
 2. Remove deprecated Memory fixes and drivers manually as explained previously
