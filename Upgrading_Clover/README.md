@@ -58,7 +58,7 @@ The following drivers are no longer necessary and have to be deleted from `EFI/C
 **`AppleKeyAggregator`**, </br> **`AppleUITheme`** and </br> **`AppleImageCodec`** | Needed for FileVault 2 support. Embedded into Clover since r5149.| Delete
 
 #### Check and update Kexts
-Outdated, incompatible and/or duplicate kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use [**Kext-Updater**](https://www.sl-soft.de/en/kext-updater/) to download the latest kexts and other Bootloader-related files.
+Outdated, incompatible and/or duplicate kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use Clover Configurator's integrated Kext Installer or [**Kext-Updater**](https://www.sl-soft.de/en/kext-updater/) to download the latest kexts and other Bootloader-related files.
 
 If you are using a lot of kexts (usually on Notebooks), have a look inside of them (right-click and select "Show package contents") to check if they include additional kexts (as "Plugins") and make sure that no duplicates exist in the "kexts" folder – kexts for HID, WiFi and Bluetooth come to mind.
 
