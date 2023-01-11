@@ -566,7 +566,7 @@ For Haswell and newer CPUs you should set the key to `1`, for older ones to `0`.
 **IMPORTANT**
 
 - None of the `Generate` options are needed if a custom `SSDT-PM.aml` or `SSDT-PLUG` has been generated with ssdtPRGen or SSDTTime!
-- In order to get CPU Power Management working under macOS Ventura using Ivy Bridge CPUs, `XCPM` has to be force-enabled and the SSDT has to be regenerated with support for Plugin Type 1. You can [**follow my guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI/Xtra_Enabling_XCPM_on_Ivy_Bridge_CPUs) to do so.
+- In order to get CPU Power Management working under macOS Ventura using Ivy Bridge CPUs, you either have to be force-enable `XCPM` or [re-enable ACPI CPU Power Management](https://github.com/5T33Z0/OC-Little-Translated/blob/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)/README.md#re-enabling-acpi-power-management-in-macos-ventura) (recommended).
 
 ### Min Multiplier
 
