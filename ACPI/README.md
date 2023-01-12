@@ -330,6 +330,17 @@ macOS will call `_DSM` methods of Device objects with only two arguments at firs
 
 In other words, `store` is saving information you want to hand over to macOS as a local variable via the `DTGP` method. So its whole purpose is to handle macOS-specific behavior without breaking non-macOS behavior - like running Windows on real Macs (with Boot Camp) for example.
 
+#### DropOEM_DSM
+>Deprecated since r5116. 
+
+OEM DSDTs often contain `_DSM` methods which were written for Windows and don't work reliably in macOS. These methods can't be present if we want to write own `_DSM` methods. The patch `DropOEM_DSM` assumes that the user check's which DSM he wants to drop from devices. But nobody used it! 
+
+The best way is to rename all OEM `_DSM` occurences to `ZDSM` instead:
+
+**Comment**: change _DSM to ZDSM</br>
+**Find**: 5F44534D</br>
+**Replace**: 5A44534D
+
 #### AddHDMI
 
 Contrary to what the name of this fix suggests, it *does not* enable HDMI ports for video. Instead, it adds an `HDAU` audio device to the `DSDT` to enable digital audio over HDMI for ATI and Nvidia GPUs. Since a discrete GPU is a separate piece of hardware there's simply no such device present in your mainboard's `DSDT` file. Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the `HDAU` device:
