@@ -1,5 +1,5 @@
 # ACPI
-![CCACPI](https://user-images.githubusercontent.com/76865553/148648883-a0d3984c-254a-4a73-b02b-16439c6bc9a1.png)
+![ACPI](https://user-images.githubusercontent.com/76865553/148648883-a0d3984c-254a-4a73-b02b-16439c6bc9a1.png)
 
 <details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
 
@@ -13,6 +13,7 @@
 - [Smart UPS](#smart-ups)
 - [DSDT](#dsdt)
 	- [Patches](#patches)
+		- [DropOEM\_DSM](#dropoem_dsm)
 	- [TgtBridge](#tgtbridge)
 		- [About the `TgtBridge` Bug (fixed since Clover r5123.1)](#about-the-tgtbridge-bug-fixed-since-clover-r51231)
 	- [Rename Devices](#rename-devices)
@@ -26,7 +27,7 @@
 		- [AddIMEI](#addimei)
 		- [AddMCHC](#addmchc)
 		- [AddPNLF](#addpnlf)
-		- [PNLF_UID](#pnlf_uid)
+		- [PNLF\_UID](#pnlf_uid)
 		- [DeleteUnused](#deleteunused)
 		- [FakeLPC](#fakelpc)
 		- [FixACST](#fixacst)
@@ -59,7 +60,8 @@
 	- [Enable C2, C4, C6 and C7](#enable-c2-c4-c6-and-c7)
 	- [Generate Options](#generate-options)
 		- [APSN/APLF](#apsnaplf)
-		- [CStates/PStates](#cstatespstates)
+		- [CStates](#cstates)
+		- [PStates](#pstates)
 		- [PluginType](#plugintype)
 	- [Min Multiplier](#min-multiplier)
 	- [Max Multiplier](#max-multiplier)
@@ -185,6 +187,19 @@ In this sub-section of `ACPI`, you can add renaming rules (binary renames) to re
 If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a `Find` value of `45484331` and a `Replace` value of `45483031` which literally translates to `EHC1` and `EH01` if you decode the hex values back to text with the Hex Converter in the "Tools" section of Clover Configurator. Which renames to use when depends on your system's ACPI Tables, used macOS version, etc. and is not part of this overview.
 
 :bulb: During my tests I realized that the rename rules created here are *not* limited to the `DSDT` – they apply system-wide! If you want to restrict renames to the `DSDT` only, you probably have to make use of the `TgtBridge`.
+
+#### DropOEM_DSM
+>Deprecated since r5116. 
+
+OEM DSDTs often contain `_DSM` methods which were written for Windows and don't work reliably in macOS. These methods can't be present if we want to write own `_DSM` methods. The patch `DropOEM_DSM` assumes that the user check's which DSM he wants to drop from devices. But nobody used it! 
+
+The best way is to rename all OEM `_DSM` occurences to `ZDSM` instead:
+
+```
+Comment: change _DSM to ZDSM
+Find: 5F44534D
+Replace: 5A44534D
+```
 
 ### TgtBridge
 
@@ -329,17 +344,6 @@ Basically, macOS won't actually read/merge device properties from ACPI unless a 
 macOS will call `_DSM` methods of Device objects with only two arguments at first. When this occurs, the method should return `3`. So all you need to do is check if `Arg2` exists (is non-zero). If it doesn't, return `3`. If it does, return whatever properties you want macOS to use for that device.
 
 In other words, `store` is saving information you want to hand over to macOS as a local variable via the `DTGP` method. So its whole purpose is to handle macOS-specific behavior without breaking non-macOS behavior - like running Windows on real Macs (with Boot Camp) for example.
-
-#### DropOEM_DSM
->Deprecated since r5116. 
-
-OEM DSDTs often contain `_DSM` methods which were written for Windows and don't work reliably in macOS. These methods can't be present if we want to write own `_DSM` methods. The patch `DropOEM_DSM` assumes that the user check's which DSM he wants to drop from devices. But nobody used it! 
-
-The best way is to rename all OEM `_DSM` occurences to `ZDSM` instead:
-
-**Comment**: change _DSM to ZDSM</br>
-**Find**: 5F44534D</br>
-**Replace**: 5A44534D
 
 #### AddHDMI
 
