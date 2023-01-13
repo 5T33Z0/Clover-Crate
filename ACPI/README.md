@@ -531,7 +531,7 @@ Adds Return to the `_WAK` method. It has to be, but for some reason often the `D
 ## SSDT
 ![SSDT](https://user-images.githubusercontent.com/76865553/136655891-edd9c38d-852f-476e-9ca7-4295cdb4ec38.png)
 
-This section is for enabling/fixing/optimizing CPU Power Management. It's rarely used nowadays, since tools like [**ssdtPRGen**](https://github.com/Piker-Alpha/ssdtPRGen.sh) or [**SSDTTime**](https://github.com/corpnewt/SSDTTime) can generate a dedicated `SSDT` for it instead.
+This section is for enabling/fixing/optimizing [**CPU Power Management**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management). It's rarely used nowadays, since tools like [**ssdtPRGen**](https://github.com/Piker-Alpha/ssdtPRGen.sh) or [**SSDTTime**](https://github.com/corpnewt/SSDTTime) can generate a dedicated `SSDT` for it instead.
 
 ### C3 Latency
 
@@ -539,7 +539,9 @@ This value appears in real Macs, for iMacs it's about 200, for MacPro it's about
 
 ### Double First State
 
-In order for [Speedstep](https://en.wikipedia.org/wiki/SpeedStep) to work correctly, it is necessary to duplicate the first state of the P-states table. Although the necessity of this fix has become doubtful for newer CPUs, it is still relevant when using 3rd Gen Intel CPUs (Code name `IvyBridge`).
+In order for [**Intel SpeedStep**](https://en.wikipedia.org/wiki/SpeedStep) to work correctly, it is necessary to duplicate the first state of the P-states table. Although the necessity of this fix has become doubtful for newer CPUs, it is still relevant when using 3rd Gen Intel CPUs (codename `IvyBridge`).
+
+In my test however, this didn't fix CPU Power Management for Ivy Bridge. THe CPU was stuck in base clock and no Turbo states were available. So therefore, generating an SSDT-PM with ssdtPRGen is recommended.
 
 ### Drop OEM
 
