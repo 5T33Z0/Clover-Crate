@@ -57,6 +57,8 @@ The following drivers are no longer necessary and have to be deleted from `EFI/C
 **`SMCHelper.efi`** | Deprecated since r5148, [Commit 735987a](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856). Its functionality is now integrated into Clover as a service. This change introduced a new `Reset SMC` option (only available when using FakeSMC) to the Clover Boot Menu which works similar to SMC Reset on real Macs.| Delete
 **`AppleKeyAggregator`**, </br> **`AppleUITheme`** and </br> **`AppleImageCodec`** | Needed for FileVault 2 support. Embedded into Clover since r5149.| Delete
 
+If present, also delete the APPLE folder – it's not needed on Hackintosh Systems.
+
 #### Check and update Kexts
 Outdated, incompatible and/or duplicate kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use Clover Configurator's integrated Kext Installer or [**Kext-Updater**](https://www.sl-soft.de/en/kext-updater/) to download the latest kexts and other Bootloader-related files.
 
