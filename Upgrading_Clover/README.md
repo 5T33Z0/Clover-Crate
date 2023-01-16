@@ -218,6 +218,7 @@ The only advantage FakeSMC has in combination with Clover is that it enables the
 - If you get Kernel Panics: head over to the [**OpenCore Troubleshooting Guide**](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/troubleshooting.html) and have a look at the "OpenCore Boot issues" and "Kernelspace Issues" sections to find your error message and possible fixes to resolve it.
 - Fixing Network issues after Clover Update: Have a look at [**this**](https://www.insanelymac.com/forum/topic/345789-guide-how-to-update-clover-for-bigsur-compatibility-and-beyond-using-openruntime-and-quirks-r5123/page/2/?tab=comments#comment-2751614)
 - Check the [**ACPI section**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI) to learn more about the all important ACPI Section of Clover.
+- [**Kext Management in Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kext_Management)
 
 ## Notes
 - For Big Sur and newer, remove the PreBoot Volume from the "Hide" Section of the GUI because macOS requires it for booting!
