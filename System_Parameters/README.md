@@ -9,15 +9,17 @@ Sets and stores the user default monitor brightness level in NVRAM. However, thi
 ## CustomUUID
 Unique identification number of your system. If you don't put this key in, some hardware information will be generated, but if you want full control over what happens, hit "Generate New" to create your own or "Get it from system".
 
-## InjectKexts (deprecated)
-This key defines the global policy regarding kext injection:
+## InjectKexts (obolete)
+Prior to r5125, this key *used to define* the global policy fot injecting kexts into macOS:
 
-- `Yes`: Injects kexts located under `/EFI/CLOVER/kexts/`
+- `Yes`: ~~Injects kexts located under `/EFI/CLOVER/kexts/`~~
 - `No`: ~~Doesn't inject kexts~~
 
-Since the release of Clover r5125, kext injection is solely handled by `OpenRuntime` now which replaces the previously used `FSInject.efi`. 
+With the release of r5125, Clover adapted OpenCore's `OpenRuntime.efi` for handling Memory Fixes (in the form of Booter and Kernel Quirks) as well as Kext injection. It replaces the previously used `FSInject.efi`. Since the `InjectKexts` feature *was* a switch for `FSInject`, this switch is basically "dead" now. 
 
-Since the `InjectKexts` function was part of FSInject, the switch is "dead" now – so delete `FSInject.efi` from Drivers/UEFI! In other words: unless you are using Clover ≤ r5231.1 with the old Aptio Memory Fixes, leaving `InjectKexts` enabled or disabled doesn't matter at all – kexts will be injected into macOS anyway!
+In other words: unless you are using Clover ≤ r5231.1 with the old Aptio Memory Fixes, leaving `InjectKexts` enabled or disabled doesn't matter at all – **kexts will be injected into macOS anyway** – so delete `FSInject.efi` from Drivers/UEFI and even the `InjectKexts` key from your `config.plist`!
+
+To prevent a kext from loading, you have to move it to `EFI/CLOVER/kexts/OFF` now.
 
 ## InjectSystemID
 Injects System ID into macOS. If this is not enabled, the System ID is missing and will be displayed as "???" in Hackintool which might lead to issues with your Apple ID when transferring over SMBIOS Data from OpenCore and vice versa. Users switching over from Chameleon also need to enable this.
