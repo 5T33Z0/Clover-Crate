@@ -38,3 +38,6 @@ Not covered by the OpenCore Install Guide. Follow the [**Comet Lake Instructions
 
 ## Clover Folder structure and pkg installation
 &rarr; Refer to my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Upgrading_Clover)
+
+## Critical Notice 
+Avoid using pre-made Clover (and OpenCore) EFI folders from MalD0n/Olarila posted on insanelymac.com as they include a generic `SSDT-OLARILA.aml` which injects all sorts of devices which your system may not even need. It also injects an "Olarila" branding into the "About this Mac" section. To get rid of it, delete `Device (_SB.PCI0.OLAR)` and `Device (_SB.PCI0.MALD)` from this SSDT. Or even better: delete the file and add individual SSDTs for the devices/features your system actually needs instead. A comprehensive list of available SSDTs can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Adding_missing_Devices_and_enabling_Features).
