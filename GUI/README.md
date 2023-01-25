@@ -139,3 +139,7 @@ Here you can use enter names of partitions/volumes which shall be a hidden from 
 On next reboot, this volume should be hidden.
 
 **Tip**: An easier method to find out the UUID is to using the custom entries section, since it displays the UUIDs of all volumes.
+
+## Clover Boot Menu Options
+
+&rarr; [Options accessible from the Boot Menu](https://github.com/5T33Z0/Clover-Crate/blob/main/GUI/Boot_Menu_Options.md)
