@@ -190,20 +190,20 @@ Block kexts, Change CSR Active Config and other settings:
 In my personal tests, boot times were *significantly* slower when using FakeSMC, so I will continue using VirtualSMC. Since ECEnabler.kext doesn't work with Fake SMC's VoodooBatterySMC plugin, VirtualSMC is the better choice for hacking Laptops as well, imo.
 
 ## A word on using `F5` for patching the `DSDT`
-Although one might be tempted to think "Dude, it can patch the `DSDT` for ya!", this is not the case. Clover cannot magically patch the `DSDT` by pressing a single button. This function does something else. 
+Although one might be tempted to think "Dude, it can patch the `DSDT` for ya!", this is not the case. Clover cannot magically patch the `DSDT` by pressing a single button. This function does something else.
 
 **Q**: "So what does this feature do then?"</br>
 **A**: "It integrates *existing* DSDT Patches and Fixes present in your config.plist in the ACPI section into your OEM DSDT and saves it as a new file."
 
-I am talking about these Patches and Fixes:</br>![ACPI](https://user-images.githubusercontent.com/76865553/182084087-498b5157-2b10-4602-8c89-fdc4f626cbb7.png)
+I am talking about these DSDT Patches and Fixes:</br>![ACPI](https://user-images.githubusercontent.com/76865553/182084087-498b5157-2b10-4602-8c89-fdc4f626cbb7.png)
 
-If you press `F5` in the Bootmenu, the ACPI Patches and Fixes will be merged into the DSDT and a new, patched DSDT will be stored in the `/EFI/Clover/ACPI/origin` folder with some digits attached to its name:</br>![patched_dsdt](https://user-images.githubusercontent.com/76865553/182084137-5664c230-0ecc-4cd0-9dd9-c73e6a0b48ad.png)
+If you press `F5` in the Bootmenu, these Patches and Fixes will be integrated into the OEM DSDTand a new, patched DSDT will be stored under `/EFI/Clover/ACPI/origin` with some added digit to its name:</br>![patched_dsdt](https://user-images.githubusercontent.com/76865553/182084137-5664c230-0ecc-4cd0-9dd9-c73e6a0b48ad.png)
 
 **Q**: "What am I supposed to do with this?"</br>
 **A**: "Well, you can move it to `/EFI/Clover/ACPI/patched` and then you no longer need the Patches and Fixes in your config but use this partially patched `DSDT` instead:</br>
 
 ![NopatchesNofixes](https://user-images.githubusercontent.com/76865553/182084194-1cf28c13-856e-4bb8-a4ab-3ce932efba55.png)
 
-:warning: You will still need the SSDTs present in the `ACPI/patched` folder to boot your system, since this DSDT is only *partially* patched. You could however use this partially patched `DSDT` and apply more patches to it using maciASL until you have a *fully patched* DSDT so that you no longer need the SSDTs.
+You can use `F5` as an option to check if the patches were applied correctly. But you will still need the SSDTs present in the `ACPI/patched` folder to boot your system since they won't be integrated into the DSDT, so it's only *partially* patched. However, you can use it as a starting point for further patching with maciASL to fix all the remaining issues until you have a *fully patched* DSDT – maciASL has presets for it. Then you no longer need SSDTs (except SSDT-PM or SSDT-PLUG).
 
-But despite to some claims, all of this DSDT patching business is completely irrelevant and unnecessary nowadays since patching the DSDT and applying SSDTs on the fly during boot is much faster than replacing the whole OEM DSDT with a patched one – we are talking of replacing a few hundred lines of code (applying patches, fixes and SSDTs) vs. about 20.000 lines (patched DSDT). So my advice would be: don't bother doing it.
+But despite to some claims, patching the DSDT is completely irrelevant and unnecessary nowadays since applying Patches and SSDTs on the fly during boot is much faster than replacing the whole OEM DSDT with a patched one – we are talking about replacing a few hundred lines of code (by applying patches, fixes and SSDTs) versus replacing 20.000+ lines of code (patched DSDT). There's also another factor that has to be considered: some of the code in ACPI is generated *dynamically* on each boot and that doesn't work well if you inject a *static* DSDT. So my advice would be: don't bother doing it.
