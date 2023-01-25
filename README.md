@@ -1,9 +1,9 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover-r5150-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.23.01-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS-≤13.2_beta-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-23.01.21-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
+[![Clover Version](https://img.shields.io/badge/Clover-r5150-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.23.01-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS-≤13.2_beta-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-23.01.25-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 |:warning: Current Clover/Clover Configurator Issues/Updates|
 |:-----------------------------------------------------------|
-| **`HWTarget`** [is broken in macOS 13](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/?do=findComment&comment=2800185). Use an SMBIOS from a model without a T2 chip to get updates. If you ever though about switching to OpenCore – now is the tine…
+| **`HWTarget`** [is broken in macOS 13](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/?do=findComment&comment=2800185). Use an SMBIOS from a model without a T2 chip to get updates. So if you ever though about switching to OpenCore – now would be the right time…
 |**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
 
 ## ABOUT
