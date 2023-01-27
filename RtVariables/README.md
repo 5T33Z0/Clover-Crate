@@ -86,12 +86,20 @@ If you use a SMBIOS of one of the Mac models listed below, copy the correspondin
 - iMacPro1,1 (`J137AP`)
 - MacPro7,1 (`J160AP`)
 
-To confirm that the parameter is set, reboot and enter in Terminal: `sysctl hw.target`. It should return the value you entered for `HWTarget`.
+To confirm that the parameter is set, reboot and enter in Terminal: `sysctl hw.target`. It should return the value you entered for `HWTarget`
 
 **Source**: [**Insanelymac**](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/?do=findComment&comment=2771041)
+
+### Workaround broken `HWTarget` feature in macOS Ventura to get System Updates
+
+As of Clover r5151, `HWTarget` is broken in macOS Ventura. The return value when running `sysctl hw.target` is empty and System Updates won't work. Do the following to re-enable System Updates (for now):
+
+- Add `RestrictEvents.kext` 
+- Add boot-arg `revpatch=sbvmm` &rarr; Frces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 or newer.
+
+**More details here:** [Fixing issues with System Update Notifications in macOS 11.3 and newer](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates#what-about-clover)
 
 **NOTES**
 
 - From the look of things, the available `HWTarget` values seem to be identical with the values for `SecureBootModel` used by OpenCore, except that they're written in uppercase and and appended the letters "AP". For example, the value for MacPro7,1 is `j160` in OpenCore, whereas in Clover it's `J160AP`, etc.
 - `HWTarget` is only required when using a SMBIOS of Macs with a T2 chip.
-- `HWTarget` is only necessary when upgrading from Big Sur to Monterey. Once macOS Monterey is running, it seems no longer be required (supposedly).
