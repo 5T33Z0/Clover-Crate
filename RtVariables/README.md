@@ -105,7 +105,7 @@ To confirm that the parameter is set, reboot and enter in Terminal: `sysctl hw.t
 
 ### Working around issues with  `HWTarget` in macOS 13 to receive System Updates
 
-As of Clover r5151, `HWTarget` is broken in macOS Ventura. As a consequence, you can't install OTA updates when using an SMBIOS of a Mac model with a T2 security chip. Do the following to re-enable System Updates (for now):
+As of Clover r5151, `HWTarget` is [broken](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/?do=findComment&comment=2800185) in macOS Ventura. As a consequence, you can't install OTA updates when using an SMBIOS of a Mac model with a T2 security chip. Do the following to re-enable System Updates (for now):
 
 - Add `RestrictEvents.kext` 
 - Add boot-arg `revpatch=sbvmm` &rarr; Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 or newer.
