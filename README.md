@@ -3,7 +3,7 @@
 
 |:warning: Current Clover/Clover Configurator Issues/Updates|
 |:-----------------------------------------------------------|
-| **`HWTarget`** [is broken in macOS 13](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/?do=findComment&comment=2800185). Use an SMBIOS from a model without a T2 chip to get updates. So if you ever though about switching to OpenCore – now would be the right time…
+| **`HWTarget`** is broken in macOS 13. Use this [**workaround**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables#working-around-issues-with--hwtarget-in-macos-13-to-receive-system-updates) to get System Updates (or switch to OpenCore).
 |**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
 
 ## ABOUT
