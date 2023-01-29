@@ -110,8 +110,8 @@ As of Clover r5151, `HWTarget` is [broken](https://www.insanelymac.com/forum/top
 - Add `RestrictEvents.kext` 
 - Add boot-arg `revpatch=sbvmm` &rarr; Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 or newer.
 - Optional: 
+  - Change SMBIOS to one best suited for your CPU family
   - Add boot-arg `-no_compat_check` to allow booting with an unsupported SMBIOS
-  - Change SMBIOS to one best suited for your CPU family.
 
 **More details here:** [Fixing issues with System Update Notifications in macOS 11.3 and newer](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates#what-about-clover)
 
