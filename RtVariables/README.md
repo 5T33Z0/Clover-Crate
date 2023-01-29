@@ -13,7 +13,7 @@ This section contains runtime variables affecting Apple services or Clover itsel
   - [Flags for Security Settings](#flags-for-security-settings)
   - [Recommended values for disabling System Integrity Protection](#recommended-values-for-disabling-system-integrity-protection)
 - [HWTarget](#hwtarget)
-  - [Working around issues with  `HWTarget` in macOS 13 to receive System Updates](#working-around-issues-with--hwtarget-in-macos-13-to-receive-system-updates)
+  - [Working around issues with `HWTarget` in macOS 13 to receive System Updates](#working-around-issues-with-hwtarget-in-macos-13-to-receive-system-updates)
 
 
 ## ROM
@@ -103,15 +103,15 @@ To confirm that the parameter is set, reboot and enter in Terminal: `sysctl hw.t
 
 **Source**: [**Insanelymac**](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/?do=findComment&comment=2771041)
 
-### Working around issues with  `HWTarget` in macOS 13 to receive System Updates
+### Working around issues with `HWTarget` in macOS 13 to receive System Updates
 
 As of Clover r5151, `HWTarget` is [broken](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/?do=findComment&comment=2800185) in macOS Ventura. As a consequence, you can't install OTA updates when using an SMBIOS of a Mac model with a T2 security chip. Do the following to re-enable System Updates (for now):
 
 - Add `RestrictEvents.kext` 
 - Add boot-arg `revpatch=sbvmm` &rarr; Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 or newer.
-- Optional: 
-  - Change SMBIOS to one best suited for your CPU family
-  - Add boot-arg `-no_compat_check` to allow booting with an unsupported SMBIOS
+- Optional (if you are using hardware not supported by Big Sur 11.3 or newer): 
+  - Change SMBIOS back to the correct/native one designed for your CPU family for optimal compatibility and performance.
+  - Add boot-arg `-no_compat_check` to allow booting with the unsupported board-id of said SMBIOS
 
 **More details here:** [Fixing issues with System Update Notifications in macOS 11.3 and newer](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates#what-about-clover)
 
