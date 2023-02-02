@@ -161,12 +161,20 @@ These two parameters serve a common purpose - to fix restart. They should be pre
 	...
 	```
 
-**Possible value combinations**:
+**Possible combinations**:
 
-- If both fields are left empty, `0x64`/`0xFE` will be used by default &rarr; Restarts the system via the PS2 Controller – just like a PC.
-- `0x0`/`0x0`→ uses the default `FACP` values, if present. Otherwise, `0x64`/`0xFE` will be used instead.
-- `0x0CF9`/`0x06` &rarr; restarts the system via PCI Bus – just like a real Mac. Shutdown and restart is faster but this combination does not work for all Systems.
-- `0x92`/`0x01`→ another possible combination.
+Reset Address /</br>Reset Value | Description
+:-------------------------------:|------------
+`0x0`/`0x0` </br>(or empty) | Uses the default method defined in the `FACP` table, if present.  Otherwise `0x64`/`0xFE` are set as defaults.
+`0x0CF9`/`0x06` | Resets the system via **System Management Mode** (SMM) of the PCI bus – just like a real Mac. This is fast since the SMM operates at a higher level of privilege than the operating system and is capable of bypassing certain hardware and software layers. But this does not work on all systems.
+`0x64`/`0xFE` | Resets the System via the **PS/2 Controller**. Default if  `Reset Address` and `Reset Value` are left empty. Resetting the system via the PS/2 controller may be faster than resetting it via software, as the PS/2 controller is a hardware device that is directly connected to the CPU and is responsible for handling keyboard and mouse input.
+`0x92`/`0x01` | Resets the system via the **Programmable Interrupt Controller (PIC)**. The PIC is responsible for routing IRQs from various devices, such as the keyboard and mouse, to the CPU for processing. This may be faster than resetting via software, as the PIC is responsible for managing interrupt requests (IRQs) in the system and directing them to the appropriate processing units.
+
+:bulb: **TIPS**
+
+- Check the pre-defined value in the `FACP` table before changing them
+- You only need to change these values if shutdown/reset takes really long or doesn't work at all
+- Try all 3 methods to figure out which one works best for you. I have had good results by resetting via SMM. Resetting via PIC and PS/2 did quit macOS but didn't reset/shutdown the system.
 
 ## Smart UPS
 
