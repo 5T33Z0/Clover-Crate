@@ -27,9 +27,7 @@ This guide is for upgrading/converting your Clover EFI folder and config from th
 
 Clover's previously used `AptioMemoryFixes` no longer work in macOS 11 and newer. Therefore, OpenCore's memory fixes (`OpenRuntime.efi`) have been implemented to keep Clover alive. Since Clover r5126, Aptio Memory fixes are obsolete and no longer supported, so an upgrade to the latest Clover version is *mandatory* in order to install and boot macOS 11 and newer.
 
-When upgrading Clover, there are several obstacles along the way, such as removing old memory fixes and drivers as well as configuring the newly added "Quirks" in the `config.plist`. 
-
-Why there are no proper upgrade instructions provided on the Clover Github Repo is a mystery to me, really…
+When upgrading Clover, there are several obstacles along the way, such as removing old memory fixes and drivers as well as configuring the newly added "Quirks" in the `config.plist`. Why there are no proper upgrade instructions provided on the Clover Github Repo is a mystery to me, really…
 
 ### Who needs to upgrade (and who not)?
 This guide is for everyone trying to upgrade to the latest revision of Clover, so they can install and run macOS Big Sur and newer on their machines. 
@@ -57,7 +55,7 @@ The following drivers are no longer necessary and have to be deleted from `EFI/C
 **`SMCHelper.efi`** | Deprecated since r5148, [Commit 735987a](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856). Its functionality is now integrated into Clover as a service. This change introduced a new `Reset SMC` option (only available when using FakeSMC) to the Clover Boot Menu which works similar to SMC Reset on real Macs.| Delete
 **`AppleKeyAggregator`**, </br> **`AppleUITheme`** and </br> **`AppleImageCodec`** | Needed for FileVault 2 support. Embedded into Clover since r5149.| Delete
 
-If present, also delete the `EFI/APPLE` folder – it's not needed on Hackintosh Systems.
+**NOTE**: If present, delete the `EFI/APPLE` folder as well – it's not needed on Hackintosh Systems.
 
 #### Check and update Kexts
 Outdated, incompatible and/or duplicate kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use Clover Configurator's integrated Kext Installer or [**Kext-Updater**](https://www.sl-soft.de/en/kext-updater/) to download the latest kexts and other Bootloader-related files.
@@ -201,14 +199,14 @@ To workaround this issue, a special folder `drivers/5142` can be used to place t
 This way, you can switch back and forth between current and older Clover builds prior to r5142 without issues. Because Clover build prior to r5142  can't see the `drivers/5142` folder while Clover 5142+ does see this folder and prioritizes the included OpenRuntime.efi (if present) over the one stored under `drivers/UEFI`.
 
 ## FakeSMC vs. VirtualSMC
-Although both do the same – emulating Apples System Management Controller (SMC), there are differences as far as their plugin kexts are concerned. I prefer VirtualSMC for the following reasons:
+Although both do the same – emulating Apples System Management Controller (SMC) – there are differences as far as their plugin kexts are concerned. I prefer VirtualSMC over FakeSMC for the following reasons:
 
 - Newer, more up-to-date code
 - Boots macOS faster (you'll notice it especially on older systems)
 - Only has 5 Plugin kexts that are clearly named in regards to their functionality. FakeSMC comes with 12 Plugins and some of them are really obscure so that in order to pick the right one you have to figure out the vendor of some chip on the mainboard.
 - On Laptops, VirtualSMC's `SMCBatteryManager.kext` and `ECEnabler.kext` work in tandem to enable Battery Status indicator without addtional Battery Patches. FakeSMC's `VoodooBatterySMC.kext` which is basically from 2009 doesn't work with ECEnabler.
 
-The only advantage FakeSMC has in combination with Clover is that it enables the `Reset SMC` feature in the [Boot Menu](https://github.com/5T33Z0/Clover-Crate/blob/main/GUI/Boot_Menu_Options.md#system-parameters) which doesn't work when using VirtualSMC. I don't know why this would be necessary since NVRAM reset handles that as well, but it is what it is.
+The only advantage FakeSMC has in combination with Clover is that it enables the `Reset SMC` feature in the [Boot Menu](https://github.com/5T33Z0/Clover-Crate/blob/main/GUI/Boot_Menu_Options.md#system-parameters) which doesn't work when using VirtualSMC. I don't know why this would be necessary since NVRAM reset does the same, but it is what it is.
 
 ## Further Resources and Troubleshooting
 
