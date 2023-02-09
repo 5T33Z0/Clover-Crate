@@ -1,5 +1,5 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover-r5150-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.23.01-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS-≤13.2-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-23.02.05-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
+[![Clover Version](https://img.shields.io/badge/Clover-r5150-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator-5.23.01-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS-≤13.2-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update_(yy.mm.dd):-23.02.09-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 |:warning: Current Clover/Clover Configurator Issues/Updates|
 |:-----------------------------------------------------------|
@@ -17,9 +17,9 @@ It provides up-to-date and in-depth explanations for every setting and parameter
 I created this repo for the following reasons:
 
 1. **Overcoming language barriers**: Clover's official documentation (PDF, 182 pages) is only available in Russian.
-2. **Condensing information** and presenting it in a modern way, making use of GitHub and Markdown. It's also much more focused on documentaing the actual features since it disregards all the personal anecdotal notes that the official documentation contains.
+2. **Condensing information** and presenting it in a modern way, making use of GitHub and Markdown. It's also much more focused on documenting the actual features since it disregards all the personal anecdotal notes that the official documentation contains.
 3. **Consolidating and unifying resources** which are scattered all over the internet: the manual is only available in Russian on GitHub, the changelog is only available at insanelymac and the Clover Wiki had been neglected for years until it finally got integrated into Clover's GitHub Repo in 2022 (after I started Clover Crate).
-4. **Exemplifying Clover's features** using Clover Configurator: Acidanthera and Dortania did such an amazing job on documenting OpenCore that I though it was about time Clvoer gets something that at least documents its features and how to use them *properly*.
+4. **Exemplifying Clover's features** using Clover Configurator: Acidanthera and Dortania did such an amazing job on documenting OpenCore that I though it was about time Clover gets something that at least documents its features and how to use them *properly*.
 
 ### Disclaimer
 The information provided in this repository is based on excerpts of the official Russian documentation for Clover using AI-based translation tools (deepl, google and yandex translate) as well as my own extensive research. The translations were reviewed and redacted afterwards, so that they follow the rules of English grammar and spelling while preserving their meanings. Nevertheless, some details may have been lost in translation (although I doubt it).

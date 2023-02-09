@@ -22,7 +22,7 @@
 ## Preface
 Unfortunately, the config sample included in the Clover Package is a complete mess. It seems to me that in order to populate every section of the config, settings were just enabled randomly without applying any common sense whatsoever.
 
-Therefore, my advice is: don't use it! Instead, open Clover Configurator and create a new empty config by pressing **CMD+N** and follow the [Clover Desktop Guide](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) and add the missing [Quirks](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks). This way the config also gets a lot smaller in size which which improves the boot process.
+Therefore, my advice is: don't use it! Instead, open Clover Configurator and create a new empty config by pressing <kbd>⌘</kbd>+<kbd>n</kbd> and follow the [Clover Desktop Guide](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) and add the missing [Quirks](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks). This way the config also gets a lot smaller in size which which improves the boot process.
 
 Below you find a list of issues I am having with the sample config as well as recommended settings for each section. Clicking on the headlines forwards you to the corresponding chapter which explains every option in detail.
 
@@ -92,14 +92,14 @@ See the corresponding section to find out what each option/setting does!
 
 ## [Kernel and Kext Patches Section](https://github.com/5T33Z0/Clover-Crate/tree/main/Kernel_And_Kext_Patches)
 
-- :warning: Delete `FakeCPUID` value. It's a real problem that this is even in there since it emulates another CPU which you don't want if your CPU is supported by macOS. It's a big nono that this is enable in the sample!
+- :warning: Delete `FakeCPUID` value. It's a real problem that this is enabled since it emulates another CPU which you don't want if your CPU is supported by macOS. It's a big no-no that this is even set in the sample!
 - Delete all the rules in the `KextToPatch` and `KernelToPatch` section that you don't need! Read the comments if you are unsure.
 - Set Kernel Patches as needed for your system!
 
 ## [RT Variables Section](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables)
 
 - Delete `MLB` (add it AFTER generating your own serial in the SMBIOS section)
-- `CsrActiveConfig`: either delete (SIP enabled) or set specific value based on macOS. You can use my [Clover Calculators Spreadsheet](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to do so. Regurlarly used ones to disable SIP are:
+- `CsrActiveConfig`: either delete (SIP enabled) or set specific value based on macOS. You can use my [Clover Calculators Spreadsheet](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to do so. Common ones to disable SIP are:
 	- High Sierra: `0x3EF`
 	- Mojave/Catalina: `0x7EF`
 	- Big Sur and newer: `0x867` and `0xFEF` (disables SIP Completely. Not recommended since system updated don't work with this) 
