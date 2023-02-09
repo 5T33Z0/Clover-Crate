@@ -1,6 +1,8 @@
 # ACPI
 ![ACPI](https://user-images.githubusercontent.com/76865553/148648883-a0d3984c-254a-4a73-b02b-16439c6bc9a1.png)
 
+The **ACPI** section not only is the first but also the most important one (along with Kernel Patches and Quirks). It offers many options to affect the ACPI tables of your system in order to make it compatible with macOS: from replacing characters in the `DSDT`, renaming devices, enabling features to applying patches. Since this section is the centerpiece of your `config.plist`, every available option is explained in detail.
+
 <details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
 
 - [AutoMerge](#automerge)
@@ -81,39 +83,35 @@
 - [Resources](#resources)
 </details>
 
-The ACPI section not only is the first in the list but also the most important one as well (next to Kernel Patches and Quirks). It offers many options to affect the ACPI tables of your system in order to make it compatible with macOS: from replacing characters in the `DSDT`, renaming devices, enabling features to applying patches. Since this section is the centerpiece of your `config.plist`, every available option is explained in detail. Throughout this chapter, this section is broken down into smaller chunks to make it more digestible.
-
 ## AutoMerge
 
 ![AutoMerge](https://user-images.githubusercontent.com/76865553/135732535-ca43869b-4e97-47b2-a490-9c8aa5488fa8.png)
 
 Merges any `DSDT` and `SSDT` changes from `/ACPI/patched` with existing ACPI tables.
 
-If set to `true`, it changes the way `.aml` files in `ACPI/patched` are applied. Instead of appending these tables at the end of the `DSDT` they will replace existing tables, if their signature, index and `OemTableIds` match existing OEM tables. In other words, they will be merged with existing ACPI tables.
+If set to `true`, it changes the way `.aml` files in the `ACPI/patched` folder are applied. Instead of appending these tables at the end of the `DSDT` they will replace existing tables, if their signature, index and `OemTableIds` match existing OEM tables. In other words, they will be merged with existing ACPI tables.
 
 With this function – as with `DSDT` – you can fix individual SSDTs (or other tables) simply by adding the corrected file(s) into `ACPI/patched`. No need to fiddle with `DropOem` or `DropTables`. The original order is preserved. The mapping for `SSDT` is based on naming, where the naming convention used by the F4 extractor in the loader menu is used to identify the `SSDT` position in `DSDT`.
 
-For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you could just fix it and put it back in `ACPI/patched`, replacing the original table. This also works if you put it in `ACPI/patched` as `SSDT-6.aml`. Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. As long as you stick to the names provided in `ACPI/origin`, you should be fine.
+For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you could just fix it and place it in `ACPI/patched`. This also works if you rename it (for example `SSDT-6.aml`). Since some OEM ACPI sets do not use unique text in the OEM table-id field, Clover uses both the OEM table-id and the number that is part of the file name to locate the original in `XDST`. As long as you stick to the names provided in `ACPI/origin`, you should be fine.
 
-This way, you could find the SSDT containing all the 26 Ports for your board in the dumped ACPI, fix it, put it back in the `ACPI/patched` folder and boom: no more `USBports.kext` required. 
+This way, you could find the SSDT containing all the 26 Ports for your board in the dumped ACPI, fix it, place it in the `ACPI/patched` folder and boom: no more `USBports.kext` required. 
 
-**TIP**: `AutoMerge` can also be useful in cases where dropping a table fails for unknown reasons. While I was trying to figure out why my 3rd party Ethernet Card wouldn't connect to the internet when using Clover (it worked fine when using OpenCore), I noticed that the DMAR table wasn't dropped when using maciASL's "New from ACPI" feature. Instead, two DMAR tables were present: the original one and my modified version located under `ACPI/patched`. After enabling `AutoMerge` and a reboot, there was only one DMAR table (the corrected one) and internet worked. So if you can't drop a table, you can always replace it with a corrected one by merging, as long as the Table Signature/OEM Table ID matches.
+**TIP**: `AutoMerge` can also be useful in cases where dropping a table fails for unknown reasons. While I was trying to figure out why my 3rd party Ethernet Card wouldn't connect to the internet when using Clover (it worked fine when using OpenCore), I noticed that the `DMAR` table wasn't dropped when using maciASL's "New from ACPI" feature. Instead, two `DMAR` tables were present: the original one and my modified version located under `ACPI/patched`. After enabling `AutoMerge` and a reboot, there was only one `DMAR` table (the corrected one) and internet worked. So if you can't drop a table, you can always replace it with a corrected one by merging, as long as the Table Signature/OEM Table ID matches.
 
 ## Disable ASPM
 
 Active-state power management (ASPM) is a power management mechanism for PCI Express devices to garner power savings while otherwise in a fully active state. It is normally used on laptops and other mobile Internet devices to extend battery life.
 
-This patch affects the settings of the ACPI system itself, such as the fact that Apple's ASPM management does not work as expected. For example when using non-native chipsets.
-
-You can also modify ASPM settings of devices using [properties](https://github.com/5T33Z0/OC-Little-Translated/tree/main/04_Fixing_Sleep_and_Wake_Issues/Setting_ASPM_Operating_Mode)
+This patch affects the settings of the ACPI system itself, such as the fact that Apple's ASPM management does not work as expected. For example when using non-native chipsets. You can also modify ASPM settings via [device properties](https://github.com/5T33Z0/OC-Little-Translated/tree/main/04_Fixing_Sleep_and_Wake_Issues/Setting_ASPM_Operating_Mode).
 
 **OpenCore** equivalent: Use DeviceProperty `pci-aspm-default` | Type: `Data` | Value: `00`
 
 ## FixHeaders
 
-`FixHeaders` will check the headers of all ACPI tables in general, removing Chinese characters from the headers since macOS can not handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you may still need it.
+`FixHeaders` will check the table headers of all ACPI tables for illegal characters (like Chinese characters) and removes them since macOS can't handle them and panics instantly. This issue has been fixed in macOS Mojave, but in High Sierra you may still need it.
 
-Whether you have a problem with tables or not, it's safe to enable this fix. It is recommended to all users, even if you are not having to fix your `DSDT`. Old setting inside DSDT fixes remains for backward compatibility, but I recommend excluding it from this section.
+Whether you have a problem with tables or not, it's safe to enable this fix. It is recommended for all users, even if you are not having to fix your `DSDT`. Old settings inside DSDT/Fixes section remain for backward compatibility, but I recommend deleting them.
 
 ## FixMCFG
 
@@ -121,13 +119,13 @@ The `MCFG` (Memory Mapped Configuration Table) describes the location of the PCI
 
 If `FixMCFG` is enabled, the MCFG table will be corrected. However, discarding this table is also possible by using the "Drop Tables" feature. 
 
-**Verifying procedure**: To find our if you need this fix, enable it and reboot. Once you're back in macOS, open the original MCFG table (stored in EFI/CLOVER/ACPI/origin) and compare it with the fixed one: in maciASL, click on "File" > "New from ACPI" and select "MCFG". If both tables are identical (in terms of values), you don't need this fix. 
+**Verifying procedure**: To check if you need this fix, enable it and reboot. Once you're back in macOS, open the original MCFG table (stored in EFI/CLOVER/ACPI/origin) and compare it with the fixed one: in maciASL, click on "File" > "New from ACPI" and select "MCFG". If both tables are identical (in terms of values), you don't need this fix. 
 
-This procedure applies to all fixes aimed at specific tables (apart from the ones affecting the `DSDT`) in general!
+This procedure applies to all fixes aimed at specific tables in general (apart from the ones affecting the `DSDT`)!
 
 ## Halt Enabler
 
-This patch fixes shutdown/sleep issues caused by incorrectly initialized chipsets on UEFI boot. Symptoms: the system doesn't enter sleep state (the screen turns off, but the fans don't).
+This patch fixes shutdown/sleep issues caused by incorrectly initialized chipsets during UEFI boot. Symptoms: the system doesn't enter sleep state (the screen turns off, but the fans don't).
 
 The fix is injected before calling `boot.efi`, clearing `SLP_SMI_EN` before booting macOS. Nevertheless, it is quite safe, at least on Intel systems.
 
