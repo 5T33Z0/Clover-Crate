@@ -4,10 +4,6 @@
 <dict>
 	<key>ACPI</key>
 	<dict>
-		<key>DisabledAML</key>
-		<array>
-			<string>SSDT-PM.aml</string>
-		</array>
 		<key>DropTables</key>
 		<array>
 			<dict>
@@ -31,7 +27,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>-no_compat_check</string>
+		<string>-no_compat_check sbvmm</string>
 	</dict>
 	<key>KernelAndKextPatches</key>
 	<dict>
@@ -52,8 +48,6 @@
 				<data>
 				jUPEPEI=
 				</data>
-				<key>MatchOS</key>
-				<string>13.x</string>
 				<key>Procedure</key>
 				<string>_xcpm_bootstrap</string>
 				<key>Replace</key>
@@ -69,8 +63,8 @@
 	<dict>
 		<key>AppleXcpmExtraMsrs</key>
 		<true/>
-		<key>AppleXcpmForceBoost</key>
-		<false/>
+		<key>ResizeAppleGpuBars</key>
+		<integer>-1</integer>
 	</dict>
 </dict>
 </plist>
