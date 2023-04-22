@@ -1,10 +1,10 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover:-r5151-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.23.01-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤13.3-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-23.02.11-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
+[![Clover Version](https://img.shields.io/badge/Clover:-r5151-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.24.00-brightgreen.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤13.4-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-23.04.22-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
-|:warning: Current Clover/Clover Configurator Issues/Updates|
+|:warning: Current Issues/Updates|
 |:-----------------------------------------------------------|
 | **`HWTarget`** is broken in macOS 13. Use this [**workaround**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables#working-around-issues-with--hwtarget-in-macos-13-to-receive-system-updates) to get System Updates (or switch to OpenCore).
-| It seems that [Slice has retired from developing Clover](https://applelife.ru/threads/clover.42089/page-1515#post-1030102). [Screenshot](https://user-images.githubusercontent.com/76865553/216829726-6a9caab9-6b44-4a81-b95f-64d5ec24e909.png) of the translation
+|It seems [Slice has retired from developing Clover](https://applelife.ru/threads/clover.42089/page-1515#post-1030102). [Translation](https://user-images.githubusercontent.com/76865553/216829726-6a9caab9-6b44-4a81-b95f-64d5ec24e909.png) (Screenshot). So if you though about switching to OpenCore – now is a good time.
 |**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
 
 ## ABOUT
