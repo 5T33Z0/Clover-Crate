@@ -2,9 +2,9 @@
 Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 
 ## Clover-related
-- [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader/releases) – Bootloader for macOS, Windows and Linux in UEFI and in legacy mode 
-- [**Clover Suite Builder**](https://www.insanelymac.com/forum/topic/347872-introducing-clover-suite-builder/) – Tool for compiling Clover from the Source Code
-- [**Bootloader Chooser**](https://github.com/jief666/BootloaderChooser) – A pre-bootloader which lets you pick the actual Boot Manager you want to run. This way, you can switch between "Clover" and "OC" easily.
+- [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader/releases) – Bootloader for running macOS, Windows and Linux in UEFI and Legacy mode 
+- [**Clover Suite Builder**](https://github.com/LAbyOne/Clover-Suite-Builder) – Tool for compiling Clover from the Source Code
+- [**Bootloader Chooser**](https://github.com/jief666/BootloaderChooser) – A pre-bootloader which lets you pick the actual Boot Manager you want to run. This way, you easily switch between Clover and OpenCore.
 - [**Clover-Anonymizer**](https://github.com/dreamwhite/Clover-Anonymizer) – Removes sensitive data from the `config.plist`
 
 ## Apps and Tools
