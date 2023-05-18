@@ -537,7 +537,9 @@ Adds Return to the `_WAK` method. It has to be, but for some reason often the `D
 ## SSDT
 ![SSDT](https://user-images.githubusercontent.com/76865553/136655891-edd9c38d-852f-476e-9ca7-4295cdb4ec38.png)
 
-This section is for enabling/fixing/optimizing [**CPU Power Management**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management). It's rarely used nowadays, since tools like [**ssdtPRGen**](https://github.com/Piker-Alpha/ssdtPRGen.sh) or [**SSDTTime**](https://github.com/corpnewt/SSDTTime) can generate a dedicated `SSDT` for it instead.
+The `SSDT` section is for enabling/fixing and optimizing [**CPU Power Management**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management) in macOS. The name of this section stems from a time when DSDT hotpatching didn't exist so a patched DSDT had to be injected instead. The only additional SSDT at the time was the one for CPU Power Management – that's why it has no suffix – unlike SSDTs of the current era.
+
+The section is rarely utilized nowadays. Instead, tools like [**ssdtPRGen**](https://github.com/Piker-Alpha/ssdtPRGen.sh) and [**SSDTTime**](https://github.com/corpnewt/SSDTTime) are used to generate a dedicated `SSDT-PM` (Ivy Brige and older) or `SSDT-PLUG` (Haswell and newer) which handle CPU Power Management. So you don't really need to change anything here.
 
 ### C3 Latency
 
