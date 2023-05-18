@@ -58,7 +58,7 @@ The **ACPI** section not only is the first but also the most important one (alon
 - [SSDT](#ssdt)
 	- [C3 Latency](#c3-latency)
 	- [Double First State](#double-first-state)
-	- [Drop OEM](#drop-oem)
+	- [DropOEM](#dropoem)
 	- [Enable C2, C4, C6 and C7](#enable-c2-c4-c6-and-c7)
 	- [Generate Options](#generate-options)
 		- [APSN/APLF](#apsnaplf)
@@ -117,7 +117,7 @@ Whether you have a problem with tables or not, it's safe to enable this fix. It 
 
 The `MCFG` (Memory Mapped Configuration Table) describes the location of the PCI Express configuration space. It will be present in firmware implementations compliant with ACPI specs 3.0 (or later). This fix might be helpful when using a MacBook or MacBookPro SMBIOS. The author of the patch is vit9696.
 
-If `FixMCFG` is enabled, the MCFG table will be corrected. However, discarding this table is also possible by using the "Drop Tables" feature. 
+If `FixMCFG` is enabled, the `MCFG` table will be corrected. However, discarding this table is also possible by using the "Drop Tables" feature. 
 
 **Verifying procedure**: To check if you need this fix, enable it and reboot. Once you're back in macOS, open the original MCFG table (stored in EFI/CLOVER/ACPI/origin) and compare it with the fixed one: in maciASL, click on "File" > "New from ACPI" and select "MCFG". If both tables are identical (in terms of values), you don't need this fix. 
 
@@ -199,7 +199,7 @@ If you look at the first renaming rule, `change EHC1 to EH01`, it consists of a 
 
 OEM DSDTs often contain `_DSM` methods which were written for Windows and don't work reliably in macOS. These methods can't be present if we want to write own `_DSM` methods. The patch `DropOEM_DSM` assumes that the user check's which DSM he wants to drop from devices. But nobody used it! 
 
-The best way is to rename all OEM `_DSM` occurences to `ZDSM` instead:
+The best way is to rename all OEM `_DSM` occurrences to `ZDSM` instead:
 
 ```
 Comment: change _DSM to ZDSM
@@ -209,7 +209,7 @@ Replace: 5A44534D
 
 ### TgtBridge
 
-The `TgtBridge` (= Target Bridge) can be used to limit the scope of a binary rename to a specific device within the `DSDT`. It's located in the `ACPI/DSDT/Patches` section of the Clover config. Using the `TgtBridge` is recommended to avoid that renamings of otherwise widely-used methods (like `_STA, _CRS` or `_INI` for example) are applied to the whole of the DSDT which would otherwise most likely break it.
+The `TgtBridge` (= Target Bridge) can be used to limit the scope of a binary rename to a specific device within the `DSDT`. It's located in the `ACPI/DSDT/Patches` section of the Clover config. Using the `TgtBridge` is recommended to avoid that widely-used methods (like `_STA, _CRS` or `_INI` for example) are renamed in the whole of the DSDT which would otherwise most likely break it.
 
 **Example**: renaming the method `_STA`to `_XSTA` in device `GPI0`:
 
@@ -236,9 +236,9 @@ In this example, you would tell Clover to look for `XSTA` and rename it `STA` fo
 ### Rename Devices
 `RenameDevices` serves as a more refined method for renaming devices (and methods) which is less brute force than using a simple binary rename which replaces *every* occurrence of an expression throughout the *entirety* of ACPI tables, which can be problematic.
 
-The rules created here apply to a `Device (xxxx)` or `Method (xxxx)` specified in the `Find Device` field and all sub-sequent occurences of it in all other ACPI tabels so that the device/method names remain congruent across the whole system while [avoiding false positives](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2613951). 
+The rules created here apply to a `Device (xxxx)` or `Method (xxxx)` specified in the `Find Device` field and all sub-sequent occurrences of it in all other ACPI tables so that the device/method names remain congruent across the whole system while [avoiding false positives](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2613951). 
 
-In my opinin, `RenameDevice` is one of the best yet least utilized features of Clover, simply because people think it's for renaming devices only and because it's "hidden" in a 2nd Tab in Clover Configurator no one ever clicks on.
+In my opinion, `RenameDevice` is one of the best yet least utilized features of Clover, simply because people think it's for renaming devices only and because it's "hidden" in a 2nd Tab in Clover Configurator no one ever clicks on.
 
 To use this section properly, you need a dump the unmodified `DSDT` and examine it with maciASL. In this case, we search for `ECH1`:
 
@@ -262,7 +262,7 @@ But you can achieve the same simply by adding the ACPI path(s) to the method(s) 
 **Rename Devices** Rules: </br>![Rendev](https://user-images.githubusercontent.com/76865553/183251818-221b4451-5f97-44bc-976b-3d79561d4a86.png)</br>
 **Outcome in DSDT**:</br>![Rename_Devices](https://user-images.githubusercontent.com/76865553/183251834-bc70e0c1-f070-49b8-9cbf-aafdcca0841d.png)
 
-So, which approch you apply is up to you. Using DSDT patches section has the advantage, that you can turn this rules as needed, which you can't do when using the `RenameDevices`feature. But on the other hand youc an specify exact locations to apply a patch to.
+So, which approach you apply is up to you. Using DSDT patches section has the advantage, that you can turn this rules as needed, which you can't do when using the `RenameDevices`feature. But on the other hand, you can specify exact locations to apply a patch to.
 
 <details>
 <summary><strong>Excursion: Renaming Devices Basics</strong> (click to reveal)</summary>
@@ -381,11 +381,11 @@ In my experience this is no longer working on macOS. Use [`SSDT-PNLF`](https://g
 
 There are several sample brightness curves/graphs in the system, and they have different UIDs. If some vendor uses that curve, it doesn't mean that you will have the same brightness with the same processor. It depends on the panel – not the processor. 
 
-This also doen't work correctly any more (the brightness will reset to max after a reboot), so using aforementioned `SSDT-PNLF.aml` is recommended in this case as well.
+This option is deprecates as well. It doesn't work correctly any more (the brightness will reset to max after a reboot), so using aforementioned `SSDT-PNLF.aml` is recommended in this case as well.
 
 #### DeleteUnused
 
-Removes unused Floppy, CRT and DVI devices - a necessity for getting the Intel GMA X3100 to work on Dell Laptops. Otherwise, you'll get a black screen. Tested by hundreds of users.
+Removes unused Floppy, CRT and DVI devices from the DSDT – a necessity for getting the Intel GMA X3100 to work on Dell Laptops. Otherwise, you'll get a black screen. Tested by hundreds of users.
 
 #### FakeLPC
 
@@ -549,9 +549,9 @@ In order for [**Intel SpeedStep**](https://en.wikipedia.org/wiki/SpeedStep) to w
 
 In my test however, this didn't fix CPU Power Management for Ivy Bridge. THe CPU was stuck in base clock and no Turbo states were available. So therefore, generating an SSDT-PM with ssdtPRGen is recommended.
 
-### Drop OEM
+### DropOEM
 
-Since we are going to dynamically load our own SSDT tables, we need to avoid unnecessary code overlaps to avoid conflicts. This option allows you to discard all native tables in favor of new ones.
+The `DropOEM` option excludes certain OEM tables from being loaded into memory during boot which can help to address compatibility issues or conflicts with macOS that may arise with certain hardware configurations. Since we are going to dynamically load our own SSDTs, we can use this option to avoid unnecessary code overlaps to avoid aforemnetioned conflicts. 
 
 If you want to avoid patching SSDT tables altogether, there is another option: put the native tables with minor edits in the `EFI/OEM/xxx/ACPI/patched/` Folder, and discard the unpatched tables. However, it is recommended to use the selective Drop method mentioned above.
 
