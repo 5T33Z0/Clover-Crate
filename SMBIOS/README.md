@@ -4,6 +4,7 @@
 
 - [About](#about)
 - [Example: Generating SMBIOS data with Clover Configurator](#example-generating-smbios-data-with-clover-configurator)
+- [SMBIOS auto-switcher](#smbios-auto-switcher)
 - [About "Update Firmware Only"](#about-update-firmware-only)
 - [About "Extended Firmware Features"](#about-extended-firmware-features)
 - [Slots (AAPL Injections)](#slots-aapl-injections)
@@ -49,6 +50,9 @@ As you can see, the `ProductName` is set to `MacBookPro11,4` (which is the minim
 6. Copy the number for `MLB` (=Board Serial Number) shown in the "Info" windows to the `MLB` field and select "UseMacAddr0" from the dropdown menu. This is a must for enabling FaceTime.
 
 **DONE**.
+
+## SMBIOS auto-switcher
+Clover r5152 introduced an [SMBIOS auto-switcher](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2806690) which allows having more than one SMBIOS section in your config and switch between them based on the detected version of macOS. See screenshot for impementation: <br>![](https://www.insanelymac.com/uploads/monthly_2023_06/1571006057_Screenshot2023-06-17at21_52_41.png.5d592f1d7c4ac749ffbe48b7d58fcbcc.png)
 
 ## About "Update Firmware Only"
 ![FWONLY](https://user-images.githubusercontent.com/76865553/167351554-835f91e4-b952-4303-b2d8-a2b19878739a.png)
