@@ -13,7 +13,7 @@
 	- [1-Click-Solution for Clover Users](#1-click-solution-for-clover-users)
 	- [Troubleshooting](#troubleshooting)
 - [Running macOS on unsupported platforms](#running-macos-on-unsupported-platforms)
-	- [Workaround (macOS 11.3 only)](#workaround-macos-113-only)
+	- [Workaround (macOS 11.3+ only)](#workaround-macos-113+-only)
 - [Notes](#notes)
 
 ## About
@@ -160,7 +160,7 @@ For example, you can use an SMBIOS intended for a Haswell CPU (4th Gen) with an 
 
 But since this "higher" SMBIOS was designed for a different CPU, it actually does not perform as well with the older CPU, especially on Notebooks. So you have to make a descision: do you want to run the latest version of macOS or do you want to get the most out of your system in terms of compatibility and performance? 
 
-### Workaround (macOS 11.3 only)
+### Workaround (macOS 11.3+ only)
 Luckily, there's a workaround which allows booting newer macOS versions with an unsupported SMBIOS/board-id and installing updates which wouldn't be possible otherwise. Since this fix makes uses of virtualization capabilities only present in macOS 11.3 and newer (Kernel 20.4.0+), you can't apply it in macOS Catalina and older.
 
 **Here's how it works**:
