@@ -13,7 +13,7 @@
 	- [1-Click-Solution for Clover Users](#1-click-solution-for-clover-users)
 	- [Troubleshooting](#troubleshooting)
 - [Running macOS on unsupported platforms](#running-macos-on-unsupported-platforms)
-	- [Workaround (macOS 11.3+ only)](#workaround-macos-113+-only)
+	- [Workaround (macOS 11.3+ only)](#workaround-macos-113-only)
 - [Notes](#notes)
 
 ## About
