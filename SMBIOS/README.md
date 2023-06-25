@@ -52,7 +52,17 @@ As you can see, the `ProductName` is set to `MacBookPro11,4` (which is the minim
 **DONE**.
 
 ## SMBIOS auto-switcher
-Clover r5152 introduced an [SMBIOS auto-switcher](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2806690) which allows having more than one SMBIOS section in your config and switch between them based on the detected version of macOS. See screenshot for impementation: <br>![](https://www.insanelymac.com/uploads/monthly_2023_06/1571006057_Screenshot2023-06-17at21_52_41.png.5d592f1d7c4ac749ffbe48b7d58fcbcc.png)
+Clover r5152 introduced an [SMBIOS auto-switcher](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2806690) which allows having more than one SMBIOS section in your config and switch between them based on the detected version of macOS. Use `SMBIOS_osname` to asign different SMBIOSes to different versions of macOS. to See screenshot for details: <brails>![](https://www.insanelymac.com/uploads/monthly_2023_06/1571006057_Screenshot2023-06-17at21_52_41.png.5d592f1d7c4ac749ffbe48b7d58fcbcc.png)
+
+## FakeCPUID in SMBIOS
+Clover r5152 (Commit 2d142970c) also introduced the ability to add a FakeCPUID to the SMBIOS section: ![](https://www.insanelymac.com/uploads/monthly_2023_06/image.png.8fb02edca665b1252e5f2ffa8e6d454f.png)
+
+In combination with the SMBIOS auto-switcher, this is useful for running older versions of macOS on newer hardware without needing to switch to a different config.plist. 
+
+**Example**: Runnin macOS High Sierra on a Comet Lake system
+
+- The defualt SMBIOS (`iMac20,1`) is not supported by High Sierra so you need `iMac18,4` instead.
+- But the CPU is unknonwn to High Sierra as well, so you also need a FakeCPUID (Coffee Lake for example). So without the ability to add a FakeCPUID in the SMBIOS section, users would need a second config otherwise.
 
 ## About "Update Firmware Only"
 ![FWONLY](https://user-images.githubusercontent.com/76865553/167351554-835f91e4-b952-4303-b2d8-a2b19878739a.png)
@@ -74,6 +84,14 @@ Expands the existing Firmware Features mask from 32 up to 64 bits which is requi
 
 For reference values, check the files in the Mac models [database](https://github.com/acidanthera/OpenCorePkg/tree/master/AppleModels/DataBase) of the OpenCore repo.
 
+## Memory
+![](/Users/stunner/Desktop/MEM.png)
+
+Allows to adjust specification of the RAM if it is not detected correctly. To obtaine info about your installed RAM you can use the following commands:
+
+- In Windows, enter: `wmic memorychip list full`
+- In Linux (recommended), enter: `sudo dmidecode -t memory`
+
 ## Slots (AAPL Injections)
 ![Slots](https://user-images.githubusercontent.com/76865553/162909263-82c199bb-6117-415a-9083-953095401693.png)
 
@@ -81,7 +99,7 @@ For reference values, check the files in the Mac models [database](https://githu
 
 ![SysInfo](https://user-images.githubusercontent.com/76865553/162909344-a6ea67e5-7d3d-47c4-b7af-5610a911d385.png)
 
-By default, the `AAPL,slot-name` is is injected into macOS by system's `DSDT` or Device `Properties` in your `config.plist`. For macOS to list and categorize PCIe devices, it requires the `Name (_SUN, 0xXX)` field for a device to be present inside the `DSDT`, as shown in this example:
+By default, the `AAPL,slot-name` is injected into macOS by your system's `DSDT` or Device `Properties` in your `config.plist`. For macOS to list and categorize PCIe devices, it requires the `Name (_SUN, 0xXX)` field for a device to be present inside the `DSDT`, as shown in this example:
 
 ```asl
 Device (GIGE)
@@ -104,8 +122,8 @@ Four parameters are required to create a custom `AAPL,slot-name` entry in your c
 **NOTES**
 
 * `AAPL,slot-name` is mostly a cosmetic property (despite what some users may think)
-* In order for the `Slots` section to be present in the config.plist, a SMBIOS has to be generated because Slots is a sub-category of the SMBIOS dictionary.
-* As long as I have been using Clover, I've never used this section whatsoever. I always use Device Properties to define a device and call it a day. Especially since Hackintool can create all these device property entries with the correct AAPL,slot-names for you.
+* In order for the `Slots` section to be present in the config.plist, an SMBIOS has to be selected because Slots is a sub-category of the SMBIOS dictionary.
+* As long as I have been using Clover, I've never used this section whatsoever. I always use Device Properties to define a device and call it a day. Especially since Hackintool can create all these device entries with the correct AAPL,slot-names for you.
 
 ## Exchanging SMBIOS Data between OpenCore and Clover
 ### Manual method
