@@ -122,7 +122,8 @@ ATI/AMD framebuffers can be patched to assign the video output to different conn
 OpenCore users need to use `DeviceProperties`to do this. Check the [**Clover Conversion Guide**](https://github.com/dortania/OpenCore-Install-Guide/blob/master/clover-conversion/Clover-config.md#graphics) for details.
 
 ### RadeonDeInit
-This key works with ATI/AMD Radeon GPUs (6xxx and higher, possibly 5xxx). It fixes the contents of GPU registers so that the card becomes properly initialized so macOS drivers work as intended.
+This key works with ATI/AMD Radeon GPUs (6xxx and higher, possibly 5xxx). It fixes the contents of GPU registers so that the card becomes properly initialized so macOS drivers work as intended. Also [reported](https://www.insanelymac.com/forum/topic/356881-pre-release-macos-sonoma/?do=findComment&comment=2810337) to fix issues with RX-560 cards in macOS Ventura/Sonoma.
+
 
 ## Inject Nvidia
 Listed below are all parameters related to the `Inject Nvidia` feature. For an in-depth guide on older NVIDIA cards (up to Geforce 900 series) check Rampage Dev's [NVIDIA Graphics Guide](https://web.archive.org/web/20170814211046/http://www.rampagedev.com/guides/nvidia-graphics/)
