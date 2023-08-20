@@ -124,6 +124,7 @@ OpenCore users need to use `DeviceProperties`to do this. Check the [**Clover Con
 ### RadeonDeInit
 This key works with ATI/AMD Radeon GPUs (6xxx and higher, possibly 5xxx). It fixes the contents of GPU registers so that the card becomes properly initialized so macOS drivers work as intended. Also [reported](https://www.insanelymac.com/forum/topic/356881-pre-release-macos-sonoma/?do=findComment&comment=2810337) to fix issues with RX-560 cards in macOS Ventura/Sonoma.
 
+**OpenCore** users: WhateverGreen.kext, which handle this automatically. If it doesn't, you can try [`SSDT-Radeon-Deinit`](https://github.com/dortania/OpenCore-Install-Guide/blob/master/extra-files/Radeon-Deinit-SSDT.dsl) (adjust the device name according to your GPU as nedded).
 
 ## Inject Nvidia
 Listed below are all parameters related to the `Inject Nvidia` feature. For an in-depth guide on older NVIDIA cards (up to Geforce 900 series) check Rampage Dev's [NVIDIA Graphics Guide](https://web.archive.org/web/20170814211046/http://www.rampagedev.com/guides/nvidia-graphics/)
