@@ -154,10 +154,12 @@ The default value is `1`, but for some older configurations this will cause issu
 
 **The following parameters can be entered**:
 
-- `VendorID`
-- `ProductID`
+- `Custom` &rarr; Injects the modified EDID value into macOS
 - `HorizontalSyncPulseWidth`: Fixes the eight apples issue. See `EightApple` Fix under &rarr; Kernel and Kext Patches.
-- `VideoInputSignal`
+- `Inject` &rarr; Enables/Disables EDID injection
+- `ProductID`
+- `VendorID`
+- `VideoInputSignal` &rarr; Bitmask to patch the video signal. Refer to [EDID Section of Clover's Source Code](https://github.com/CloverHackyColor/CloverBootloader/blob/master/rEFIt_UEFI/Platform/Edid.cpp) for details since the documentation I found on this is confusing and not really helpful.
 
 Follow this [**guide**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/11_Graphics/Inject_EDID/README.md) to figure out how to obtain the EDID of your display.
 
