@@ -17,7 +17,8 @@ Needless to say, this affects *all* Kernel and Kext patches making use of "Count
 - [Kernel Patches](#kernel-patches)
   - [AppleIntelCPUPM](#appleintelcpupm)
   - [AppleRTC](#applertc)
-  - [Debug](#debug)
+  - [BlockSkywalk](#blockskywalk)
+- [Debug](#debug)
   - [DellSMBIOSPatch](#dellsmbiospatch)
   - [EightApple](#eightapple)
   - [KernelLapic](#kernellapic)
@@ -80,7 +81,10 @@ These boxes have to be checked when setting-up the required quirks &rarr; [**Qui
 ### AppleRTC
 Obsolete! vit9696 investigated the problem, and corrected RTC operations in Clover. The recommended value is `false` because it affects hibernation.
 
-### Debug
+### BlockSkywalk
+Introduced in r5155. This allows blocking the `IOSkywalFamily.kext` in macOS Sonoma, so unsuppored Wifi Cards can be re-enabled by injectiong additional kexts and applying post-install root patches with OpenCore Legacy patcher (&rarr; check my [Wifi Sonoma Guide](https://github.com/5T33Z0/OC-Little-Translated/blob/main/14_OCLP_Wintel/WIiFi_Sonoma.md) for details).
+
+## Debug
 If you want to observe how the Kexts are patched &rarr; For developers.
 
 ### DellSMBIOSPatch
