@@ -3,7 +3,7 @@
 Kexts is an abbreviation for "Kernel Extensions". They are required by macOS. Most of them are either device drivers of some sort or pseudo-drivers for devices missing from PC hardware, such as `FakeSMC` or `VirtualSMC` which emulate the all important System Management Controller which doesn't exist on PC hardware but is required by macOS to run. We need to inject these kexts since the Apple system doesn't support our devices, or we want to add new functionality. For Linux and Windows no Kexts are required.
 
 ## About the `kexts` folder used by Clover
-Since revision 3281, Clover loads kexts conditionally, based on the folders kexts are located in. The hierarchy is as follows:
+Clover r3281 introduced conditional kext loading based on sub-folders kexts are located in. The hierarchy is as follows:
 
 1. By default, all kexts placed in the `kexts\Other` folder are loaded first and for *any* version of macOS. You should leave all kexts that are required for macOS in general in there (like Lilu, VirtualsSMC, Whatevergreen, AppleALC, etc). Otherwise your system won't boot when trying to upgrade to a newer version of macOS.
 2. Next, Kexts located in sub-folders corresponding to specific versions of macOS are loaded (e.g. `10.15`, `11`, `12`, etc.). This is useful for versions of macOS which require specific kexts or different variants or combinations of kexts to make a feature/component work (kexts like `BrcmPatchRAM` or `CryptexFixup` come to mind). This way, you don't need to jugge Kexts around between the `Off` and `Other` folder when switching between different macOS installations. Only place kexts required for specific versions of macOS in the corresponding numbered folers.
