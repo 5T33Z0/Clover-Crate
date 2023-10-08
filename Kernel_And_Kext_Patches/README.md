@@ -1,5 +1,6 @@
 # Kernel and Kext Patches
-![KernelQuirks](https://user-images.githubusercontent.com/76865553/136670474-678b7ae1-b5ec-4791-963a-7af091a833ca.png)
+
+![kextpatches](https://github.com/5T33Z0/Clover-Crate/assets/76865553/bb772865-af2c-47e9-9823-37b538c2c12f)
 
 A group of parameters for creating binary patches on the fly. Note that this can only be done if the kernel cache or the `ForceKextsToLoad` parameter is loaded. If the kext is not loaded and is not in cache, these patches don't work. This section consists of 2 categories: one with Kernel Patches which you can click to enable. These are primarily for making your CPU work with macOS. The second category is for creating your own patches which can be applied to kexts and kernels themselves.
 
