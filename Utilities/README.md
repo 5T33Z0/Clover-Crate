@@ -3,17 +3,19 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 
 ## Clover-related
 - [**Clover Bootloader**](https://github.com/CloverHackyColor/CloverBootloader/releases) – Bootloader for running macOS, Windows and Linux in UEFI and Legacy mode 
-- [**Clover Suite Builder**](https://github.com/LAbyOne/Clover-Suite-Builder) – Tool for compiling Clover from the Source Code
 - [**Bootloader Chooser**](https://github.com/jief666/BootloaderChooser) – A pre-bootloader which lets you pick the actual Boot Manager you want to run. This way, you easily switch between Clover and OpenCore.
-- [**Clover-Anonymizer**](https://github.com/dreamwhite/Clover-Anonymizer) – Removes sensitive data from the `config.plist`
+- [**Clover Suite Builder**](https://github.com/LAbyOne/Clover-Suite-Builder) – Tool for compiling Clover from the Source Code
+- [**Clover-Anonymizer**](https://github.com/dreamwhite/Clover-Anonymizer) – Python script to remove sensitive data from the `config.plist`
 
 ## Apps and Tools
 ### macOS (General)
 - [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/) – Configurator App for editing Clover's config.plist
-- [**MaciASL**](https://github.com/acidanthera/MaciASL) – ASL/AML Editor for macOS.
 - [**IORegistryExplorer**](https://github.com/khronokernel/IORegistryClone) – App for gathering infos about I/O Registry.
+- [**About this Hack**](https://github.com/0xCUB3/About-This-Hack) – Simple app to view your exact hardware in macOS. Similar to how the "About This Mac" window looked prior to macOS 13 but with more features. 
+- [**MaciASL**](https://github.com/acidanthera/MaciASL) – ASL/AML Editor for macOS.
 - [**Hackintool**](https://github.com/headkaze/Hackintool) – Powerful post-install utility that everyone should have in their Hackintosh tool box
 - [**Kext Updater**](https://www.sl-soft.de/kext-updater/) (great tool for keeping kexts and other files up to date)
+- [**MIST**](https://github.com/ninxsoft/Mist) – macOS Installer Super Tool. Can download macOS Firmwares/ Instalers and create a bootable USB flash drive.
 - [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/) – App for downloading current macOS, creating an USB Installer and changing the Update Seed which can help resolving issues with system updates
 - [**MacCPUID**](https://www.intel.com/content/www/us/en/download/674424/maccpuid.html) –  Shows detailed information of Intel CPUs (Model, Features, Cache, etc.)
 - [**DarwinDumper**](https://bitbucket.org/blackosx/darwindumper/downloads/) – App for dumping ACPI tables, I/O Registry and more from real Macs.
