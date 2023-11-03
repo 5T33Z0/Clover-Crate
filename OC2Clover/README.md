@@ -76,10 +76,10 @@ In Clover Configurator, this section is located under ACPI/Drop Tables. These ar
 - In Clover Configurator:</br>
 ![Clover_drop](https://user-images.githubusercontent.com/76865553/138651565-3998b445-6df6-49b7-aad1-6a8914f169ef.png)
 
-**NOTES**:
-
-- In Clover, you enter actual names whereas in OpenCore you have to use HEX values.
-- You have to use either `TableID` or `TableLength`, not both.
+> [!NOTE]
+> 
+> - In Clover, you enter actual names whereas in OpenCore you have to use HEX values.
+> - You have to use either `TableID` or `TableLength`, not both.
 
 ### ACPI/Patch
 
@@ -104,10 +104,10 @@ While Binary Renames work the same in OpenCore and Clover, you have a lot more o
 | Skip            | Skip      |
 | BaseSkip        | –         |
 
-**NOTES**:
-
-- While OpenCore uses an `Enabled` switch, Clover uses `Disabled` instead. So you cannot simply copy/paste over DSDT patches!
-- `Count` key was added in Clover r5149. `TYPE` can be `Number` or `String`. If you use `Data`, you receive a warning from CloverConfigPlistValidator: " Tag '/ACPI/DSDT/Patches[0]/Count:19' should be an integer. It's currently a data. For now, I've made the conversion. Please update."
+> [!NOTE]
+> 
+> - While OpenCore uses an `Enabled` switch, Clover uses `Disabled` instead. So you cannot simply copy/paste over DSDT patches!
+> - `Count` key was added in Clover r5149. `TYPE` can be `Number` or `String`. If you use `Data`, you receive a warning from CloverConfigPlistValidator: " Tag '/ACPI/DSDT/Patches[0]/Count:19' should be an integer. It's currently a data. For now, I've made the conversion. Please update."
 
 ### ACPI/Quirks
 
@@ -183,7 +183,8 @@ From this UUID, you probably want to transfer:
 	6. Enter this value in "RtVariables" > `CsrActiveConfig`
 	7. The resulting HEX value should look like this: `0x7FF`
 
-**NOTE**: To calculate your own csr bitmask, you can use my [**Clover Calculators**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) spreadsheet, which also helps to understand the whole concept a lot better.
+> [!NOTE]
+> To calculate your own csr bitmask, you can use my [**Clover Calculators**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) spreadsheet, which also helps to understand the whole concept a lot better.
 
 ## Quirks
 This is one of the most important aspects of your config. In OpenCore there are ACPI Quirks, Booter Quirks, Kernel Quirks and UEFI Quirks. A lot of them are combined in Clover's "Quirks" section.
@@ -247,10 +248,10 @@ Besides manually copying over SMBIOS data from your OpenCore to your Clover conf
 
 ![ocat](https://user-images.githubusercontent.com/76865553/162971063-cbab15fa-4c83-4013-a732-5486d4f00e31.png)
 
-**IMPORTANT**
-
-- If you did everything correct, you won't have to enter your AppleID Password after switching Boot Managers and macOS will let you know, that "This AppleID is now used with this device" or something like that.
-- But if macOS asks for your AppleID Password and Mail passwords etc. after switching Boot Managers, you did something wrong. In this case you should reboot into OpenCore instead and check again. Otherwise, you are registering your computer as a new/different Mac.
+> [!IMPORTANT]
+> 
+> - If you did everything correct, you won't have to enter your AppleID Password after switching Boot Managers and macOS will let you know, that "This AppleID is now used with this device" or something like that.
+> - But if macOS asks for your AppleID Password and Mail passwords etc. after switching Boot Managers, you did something wrong. In this case you should reboot into OpenCore instead and check again. Otherwise, you are registering your computer as a new/different Mac.
 
 ### 1-Click-Solution for Clover Users
 If you've used the real MAC Address of your Ethernet Controller ("ROM") when generating your SMBIOS Data for your OpenCore config, you can avoid possible SMBIOS conflicts altogether. In the "Rt Variables" section, click on "from System" and you should be fine!

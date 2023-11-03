@@ -127,7 +127,8 @@ This field creates a simple string in the config in the `Devices` Section if a h
 
 ![PropertiesHex2](https://user-images.githubusercontent.com/76865553/136596474-e3ce6d35-3f93-4194-b9e0-02a0231d470b.png)
 
-**NOTE**: As soon as you add a `Device` under to the `Properties` Tab (next to `Arbitrary`), this key will be deleted.
+> [!NOTE]
+> As soon as you add a `Device` under to the `Properties` Tab (next to `Arbitrary`), this key will be deleted.
 
 ### AddProperties (deprecated)
 ![AddProperties1](https://user-images.githubusercontent.com/76865553/136595982-7a5af1ab-bd37-489c-864b-4a7d9d41be29.png)
@@ -154,7 +155,8 @@ Prohibits the injection of default properties that are triggered when enabling t
 
 When combined with `Inject` &rarr; `ATI`, `NoDefaultProperties` will prevent the injection of most keys except those that are required for a `FakeID` to be applied to an AMD/ATI GPU (and probably iGPU).
 
-**NOTE**: This method of injecting a `FakeID` is outdated. Use the `Devices/Properties` tab is recommended.
+> [!NOTE]
+> This method of injecting a `FakeID` is outdated. Use the `Devices/Properties` tab is recommended.
  
 ### UseIntelHDMI
 This parameter affects the injection properties of the sound transmitted over HDMI, as well as the `DSDT` patch. However, both VoodooHDA and AppleHDA sound drivers, do not fully work with HDMI Output. According to new information, VoodooHDA only works with NVIDIA's HDMI output, and as for AMD, Apple has created a new `AppleGFXHDA.kext` driver in 10.13+ systems.
@@ -168,7 +170,8 @@ Force enables High Precision Event Timer on systems where there isn't an option 
 ### SetIntelBacklight
 The key was introduced in r3298. In previous systems, the screen brightness was controlled by `IntelBacklight.kext` or `ACPIBacklight.kext`, but they didn't work in El Capitan. But it turned out to be very easy to do this in Clover at the stage of system startup, so no additional cakes were needed.</br>
 
-**NOTE**: This doesn't work with current macOS versions. Use a `SSDT-PNLF.aml`instead. You can find one in the Samples Folder of the OpenCore Package.
+> [!NOTE]
+> This doesn't work with current macOS versions. Use a `SSDT-PNLF.aml`instead. You can find one in the Samples Folder of the OpenCore Package.
 
 ### LANInjection
 By default, the built-in property is injected for the NIC. This parameter can be used to disable the injection.

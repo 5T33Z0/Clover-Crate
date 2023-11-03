@@ -55,7 +55,9 @@ The following drivers are no longer necessary and have to be deleted from `EFI/C
 **`SMCHelper.efi`** | Deprecated since r5148, [Commit 735987a](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2789856). Its functionality is now integrated into Clover as a service. This change introduced a new `Reset SMC` option (only available when using FakeSMC) to the Clover Boot Menu which works similar to SMC Reset on real Macs.| Delete
 **`AppleKeyAggregator`**, </br> **`AppleUITheme`** and </br> **`AppleImageCodec`** | Needed for FileVault 2 support. Embedded into Clover since r5149.| Delete
 
-**NOTE**: If present, delete the `EFI/APPLE` folder as well – it's not needed on Hackintosh Systems.
+> [!NOTE] 
+> 
+> If present, delete the `EFI/APPLE` folder as well – it's not needed on Hackintosh Systems.
 
 #### Check and update Kexts
 Outdated, incompatible and/or duplicate kexts (and variations thereof) can cause boot crashes, kernel panics and general system instability. Therefore, you should always keep your kexts up to date for maximum compatibility with macOS and Clover! You can use Clover Configurator's integrated Kext Installer or [**Kext-Updater**](https://www.sl-soft.de/en/kext-updater/) to download the latest kexts and other Bootloader-related files.
@@ -187,7 +189,9 @@ This is for users who want to use the pkg installer instead. Don't do this if yo
 15. Once it's done, check your config.plist for errors in Clover Configurator using the Clover Validator in the "Tools" section and correct them if necessary.
 16. Save your config, reboot and hope for the best
 
-**IMPORTANT**: Make sure you have a backup of your currently working EFI folder stored on a FAT32 formatted flash drive to boot from just in case you run into issues.
+> [!IMORTANT]
+> 
+> Make sure you have a backup of your currently working EFI folder stored on a FAT32 formatted flash drive to boot from just in case you run into issues.
 
 ## `OpenRuntime.efi` and older Clover builds (< r5142)
 There is an incompatibility with `OpenRuntime.efi` and Clover: revisions prior to r5142 require `OpenRuntime.efi` version 1.1, while r5142 and newer require v1.2 (or newer). This is not really an issue for people who just want to stay up to date using the newest version of Clover and Drivers anyway. But if you want to boot using a Clover build older than r5142, you need v1.1 of OpenRuntime which will not work in r5142, of course.

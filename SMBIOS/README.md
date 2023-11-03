@@ -45,11 +45,15 @@ As you can see, the `ProductName` is set to `MacBookPro11,4` (which is the minim
 
 	![SMBIOS_11,4](https://user-images.githubusercontent.com/76865553/139640510-0140ff1e-759b-4d75-846d-205db078197a.png)
 
-	**IMPORTANT**: Fields highlighted in cyan *should always be deleted before sharing your `config.plist`*. Also, if you get an error message about outdated firmware during macOS installation, click on "Update Firmware only" and then select the same Mac Model from the dropdown menu again. This keeps your Serial, etc. and will only update the firmware information, so you can install macOS successfully.
 5. Once you have generated your `SMBIOS`, head over to the `RTVariables` section.
 6. Copy the number for `MLB` (=Board Serial Number) shown in the "Info" windows to the `MLB` field and select "UseMacAddr0" from the dropdown menu. This is a must for enabling FaceTime.
+7. Save your config.
 
-**DONE**.
+> [!IMPORTANT]
+> 
+> - Fields highlighted in *cyan* should always be deleted before sharing your `config.plist`.
+> - If you get an error message about outdated firmware during macOS installation, click on "Update Firmware only" and then select the same Mac Model from the dropdown menu again. This keeps your Serial, etc. and will only update the firmware information, so you can install macOS successfully.
+
 
 ## SMBIOS auto-switcher
 Clover r5152 introduced an [SMBIOS auto-switcher](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2806690) which allows having more than one SMBIOS section in your config and switch between them based on the detected version of macOS. Use `SMBIOS_osname` to asign different SMBIOSes to different versions of macOS. to See screenshot for details: <brails>![](https://www.insanelymac.com/uploads/monthly_2023_06/1571006057_Screenshot2023-06-17at21_52_41.png.5d592f1d7c4ac749ffbe48b7d58fcbcc.png)
@@ -119,11 +123,11 @@ Four parameters are required to create a custom `AAPL,slot-name` entry in your c
 * **Name** - Enter the name for the slot. Sets how the entry will be named in System Profiler 
 * **Type** - Select the type of PCIe Slot (number of lanes) the device is connected to from the dropdown menu (`PCIe` to `PCIe x16`)
 
-**NOTES**
-
-* `AAPL,slot-name` is mostly a cosmetic property (despite what some users may think)
-* In order for the `Slots` section to be present in the config.plist, an SMBIOS has to be selected because Slots is a sub-category of the SMBIOS dictionary.
-* As long as I have been using Clover, I've never used this section whatsoever. I always use Device Properties to define a device and call it a day. Especially since Hackintool can create all these device entries with the correct AAPL,slot-names for you.
+> [!NOTE]
+> 
+> * `AAPL,slot-name` is mostly a cosmetic property (despite what some users may think)
+> * In order for the `Slots` section to be present in the config.plist, an SMBIOS has to be selected because Slots is a sub-category of the SMBIOS dictionary.
+> * As long as I have been using Clover, I've never used this section whatsoever. I always use Device Properties to define a device and call it a day. Especially since Hackintool can create all these device entries with the correct AAPL,slot-names for you.
 
 ## Exchanging SMBIOS Data between OpenCore and Clover
 ### Manual method
@@ -154,10 +158,10 @@ Besides manually copying over SMBIOS data from your OpenCore to your Clover conf
 
 ![ocat](https://user-images.githubusercontent.com/76865553/162971063-cbab15fa-4c83-4013-a732-5486d4f00e31.png)
 
-**IMPORTANT**
-
-- If you did everything correct, you won't have to enter your AppleID Password after switching Boot Managers and macOS will let you know, that "This AppleID is now used with this device" or something like that.
-- But if macOS asks for your AppleID Password and Mail passwords etc. after switching Boot Managers, you did something wrong. In this case you should reboot into OpenCore instead and check again. Otherwise, you are registering your computer as a new/different Mac.
+> [!IMPORTANT]
+> 
+> - If you did everything correct, you won't have to enter your AppleID Password after switching Boot Managers and macOS will let you know, that "This AppleID is now used with this device" or something like that.
+> - But if macOS asks for your AppleID Password and Mail passwords etc. after switching Boot Managers, you did something wrong. In this case you should reboot into OpenCore instead and check again. Otherwise, you are registering your computer as a new/different Mac.
 
 ### 1-Click-Solution for Clover Users
 If you've used the real MAC Address of your Ethernet Controller ("ROM") when generating your SMBIOS Data for your OpenCore config, you can avoid possible SMBIOS conflicts altogether. In the "Rt Variables" section, click on "from System" and you should be fine!

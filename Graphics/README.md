@@ -49,11 +49,11 @@ You can enable the injection of parameters based on vendors:
 
 [^1]: Although NVIDIA Cards ***were*** officially supported up to macOS High Sierra, you can no longer install Nvidia Web Drivers since [Nvidia revoked the certificates](https://twitter.com/khronokernel/status/1532545973372588033) shortly after Khronokernel figured out how to enable Nvidia Web Drivers in macOS Monterey. I don't know if this also affects previously installed Web Drivers (I guess you have to stay offline to not lose the Certs), but at this stage my advice would be to just move on and switch to AMD.
 
-**NOTES**: 
-
-- The `Inject` feature is a remnant of the era before `Whatevergreen.kext` (WEG) existed. Since WEG handles most of the necessary adjustments to get graphics cards working with macOS nowadays, it is recommended to disable them (except for `Inject ATI` which is still useful in macOS 12 to address performance issues).
-- When using Intel on-board graphics on modern systems, using `Inject Intel` is not recommended. Instead, follow Whatevergreen's [Intel HD Graphics FAQ](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) to configure the framebuffer for your CPU in the `Devices/Properties` section manually. 
-- **Hint**: The `config.plists` included in the [Desktop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [Laptop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) sections contain a lot of Framebuffer patches for various Intel CPU families already which might be useful to get your Intel HD/UHD graphics up and running.
+> [!NOTE]
+> 
+> - The `Inject` feature is a remnant of the era before `Whatevergreen.kext` (WEG) existed. Since WEG handles most of the necessary adjustments to get graphics cards working with macOS nowadays, it is recommended to disable them (except for `Inject ATI` which is still useful in macOS 12 to address performance issues).
+> - When using Intel on-board graphics on modern systems, using `Inject Intel` is not recommended. Instead, follow Whatevergreen's [Intel HD Graphics FAQ](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) to configure the framebuffer for your CPU in the `Devices/Properties` section manually.
+> - **Hint**: The `config.plists` included in the [Desktop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [Laptop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) sections contain a lot of Framebuffer patches for various Intel CPU families already which might be useful to get your Intel HD/UHD graphics up and running.
 
 ## Inject Intel
 Listed below are all parameters related to the `Inject Intel` feature. For an in-depth guide on older Intel HD Graphics (HD 3000, 4000/46000 and Iris), check Rampage Dev's [Intel Graphics Guide](https://web.archive.org/web/20170816122747/http://www.rampagedev.com/guides/intel-hd-graphics-guide/).
@@ -65,11 +65,11 @@ Nowadays, using Device Properties is the recommended method for configuring inte
 
 For further instruction on how to configure on-board graphics for supported Intel CPUs, please refer to Whatevergreen's extensive [**Intel HD Grpahics FAQ**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md).
 
-**NOTES**
-
-- For 10th Gen Intel Core CPUs and newer, it's recommended to configure the framebuffer using the `Devices/Properties` section instead, entering the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
-- Sandy Bridge CPUs require `AAPL,snb-platform-id` and have to be configured via `Devices/Properties` as well.
-- If Clover detects an Intel iGPU, it _automatically_ enables Intel Injection if the `Graphics` section doesn't exist in the `config.plist`. To prevent this, you can explicitly disable it by clicking the "Inject Intel" button once to enable it and again to disable it which sets the `Inject` key to `false`:</br>
+> [!NOTE]
+> 
+> - For 10th Gen Intel Core CPUs and newer, it's recommended to configure the framebuffer using the `Devices/Properties` section instead, entering the correct `ig-platform-id` amongst additional parameters to configure connectors, amount of VRam, etc.
+> - Sandy Bridge CPUs require `AAPL,snb-platform-id` and have to be configured via `Devices/Properties` as well.
+> - If Clover detects an Intel iGPU, it _automatically_ enables Intel Injection if the `Graphics` section doesn't exist in the `config.plist`. To prevent this, you can explicitly disable it by clicking the "Inject Intel" button once to enable it and again to disable it which sets the `Inject` key to `false`:</br>
 	```
 	<key>Graphics</key>
     <dict>
@@ -110,11 +110,11 @@ Do the following to enable the correct framebuffer for your AMD GPU:
 #### AMD Radeon Performance Tweaks
 You can follow [this guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/AMD_Radeon_Tweaks) to tweak the Performance of Polaris and Navi Cards.
 
-**NOTES**:
-
-- :warning: Make sure to have a working backup of your EFI folder on a FAT32 formated flash drive.
-- Injecting "FB name" might cause conflicts if WhateverGreen is active, because WEG uses the default `AMDRadeonFramebuffer` to do its magic.
-- You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
+> [!NOTE]
+>
+> - :warning: Make sure to have a working backup of your EFI folder on a FAT32 formated flash drive.
+> - Injecting "FB name" might cause conflicts if WhateverGreen is active, because WEG uses the default `AMDRadeonFramebuffer` to do its magic.
+> - You only need to enter something in "FB Name" if you don't use `Whatevergreen.kext`, which handles all this stuff nowadays.
 
 #### Patching ATI/AMD Connectors
 ATI/AMD framebuffers can be patched to assign the video output to different connectors. You can follow [this guide](https://www.insanelymac.com/forum/topic/282787-clover-v2-instructions/#comment-1853099) if you have need to re-assign the output. But keep in mind that this guide is from 2012 so I don't know if it is still working today. 

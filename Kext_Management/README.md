@@ -8,10 +8,10 @@ Clover r3281 introduced conditional kext loading based on sub-folders kexts are 
 1. By default, all kexts placed in the `kexts\Other` folder are loaded first and for *any* version of macOS. You should leave all kexts that are required for macOS in general in there (like Lilu, VirtualsSMC, Whatevergreen, AppleALC, etc). Otherwise your system won't boot when trying to upgrade to a newer version of macOS.
 2. Next, Kexts located in sub-folders corresponding to specific versions of macOS are loaded (e.g. `10.15`, `11`, `12`, etc.). This is useful for versions of macOS which require specific kexts or different variants or combinations of kexts to make a feature/component work (kexts like `BrcmPatchRAM` or `CryptexFixup` come to mind). This way, you don't need to jugge Kexts around between the `Off` and `Other` folder when switching between different macOS installations. Only place kexts required for specific versions of macOS in the corresponding numbered folers.
 
-**NOTES**: 
-
-- This approach to kext management is similar to OpenCore's `MinKernel` and `MaxKernel` parameters. It's just not as elegant: it will produce duplicate kexts, updating them requires more effort and the overall size of the EFI increases. 
-- On the other hand, you don't have to worry about kext order when using Clover – unlike OpenCore, where sorting kexts in the wrong order or listing kexts which are not present in the kexts folder inevitably result in Kernel Panics on boot.
+> [!NOTE]
+> 
+> - This approach to kext management is similar to OpenCore's `MinKernel` and `MaxKernel` parameters. It's just not as elegant: it will produce duplicate kexts, updating them requires more effort and the overall size of the EFI increases. 
+> - On the other hand, you don't have to worry about kext order when using Clover – unlike OpenCore, where sorting kexts in the wrong order or listing kexts which are not present in the kexts folder inevitably result in Kernel Panics on boot.
 
 ## Example of conditional Kext Loading
 In the screenshot below, you see an example of conditional kext loading used on a Laptop:

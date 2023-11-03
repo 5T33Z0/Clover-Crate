@@ -51,7 +51,8 @@ Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.
 ### TscSyncTimeout
 Added in r5150. This is an experimental quirk provided by OpenCore. The timeout has to be entered as an integer in µs. Xeon E5-2650v2 need a value of `750000`. Before playing with this value, it's recommended to use one of the existing kexts for fixing TSC Sync issues instead (like [CpuTscSync](https://github.com/acidanthera/CpuTscSync)). 
 
-**NOTE**: Update Clover Configurator to the latest version (5.24.0.0 or newer) to find the new UEFI Tab in the Quirks section!
+> [!NOTE]
+> Update Clover Configurator to the latest version (5.24.0.0 or newer) to find the new UEFI Tab in the Quirks section!
 
 ## Additional Quirks
 This section lists Quirks which are new, undocumented or unavailable in Clover Configurator yet or are noteworthy otherwise.
@@ -73,37 +74,40 @@ This quirk works differently depending on the CPU to the macOS Kernel:
 ### ResizeAppleGPUBars
 `ResizeAppleGpuBars` is the latest Quirk added to Clover in r5142. It limits the GPU PCI BAR sizes for macOS up to the specified value or lower if it is unsupported. When the bit of is Set, it indicates that the Function supports operating with the BAR sized to (2^Bit) MB. `ResizeGpuBars` must be an integer value between `-1` to `19`.
 
-:warning: **WARNING**:
+> [!WARNING]
+> 
 > Do not set `ResizeAppleGpuBars` to anything but `0` if you have resize bar enabled in BIOS. `9` and `10` will cause sleep wake crashes, and 8 will cause excessive memory usage on some GPUs without any useful benefit. It shall always be `0`. It does not matter which GPU you have, they all support this feature since early 2010s, just give no performance gain.
 >
 > **Source**: [Vit9696](https://www.insanelymac.com/forum/topic/349485-how-to-opencore-074-075-differences/?do=findComment&comment=2770810)
 
 **Formula**: 2^Bit = ApppleGPUBars Size in MB
 
-| PCI BAR Size | VALUE in OC|
-|-------------:|:----------:|
-| Disabled|-1|
-|1 MB|0|
-| 2 MB|1|
-| 4 MB|2|
-| 8 MB|3|
-| 16 MB|4|
-| 32 MB|5|
-| 64 MB|6|
-| 128 MB|7|
-| 256 MB|8|
-| 512 MB|9|
-| 1 GB°|10°|
-| 2 GB|11|
-| 4 GB|12|
-| 8 GB|13|
-| 16 GB|14|
-| 32 GB|15|
-| 64 GB|16|
-| 128 GB|17|
-| 256 GB|18|
-| 512 GB|19|
+| PCI BAR Size | VALUE in OC |
+| -----------: | :---------: |
+|     Disabled |     -1      |
+|         1 MB |      0      |
+|         2 MB |      1      |
+|         4 MB |      2      |
+|         8 MB |      3      |
+|        16 MB |      4      |
+|        32 MB |      5      |
+|        64 MB |      6      |
+|       128 MB |      7      |
+|       256 MB |      8      |
+|       512 MB |      9      |
+|        1 GB° |     10°     |
+|         2 GB |     11      |
+|         4 GB |     12      |
+|         8 GB |     13      |
+|        16 GB |     14      |
+|        32 GB |     15      |
+|        64 GB |     16      |
+|       128 GB |     17      |
+|       256 GB |     18      |
+|       512 GB |     19      |
 
 `°`Maximum for macOS.
 
-Before you change any of these values, research if your GPU supports BAR Resize and check the supported size with tools like `HWiNFO` on PC.
+> [!IMPORTANT]
+> 
+> Before changing any of these values, chek if your GPU supports BAR Resize with tools like `HWiNFO` in Windows.
