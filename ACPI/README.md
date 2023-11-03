@@ -337,7 +337,8 @@ To get a better understanding for fixes that are still relevant in 2022, take a 
 
 Enabling `AddDTGP` injects the `DTGP` method into the  `DSDT` during boot, so that it can be utilized by other fixes and patches. It doesn't do anything on its own.
 
-**NOTE**: OpenCore users can add `SSDT-DTGP.aml` instead. But since OC heavily relies on self-contained SSDT hotpatches to make devices work instead of patched DSDTs, the `DTGP` method is rarely used/required. 
+> [!NOTE]
+> OpenCore users can add `SSDT-DTGP.aml` instead. But since OC heavily relies on self-contained SSDT hotpatches to make devices work instead of patched DSDTs, the `DTGP` method is rarely used/required. 
 
 ##### DTGP Explained
 
@@ -405,7 +406,8 @@ Corrects the `ADP1` device (power supply), which is necessary for laptops to sle
 
 Similar to LAN, the device itself is created, if not already registered in `DSDT`. For some well-known models, the `DeviceID` is replaced with a supported one. And the Airport turns on without other patches. 
 
-**NOTE**: This fix is deprecated nowadays and doesn't work any longer. Use `AirportBrcmFixup.kext` instead.
+> [!NOTE]
+> This fix is deprecated nowadays and doesn't work any longer. Use `AirportBrcmFixup.kext` instead.
 
 #### FixDarwin
 
@@ -424,7 +426,8 @@ Produces a number of video card patches for non-Intel video cards (Intel on-boar
 - Adds custom properties.
 - Adds a `HDAU` device for audio output via HDMI.
 
-**NOTE**: Pretty much deprecated. WhateverGreen handles most of it nowadays. Use manual framebuffer patching via Devices/Properties instead.
+> [!NOTE]
+> Pretty much deprecated. WhateverGreen handles most of it nowadays. Use manual framebuffer patching via Devices/Properties instead.
 
 #### FixFirewire
 
@@ -434,7 +437,8 @@ Adds `fwhub` property to the FireWire controller, if present. If not, then nothi
 
 Corrects the description of the sound card in the `DSDT` so that the native AppleHDA driver works. Renaming `AZAL` to `HDEF` is performed, `layout-id` and `PinConfiguration` are injected. Obsolete nowadays, since `AppleALC.kext` handles this (in combination with the correct `layout-id` added in the `Devices` section).
 
-**NOTE**: Handled by AppleALC.kext nowadays.
+> [!NOTE]
+> Handled by `AppleALC.kext` nowadays.
 
 #### FixHPET
 
@@ -626,7 +630,8 @@ Register (SystemIO,
 
 Optional parameter to lower the CPU temperature by reducing its operating voltage. Possible values are `0` to `9`. The higher the value, the lower the voltage, resulting in lower temperatures – until the computer crashes. This is where foolproof protection kicks in: Clover won't let you set any value outside the specified range. However, even allowed values can result in unstable operation. The effect of undervolting is really noticeable.
 
-**NOTE**: This feature is only available Intel CPUs of the `Penryn` family (Intel Core 2 Duo and some Pentiums/Celerons).
+> [!NOTE]
+> This feature is only available Intel CPUs of the `Penryn` family (Intel Core 2 Duo and some Pentiums/Celerons).
 
 ## Drop Tables
 
@@ -656,6 +661,8 @@ Other tables that can be dropped (presets):
 
 Yo can add SSDTs from the `ACPI/patched` folder which should be blocked from loading when booting the system. The whole name of the SSDT (including .aml) has to be entered.
 
+`SSDT-PLUG.aml` is a candidate for this list when running macOS 12 and newer!
+
 ## Sorted Order
 
 Creates an array to load SSDTs in the `ACPI/patched` folder in the order specified in this list once you add an SSDT to it. Only SSDTs present in this array will be loaded, namely in the specified order.
@@ -668,7 +675,8 @@ In General, a problem with tables is their name. While it is not unusual for OEM
 
 Enables Debug Log which will be stored in `EFI/CLOVER/misc/debug.log`. Enabling this feature slows down boot dramatically but helps to resolve issues.
 
-**NOTE**: If you delete `EFI/CLOVER/misc` from the folder structure then the `Debug` features will no longer work!
+> [!NOTE]
+> If you delete `EFI/CLOVER/misc` from the folder structure then the `Debug` features will no longer work!
 
 ### ReuseFFFF (Deprecated)
 
@@ -683,7 +691,8 @@ Device (PEGP) type of device
 ```
 You can change its address to `0`, but that doesn't always work.
 
-**NOTE**: This fix is deprecated and has been removed from Clover since r5116!
+> [!NOTE]
+>  This fix is deprecated and has been removed from Clover since r5116!
 
 ### RTC8Allowed
 
