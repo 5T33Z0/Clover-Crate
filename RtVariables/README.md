@@ -63,9 +63,11 @@ The default value for `CsrActiveConfig` for Clover r5142 currently is `0xA87`, w
 |10|CSR_ALLOW_EXECUTABLE_POLICY_OVERRIDE|0x400|
 |11|CSR_ALLOW_UNAUTHENTICATED_ROOT|0x800|x
 
+`0xA87` is a 12 bit bitmask and as such, is only valid for macOS 11 and newer. So if you are running an older version of macOS, use the **CloverCalcs** spreadsheet which can be found in the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to calculate your own.
+
 > [!NOTE]
 > 
-> - `0xA87` is a 12 bit bitmask and as such, is only valid for macOS 11 and newer. So if you are using an older Version of macOS, use the **CloverCalcs** Spreadsheet which can be found in the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to calculate your own.
+> - The recommended value is `0x803`. It uses just enough flags so that you can apply root patches with OpenCore Legacy Patcher!
 > - You can also change these flags from the options menu in the Clover GUI (Options > System Parameters > System Integrity Protection). But in this case, the flags are only applied temporarily until the next reboot.
 > - Contrary to popular belief, enabling bit 12 (ALLOW_UNAUTHENTICATED_ROOT) which is required for applying Post-Install patches like installing removed iGPU/GPU drivers *does not* disable System Update Notifications. This only happens when used in combination with bit 5 (ALLOW_APPLE_INTERNAL).
 
@@ -85,7 +87,7 @@ macOS 10.11       | 8 bits        |`0x0FF`
 > Check the [**Xtras Section**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to find out more about Booter- and CsrActiveConfig and how to calculate your own.
 
 ## HWTarget
-`HWTarget` is the latest feature introduced in Clover r5140. It's required for SMBIOSes of Macs with a T2 Security Chip in order to get notified about System Updates. It writes the variable `BridgeOSHardwareModel` to NVRAM, which is requested by macOS Monterey. 
+`HWTarget` was introduced Clover r5140. It's required for SMBIOSes of Macs with a T2 Security Chip in order to get notified about System Updates. It writes the variable `BridgeOSHardwareModel` to NVRAM, which is requested by macOS Monterey. 
 
 If you use a SMBIOS of one of the Mac models listed below, copy the corresponding value and paste it in the `HWTarget` field of your `config.plist`.
 
@@ -106,11 +108,11 @@ To confirm that the parameter is set, reboot and enter in Terminal: `sysctl hw.t
 
 As of Clover r5151, `HWTarget` is [broken](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/?do=findComment&comment=2800185) in macOS Ventura. As a consequence, you can't install OTA updates when using an SMBIOS of a Mac model with a T2 security chip. Do the following to re-enable System Updates (for now):
 
-- Add `RestrictEvents.kext` 
-- Add boot-arg `revpatch=sbvmm` &rarr; Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 or newer.
-- Optional (if you are using hardware not supported by Big Sur 11.3 or newer): 
-  - Change SMBIOS back to the correct/native one designed for your CPU family for optimal compatibility and performance.
-  - Add boot-arg `-no_compat_check` to allow booting with the unsupported board-id of said SMBIOS
+- Add `RestrictEvents.kext`
+- Add the following boot-args:
+	-  `-no_compat_check` &rarr; allows inatlling/booting macOS with an unsupported SMBIOS/Board-ID
+	-  `revpatch=sbvmm` &rarr; Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 or newer.
+  - Change SMBIOS to the correct/native one designed for your CPU family for optimal compatibility and performance.
 
 **More details here:** [Fixing issues with System Update Notifications in macOS 11.3 and newer](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates#what-about-clover)
 
