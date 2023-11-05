@@ -11,7 +11,7 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 ### macOS (General)
 - [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/) – Configurator App for editing Clover's config.plist
 - [**IORegistryExplorer**](https://github.com/khronokernel/IORegistryClone) – App for gathering infos about I/O Registry.
-- [**About this Hack**](https://github.com/0xCUB3/About-This-Hack) – Simple app to view your exact hardware in macOS. Similar to how the "About This Mac" window looked prior to macOS 13 but with more features. 
+- [**About this Hack**](https://github.com/0xCUB3/About-This-Hack) – Simple app to view your exact hardware in macOS. Similar to how the "About This Mac" window looked prior to macOS 13 but with more features. Needs a [fix](https://github.com/5T33Z0/Clover-Crate/blob/main/Utilities/About_This_Hack_Fix.md) so Clover version is displayed
 - [**MaciASL**](https://github.com/acidanthera/MaciASL) – ASL/AML Editor for macOS.
 - [**Hackintool**](https://github.com/headkaze/Hackintool) – Powerful post-install utility that everyone should have in their Hackintosh tool box
 - [**Kext Updater**](https://www.sl-soft.de/kext-updater/) (great tool for keeping kexts and other files up to date)
