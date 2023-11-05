@@ -21,6 +21,7 @@ This is because it requires a little helper called "bdmesg". It is installed whe
 - Boot into macOS.
 
 Now the Bootloader entry will be displayed correctly:
+
 ![Bildschirmfoto 2023-10-25 um 10 18 11](https://github.com/0xCUB3/About-This-Hack/assets/76865553/28d9fd18-77da-407b-8380-12ba1dc2b837)
 
 ## Credits
