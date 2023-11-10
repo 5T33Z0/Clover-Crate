@@ -91,6 +91,7 @@ If you want to observe how the Kexts are patched &rarr; For developers.
 ### EightApple
 Added in r5119. On some systems, the Apple boot logo glitches out into 8 apples, spread horizontally across the screen for a fraction of a second:
 
+![8apples](https://github.com/5T33Z0/Clover-Crate/assets/76865553/5679764f-3d6f-4361-bfd6-8166428f950b)
 
 This fix is based on kext patches like the following to make it system-independant (which these patches are not):
 
