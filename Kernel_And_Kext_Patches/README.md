@@ -89,9 +89,17 @@ If you want to observe how the Kexts are patched &rarr; For developers.
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### EightApple
-On some systems, the progress bar break down into 8 apples during boot. No confirmation yet if the patch works. Added in r5119.
+On some systems, the progress bar break down into 8 apples during boot. No confirmation yet if the patch works. Added in r5119. This fix is based on the following kext patch (but macOS-independent):
+
+Name |	Find [HEX] | Replace [HEX] | Comment | MatchOS
+-----|------------|---------------|---------|-------
+`com.apple.iokit.IOGraphicsFamily` | `0100007522` | `010000EB22` | Fixes 8 Apples Boot Graphics Glitch| 10.13.x 
 
 :bulb: A tip for OpenCore users: WhateverGreen's `gfxrst=1` and `gfxrst=4` boot-args address this issue as well!
+
+> [!NOTE]
+> 
+> This fix did not work for me on my Whiskey Lake Notebook running macOS 14.2. And based on the comments about this issue it doesn't work for other user who have this glitch. Enabling CSM in BIOS on the other hand should fix the issue reliably.
 
 ### KernelLapic
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
