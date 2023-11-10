@@ -15,7 +15,7 @@ A group of parameters for creating binary patches on the fly. Note that this can
   - [AppleIntelCPUPM](#appleintelcpupm)
   - [AppleRTC](#applertc)
   - [BlockSkywalk](#blockskywalk)
-- [Debug](#debug)
+  - [Debug](#debug)
   - [DellSMBIOSPatch](#dellsmbiospatch)
   - [EightApple](#eightapple)
   - [KernelLapic](#kernellapic)
@@ -82,24 +82,24 @@ Obsolete! vit9696 investigated the problem, and corrected RTC operations in Clov
 ### BlockSkywalk
 Introduced in r5155. This allows blocking the `IOSkywalFamily.kext` in macOS Sonoma, so unsupported Wifi Cards can be re-enabled by injecting additional kexts and applying post-install root patches with OpenCore Legacy patcher (&rarr; check my [Wifi Sonoma Guide](https://github.com/5T33Z0/OC-Little-Translated/blob/main/14_OCLP_Wintel/WIiFi_Sonoma.md) for details).
 
-## Debug
+### Debug
 If you want to observe how the Kexts are patched &rarr; For developers.
 
 ### DellSMBIOSPatch
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### EightApple
-On some systems, the progress bar break down into 8 apples during boot. No confirmation yet if the patch works. Added in r5119. This fix is based on the following kext patch (but macOS-independent):
+Added in r5119. On some systems, the Apple boot logo glitches out into 8 apples, spread horizontally across the screen for a fraction of a second. This fix is based on the following kext patch (but macOS-independent):
 
 Name |	Find [HEX] | Replace [HEX] | Comment | MatchOS
 -----|------------|---------------|---------|-------
 `com.apple.iokit.IOGraphicsFamily` | `0100007522` | `010000EB22` | Fixes 8 Apples Boot Graphics Glitch| 10.13.x 
 
-:bulb: A tip for OpenCore users: WhateverGreen's `gfxrst=1` and `gfxrst=4` boot-args address this issue as well!
+:bulb: For OpenCore users: WhateverGreen's `gfxrst=1` and `gfxrst=4` boot-args address this issue as well!
 
 > [!NOTE]
 > 
-> This fix did not work for me on my Whiskey Lake Notebook running macOS 14.2. And based on the comments about this issue it doesn't work for other user who have this glitch. Enabling CSM in BIOS on the other hand should fix the issue reliably.
+> Slice himself admitted that the functionality of this patch is uncertain. It did not work for me on my Whiskey Lake Notebook running macOS 14.2. And based on the comments I came across during research so far, it doesn't seem to work for other users either. Some users report that enabling CSM in BIOS fixed the issue for them. So try your luck. 
 
 ### KernelLapic
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
@@ -109,6 +109,9 @@ Name |	Find [HEX] | Replace [HEX] | Comment | MatchOS
 
 ### KernelXCPM
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
+
+### PanicNoKextDump
+Allows for reading kernel panics logs when kernel panics occur.
 
 ## About Patching Masks
 ![KnKPatches](https://user-images.githubusercontent.com/76865553/136670510-106715c6-884d-4e6a-b151-34d45d9b231a.png)
