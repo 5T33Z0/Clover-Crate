@@ -89,10 +89,14 @@ If you want to observe how the Kexts are patched &rarr; For developers.
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
 ### EightApple
-Added in r5119. On some systems, the Apple boot logo glitches out into 8 apples, spread horizontally across the screen for a fraction of a second. This fix is based on the following kext patch (but macOS-independent):
+Added in r5119. On some systems, the Apple boot logo glitches out into 8 apples, spread horizontally across the screen for a fraction of a second:
+
+
+This fix is based on kext patches like the following to make it system-independant (which these patches are not):
 
 Name |	Find [HEX] | Replace [HEX] | Comment | MatchOS
 -----|------------|---------------|---------|-------
+`com.apple.iokit.IOGraphicsFamily` | `0100007525` | `010000EB25` | Fixes 8 Apples Boot Graphics Glitch | 10.12.x 
 `com.apple.iokit.IOGraphicsFamily` | `0100007522` | `010000EB22` | Fixes 8 Apples Boot Graphics Glitch| 10.13.x 
 
 :bulb: For OpenCore users: WhateverGreen's `gfxrst=1` and `gfxrst=4` boot-args address this issue as well!
