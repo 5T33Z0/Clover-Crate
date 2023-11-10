@@ -91,6 +91,8 @@ If you want to observe how the Kexts are patched &rarr; For developers.
 ### EightApple
 On some systems, the progress bar break down into 8 apples during boot. No confirmation yet if the patch works. Added in r5119.
 
+:bulb: A tip for OpenCore users: WhateverGreen's `gfxrst=1` and `gfxrst=4` boot-args address this issue as well!
+
 ### KernelLapic
 &rarr; See [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks) Section
 
