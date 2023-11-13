@@ -161,8 +161,8 @@ These two parameters serve a common purpose - to fix restart. They should be pre
 
 **Possible combinations**:
 
-Reset Address /</br>Reset Value | Description
-:-------------------------------:|------------
+Reset Address/Value | Description
+:------------------:|------------
 `0x0`/`0x0` </br>(or empty) | Uses the default method defined in the `FACP` table, if present.  Otherwise `0x64`/`0xFE` are set as defaults.
 `0x0CF9`/`0x06` | Resets the system via **System Management Mode** (SMM) of the PCI bus – just like a real Mac. This is fast since the SMM operates at a higher level of privilege than the operating system and is capable of bypassing certain hardware and software layers. But this does not work on all systems.
 `0x64`/`0xFE` | Resets the System via the **PS/2 Controller**. Default if  `Reset Address` and `Reset Value` are left empty. Resetting the system via the PS/2 controller may be faster than resetting it via software, as the PS/2 controller is a hardware device that is directly connected to the CPU and is responsible for handling keyboard and mouse input.
