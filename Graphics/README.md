@@ -70,13 +70,14 @@ For further instruction on how to configure on-board graphics for supported Inte
 > - For 10th Gen Intel Core CPUs, use the `Devices/Properties` section to enter a framebuffer patch instead, since Clover Configurator does not provide any presets for Comet Lake. 
 > - Sandy Bridge CPUs require `AAPL,snb-platform-id` and have to be configured via `Devices/Properties` as well.
 > - If Clover detects an Intel iGPU, it _automatically_ enables Intel Injection if the `Graphics` section doesn't exist in the `config.plist`. To prevent this, you can explicitly disable it by clicking the "Inject Intel" button once to enable it and again to disable it which sets the `Inject` key to `false`:</br>
-	```
-	<key>Graphics</key>
-    <dict>
-        <key>Inject</key>
-        <false/>
-    </dict>
-    ```
+>
+> 	```
+>	<key>Graphics</key>
+>  	<dict>
+>	<key>Inject</key>
+>  	<false/>
+> 	</dict>
+>	```
 
 ## Inject ATI
 Listed below are all parameters related to the `Inject ATI` feature. For more insight check out Rampage Dev's in-depth [AMD Graphics Guide](https://web.archive.org/web/20170814210930/http://www.rampagedev.com/guides/graphic-cards-injection/) for old AMD GPUs.
