@@ -327,24 +327,29 @@ The `DSDT` (Differentiated System Description Table) is the largest and most com
 
 Fortunately, Clover provides automated, selectable `Fixes`, which can be applied to the DSDT on the fly during boot to add/rename devices or fix common problems which need to be addressed before macOS is happy with the provided DSDT. This method is not as clean as patching every issue via a SSDT (like OpenCore requires), but it's an easily accessible and valid approach to fix your DSDT.
 
-Listed below are the included DSDT `Fixes` provided by Clover (about 30) and what they do. Note that these fixes have been accumulated over the years – some of them might be deprecated nowadays. Remember: just because a fix is available, it doesn't mean that you need it or that it still works with current hardware or macOS versions.
+Listed below are the included DSDT `Fixes` provided by Clover (about 30) and what they do. 
 
-To get a better understanding for fixes that are still relevant in 2022, take a look at my [**Desktop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [**Laptop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) configs before getting all click-happy and just randomly enable every available fix!
+To get a better understanding for fixes that are still relevant in 2023, take a look at my [**Desktop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [**Laptop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) configs before getting all click-happy and just randomly enable every available fix!
 
 **TIP**: Use `Fixes` sparsely. Instead, apply SSDT hotpatches included in the OpenCore package or from my [**OC-Little Repo**](https://github.com/5T33Z0/OC-Little-Translated) to fix your `DSDT`.
+
+> [IMPORTANT!]
+>
+> These fixes have been accumulated over the years – some of them might be deprecated nowadays. Remember: just because a fix is available, it doesn't mean that it still works with current hardware and macOS versions!
 
 #### AddDTGP
 
 Enabling `AddDTGP` injects the `DTGP` method into the  `DSDT` during boot, so that it can be utilized by other fixes and patches. It doesn't do anything on its own.
 
 > [!NOTE]
-> OpenCore users can add `SSDT-DTGP.aml` instead. But since OC heavily relies on self-contained SSDT hotpatches to make devices work instead of patched DSDTs, the `DTGP` method is rarely used/required. 
+>
+> OpenCore users can add `SSDT-DTGP.aml` instead. But since OpenCore heavily relies on self-contained SSDTs to make devices work, the DTGP method is most likely already included in the SSDT itself if needed, so having an additional `SSDT-DTGP` is usually unnecessary.
 
 ##### DTGP Explained
 
 In addition to `DeviceProperties`, you can also use the method `_DSM` (Device Specific Method) to do so. It contains properties for a device and makes use of the method `DTGP` which is universal for all devices. It is specified in the `DSDT` of real Macs. Its purpose is to inject custom parameters into some devices. Without this method, patched `DSDTs` would not work well. 
 
-Basically, macOS won't actually read/merge device properties from ACPI unless a Buffer of `0x03` is returned when it asks for this property (`Arg0` = UUID, `Arg1` = 1 and `Arg2` = 0).
+Basically, macOS won't actually read/merge device properties from ACPI tables unless a Buffer of `0x03` is returned when it asks for this property (`Arg0` = UUID, `Arg1` = 1 and `Arg2` = 0).
 
 `DTGP` passes through calls to device-specific methods on various Device objects, unless a specific `UUID` is provided that indicates that macOS is calling the `_DSM`. macOS has a non-standard device enumeration behavior: it first probes each ACPI Device's `DSM` by passing over only 2 arguments (one of which is the `UUID`). macOS then expects the `_DSM` to return the number of additional arguments that can be used. It's fine if the device returns more arguments than expected, but not less, so it's best to return the maximum, which is three (`Arg0` to `Arg2`). 
 
@@ -354,7 +359,7 @@ In other words, `store` is saving information you want to hand over to macOS as 
 
 #### AddHDMI
 
-Contrary to what the name suggests, `AddHDMI` *does not* enable HDMI ports for video. Instead, it adds an `HDAU` audio device to the `DSDT` to enable digital audio over HDMI for ATI and Nvidia GPUs. Since discrete GPUs are separate pieces of hardware there's simply no such device present in your mainboard's `DSDT`. 
+Contrary to what the name suggests, `AddHDMI` *does not* enable HDMI ports for video output. Instead, it adds an `HDAU` audio device to the `DSDT` to enable digital audio over HDMI for ATI and Nvidia GPUs. Since discrete GPUs are separate pieces of hardware there's simply no such device present in your mainboard's `DSDT`. 
 
 Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the `HDAU` device:
 
@@ -394,7 +399,9 @@ There are several sample brightness curves/graphs in the system, and they have d
 
 #### DeleteUnused
 
-Removes unused Floppy, CRT and DVI devices from the `DSDT` – a necessity for getting the Intel GMA X3100 to work on Dell Laptops. Otherwise, you'll get a black screen. Tested by hundreds of users.
+Removes unused Floppy, CRT and DVI devices from the `DSDT` – a necessity for getting the Intel GMA X3100 to work on Dell Laptops. Otherwise, you'll get a black screen. Tested by hundreds of users. 
+
+This patch can be safely applied on current systems. It slightly reduces the overall length of the DSDT. You can check this with maciASL. Click on “File > New From ACPI…” and select “DSDT”. Take not of the amount of lines the DSDT has. Then disable/enable the `DeleteUnused` feature, reboot and check the length of the DSDT file again.
 
 #### FakeLPC
 
@@ -408,13 +415,18 @@ As a result, a completely implicit conflict with very unclear behavior can occur
 
 #### FixADP1
 
-Corrects the `ADP1` device (power supply), which is necessary for laptops to sleep correctly - plugged in or unplugged.
+Corrects the `ADP1` device (power supply), which is necessary for laptops to sleep correctly - plugged in or unplugged. 
+
+> [!NOTE]
+>
+> This is not required when using VirtualSMC and its SMCBatteryManager.kext and has to regarded as cosmetic.
 
 #### FixAirport
 
 Similar to LAN, the device itself is created, if not already registered in `DSDT`. For some well-known models, the `DeviceID` is replaced with a supported one. And the Airport turns on without other patches. 
 
 > [!CAUTION]
+>
 > This fix is deprecated nowadays and doesn't work any longer. Use [`AirportBrcmFixup.kext`](https://github.com/acidanthera/AirportBrcmFixup) instead.
 
 #### FixDarwin
@@ -439,18 +451,20 @@ Produces a number of video card patches for non-Intel video cards (Intel on-boar
 
 #### FixFirewire
 
-Adds `fwhub` property to the FireWire controller, if present. If not, then nothing will happen. You can bet if you don't know if you need to or not.
+Adds `fwhub` property to the FireWire controller, if present. If not, then nothing will happen.
 
 #### FixHDA
 
 Corrects the description of the sound card in the `DSDT` so that the native AppleHDA driver works. Renaming `AZAL` to `HDEF` is performed, `layout-id` and `PinConfiguration` are injected. Obsolete nowadays, since `AppleALC.kext` handles this (in combination with the correct `layout-id` added in the `Devices` section).
 
 > [!NOTE]
+>
 > Handled by `AppleALC.kext` nowadays.
 
 #### FixHPET
+Required to fix IRQs on the High Precision Event Timer so audio works on pre-Skylake systems. 
 
-As already mentioned, this is the main fix needed. Thus, the minimum required `DSDT` patch mask looks like `0x0010`.
+Usually needs to be combined with `FixHPET`, `FixIPIC`, `FixTMR` and `FixRTC`.
 
 **OpenCore** equivalent: Generate `SSDT-HPET` and IRQ fixes using SSDTTime
 
@@ -493,6 +507,8 @@ This is a very controversial patch. Use it only if you are fully aware of what y
 Removes interrupt from device `_RTC`. It's a required fix, and it is very strange that someone would not enable it. If there is no interrupt in the original, then this patch won't cause any harm. However, the question arose about the need to edit the length of the region. To avoid clearing `CMOS`, you need to set the length to `2`, but at the same time a phrase like `"…only single bank…"` appears in the Kernel Log.
 
 Why this message appears is unknown, but it can be fixed if the length is set to 8 bytes by using the Fix &rarr; `Rtc8Allowed`.
+
+Usually needs to be combined with `FixHPET`, `FixIPIC`, `FixTMR` and `FixRTC` to fix audio.
 
 #### FixRegions
 
