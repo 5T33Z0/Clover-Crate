@@ -1,4 +1,4 @@
-# Clover's problematic config-sample.plist
+# Clover's problematic `config-sample.plist`
 
 :warning: Don't use the `config-sample.plist` that comes with the Clover Package!
 
@@ -20,17 +20,17 @@
 - [Quirks Section](#quirks-section)
 
 ## Preface
-Unfortunately, the config sample included in the Clover Package is a complete mess. It seems to me that in order to populate every section of the config, settings were just enabled randomly without applying any common sense whatsoever.
+Unfortunately, the config sample included in the Clover Package is a complete mess. It seems to me that in order to populate every section of the config, settings were just enabled randomly without applying any common sense whatsoever. Therefore, my advice is: don't use it! Instead, open Clover Configurator and create a new empty config by pressing <kbd>⌘</kbd>+<kbd>n</kbd> and follow the [**Clover Desktop Guide**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) and add the missing [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks). This way, the config also gets a lot smaller in size which which improves the boot process.
 
-Therefore, my advice is: don't use it! Instead, open Clover Configurator and create a new empty config by pressing <kbd>⌘</kbd>+<kbd>n</kbd> and follow the [Clover Desktop Guide](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) and add the missing [Quirks](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks). This way the config also gets a lot smaller in size which which improves the boot process.
-
-Below you find a list of issues I am having with the sample config as well as recommended settings for each section. Clicking on the headlines forwards you to the corresponding chapter which explains every option in detail.
+Below you find a list of issues I have with the config-sample.plist in it's current state as well as recommended settings for each section. Clicking on the headlines forwards you to the corresponding chapter of the repo which explains every option in detail.
 
 ## [ACPI Section](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI)
 See the corresponding section to find out what each option/setting does!
 
-- `DSDT/Patches`: Delete existing rules/leave empty. Most binary renames are unnecessary nowadays, since they handled by Kexts like Whatevergreen and AppleALC. Unless you have to redefine certain methods (usually required when working with laptops), Use SSDT hotfixes included in the OpenCore Package or my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated) instead. 
-- If you need to rename devices or methods, use the `RenameDevices` section instead of `DSDT/Patches`. It has the big advantage that it renames every occurance in any of the ACPI tables so that the name of a device/method remains consistent across the whole system.
+- `DSDT/Patches`: 
+	- Delete existing rules/leave empty. Most binary renames are unnecessary nowadays, since they handled by Kexts like Whatevergreen and AppleALC. Unless you have to redefine certain methods (usually required when working with laptops).
+	- Use SSDT hotfixes included in the OpenCore Package or my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated) instead. 
+	- If you need to rename devices or methods, use the `RenameDevices` section instead of `DSDT/Patches`. It has the big advantage that it renames every occurance in any of the ACPI tables so that the name of a device/method remains consistent across the whole system.
 - `DSDT/Fixes`: Most of these fixes in this section are obsolete but the following are still relevant and can be used to substitute the following SSDTs:
 	|SSDT | Clover DSDT Fix(es)
 	|:--------:|----------------------|
@@ -40,19 +40,19 @@ See the corresponding section to find out what each option/setting does!
 	`SSDT-SBUS-MCHC`|Enable `AddDTGP`, `AddMCHC` and `FixSBUS`instead. `AddDTGP` is required because the code snippet added by Clover when `FixSBUS` is enabled, uses `DTGP` to pass through arguments. Otherwise you will find a "unknown method" compiler comment about `DTGP` the end of your `DSDT`.
 	None| Enable `DeleteUnused` to remove some unused legacy devices from the `DSDT`
 - `SSDT`: leave empty. Use `SSDT-PLUG` instead
-- `Disabled AML`: leave empty
-- `Sorted Order`: leave empty unless you are using SSDTs which have to be loaded in a specific order
-- `Drop Tables`: leave empty unless certain tables need to be dropped
+- `Disabled AML`: You can Add `SSDT-PLUG.aml` when running macOS 12 or newer. Otherwise, leave empty.
+- `Sorted Order`: Leave empty unless you are using SSDTs which have to be loaded in a specific order!
+- `Drop Tables`: Leave empty unless certain tables need to be dropped
 - `Debug`, `Rtc8Allowed`, `ReuseFFFF`, `Suspend Override` and `DSDT Name`: leave empty
 - Enable: `Fix Headers`	, `FixMCFG` (might not even be needed)
 
 ## [Boot Section](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot)
 See the corresponding section to find out what each option/setting does!
 
-- `Arguments`: enter boot arguments. For Installation, useful ones are: `-v`, `debug=0x100` and `keepsyms=1`
-- `Legacy`: select an empty field from the dropdown menu
-- `Default Loader`: leave empty
-- `XMPDetection`: select `YES` if your RAM and BIOS supports Xtreme Memory Profiles, otherwise select `NO`
+- `Arguments`: Enter boot arguments. For Installation, useful ones are: `-v`, `debug=0x100` and `keepsyms=1`
+- `Legacy`: Select an empty field from the dropdown menu
+- `Default Loader`: Leave empty
+- `XMPDetection`: Select `YES` if your RAM and BIOS supports Xtreme Memory Profiles, otherwise select `NO`
 - Next, enable the following settings:
 	- `No early Progress`
 	- `Never hibernate`
@@ -99,10 +99,10 @@ See the corresponding section to find out what each option/setting does!
 ## [RT Variables Section](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables)
 
 - Delete `MLB` (add it AFTER generating your own serial in the SMBIOS section)
-- `CsrActiveConfig`: either delete (SIP enabled) or set specific value based on macOS. You can use my [Clover Calculators Spreadsheet](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to do so. Common ones to disable SIP are:
+- `CsrActiveConfig`: Either delete (SIP enabled) or set specific value based on macOS. You can use my [Clover Calculators Spreadsheet](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras) to do so. Common ones to disable SIP are:
 	- High Sierra: `0x3EF`
 	- Mojave/Catalina: `0x7EF`
-	- Big Sur and newer: `0x867` and `0xFEF` (disables SIP Completely. Not recommended since system updated don't work with this) 
+	- Big Sur and newer: `0x803`
 
 ## [SMBIOS Section](https://github.com/5T33Z0/Clover-Crate/tree/main/SMBIOS)
 

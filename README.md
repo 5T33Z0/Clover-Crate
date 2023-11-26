@@ -13,11 +13,12 @@ It provides up-to-date and in-depth explanations for every setting and parameter
 
 ![TOC](https://user-images.githubusercontent.com/76865553/136510478-2bccd5ae-6cc6-4a98-8f8d-63c41de2d3b3.png)
 
+### Motivation
 I created this repo for the following reasons:
 
 1. **Overcoming language barriers**: Clover's official documentation (PDF, 182 pages) is only available in Russian.
-2. **Condensing information** and presenting it in a modern way, making use of GitHub and Markdown. It's also much more focused on documenting the actual features since it disregards all the personal anecdotal notes that the official documentation contains.
-3. **Consolidating and unifying resources** which are scattered all over the internet: the manual is only available in Russian on GitHub, the changelog is only available at insanelymac and the Clover Wiki had been neglected for years until it finally got integrated into Clover's GitHub Repo in 2022 (after I started Clover Crate).
+2. **Condensing information** and presenting it in a modern way, making use of GitHub and Markdown. It's also much more focused on documenting the actual features since it disregards the personal anecdotal remarks that the official documentation contains.
+3. **Consolidating and unifying resources** which are scattered all over the internet: the manual is only available in Russian on GitHub, the changelog is only available at insanelymac and the Clover Wiki had been neglected for years until it finally got integrated (but not updated) into Clover's GitHub Repo in 2022 (after I started Clover Crate).
 4. **Exemplifying Clover's features** using Clover Configurator: Acidanthera and Dortania did such an amazing job on documenting OpenCore that I though it was about time Clover gets something that at least documents its features and how to use them *properly*.
 
 ### Disclaimer
