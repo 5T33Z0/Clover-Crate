@@ -354,39 +354,47 @@ In other words, `store` is saving information you want to hand over to macOS as 
 
 #### AddHDMI
 
-Contrary to what the name of this fix suggests, it *does not* enable HDMI ports for video. Instead, it adds an `HDAU` audio device to the `DSDT` to enable digital audio over HDMI for ATI and Nvidia GPUs. Since a discrete GPU is a separate piece of hardware there's simply no such device present in your mainboard's `DSDT` file. Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the `HDAU` device:
+Contrary to what the name suggests, `AddHDMI` *does not* enable HDMI ports for video. Instead, it adds an `HDAU` audio device to the `DSDT` to enable digital audio over HDMI for ATI and Nvidia GPUs. Since discrete GPUs are separate pieces of hardware there's simply no such device present in your mainboard's `DSDT`. 
+
+Additionally, the `hda-gfx = onboard-1` or `onboard-2` property is injected into the `HDAU` device:
 
 - `1` if `UseIntelHDMI` = false
 - `2` if there is an Intel port that occupies port 1
 
-Nowadays, this fix is covered by **Whatevergreen.kext**.
+> [!NOTE]
+>
+> Nowadays, this function is obsolete since [**`Whatevergreen.kext`**](https://github.com/acidanthera/WhateverGreen) takes care of this.
 
 #### AddIMEI
 
-Adds Intel Management Engine (IMEI) device to the device tree, if it does not exist in the `DSDT`. IMEI is required for proper hardware video decoding on Intel iGPUs. Adding IMEI is only required in two cases:
+Adds an Intel Management Engine device (`IMEI`) to the device tree, if it does not exist in the system’s `DSDT`. `IMEI` is required for proper hardware video decoding on Intel iGPUs. Adding `IMEI` is only required in two cases:
 
 - Sandy Bridge CPUs running on 7-series mainboards or
 - Ivy Bridge CPUs running on 6-series mainboards
 
 #### AddMCHC
 
-Adds MCHC device which is related to the Memory Controller and is usually combined with `FixSBUS` to get the System Management Bus Controller working. In general, a device of the `0x060000` class is absent in the DSDT, but for some chipsets this device is serviceable, and therefore it must be attached to I/O Reg in order to properly wire the power management of the PCI bus.
+Adds `MCHC` device (Memory Controller Host Controller) which is usually combined with `FixSBUS` to get the System Management Bus Controller working properly. In general, a device of the `0x060000` class is absent in the `DSDT`, but on some chipsets this device is serviceable, and therefore it must be attached to the I/O Kit in order to properly assign the power management of the PCI bus.
 
 #### AddPNLF
 
-Inserts a PNLF (Backlight) device, which is necessary to properly control the screen brightness, and, oddly enough, helps to solve problems with sleep, even on desktop systems.
+Inserts a `PNLF` (Backlight) device, which is necessary to properly control the screen brightness, and, oddly enough, helps to solve problems with sleep, even on desktop systems.
 
-In my experience this is no longer working on macOS. Use [`SSDT-PNLF`](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/Brightness_Controls_(SSDT-PNLF)) instead.
+> [!NOTE]
+>
+> This is not working with newer versions of macOS. Use [`SSDT-PNLF`](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/Brightness_Controls_(SSDT-PNLF)) instead.
 
 #### PNLF_UID
 
 There are several sample brightness curves/graphs in the system, and they have different UIDs. If some vendor uses that curve, it doesn't mean that you will have the same brightness with the same processor. It depends on the panel – not the processor. 
 
-This option is deprecates as well. It doesn't work correctly any more (the brightness will reset to max after a reboot), so using aforementioned `SSDT-PNLF.aml` is recommended in this case as well.
+> [!NOTE]
+> 
+> This option doesn't work correctly any more (the brightness will reset to max after a reboot), so using aforementioned `SSDT-PNLF` is recommended in this case as well.
 
 #### DeleteUnused
 
-Removes unused Floppy, CRT and DVI devices from the DSDT – a necessity for getting the Intel GMA X3100 to work on Dell Laptops. Otherwise, you'll get a black screen. Tested by hundreds of users.
+Removes unused Floppy, CRT and DVI devices from the `DSDT` – a necessity for getting the Intel GMA X3100 to work on Dell Laptops. Otherwise, you'll get a black screen. Tested by hundreds of users.
 
 #### FakeLPC
 
@@ -394,7 +402,7 @@ Replaces the DeviceID of the LPC Bus Controller so that the AppleLPC kext is att
 
 #### FixACST
 
-Some DSDTs can have a device, method or variable named `ACST`, but this name is also used by macOS 10.8+ to control C-States!
+Some DSDTs can have a device, method or variable named `ACST`, but this name is also used by macOS 10.8+ to control C-States for CPU Power Management!
 
 As a result, a completely implicit conflict with very unclear behavior can occur. This fix renames all occurrences of `ACST` to `OCST` which is safe. But check your `DSDT` first: search for `ACST` and check if it refers to Device `AC` (= Power Adapter) and method `_PSR` (= PowerSource) in some kind of way.
 
@@ -406,8 +414,8 @@ Corrects the `ADP1` device (power supply), which is necessary for laptops to sle
 
 Similar to LAN, the device itself is created, if not already registered in `DSDT`. For some well-known models, the `DeviceID` is replaced with a supported one. And the Airport turns on without other patches. 
 
-> [!NOTE]
-> This fix is deprecated nowadays and doesn't work any longer. Use `AirportBrcmFixup.kext` instead.
+> [!CAUTION]
+> This fix is deprecated nowadays and doesn't work any longer. Use [`AirportBrcmFixup.kext`](https://github.com/acidanthera/AirportBrcmFixup) instead.
 
 #### FixDarwin
 
@@ -523,6 +531,8 @@ com.apple.driver.AppleSMBusController
 #### FixShutdown
 
 A condition is added to the `_PTS` (prepare to sleep) method: if argument = 5 (shutdown), then no other action is required. Strange, why? Nevertheless, there is repeated confirmation of the effectiveness of this patch for ASUS boards, maybe for others, too. Some `DSDT` already have such a check, in which case such a fix should be disabled. If `SuspendOverride` = `true` is set in the config, then this fix will be extended by arguments 3 and 4. That is, going to sleep (Suspend). On the other hand, if `HaltEnabler` = `true`, then this patch is probably no longer needed.
+
+In OpenCore, you need additional [SSDTs](https://github.com/5T33Z0/OC-Little-Translated/tree/main/04_Fixing_Sleep_and_Wake_Issues/PTSWAK_Sleep_and_Wake_Fix) for that
 
 #### FixTMR
 
