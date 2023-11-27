@@ -189,7 +189,7 @@ This is for users who want to use the pkg installer instead. Don't do this if yo
 15. Once it's done, check your config.plist for errors in Clover Configurator using the Clover Validator in the "Tools" section and correct them if necessary.
 16. Save your config, reboot and hope for the best
 
-> [!IMORTANT]
+> [!IMPORTANT]
 > 
 > Make sure you have a backup of your currently working EFI folder stored on a FAT32 formatted flash drive to boot from just in case you run into issues.
 
