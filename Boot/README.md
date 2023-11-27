@@ -1,8 +1,9 @@
 # Boot
 ![Boot](https://user-images.githubusercontent.com/76865553/136703418-a28fed86-1f46-4519-80ad-671e96b89141.jpeg)
 
-**TABLE of CONTENTS**
-
+<details>
+<summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
+  
 - [Arguments](#arguments)
   - [Debugging](#debugging)
   - [GPU-specific boot arguments](#gpu-specific-boot-arguments)
@@ -31,6 +32,8 @@
 - [Timeout](#timeout)
 - [XMPDetection](#xmpdetection)
 - [Adding Clover entry to the BIOS Boot menu](#adding-clover-entry-to-the-bios-boot-menu)
+
+</details>
 
 ## Arguments
 The following tables contain boot arguments that are passed over to `boot.efi`, which in return passes them down to the system kernel. See Apple's documentation for a list in the `com.apple.Boot.plist`. Some commonly used ones are:
