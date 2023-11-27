@@ -95,9 +95,9 @@ Expands the existing Firmware Features mask from 32 up to 64 bits which is requi
 For reference values, check the files in the Mac models [database](https://github.com/acidanthera/OpenCorePkg/tree/master/AppleModels/DataBase) of the OpenCore repo.
 
 ## Memory
-![](/Users/stunner/Desktop/MEM.png)
+![RAM](https://github.com/5T33Z0/Clover-Crate/assets/76865553/89c05bb8-a9b0-4bb4-8093-f5a557ce73b3)
 
-Allows to adjust specification of the RAM if it is not detected correctly. To obtaine info about your installed RAM you can use the following commands:
+Allows to adjust specification of the RAM if it is not detected correctly. To obtain info about your installed RAM you can use the following commands:
 
 - In Windows, enter: `wmic memorychip list full`
 - In Linux (recommended), enter: `sudo dmidecode -t memory`
