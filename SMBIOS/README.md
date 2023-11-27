@@ -58,10 +58,14 @@ As you can see, the `ProductName` is set to `MacBookPro11,4` (which is the minim
 
 
 ## SMBIOS auto-switcher
-Clover r5152 introduced an [SMBIOS auto-switcher](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2806690) which allows having more than one SMBIOS section in your config and switch between them based on the detected version of macOS. Use `SMBIOS_osname` to asign different SMBIOSes to different versions of macOS. to See screenshot for details:<br> ![](https://www.insanelymac.com/uploads/monthly_2023_06/1571006057_Screenshot2023-06-17at21_52_41.png.5d592f1d7c4ac749ffbe48b7d58fcbcc.png)
+Clover r5152 introduced an [SMBIOS auto-switcher](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2806690) which allows having more than one SMBIOS section in your config and switch between them based on the detected version of macOS. Use `SMBIOS_osname` to asign different SMBIOSes to different versions of macOS. See screenshot for details:
+
+![](https://www.insanelymac.com/uploads/monthly_2023_06/1571006057_Screenshot2023-06-17at21_52_41.png.5d592f1d7c4ac749ffbe48b7d58fcbcc.png)
 
 ## FakeCPUID in SMBIOS
-Clover r5152 (Commit 2d142970c) also introduced the ability to add a FakeCPUID to the SMBIOS section: ![](https://www.insanelymac.com/uploads/monthly_2023_06/image.png.8fb02edca665b1252e5f2ffa8e6d454f.png)
+Clover r5152 (Commit 2d142970c) also introduced the ability to add a FakeCPUID to the SMBIOS section: 
+
+![](https://www.insanelymac.com/uploads/monthly_2023_06/image.png.8fb02edca665b1252e5f2ffa8e6d454f.png)
 
 In combination with the SMBIOS auto-switcher, this is useful for running older versions of macOS on newer hardware without needing to switch to a different config.plist. 
 
