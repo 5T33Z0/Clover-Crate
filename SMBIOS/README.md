@@ -1,6 +1,6 @@
 # SMBIOS
 
-**TABLE of CONTENTS**
+<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
 
 - [About](#about)
 - [Example: Generating SMBIOS data with Clover Configurator](#example-generating-smbios-data-with-clover-configurator)
@@ -16,6 +16,8 @@
 - [Running macOS on unsupported platforms](#running-macos-on-unsupported-platforms)
 	- [Workaround (macOS 11.3+ only)](#workaround-macos-113-only)
 - [Notes](#notes)
+
+</details>
 
 ## About
 >**SMBIOS** stands for **System Management BIOS**. It defines data structures (and access methods) that can be used to read management information produced by the BIOS of a computer. This eliminates the need for the operating system to probe hardware directly to discover what devices are present in the computer. The SMBIOS specification is produced by the Distributed Management Task Force (DMTF), a non-profit standards development organization. The DMTF estimates that two billion client and server systems implement SMBIOS. **SOURCE**: [Wikipedia](https://en.wikipedia.org/wiki/System_Management_BIOS#From_UEFI)
