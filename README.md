@@ -30,7 +30,7 @@ The methods and techniques presented in this repo are based on utilizing the off
 
 > MaLd0n's implications that you need a custom DSDT to add and remove (well, remove yes, but disabling is good enough in virtually all cases) devices is **incorrect**. Aside from those claims, most device rename changes (probably also things you considered „missing“) are also not needed, as they are performed by Lilu and its plug-ins. This approach is a lot safer than previous ACPI renames as dumb find-replace patches can yield false positives, the kext approach cannot.
 
-## TABLE of CONTENTS
+## SECTIONS
 - **CLOVER CONFIGURATION**
   - [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#readme)
   - [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot#readme)
