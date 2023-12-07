@@ -8,7 +8,7 @@ If you are using a Clover EFI folder that you set-up manually without using the 
 This is because it requires a little helper called "bdmesg". It is installed when running the Clover.pkg installer, so it's missing if you didn't use the installer (which you definitely should not do if you plan to use Clover alongside OpenCore).
 
 ## The fix
-- Download the latest Clover_r5155.pkg build.
+- Download the latest Clover_r51xx.pkg build.
 - Extract it with [unpkg](https://www.timdoug.com/unpkg/). The extracted content will be located in a "Clover_r5155 folder next to the .pkg.
 - Under "Utils/usr/local/bin" you will find `bdmesg`.
 - Copy it.
