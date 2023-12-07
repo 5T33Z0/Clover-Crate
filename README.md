@@ -1,8 +1,9 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover:-r5155-grass.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.27.00-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤14.2-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-23.11.26-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
+[![Clover Version](https://img.shields.io/badge/Clover:-r5156-grass.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.27.00-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤14.2-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-23.12.07-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 |:warning: Current Issues/Updates|
 |:-----------------------------------------------------------|
+| **`BlockSkywalk`** Patch is broken after r5156, commit [**bdb7a95**](https://github.com/CloverHackyColor/CloverBootloader/commit/bdb7a95d94ad6233f19ee8759ed06b806ec823b5)  
 | **`HWTarget`** is broken in macOS 13. Use this [**workaround**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables#working-around-issues-with--hwtarget-in-macos-13-to-receive-system-updates) to get System Updates (or switch to OpenCore).
 |**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
 
@@ -12,7 +13,6 @@
 It provides up-to-date and in-depth explanations for every setting and parameter. Special attention to detail was given to the ACPI section, since it is crucial for configuring a Hackintosh. The documentation is designed to be user-friendly and easy to navigate. The list menu on the top left allows users to quickly jump to the specific topics/sections they're interested in. I am talking about this one:
 
 ![TOC](https://user-images.githubusercontent.com/76865553/136510478-2bccd5ae-6cc6-4a98-8f8d-63c41de2d3b3.png)
-
 
 <details><summary><strong>Motivation</strong> (click to reveal)</summary>
 
