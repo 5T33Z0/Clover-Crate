@@ -3,7 +3,7 @@
 
 |:warning: Current Issues/Updates|
 |:-----------------------------------------------------------|
-| **`BlockSkywalk`** Patch is broken after r5156, commit [**bdb7a95**](https://github.com/CloverHackyColor/CloverBootloader/commit/bdb7a95d94ad6233f19ee8759ed06b806ec823b5)  
+| **`BlockSkywalk`** is broken after r5156, commit [**bdb7a95**](https://github.com/CloverHackyColor/CloverBootloader/commit/bdb7a95d94ad6233f19ee8759ed06b806ec823b5), causing early KP in macOS Sonoma!
 | **`HWTarget`** is broken in macOS 13. Use this [**workaround**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables#working-around-issues-with--hwtarget-in-macos-13-to-receive-system-updates) to get System Updates (or switch to OpenCore).
 |**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
 
