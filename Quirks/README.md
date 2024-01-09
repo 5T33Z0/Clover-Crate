@@ -59,7 +59,13 @@ Added in r5150. This is an experimental quirk provided by OpenCore. The timeout 
 This section lists Quirks which are new, undocumented or unavailable in Clover Configurator yet or are noteworthy otherwise.
 
 ### ForceAquantiaEthernet
-Introduced in Clover r5156. Enables Aquantia AQtion based 10GbE network cards support, which used to work natively before macOS 10.15.4. May require dropping/replacing `DMAR` Table in order to work. (&rarr; see ["Notes for dropping DMAR for ForceAuqantiaEthernet"](https://github.com/acidanthera/OpenCorePkg/commit/24414555f2c07e06a3674ec7a2aa1ce4860bbcc7#commitcomment-70530145)).
+Introduced in Clover r5156. Enables Aquantia AQtion based 10GbE network cards support, which used to work natively before macOS 10.15.4. 
+
+**Config requirements**:
+
+- `VT-d` must be enabled in BIOS
+- `DisableIoMapper` Quirk must be unselected
+- Some mainboards (e.g. Z490) may require dropping/replacing `DMAR` Table in order to make AppleVTD work in macOS (&rarr; see ["Notes for dropping DMAR for ForceAuqantiaEthernet"](https://github.com/acidanthera/OpenCorePkg/commit/24414555f2c07e06a3674ec7a2aa1ce4860bbcc7#commitcomment-70530145)).
 
 ### ForceOcWriteFlash
 Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Description from the OpenCore Documentation:
