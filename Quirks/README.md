@@ -52,10 +52,14 @@ Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.
 Added in r5150. This is an experimental quirk provided by OpenCore. The timeout has to be entered as an integer in µs. Xeon E5-2650v2 need a value of `750000`. Before playing with this value, it's recommended to use one of the existing kexts for fixing TSC Sync issues instead (like [CpuTscSync](https://github.com/acidanthera/CpuTscSync)). 
 
 > [!NOTE]
+> 
 > Update Clover Configurator to the latest version (5.24.0.0 or newer) to find the new UEFI Tab in the Quirks section!
 
 ## Additional Quirks
 This section lists Quirks which are new, undocumented or unavailable in Clover Configurator yet or are noteworthy otherwise.
+
+### ForceAquantiaEthernet
+Introduced in Clover r5156. Enables Aquantia AQtion based 10GbE network cards support, which used to work natively before macOS 10.15.4. May require dropping/replacing `DMAR` Table in order to work. (&rarr; see ["Notes for dropping DMAR for ForceAuqantiaEthernet"](https://github.com/acidanthera/OpenCorePkg/commit/24414555f2c07e06a3674ec7a2aa1ce4860bbcc7#commitcomment-70530145)).
 
 ### ForceOcWriteFlash
 Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Description from the OpenCore Documentation:
