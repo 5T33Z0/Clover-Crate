@@ -91,6 +91,10 @@ To find the Controller kext used by your AMD/ATI card, run Hackintool, click on 
 
 Usually, Clover automatically picks an appropriate Framebuffer for common cards it detects. However, you can choose a custom one from the dropdown menu or enter a name manually if the detection fails or the default Framebuffer causes issues. Just make sure it matches the Controller used in your ATI/AMD Card (Hackintool is your friend).
 
+> [!IMPORTANT]
+> 
+> According to Whatevergreen's [**Radeon FAQs**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.Radeon.en.md), using named framebuffers is not recommended: "Named framebuffers (Baladi, Futomaki, Lotus, etc.), enabled by Clover's GPU injection or any other methods should never ever be used. This way of GPU injection is a common mistake, preventing automatic configuration of various important GPU parameters. This will inavoidably lead to borked GPU functioning in quite a number of cases."
+
 #### `Inject ATI` and `FB Name` in macOS Monterey
 Since Clover r5145, commit 89658955f, the Framebuffer Patches for ATI/AMD were updated for better performance under macOS Monterey 12.3+ with newer GPUs ([**Source**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/?do=findComment&comment=2778575)). 
 Do the following to enable the correct framebuffer for your AMD GPU:
@@ -103,10 +107,24 @@ Do the following to enable the correct framebuffer for your AMD GPU:
 	- **Radeon 7** &rarr; `Donguil`
 	- **RX5700** &rarr; `Adder`
 	- **RX5500** &rarr; `Python`
-	- **RX570** &rarr; `Orinoco`
+	- **RX570/RX580** &rarr; `Orinoco`
 3. Add `SSDT-NAVI.aml` to `EFI/CLOVER/ACPI/patched` (contains the necessary device renames)
 4. Disable `Whatevergreen.kext` (move to `/kexts/off`)
 5. Reboot and check if the performance has improved
+
+> [!IMPORTANT]
+> 
+> The following personalities were dropped from the AMD Polaris stack in macOS Sonoma:
+> 
+> - ATY,Acre
+> - ATY,Berbice
+> - ATY,Caroni
+> - ATY,Dayman
+> - ATY,Elqui
+> - ATY,Guariba
+> - ATY,Huallaga
+> - ATY,Longavi
+> - ATY,Orinoco
 
 #### AMD Radeon Performance Tweaks
 You can follow [this guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/AMD_Radeon_Tweaks) to tweak the Performance of Polaris and Navi Cards.
