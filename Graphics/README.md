@@ -52,7 +52,7 @@ You can enable the injection of parameters based on vendors:
 > [!NOTE]
 > 
 > - The `Inject` feature is a remnant of the era before Whatevergreen.kext (WEG) existed. Since WEG handles most of the necessary adjustments to get graphics cards working with macOS nowadays, it is recommended to disable them (except for `Inject ATI` which is still useful in macOS 12 to address performance issues).
-> - If you want to use Clover's `Inject` feature, you are supposed to *disable* Whatevergreen, since it  handles device renaming and graphics injections its own way.
+> - If you want to use Clover's `Inject` feature, you are supposed to *disable* Whatervergreen, since it  handles device renaming and graphics injections its own way. But keep in mind that you will need additional device renames for integrated and discrete graphics in this case!
 > - When using Intel on-board graphics on modern systems, using `Inject Intel` is not recommended. Instead, follow Whatevergreen's [Intel HD Graphics FAQ](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) to configure the framebuffer for your CPU in the `Devices/Properties` section manually.
 > - **Hint**: The `config.plists` included in the [Desktop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/EFIs_and_Configs/Desktop_Configs) and [Laptop Configs](https://github.com/5T33Z0/Clover-Crate/tree/main/EFIs_and_Configs/Laptop_Configs) sections contain a lot of Framebuffer patches for various Intel CPU families already which might be useful to get your Intel HD/UHD graphics up and running.
 
