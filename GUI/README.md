@@ -145,7 +145,9 @@ If a volume cannnot be hidden by its name (or parts of it), you need to enter th
 
 On next reboot, this volume will be hidden.
 
-**Tip**: An easier method to find out the UUID is to using the custom entries section, since it displays the UUIDs of all volumes.
+> [!TIP]
+>
+> An easier way to figure out the UUID is to use the "Custom entries" section, since it displays the UUIDs of all volumes.
 
 ## Clover Boot Menu Options
 
