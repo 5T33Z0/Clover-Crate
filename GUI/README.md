@@ -126,7 +126,14 @@ Here you can change a lot of things. The most important one being the dropdown m
 Enter a custom name in the `Title` field, set `Type` and `Volume Type` and it should work.
 
 ## Hide Volume
-Here you can use enter names of partitions/volumes which shall be a hidden from the Bootloader GUI by default. For certain Windows volumes you need to enter the correct UUID to hide them. Open Terminal and enter:
+![HideVol](https://github.com/5T33Z0/Clover-Crate/assets/76865553/5884a708-ed38-4a5d-8a44-002376df7597)
+
+Here you can use enter names of volumes which shall be a hidden from the Bootloader GUI by default. Common suspects are:
+
+- Recovery (&rarr; hides the Recovery partiton of macOS)
+- Legacy (&rarr; Enter to hide "Legacy" entries from Windows. Use if you have an UEFI-based system) 
+
+If a volume cannnot be hidden by its name (or parts of it), you need to enter the correct UUID of the volume to hide it. Open Terminal and enter:
 
 1. `diskutil list` and hit enter
 2. Find the partition you want to hide
@@ -136,7 +143,7 @@ Here you can use enter names of partitions/volumes which shall be a hidden from 
 6. In the "Hide Volume" section, click on `+` 
 7. Enter the UUID
 
-On next reboot, this volume should be hidden.
+On next reboot, this volume will be hidden.
 
 **Tip**: An easier method to find out the UUID is to using the custom entries section, since it displays the UUIDs of all volumes.
 
