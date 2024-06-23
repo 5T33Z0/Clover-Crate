@@ -97,7 +97,9 @@ For example, if your `ACPI/origin` folder contains a `SSDT-6-SaSsdt.aml` you cou
 
 This way, you could find the SSDT containing all the 26 Ports for your board in the dumped ACPI, fix it, place it in the `ACPI/patched` folder and boom: no more `USBports.kext` required. 
 
-**TIP**: `AutoMerge` can also be useful in cases where dropping a table fails for unknown reasons. While I was trying to figure out why my 3rd party Ethernet Card wouldn't connect to the internet when using Clover (it worked fine when using OpenCore), I noticed that the `DMAR` table wasn't dropped when using maciASL's "New from ACPI" feature. Instead, two `DMAR` tables were present: the original one and my modified version located under `ACPI/patched`. After enabling `AutoMerge` and a reboot, there was only one `DMAR` table (the corrected one) and internet worked. So if you can't drop a table, you can always replace it with a corrected one by merging, as long as the Table Signature/OEM Table ID matches.
+> [!TIP]
+> 
+> `AutoMerge` can also be used in cases where dropping a table fails for unknown reasons. While I was trying to figure out why my 3rd party ethernet card wouldn't connect to the internet when using Clover (it worked fine with OpenCore), I noticed that the OEM `DMAR` table was not dropped. Instead, two `DMAR` tables were present: the original one and my modified `DMAR` I placed in `ACPI/patched`. After enabling `AutoMerge` and a reboot, there was only one `DMAR` table present (mine) and internet worked again. So if you can't drop a table, you can always replace it with a modified one by merging, as long as the Table Signature/OEM Table ID match.
 
 ## Disable ASPM
 
