@@ -100,8 +100,8 @@ In order to re-enable and use ACPI CPU Power Management on macOS Ventura and new
 - Add [**CrytexFixup** ](https://github.com/acidanthera/CryptexFixup) &rarr; required for installing/booting macOS Ventura an pre-Haswell systems
 - Add [**RestrictEvents.kext**](https://github.com/acidanthera/RestrictEvents) &rarr; Enables special board-id that makes macOS think that it is running in a Virtual Machine that allows installing OTA Updates which would not be possible otherwise
 - Add **boot-args**:
-   - `-no_compat_check`
-	- `sbvmm` &rarr; Enables `VMM-x86_64` Board-id which allows installing system updates on unsupported systems 
+	- `-no_compat_check`
+	- `revpatch=sbvmm` &rarr; Enables `VMM-x86_64` Board-id which allows installing system updates on unsupported systems 
 	- `revblock=media` &rarr; Blocks `mediaanalysisd` service on Ventura+ which fixes issues on Metal 1 iGPUs. Firefox won't work without this.
 	- `ipc_control_port_options=0` &rarr; Fixes crashes with Electron apps like Discord
 	- `amfi=0x80` &rarr; Disables AMFI. Required to execute the Intel HD4000 iGPU driver installation with OpenCore Legacy Patcher. Disable afterwards.
