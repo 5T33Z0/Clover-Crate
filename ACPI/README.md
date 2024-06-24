@@ -170,11 +170,11 @@ Reset Address/Value | Description
 `0x64`/`0xFE` | Resets the System via the **PS/2 Controller**. Default if  `Reset Address` and `Reset Value` are left empty. Resetting the system via the PS/2 controller may be faster than resetting it via software, as the PS/2 controller is a hardware device that is directly connected to the CPU and is responsible for handling keyboard and mouse input.
 `0x92`/`0x01` | Resets the system via the **Programmable Interrupt Controller (PIC)**. The PIC is responsible for routing IRQs from various devices, such as the keyboard and mouse, to the CPU for processing. This may be faster than resetting via software, as the PIC is responsible for managing interrupt requests (IRQs) in the system and directing them to the appropriate processing units.
 
-:bulb: **TIPS**
-
-- Check the pre-defined value in the `FACP` table before changing them
-- You only need to change these values if shutdown/reset takes really long or doesn't work at all
-- Try all 3 methods to figure out which one works best for you. I have had good results by resetting via SMM. Resetting via PIC and PS/2 did quit macOS but didn't reset/shutdown the system.
+> [!TIP]
+> 
+> - Check the pre-defined values in the `FACP` table before changing them
+> - You only need to change them if shutdown/reset takes really long or doesn't work at all
+> - Try all 3 methods to figure out which one works best for your system. I have had good results by resetting via `SMM`. Resetting via `PIC` and `PS/2` did quit macOS but didn't reboot/shutdown the system.
 
 ## Smart UPS
 
@@ -333,11 +333,13 @@ Listed below are the included DSDT `Fixes` provided by Clover (about 30) and wha
 
 To get a better understanding for fixes that are still relevant in 2023, take a look at my [**Desktop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Desktop_Configs) and [**Laptop**](https://github.com/5T33Z0/Clover-Crate/tree/main/Laptop_Configs) configs before getting all click-happy and just randomly enable every available fix!
 
-**TIP**: Use `Fixes` sparsely. Instead, apply SSDT hotpatches included in the OpenCore package or from my [**OC-Little Repo**](https://github.com/5T33Z0/OC-Little-Translated) to fix your `DSDT`.
+> [!TIP]
+> 
+>  Use `Fixes` sparsely. Instead, apply SSDT hotpatches included in the OpenCore package or from my [**OC-Little Repo**](https://github.com/5T33Z0/OC-Little-Translated).
 
-> [IMPORTANT!]
+> [!IMPORTANT]
 >
-> These fixes have been accumulated over the years – some of them might be deprecated nowadays. Remember: just because a fix is available, it doesn't mean that it still works with current hardware and macOS versions!
+> These fixes have been accumulated over the years – some of them might be deprecated nowadays. So just because a fix exists, it doesn't mean that it will still work with current hardware and macOS releases!
 
 #### AddDTGP
 
