@@ -1,7 +1,7 @@
 # Converting OpenCore Settings to Clover
 >Work In Progress! Please supply additional info if you have it and want to contribute to this list.
 
-<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
+<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary><br>
 
 - [About](#about)
 - [ACPI](#acpi)
