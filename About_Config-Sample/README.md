@@ -18,13 +18,14 @@
 - [Quirks Section](#quirks-section)
 
 ## Preface
-Unfortunately, the config sample included in the Clover Package is a complete mess. It seems to me that in order to populate every section of the config, settings were just enabled randomly without applying any common sense whatsoever. Therefore, my advice is: don't use it! Instead, open Clover Configurator and create a new empty config by pressing <kbd>⌘</kbd>+<kbd>n</kbd> and follow the [**Clover Desktop Guide**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) and add the missing [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks). This way, the config also gets a lot smaller in size which which improves the boot process.
-
-Below you find a list of issues I have with the config-sample.plist in it's current state as well as recommended settings for each section. Clicking on the headlines forwards you to the corresponding chapter of the repo which explains every option in detail.
 
 > [!WARNING]
 >
 > Don't use the `config-sample.plist` that comes with the Clover Package!
+
+Unfortunately, the config sample included in the Clover Package is a complete mess. It seems to me that in order to populate every section of the config, settings were just enabled randomly without applying any common sense whatsoever. Therefore, my advice is: don't use it! Instead, open Clover Configurator and create a new empty config by pressing <kbd>⌘</kbd>+<kbd>n</kbd> and follow the [**Clover Desktop Guide**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/) and add the missing [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks). This way, the config also gets a lot smaller in size which which improves the boot process.
+
+Below you find a list of issues I have with the config-sample.plist in it's current state as well as recommended settings for each section. Clicking on the headlines forwards you to the corresponding chapter of the repo which explains every option in detail.
 
 ## [ACPI Section](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI)
 See the corresponding section to find out what each option/setting does!
