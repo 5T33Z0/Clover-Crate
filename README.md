@@ -7,7 +7,7 @@
 |**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
 
 ## ABOUT
-**Clover Crate** is an unofficial documentation for the Clover Boot Manager and its features. Its structure closely follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator. 
+**Clover Crate** is an unofficial documentation for the [**Clover Boot Manager**](https://github.com/CloverHackyColor/CloverBootloader/releases) and its features. Its structure closely follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator. 
 
 It provides up-to-date and in-depth explanations for every setting and parameter. Special attention to detail was given to the ACPI section, since it is crucial for configuring a Hackintosh. The documentation is designed to be user-friendly and easy to navigate. The list menu on the top left allows users to quickly jump to the specific topics/sections they're interested in. I am talking about this one:
 
