@@ -56,7 +56,7 @@ The methods and techniques presented in this repo are based on utilizing the off
   - [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters#readme)
   - [**Tools Section**](https://github.com/5T33Z0/Clover-Crate/blob/main/Tools/README.md)
 - **APPENDIX**
-  - [**Clover's problematic config-sample.plist**](https://github.com/5T33Z0/Clover-Crate/tree/main/About_Config-Sample) 
+  - [**Clover's problematic `config-sample.plist`**](https://github.com/5T33Z0/Clover-Crate/tree/main/About_Config-Sample) 
   - [**Upgrading to Clover with OpenRuntime integration**](https://github.com/5T33Z0/Clover-Crate/tree/main/Upgrading_Clover#readme)
   - [**Preconfigured EFIs and Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/EFIs_and_Configs)
   - [**Kext Management in Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kext_Management#readme)
