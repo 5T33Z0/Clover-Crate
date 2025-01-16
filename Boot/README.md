@@ -64,7 +64,7 @@ For more iGPU and dGPU-related boot args see the Whatevergreen topic.
 **`-wegnoegpu`**|Disables all GPUs but the integrated graphics on Intel CPU. Use if GPU is incompatible with macOS. Doesn't work all the time.
 **`nvda_drv=1`**|Enable Web Drivers for NVIDIA Graphics Cards (supported up to macOS High Sierra only).
 **`nv_disable=1`**|Disables NVIDIA GPUs (***don't*** combine this with `nvda_drv=1`)
-**'unfairgva=x'** (x = number from 1 to 7 )| Replaces `shikigva` in macOS 11+ to address issues with [**DRM**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.Chart.md) on AMD cards. It's a bitmask with 3 bits (1, 2 and 4) which can be combined to enable/select different features as [explained here](https://www.insanelymac.com/forum/topic/351752-amd-gpu-unfairgva-drm-sidecar-featureunlock-and-gb5-compute-help/)
+**`unfairgva=x`** (x = number from 1 to 7 )| Replaces `shikigva` in macOS 11+ to address issues with [**DRM**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.Chart.md) on AMD cards. It's a bitmask with 3 bits (1, 2 and 4) which can be combined to enable/select different features as [explained here](https://www.insanelymac.com/forum/topic/351752-amd-gpu-unfairgva-drm-sidecar-featureunlock-and-gb5-compute-help/)
 
 ### Network-specific boot arguments
 |Boot-arg|Description|
