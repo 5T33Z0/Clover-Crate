@@ -3,7 +3,7 @@
 
 <details>
 <summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
-  
+
 - [Arguments](#arguments)
   - [Debugging](#debugging)
   - [GPU-specific boot arguments](#gpu-specific-boot-arguments)
@@ -32,6 +32,7 @@
 - [Timeout](#timeout)
 - [XMPDetection](#xmpdetection)
 - [Adding Clover entry to the BIOS Boot menu](#adding-clover-entry-to-the-bios-boot-menu)
+- [Link](#links)
 
 </details>
 
@@ -228,10 +229,13 @@ Sets the timeout in seconds (0-30 s), before the boot process continues loading 
 ## XMPDetection
 Enables (if set to `0`) or disables XMP detection. By default it's disabled (set to `-1`). Usually, enabling this feature is only necessary if the XMP Profile of the RAM is not detected. In addition to simply enabling/disabling XMP detection, you can can also choose between Profile 1 (`1`) or Profile 2 (`2`) if your RAM modules support different memory profiles. Perhaps in the future the profiles will be used for other purposes.
 
-# Adding Clover entry to the BIOS Boot menu
+## Adding Clover entry to the BIOS Boot menu
 If for some reason the entry for the partition containing the Clover bootloader is missing from your BIOS boot menu, you can let Clover create one. But this has to be done in from within the Clover boot menu because this affects UEFI BIOS variables working prior to Clover being started, so it can't be set up in the config.plist.
 
 In order to do so, do the following:
 
 1. In the Clover boot menu, select "Clover Boot Options":</br>![screenshot1](https://user-images.githubusercontent.com/76865553/159431070-103960ad-90b8-4a1a-b86c-7127c9bfac2d.png)
 2. In the next screen, you will find the PCI path pointing to the `CLOVERX64.efi` bootloader file. Clicking or hitting Enter on "Add Clover boot options for all entries" will generate a boot entry in the BIOS boot menu:</br>![screenshot2](https://user-images.githubusercontent.com/76865553/159431126-4afa3874-d322-4cf2-b18e-942e8e76b86d.png)
+
+## Links
+- [**How to make Clover the default Boot Manager**](https://www.insanelymac.com/forum/topic/326494-how-to-make-clover-default-bootloader-after-installing-windows-on-uefi/)
