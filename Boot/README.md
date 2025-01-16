@@ -32,7 +32,7 @@
 - [Timeout](#timeout)
 - [XMPDetection](#xmpdetection)
 - [Adding Clover entry to the BIOS Boot menu](#adding-clover-entry-to-the-bios-boot-menu)
-- [Link](#links)
+- [Links](#links)
 
 </details>
 
