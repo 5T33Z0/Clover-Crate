@@ -1,5 +1,5 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover:-r5161-grass.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.28.00-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤15.x-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-25.01.11-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
+[![Clover Version](https://img.shields.io/badge/Clover:-r5161-grass.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.28.00-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤15.x-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-25.01.19-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 |:warning: Current Issues/Updates|
 |:-----------------------------------------------------------|
@@ -40,31 +40,32 @@ The methods and techniques presented in this repo are based on utilizing the off
 </details>
 
 ## SECTIONS
-- **CLOVER CONFIGURATION**
-  - [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#readme)
-  - [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot#readme)
-  - [**Boot Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics#readme)
-  - [**CPU**](https://github.com/5T33Z0/Clover-Crate/tree/main/CPU#readme)
-  - [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices#readme)
-  - [**Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Graphics#readme)
-  - [**GUI**](https://github.com/5T33Z0/Clover-Crate/tree/main/GUI#readme)
-  - [**Boot Menu Options**](https://github.com/5T33Z0/Clover-Crate/blob/main/GUI/Boot_Menu_Options.md) 
-  - [**Kernel and Kext Patches**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kernel_And_Kext_Patches#readme)
-  - [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks#readme)
-  - [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables#readme)
-  - [**SMBIOS**](https://github.com/5T33Z0/Clover-Crate/tree/main/SMBIOS#readme)
-  - [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters#readme)
-  - [**Tools Section**](https://github.com/5T33Z0/Clover-Crate/blob/main/Tools/README.md)
-- **APPENDIX**
-  - [**Clover's problematic `config-sample.plist`**](https://github.com/5T33Z0/Clover-Crate/tree/main/About_Config-Sample) 
-  - [**Upgrading to Clover with OpenRuntime integration**](https://github.com/5T33Z0/Clover-Crate/tree/main/Upgrading_Clover#readme)
-  - [**Preconfigured EFIs and Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/EFIs_and_Configs)
-  - [**Kext Management in Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kext_Management#readme)
-  - [**Mapping USB Ports**](https://github.com/5T33Z0/Clover-Crate/tree/main/USB_Fixes#readme)
-  - [**Converting OpenCore Properties to Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/OC2Clover#readme)
-  - [**Clover Calculators**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras)
-  - [**Compatibility Charts**](https://github.com/5T33Z0/Clover-Crate/tree/main/Compatibility_Charts)
-  - [**Utilities and Resources**](https://github.com/5T33Z0/Clover-Crate/tree/main/Utilities#readme)
+### CLOVER CONFIGURATION
+- [**ACPI**](https://github.com/5T33Z0/Clover-Crate/tree/main/ACPI#readme)
+- [**Boot**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot#readme)
+- [**Boot Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Boot_Graphics#readme)
+- [**CPU**](https://github.com/5T33Z0/Clover-Crate/tree/main/CPU#readme)
+- [**Devices**](https://github.com/5T33Z0/Clover-Crate/blob/main/Devices#readme)
+- [**Graphics**](https://github.com/5T33Z0/Clover-Crate/tree/main/Graphics#readme)
+- [**GUI**](https://github.com/5T33Z0/Clover-Crate/tree/main/GUI#readme)
+- [**Boot Menu Options**](https://github.com/5T33Z0/Clover-Crate/blob/main/GUI/Boot_Menu_Options.md) 
+- [**Kernel and Kext Patches**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kernel_And_Kext_Patches#readme)
+- [**Quirks**](https://github.com/5T33Z0/Clover-Crate/tree/main/Quirks#readme)
+- [**RtVariables**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables#readme)
+- [**SMBIOS**](https://github.com/5T33Z0/Clover-Crate/tree/main/SMBIOS#readme)
+- [**System Parameters**](https://github.com/5T33Z0/Clover-Crate/tree/main/System_Parameters#readme)
+- [**Tools Section**](https://github.com/5T33Z0/Clover-Crate/blob/main/Tools/README.md)
+
+### APPENDIX
+- [**Clover's problematic `config-sample.plist`**](https://github.com/5T33Z0/Clover-Crate/tree/main/About_Config-Sample) 
+- [**Upgrading to Clover with OpenRuntime integration**](https://github.com/5T33Z0/Clover-Crate/tree/main/Upgrading_Clover#readme)
+- [**Preconfigured EFIs and Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/EFIs_and_Configs)
+- [**Kext Management in Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kext_Management#readme)
+- [**Mapping USB Ports**](https://github.com/5T33Z0/Clover-Crate/tree/main/USB_Fixes#readme)
+- [**Converting OpenCore Properties to Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/OC2Clover#readme)
+- [**Clover Calculators**](https://github.com/5T33Z0/Clover-Crate/tree/main/Xtras)
+- [**Compatibility Charts**](https://github.com/5T33Z0/Clover-Crate/tree/main/Compatibility_Charts)
+- [**Utilities and Resources**](https://github.com/5T33Z0/Clover-Crate/tree/main/Utilities#readme)
 
 ## CONTRIBUTIONS
 If you would like to contribute to the information provided in this repo in order to improve/expand it, feel free to create an issue with a meaningful title, link to the chapter/section and describe what you like to add, change, correct or expand upon.
