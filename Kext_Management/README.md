@@ -28,15 +28,16 @@ As you can see, most of the kexts reside in the `kexts\Other` folder, but there 
 The benefit of managing kexts this way is that you don't have to create different EFI folders for running various versions of macOS on the same system. All you may need is a different `config.plist` with a different SMBIOS or additional/different patches required for that macOS version to run. Since you can switch configs from within the Clover Boot menu, this is a pretty handy way to manage various macOS versions with just one EFI Folder.
 
 ## Handling nested Kexts
-There are a couple of kexts in Hackintoshland that contain additional kexts in a sub-folder called "Plugins" which can really cause trouble when using Clover – especially if the "Plugin" folder contains kexts of which only one or the either should be loaded. In OpenCore that's not really an issue, since every single kext is listed in the `config.plist` and can be disabled manually or by utilizing `MinKernel` and/or `MaxKernel` settings. But in Clover, loading conflicting kexts can cause Kernel panics or boot stalls.
+There are a couple of kexts in Hackintoshland that contain additional kexts in a sub-folder called "Plugins" which can cause trouble when using Clover – especially if the "Plugin" folder contains kexts of which only one or the other should be loaded. In OpenCore that's not really an issue, since every single kext is listed in the `config.plist` and can be disabled manually or by utilizing `MinKernel` and/or `MaxKernel` settings. But in Clover, loading conflicting kexts can cause Kernel panics and/or boot stalls.
 
-Here's an *incomplete* list containing additional kexts as plugins that should be deleted based on the used macOS version and/or hardware component (right-click the kext and select "Show package contents"):
+Here's an *incomplete* list containing additional, nested kexts as plugins that should be deleted based on the used macOS version and/or hardware component (right-click the kext and select **"Show package contents"**):
 
-Kext | Plugin(s) | Action
------|-----------------------------|-------------------------------------
-[**AirportBrcmFixup**](https://github.com/acidanthera/AirportBrcmFixup) | <ul><li>**AirPortBrcmNIC_Injector** (macOS 10.13+)<li> **AirPortBrcm4360_Injector** (macOS 10.8 to 10.15)| Delete incompatible kext
-[**VoodooPS2Controller.kext**](https://github.com/acidanthera/VoodooPS2) | <ul><li>**VoodooPS2Trackpad** <li> **VoodooPS2Mouse** <li> **VoodooPS2Keyboard** <li> **VoodooInput** | If **VoodooInput** is included in other kexts for TrackPad as well, then delete it. A prime example would be **VoodooRMI**. On modern Laptos, you can usually delete **PS2Mouse** as well. 
-[**VoodooRMI**](https://github.com/VoodooSMBus/VoodooRMI) | <ul><li> **RMII2C**  <li> **RMISMBus** <li> **VoodooInput** | If your TrackPad is controlled via SMBUS, delete RMII2C, if it is controlled vai I2C, delete RMII2C.
-[**IO80211FamilyLegacy**](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Wifi) | <ul> <li>**AirPortBrcmNIC** | Delete when using an Intel WiFi Card in macOS Sequoia with AirportItlwm ([more details](https://github.com/5T33Z0/OC-Little-Translated/blob/main/14_OCLP_Wintel/Enable_Features/AirportItllwm_Sequoia.md)) 
+Kext | Nested Plugin(s) | Info/Action
+----:|-----------|-------------
+[**AirportBrcmFixup**](https://github.com/acidanthera/AirportBrcmFixup) | <ul><li>**AirPortBrcmNIC_Injector** (macOS 10.13+)<li> **AirPortBrcm4360_Injector** (macOS 10.8 to 10.15)| Delete the *incompatible* kext. E.g. if you want to use macOS Big Sur or newer, you must delete **AirPortBrcm4360_Injector**!
+[**VoodooPS2Controller.kext**](https://github.com/acidanthera/VoodooPS2) | <ul><li>**VoodooPS2Trackpad** <li> **VoodooPS2Mouse** <li> **VoodooPS2Keyboard** <li> **VoodooInput** | If **VoodooInput** is included in other kexts for TrackPads as well, then delete it. Prime examples are **VoodooI2C** and **VoodooRMI**. On modern Laptos, you can usually delete **PS2Mouse** as well. 
+[**VoodooI2C**](https://github.com/VoodooI2C/VoodooI2C/releases) |<ul><li>**VoodooGPIO** <li> **VoodooI2CServices** <li> **VoodooInput** | For Trackpads cotrolled via I<sup>2</sup>C (pronounced "I squared c").
+[**VoodooRMI**](https://github.com/VoodooSMBus/VoodooRMI) | <ul><li> **RMII2C**  <li> **RMISMBus** <li> **VoodooInput** | If your TrackPad is controlled via SMBUS, delete RMII2C, if it is controlled vai  I<sup>2</sup>C, delete **RMII2C**.
+[**IO80211FamilyLegacy**](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Wifi) | <ul> <li>**AirPortBrcmNIC** | Delete when using an **Intel** WiFi Card in macOS Sequoia with **AirportItlwm** ([more details](https://github.com/5T33Z0/OC-Little-Translated/blob/main/14_OCLP_Wintel/Enable_Features/AirportItllwm_Sequoia.md)). 
 
 As mentioned, this list is probably incomplete. If you know more kexts that contain plugins, let me know.
