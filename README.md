@@ -1,8 +1,9 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover:-r5161-grass.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.28.00-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤15.x-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-25.01.19-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
+[![Clover Version](https://img.shields.io/badge/Clover:-r5161-grass.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.28.00-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤15.x-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-25.02.08-blueviolet.svg) ![00Main](https://user-images.githubusercontent.com/76865553/136703368-146cda4c-9a8b-4b5f-8d3e-0382f1ccd68f.jpg)
 
 |:warning: Current Issues/Updates|
 |:-----------------------------------------------------------|
+| Time to archive this repo and put it to rest. Clover has been effectively dead since 2020, surviving only as a zombie thanks to OpenCore’s memory fixes. Since Slice has repeatedly tried to slander OpenCore – most recently [here](https://www.insanelymac.com/forum/topic/350754-opencore-general-discussion/page/361/#findComment-2830264) — I’ve decided to sever my ties with it and help lay it to rest once and for all! 
 | **`HWTarget`** is broken in macOS 13+. Use this [**workaround**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables#working-around-issues-with--hwtarget-in-macos-13-to-receive-system-updates) to get System Updates (or switch to OpenCore).
 |**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
 
