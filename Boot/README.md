@@ -36,6 +36,10 @@
 
 </details>
 
+## Issues
+
+- Apparently, Clover cannot handle _combined_ boot-args. I noticed that Firefox kept crashing in Sequoia on my Intel Ivy Bridge Laptop. The reason was that the `revpatch=f16c` boot-arg provided by `RestrictEvent.kext` that prohibits core graphics from crashing by disabling f16c instruction set was not working because I combined it with other revpatch arguments into a long string (`revpatch=sbvmm,memtab,f16c`). After splitting the string into three single boot-args, it worked again.
+
 ## Arguments
 The following tables contain boot arguments that are passed over to `boot.efi`, which in return passes them down to the system kernel. See Apple's documentation for a list in the `com.apple.Boot.plist`. Some commonly used ones are:
 
