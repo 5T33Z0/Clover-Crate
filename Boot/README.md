@@ -4,6 +4,7 @@
 <details>
 <summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
 
+- [Issues](#issues)
 - [Arguments](#arguments)
   - [Debugging](#debugging)
   - [GPU-specific boot arguments](#gpu-specific-boot-arguments)
