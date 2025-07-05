@@ -80,7 +80,7 @@ These boxes have to be checked when setting-up the required quirks &rarr; [**Qui
 Obsolete! vit9696 investigated the problem, and corrected RTC operations in Clover. The recommended value is `false` because it affects hibernation.
 
 ### BlockSkywalk
-Introduced in r5155. This allows blocking the `IOSkywalFamily.kext` in macOS Sonoma, so unsupported Wifi Cards can be re-enabled by injecting additional kexts and applying post-install root patches with OpenCore Legacy patcher (&rarr; check my [Wifi Sonoma Guide](https://github.com/5T33Z0/OC-Little-Translated/blob/main/14_OCLP_Wintel/WIiFi_Sonoma.md) for details).
+Introduced in r5155. This allows blocking the OEM `IOSkywalFamily.kext` in macOS Sonoma+, so unsupported Wifi Cards can be re-enabled by injecting an older version of IOSkywalkFamily from macOS Ventura and applying post-install root patches with OpenCore Legacy patcher (&rarr; check my [Wifi Sonoma Guide](https://github.com/5T33Z0/OCLP4Hackintosh/blob/main/Enable_Features/WiFi_Sonoma.md) and [AiportItlwm in macOS Sequoia](https://github.com/5T33Z0/OCLP4Hackintosh/blob/main/Enable_Features/AirportItllwm_Sequoia.md) for details).
 
 ### Debug
 If you want to observe how the Kexts are patched &rarr; For developers.
