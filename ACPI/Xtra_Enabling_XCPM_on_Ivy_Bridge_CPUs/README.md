@@ -117,7 +117,7 @@ sysctl machdep.xcpm.mode
 The output should be `0`, indicating that the `X86PlatformPlugin` is not loaded so ACPI CPU Power Management is used. To verify, run Intel Power Gadget and check the behavior of the CPU.
 
 ## NOTES
-- For installing macOS 13+ on Ivy Bridge systems, additional config adjustments are necessary. You can follow my [Ivy Bridge configuration guide](https://github.com/5T33Z0/OC-Little-Translated/blob/main/14_OCLP_Wintel/Ivy_Bridge-Ventura.md) to do so.
+- For installing macOS 13+ on Ivy Bridge systems, additional config adjustments are necessary. You can follow my [Ivy Bridge configuration guide](https://github.com/5T33Z0/OCLP4Hackintosh/blob/main/Guides/Ivy_Bridge.md) to do so.
 - **ssdtPRGen** includes lists with settings for specific CPUs sorted by families. These can be found under `~/Library/ssdtPRGen/Data`. They are in .cfg format which can be viewed with TextEdit.
 - ⚠️ macOS Ventura users: you cannot install macOS Security Response Updates (RSR) on pre-Haswell systems. They will fail to install (more info [**here**](https://github.com/dortania/OpenCore-Legacy-Patcher/issues/1019)).
 
