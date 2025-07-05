@@ -74,7 +74,7 @@ If you would like to contribute to the information provided in this repo in orde
 ## CREDITS
 - SergeySlice for [**Clover Boot Manager**](https://github.com/CloverHackyColor/CloverBootloader)
 - Acidanthera for [**OpenCore**](https://github.com/acidanthera/OpenCorePkg)
-- CoorpNewt for [**Clover Desktop Guide**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
+- CorpNewt for [**Clover Desktop Guide**](https://hackintosh.gitbook.io/r-hackintosh-vanilla-desktop-guide/)
 - Dortania for the excellent Documentation on [**Fixing Post-Install issues**](https://dortania.github.io/OpenCore-Post-Install/) in particular
 - RehabMan for [**Clover Laptop Configs**](https://github.com/RehabMan/OS-X-Clover-Laptop-Config)
 - Macki100Projects for [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/)
