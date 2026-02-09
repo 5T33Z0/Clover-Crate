@@ -3,7 +3,7 @@
 
 The **ACPI** section not only is the first but also the most important one (along with Kernel Patches and Quirks). It offers many options to affect the ACPI tables of your system in order to make it compatible with macOS: from replacing characters in the `DSDT`, renaming devices, enabling features to applying patches. Since this section is the centerpiece of your `config.plist`, every available option is explained in detail.
 
-<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
+<details><summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary><br>
 
 - [AutoMerge](#automerge)
 - [Disable ASPM](#disable-aspm)
