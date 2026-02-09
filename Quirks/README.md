@@ -20,10 +20,10 @@ Next, Slice integrated the `OpenRuntime.efi` source code into his repo, so he co
 
 In order to conifgure Quirks correctly, you need to follow the instruction for your CPU family in the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) – specifically, these sections:
 
-- **Booter/Quirks**
-- **Kernel/Quirks**
+- [**Booter/Quirks**](#booter-quirks)
+- [**Kernel/Quirks**](#kernel-quirks)
 - **Kernel/Scheme**
-- **UEFI/Quirks**
+- [**UEFI/Quirks**](#UEFI-quirks)
 - **UEFI/Output/`ProvideConsoleGop`**: Located under "GUI" in Clover config.
 
 ## Booter Quirks
@@ -32,6 +32,8 @@ The following screenshot shows the Booter Quirks subsection which has been intro
 ![Booter](https://user-images.githubusercontent.com/76865553/148212620-62387a7a-d56a-4df7-b8bb-ad6b0131ebf5.png)
 
 You can find the required Booter Quirks in the Booter section of [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/) – use the  ones required for your CPU family!
+
+**New Quirk**: `ClearTaskSwitchBit` (added in r5167)
 
 ## Kernel Quirks, Emulate and Scheme
 If you click on "Kernel" you will find Kernel Quirks, Emulation and Scheme Settings:
@@ -44,12 +46,16 @@ You will find the corresponding settings for your CPU in the "Kernel" section of
 
 Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover) to replace the outdated `AptioMemoryFixes` by `OpenRuntime.efi` and add necessary Quirks.
 
+**New Quirk**: `DisableIoMapperMapping` (added in r5167)
+
 ## UEFI Quirks
 
 ![UEFI_Quirks](https://user-images.githubusercontent.com/76865553/203743139-961fc413-887a-471e-b41a-30e73821ef56.png)
 
 ### TscSyncTimeout
 Added in r5150. This is an experimental quirk provided by OpenCore. The timeout has to be entered as an integer in µs. Xeon E5-2650v2 need a value of `750000`. Before playing with this value, it's recommended to use one of the existing kexts for fixing TSC Sync issues instead (like [CpuTscSync](https://github.com/acidanthera/CpuTscSync)). 
+
+**New Quirk**: `ResizeGpuBars` (added ib r5167)
 
 > [!NOTE]
 > 
