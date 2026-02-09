@@ -80,4 +80,4 @@ If you would like to contribute to the information provided in this repo in orde
 - Macki100Projects for [**Clover Configurator**](https://mackie100projects.altervista.org/download-clover-configurator/)
 - daliansky for [**P-Little Repo**](https://github.com/daliansky/P-little)
 - ic005k for [**PlistEDPlus**](https://github.com/ic005k/PlistEDPlus)
-- uranusjr for [**MacDown**](https://macdown.uranusjr.com/)
+- schuyler for [**MacDown 3000**](https://github.com/schuyler/macdown3000)
