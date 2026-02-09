@@ -1,5 +1,5 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover:-r5167-grass.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.28.01-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤26b-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-26.02.09-blueviolet.svg) ![cc](https://github.com/user-attachments/assets/e7b2be9d-70f0-40ca-97eb-166e434c9fea)
+[![Clover Version](https://img.shields.io/badge/Clover:-r5167-grass.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.28.01-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤26.3-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-26.02.09-blueviolet.svg) ![cc](https://github.com/user-attachments/assets/e7b2be9d-70f0-40ca-97eb-166e434c9fea)
 
 |:warning: Current Issues/Updates|
 |:-----------------------------------------------------------|
