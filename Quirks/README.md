@@ -21,9 +21,8 @@ Next, Slice integrated the `OpenRuntime.efi` source code into his repo, so he co
 In order to conifgure Quirks correctly, you need to follow the instruction for your CPU family in the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) – specifically, these sections:
 
 - [**Booter/Quirks**](#booter-quirks)
-- [**Kernel/Quirks**](#kernel-quirks)
-- **Kernel/Scheme**
-- [**UEFI/Quirks**](#UEFI-quirks)
+- [**Kernel Quirks, Emulate and Scheme**](#kernel-quirks-emulate-and-scheme)
+- [**UEFI/Quirks**](#uefi-quirks)
 - **UEFI/Output/`ProvideConsoleGop`**: Located under "GUI" in Clover config.
 
 ## Booter Quirks
