@@ -25,6 +25,12 @@ In order to conifgure Quirks correctly, you need to follow the instruction for y
 - [**UEFI/Quirks**](#uefi-quirks)
 - **UEFI/Output/`ProvideConsoleGop`**: Located under "GUI" in Clover config.
 
+## `AutoModernCPUQuirks` (added in Clover r5168)
+
+While it sounds fancy, it's basically just a preset, that enables all Comet Lake Quirks plus a fake CPU-ID to use 11th Gen Intel Core CPUs and newer as well as AMD Zen 3+ – you will still need the Kernel Patches for AMD CPUs, though!
+
+&rarr; See [PR #792](https://github.com/CloverHackyColor/CloverBootloader/pull/792/changes#diff-59b330deadfcb3b2377d6a9d70756f790143f1797bb7710bc415458fdaf1fafeR367-R417) for details 
+
 ## Booter Quirks
 The following screenshot shows the Booter Quirks subsection which has been introduced in Clover 5.19.00:
 
