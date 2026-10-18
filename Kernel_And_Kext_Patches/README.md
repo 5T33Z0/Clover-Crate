@@ -25,7 +25,6 @@ A group of parameters for creating binary patches on the fly. Note that this can
   - [KextsToPatch](#kextstopatch)
   - [KernelToPatch](#kerneltopatch)
   - [BootPatches](#bootpatches)
-</details>
 
 ## ATI Section
 This section applies to macOS 10.7 and newer using ATI/AMD Graphics Cards. There are 3 fields where data has to be entered to get the card and its connectors fully working in macOS:
@@ -81,6 +80,33 @@ Obsolete! vit9696 investigated the problem, and corrected RTC operations in Clov
 
 ### BlockSkywalk
 Introduced in r5155. This allows blocking the OEM `IOSkywalFamily.kext` in macOS Sonoma+, so unsupported Wifi Cards can be re-enabled by injecting an older version of IOSkywalkFamily from macOS Ventura and applying post-install root patches with OpenCore Legacy patcher (&rarr; check my [Wifi Sonoma Guide](https://github.com/5T33Z0/OCLP4Hackintosh/blob/main/Enable_Features/WiFi_Sonoma.md) and [AiportItlwm in macOS Sequoia](https://github.com/5T33Z0/OCLP4Hackintosh/blob/main/Enable_Features/AirportItllwm_Sequoia.md) for details).
+
+From Clover r5168 onward, the `BlockSkywalk` has been replaced by a new section called `KextsToBlock`, which gives users more control over *what* to block and *when*:
+
+```xml
+<dict>
+	<key>KernelAndKextPatches</key>
+	<dict>
+		<key>KextsToBlock</key>
+		<array>
+			<dict>
+				<key>Comment</key>
+				<string>Allow IOSkywalk Downgrade</string>
+				<key>Disabled</key>
+				<false/>
+				<key>MatchOS</key>
+				<string>14.x,15.x,26.x</string>
+				<key>Name</key>
+				<string>com.apple.iokit.IOSkywalkFamily</string>
+			</dict>
+		</array>
+	</dict>
+...
+```
+
+> [!NOTE]
+> 
+> This change hasn't been implemented into the GUI of Clover Configurator yet, so you have to add it to your config.plist manually via a plist editor.
 
 ### Debug
 If you want to observe how the Kexts are patched &rarr; For developers.
@@ -159,6 +185,10 @@ The patching principle is similar to the one used for patching the `DSDT`, but y
 
 ### KernelToPatch
 For applying patches to the Darwin Kernel of macOS. This is primarily used by developers for patching Kernels or for debugging purposes. In rare cases it's used for enabling features which wouldn't work otherwise, like enabling XCPM on Ivy Bridge CPUs or enabling the Intel I-225 Ethernet Controller in macOS Catalina.
+
+### KextsToBlock
+
+&rarr; Derived from `BlockSkywalk`. Introduced with Clover r5168. Gives users more control over *what* to block and *when*.
 
 ### BootPatches
 For applying binary patches to `boot.efi`
