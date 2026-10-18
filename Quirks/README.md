@@ -13,7 +13,7 @@ This BIOS allows to allocate memory in the lower registers, but to boot macOS, t
 
 After Dmazar left, no one touched this driver for a very long time until vit9696 decided to overhaul it. First, he made changes to the driver so that it could utilize native NVRAM on many chipsets, which was not possible before. Next, he broke the new driver (`OpenRuntime.efi`) down into sections of **semantic expressions (quirks), which could then be turned on and off by the user as needed when using the OpenCore Bootloader**.
 
-ReddestDream, a programmer who decided to make `OpenRuntime.efi` work with Clover somehow, created a separate driver (`OcQuirks.efi`), which worked in conjunction with `OpenRuntime.efi` and an additional `OcQuirks.plist` to store all the settings. This construct could then be utilized by Clover.
+ReddestDream, a programmer who decided to port `OpenRuntime.efi` to work with Clover, created a separate driver (`OcQuirks.efi`) and an additional `OcQuirks.plist` to store the settings to enable/disable the Quirks. This construct could then be utilized by Clover.
 
 Next, Slice integrated the `OpenRuntime.efi` source code into his repo, so he could do bisectioning. Finally, he integrated the quirks section into Clover's `config.plist`, so that the separate OcQuirks.plist was no longer required and Quirks could also be changed on the fly from within the bootloader GUI.
 </details>
@@ -24,12 +24,6 @@ In order to conifgure Quirks correctly, you need to follow the instruction for y
 - [**Kernel Quirks, Emulate and Scheme**](#kernel-quirks-emulate-and-scheme)
 - [**UEFI/Quirks**](#uefi-quirks)
 - **UEFI/Output/`ProvideConsoleGop`**: Located under "GUI" in Clover config.
-
-## `AutoModernCPUQuirks` (added in Clover r5168)
-
-While it sounds fancy, it's basically just a preset, that enables all Comet Lake Quirks plus a fake CPU-ID to use 11th Gen Intel Core CPUs and newer as well as AMD Zen 3+ – you will still need the Kernel Patches for AMD CPUs, though!
-
-&rarr; See [PR #792](https://github.com/CloverHackyColor/CloverBootloader/pull/792/changes#diff-59b330deadfcb3b2377d6a9d70756f790143f1797bb7710bc415458fdaf1fafeR367-R417) for details 
 
 ## Booter Quirks
 The following screenshot shows the Booter Quirks subsection which has been introduced in Clover 5.19.00:
@@ -68,6 +62,21 @@ Added in r5150. This is an experimental quirk provided by OpenCore. The timeout 
 
 ## Additional Quirks
 This section lists Quirks which are new, undocumented or unavailable in Clover Configurator yet or are noteworthy otherwise.
+
+### `AutoModernCPUQuirks` (added in r5168)
+
+While it sounds fancy, it's basically just a preset, that enables all Comet Lake Quirks plus a fake CPU-ID to use 11th Gen Intel Core CPUs and newer as well as AMD Zen 3+ – you will still need the Kernel Patches for AMD CPUs, though!
+
+&rarr; See [PR #792](https://github.com/CloverHackyColor/CloverBootloader/pull/792/changes#diff-59b330deadfcb3b2377d6a9d70756f790143f1797bb7710bc415458fdaf1fafeR367-R417) for details 
+
+### `ClearTaskSwitchBit` (added in r5167)
+Adds critical stability fix for newer Ryzen platforms.
+
+### `DisableIoMapperMapping`(added in r5167)
+Introduced in OpenCore 0.9.2, `DisableIoMapperMapping` is a kernel quirk that addresses a macOS Ventura 13.3+ compatibility issue between AppleVTD (VT-d/IOMMU) and certain PCI devices. The issue occurs on systems with AppleVTD enabled, more than 16 GB of RAM, and a native DMAR table containing one or more Reserved Memory Regions; on affected Intel systems, Wi-Fi, Ethernet, and Thunderbolt devices may stop working. The quirk prevents macOS from mapping PCI bridge device memory through the IOMMU while leaving AppleVTD enabled, avoiding the problematic memory mapping introduced in Ventura 13.3. It effectively replaces the need for the original IOPCIFamily binary patch from CaseySJ's Ventura-AppleVTD-Patch, which should be disabled or removed when using OpenCore 0.9.2 or newer. DisableIoMapperMapping is only required for macOS 13.3+ and is not needed on AMD systems.
+
+### `ResizeGpuBars` (added in r5167)
+Another OpenCore Quirk. `ResizeGpuBars` is used to configure GPU PCI BAR sizes, allowing for adjustments to the memory mapping of the GPU for better compatibility with operating systems other than macOS. Setting it to `-1` (default) disables this quirk, while other values can be used to specify the desired size, following the PCI Resizable BAR specification. Fore more details, check the [OpenCore Documentation](https://dortania.github.io/docs/latest/Configuration.html)
 
 ### ForceAquantiaEthernet
 Introduced in Clover r5156. Enables Aquantia AQtion based 10GbE network cards support, which used to work natively before macOS 10.15.4. 
