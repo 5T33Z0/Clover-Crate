@@ -38,7 +38,15 @@ The following screenshot shows the Booter Quirks subsection which has been added
 
 You can find the required Booter Quirks in the Booter section of [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/) – use the  ones required for your CPU family!
 
-**New Quirk**: `ClearTaskSwitchBit` (added in r5167)
+### `ClearTaskSwitchBit` (added in r5167)
+Adds critical stability fix for newer Ryzen platforms.
+
+### ForceOcWriteFlash
+Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Description from the OpenCore Documentation:
+
+> Enables writing to flash memory for all NVRAM system variables handled by OpenRuntime.efi. This value should be disabled on most types of firmware but is left configurable to account for firmware that may have issues with volatile variable storage overflows or similar. Boot issues across multiple OSes can be observed on e.g. Lenovo ThinkPad T430 and T530 without this quirk. Apple variables related to Secure Boot and hibernation are exempt from this for security reasons. Furthermore, some OpenCore variables are exempt for different reasons, such as the boot log due to an available user option, and the TSC frequency due to timing issues. When toggling this option, a NVRAM reset may be required to ensure full functionality.
+
+---
 
 ## Kernel Quirks, Emulate and Scheme
 If you click on "Kernel" you will find Kernel Quirks, Emulation and Scheme Settings:
@@ -51,40 +59,8 @@ You will find the corresponding settings for your CPU in the "Kernel" section of
 
 Users of Clover < r5126 can follow my [**Clover Upgrade Guide**](https://github.com/5T33Z0/Clover-Crate/tree/main/Update_Clover) to replace the outdated `AptioMemoryFixes` by `OpenRuntime.efi` and add necessary Quirks.
 
-**New Quirk**: `DisableIoMapperMapping` (added in r5167)
-
-## UEFI Quirks
-
-![UEFI_Quirks](https://user-images.githubusercontent.com/76865553/203743139-961fc413-887a-471e-b41a-30e73821ef56.png)
-
-### TscSyncTimeout
-Added in r5150. This is an experimental quirk provided by OpenCore. The timeout has to be entered as an integer in µs. Xeon E5-2650v2 need a value of `750000`. Before playing with this value, it's recommended to use one of the existing kexts for fixing TSC Sync issues instead (like [CpuTscSync](https://github.com/acidanthera/CpuTscSync)). 
-
-**New Quirk**: `ResizeGpuBars` (added ib r5167)
-
-> [!NOTE]
-> 
-> Update Clover Configurator to the latest version (5.24.0.0 or newer) to find the new UEFI Tab in the Quirks section!
-
-## Additional Quirks
-This section lists Quirks which are new, undocumented or unavailable in Clover Configurator yet or are noteworthy otherwise.
-
-### `AutoModernCPUQuirks` (added in r5168)
-
-Despite its fancy name, this quirk is essentially a preset that enables a set of CPU-related quirks originally intended for Intel Comet Lake systems and applies a fake CPU ID to extend compatibility to 11th-generation and newer Intel Core CPUs, as well as AMD Zen 3 and newer processors.
-
-> [!NOTE]
-> 
-> AMD CPUs still require the appropriate kernel patches. `AutoModernCPUQuirks` does not replace them &rarr; Check [PR #792](https://github.com/CloverHackyColor/CloverBootloader/pull/792/changes#diff-59b330deadfcb3b2377d6a9d70756f790143f1797bb7710bc415458fdaf1fafeR367-R417) for more details.
-
-### `ClearTaskSwitchBit` (added in r5167)
-Adds critical stability fix for newer Ryzen platforms.
-
 ### `DisableIoMapperMapping`(added in r5167)
 Introduced in OpenCore 0.9.2, `DisableIoMapperMapping` is a kernel quirk that addresses a macOS Ventura 13.3+ compatibility issue between AppleVTD (VT-d/IOMMU) and certain PCI devices. The issue occurs on systems with AppleVTD enabled, more than 16 GB of RAM, and a native DMAR table containing one or more Reserved Memory Regions; on affected Intel systems, Wi-Fi, Ethernet, and Thunderbolt devices may stop working. The quirk prevents macOS from mapping PCI bridge device memory through the IOMMU while leaving AppleVTD enabled, avoiding the problematic memory mapping introduced in Ventura 13.3. It effectively replaces the need for the original IOPCIFamily binary patch from CaseySJ's Ventura-AppleVTD-Patch, which should be disabled or removed when using OpenCore 0.9.2 or newer. DisableIoMapperMapping is only required for macOS 13.3+ and is not needed on AMD systems.
-
-### `ResizeGpuBars` (added in r5167)
-Another OpenCore Quirk. `ResizeGpuBars` is used to configure GPU PCI BAR sizes, allowing for adjustments to the memory mapping of the GPU for better compatibility with operating systems other than macOS. Setting it to `-1` (default) disables this quirk, while other values can be used to specify the desired size, following the PCI Resizable BAR specification. Fore more details, check the [OpenCore Documentation](https://dortania.github.io/docs/latest/Configuration.html)
 
 ### ForceAquantiaEthernet
 Introduced in Clover r5156. Enables Aquantia AQtion based 10GbE network cards support, which used to work natively before macOS 10.15.4. 
@@ -95,13 +71,37 @@ Introduced in Clover r5156. Enables Aquantia AQtion based 10GbE network cards su
 - `DisableIoMapper` Quirk must be unselected
 - Some mainboards (e.g. Z490) may require dropping/replacing `DMAR` Table in order to make AppleVTD work in macOS (&rarr; see ["Notes for dropping DMAR for ForceAuqantiaEthernet"](https://github.com/acidanthera/OpenCorePkg/commit/24414555f2c07e06a3674ec7a2aa1ce4860bbcc7#commitcomment-70530145)).
 
-### ForceOcWriteFlash
-Added in r5142 beta. It's another OpenCore Quirk integrated into Clover. Description from the OpenCore Documentation:
+## UEFI Quirks
 
-> Enables writing to flash memory for all NVRAM system variables handled by OpenRuntime.efi. This value should be disabled on most types of firmware but is left configurable to account for firmware that may have issues with volatile variable storage overflows or similar. Boot issues across multiple OSes can be observed on e.g. Lenovo ThinkPad T430 and T530 without this quirk. Apple variables related to Secure Boot and hibernation are exempt from this for security reasons. Furthermore, some OpenCore variables are exempt for different reasons, such as the boot log due to an available user option, and the TSC frequency due to timing issues. When toggling this option, a NVRAM reset may be required to ensure full functionality.
+![UEFI_Quirks](https://user-images.githubusercontent.com/76865553/203743139-961fc413-887a-471e-b41a-30e73821ef56.png)
+
+> [!NOTE]
+> 
+> Update Clover Configurator to the latest version (5.24.0.0 or newer) to find the new UEFI Tab in the Quirks section!
+
+### TscSyncTimeout
+Added in r5150. This is an experimental quirk provided by OpenCore. The timeout has to be entered as an integer in µs. Xeon E5-2650v2 need a value of `750000`. Before playing with this value, it's recommended to use one of the existing kexts for fixing TSC Sync issues instead (like [CpuTscSync](https://github.com/acidanthera/CpuTscSync)). 
+
+### `ResizeGpuBars` (added in r5167)
+Another OpenCore Quirk. `ResizeGpuBars` is used to configure GPU PCI BAR sizes, allowing for adjustments to the memory mapping of the GPU for better compatibility with operating systems other than macOS. Setting it to `-1` (default) disables this quirk, while other values can be used to specify the desired size, following the PCI Resizable BAR specification. Fore more details, check the [OpenCore Documentation](https://dortania.github.io/docs/latest/Configuration.html)
+
+---
+
+## Other Quirks
+This section lists Quirks which are new, undocumented or unavailable in Clover Configurator yet or are noteworthy otherwise.
+
+### `AutoModernCPUQuirks` (added in r5168)
+
+Despite its fancy name, this quirk is essentially a preset that enables a set of CPU-related quirks originally intended for Intel Comet Lake systems and applies a fake CPU ID to extend compatibility to 11th-generation and newer Intel Core CPUs, as well as AMD Zen 3 and newer processors.
+
+> [!NOTE]
+> 
+> AMD CPUs still require the appropriate kernel patches. `AutoModernCPUQuirks` does not replace them &rarr; Check [PR #792](https://github.com/CloverHackyColor/CloverBootloader/pull/792/changes#diff-59b330deadfcb3b2377d6a9d70756f790143f1797bb7710bc415458fdaf1fafeR367-R417) for more details.
 
 ### Provide Console Gop
-`ProvideConsoleGop` is another a OpenCore Quirk which has been implemented into Clover. Until r5128, it resided in the `Quirks` section as `ProvideConsoleGopEnable`. Since then, it has been relocated to the `GUI` section because it's related to the User Interface. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI/Output` section. **Hint**: it's always enabled.
+`ProvideConsoleGop` is another a OpenCore Quirk which has been implemented into Clover. Until r5128, it resided in the `Quirks` section as `ProvideConsoleGopEnable`. Since then, it has been relocated to the `GUI` section because it's related to the User Interface. To find out if you need it or not, check the OpenCore install Guide, specifically the `UEFI/Output` section. 
+
+**Hint**: it's always enabled.
 
 ### ProvideCurrentCpuInfo
 This quirk works differently depending on the CPU to the macOS Kernel:
