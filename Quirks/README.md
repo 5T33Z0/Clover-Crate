@@ -1,22 +1,26 @@
 # Quirks
 
+## Introduction
+
 `Quirks` is a set of features to configure Booter and Kernel Settings in Clover. The underlying technology is OpenCore's `OpenRuntime.efi` which has been fully integrated into Clover since r5126. It replaces the previously used `AptioMemoryFixes` which are no longer capable of booting newer macOS past Catalina. So an upgrade to r5126 or newer is mandatory in order to be able to install and boot macOS Big Sur and beyond with Clover.
 
 Besides [misleading claims](https://www.insanelymac.com/forum/topic/351590-intel-uhd-graphics-630-help/?do=findComment&comment=2781905) that Clover will "assign default value[s] for all absent keys [–] *even for Quirks*", you *still* have to configure them *correctly* so your system will boot!
 
-<details>
-<summary><strong>Background: From Aptio Memory Fixes to Quirks</strong></summary>
+### Historical Background: From Aptio Memory Fixes to OpenCore Quirks
 
-The development of a driver for adjusting the memory of AMI's Aptio UEFI BIOS by Dmazar marked the beginning of the UEFI Boot era for Clover.
+The development of a driver to address memory allocation issues in AMI's Aptio UEFI firmware by **Dmazar** marked an important milestone in Clover's transition to UEFI booting.
 
-This BIOS allows to allocate memory in the lower registers, but to boot macOS, the lower memory has to be freed. This issue not only affected memory but also `boot.efi`, address virtualization, pointers, functions, etc. It was Dmazar who figured out how to resolve the issues which resulted in the `OsxAptioFixDrv.efi` drivers.
+Aptio firmware could allocate memory in low-memory regions that macOS needed to reclaim during boot. Resolving these conflicts involved more than simply freeing memory: issues involving `boot.efi`, address virtualization, pointers, and function handling also had to be addressed. Dmazar developed the `OsxAptioFixDrv.efi` family of drivers to work around these firmware-related problems.
 
-After Dmazar left, no one touched this driver for a very long time until vit9696 decided to overhaul it. First, he made changes to the driver so that it could utilize native NVRAM on many chipsets, which was not possible before. Next, he broke the new driver (`OpenRuntime.efi`) down into sections of **semantic expressions (quirks), which could then be turned on and off by the user as needed when using the OpenCore Bootloader**.
+After Dmazar stepped away from development, the drivers remained largely unchanged for an extended period. **vit9696** eventually took a different approach, reworking the underlying memory-management mechanisms. This work led to `OpenRuntime.efi`, which separated individual workarounds into configurable **quirks** that users could enable or disable as needed in OpenCore's configuration.
 
-ReddestDream, a programmer who decided to port `OpenRuntime.efi` to work with Clover, created a separate driver (`OcQuirks.efi`) and an additional `OcQuirks.plist` to store the settings to enable/disable the Quirks. This construct could then be utilized by Clover.
+In October 2019, **ReddestDream** released [OcQuirks](https://github.com/ReddestDream/OcQuirks), an attempt to bring OpenCore's boot-time quirks to Clover as a drop-in replacement for the aging Aptio memory-fix drivers. The project consisted of `OcQuirks.efi` and a separate `OcQuirks.plist`, which stored the settings for enabling or disabling the available quirks.
 
-Next, Slice integrated the `OpenRuntime.efi` source code into his repo, so he could do bisectioning. Finally, he integrated the quirks section into Clover's `config.plist`, so that the separate OcQuirks.plist was no longer required and Quirks could also be changed on the fly from within the bootloader GUI.
-</details>
+**Slice** subsequently began integrating the OcQuirks settings directly into Clover's `config.plist` and incorporating `OpenRuntime.efi`. With the release of Clover r5124 in October 2020, OpenCore components were integrated into Clover's boot process. Kext injection and kernel patching could then be delegated to OpenCore, extending Clover's compatibility to macOS Big Sur and later releases. Without this integration, macOS Catalina would effectively have marked the end of Clover's ability to boot newer macOS versions.
+
+---
+
+## Usage Notes
 
 In order to conifgure Quirks correctly, you need to follow the instruction for your CPU family in the [**OpenCore Install Guide**](https://dortania.github.io/OpenCore-Install-Guide/) – specifically, these sections:
 
@@ -25,8 +29,10 @@ In order to conifgure Quirks correctly, you need to follow the instruction for y
 - [**UEFI/Quirks**](#uefi-quirks)
 - **UEFI/Output/`ProvideConsoleGop`**: Located under "GUI" in Clover config.
 
+---
+
 ## Booter Quirks
-The following screenshot shows the Booter Quirks subsection which has been introduced in Clover 5.19.00:
+The following screenshot shows the Booter Quirks subsection which has been added to Clover Configurator in version 5.19.00:
 
 ![Booter](https://user-images.githubusercontent.com/76865553/148212620-62387a7a-d56a-4df7-b8bb-ad6b0131ebf5.png)
 
