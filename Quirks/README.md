@@ -71,9 +71,11 @@ This section lists Quirks which are new, undocumented or unavailable in Clover C
 
 ### `AutoModernCPUQuirks` (added in r5168)
 
-While it sounds fancy, it's basically just a preset, that enables all Comet Lake Quirks plus a fake CPU-ID to use 11th Gen Intel Core CPUs and newer as well as AMD Zen 3+ – you will still need the Kernel Patches for AMD CPUs, though!
+Despite its fancy name, this quirk is essentially a preset that enables a set of CPU-related quirks originally intended for Intel Comet Lake systems and applies a fake CPU ID to extend compatibility to 11th-generation and newer Intel Core CPUs, as well as AMD Zen 3 and newer processors.
 
-&rarr; See [PR #792](https://github.com/CloverHackyColor/CloverBootloader/pull/792/changes#diff-59b330deadfcb3b2377d6a9d70756f790143f1797bb7710bc415458fdaf1fafeR367-R417) for details 
+> [!NOTE]
+> 
+> AMD CPUs still require the appropriate kernel patches. `AutoModernCPUQuirks` does not replace them &rarr; Check [PR #792](https://github.com/CloverHackyColor/CloverBootloader/pull/792/changes#diff-59b330deadfcb3b2377d6a9d70756f790143f1797bb7710bc415458fdaf1fafeR367-R417) for more details.
 
 ### `ClearTaskSwitchBit` (added in r5167)
 Adds critical stability fix for newer Ryzen platforms.
