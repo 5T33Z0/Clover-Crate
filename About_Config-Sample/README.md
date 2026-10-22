@@ -1,22 +1,5 @@
 # Clover's problematic `config-sample.plist`
 
-**TABLE OF CONTENTS**
-
-- [Preface](#preface)
-- [ACPI Section](#acpi-section)
-- [Boot Section](#boot-section)
-- [Boot Graphics Section](#boot-graphics-section)
-- [CPU Section](#cpu-section)
-- [Devices Section](#devices-section)
-- [Disable Drivers](#disable-drivers)
-- [GUI Section](#gui-section)
-- [Graphics](#graphics)
-- [Kernel and Kext Patches Section](#kernel-and-kext-patches-section)
-- [RT Variables Section](#rt-variables-section)
-- [SMBIOS Section](#smbios-section)
-- [System Parameters Section](#system-parameters-section)
-- [Quirks Section](#quirks-section)
-
 ## Preface
 
 > [!WARNING]

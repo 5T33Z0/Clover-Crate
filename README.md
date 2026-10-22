@@ -1,9 +1,10 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover:-r5167-grass.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.28.01-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤26.3-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-26.02.09-blueviolet.svg) ![cc](https://github.com/user-attachments/assets/e7b2be9d-70f0-40ca-97eb-166e434c9fea)
+[![Clover Version](https://img.shields.io/badge/Clover:-r5175-grass.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.29.00-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤26.x-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-26.10.22-blueviolet.svg) ![cc](https://github.com/user-attachments/assets/e7b2be9d-70f0-40ca-97eb-166e434c9fea)
 
-|:warning: Current Issues/Updates|
+|:warning: Current Status|
 |:-----------------------------------------------------------|
-| Time to archive this repo and put it to rest. Clover has been effectively dead since 2020, surviving only as a zombie thanks to OpenCore’s memory fixes. Since Slice has repeatedly tried to slander OpenCore – most recently [here](https://www.insanelymac.com/forum/topic/350754-opencore-general-discussion/page/361/#findComment-2830264) — I’ve decided to sever my ties with it and help lay it to rest once and for all! 
+| Clover has been effectively dead since 2020, surviving only as a zombie thanks to OpenCore’s memory fixes. Yet, Slice repeatedly tries to slander OpenCore – most recently [**here**](https://www.insanelymac.com/forum/topic/350754-opencore-general-discussion/page/361/#findComment-2830264), where he called ot a "Dead Bootloader". How ironic…
+| Clover Configurator's Development is pretty much dead. No new config settings or fetures are implemnetd 
 | **`HWTarget`** is broken in macOS 13+. Use this [**workaround**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables#working-around-issues-with--hwtarget-in-macos-13-to-receive-system-updates) to get System Updates (or switch to OpenCore).
 |**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
 
@@ -58,7 +59,8 @@ The methods and techniques presented in this repo are based on utilizing the off
 - [**Tools Section**](https://github.com/5T33Z0/Clover-Crate/blob/main/Tools/README.md)
 
 ### APPENDIX
-- [**Clover's problematic `config-sample.plist`**](https://github.com/5T33Z0/Clover-Crate/tree/main/About_Config-Sample) 
+- [**Clover's problematic `config-sample.plist`**](https://github.com/5T33Z0/Clover-Crate/tree/main/About_Config-Sample)
+- [**Validate your Config!**](/About_Config-Sample/Config_Validation.md)
 - [**Upgrading to Clover with OpenRuntime integration**](https://github.com/5T33Z0/Clover-Crate/tree/main/Upgrading_Clover#readme)
 - [**Preconfigured EFIs and Configs**](https://github.com/5T33Z0/Clover-Crate/tree/main/EFIs_and_Configs)
 - [**Kext Management in Clover**](https://github.com/5T33Z0/Clover-Crate/tree/main/Kext_Management#readme)
