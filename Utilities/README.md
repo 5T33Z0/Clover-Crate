@@ -54,7 +54,7 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 - [**HWiNFO**](https://www.hwinfo.com/) – Great Tool for getting in-depth info about your system and components
 
 ### Web-based Applications
-- [CloverConfigChecker/](https://chris1111.github.io/CloverConfigChecker/) – Online Clover Config Checker
+- [**CloverConfigChecker**/](https://chris1111.github.io/CloverConfigChecker/) – Online Clover Config Checker
 - [**Clover Cloud Editor**](https://www.root86.com/CCE/cce/index.php) – Online Clover Config Editor
 - [**Big <> Little Endian Converter**](https://www.save-editor.com/tools/wse_hex.html)
 - [**Base64 Decoder/Encoder**](https://www.base64decode.org/)
