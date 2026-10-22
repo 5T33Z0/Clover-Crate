@@ -6,6 +6,7 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 - [**Bootloader Chooser**](https://github.com/jief666/BootloaderChooser) – A pre-bootloader which lets you pick the actual Boot Manager you want to run. This way, you easily switch between Clover and OpenCore.
 - [**Clover Suite Builder**](https://github.com/LAbyOne/Clover-Suite-Builder) – Tool for compiling Clover from the Source Code
 - [**Clover-Anonymizer**](https://github.com/dreamwhite/Clover-Anonymizer) – Python script to remove sensitive data from the `config.plist`
+- 
 
 ## Apps and Tools
 ### macOS (General)
@@ -53,9 +54,11 @@ Incomplete list of useful freeware Apps, Tools and resources for hackintoshing.
 - [**HWiNFO**](https://www.hwinfo.com/) – Great Tool for getting in-depth info about your system and components
 
 ### Web-based Applications
+- [**CloverConfigChecker**/](https://chris1111.github.io/CloverConfigChecker/) – Online Clover Config Checker
 - [**Clover Cloud Editor**](https://www.root86.com/CCE/cce/index.php) – Online Clover Config Editor
 - [**Big <> Little Endian Converter**](https://www.save-editor.com/tools/wse_hex.html)
 - [**Base64 Decoder/Encoder**](https://www.base64decode.org/)
+
 
 ## Resources
 - [**Clover Changelog and Explanations**](https://www.insanelymac.com/forum/topic/304530-clover-change-explanations/)
