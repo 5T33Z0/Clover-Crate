@@ -1,12 +1,17 @@
 # CLOVER CRATE
-[![Clover Version](https://img.shields.io/badge/Clover:-r5175-grass.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.29.00-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤26.x-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-26.10.22-blueviolet.svg) ![cc](https://github.com/user-attachments/assets/e7b2be9d-70f0-40ca-97eb-166e434c9fea)
+[![Clover Version](https://img.shields.io/badge/Clover:-r5175-grass.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![Clover Configurator](https://img.shields.io/badge/Clover_Configurator:-5.29.00-green.svg)](https://mackie100projects.altervista.org/download-clover-configurator/) [![macOS](https://img.shields.io/badge/Supported_macOS:-≤26.x-white.svg)](https://www.apple.com/macos/monterey/) ![Last Update](https://img.shields.io/badge/Last_Update:_(yy.mm.dd):-26.10.25-blueviolet.svg) ![cc](https://github.com/user-attachments/assets/e7b2be9d-70f0-40ca-97eb-166e434c9fea)
 
-|:warning: Current Status|
-|:-----------------------------------------------------------|
-| Clover has been effectively dead since 2020, surviving only as a zombie thanks to OpenCore’s memory fixes. Yet, Slice repeatedly tries to slander OpenCore – most recently [**here**](https://www.insanelymac.com/forum/topic/350754-opencore-general-discussion/page/361/#findComment-2830264), where he called ot a "Dead Bootloader". How ironic…
-| Clover Configurator's Development is pretty much dead. No new config settings or fetures are implemnetd 
-| **`HWTarget`** is broken in macOS 13+. Use this [**workaround**](https://github.com/5T33Z0/Clover-Crate/tree/main/RtVariables#working-around-issues-with--hwtarget-in-macos-13-to-receive-system-updates) to get System Updates (or switch to OpenCore).
-|**AMD Users**: Clover Configurator 5.23.0 fixed "Skip" and "Count" keys being deleted from config.plist!
+> [!IMPORTANT]
+>
+> ## Don't Believe the Myth
+>
+> From the [Clover Configurator changelog](https://mackie100projects.altervista.org/changelog-version-5-25-0-0/):
+>
+> > Added new option “Keep unknown keys and values” in Preferences Pane (Enabled by default). This option prevents misconfiguration with older or newer keys not supported on the application, especially with new custom SMBIOS feature (Clover Rev. 5152+).
+>
+> **Don't let lazy or stubborn Clover developers and maintainers fool you into accepting “You used Clover Configurator” as a diagnosis.** If user error has been ruled out, demand evidence. Reproduce the issue, compare the plist before and after saving, and investigate the actual bug. **Blaming the tool without testing is not debugging — it's an excuse.**
+>
+> Here's an [example](https://github.com/CloverHackyColor/CloverBootloader/issues/853) of the ordeal that dealing with stubborn developers can become. It's also why I archived this repository. And despite all the unnecessary arguing and finger-pointing, at least I managed to fix a Clover bug that had gone unresolved for 4.5 years. Turns out, investigating the code works better than blaming the user.
 
 ## ABOUT
 **Clover Crate** is an unofficial documentation for the [**Clover Boot Manager**](https://github.com/CloverHackyColor/CloverBootloader/releases) and its features. Its structure closely follows the hierarchy of the `config.plist` and the corresponding sections in Clover Configurator. 
